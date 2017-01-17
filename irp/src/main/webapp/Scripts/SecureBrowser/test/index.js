@@ -10,12 +10,6 @@ var isDesktop = (Util.Browser.isWindows() || Util.Browser.isLinux() || Util.Brow
 
 if (isIOSDevice || isAndroidDevice) {
 	this.runtime = (new Summit.SecureBrowser.Mobile()).getNativeBrowser();
-	/*alert(runtime);
-	alert("Runtime Methods" + getMethods(runtime));
-	alert(runtime.checkRunningProcesses(null,null));*/
-	
-	alert(runtime.device);
-
 }
 
 if (isDesktop && Util.Browser.isSecure()) {
@@ -41,37 +35,18 @@ QUnit.test('Get process list',function(assert) {
 
 		assert.equal(typeof (SecureBrowser) != 'undefined', true,'Checking if this is Secure Browser');
 		if (typeof (SecureBrowser) != 'undefined') {
-			//alert("SecureBrowser Object " + SecureBrowser);
-			//alert(window.JavaBrowserSecurity);
-			alert("SecureBrowser Methods " + getMethods(SecureBrowser));
 		}
 
 		assert.equal(Util.Browser.supportsMathML(),true,'Check for MathML Support');
-		//alert("Runtime Object" + runtime);
-		
-		alert("Voice Name " +runtime.voiceName);
-		alert("Voices " + runtime.voices);
-		runtime.initialize();
-        runtime.play('Aarya');
-		alert(runtime.status);
-		runtime.pause();
-		alert(runtime.status);
-		runtime.resume();
-		alert(runtime.status);
-		//runtime.stop();
 		
 		if (runtime != null && typeof (runtime)!='undefined' && typeof(runtime)=='object') {
-			alert("Runtime Methods" + getMethods(runtime));
-			//alert("Runtime Device Methods" + getMethods(runtime.device));
 			
+			assert.equal(typeof (runtime.getRunningProcessList) != 'undefined', true,'Checking if getProcessList method exists');
 			if (typeof (runtime.getRunningProcessList) == 'function') {
 				var processes = runtime.getRunningProcessList();
-				//alert("processes " + processes);
 				assert.ok(processes.indexOf('chrome.exe') != -1,'Check for process we know exists');
 			}
 		}
-		
-		//alert("User Agent " + navigator.userAgent);
 
 });
 
