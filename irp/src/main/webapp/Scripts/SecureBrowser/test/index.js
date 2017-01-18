@@ -6,6 +6,7 @@ var isChrome = Util.Browser.isChrome();
 var isDesktop = (Util.Browser.isWindows() || Util.Browser.isLinux() || Util.Browser
 		.isMac());
 var isMobile = Util.Browser.isMobile();
+var isCertified = Util.Browser.isCertified();
 
 if (isIOSDevice || isAndroidDevice) {
 	this.runtime = (new Summit.SecureBrowser.Mobile()).getNativeBrowser();
@@ -46,21 +47,72 @@ QUnit.test('Check SecureBrowser Object',function(assert) {
 QUnit.test('Check browser runtime Object',function(assert) {
 	
 	assert.equal((runtime != null && typeof (runtime)!='undefined' && typeof(runtime)=='object'), true,'Checking if runtime object for browser is available');
-	if (runtime != null && typeof (runtime)!='undefined' && typeof(runtime)=='object') {
-	/*	//alert('runtime Methods' + getMethods(runtime));
-					if (isMobile) {
-						alert(runtime.security.getDeviceInfo());
-						alert(runtime.security.getMACAddress());
-						alert(runtime.security.getIPAddressList());
-						alert(runtime.security.getStartTime());
-						alert(runtime.security.getProcessList());
-					}*/
-		assert.equal(typeof (runtime.getRunningProcessList) != 'undefined', true,'Checking if getProcessList method exists');
-		if (typeof (runtime.getRunningProcessList) == 'function') {
-			var processes = runtime.getRunningProcessList();
-			assert.ok(processes.indexOf('chrome.exe') != -1,'Check for process we know exists');
+	/**SEC-25 : API: Retrieve device details (R) **/
+	var deviceInfo = "";
+	
+	var processListMethod = "";
+	var processes = "";
+	
+	/** SEC-27 : API: get system MAC address(es) (O) **/
+	var macAddress = null;
+	
+	
+	/** SEC-28 : API: Retrieve client IP address(es) (O) **/
+	var ipAddress = null
+	
+	
+
+		if(Util.Browser.isSecure()){
+			
+			 processes = runtime.getRunningProcessList();
+			 processListMethod = runtime.getRunningProcessList;
+			 
+			 /** SEC-27 : API: get system MAC address(es) (O) **/
+			 macAddress =runtime.getMACAddress();
+		
 		}
-	}
+		else if (isMobile) {
+			/**SEC-25 : API: Retrieve device details (R) **/
+			deviceInfo = runtime.security.getDeviceInfo();
+			processes = runtime.security.getProcessList();
+			processListMethod =  runtime.security.getProcessList;
+			
+			/** SEC-27 : API: get system MAC address(es) (O) **/
+			macAddress =runtime.security.getMACAddress();
+			
+			/** SEC-28 : API: Retrieve client IP address(es) (O) **/
+			ipAddress =runtime.security.getIPAddressList();
+			
+		}else if(isCertified){
+			/**SEC-25 : API: Retrieve device details (R) **/
+			deviceInfo = browser.security.getDeviceInfo();
+			processes  = browser.security.getProcessList();
+			processListMethod =  browser.security.getProcessList;
+			
+			/** SEC-27 : API: get system MAC address(es) (O) **/
+			macAddress =browser.security.getMACAddress();
+			
+			/** SEC-28 : API: Retrieve client IP address(es) (O) **/
+			ipAddress = browser.security.getIPAddressList()
+		}
+		
+		
+	
+	
+	
+	/**SEC-25 : API: Retrieve device details (R) **/
+	assert.equal((/Manufacturer/i.test(deviceInfo) && /HWVer/i.test(deviceInfo) &&
+			/SWVer/i.test(deviceInfo)),true,'Check device info keys');
+	
+	/** SEC-27 : API: get system MAC address(es) (O) **/
+	assert.equal(Util.Validation.isMacAddressValid(macAddress), true,'Checking if valid mac address is returned');
+	
+	/** SEC-28 : API: Retrieve client IP address(es) (O) **/
+	assert.equal(Util.Validation.isIPAddressValid(ipAddress), true,'Checking if valid IP address is returned');
+	
+	
+/*	assert.equal(typeof (processListMethod) != 'undefined', true,'Checking if getProcessList method exists');
+	assert.ok(processes.indexOf('chrome.exe') != -1,'Check for process we know exists');*/
 });
 
 function getMethods(obj) {
