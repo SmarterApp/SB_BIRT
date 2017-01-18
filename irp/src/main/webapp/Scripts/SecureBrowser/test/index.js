@@ -1,10 +1,8 @@
 this.runtime = null;
-var isIOSDevice = (/Mobile/i.test(navigator.userAgent) && /Iphone/i
-		.test(navigator.userAgent));
-var isAndroidDevice = (/Mobile/i.test(navigator.userAgent) && /Android/i
-		.test(navigator.userAgent));
-var isFireFox = /Firefox/i.test(navigator.userAgent);
-var isChrome = !!window.chrome;
+var isIOSDevice = Util.Browser.isIOS();
+var isAndroidDevice = Util.Browser.isAndroid();
+var isFireFox = Util.Browser.isFirefox();
+var isChrome = Util.Browser.isChrome();
 var isDesktop = (Util.Browser.isWindows() || Util.Browser.isLinux() || Util.Browser
 		.isMac());
 
@@ -39,6 +37,7 @@ QUnit.test('Get process list',function(assert) {
 
 		assert.equal(Util.Browser.supportsMathML(),true,'Check for MathML Support');
 		
+		assert.equal((runtime != null && typeof (runtime)!='undefined' && typeof(runtime)=='object'), true,'Checking if runtime object for browser is available');
 		if (runtime != null && typeof (runtime)!='undefined' && typeof(runtime)=='object') {
 			
 			assert.equal(typeof (runtime.getRunningProcessList) != 'undefined', true,'Checking if getProcessList method exists');

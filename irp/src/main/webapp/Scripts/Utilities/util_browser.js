@@ -231,7 +231,7 @@ https://github.com/faisalman/ua-parser-js/
         }
 
         // check chrome
-        if (!!window.chrome > 0) {
+        if (!!window.chrome) {
             // Chrome 24 added MathML but Chrome 25+ disabled it...
             // https://code.google.com/p/chromium/issues/detail?id=174455
             return false;
