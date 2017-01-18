@@ -34,13 +34,6 @@ QUnit.test('Check Device and Browser Info',function(assert) {
 		assert.equal(Util.Browser.supportsMathML(),true,'Check for MathML Support');
 		assert.equal(Util.Browser.supportsSVG(),true,'Check for SVG Support');
 		assert.equal(Util.Browser.supportsAudioOGG(),true,'Check for OGG Support');
-
-		
-
-
-		
-
-
 });
 
 QUnit.test('Check SecureBrowser Object',function(assert) {
@@ -54,14 +47,14 @@ QUnit.test('Check browser runtime Object',function(assert) {
 	
 	assert.equal((runtime != null && typeof (runtime)!='undefined' && typeof(runtime)=='object'), true,'Checking if runtime object for browser is available');
 	if (runtime != null && typeof (runtime)!='undefined' && typeof(runtime)=='object') {
-		//alert('runtime Methods' + getMethods(runtime));
+	/*	//alert('runtime Methods' + getMethods(runtime));
 					if (isMobile) {
 						alert(runtime.security.getDeviceInfo());
 						alert(runtime.security.getMACAddress());
 						alert(runtime.security.getIPAddressList());
 						alert(runtime.security.getStartTime());
 						alert(runtime.security.getProcessList());
-					}
+					}*/
 		assert.equal(typeof (runtime.getRunningProcessList) != 'undefined', true,'Checking if getProcessList method exists');
 		if (typeof (runtime.getRunningProcessList) == 'function') {
 			var processes = runtime.getRunningProcessList();
