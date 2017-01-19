@@ -245,15 +245,13 @@ https://github.com/faisalman/ua-parser-js/
 
     Browser.isSecure = function () {
         var clientSideCheck = (navigator.userAgent.indexOf('AIRSecureBrowser') != -1 ||
-                               navigator.userAgent.indexOf('AIRMobile') != -1); // Summit's browser
-
-      //  var serverSideCheck = (typeof TDS == 'object' && typeof TDS.BrowserInfo == 'object') ? TDS.BrowserInfo.isSecure : false;
-
+                               navigator.userAgent.indexOf('AIRMobile') != -1); 
+        
         var extensionCheck = window.AIRSecureBrowserExtension ? true : false;
 
         var chromeAppCheck = YUD.hasClass(document.body, 'browser_airsecurebrowser');
 
-        return clientSideCheck /*|| serverSideCheck */|| extensionCheck || chromeAppCheck || Browser.isCertified();
+        return clientSideCheck || extensionCheck || chromeAppCheck 
     };
 
     Browser.getSecureVersion = function () {
