@@ -29,7 +29,26 @@
     		details= ex.message
         }
     	
-    	Util.Validation.setResultItems(111,'[window.browser] global object check','!!window.browser',result,details);
+    	Util.Validation.setResultItems(1,'[window.browser] global object check','!!window.browser',result,details);
+    	
+    };
+    
+    Certified.prototype.checkMACAddressAPI = function() {
+    	var result = false;
+    	var details = "";
+    	try{
+    		if(!!browser.security.getMACAddress()){
+    			result= true;
+    		}
+    		else{
+    			result= false;
+    		}
+    	}
+    	catch (ex) {
+    		details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','!!browser.security.getMACAddress()',result,details);
     	
     };
 

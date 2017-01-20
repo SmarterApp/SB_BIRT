@@ -69,7 +69,26 @@ The Desktop version of the secure browser built on top of the firefox platform.
     		details = ex.message;
         }
     	
-    	Util.Validation.setResultItems(111,'[SecureBrowser] global object check','!!SecureBrowser',result,details);
+    	Util.Validation.setResultItems(1,'[SecureBrowser] global object check','!!SecureBrowser',result,details);
+    	
+    };
+    
+    Firefox.prototype.checkMACAddressAPI = function() {
+    	var result = false;
+    	var details = "";
+    	try{
+    		if(!!this.runtime.getMACAddress()){
+    			result= true;
+    		}
+    		else{
+    			result= false;
+    		}
+    	}
+    	catch (ex) {
+    		details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','!!runtime.getMACAddress()',result,details);
     	
     };
 

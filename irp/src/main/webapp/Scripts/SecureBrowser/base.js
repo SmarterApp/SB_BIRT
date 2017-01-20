@@ -19,7 +19,15 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     	var result = false;
     	var details = 'window.browser is not defined';    	    	
     
-    	Util.Validation.setResultItems(111,'[window.browser] global object check','!!window.browser',result,details);
+    	Util.Validation.setResultItems(1,'[window.browser] global object check','!!window.browser',result,details);
+    	
+    };
+    
+    Base.prototype.checkMACAddressAPI = function() {
+    	var result = false;
+    	var details = "browser.security.getMACAddress() is not defined";
+    	
+    	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','!!browser.security.getMACAddress()',result,details);
     	
     };
 

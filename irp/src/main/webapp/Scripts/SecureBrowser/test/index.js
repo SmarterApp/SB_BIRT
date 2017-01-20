@@ -16,7 +16,8 @@ if (impl) {
 	alert('runtime Methods  ' + getMethods(impl));*/
 	//alert(impl.checkGlobalObject());
 	impl.checkGlobalObject();
-	alert('found sb');
+	impl.checkMACAddressAPI();
+	//alert('found sb');
     
 } else {
 	alert('no sb');
@@ -230,13 +231,28 @@ function populateResults(){
 	    paging: true, */
 
 	    data: Util.Validation.getResult(),
-
+	    
 	    fields: [
-	        { title: "ID", name: "id", type: "number", width: 50, validate: "required" },
+	        { title: "ID", name: "id", type: "number", width: 20, validate: "required" },
 	        { title: "Test Name",name: "testName", type: "text", width: 150 },
-	        { title: "Test API",name: "testApi", type: "text", width: 200 },
-	        { title: "Result",name: "testResult", type: "text",width:50 },
-	        { title: "Details",name: "details", type: "text",width:50 }
+	        { title: "Test API",name: "testApi", type: "text", width: 150 },
+	        { title: "Result",name: "testResult", type: "text",width:50	,
+	        
+	        	itemTemplate : function(value) {
+	        		if(value){
+	        			return "Passed";
+	        		}
+	        		else{
+	        			return "Failed";
+	        		}
+	        		
+	        	}
+
+	        		
+	        	
+	        }
+	        ,
+	        { title: "Details",name: "details", type: "text",width:150 }
 	    
 	    ]
 	});
