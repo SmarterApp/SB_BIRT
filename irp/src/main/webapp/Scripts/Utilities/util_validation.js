@@ -1,13 +1,8 @@
-// REQUIRES: util_event.js, YUI
-
-/*
- Parser help:
- https://github.com/tobie/ua-parser/blob/master/regexes.yaml
- https://github.com/faisalman/ua-parser-js/
- */
 
 (function(Util) {
 
+	var resultArray = [];
+	
 	var MACREGEX = new RegExp(
 			"^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$");
 
@@ -24,6 +19,18 @@
 		}
 		return (false)
 	};
+	
+	Validation.setResultItems = function(id,testName,testAPI,result,details){
+		resultArray.push({ "id": id,"testName": testName,"testApi": testAPI,"testResult":result,"details":details});
+	};
+	
+/*	Validation.setResultItems = function(id,testName,testAPI,result){
+		resultArray.push({ "id": id,"testName": testName,"testApi": testAPI,"testResult":result});
+	};*/
+	
+	Validation.getResult = function() {
+        return resultArray;
+    };
 
 	Util.Validation = Validation;
 

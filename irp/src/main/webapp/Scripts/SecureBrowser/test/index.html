@@ -2,10 +2,14 @@
 
 <head>
 
+
+<!-- JQuery -->
+<script src="../../Libraries/jQuery/jquery-1.11.1.js"></script>
+
+<!-- JSGrid -->
 <link type="text/css" rel="stylesheet" href="../../Libraries/jQuery/jsgrid/jsgrid.min.css" />
 <link type="text/css" rel="stylesheet" href="../../Libraries/jQuery/jsgrid/jsgrid-theme.min.css" />
-<!-- <link rel="stylesheet" href="../../Libraries/qunit/qunit-2.0.1.css">
-<script src="../../Libraries/qunit/qunit-2.0.1.js"></script> -->
+<script type="text/javascript" src="../../Libraries/jQuery/jsgrid/jsgrid.min.js"></script>
 
 <!-- YUI -->
 <script type="text/javascript"
@@ -16,17 +20,25 @@
 <!-- Mobile Runtime -->
 <script type="text/javascript" src="../Summit/air_mobile.js"></script>
 
+<script type="text/javascript" src="../factory.js"></script>
+<script type="text/javascript" src="../base.js"></script>
+<script type="text/javascript" src="../certified.js"></script>
+<script type="text/javascript" src="../firefox.js"></script>
+<script type="text/javascript" src="../chrome.js"></script>
+<script type="text/javascript" src="../mobile.android.js"></script>
+<script type="text/javascript" src="../mobile.ios.js"></script>
+
+
 <!-- Utilities -->
 <script type="text/javascript" src="../../Utilities/util.js"></script>
 <script type="text/javascript" src="../../Utilities/util_mozilla.js"></script>
 <script type="text/javascript" src="../../Utilities/util_browser.js"></script>
 <script type="text/javascript" src="../../Utilities/util_frame.js"></script>
 <script type="text/javascript" src="../../Utilities/util_validation.js"></script>
-
-
-<script src="../../Libraries/jQuery/jquery-1.11.1.js"></script>
-<script type="text/javascript" src="../../Libraries/jQuery/jsgrid/jsgrid.min.js"></script>
-
+<script type="text/javascript" src="../../Utilities/util_array.js"></script>
+<script type="text/javascript" src="../../Utilities/util_string.js"></script>
+<script type="text/javascript" src="../../Utilities/util_event.js"></script>
+<script type="text/javascript" src="../../Utilities/util_securebrowser.js"></script>
 
 
 
@@ -39,18 +51,15 @@
 	});
 </script>
 
-
 </head>
 
 <body>
-
 	<div>
 		<a href="javascript:location.reload(true);">RELOAD</a> | <a
-			href="javascript:SecureBrowser.CloseWindow()">CLOSE</a>
+			href="javascript:closeBrowser()">CLOSE</a>
 	</div>
 
 	<div id="jsGrid"></div>
-
 </body>
 
 <script type="text/javascript" src="index.js"></script>
