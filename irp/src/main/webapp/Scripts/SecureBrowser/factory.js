@@ -40,8 +40,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
         // set default?
         if (sbImpl == null) {
-            //sbImpl = new TDS.SecureBrowser.Base();
-            sbImpl = new TDS.SecureBrowser.Firefox();
+            sbImpl = new TDS.SecureBrowser.Base();
         }
 
 		if (sbImpl != null)
