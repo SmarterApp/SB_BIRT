@@ -37,7 +37,7 @@
     		details= ex.message
         }
     	
-    	Util.Validation.setResultItems(1,'[window.browser] global object check','!!window.browser',result,details);
+    	Util.Validation.setResultItems(1,'[window.browser] global object check','window.browser',result,details);
     	
     };
     
@@ -47,36 +47,29 @@
         var result = false;
     	var details = "";
     	try{
-    		if(!!browser.security.getDeviceInfo()){
-    			result= true;
-    		}
-    		else{
-    			result= false;
-    		}
+    		browser.security.getDeviceInfo();
+    		result= true;
+    		
     	}
     	catch (ex) {
     		details = ex.message;
         }
     	
-    	Util.Validation.setResultItems(2,'Retrieve device details','!!browser.security.getDeviceInfo()',result,details);
+    	Util.Validation.setResultItems(2,'Retrieve device details','browser.security.getDeviceInfo()',result,details);
     };
     
     Certified.prototype.checkMACAddressAPI = function() {
     	var result = false;
     	var details = "";
     	try{
-    		if(!!browser.security.getMACAddress()){
-    			result= true;
-    		}
-    		else{
-    			result= false;
-    		}
+    		browser.security.getMACAddress();
+    		result= true;
     	}
     	catch (ex) {
     		details = ex.message;
         }
     	
-    	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','!!browser.security.getMACAddress()',result,details);
+    	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','browser.security.getMACAddress()',result,details);
     	
     };
     
@@ -84,18 +77,14 @@
     	var result = false;
     	var details = "";
     	try{
-    		if(!!browser.security.getIPAddressList()){
-    			result= true;
-    		}
-    		else{
-    			result= false;
-    		}
+    		browser.security.getIPAddressList();
+    		result= true;
     	}
     	catch (ex) {
     		details = ex.message;
         }
     	
-    	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','!!browser.security.getIPAddressList()',result,details);
+    	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','browser.security.getIPAddressList()',result,details);
     	
     };
     
@@ -105,18 +94,29 @@
         var result = false;
     	var details = "";
     	try{
-    		if(!!browser.security.getStartTime()){
-    			result= true;
-    		}
-    		else{
-    			result= false;
-    		}
+    		browser.security.getStartTime();
+    		result= true;
     	}
     	catch (ex) {
     		details = ex.message;
         }
     	
-    	Util.Validation.setResultItems(2,'Get application start time','!!browser.security.getStartTime()',result,details);
+    	Util.Validation.setResultItems(2,'Get application start time','browser.security.getStartTime()',result,details);
+    };
+    
+    
+    Certified.prototype.checkTTSStopAPI = function () {        
+        var result = false;
+    	var details = "";
+    	try{
+    		browser.tts.stop();
+    		result= true;
+    	}
+    	catch (ex) {
+    		details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(2,'Stop speech (text-to-speech synthesis)','browser.tts.stop()',result,details);
     };
 
     Certified.prototype._hasAPI = function () {

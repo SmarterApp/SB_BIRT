@@ -32,6 +32,11 @@ if (impl) {
 	
 	/** SEC-29 : API: Get application start time (O). **/
 	impl.checkAppStartTimeAPI();
+	
+	
+	/** SEC-37 : API: TTS Stop (R)*/
+	impl.checkTTSStopAPI();
+
     
 } else {
 	console.log('No Implementation found for Secure Browser');

@@ -66,18 +66,16 @@ The Desktop version of the secure browser built on top of the firefox platform.
     	var result = false;
     	var details = "";
     	try{
-    		if(!!SecureBrowser){
-    			result= true;
-    		}
-    		else{
-    			result= false;
-    		}
+    		
+    		var sb = SecureBrowser;
+    		result= true;
+    		
     	}
     	catch (ex) {
     		details = ex.message;
         }
     	
-    	Util.Validation.setResultItems(1,'[SecureBrowser] global object check','!!SecureBrowser',result,details);
+    	Util.Validation.setResultItems(1,'[SecureBrowser] global object check','SecureBrowser',result,details);
     	
     };
     
@@ -87,36 +85,29 @@ The Desktop version of the secure browser built on top of the firefox platform.
         var result = false;
     	var details = "";
     	try{
-    		if(!!this.runtime.getDeviceInfo()){
-    			result= true;
-    		}
-    		else{
-    			result= false;
-    		}
+    		this.runtime.getDeviceInfo();
+    		result= true;
+    		
     	}
     	catch (ex) {
     		details = ex.message;
         }
     	
-    	Util.Validation.setResultItems(3,'Retrieve device details','!!runtime.getDeviceInfo()',result,details);
+    	Util.Validation.setResultItems(3,'Retrieve device details','runtime.getDeviceInfo()',result,details);
     };
     
     Firefox.prototype.checkMACAddressAPI = function() {
     	var result = false;
     	var details = "";
     	try{
-    		if(!!this.runtime.getMACAddress()){
-    			result= true;
-    		}
-    		else{
-    			result= false;
-    		}
+    		this.runtime.getMACAddress();
+    		result= true;
     	}
     	catch (ex) {
     		details = ex.message;
         }
     	
-    	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','!!runtime.getMACAddress()',result,details);
+    	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','runtime.getMACAddress()',result,details);
     	
     };
 
@@ -124,39 +115,45 @@ The Desktop version of the secure browser built on top of the firefox platform.
     	var result = false;
     	var details = "";
     	try{
-    		if(!!this.runtime.getIPAddressList()){
-    			result= true;
-    		}
-    		else{
-    			result= false;
-    		}
+    		this.runtime.getIPAddressList();
+    		result= true;
     	}
     	catch (ex) {
     		details = ex.message;
         }
     	
-    	Util.Validation.setResultItems(4,'Retrieve system IP address(es)','!!runtime.getIPAddressList()',result,details);
+    	Util.Validation.setResultItems(4,'Retrieve system IP address(es)','runtime.getIPAddressList()',result,details);
     	
     };
     
-    
-
     Firefox.prototype.checkAppStartTimeAPI = function () {        
         var result = false;
     	var details = "";
     	try{
-    		if(!!this.runtime.getStartTime()){
-    			result= true;
-    		}
-    		else{
-    			result= false;
-    		}
+    		this.runtime.getStartTime();
+    		result= true;
     	}
     	catch (ex) {
     		details = ex.message;
         }
     	
-    	Util.Validation.setResultItems(2,'Get application start time','!!runtime.getStartTime()',result,details);
+    	Util.Validation.setResultItems(2,'Get application start time','runtime.getStartTime()',result,details);
+    };
+    
+    
+    Firefox.prototype.checkTTSStopAPI = function () {        
+        var result = false;
+        
+    	var details = "";
+    	try{
+            this.runtime.stop();
+            result= true;
+    	}
+    	catch (ex) {
+           details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(2,'Stop speech (text-to-speech synthesis)','runtime.stop()',result,details);
     };
 
     Firefox.prototype._hasAPI = function() {

@@ -27,7 +27,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     	var result = false;
     	var details = 'window.browser is not defined';    	    	
     
-    	Util.Validation.setResultItems(1,'[window.browser] global object check','!!window.browser',result,details);
+    	Util.Validation.setResultItems(1,'[window.browser] global object check','window.browser',result,details);
     	
     };
     
@@ -36,14 +36,14 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     	var result = false;
     	var details = "browser.security.getDeviceInfo() is not defined";
     	
-    	Util.Validation.setResultItems(2,'Retrieve device details','!!browser.security.getDeviceInfo()',result,details);
+    	Util.Validation.setResultItems(2,'Retrieve device details','browser.security.getDeviceInfo()',result,details);
     };
     
     Base.prototype.checkMACAddressAPI = function() {
     	var result = false;
     	var details = "browser.security.getMACAddress() is not defined";
     	
-    	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','!!browser.security.getMACAddress()',result,details);
+    	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','browser.security.getMACAddress()',result,details);
     	
     };
 
@@ -51,7 +51,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     	var result = false;
     	var details = "browser.security.getIPAddressList() is not defined";
     	
-    	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','!!browser.security.getIPAddressList()',result,details);
+    	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','browser.security.getIPAddressList()',result,details);
     	
     };
     
@@ -60,7 +60,15 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     	var result = false;
     	var details = "browser.security.getStartTime() is not defined";
     	
-    	Util.Validation.setResultItems(2,'Get application start time','!!browser.security.getStartTime()',result,details);
+    	Util.Validation.setResultItems(2,'Get application start time','browser.security.getStartTime()',result,details);
+    };
+    
+    
+    Base.prototype.checkTTSStopAPI = function () {        
+        var result = false;
+    	var details = "browser.tts.stop() is not defined"
+    	
+    	Util.Validation.setResultItems(2,'Stop speech (text-to-speech synthesis)','browser.tts.stop()',result,details);
     };
 
     Base.prototype.dispose = function() { };

@@ -244,12 +244,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkGlobalObject = function() {
 	var result = false;
 	var details = "";
 	try{
-		if(!!this._airMobile){
-			result= true;
-		}
-		else{
-			result= false;
-		}
+		var sb = this._airMobile;
+		result= true;
 	}
 	catch (ex) {
 		details = ex.message;
@@ -264,18 +260,14 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkDeviceInfo = function() {
 	var result = false;
 	var details = "";
 	try{
-		if(!!this._airMobile.security.getDeviceInfo()){
-			result= true;
-		}
-		else{
-			result= false;
-		}
+		this._airMobile.security.getDeviceInfo();
+		result= true;
 	}
 	catch (ex) {
 		details = ex.message;
     }
 	
-	Util.Validation.setResultItems(2,'Retrieve device details','!!runtime.security.getDeviceInfo()',result,details);
+	Util.Validation.setResultItems(2,'Retrieve device details','runtime.security.getDeviceInfo()',result,details);
 };
 
 
@@ -283,18 +275,14 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkMACAddressAPI = function() {
 	var result = false;
 	var details = "";
 	try{
-		if(!!this._airMobile.security.getMACAddress()){
-			result= true;
-		}
-		else{
-			result= false;
-		}
+		this._airMobile.security.getMACAddress();
+		result= true;
 	}
 	catch (ex) {
 		details = ex.message;
     }
 	
-	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','!!runtime.security.getMACAddress()',result,details);
+	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','runtime.security.getMACAddress()',result,details);
 	
 };
 
@@ -303,18 +291,14 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkIPAddressAPI = function() {
 	var result = false;
 	var details = "";
 	try{
-		if(!!this._airMobile.security.getIPAddressList()){
-			result= true;
-		}
-		else{
-			result= false;
-		}
+		this._airMobile.security.getIPAddressList();
+		result= true;
 	}
 	catch (ex) {
 		details = ex.message;
     }
 	
-	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','!!runtime.security.getIPAddressList()',result,details);
+	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','runtime.security.getIPAddressList()',result,details);
 	
 };
 
@@ -323,17 +307,28 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkAppStartTimeAPI = function () {
     var result = false;
 	var details = "";
 	try{
-		if(!!this._airMobile.security.getStartTime()){
-			result= true;
-		}
-		else{
-			result= false;
-		}
+		this._airMobile.security.getStartTime();
+		result= true;
 	}
 	catch (ex) {
 		details = ex.message;
     }
 	
-	Util.Validation.setResultItems(2,'Get application start time','!!runtime.security.getStartTime()',result,details);
+	Util.Validation.setResultItems(2,'Get application start time','runtime.security.getStartTime()',result,details);
 };
 
+
+
+TDS.SecureBrowser.Mobile.iOS.prototype.checkTTSStopAPI = function () {        
+    var result = false;
+	var details = "";
+	try{
+		this._airMobile.tts.stop(null,null);
+		result= true;
+	}
+	catch (ex) {
+		details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(2,'Stop speech (text-to-speech synthesis)','runtime.tts.stop()',result,details);
+};
