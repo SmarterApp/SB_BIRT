@@ -90,7 +90,7 @@ The Desktop version of the secure browser built on top of the firefox platform.
     		details = ex.message;
         }
     	
-    	Util.Validation.setResultItems(3,'Retrieve device details','!!runtime.security.getDeviceInfo()',result,details);
+    	Util.Validation.setResultItems(3,'Retrieve device details','!!runtime.getDeviceInfo()',result,details);
     };
     
     Firefox.prototype.checkMACAddressAPI = function() {
@@ -127,7 +127,7 @@ The Desktop version of the secure browser built on top of the firefox platform.
     		details = ex.message;
         }
     	
-    	Util.Validation.setResultItems(4,'Retrieve system IP address(es)','!!runtime.security.getIPAddressList()',result,details);
+    	Util.Validation.setResultItems(4,'Retrieve system IP address(es)','!!runtime.getIPAddressList()',result,details);
     	
     };
 
