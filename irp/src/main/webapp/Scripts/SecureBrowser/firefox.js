@@ -130,6 +130,26 @@ The Desktop version of the secure browser built on top of the firefox platform.
     	Util.Validation.setResultItems(4,'Retrieve system IP address(es)','!!runtime.getIPAddressList()',result,details);
     	
     };
+    
+    
+
+    Firefox.prototype.checkAppStartTimeAPI = function () {        
+        var result = false;
+    	var details = "";
+    	try{
+    		if(!!this.runtime.getStartTime()){
+    			result= true;
+    		}
+    		else{
+    			result= false;
+    		}
+    	}
+    	catch (ex) {
+    		details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(2,'Get application start time','!!runtime.getStartTime()',result,details);
+    };
 
     Firefox.prototype._hasAPI = function() {
         return (typeof (SecureBrowser) != 'undefined');

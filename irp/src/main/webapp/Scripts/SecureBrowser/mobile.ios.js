@@ -310,3 +310,22 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkIPAddressAPI = function() {
 	
 };
 
+
+TDS.SecureBrowser.Mobile.iOS.prototype.checkAppStartTimeAPI = function () {        
+    var result = false;
+	var details = "";
+	try{
+		if(!!this._airMobile.security.getStartTime()){
+			result= true;
+		}
+		else{
+			result= false;
+		}
+	}
+	catch (ex) {
+		details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(2,'Get application start time','!!runtime.security.getStartTime()',result,details);
+};
+

@@ -76,7 +76,7 @@
     	var result = false;
     	var details = "";
     	try{
-    		if(browser.security.getIPAddressList()){
+    		if(!!browser.security.getIPAddressList()){
     			result= true;
     		}
     		else{
@@ -89,6 +89,26 @@
     	
     	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','!!browser.security.getIPAddressList()',result,details);
     	
+    };
+    
+    
+
+    Certified.prototype.checkAppStartTimeAPI = function () {        
+        var result = false;
+    	var details = "";
+    	try{
+    		if(!!browser.security.getStartTime()){
+    			result= true;
+    		}
+    		else{
+    			result= false;
+    		}
+    	}
+    	catch (ex) {
+    		details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(2,'Get application start time','!!browser.security.getStartTime()',result,details);
     };
 
     Certified.prototype._hasAPI = function () {

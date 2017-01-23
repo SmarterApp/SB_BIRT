@@ -166,3 +166,24 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkIPAddressAPI = function() {
 	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','!!runtime.security.getIPAddressList()',result,details);
 	
 };
+
+
+
+
+TDS.SecureBrowser.Mobile.Android.prototype.checkAppStartTimeAPI = function () {        
+    var result = false;
+	var details = "";
+	try{
+		if(!!this._airMobile.security.getStartTime()){
+			result= true;
+		}
+		else{
+			result= false;
+		}
+	}
+	catch (ex) {
+		details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(2,'Get application start time','!!runtime.security.getStartTime()',result,details);
+};

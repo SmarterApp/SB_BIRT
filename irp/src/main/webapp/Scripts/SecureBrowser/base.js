@@ -46,6 +46,14 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','!!browser.security.getIPAddressList()',result,details);
     	
     };
+    
+    
+    Base.prototype.checkAppStartTimeAPI = function () {        
+    	var result = false;
+    	var details = "browser.security.getStartTime() is not defined";
+    	
+    	Util.Validation.setResultItems(2,'Get application start time','!!browser.security.getStartTime()',result,details);
+    };
 
     Base.prototype.dispose = function() { };
 

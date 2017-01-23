@@ -35,6 +35,10 @@ if (impl) {
 	
 	/** SEC-28 : API: Retrieve client IP address(es) (O) **/	
 	impl.checkIPAddressAPI();
+	
+	
+	/** SEC-29 : API: Get application start time (O). **/
+	impl.checkAppStartTimeAPI();
     
 } else {
 	alert('no sb');
