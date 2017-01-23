@@ -2,8 +2,7 @@ var isIOSDevice = Util.Browser.isIOS();
 var isAndroidDevice = Util.Browser.isAndroid();
 var isFireFox = Util.Browser.isFirefox();
 var isChrome = Util.Browser.isChrome();
-var isDesktop = (Util.Browser.isWindows() || Util.Browser.isLinux() || Util.Browser
-		.isMac());
+//var isDesktop = (Util.Browser.isWindows() || Util.Browser.isLinux() || Util.Browser.isMac());
 var isMobile = Util.Browser.isMobile();
 var isCertified = Util.Browser.isCertified();
 var isAIRSecureBrowser = Util.Browser.isSecure();
@@ -11,17 +10,7 @@ var isAIRSecureBrowser = Util.Browser.isSecure();
 TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
 
-if (impl) {
-	/*alert(impl);
-	alert('runtime Methods  ' + getMethods(impl));*/
-	//alert(impl.checkGlobalObject());
-	impl.checkGlobalObject();
-	impl.checkMACAddressAPI();
-	//alert('found sb');
-    
-} else {
-	alert('no sb');
-}
+
 
 /*if (isIOSDevice || isAndroidDevice) {
 	this.runtime = (new Summit.SecureBrowser.Mobile()).getNativeBrowser();
@@ -41,20 +30,31 @@ if (isDesktop && Util.Browser.isSecure()) {
 }*/
 
 
-/*Util.Validation.setResultItems(1,'IOS Device','IOS Device', isIOSDevice ? "Passed":"Failed");
-Util.Validation.setResultItems(2,'Android Device','Android Device', isAndroidDevice ? "Passed":"Failed");
-Util.Validation.setResultItems(3,'Desktop','Desktop', isDesktop ? "Passed":"Failed");
-Util.Validation.setResultItems(4,'Firefox Browser Check','Firefox Browser check', isFireFox ? "Passed":"Failed");
-Util.Validation.setResultItems(5,'Chrome Browser Check','Chrome Browser check', isChrome ? "Passed":"Failed");
-Util.Validation.setResultItems(6,'AIRSecureBrowser Check','AIRSecureBrowser check', isAIRSecureBrowser ? "Passed":"Failed");
-Util.Validation.setResultItems(7,'Mobile','Mobile Device', isMobile ? "Passed":"Failed");
-Util.Validation.setResultItems(8,'Certified Browser','Certified', isCertified ? "Passed":"Failed");
+Util.Validation.setResultItems(1,'IOS Device','IOS Device', isIOSDevice);
+Util.Validation.setResultItems(2,'Android Device','Android Device', isAndroidDevice);
+Util.Validation.setResultItems(4,'Firefox Browser Check','Firefox Browser check', isFireFox );
+Util.Validation.setResultItems(5,'Chrome Device Check','Chrome Browser check', isChrome );
+Util.Validation.setResultItems(6,'AIRSecureBrowser Check','AIRSecureBrowser check', isAIRSecureBrowser );
+Util.Validation.setResultItems(7,'Mobile','Mobile Device', isMobile );
+Util.Validation.setResultItems(8,'Certified Browser','Certified', isCertified );
 
-Util.Validation.setResultItems(9,'Check for MATHML Support','Util.Browser.supportsMathML()', Util.Browser.supportsMathML() ? "Passed":"Failed");
+Util.Validation.setResultItems(9,'Check for MATHML Support','Util.Browser.supportsMathML()', Util.Browser.supportsMathML() );
 
-Util.Validation.setResultItems(9,'Check for SVG Support','Util.Browser.supportsSVG()', Util.Browser.supportsSVG() ? "Passed":"Failed");
+Util.Validation.setResultItems(9,'Check for SVG Support','Util.Browser.supportsSVG()', Util.Browser.supportsSVG() );
 
-Util.Validation.setResultItems(10,'Check for Audio OGG Support','Util.Browser.supportsAudioOGG()', Util.Browser.supportsAudioOGG() ? "Passed":"Failed");*/
+Util.Validation.setResultItems(10,'Check for Audio OGG Support','Util.Browser.supportsAudioOGG()', Util.Browser.supportsAudioOGG() );
+
+if (impl) {
+	/*alert(impl);
+	alert('runtime Methods  ' + getMethods(impl));*/
+	//alert(impl.checkGlobalObject());
+	impl.checkGlobalObject();
+	impl.checkMACAddressAPI();
+	//alert('found sb');
+    
+} else {
+	alert('no sb');
+}
 
 //setResultItems(11,'Check for [SecureBrowser] global Object','typeof (SecureBrowser) != "undefined"', typeof (SecureBrowser) != 'undefined' ? "Passed":"Failed");
 

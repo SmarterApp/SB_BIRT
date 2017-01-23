@@ -87,12 +87,24 @@ https://github.com/faisalman/ua-parser-js/
         return navigator.userAgent.indexOf('PPC Mac') != -1;
     };
 
-   // get the firefox version (http://en.wikipedia.org/wiki/Gecko_%28layout_engine%29)
+    // get the firefox version (http://en.wikipedia.org/wiki/Gecko_%28layout_engine%29)
     Browser.getFirefoxVersion = function () {
 
-    	var match = window.navigator.userAgent.match(/Firefox\/([0-9]+)\./);
-    	var ver = match ? parseInt(match[1]) : 0;
-        return ver;
+        if (YAHOO.env.ua.gecko > 0) {
+            switch (YAHOO.env.ua.gecko) {
+                case 1.7: return 1.0;
+                case 1.8: return 1.5;
+                case 1.81: return 2.0;
+                case 1.9: return 3.0;
+                case 1.91: return 3.5;
+                case 1.92: return 3.6;
+                case 1.93: return 3.7;
+                case 2.0: return 4.0;
+                default: return YAHOO.env.ua.gecko; // NOTE: after 4.0 the gecko version matched firefox version
+            }
+        }
+
+        return 0;
     };
 
     Browser.isEdge = function () {
@@ -117,11 +129,11 @@ https://github.com/faisalman/ua-parser-js/
     };
 
     Browser.isFirefox = function () {
-        return  (/Firefox/i.test(navigator.userAgent)) && !Browser.isEdge();
+        return Browser.getFirefoxVersion() > 0 && !Browser.isEdge();
     };
 
     Browser.isIE = function () {
-        return (/*@cc_on!@*/false || !!document.documentMode) && !Browser.isEdge();
+        return YAHOO.env.ua.ie > 0 && !Browser.isEdge();
     };
 
     // get the IE document mode (0 means browser does not support this)
@@ -130,7 +142,7 @@ https://github.com/faisalman/ua-parser-js/
     };
 
     Browser.isChrome = function () {
-        return !!window.chrome && !!window.chrome.webstore && !Browser.isEdge();
+        return YAHOO.env.ua.chrome > 0 && !Browser.isEdge();
     };
 
     Browser.isChromeOS = function () {
@@ -138,31 +150,28 @@ https://github.com/faisalman/ua-parser-js/
     };
 
     Browser.getChromeVersion = function () {
-    	
-    	var raw = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
-    	
-        return Browser.isEdge() ? 0 : raw ? parseInt(raw[2], 10) : 0;
+        return Browser.isEdge() ? 0 : YAHOO.env.ua.chrome;
     };
 
     Browser.isMobile = function () {
-        return MOBILE_REGEX.test(navigator.userAgent);
+        return (YAHOO.env.ua.mobile != null || YAHOO.env.ua.ios > 0 || YAHOO.env.ua.android > 0);
     };
 
     // desktop safari
     Browser.isSafari = function() {
-        return Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0 || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
+        return YAHOO.env.ua.safari > 0 && !Browser.isEdge() && !Browser.isChrome() && !Browser.isMobile();
     };
 
     Browser.isIOS = function () {
-        return (/ip(ad|hone|od)/i.test(navigator.userAgent)) && !Browser.isEdge();
+        return Browser.getIOSVersion() > 0 && !Browser.isEdge();
     };
-/*
+
     Browser.getIOSVersion = function () {
         return YAHOO.env.ua.ios;
-    };*/
+    };
 
     Browser.isAndroid = function () {
-        return (/Mobile/i.test(navigator.userAgent) && /Android/i.test(navigator.userAgent)) && !Browser.isEdge();
+        return YAHOO.env.ua.android > 0 && !Browser.isEdge();
     };
     
     // check if this is a certified device
@@ -207,12 +216,12 @@ https://github.com/faisalman/ua-parser-js/
     Browser.supportsMathML = function () {
 
         // phantomjs does not support mathml
-    	if (window.callPhantom || window._phantom) {
+        if (YAHOO.env.ua.phantomjs > 0) {
             return false;
         }
-        
+
         // if we are using ipad or android SB then disable MathML
-        if (Browser.isSecure() && (Util.Browser.isAndroid() || Util.Browser.isIOS())) {
+        if (Browser.isSecure() && (YAHOO.env.ua.android || YAHOO.env.ua.ios)) {
             return false;
         }
 
@@ -222,14 +231,14 @@ https://github.com/faisalman/ua-parser-js/
         }
 
         // check chrome
-        if (!!window.chrome) {
+        if (YAHOO.env.ua.chrome > 0) {
             // Chrome 24 added MathML but Chrome 25+ disabled it...
             // https://code.google.com/p/chromium/issues/detail?id=174455
             return false;
         }
 
         // check safari
-        if (Util.Browser.isSafari()) {
+        if (YAHOO.env.ua.webkit >= 534) {
             return true; // Safari 5.1+
         }
 
