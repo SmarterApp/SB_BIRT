@@ -66,9 +66,17 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     
     Base.prototype.checkTTSStopAPI = function () {        
         var result = false;
-    	var details = "browser.tts.stop() is not defined"
+    	var details = "browser.tts.stop() is not defined";
     	
     	Util.Validation.setResultItems(2,'Stop speech (text-to-speech synthesis)','browser.tts.stop()',result,details);
+    };
+    
+    
+    Base.prototype.checkTTSStatusAPI = function () {        
+        var result = false;
+        var details = "browser.tts.getStatus() is not defined";
+        	
+    	Util.Validation.setResultItems(2,'Get speech status (text-to-speech synthesis)','browser.tts.getStatus()',result,details);
     };
 
     Base.prototype.dispose = function() { };

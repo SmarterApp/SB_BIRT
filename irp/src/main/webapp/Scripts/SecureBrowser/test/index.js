@@ -36,6 +36,9 @@ if (impl) {
 	
 	/** SEC-37 : API: TTS Stop (R)*/
 	impl.checkTTSStopAPI();
+	
+	/** SEC-38 : API: Get TTS Status (R) **/
+	impl.checkTTSStatusAPI();
 
     
 } else {

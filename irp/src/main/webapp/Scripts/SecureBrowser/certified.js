@@ -118,6 +118,22 @@
     	
     	Util.Validation.setResultItems(2,'Stop speech (text-to-speech synthesis)','browser.tts.stop()',result,details);
     };
+    
+    
+    Certified.prototype.checkTTSStatusAPI = function () {        
+        var result = false;
+        
+    	var details = "";
+    	try{
+    		browser.tts.getStatus();
+            result= true;
+    	}
+    	catch (ex) {
+           details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(2,'Get speech status (text-to-speech synthesis)','browser.tts.getStatus()',result,details);
+    };
 
     Certified.prototype._hasAPI = function () {
         return Util.Browser.isCertified();

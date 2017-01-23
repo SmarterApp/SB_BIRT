@@ -332,3 +332,19 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkTTSStopAPI = function () {
 	
 	Util.Validation.setResultItems(2,'Stop speech (text-to-speech synthesis)','runtime.tts.stop()',result,details);
 };
+
+
+TDS.SecureBrowser.Mobile.iOS.prototype.checkTTSStatusAPI = function () {        
+    var result = false;
+    
+	var details = "";
+	try{
+		this._airMobile.tts.getStatus();
+        result= true;
+	}
+	catch (ex) {
+       details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(2,'Get speech status (text-to-speech synthesis)','runtime.tts.getStatus()',result,details);
+};

@@ -45,23 +45,6 @@ The Desktop version of the secure browser built on top of the firefox platform.
         }
     };
 
-    Firefox.prototype.dispose = function () {
-        console.log('Disposing SB runtime...');
-        if (this.runtime != null) {
-            delete this.runtime;
-            this.runtime = null;
-        }
-        // remove all listeners so as not to cause a memory leak
-        this.disableSecurityBreachDetection();
-    };
-
-    Firefox.prototype.disableDevToolWindow = function () {
-        // disable the development tools window which would be invoked by shortcut key Shift+F5 (bug # 169134)
-        Components.utils.import("resource://gre/modules/Services.jsm");
-        var w = Services.wm.getMostRecentWindow("navigator:browser");
-        w.gDevToolsBrowser = null;
-    };
-    
     Firefox.prototype.checkGlobalObject = function() {
     	var result = false;
     	var details = "";
@@ -155,7 +138,41 @@ The Desktop version of the secure browser built on top of the firefox platform.
     	
     	Util.Validation.setResultItems(2,'Stop speech (text-to-speech synthesis)','runtime.stop()',result,details);
     };
+    
+    
+    Firefox.prototype.checkTTSStatusAPI = function () {        
+        var result = false;
+        
+    	var details = "";
+    	try{
+            this.runtime.status;
+            result= true;
+    	}
+    	catch (ex) {
+           details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(2,'Get speech status (text-to-speech synthesis)','runtime.status',result,details);
+    };
 
+    
+    Firefox.prototype.dispose = function () {
+        console.log('Disposing SB runtime...');
+        if (this.runtime != null) {
+            delete this.runtime;
+            this.runtime = null;
+        }
+        // remove all listeners so as not to cause a memory leak
+        this.disableSecurityBreachDetection();
+    };
+
+    Firefox.prototype.disableDevToolWindow = function () {
+        // disable the development tools window which would be invoked by shortcut key Shift+F5 (bug # 169134)
+        Components.utils.import("resource://gre/modules/Services.jsm");
+        var w = Services.wm.getMostRecentWindow("navigator:browser");
+        w.gDevToolsBrowser = null;
+    };
+    
     Firefox.prototype._hasAPI = function() {
         return (typeof (SecureBrowser) != 'undefined');
     };
