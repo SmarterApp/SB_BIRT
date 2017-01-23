@@ -1,3 +1,11 @@
+//*******************************************************************************
+// Educational Online Test Delivery System
+// Copyright (c) 2017 American Institutes for Research
+//
+// Distributed under the AIR Open Source License, Version 1.0
+// See accompanying file AIR-License-1_0.txt or at
+// http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
+//*******************************************************************************
 var isIOSDevice = Util.Browser.isIOS();
 var isAndroidDevice = Util.Browser.isAndroid();
 var isFireFox = Util.Browser.isFirefox();
@@ -9,21 +17,6 @@ var isAIRSecureBrowser = Util.Browser.isSecure();
 TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
 
-
-/*Util.Validation.setResultItems(1,'IOS Device','IOS Device', isIOSDevice);
-Util.Validation.setResultItems(2,'Android Device','Android Device', isAndroidDevice);
-Util.Validation.setResultItems(4,'Firefox Browser Check','Firefox Browser check', isFireFox );
-Util.Validation.setResultItems(5,'Chrome Device Check','Chrome Browser check', isChrome );
-Util.Validation.setResultItems(6,'AIRSecureBrowser Check','AIRSecureBrowser check', isAIRSecureBrowser );
-Util.Validation.setResultItems(7,'Mobile','Mobile Device', isMobile );
-Util.Validation.setResultItems(8,'Certified Browser','Certified', isCertified );
-
-Util.Validation.setResultItems(9,'Check for MATHML Support','Util.Browser.supportsMathML()', Util.Browser.supportsMathML() );
-
-Util.Validation.setResultItems(10,'Check for SVG Support','Util.Browser.supportsSVG()', Util.Browser.supportsSVG() );
-
-Util.Validation.setResultItems(11,'Check for Audio OGG Support','Util.Browser.supportsAudioOGG()', Util.Browser.supportsAudioOGG() );
-*/
 if (impl) {
 	impl.checkGlobalObject();
 	
@@ -41,7 +34,7 @@ if (impl) {
 	impl.checkAppStartTimeAPI();
     
 } else {
-	alert('no sb');
+	console.log('No Implementation found for Secure Browser');
 }
 
 
@@ -66,11 +59,6 @@ function populateResults(){
 	$("#jsGrid").jsGrid({
 	    width: "100%",
 	    height: "100%",
-
-	    /* inserting: true,
-	    editing: true,
-	    sorting: true,
-	    paging: true, */
 
 	    data: Util.Validation.getResult(),
 	    

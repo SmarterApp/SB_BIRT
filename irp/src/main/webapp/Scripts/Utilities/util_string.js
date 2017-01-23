@@ -1,3 +1,11 @@
+//*******************************************************************************
+// Educational Online Test Delivery System
+// Copyright (c) 2017 American Institutes for Research
+//
+// Distributed under the AIR Open Source License, Version 1.0
+// See accompanying file AIR-License-1_0.txt or at
+// http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
+//*******************************************************************************
 Util.String = function() { };
 
 // check if two strings are the same
@@ -153,22 +161,6 @@ if (!String.prototype.startsWith)
 {
     String.prototype.startsWith = function(s) { return this.indexOf(s) === 0; };
 }
-
-// C# style string formatter
-/*
-String.prototype.format = function()
-{
-var str = arguments[0];
-
-for (var i = 0; i < arguments.length - 1; i++)
-{
-var reg = new RegExp("\\{" + i + "\\}", "gm");
-str = str.replace(reg, arguments[i + 1]);
-}
-
-return str;
-};
-*/
 
 /*******************************************************************************/
 
