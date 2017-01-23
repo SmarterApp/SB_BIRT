@@ -29,7 +29,14 @@ The Webapp module contains the IRP UI and REST APIs.
 ### irp/src/main/webapp/Scripts/SecureBrowser folder
 * This folder contains factory.js which will work as an entry point for setting up test APIs for given browser.
 * Based on browser and device it will initialize respective js file for testing respective API for browser readiness.
-* index.js will call implementation method and other API test calls
+* index.js will call implementation method and other API test calls.
+* For each test , test API will populate a json array with test info like test name, test api signature, result and details (Info about failure or other require details). Check below sample json
+
+`
+{details: "window.browser is not defined",
+testApi : "!!window.browser"
+testName : "[window.browser] global object check"
+testResult : false}`
 
 ### UI Framework
 * jQuery v1.11.1
