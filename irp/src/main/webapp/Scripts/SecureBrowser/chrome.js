@@ -7,7 +7,7 @@ The chrome browser running our security extension (mainly on chrome OS)
 (function (SB) {
     
     function Chrome() {
-        /*Chrome.superclass.constructor.call(this);*/
+        Chrome.superclass.constructor.call(this);
         // This is disabled for now since we use the hardware buttons on chrome books to control volume. We may reenable this once the chrome.audio apis make it into the stable channel
         /*
         this.isMuted = false;
@@ -29,7 +29,7 @@ The chrome browser running our security extension (mainly on chrome OS)
         */
     };
 
-    /*YAHOO.lang.extend(Chrome, TDS.SecureBrowser.Base);*/
+    YAHOO.lang.extend(Chrome, TDS.SecureBrowser.Base);
 
     Chrome.prototype.initialize = function() {
         TDS.AppWindow = window;

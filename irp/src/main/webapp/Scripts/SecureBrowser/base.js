@@ -23,11 +23,27 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     	
     };
     
+    Base.prototype.checkDeviceInfo = function () {        
+        
+    	var result = false;
+    	var details = "browser.security.getDeviceInfo() is not defined";
+    	
+    	Util.Validation.setResultItems(2,'Retrieve device details','!!browser.security.getDeviceInfo()',result,details);
+    };
+    
     Base.prototype.checkMACAddressAPI = function() {
     	var result = false;
     	var details = "browser.security.getMACAddress() is not defined";
     	
     	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','!!browser.security.getMACAddress()',result,details);
+    	
+    };
+
+    Base.prototype.checkIPAddressAPI = function() {
+    	var result = false;
+    	var details = "browser.security.getIPAddressList() is not defined";
+    	
+    	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','!!browser.security.getIPAddressList()',result,details);
     	
     };
 

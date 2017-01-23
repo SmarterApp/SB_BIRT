@@ -7,12 +7,12 @@ The Desktop version of the secure browser built on top of the firefox platform.
 (function(SB) {
 
     function Firefox() {
-        /*Firefox.superclass.constructor.call(this);*/
+        Firefox.superclass.constructor.call(this);
         this.runtime = null;
         this._ignoringBreachEvents = null; // Timer object in case we are temporarily not reacting to sb-breach-events.
     };
 
-/*    YAHOO.lang.extend(Firefox, TDS.SecureBrowser.Base);*/
+    YAHOO.lang.extend(Firefox, TDS.SecureBrowser.Base);
 
     Firefox.prototype.initialize = function() {
         try {
@@ -73,6 +73,26 @@ The Desktop version of the secure browser built on top of the firefox platform.
     	
     };
     
+    
+   Firefox.prototype.checkDeviceInfo = function () {        
+        
+        var result = false;
+    	var details = "";
+    	try{
+    		if(!!this.runtime.getDeviceInfo()){
+    			result= true;
+    		}
+    		else{
+    			result= false;
+    		}
+    	}
+    	catch (ex) {
+    		details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(3,'Retrieve device details','!!runtime.security.getDeviceInfo()',result,details);
+    };
+    
     Firefox.prototype.checkMACAddressAPI = function() {
     	var result = false;
     	var details = "";
@@ -89,6 +109,25 @@ The Desktop version of the secure browser built on top of the firefox platform.
         }
     	
     	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','!!runtime.getMACAddress()',result,details);
+    	
+    };
+
+    Firefox.prototype.checkIPAddressAPI = function() {
+    	var result = false;
+    	var details = "";
+    	try{
+    		if(!!this.runtime.getIPAddressList()){
+    			result= true;
+    		}
+    		else{
+    			result= false;
+    		}
+    	}
+    	catch (ex) {
+    		details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(4,'Retrieve system IP address(es)','!!runtime.security.getIPAddressList()',result,details);
     	
     };
 

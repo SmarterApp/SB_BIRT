@@ -9,7 +9,7 @@ The mobile iOS version of the secure browser built on top of the Summit applicat
 
 TDS.SecureBrowser.Mobile.iOS = function () {
 
-    /*TDS.SecureBrowser.Mobile.iOS.superclass.constructor.call(this);*/
+    TDS.SecureBrowser.Mobile.iOS.superclass.constructor.call(this);
 
     // retrieve the guide access status from local storage.
     this._guidedAccessMode = localStorage.getItem('ios-guidedaccessstatus');
@@ -32,7 +32,7 @@ TDS.SecureBrowser.Mobile.iOS = function () {
     this._airMobile.initialize();
 };
 
-/*YAHOO.lang.extend(TDS.SecureBrowser.Mobile.iOS, TDS.SecureBrowser.Base);*/
+YAHOO.lang.extend(TDS.SecureBrowser.Mobile.iOS, TDS.SecureBrowser.Base);
 
 TDS.SecureBrowser.Mobile.iOS.prototype.loadProcessList = function () {
     this.setProcessList();
@@ -231,4 +231,82 @@ TDS.SecureBrowser.Mobile.iOS.prototype.getRunTime = function () {
     return this._airMobile;
 };
 
+
+TDS.SecureBrowser.Mobile.iOS.prototype.checkGlobalObject = function() {
+	var result = false;
+	var details = "";
+	try{
+		if(!!this._airMobile){
+			result= true;
+		}
+		else{
+			result= false;
+		}
+	}
+	catch (ex) {
+		details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(1,'[Summit SecureBrowser Mobile] global object check','(new Summit.SecureBrowser.Mobile()).getNativeBrowser()',result,details);
+	
+};
+
+
+TDS.SecureBrowser.Mobile.iOS.prototype.checkDeviceInfo = function() {
+	var result = false;
+	var details = "";
+	try{
+		if(!!this._airMobile.security.getDeviceInfo()){
+			result= true;
+		}
+		else{
+			result= false;
+		}
+	}
+	catch (ex) {
+		details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(2,'Retrieve device details','!!runtime.security.getDeviceInfo()',result,details);
+};
+
+
+TDS.SecureBrowser.Mobile.iOS.prototype.checkMACAddressAPI = function() {
+	var result = false;
+	var details = "";
+	try{
+		if(!!this._airMobile.security.getMACAddress()){
+			result= true;
+		}
+		else{
+			result= false;
+		}
+	}
+	catch (ex) {
+		details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','!!runtime.security.getMACAddress()',result,details);
+	
+};
+
+
+TDS.SecureBrowser.Mobile.iOS.prototype.checkIPAddressAPI = function() {
+	var result = false;
+	var details = "";
+	try{
+		if(!!this._airMobile.security.getIPAddressList()){
+			result= true;
+		}
+		else{
+			result= false;
+		}
+	}
+	catch (ex) {
+		details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','!!runtime.security.getIPAddressList()',result,details);
+	
+};
 

@@ -6,7 +6,7 @@ TDS.SecureBrowser.Mobile = TDS.SecureBrowser.Mobile || {};
 The mobile Android version of the secure browser built on top of the Summit application.
 */
 TDS.SecureBrowser.Mobile.Android = function () {
-    /*TDS.SecureBrowser.Mobile.Android.superclass.constructor.call(this);*/
+    TDS.SecureBrowser.Mobile.Android.superclass.constructor.call(this);
     this._config = { pausedSinceLaunch: false, keyboardChanged: false, clipboardChanged: false };
     this._airMobile = (new Summit.SecureBrowser.Mobile()).getNativeBrowser();
     this._airMobile.initialize();
@@ -15,7 +15,7 @@ TDS.SecureBrowser.Mobile.Android = function () {
     this._miniAppCountThreshold = 3;    // count threshold for detecting mini apps, default value is 3 times
 };
 
-/*YAHOO.lang.extend(TDS.SecureBrowser.Mobile.Android, TDS.SecureBrowser.Base);*/
+YAHOO.lang.extend(TDS.SecureBrowser.Mobile.Android, TDS.SecureBrowser.Base);
 
 TDS.SecureBrowser.Mobile.Android.prototype.initialize = function () {
     var sb = this._airMobile;
@@ -89,3 +89,80 @@ TDS.SecureBrowser.Mobile.Android.prototype.getRunTime = function () {
 };
 
 
+TDS.SecureBrowser.Mobile.Android.prototype.checkGlobalObject = function() {
+	var result = false;
+	var details = "";
+	try{
+		if(!!this._airMobile){
+			result= true;
+		}
+		else{
+			result= false;
+		}
+	}
+	catch (ex) {
+		details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(1,'[Summit SecureBrowser Mobile] global object check','(new Summit.SecureBrowser.Mobile()).getNativeBrowser()',result,details);
+	
+};
+
+
+TDS.SecureBrowser.Mobile.Android.prototype.checkDeviceInfo = function() {
+	var result = false;
+	var details = "";
+	try{
+		if(!!this._airMobile.security.getDeviceInfo()){
+			result= true;
+		}
+		else{
+			result= false;
+		}
+	}
+	catch (ex) {
+		details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(2,'Retrieve device details','!!runtime.security.getDeviceInfo()',result,details);
+};
+
+
+TDS.SecureBrowser.Mobile.Android.prototype.checkMACAddressAPI = function() {
+	var result = false;
+	var details = "";
+	try{
+		if(!!this._airMobile.security.getMACAddress()){
+			result= true;
+		}
+		else{
+			result= false;
+		}
+	}
+	catch (ex) {
+		details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','!!runtime.security.getMACAddress()',result,details);
+	
+};
+
+
+TDS.SecureBrowser.Mobile.Android.prototype.checkIPAddressAPI = function() {
+	var result = false;
+	var details = "";
+	try{
+		if(!!this._airMobile.security.getIPAddressList()){
+			result= true;
+		}
+		else{
+			result= false;
+		}
+	}
+	catch (ex) {
+		details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','!!runtime.security.getIPAddressList()',result,details);
+	
+};

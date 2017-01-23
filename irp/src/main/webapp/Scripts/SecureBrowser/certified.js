@@ -1,10 +1,10 @@
 ﻿(function (SB) {
 
     function Certified() {
-        /*Certified.superclass.constructor.call(this);*/
+        Certified.superclass.constructor.call(this);
     };
 
-    /*YAHOO.lang.extend(Certified, TDS.SecureBrowser.Base);*/
+    YAHOO.lang.extend(Certified, TDS.SecureBrowser.Base);
     
     Certified.prototype.checkGlobalObject = function() {
     	
@@ -33,6 +33,26 @@
     	
     };
     
+    
+    Certified.prototype.checkDeviceInfo = function () {        
+        
+        var result = false;
+    	var details = "";
+    	try{
+    		if(!!browser.security.getDeviceInfo()){
+    			result= true;
+    		}
+    		else{
+    			result= false;
+    		}
+    	}
+    	catch (ex) {
+    		details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(2,'Retrieve device details','!!browser.security.getDeviceInfo()',result,details);
+    };
+    
     Certified.prototype.checkMACAddressAPI = function() {
     	var result = false;
     	var details = "";
@@ -49,6 +69,25 @@
         }
     	
     	Util.Validation.setResultItems(2,'Retrieve system MAC address(es)','!!browser.security.getMACAddress()',result,details);
+    	
+    };
+    
+    Certified.prototype.checkIPAddressAPI = function() {
+    	var result = false;
+    	var details = "";
+    	try{
+    		if(browser.security.getIPAddressList()){
+    			result= true;
+    		}
+    		else{
+    			result= false;
+    		}
+    	}
+    	catch (ex) {
+    		details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(2,'Retrieve system IP address(es)','!!browser.security.getIPAddressList()',result,details);
     	
     };
 
