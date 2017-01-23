@@ -10,7 +10,7 @@ TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
 
 
-Util.Validation.setResultItems(1,'IOS Device','IOS Device', isIOSDevice);
+/*Util.Validation.setResultItems(1,'IOS Device','IOS Device', isIOSDevice);
 Util.Validation.setResultItems(2,'Android Device','Android Device', isAndroidDevice);
 Util.Validation.setResultItems(4,'Firefox Browser Check','Firefox Browser check', isFireFox );
 Util.Validation.setResultItems(5,'Chrome Device Check','Chrome Browser check', isChrome );
@@ -23,7 +23,7 @@ Util.Validation.setResultItems(9,'Check for MATHML Support','Util.Browser.suppor
 Util.Validation.setResultItems(10,'Check for SVG Support','Util.Browser.supportsSVG()', Util.Browser.supportsSVG() );
 
 Util.Validation.setResultItems(11,'Check for Audio OGG Support','Util.Browser.supportsAudioOGG()', Util.Browser.supportsAudioOGG() );
-
+*/
 if (impl) {
 	impl.checkGlobalObject();
 	
