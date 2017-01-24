@@ -10,169 +10,173 @@
 
 (function(Util) {
 
-    var E = {};
-    
-    E.hasModifier = function(ev) {
-        return (ev.ctrlKey || ev.altKey || ev.metaKey);
-    };
+	var E = {};
 
-    // did this key event occur in a text area
-    E.inTextInput = function(ev) {
-        var target = YAHOO.util.Event.getTarget(ev);
-        return Util.Dom.isTextInput(target);
-    };
-    
-    // normalized mouse events for desktop/mobile
-    E.Mouse = (function() {
-        if ('ontouchstart' in window) {
-            return {
-                start: 'touchstart',
-                end: 'touchend',
-                move: 'touchmove',
-                click: 'click',
-                enter: 'touchenter',
-                leave: 'touchleave',
-                touchScreen: true
-            };
-        } else {
-            return {
-                start: 'mousedown',
-                end: 'mouseup',
-                move: 'mousemove',
-                click: 'click',
-                enter: 'mouseenter',
-                leave: 'mouseleave',
-                touchScreen: false
-            };
-        }
-    })();
+	E.hasModifier = function(ev) {
+		return (ev.ctrlKey || ev.altKey || ev.metaKey);
+	};
 
-    // normalize a touch event into mouse event
-    E.normalize = function(evt) {
+	// did this key event occur in a text area
+	E.inTextInput = function(ev) {
+		var target = YAHOO.util.Event.getTarget(ev);
+		return Util.Dom.isTextInput(target);
+	};
 
-        // check if touch screen
-        if ('ontouchstart' in window && evt.changedTouches) {
+	// normalized mouse events for desktop/mobile
+	E.Mouse = (function() {
+		if ('ontouchstart' in window) {
+			return {
+				start : 'touchstart',
+				end : 'touchend',
+				move : 'touchmove',
+				click : 'click',
+				enter : 'touchenter',
+				leave : 'touchleave',
+				touchScreen : true
+			};
+		} else {
+			return {
+				start : 'mousedown',
+				end : 'mouseup',
+				move : 'mousemove',
+				click : 'click',
+				enter : 'mouseenter',
+				leave : 'mouseleave',
+				touchScreen : false
+			};
+		}
+	})();
 
-            var touches = evt.changedTouches;
+	// normalize a touch event into mouse event
+	E.normalize = function(evt) {
 
-            // find touch event that matches dom event
-            for (var i = 0, ii = touches.length; i < ii; i++) {
-                if (touches[i].target == evt.target) {
-                    // save original event
-                    var oldevt = evt;
+		// check if touch screen
+		if ('ontouchstart' in window && evt.changedTouches) {
 
-                    // replace mouse event with touch event
-                    evt = touches[i];
-                    evt.preventDefault = function() { return oldevt.preventDefault(); };
-                    evt.stopPropagation = function() { return oldevt.stopPropagation(); };
-                    break;
-                }
-            }
-        }
+			var touches = evt.changedTouches;
 
-        return evt;
-    };
+			// find touch event that matches dom event
+			for (var i = 0, ii = touches.length; i < ii; i++) {
+				if (touches[i].target == evt.target) {
+					// save original event
+					var oldevt = evt;
 
-    function addEventListener(type, el, listener, useCapture) {
+					// replace mouse event with touch event
+					evt = touches[i];
+					evt.preventDefault = function() {
+						return oldevt.preventDefault();
+					};
+					evt.stopPropagation = function() {
+						return oldevt.stopPropagation();
+					};
+					break;
+				}
+			}
+		}
 
-        // event event listener
-        el.addEventListener(type, listener, useCapture);
+		return evt;
+	};
 
-        // return object to remove event
-        return {
-            destroy: function () {
-                el.removeEventListener(type, listener, useCapture);
-            }
-        }
-        
-    }
+	function addEventListener(type, el, listener, useCapture) {
 
-    // generic event listener
-    E.on = function (type, el, listener, useCapture) {
+		// event event listener
+		el.addEventListener(type, listener, useCapture);
 
-        el = Util.Dom.get(el);
+		// return object to remove event
+		return {
+			destroy : function() {
+				el.removeEventListener(type, listener, useCapture);
+			}
+		}
 
-        if (!el) {
-            throw new Error('Element not found');
-        }
+	}
 
-        useCapture = useCapture || false;
+	// generic event listener
+	E.on = function(type, el, listener, useCapture) {
 
-        return addEventListener(type, el, listener, useCapture);
+		el = Util.Dom.get(el);
 
-    };
-    
-    var EventMap = {
-        'start': 'pointerdown',
-        'move': 'pointermove',
-        'end': 'pointerup'
-    };
+		if (!el) {
+			throw new Error('Element not found');
+		}
 
-    // DEPRECATED: This function should no longer be used and 'Util.Event.on' should be used instead
-    // add event listener to element
-    E.addTouchMouse = function (name, el, listener) {
+		useCapture = useCapture || false;
 
-        var type = EventMap[name];
+		return addEventListener(type, el, listener, useCapture);
 
-        if (!type) {
-            throw new Error('Unknown event name: ' + name);
-        }
+	};
 
-        return E.on(type, el, listener);
+	var EventMap = {
+		'start' : 'pointerdown',
+		'move' : 'pointermove',
+		'end' : 'pointerup'
+	};
 
-    };
+	// DEPRECATED: This function should no longer be used and 'Util.Event.on'
+	// should be used instead
+	// add event listener to element
+	E.addTouchMouse = function(name, el, listener) {
 
-    var hold_schedule_events = 'pointerdown';
-    var hold_cancel_events = 'pointerup pointermove pointercancel contextmenu';
-    var hold_click_events = 'click';
+		var type = EventMap[name];
 
-    // attach listener that fires after holding down 
-    // mouse/finger for a specific duration (millseconds)
-    E.addTouchHold = function(el, duration, listener) {
+		if (!type) {
+			throw new Error('Unknown event name: ' + name);
+		}
 
-        var fired = false,
-            timer = null;
+		return E.on(type, el, listener);
 
-        function schedule() {
-            fired = false;
-            cancel();
-            timer = setTimeout(scheduled, duration);
-        }
+	};
 
-        function scheduled() {
-            fired = true;
-            timer = null;
-            listener();
-        }
+	var hold_schedule_events = 'pointerdown';
+	var hold_cancel_events = 'pointerup pointermove pointercancel contextmenu';
+	var hold_click_events = 'click';
 
-        function cancel() {
-            if (timer) {
-                clearTimeout(timer);
-                timer = null;
-            }
-        }
+	// attach listener that fires after holding down
+	// mouse/finger for a specific duration (millseconds)
+	E.addTouchHold = function(el, duration, listener) {
 
-        function click(evt) {
-            // Prevent `click` event to be fired after button release once fired
-            if (fired) {
-                return evt.stopImmediatePropagation() || false;
-            }
-        }
+		var fired = false, timer = null;
 
-        $(el).on(hold_schedule_events, schedule);
-        $(el).on(hold_cancel_events, cancel);
-        $(el).on(hold_click_events, click);
-        
-        return {
-            destroy: function () {
-                $(el).off(hold_schedule_events, schedule);
-                $(el).off(hold_cancel_events, cancel);
-                $(el).off(hold_click_events, click);
-            }
-        }
+		function schedule() {
+			fired = false;
+			cancel();
+			timer = setTimeout(scheduled, duration);
+		}
 
-    };
+		function scheduled() {
+			fired = true;
+			timer = null;
+			listener();
+		}
 
-    Util.Event = E;
+		function cancel() {
+			if (timer) {
+				clearTimeout(timer);
+				timer = null;
+			}
+		}
+
+		function click(evt) {
+			// Prevent `click` event to be fired after button release once fired
+			if (fired) {
+				return evt.stopImmediatePropagation() || false;
+			}
+		}
+
+		$(el).on(hold_schedule_events, schedule);
+		$(el).on(hold_cancel_events, cancel);
+		$(el).on(hold_click_events, click);
+
+		return {
+			destroy : function() {
+				$(el).off(hold_schedule_events, schedule);
+				$(el).off(hold_cancel_events, cancel);
+				$(el).off(hold_click_events, click);
+			}
+		}
+
+	};
+
+	Util.Event = E;
 
 })(Util);

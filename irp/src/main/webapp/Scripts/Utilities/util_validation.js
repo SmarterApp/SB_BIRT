@@ -9,7 +9,7 @@
 (function(Util) {
 
 	var resultArray = [];
-	
+
 	var MACREGEX = new RegExp(
 			"^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$");
 
@@ -26,18 +26,26 @@
 		}
 		return (false)
 	};
-	
-	Validation.setResultItems = function(id,testName,testAPI,result,details){
-		resultArray.push({ "id": id,"testName": testName,"testApi": testAPI,"testResult":result,"details":details});
+
+	Validation.setResultItems = function(id, testName, testAPI, result, details) {
+		resultArray.push({
+			"id" : id,
+			"testName" : testName,
+			"testApi" : testAPI,
+			"testResult" : result,
+			"details" : details
+		});
 	};
-	
-/*	Validation.setResultItems = function(id,testName,testAPI,result){
-		resultArray.push({ "id": id,"testName": testName,"testApi": testAPI,"testResult":result});
-	};*/
-	
+
+	/*
+	 * Validation.setResultItems = function(id,testName,testAPI,result){
+	 * resultArray.push({ "id": id,"testName": testName,"testApi":
+	 * testAPI,"testResult":result}); };
+	 */
+
 	Validation.getResult = function() {
-        return resultArray;
-    };
+		return resultArray;
+	};
 
 	Util.Validation = Validation;
 

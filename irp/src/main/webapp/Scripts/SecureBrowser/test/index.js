@@ -19,82 +19,91 @@ var impl = TDS.SecureBrowser.getImplementation();
 
 if (impl) {
 	impl.checkGlobalObject();
-	
-	/**SEC-25 : API: Retrieve device details (R) **/
+
+	/** SEC-25 : API: Retrieve device details (R) * */
 	impl.checkDeviceInfo();
-	
-	/** SEC-27 : API: get system MAC address(es) (O) **/
+
+	/** SEC-27 : API: get system MAC address(es) (O) * */
 	impl.checkMACAddressAPI();
-	
-	/** SEC-28 : API: Retrieve client IP address(es) (O) **/	
+
+	/** SEC-28 : API: Retrieve client IP address(es) (O) * */
 	impl.checkIPAddressAPI();
-	
-	
-	/** SEC-29 : API: Get application start time (O). **/
+
+	/** SEC-29 : API: Get application start time (O). * */
 	impl.checkAppStartTimeAPI();
-	
-	
-	/** SEC-37 : API: TTS Stop (R)*/
+
+	/** SEC-37 : API: TTS Stop (R) */
 	impl.checkTTSStopAPI();
-	
-	/** SEC-38 : API: Get TTS Status (R) **/
+
+	/** SEC-38 : API: Get TTS Status (R) * */
 	impl.checkTTSStatusAPI();
-	
-	/** SEC-39 : API: Get Voices for TTS (R) **/
+
+	/** SEC-39 : API: Get Voices for TTS (R) * */
 	impl.checkTTSVoicesAPI();
 
-    
 } else {
 	console.log('No Implementation found for Secure Browser');
 }
-
-
 
 populateResults();
 
 function getMethods(obj) {
 	var result = [];
-	for (var method in obj) {
+	for ( var method in obj) {
 		result.push(method)
 
 	}
 	return result;
 }
 
-function closeBrowser(){
+function closeBrowser() {
 	impl.close();
 }
 
-
-function populateResults(){
+function populateResults() {
 	$("#jsGrid").jsGrid({
-	    width: "100%",
-	    height: "100%",
+		width : "100%",
+		height : "100%",
 
-	    data: Util.Validation.getResult(),
-	    
-	    fields: [
-	       /* { title: "ID", name: "id", type: "number", width: 20, validate: "required" },*/
-	        { title: "Test Name",name: "testName", type: "text", width: 150 },
-	        { title: "Test API",name: "testApi", type: "text", width: 150 },
-	        { title: "Result",name: "testResult", type: "text",width:50	,
-	        
-	        	itemTemplate : function(value) {
-	        		if(value){
-	        			return "Passed";
-	        		}
-	        		else{
-	        			return "Failed";
-	        		}
-	        		
-	        	}
+		data : Util.Validation.getResult(),
 
-	        		
-	        	
-	        }
-	        ,
-	        { title: "Details",name: "details", type: "text",width:150 }
-	    
-	    ]
+		fields : [
+		/*
+		 * { title: "ID", name: "id", type: "number", width: 20, validate:
+		 * "required" },
+		 */
+		{
+			title : "Test Name",
+			name : "testName",
+			type : "text",
+			width : 150
+		}, {
+			title : "Test API",
+			name : "testApi",
+			type : "text",
+			width : 150
+		}, {
+			title : "Result",
+			name : "testResult",
+			type : "text",
+			width : 50,
+
+			itemTemplate : function(value) {
+				if (value) {
+					return "Passed";
+				} else {
+					return "Failed";
+				}
+
+			}
+
+		}, {
+			title : "Details",
+			name : "details",
+			type : "text",
+			width : 150
+		}
+
+		]
 	});
 }
