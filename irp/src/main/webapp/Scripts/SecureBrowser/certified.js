@@ -149,6 +149,20 @@
 				'browser.tts.getVoices()', result, details);
 	};
 
+	Certified.prototype.checkTTSPitchAPI = function() {
+		var result = false;
+
+		var details = "More Info Needed for Testing";
+		/*
+		 * try { this.runtime.pitch; result = true; } catch (ex) { details =
+		 * ex.message; }
+		 */
+
+		Util.Validation.setResultItems(2,
+				'Get/Set tts pitch API (text-to-speech synthesis)', '', result,
+				details);
+	};
+
 	Certified.prototype._hasAPI = function() {
 		return Util.Browser.isCertified();
 	};
@@ -193,7 +207,7 @@
 		try {
 			if (this._hasAPI()) {
 				browser.security.clearCache(); // Device Certification Required
-												// API #3
+				// API #3
 				return true;
 			}
 		} catch (ex) {
@@ -206,7 +220,7 @@
 		try {
 			if (this._hasAPI()) {
 				browser.security.clearCookies(); // Device Certification
-													// Required API #4
+				// Required API #4
 				return true;
 			}
 		} catch (ex) {
@@ -219,7 +233,7 @@
 		try {
 			if (this._hasAPI()) {
 				browser.security.emptyClipBoard(); // Device Certification
-													// Required API #5
+				// Required API #5
 				return true;
 			}
 		} catch (ex) {
@@ -235,7 +249,7 @@
 			if (this._hasAPI()) {
 				alert('try');
 				mac = browser.security.getMACAddress(); // Device Certification
-														// Required API #6
+				// Required API #6
 				mac.toUpperCase();
 			}
 		} catch (e) {
@@ -251,9 +265,9 @@
 		try {
 			if (this._hasAPI()) {
 				addressList = browser.security.getIPAddressList(); // Device
-																	// Certification
-																	// Required
-																	// API #7
+				// Certification
+				// Required
+				// API #7
 			}
 		} catch (ex) {
 		}
@@ -267,9 +281,9 @@
 		try {
 			if (this._hasAPI()) {
 				processList = browser.security.getProcessList(); // Device
-																	// Certification
-																	// Required
-																	// API #8
+				// Certification
+				// Required
+				// API #8
 
 			}
 		} catch (ex) {
@@ -292,8 +306,8 @@
 				// this function which MS Edge SB uses
 				if (typeof browser.security.closeWindow === 'function') {
 					browser.security.closeWindow(restart); // Device
-															// Certification
-															// Required API #9
+					// Certification
+					// Required API #9
 				} else {
 					browser.security.close(restart);
 				}
@@ -309,7 +323,7 @@
 		try {
 			if (this._hasAPI()) {
 				browser.security.getStartTime(); // Device Certification
-													// Required API #10
+				// Required API #10
 				return true;
 			}
 		} catch (ex) {
@@ -321,8 +335,8 @@
 		try {
 			if (this._hasAPI()) {
 				browser.security.enableLockDown(lockDown); // Device
-															// Certification
-															// Required API #1
+				// Certification
+				// Required API #1
 				return true;
 			}
 		} catch (ex) {
@@ -334,10 +348,10 @@
 		try {
 			if (this._hasAPI()) {
 				var isSecure = browser.security.isEnvironmentSecure(); // Device
-																		// Certification
-																		// Required
-																		// API
-																		// #2
+				// Certification
+				// Required
+				// API
+				// #2
 				var result = {
 					'secure' : isSecure,
 					'messageKey' : null
@@ -353,7 +367,7 @@
 		try {
 			if (this._hasAPI()) {
 				browser.security.getDeviceInfo(); // Device Certification
-													// Required API #23
+				// Required API #23
 				return true;
 			}
 		} catch (ex) {

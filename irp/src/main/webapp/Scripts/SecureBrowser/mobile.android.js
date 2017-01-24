@@ -27,9 +27,9 @@ TDS.SecureBrowser.Mobile.Android = function() {
 		rangyValue : null
 	};
 	this._miniAppTimeThreshold = 5; // time threshold for detecting mini apps,
-									// default value is 5 seconds
+	// default value is 5 seconds
 	this._miniAppCountThreshold = 3; // count threshold for detecting mini
-										// apps, default value is 3 times
+	// apps, default value is 3 times
 };
 
 YAHOO.lang.extend(TDS.SecureBrowser.Mobile.Android, TDS.SecureBrowser.Base);
@@ -39,9 +39,9 @@ TDS.SecureBrowser.Mobile.Android.prototype.initialize = function() {
 	var config = this._config;
 	var textSelected = this._textSelected;
 	var miniAppDetectedTime = null; // used to record the time when a mini app
-									// event was first captured
+	// event was first captured
 	var miniAppDetectedCount = 0; // record the number of times a mini app
-									// event has been captured
+	// event has been captured
 	var miniAppTimeThreshold = this._miniAppTimeThreshold;
 	var miniAppCountThreshold = this._miniAppCountThreshold;
 
@@ -254,4 +254,22 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkTTSVoicesAPI = function() {
 	Util.Validation.setResultItems(2,
 			'Get available voices (text-to-speech synthesis)',
 			'runtime.tts.getVoices()', result, details);
+};
+
+TDS.SecureBrowser.Mobile.Android.prototype.checkTTSPitchAPI = function() {
+	var result = false;
+
+	var details = "";
+	try {
+		if (!!this._airMobile.tts.setPitch
+				&& !!this._airMobile.tts.getPitch) {
+			result = true;
+		}
+	} catch (ex) {
+		details = ex.message;
+	}
+
+	Util.Validation.setResultItems(2,
+			'Get/Set tts pitch API (text-to-speech synthesis)',
+			'runtime.tts.pitch', result, details);
 };

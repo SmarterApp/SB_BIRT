@@ -41,6 +41,9 @@ if (impl) {
 	/** SEC-39 : API: Get Voices for TTS (R) * */
 	impl.checkTTSVoicesAPI();
 
+	/** SEC-50 : API: Set TTS pitch (R) * */
+	impl.checkTTSPitchAPI();
+
 } else {
 	console.log('No Implementation found for Secure Browser');
 }

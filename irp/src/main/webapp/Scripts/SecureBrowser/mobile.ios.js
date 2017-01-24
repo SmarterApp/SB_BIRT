@@ -35,8 +35,8 @@ TDS.SecureBrowser.Mobile.iOS = function() {
 	this._processes = [];
 	this._defaultBackgroundThreshold = 5; // default value is five seconds
 	this._defaultBackgroundThresholdASAM = 20; // we allow up to twenty seconds
-												// for the browser app to be
-												// backgrounded if ASAM is on
+	// for the browser app to be
+	// backgrounded if ASAM is on
 
 	// get browser object and initialize
 	this._airMobile = (new Summit.SecureBrowser.Mobile()).getNativeBrowser();
@@ -69,14 +69,14 @@ TDS.SecureBrowser.Mobile.iOS.prototype.initialize = function() {
 		this._processes = secBrowser.device.runningProcesses;
 	};
 	var isLockedDown = true; // indicate if a student test session is going
-								// on
+	// on
 	this.isSystemLockedDown = function() {
 		return isLockedDown;
 	};
 	var isAutonomousGuidedAccessEnabled; // we cannot determine whether
-											// autonomous guided access is
-											// available until the student app
-											// is fully loaded
+	// autonomous guided access is
+	// available until the student app
+	// is fully loaded
 	var ASAMMode = this._ASAMMode;
 	var self = this;
 
@@ -411,4 +411,21 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkTTSVoicesAPI = function() {
 	Util.Validation.setResultItems(2,
 			'Get available voices (text-to-speech synthesis)',
 			'runtime.tts.getVoices()', result, details);
+};
+
+TDS.SecureBrowser.Mobile.iOS.prototype.checkTTSPitchAPI = function() {
+	var result = false;
+
+	var details = "";
+	try {
+		if (!!this._airMobile.tts.setPitch && !!this._airMobile.tts.getPitch) {
+			result = true;
+		}
+	} catch (ex) {
+		details = ex.message;
+	}
+
+	Util.Validation.setResultItems(2,
+			'Get/Set tts pitch API (text-to-speech synthesis)',
+			'runtime.tts.pitch', result, details);
 };

@@ -175,6 +175,23 @@
 				'Get available voices (text-to-speech synthesis)',
 				'runtime.voices', result, details);
 	};
+	
+	
+	Firefox.prototype.checkTTSPitchAPI = function() {
+		var result = false;
+
+		var details = "";
+		try {
+			this.runtime.pitch;
+			result = true;
+		} catch (ex) {
+			details = ex.message;
+		}
+
+		Util.Validation.setResultItems(2,
+				'Get/Set tts pitch API (text-to-speech synthesis)',
+				'runtime.pitch', result, details);
+	};
 
 	Firefox.prototype.dispose = function() {
 		console.log('Disposing SB runtime...');

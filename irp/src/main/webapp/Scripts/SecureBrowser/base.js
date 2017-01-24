@@ -99,6 +99,20 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 				'browser.tts.getVoices()', result, details);
 	};
 
+	Base.prototype.checkTTSPitchAPI = function() {
+		var result = false;
+
+		var details = "More Info Needed for Testing";
+		/*
+		 * try { this.runtime.pitch; result = true; } catch (ex) { details =
+		 * ex.message; }
+		 */
+
+		Util.Validation.setResultItems(2,
+				'Get/Set tts pitch API (text-to-speech synthesis)', '', result,
+				details);
+	};
+
 	Base.prototype.dispose = function() {
 	};
 
