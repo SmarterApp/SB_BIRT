@@ -113,6 +113,16 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 				details);
 	};
 
+	Base.prototype.checkTTSRateAPI = function() {
+		var result = false;
+
+		var details = "More Info Needed for Testing";
+
+		Util.Validation.setResultItems(2,
+				'Get/Set tts Rate API (text-to-speech synthesis)', '', result,
+				details);
+	};
+
 	Base.prototype.dispose = function() {
 	};
 

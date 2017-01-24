@@ -418,14 +418,30 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkTTSPitchAPI = function() {
 
 	var details = "";
 	try {
-		if (!!this._airMobile.tts.setPitch && !!this._airMobile.tts.getPitch) {
-			result = true;
-		}
+		this._airMobile.device.ttsPitch;
+		result = true;
+
 	} catch (ex) {
 		details = ex.message;
 	}
 
 	Util.Validation.setResultItems(2,
 			'Get/Set tts pitch API (text-to-speech synthesis)',
-			'runtime.tts.pitch', result, details);
+			'runtime.device.ttsPitch', result, details);
+};
+
+TDS.SecureBrowser.Mobile.iOS.prototype.checkTTSRateAPI = function() {
+	var result = false;
+
+	var details = "";
+	try {
+		this._airMobile.device.ttsRate
+		result = true;
+	} catch (ex) {
+		details = ex.message;
+	}
+
+	Util.Validation.setResultItems(2,
+			'Get/Set tts Rate API (text-to-speech synthesis)',
+			'runtime.device.ttsRate', result, details);
 };

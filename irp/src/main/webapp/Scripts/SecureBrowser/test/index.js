@@ -44,6 +44,9 @@ if (impl) {
 	/** SEC-50 : API: Set TTS pitch (R) * */
 	impl.checkTTSPitchAPI();
 
+	/** SEC-51 API: Set TTS rate (R) * */
+	impl.checkTTSRateAPI();
+
 } else {
 	console.log('No Implementation found for Secure Browser');
 }

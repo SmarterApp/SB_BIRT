@@ -163,6 +163,16 @@
 				details);
 	};
 
+	Certified.prototype.checkTTSRateAPI = function() {
+		var result = false;
+
+		var details = "More Info Needed for Testing";
+
+		Util.Validation.setResultItems(2,
+				'Get/Set tts Rate API (text-to-speech synthesis)', '', result,
+				details);
+	};
+
 	Certified.prototype._hasAPI = function() {
 		return Util.Browser.isCertified();
 	};

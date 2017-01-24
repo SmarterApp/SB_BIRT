@@ -18,8 +18,8 @@
 		Firefox.superclass.constructor.call(this);
 		this.runtime = null;
 		this._ignoringBreachEvents = null; // Timer object in case we are
-											// temporarily not reacting to
-											// sb-breach-events.
+		// temporarily not reacting to
+		// sb-breach-events.
 	}
 	;
 
@@ -175,8 +175,7 @@
 				'Get available voices (text-to-speech synthesis)',
 				'runtime.voices', result, details);
 	};
-	
-	
+
 	Firefox.prototype.checkTTSPitchAPI = function() {
 		var result = false;
 
@@ -191,6 +190,22 @@
 		Util.Validation.setResultItems(2,
 				'Get/Set tts pitch API (text-to-speech synthesis)',
 				'runtime.pitch', result, details);
+	};
+
+	Firefox.prototype.checkTTSRateAPI = function() {
+		var result = false;
+
+		var details = "";
+		try {
+			this.runtime.rate;
+			result = true;
+		} catch (ex) {
+			details = ex.message;
+		}
+
+		Util.Validation.setResultItems(2,
+				'Get/Set tts Rate API (text-to-speech synthesis)',
+				'runtime.rate', result, details);
 	};
 
 	Firefox.prototype.dispose = function() {
@@ -538,8 +553,8 @@
 					console.log('mute volume');
 					Util.Storage.set('tds-mutedVolume',
 							this.runtime.systemVolume); // store the system
-														// volume, will be
-														// restored after unmute
+					// volume, will be
+					// restored after unmute
 					this._setRuntimeVolume(0);
 					return true;
 				}
@@ -579,7 +594,7 @@
 			if (this._hasRuntime()) {
 				if (this._hasNativeMute()) {
 					return (this.runtime.systemMute === true); // muted
-																// natively?
+					// natively?
 				} else {
 					return (this.runtime.systemVolume === 0); // muted volume?
 				}
@@ -598,7 +613,7 @@
 					return 0; // muted
 				} else {
 					return this.runtime.systemVolume * 10; // 0-10.. make into
-															// percentage
+					// percentage
 				}
 			}
 		} catch (ex) {
