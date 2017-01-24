@@ -155,6 +155,21 @@ The Desktop version of the secure browser built on top of the firefox platform.
     	Util.Validation.setResultItems(2,'Get speech status (text-to-speech synthesis)','runtime.status',result,details);
     };
 
+    Firefox.prototype.checkTTSVoicesAPI = function () {        
+        var result = false;
+        
+    	var details = "";
+    	try{
+            this.runtime.voices;
+            result= true;
+    	}
+    	catch (ex) {
+           details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(2,'Get available voices (text-to-speech synthesis)','runtime.voices',result,details);
+    };
+    
     
     Firefox.prototype.dispose = function () {
         console.log('Disposing SB runtime...');

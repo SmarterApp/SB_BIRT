@@ -206,3 +206,19 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkTTSStatusAPI = function () {
 	
 	Util.Validation.setResultItems(2,'Get speech status (text-to-speech synthesis)','runtime.tts.getStatus()',result,details);
 };
+
+
+TDS.SecureBrowser.Mobile.Android.prototype.checkTTSVoicesAPI = function () {        
+    var result = false;
+    
+	var details = "";
+	try{
+		this._airMobile.tts.getVoices();
+        result= true;
+	}
+	catch (ex) {
+       details = ex.message;
+    }
+	
+	Util.Validation.setResultItems(2,'Get available voices (text-to-speech synthesis)','runtime.tts.getVoices()',result,details);
+};

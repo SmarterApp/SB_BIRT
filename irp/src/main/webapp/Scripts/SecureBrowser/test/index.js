@@ -39,6 +39,9 @@ if (impl) {
 	
 	/** SEC-38 : API: Get TTS Status (R) **/
 	impl.checkTTSStatusAPI();
+	
+	/** SEC-39 : API: Get Voices for TTS (R) **/
+	impl.checkTTSVoicesAPI();
 
     
 } else {

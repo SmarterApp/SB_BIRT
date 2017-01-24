@@ -134,6 +134,22 @@
     	
     	Util.Validation.setResultItems(2,'Get speech status (text-to-speech synthesis)','browser.tts.getStatus()',result,details);
     };
+    
+    
+    Certified.prototype.checkTTSVoicesAPI = function () {        
+        var result = false;
+        
+    	var details = "";
+    	try{
+    		browser.tts.getVoices();
+            result= true;
+    	}
+    	catch (ex) {
+           details = ex.message;
+        }
+    	
+    	Util.Validation.setResultItems(2,'Get available voices (text-to-speech synthesis)','browser.tts.getVoices()',result,details);
+    };
 
     Certified.prototype._hasAPI = function () {
         return Util.Browser.isCertified();

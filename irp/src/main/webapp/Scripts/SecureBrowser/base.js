@@ -79,6 +79,15 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     	Util.Validation.setResultItems(2,'Get speech status (text-to-speech synthesis)','browser.tts.getStatus()',result,details);
     };
 
+    
+    Base.prototype.checkTTSVoicesAPI = function () {        
+    	var result = false;
+        var details = "browser.tts.getVoices() is not defined";
+        	
+    	
+    	Util.Validation.setResultItems(2,'Get available voices (text-to-speech synthesis)','browser.tts.getVoices()',result,details);
+    };
+    
     Base.prototype.dispose = function() { };
 
     // Check if the environment is can be secured before testing

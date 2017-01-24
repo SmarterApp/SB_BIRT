@@ -35,7 +35,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         } else if (Util.Browser.isChrome()) {
             // HACK! currently, the TDS.BrowserInfo is not available at this point in the code
             // So, isSecure() shows up false even if our secure extension is installed.
-            sbImpl = new TDS.SecureBrowser.Chrome();
+            sbImpl = new TDS.SecureBrowser.Certified();
         }
 
         // set default?
