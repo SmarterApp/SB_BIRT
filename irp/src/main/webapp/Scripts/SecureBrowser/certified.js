@@ -8,383 +8,389 @@
 //*******************************************************************************
 (function(SB) {
 
-	function Certified() {
-		Certified.superclass.constructor.call(this);
-	}
-	;
+  function Certified() {
+    Certified.superclass.constructor.call(this);
+  }
+  ;
 
-	YAHOO.lang.extend(Certified, TDS.SecureBrowser.Base);
+  YAHOO.lang.extend(Certified, TDS.SecureBrowser.Base);
 
-	Certified.prototype.checkGlobalObject = function() {
+  Certified.prototype.checkGlobalObject = function() {
 
-		var result = false;
-		var details = "";
-		try {
-			var hasAPI = (typeof (window.browser) === 'object');
+    var result = false;
+    var details = "";
+    try {
+      var hasAPI = (typeof (window.browser) === 'object');
 
-			if (hasAPI && Util.Browser.isEdge()
-					&& !!window.browser.addEventListener) {
-				result = true;
-			} else if (!!window.browser) {
-				result = true;
-			} else {
-				result = false;
-				details = 'window.browser is not defined';
-			}
-		} catch (ex) {
-			result = false;
-			details = ex.message
-		}
+      if (hasAPI && Util.Browser.isEdge() && !!window.browser.addEventListener) {
+        result = true;
+      } else if (!!window.browser) {
+        result = true;
+      } else {
+        result = false;
+        details = 'window.browser is not defined';
+      }
+    } catch (ex) {
+      result = false;
+      details = ex.message
+    }
 
-		Util.Validation.setResultItems(1,
-				'[window.browser] global object check', 'window.browser',
-				result, details);
+    Util.Validation.setResultItems(1, '[window.browser] global object check',
+        'window.browser', result, details);
 
-	};
+  };
 
-	Certified.prototype.checkDeviceInfo = function() {
+  Certified.prototype.checkDeviceInfo = function() {
 
-		var result = false;
-		var details = "";
-		try {
-			browser.security.getDeviceInfo();
-			result = true;
+    var result = false;
+    var details = "";
+    try {
+      browser.security.getDeviceInfo();
+      result = true;
 
-		} catch (ex) {
-			details = ex.message;
-		}
+    } catch (ex) {
+      details = ex.message;
+    }
 
-		Util.Validation.setResultItems(2, 'Retrieve device details',
-				'browser.security.getDeviceInfo()', result, details);
-	};
+    Util.Validation.setResultItems(2, 'Retrieve device details',
+        'browser.security.getDeviceInfo()', result, details);
+  };
 
-	Certified.prototype.checkMACAddressAPI = function() {
-		var result = false;
-		var details = "";
-		try {
-			browser.security.getMACAddress();
-			result = true;
-		} catch (ex) {
-			details = ex.message;
-		}
+  Certified.prototype.checkMACAddressAPI = function() {
+    var result = false;
+    var details = "";
+    try {
+      browser.security.getMACAddress();
+      result = true;
+    } catch (ex) {
+      details = ex.message;
+    }
 
-		Util.Validation.setResultItems(2, 'Retrieve system MAC address(es)',
-				'browser.security.getMACAddress()', result, details);
+    Util.Validation.setResultItems(2, 'Retrieve system MAC address(es)',
+        'browser.security.getMACAddress()', result, details);
 
-	};
+  };
 
-	Certified.prototype.checkIPAddressAPI = function() {
-		var result = false;
-		var details = "";
-		try {
-			browser.security.getIPAddressList();
-			result = true;
-		} catch (ex) {
-			details = ex.message;
-		}
+  Certified.prototype.checkIPAddressAPI = function() {
+    var result = false;
+    var details = "";
+    try {
+      browser.security.getIPAddressList();
+      result = true;
+    } catch (ex) {
+      details = ex.message;
+    }
 
-		Util.Validation.setResultItems(2, 'Retrieve system IP address(es)',
-				'browser.security.getIPAddressList()', result, details);
+    Util.Validation.setResultItems(2, 'Retrieve system IP address(es)',
+        'browser.security.getIPAddressList()', result, details);
 
-	};
+  };
 
-	Certified.prototype.checkAppStartTimeAPI = function() {
-		var result = false;
-		var details = "";
-		try {
-			browser.security.getStartTime();
-			result = true;
-		} catch (ex) {
-			details = ex.message;
-		}
+  Certified.prototype.checkAppStartTimeAPI = function() {
+    var result = false;
+    var details = "";
+    try {
+      browser.security.getStartTime();
+      result = true;
+    } catch (ex) {
+      details = ex.message;
+    }
 
-		Util.Validation.setResultItems(2, 'Get application start time',
-				'browser.security.getStartTime()', result, details);
-	};
+    Util.Validation.setResultItems(2, 'Get application start time',
+        'browser.security.getStartTime()', result, details);
+  };
 
-	Certified.prototype.checkTTSStopAPI = function() {
-		var result = false;
-		var details = "";
-		try {
-			browser.tts.stop();
-			result = true;
-		} catch (ex) {
-			details = ex.message;
-		}
+  Certified.prototype.checkTTSStopAPI = function() {
+    var result = false;
+    var details = "";
+    try {
+      browser.tts.stop();
+      result = true;
+    } catch (ex) {
+      details = ex.message;
+    }
 
-		Util.Validation.setResultItems(2,
-				'Stop speech (text-to-speech synthesis)', 'browser.tts.stop()',
-				result, details);
-	};
+    Util.Validation.setResultItems(2, 'Stop speech (text-to-speech synthesis)',
+        'browser.tts.stop()', result, details);
+  };
 
-	Certified.prototype.checkTTSStatusAPI = function() {
-		var result = false;
+  Certified.prototype.checkTTSStatusAPI = function() {
+    var result = false;
 
-		var details = "";
-		try {
-			browser.tts.getStatus();
-			result = true;
-		} catch (ex) {
-			details = ex.message;
-		}
+    var details = "";
+    try {
+      browser.tts.getStatus();
+      result = true;
+    } catch (ex) {
+      details = ex.message;
+    }
 
-		Util.Validation.setResultItems(2,
-				'Get speech status (text-to-speech synthesis)',
-				'browser.tts.getStatus()', result, details);
-	};
+    Util.Validation.setResultItems(2,
+        'Get speech status (text-to-speech synthesis)',
+        'browser.tts.getStatus()', result, details);
+  };
 
-	Certified.prototype.checkTTSVoicesAPI = function() {
-		var result = false;
+  Certified.prototype.checkTTSVoicesAPI = function() {
+    var result = false;
 
-		var details = "";
-		try {
-			browser.tts.getVoices();
-			result = true;
-		} catch (ex) {
-			details = ex.message;
-		}
+    var details = "";
+    try {
+      browser.tts.getVoices();
+      result = true;
+    } catch (ex) {
+      details = ex.message;
+    }
 
-		Util.Validation.setResultItems(2,
-				'Get available voices (text-to-speech synthesis)',
-				'browser.tts.getVoices()', result, details);
-	};
+    Util.Validation.setResultItems(2,
+        'Get available voices (text-to-speech synthesis)',
+        'browser.tts.getVoices()', result, details);
+  };
 
-	Certified.prototype.checkTTSPitchAPI = function() {
-		var result = false;
+  Certified.prototype.checkTTSPitchAPI = function() {
+    var result = false;
 
-		var details = "More Info Needed for Testing";
-		/*
-		 * try { this.runtime.pitch; result = true; } catch (ex) { details =
-		 * ex.message; }
-		 */
+    var details = "More Info Needed for Testing";
+    /*
+     * try { this.runtime.pitch; result = true; } catch (ex) { details =
+     * ex.message; }
+     */
 
-		Util.Validation.setResultItems(2,
-				'Get/Set tts pitch API (text-to-speech synthesis)', '', result,
-				details);
-	};
+    Util.Validation
+        .setResultItems(2, 'Get/Set tts pitch API (text-to-speech synthesis)',
+            '', result, details);
+  };
 
-	Certified.prototype.checkTTSRateAPI = function() {
-		var result = false;
+  Certified.prototype.checkTTSRateAPI = function() {
+    var result = false;
 
-		var details = "More Info Needed for Testing";
+    var details = "More Info Needed for Testing";
 
-		Util.Validation.setResultItems(2,
-				'Get/Set tts Rate API (text-to-speech synthesis)', '', result,
-				details);
-	};
+    Util.Validation.setResultItems(2,
+        'Get/Set tts Rate API (text-to-speech synthesis)', '', result, details);
+  };
 
-	Certified.prototype._hasAPI = function() {
-		return Util.Browser.isCertified();
-	};
+  Certified.prototype.checkTTSVolumeAPI = function() {
+    var result = false;
 
-	var onClosingEventHandler = function(se) {
+    var details = "More Info Needed for Testing";
 
-		// If there were subscribers then let them cleanup otherwise do nothing
-		if (this.Events.onClosing.subscribers.length) {
-			var deferral = se.getDeferral();
-			this.Events.onClosing.fire(function() {
-				deferral.complete();
-			});
-		}
-	};
-	var onClosingEvent = null;
+    Util.Validation.setResultItems(2,
+        'Get/Set tts Volume API (text-to-speech synthesis)',
+        'runtime.device.ttsVolume', result, details);
+  };
 
-	Certified.prototype.initialize = function() {
+  Certified.prototype._hasAPI = function() {
+    return Util.Browser.isCertified();
+  };
 
-		// The MS Take a Test app (aka Edge Secure Browser) fires the onclosing
-		// event if the student terminates the app via
-		// something like pressing Ctrl-Alt-Delete so we need to properly pause
-		// any acitve test session
-		if (Util.Browser.isEdgeSB() && this._hasAPI()) {
-			onClosingEvent = onClosingEventHandler.bind(this);
-			browser.addEventListener("onclosing", onClosingEvent);
+  var onClosingEventHandler = function(se) {
 
-			if (typeof browser.security.setCapability === 'function') {
-				browser.security.setCapability('screenCapture', false);
-				browser.security.setCapability('printing', false);
-			}
-		}
-	};
+    // If there were subscribers then let them cleanup otherwise do nothing
+    if (this.Events.onClosing.subscribers.length) {
+      var deferral = se.getDeferral();
+      this.Events.onClosing.fire(function() {
+        deferral.complete();
+      });
+    }
+  };
+  var onClosingEvent = null;
 
-	Certified.prototype.dispose = function() {
+  Certified.prototype.initialize = function() {
 
-		if (onClosingEvent) {
-			browser.removeEventListener("onclosing", onClosingEvent);
-		}
-	};
+    // The MS Take a Test app (aka Edge Secure Browser) fires the onclosing
+    // event if the student terminates the app via
+    // something like pressing Ctrl-Alt-Delete so we need to properly pause
+    // any acitve test session
+    if (Util.Browser.isEdgeSB() && this._hasAPI()) {
+      onClosingEvent = onClosingEventHandler.bind(this);
+      browser.addEventListener("onclosing", onClosingEvent);
 
-	Certified.prototype.clearCache = function() {
-		try {
-			if (this._hasAPI()) {
-				browser.security.clearCache(); // Device Certification Required
-				// API #3
-				return true;
-			}
-		} catch (ex) {
-		}
+      if (typeof browser.security.setCapability === 'function') {
+        browser.security.setCapability('screenCapture', false);
+        browser.security.setCapability('printing', false);
+      }
+    }
+  };
 
-		return false;
-	};
+  Certified.prototype.dispose = function() {
 
-	Certified.prototype.clearCookies = function() {
-		try {
-			if (this._hasAPI()) {
-				browser.security.clearCookies(); // Device Certification
-				// Required API #4
-				return true;
-			}
-		} catch (ex) {
-		}
+    if (onClosingEvent) {
+      browser.removeEventListener("onclosing", onClosingEvent);
+    }
+  };
 
-		return false;
-	};
+  Certified.prototype.clearCache = function() {
+    try {
+      if (this._hasAPI()) {
+        browser.security.clearCache(); // Device Certification Required
+        // API #3
+        return true;
+      }
+    } catch (ex) {
+    }
 
-	Certified.prototype.emptyClipBoard = function() {
-		try {
-			if (this._hasAPI()) {
-				browser.security.emptyClipBoard(); // Device Certification
-				// Required API #5
-				return true;
-			}
-		} catch (ex) {
-		}
+    return false;
+  };
 
-		return false;
-	};
+  Certified.prototype.clearCookies = function() {
+    try {
+      if (this._hasAPI()) {
+        browser.security.clearCookies(); // Device Certification
+        // Required API #4
+        return true;
+      }
+    } catch (ex) {
+    }
 
-	Certified.prototype.getMACAddress = function() {
-		var mac = null;
+    return false;
+  };
 
-		try {
-			if (this._hasAPI()) {
-				alert('try');
-				mac = browser.security.getMACAddress(); // Device Certification
-				// Required API #6
-				mac.toUpperCase();
-			}
-		} catch (e) {
-			alert('catch');
-		}
+  Certified.prototype.emptyClipBoard = function() {
+    try {
+      if (this._hasAPI()) {
+        browser.security.emptyClipBoard(); // Device Certification
+        // Required API #5
+        return true;
+      }
+    } catch (ex) {
+    }
 
-		return mac;
-	};
+    return false;
+  };
 
-	Certified.prototype.getIPAddressList = function() {
-		var addressList = [];
+  Certified.prototype.getMACAddress = function() {
+    var mac = null;
 
-		try {
-			if (this._hasAPI()) {
-				addressList = browser.security.getIPAddressList(); // Device
-				// Certification
-				// Required
-				// API #7
-			}
-		} catch (ex) {
-		}
+    try {
+      if (this._hasAPI()) {
+        alert('try');
+        mac = browser.security.getMACAddress(); // Device Certification
+        // Required API #6
+        mac.toUpperCase();
+      }
+    } catch (e) {
+      alert('catch');
+    }
 
-		return addressList;
-	};
+    return mac;
+  };
 
-	Certified.prototype.getProcessList = function() {
-		var processList = [];
+  Certified.prototype.getIPAddressList = function() {
+    var addressList = [];
 
-		try {
-			if (this._hasAPI()) {
-				processList = browser.security.getProcessList(); // Device
-				// Certification
-				// Required
-				// API #8
+    try {
+      if (this._hasAPI()) {
+        addressList = browser.security.getIPAddressList(); // Device
+        // Certification
+        // Required
+        // API #7
+      }
+    } catch (ex) {
+    }
 
-			}
-		} catch (ex) {
-		}
-		// clean any leading or trailing whitespace
-		for (var i = 0; i < processList.length; i++) {
-			processList[i] = YAHOO.lang.trim(processList[i]).toLowerCase();
-		}
+    return addressList;
+  };
 
-		// remove any duplicates
-		processList = Util.Array.unique(processList);
-		return processList;
-	};
+  Certified.prototype.getProcessList = function() {
+    var processList = [];
 
-	Certified.prototype.close = function(restart) {
+    try {
+      if (this._hasAPI()) {
+        processList = browser.security.getProcessList(); // Device
+        // Certification
+        // Required
+        // API #8
 
-		try {
-			if (this._hasAPI()) {
-				// TDS-1403: Our latest API specifies 'close' as the name of
-				// this function which MS Edge SB uses
-				if (typeof browser.security.closeWindow === 'function') {
-					browser.security.closeWindow(restart); // Device
-					// Certification
-					// Required API #9
-				} else {
-					browser.security.close(restart);
-				}
-				return true;
-			}
-		} catch (ex) {
-		}
-		return false;
-	};
+      }
+    } catch (ex) {
+    }
+    // clean any leading or trailing whitespace
+    for (var i = 0; i < processList.length; i++) {
+      processList[i] = YAHOO.lang.trim(processList[i]).toLowerCase();
+    }
 
-	// Get the start time of when the app was launched
-	Certified.prototype.getAppStartTime = function() {
-		try {
-			if (this._hasAPI()) {
-				browser.security.getStartTime(); // Device Certification
-				// Required API #10
-				return true;
-			}
-		} catch (ex) {
-		}
-		return false;
-	};
+    // remove any duplicates
+    processList = Util.Array.unique(processList);
+    return processList;
+  };
 
-	Certified.prototype.enableLockDown = function(lockDown) {
-		try {
-			if (this._hasAPI()) {
-				browser.security.enableLockDown(lockDown); // Device
-				// Certification
-				// Required API #1
-				return true;
-			}
-		} catch (ex) {
-		}
-		return false;
-	};
+  Certified.prototype.close = function(restart) {
 
-	Certified.prototype.isEnvironmentSecure = function() {
-		try {
-			if (this._hasAPI()) {
-				var isSecure = browser.security.isEnvironmentSecure(); // Device
-				// Certification
-				// Required
-				// API
-				// #2
-				var result = {
-					'secure' : isSecure,
-					'messageKey' : null
-				};
-				return result;
-			}
-		} catch (ex) {
-		}
-		return false;
-	};
+    try {
+      if (this._hasAPI()) {
+        // TDS-1403: Our latest API specifies 'close' as the name of
+        // this function which MS Edge SB uses
+        if (typeof browser.security.closeWindow === 'function') {
+          browser.security.closeWindow(restart); // Device
+          // Certification
+          // Required API #9
+        } else {
+          browser.security.close(restart);
+        }
+        return true;
+      }
+    } catch (ex) {
+    }
+    return false;
+  };
 
-	Certified.prototype.getDeviceInfo = function() {
-		try {
-			if (this._hasAPI()) {
-				browser.security.getDeviceInfo(); // Device Certification
-				// Required API #23
-				return true;
-			}
-		} catch (ex) {
-		}
-		return false;
-	};
+  // Get the start time of when the app was launched
+  Certified.prototype.getAppStartTime = function() {
+    try {
+      if (this._hasAPI()) {
+        browser.security.getStartTime(); // Device Certification
+        // Required API #10
+        return true;
+      }
+    } catch (ex) {
+    }
+    return false;
+  };
 
-	SB.Certified = Certified;
+  Certified.prototype.enableLockDown = function(lockDown) {
+    try {
+      if (this._hasAPI()) {
+        browser.security.enableLockDown(lockDown); // Device
+        // Certification
+        // Required API #1
+        return true;
+      }
+    } catch (ex) {
+    }
+    return false;
+  };
+
+  Certified.prototype.isEnvironmentSecure = function() {
+    try {
+      if (this._hasAPI()) {
+        var isSecure = browser.security.isEnvironmentSecure(); // Device
+        // Certification
+        // Required
+        // API
+        // #2
+        var result = {
+          'secure' : isSecure,
+          'messageKey' : null
+        };
+        return result;
+      }
+    } catch (ex) {
+    }
+    return false;
+  };
+
+  Certified.prototype.getDeviceInfo = function() {
+    try {
+      if (this._hasAPI()) {
+        browser.security.getDeviceInfo(); // Device Certification
+        // Required API #23
+        return true;
+      }
+    } catch (ex) {
+    }
+    return false;
+  };
+
+  SB.Certified = Certified;
 
 })(TDS.SecureBrowser);

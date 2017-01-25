@@ -18,98 +18,100 @@ TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
 
 if (impl) {
-	impl.checkGlobalObject();
+  impl.checkGlobalObject();
 
-	/** SEC-25 : API: Retrieve device details (R) * */
-	impl.checkDeviceInfo();
+  /** SEC-25 : API: Retrieve device details (R) * */
+  impl.checkDeviceInfo();
 
-	/** SEC-27 : API: get system MAC address(es) (O) * */
-	impl.checkMACAddressAPI();
+  /** SEC-27 : API: get system MAC address(es) (O) * */
+  impl.checkMACAddressAPI();
 
-	/** SEC-28 : API: Retrieve client IP address(es) (O) * */
-	impl.checkIPAddressAPI();
+  /** SEC-28 : API: Retrieve client IP address(es) (O) * */
+  impl.checkIPAddressAPI();
 
-	/** SEC-29 : API: Get application start time (O). * */
-	impl.checkAppStartTimeAPI();
+  /** SEC-29 : API: Get application start time (O). * */
+  impl.checkAppStartTimeAPI();
 
-	/** SEC-37 : API: TTS Stop (R) */
-	impl.checkTTSStopAPI();
+  /** SEC-37 : API: TTS Stop (R) */
+  impl.checkTTSStopAPI();
 
-	/** SEC-38 : API: Get TTS Status (R) * */
-	impl.checkTTSStatusAPI();
+  /** SEC-38 : API: Get TTS Status (R) * */
+  impl.checkTTSStatusAPI();
 
-	/** SEC-39 : API: Get Voices for TTS (R) * */
-	impl.checkTTSVoicesAPI();
+  /** SEC-39 : API: Get Voices for TTS (R) * */
+  impl.checkTTSVoicesAPI();
 
-	/** SEC-50 : API: Set TTS pitch (R) * */
-	impl.checkTTSPitchAPI();
+  /** SEC-50 : API: Set TTS pitch (R) * */
+  impl.checkTTSPitchAPI();
 
-	/** SEC-51 API: Set TTS rate (R) * */
-	impl.checkTTSRateAPI();
+  /** SEC-51 API: Set TTS rate (R) * */
+  impl.checkTTSRateAPI();
 
+  /** SEC-52 API: Get TTS volume (R) and SEC-53 API: Set TTS volume (R)* */
+  impl.checkTTSVolumeAPI();
 } else {
-	console.log('No Implementation found for Secure Browser');
+  console.log('No Implementation found for Secure Browser');
 }
 
 populateResults();
 
 function getMethods(obj) {
-	var result = [];
-	for ( var method in obj) {
-		result.push(method)
+  var result = [];
+  for ( var method in obj) {
+    result.push(method)
 
-	}
-	return result;
+  }
+  return result;
 }
 
 function closeBrowser() {
-	impl.close();
+  impl.close();
 }
 
 function populateResults() {
-	$("#jsGrid").jsGrid({
-		width : "100%",
-		height : "100%",
+  $("#jsGrid").jsGrid({
+    width : "100%",
+    height : "100%",
 
-		data : Util.Validation.getResult(),
+    data : Util.Validation.getResult(),
 
-		fields : [
-		/*
-		 * { title: "ID", name: "id", type: "number", width: 20, validate:
-		 * "required" },
-		 */
-		{
-			title : "Test Name",
-			name : "testName",
-			type : "text",
-			width : 150
-		}, {
-			title : "Test API",
-			name : "testApi",
-			type : "text",
-			width : 150
-		}, {
-			title : "Result",
-			name : "testResult",
-			type : "text",
-			width : 50,
+    fields : [
+    /*
+     * { title: "ID", name: "id", type: "number", width: 20, validate:
+     * "required" },
+     */
+    {
+      title : "Test Name",
+      name : "testName",
+      type : "text",
+      width : 150
+    }, {
+      title : "Test API",
+      name : "testApi",
+      type : "text",
+      width : 150
+    }, {
+      title : "Result",
+      name : "testResult",
+      type : "text",
+      width : 50,
 
-			itemTemplate : function(value) {
-				if (value) {
-					return "Passed";
-				} else {
-					return "Failed";
-				}
+      itemTemplate : function(value) {
+        if (value) {
+          return "Passed";
+        } else {
+          return "Failed";
+        }
 
-			}
+      }
 
-		}, {
-			title : "Details",
-			name : "details",
-			type : "text",
-			width : 150
-		}
+    }, {
+      title : "Details",
+      name : "details",
+      type : "text",
+      width : 150
+    }
 
-		]
-	});
+    ]
+  });
 }
