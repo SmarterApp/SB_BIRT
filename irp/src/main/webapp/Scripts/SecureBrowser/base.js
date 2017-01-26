@@ -70,63 +70,67 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         'browser.security.getStartTime()', result, details);
   };
 
-  Base.prototype.checkTTSStopAPI = function() {
+  // SEC-32
+  Base.prototype.checkClearCacheAPI = function() {
     var result = false;
-    var details = "browser.tts.stop() is not defined";
+    var details = 'browser.security.clearCache() is not defined';
 
-    Util.Validation.setResultItems(2, 'Stop speech (text-to-speech synthesis)',
-        'browser.tts.stop()', result, details);
+    Util.Validation.setResultItems(32, 'Clear cache',
+        '!!browser.security.clearCache()', result, details);
   };
 
-  Base.prototype.checkTTSStatusAPI = function() {
+  // SEC-26
+  Base.prototype.checkEmptyClipBoardAPI = function() {
     var result = false;
-    var details = "browser.tts.getStatus() is not defined";
+    var details = 'browser.security.emptyClipBoard() is not defined';
 
-    Util.Validation.setResultItems(2,
-        'Get speech status (text-to-speech synthesis)',
-        'browser.tts.getStatus()', result, details);
+    Util.Validation.setResultItems(26, 'Empty ClipBoard',
+        '!!browser.security.emptyClipBoard()', result, details);
   };
 
-  Base.prototype.checkTTSVoicesAPI = function() {
+  // SEC-33
+  Base.prototype.checkClearCookiesAPI = function() {
     var result = false;
-    var details = "browser.tts.getVoices() is not defined";
+    var details = 'browser.security.clearCookies() is not defined';
 
-    Util.Validation.setResultItems(2,
-        'Get available voices (text-to-speech synthesis)',
-        'browser.tts.getVoices()', result, details);
+    Util.Validation.setResultItems(33, 'Clear Cookies',
+        '!!browser.security.clearCookies()', result, details);
   };
 
-  Base.prototype.checkTTSPitchAPI = function() {
-    var result = false;
+  // SEC-31
+  Base.prototype.checkIsEnvironmentSecureAPI = function() {
+    var result = true;
+    var details = 'default isEnvironmentSecure is true?';
 
-    var details = "More Info Needed for Testing";
-    /*
-     * try { this.runtime.pitch; result = true; } catch (ex) { details =
-     * ex.message; }
-     */
-
-    Util.Validation
-        .setResultItems(2, 'Get/Set tts pitch API (text-to-speech synthesis)',
-            '', result, details);
+    Util.Validation.setResultItems(31, 'Is Environment Secure',
+        '!!browser.security.isEnvironmentSecure()', result, details);
   };
 
-  Base.prototype.checkTTSRateAPI = function() {
+  // SEC-34
+  Base.prototype.checkGetProcessListAPI = function() {
     var result = false;
+    var details = 'browser.security.getProcessList() is not defined';
 
-    var details = "More Info Needed for Testing";
-
-    Util.Validation.setResultItems(2,
-        'Get/Set tts Rate API (text-to-speech synthesis)', '', result, details);
+    Util.Validation.setResultItems(34, 'Get Process List',
+        '!!browser.security.getProcessList()', result, details);
   };
 
-  Base.prototype.checkTTSVolumeAPI = function() {
+  // SEC-35
+  Base.prototype.checkCloseAPI = function() {
     var result = false;
+    var details = 'browser.security.close() is not defined';
 
-    var details = "More Info Needed for Testing";
+    Util.Validation.setResultItems(35, 'Close browser',
+        '!!browser.security.close()', result, details);
+  };
 
-    Util.Validation.setResultItems(2,
-        'Get/Set tts Volume API (text-to-speech synthesis)',
-        'runtime.device.ttsVolume', result, details);
+  // SEC-30
+  Base.prototype.checkEnableLockDownAPI = function() {
+    var result = false;
+    var details = '';
+
+    Util.Validation.setResultItems(30, 'Enable LockDown',
+        '!!browser.security.enableLockDown()', result, details);
   };
 
   Base.prototype.dispose = function() {

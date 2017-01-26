@@ -358,3 +358,104 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkAppStartTimeAPI = function() {
   Util.Validation.setResultItems(2, 'Get application start time',
       'runtime.security.getStartTime()', result, details);
 };
+
+// SEC-30
+TDS.SecureBrowser.Mobile.iOS.prototype.checkEnableLockDownAPI = function() {
+  var result = false;
+  var details = "";
+  try {
+    this._airMobile.security.enableLockdown();
+    result = true;
+  } catch (ex) {
+    details = ex.message;
+  }
+
+  Util.Validation.setResultItems(30, 'Enable Lockdown',
+      'runtime.security.enableLockdown()', result, details);
+};
+
+// SEC-33
+TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCookiesAPI = function() {
+  var result = false;
+  var details = "";
+  try {
+    this._airMobile.security.clearCookies();
+    result = true;
+  } catch (ex) {
+    details = ex.message;
+  }
+
+  Util.Validation.setResultItems(33, 'Clear Cookies',
+      'runtime.security.clearCookies()', result, details);
+};
+
+// SEC-32
+TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCacheAPI = function() {
+  var result = false;
+  var details = "";
+  try {
+    this._airMobile.security.clearCache();
+    result = true;
+  } catch (ex) {
+    details = ex.message;
+  }
+
+  Util.Validation.setResultItems(32, 'Clear Cache',
+      'runtime.security.clearCache()', result, details);
+};
+
+// SEC-31
+TDS.SecureBrowser.Mobile.iOS.prototype.checkIsEnvironmentSecureAPI = function() {
+  var result = false;
+  var details = "";
+  try {
+    this._airMobile.security.isEnvironmentSecure();
+    result = true;
+  } catch (ex) {
+    details = ex.message;
+  }
+
+  Util.Validation.setResultItems(31, 'Is Environment Secure',
+      'runtime.security.isEnvironmentSecure()', result, details);
+};
+
+// SEC-35
+TDS.SecureBrowser.Mobile.iOS.prototype.checkCloseAPI = function() {
+  var result = false;
+  var details = "";
+  var restart = false;
+  try {
+    this._airMobile.security.close(restart);
+    result = true;
+  } catch (ex) {
+    details = ex.message;
+  }
+
+  Util.Validation.setResultItems(35, 'Close Browser',
+      'runtime.security.close()', result, details);
+};
+
+// SEC-34
+TDS.SecureBrowser.Mobile.iOS.prototype.checkGetProcessListAPI = function() {
+  var result = false;
+  var details = "";
+  try {
+    this._airMobile.security.getProcessList();
+    result = true;
+  } catch (ex) {
+    details = ex.message;
+  }
+
+  Util.Validation.setResultItems(34, 'Get Process List',
+      'runtime.security.getProcessList()', result, details);
+};
+
+// SEC-26
+// air_mobile.js does not have support for emptyClipBoard function
+TDS.SecureBrowser.Mobile.iOS.prototype.checkEmptyClipBoardAPI = function() {
+  var result = false;
+  var details = "Not supported ";
+
+  Util.Validation.setResultItems(26, 'Empty ClipBoard', 'xxx', result, details);
+
+};

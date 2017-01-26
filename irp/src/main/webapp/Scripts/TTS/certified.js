@@ -315,8 +315,8 @@ function TTSService_Certified() {
     var details = "More Info Needed for Testing";
 
     Util.Validation.setResultItems(2,
-        'Get/Set tts Volume API (text-to-speech synthesis)',
-        'runtime.device.ttsVolume', result, details);
+        'Get/Set tts Volume API (text-to-speech synthesis)', '', result,
+        details);
   };
 
 }

@@ -1,12 +1,12 @@
 ﻿//*******************************************************************************
-// Educational Online Test Delivery System
-// Copyright (c) 2017 American Institutes for Research
-//
-// Distributed under the AIR Open Source License, Version 1.0
-// See accompanying file AIR-License-1_0.txt or at
-// http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
+//Educational Online Test Delivery System
+//Copyright (c) 2017 American Institutes for Research
+
+//Distributed under the AIR Open Source License, Version 1.0
+//See accompanying file AIR-License-1_0.txt or at
+//http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
 //*******************************************************************************
-// REQUIRES: YUI, IO.js, SecureBrowser.Base.js
+//REQUIRES: YUI, IO.js, SecureBrowser.Base.js
 
 /*
  The Desktop version of the secure browser built on top of the firefox platform.
@@ -132,6 +132,113 @@
 
     Util.Validation.setResultItems(2, 'Get application start time', apiInfo,
         result, details);
+  };
+
+  // SEC-32
+  Firefox.prototype.checkClearCacheAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!SecureBrowser.clearCache) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(32, 'Clear cache',
+        '!!SecureBrowser.clearCache()', result, details);
+  };
+  // SEC-33
+  Firefox.prototype.checkClearCookiesAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+
+      if (!!SecureBrowser.clearCookies) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(33, 'Clear Cookies',
+        '!!SecureBrowser.clearCookies()', result, details);
+
+  };
+
+  // SEC-26
+  Firefox.prototype.checkEmptyClipBoardAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+
+      if (!!SecureBrowser.emptyClipBoard) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(26, 'Empty ClipBoard',
+        '!!SecureBrowser.emptyClipBoard()', result, details);
+  };
+
+  // SEC-34
+  Firefox.prototype.checkGetProcessListAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!this.runtime.getRunningProcessList()) {
+        result = true;
+      }
+    } catch (e) {
+      details = ex.getMessage();
+    }
+
+    Util.Validation.setResultItems(34, 'Get Process List',
+        '!!this.runtime.getRunningProcessList()', result, details);
+  };
+
+  // SEC-35
+  Firefox.prototype.checkCloseAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!SecureBrowser.CloseWindow) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(35, 'Close browser',
+        '!!SecureBrowser.CloseWindow', result, details);
+  };
+
+  // SEC-30
+  // TODO placeholder. Need more research
+  Firefox.prototype.checkEnableLockDownAPI = function() {
+    var result = false;
+    var details = '';
+
+    Util.Validation.setResultItems(30, 'Enable LockDown', 'More Info Needed',
+        result, details);
+  };
+
+  // SEC-31
+  // TODO this is a placeholder. More research is needed.
+  Firefox.prototype.checkIsEnvironmentSecureAPI = function() {
+    var result = false;
+    var details = '';
+
+    Util.Validation.setResultItems(31, 'Is Environment Secure',
+        'More Info Needed', result, details);
   };
 
   Firefox.prototype.dispose = function() {

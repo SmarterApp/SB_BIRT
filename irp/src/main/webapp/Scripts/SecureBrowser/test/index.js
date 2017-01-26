@@ -35,6 +35,27 @@ if (impl) {
   /** SEC-29 : API: Get application start time (O). * */
   impl.checkAppStartTimeAPI();
 
+  /** SEC-32 : API: Clear Cache (R) * */
+  impl.checkClearCacheAPI();
+
+  /** SEC-26 : API: empty clipboard (O) * */
+  impl.checkEmptyClipBoardAPI();
+
+  /** SEC-33 : API: Clear Cookies (R) * */
+  impl.checkClearCookiesAPI();
+
+  /** SEC-34 : API: Get Process List (R) * */
+  impl.checkGetProcessListAPI();
+
+  /** SEC-35 : API: Close Secure Browser (R)* */
+  impl.checkCloseAPI();
+
+  /** SEC-31 : API: Check if environment is secure (R) * */
+  impl.checkIsEnvironmentSecureAPI();
+
+  /** SEC-30 : API: Enable Lock Down (R)* */
+  impl.checkEnableLockDownAPI();
+
   /** SEC-37 : API: TTS Stop (R) */
   ttsImpl.checkTTSStopAPI();
 
