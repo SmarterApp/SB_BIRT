@@ -100,7 +100,6 @@
         'browser.security.getStartTime()', result, details);
   };
 
-  
   Certified.prototype._hasAPI = function() {
     return Util.Browser.isCertified();
   };

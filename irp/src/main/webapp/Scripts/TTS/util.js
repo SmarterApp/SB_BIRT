@@ -1,4 +1,12 @@
-﻿/**
+﻿//*******************************************************************************
+// Educational Online Test Delivery System
+// Copyright (c) 2017 American Institutes for Research
+//
+// Distributed under the AIR Open Source License, Version 1.0
+// See accompanying file AIR-License-1_0.txt or at
+// http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
+//*******************************************************************************
+/**
  * The parsing is made up of TTS.Parser.Container -> Wrapper interface for all
  * the parsing logic
  * 
@@ -35,7 +43,7 @@ TTS.Util = (function() {
 
     // This really should have been done with data-attr information....
     getSub : function(elmObj, attrTag, lang) { // Get alternative subtitle text
-                                                // out of the node.
+      // out of the node.
       if (!elmObj) {
         return;
       }
@@ -57,7 +65,7 @@ TTS.Util = (function() {
           }
         }
       } else if (elmObj.nodeName == 'INPUT') { // Supports the input hack
-                                                // method (for now)
+        // method (for now)
         if (YUD.hasClass(elmObj, 'tts')) {
           if (elmObj.attributes != null
               && elmObj.attributes.getNamedItem(lang) != null) {
@@ -91,7 +99,7 @@ TTS.Util = (function() {
 
     hasAlt : function(node) { // Does the node contain alternative text
       if (node && node.nodeType != 3) { // YUD.hasClass acts really stupid on
-                                        // textNodes
+        // textNodes
         if (YUD.hasClass(node, 'hasAlt')
             || YUD.hasClass(node, 'contextAreaAlt')) {
           return true;
@@ -112,7 +120,7 @@ TTS.Util = (function() {
      */
 
     bubble : function(node, match, results) { // Bubble up the tree looking for
-                                              // a match.
+      // a match.
       results = results || {};
       if (node && typeof match == 'function') {
         if (match(node)) {
@@ -126,7 +134,7 @@ TTS.Util = (function() {
     },
 
     dfs : function(nodes, match, results) { // Search through the dom looking
-                                            // for a match
+      // for a match
       if (!nodes) {
         return;
       }
@@ -175,20 +183,20 @@ TTS.Util = (function() {
       // will recognize
       if (TTS.Util.supportsSSML()) {
         text = text.replace(/{silence:([0-9]+)}/g, ',<break time="$1ms"/>'); // the
-                                                                              // , is
-                                                                              // to
-                                                                              // soften
-                                                                              // the
-                                                                              // breaks.
+        // , is
+        // to
+        // soften
+        // the
+        // breaks.
       } else if (Util.Browser.getFirefoxVersion() >= 49) {
         text = text.replace(/{silence:([0-9]+)}/g, " ; ");
       } else if (Util.Browser.isWindows()) {
         text = text.replace(/{silence:([0-9]+)}/g, ',<silence msec="$1"/>'); // the
-                                                                              // , is
-                                                                              // to
-                                                                              // soften
-                                                                              // the
-                                                                              // breaks.
+        // , is
+        // to
+        // soften
+        // the
+        // breaks.
         // In SB4.0, we need to include this pretag to force the code to
         // understand that speech
         // tags are embedded. Otherwise, it reads the tags as text
@@ -219,9 +227,9 @@ TTS.Util = (function() {
         var prefixRegExp = new RegExp('^' + prefix + '\\s*' + expString);
 
         var replacement = prefixRegExp.exec(target); // get string containing
-                                                      // prefix, separating
-                                                      // whitespace, and
-                                                      // replacement target
+        // prefix, separating
+        // whitespace, and
+        // replacement target
         if (replacement && replacement[0]) {
           var spaces = exp.exec(replacement[0]); // get replacement target
           if (spaces && spaces[0]) {
@@ -305,9 +313,9 @@ TTS.Util = (function() {
         // tags are embedded. Otherwise, it reads the tags as text
       } else if (Util.Browser.isMac()) {
         text = "[[sync 0x000000A1]] "; // Adding the bookmarks so that in OS X,
-                                        // the last portion of a long string
-                                        // still gets read. Otherwise, the last
-                                        // word does not get read fully.
+        // the last portion of a long string
+        // still gets read. Otherwise, the last
+        // word does not get read fully.
       }
       return text;
     },
@@ -318,9 +326,9 @@ TTS.Util = (function() {
         return text;
       } else if (Util.Browser.isMac()) {
         text = " [[sync 0x000000A2]]"; // Adding the bookmarks so that in OS X,
-                                        // the last portion of a long string
-                                        // still gets read. Otherwise, the last
-                                        // word does not get read fully.
+        // the last portion of a long string
+        // still gets read. Otherwise, the last
+        // word does not get read fully.
       }
       return text;
     },
