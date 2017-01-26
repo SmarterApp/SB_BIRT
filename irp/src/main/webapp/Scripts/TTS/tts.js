@@ -202,8 +202,8 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
     if (TTS.Util.supportsWebSpeech()) {
       service = new TTSService_WebSpeech();
     }
-    // check for certified SB and SB service exists
-    else if (Util.Browser.isSecure() && Util.Browser.isCertified()) {
+    // check for certified SB
+    else if (Util.Browser.isCertified()) {
       service = new TTSService_Certified();
     }
     // check for native SB and SB service exists

@@ -19,8 +19,9 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   function initialize() {
 
-    // setup the sb api
-    if (Util.Browser.isSecure()) {
+    if (Util.Browser.isCertified()) {
+      sbImpl = new TDS.SecureBrowser.Certified();
+    } else if (Util.Browser.isSecure()) {
       if (Util.Browser.isCertified()) {
         sbImpl = new TDS.SecureBrowser.Certified();
       } else if (Util.Browser.isIOS()) {
