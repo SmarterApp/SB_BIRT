@@ -222,6 +222,8 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
     // and setup the service.
     else if (Util.Browser.isSecure() && Util.Browser.isChrome()) {
       service = new TTSService_Chrome();
+    } else {
+      service = new TTSService_Base();
     }
 
     // check if TTS is supported and load it
