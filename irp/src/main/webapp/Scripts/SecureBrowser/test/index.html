@@ -8,21 +8,21 @@
 
 <!-- JSGrid -->
 <link type="text/css" rel="stylesheet"
-	href="../../Libraries/jQuery/jsgrid/jsgrid.min.css" />
+    href="../../Libraries/jQuery/jsgrid/jsgrid.min.css" />
 <link type="text/css" rel="stylesheet"
-	href="../../Libraries/jQuery/jsgrid/jsgrid-theme.min.css" />
+    href="../../Libraries/jQuery/jsgrid/jsgrid-theme.min.css" />
 <script type="text/javascript"
-	src="../../Libraries/jQuery/jsgrid/jsgrid.min.js"></script>
+    src="../../Libraries/jQuery/jsgrid/jsgrid.min.js"></script>
 
 
 <!-- YAHOO -->
 <script type="text/javascript"
-	src="../../Libraries/yahoo/yahoo-dom-event.js"></script>
+    src="../../Libraries/yahoo/yahoo-dom-event.js"></script>
 <script type="text/javascript" src="../../Libraries/yahoo/env.js"></script>
 
 <!-- YUI -->
 <script type="text/javascript"
-	src="../../Libraries/YUI/storage/storage-min.js"></script>
+    src="../../Libraries/YUI/storage/storage-min.js"></script>
 
 <!-- Mobile Runtime -->
 <script type="text/javascript" src="../Summit/air_mobile.js"></script>
@@ -46,27 +46,66 @@
 <script type="text/javascript" src="../../Utilities/util_string.js"></script>
 <script type="text/javascript" src="../../Utilities/util_event.js"></script>
 <script type="text/javascript"
-	src="../../Utilities/util_securebrowser.js"></script>
+    src="../../Utilities/util_securebrowser.js"></script>
 
 
+<script src="../../Libraries/messageresource/messageResource.js"></script>
+
+
+<script type="text/javascript" src="../../TTS/certified.js"></script>
+<script type="text/javascript" src="../../TTS/chrome.js"></script>
+<script type="text/javascript" src="../../TTS/firefox.js"></script>
+<!-- <script type="text/javascript" src="../../TTS/java.js"></script> -->
+<script type="text/javascript" src="../../TTS/securebrowser.js"></script>
+<script type="text/javascript" src="../../TTS/tts.js"></script>
+<script type="text/javascript" src="../../TTS/util.js"></script>
+<script type="text/javascript" src="../../TTS/webspeech.js"></script>
 
 <script type="text/javascript">
-	document.title = 'SecureBrowser Specification Test Suite';
+    document.title = 'SecureBrowser Specification Test Suite';
 
-	$(document).ready(function() {
+    $(document).ready(function() {
+      
+    // initialize messageResource.js with settings
+      messageResource.init({
+        // path to directory containing message resource files(.properties files),
+        // give empty string or discard this configuration if files are in the
+        // same directory as that of html file.
+      filePath : '../../Libraries/messageresource'
+      });
 
-	});
+      // will load the file 'path/messageresource/moduleName.properties'
+      // and callbackFunction will be executed when loading is complete.
+      messageResource.load('message',test); 
+      // file name without extension is taken as module name.
+
+    
+
+    });
+    
+    function test(){
+      //alert('comes here');
+      // use messageResource.get function to get values from loaded file. 
+    var value = messageResource.get('description','message');
+    
+    alert(value);
+    
+   /*  var speechSynthesisInstance = window.speechSynthesis; 
+    var utter = new SpeechSynthesisUtterance();
+    utter.text = 'Vishal Kesharia Working for AIR';
+    speechSynthesisInstance.speak(utter); */
+    }
 </script>
 
 </head>
 
 <body>
-	<div>
-		<a href="javascript:location.reload(true);">RELOAD</a> | <a
-			href="javascript:closeBrowser()">CLOSE</a>
-	</div>
+    <div>
+        <a href="javascript:location.reload(true);">RELOAD</a> | <a
+            href="javascript:closeBrowser()">CLOSE</a>
+    </div>
 
-	<div id="jsGrid"></div>
+    <div id="jsGrid"></div>
 </body>
 
 <script type="text/javascript" src="index.js"></script>

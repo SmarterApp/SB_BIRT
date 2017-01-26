@@ -274,10 +274,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   // force close the secure browser
   Base.prototype.close = function() {
-    if (typeof TDS.logout == 'function') {
-      TDS.logout();
-    }
-    return false;
+    window.close();
   };
 
   // Get the start time of when the app was launched

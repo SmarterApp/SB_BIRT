@@ -115,109 +115,22 @@
   Firefox.prototype.checkAppStartTimeAPI = function() {
     var result = false;
     var details = "";
+    var apiInfo = "";
     try {
-      this.runtime.getStartTime();
-      result = true;
+      var startTimePref = Mozilla.getPreference("bmakiosk.startup.timestamp");
+      if (startTimePref != null) {
+        Date.parse(startTimePref);
+        result = true;
+        apiInfo = 'Mozilla.getPreference("bmakiosk.startup.timestamp")';
+      } else if (window.sessionStorage.getItem("appStartTime") != null) {
+        result = true;
+        apiInfo = 'window.sessionStorage.getItem("appStartTime")';
+      }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Get application start time',
-        'runtime.getStartTime()', result, details);
-  };
-
-  Firefox.prototype.checkTTSStopAPI = function() {
-    var result = false;
-
-    var details = "";
-    try {
-      this.runtime.stop();
-      result = true;
-    } catch (ex) {
-      details = ex.message;
-    }
-
-    Util.Validation.setResultItems(2, 'Stop speech (text-to-speech synthesis)',
-        'runtime.stop()', result, details);
-  };
-
-  Firefox.prototype.checkTTSStatusAPI = function() {
-    var result = false;
-
-    var details = "";
-    try {
-      this.runtime.status;
-      result = true;
-    } catch (ex) {
-      details = ex.message;
-    }
-
-    Util.Validation.setResultItems(2,
-        'Get speech status (text-to-speech synthesis)', 'runtime.status',
-        result, details);
-  };
-
-  Firefox.prototype.checkTTSVoicesAPI = function() {
-    var result = false;
-
-    var details = "";
-    try {
-      this.runtime.voices;
-      result = true;
-    } catch (ex) {
-      details = ex.message;
-    }
-
-    Util.Validation.setResultItems(2,
-        'Get available voices (text-to-speech synthesis)', 'runtime.voices',
-        result, details);
-  };
-
-  Firefox.prototype.checkTTSPitchAPI = function() {
-    var result = false;
-
-    var details = "";
-    try {
-      this.runtime.pitch;
-      result = true;
-    } catch (ex) {
-      details = ex.message;
-    }
-
-    Util.Validation.setResultItems(2,
-        'Get/Set tts pitch API (text-to-speech synthesis)', 'runtime.pitch',
-        result, details);
-  };
-
-  Firefox.prototype.checkTTSRateAPI = function() {
-    var result = false;
-
-    var details = "";
-    try {
-      this.runtime.rate;
-      result = true;
-    } catch (ex) {
-      details = ex.message;
-    }
-
-    Util.Validation.setResultItems(2,
-        'Get/Set tts Rate API (text-to-speech synthesis)', 'runtime.rate',
-        result, details);
-  };
-
-  Firefox.prototype.checkTTSVolumeAPI = function() {
-    var result = false;
-
-    var details = "";
-    try {
-      this.runtime.volume;
-      result = true;
-    } catch (ex) {
-      details = ex.message;
-    }
-
-    Util.Validation.setResultItems(2,
-        'Get/Set tts Volume API (text-to-speech synthesis)', 'runtime.volume',
+    Util.Validation.setResultItems(2, 'Get application start time', apiInfo,
         result, details);
   };
 

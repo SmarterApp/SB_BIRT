@@ -17,6 +17,9 @@ var isAIRSecureBrowser = Util.Browser.isSecure();
 TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
 
+TTS.Manager.init(true);
+var ttsImpl = TTS.Manager._service;
+
 if (impl) {
   impl.checkGlobalObject();
 
@@ -33,22 +36,24 @@ if (impl) {
   impl.checkAppStartTimeAPI();
 
   /** SEC-37 : API: TTS Stop (R) */
-  impl.checkTTSStopAPI();
+  ttsImpl.checkTTSStopAPI();
 
   /** SEC-38 : API: Get TTS Status (R) * */
-  impl.checkTTSStatusAPI();
+  ttsImpl.checkTTSStatusAPI();
 
   /** SEC-39 : API: Get Voices for TTS (R) * */
-  impl.checkTTSVoicesAPI();
+  ttsImpl.checkTTSVoicesAPI();
 
   /** SEC-50 : API: Set TTS pitch (R) * */
-  impl.checkTTSPitchAPI();
+  ttsImpl.checkTTSPitchAPI();
 
   /** SEC-51 API: Set TTS rate (R) * */
-  impl.checkTTSRateAPI();
+  ttsImpl.checkTTSRateAPI();
 
   /** SEC-52 API: Get TTS volume (R) and SEC-53 API: Set TTS volume (R)* */
-  impl.checkTTSVolumeAPI();
+  ttsImpl.checkTTSVolumeAPI();
+
+  // ttsImpl.play('This is API Test for TTS');
 } else {
   console.log('No Implementation found for Secure Browser');
 }
