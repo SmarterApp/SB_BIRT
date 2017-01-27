@@ -106,17 +106,15 @@
     var result = false;
     var details = "";
     try {
-      if (!!browser.security.clearCache()) {
+      if (!!browser.security.clearCache) {
         result = true;
-      } else {
-        result = false;
       }
     } catch (ex) {
       details = ex.message;
     }
 
     Util.Validation.setResultItems(32, 'Clear cache',
-        '!!browser.security.clearCache()', result, details);
+        '!!browser.security.clearCache', result, details);
   };
 
   // SEC-33
@@ -125,17 +123,15 @@
     var details = "";
 
     try {
-      if (!!browser.security.clearCookies()) {
+      if (!!browser.security.clearCookies) {
         result = true;
-      } else {
-        result = false;
       }
     } catch (ex) {
       details = ex.message;
     }
 
     Util.Validation.setResultItems(33, 'Clear Cookies',
-        '!!browser.security.clearCookies()', result, details);
+        '!!browser.security.clearCookies', result, details);
   };
 
   // SEC-26
@@ -144,17 +140,15 @@
     var details = "";
 
     try {
-      if (!!browser.security.emptyClipBoard()) {
+      if (!!browser.security.emptyClipBoard) {
         result = true;
-      } else {
-        result = false;
       }
     } catch (ex) {
       details = ex.message;
     }
 
     Util.Validation.setResultItems(26, 'Empty ClipBoard',
-        '!!browser.security.emptyClipBoard()', result, details);
+        '!!browser.security.emptyClipBoard', result, details);
 
   };
 
@@ -164,17 +158,15 @@
     var details = "";
 
     try {
-      if (!!browser.security.getProcessList()) {
+      if (!!browser.security.getProcessList) {
         result = true;
-      } else {
-        result = false;
       }
     } catch (ex) {
       details = ex.message;
     }
 
     Util.Validation.setResultItems(34, 'Get Process List',
-        '!!browser.security.getProcessList()', result, details);
+        '!!browser.security.getProcessList', result, details);
 
   };
 
@@ -188,17 +180,13 @@
     try {
       // TDS-1403: Our latest API specifies 'close' as the name of this function
       // which MS Edge SB uses
-      if (typeof browser.security.closeWindow === 'function') {
-        testApi = '!!browser.security.closeWindow()';
-        if (!!browser.security.closeWindow(restart)) { // Device Certification
-          // Required API #9
-          result = true;
-        }
-      } else {
-        testApi = '!!browser.security.close()';
-        if (!!browser.security.close(restart)) {
-          result = true;
-        }
+      if (!!browser.security.closeWindow) {
+        testApi = '!!browser.security.closeWindow';
+        result = true;
+      } else if (!!browser.security.close) {
+        testApi = '!!browser.security.close';
+        result = true;
+
       }
 
     } catch (ex) {
@@ -215,17 +203,15 @@
     var lockDown = true;
 
     try {
-      if (!!browser.security.enableLockDown(lockDown)) {
+      if (!!browser.security.enableLockDown) {
         result = true;
-      } else {
-        result = false;
       }
     } catch (ex) {
       details = ex.message;
     }
 
     Util.Validation.setResultItems(30, 'Enable LockDown',
-        '!!browser.security.enableLockDown()', result, details);
+        '!!browser.security.enableLockDown', result, details);
   };
 
   // SEC-31
@@ -234,17 +220,15 @@
     var details = "";
 
     try {
-      if (!!browser.security.isEnvironmentSecure()) {
+      if (!!browser.security.isEnvironmentSecure) {
         result = true;
-      } else {
-        result = false;
       }
     } catch (ex) {
       details = ex.message;
     }
 
     Util.Validation.setResultItems(31, 'Is Environment Secure',
-        '!!browser.security.isEnvironmentSecure()', result, details);
+        '!!browser.security.isEnvironmentSecure', result, details);
   };
 
   Certified.prototype._hasAPI = function() {

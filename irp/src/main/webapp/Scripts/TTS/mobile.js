@@ -387,4 +387,54 @@ function TTSService_MobileSB() {
         'Get/Set tts Volume API (text-to-speech synthesis)',
         'runtime.device.ttsVolume', result, details);
   };
+
+  this.checkTTSSpeakAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if (!!this.browserComponent.tts.speak) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2, 'Speak text (text-to-speech synthesis)',
+        'runtime.tts.speak', result, details);
+  };
+
+  this.checkTTSPauseAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if (!!this.browserComponent.tts.pause) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2,
+        'Speak speech (text-to-speech synthesis)', 'runtime.tts.pause', result,
+        details);
+  };
+
+  this.checkTTSResumeAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if (!!this.browserComponent.tts.resume) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2,
+        'Resume speech (text-to-speech synthesis)', 'runtime.tts.resume',
+        result, details);
+  };
 }

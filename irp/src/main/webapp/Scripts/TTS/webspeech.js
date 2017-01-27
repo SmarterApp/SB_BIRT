@@ -346,7 +346,7 @@ function TTSService_WebSpeech()
         result = true;  
       }
       else{
-        details = 'window.speechSynthesis.cancel is not defined'
+        details = 'window.speechSynthesis.cancel is not defined';
       }
     } catch (ex) {
       details = ex.message;
@@ -366,7 +366,7 @@ function TTSService_WebSpeech()
         result = true;  
       }
       else{
-        details = 'window.speechSynthesis.paused[pending|speaking] is not defined'
+        details = 'window.speechSynthesis.paused[pending|speaking] is not defined';
       }
 
     } catch (ex) {
@@ -383,7 +383,7 @@ function TTSService_WebSpeech()
 
     var details = "";
     try {
-      if(!!window.speechSynthesis.getVoices()){
+      if(!!window.speechSynthesis.getVoices){
         result = true;
       }
     } catch (ex) {
@@ -392,7 +392,7 @@ function TTSService_WebSpeech()
 
     Util.Validation.setResultItems(2,
         'Get available voices (text-to-speech synthesis)',
-        'window.speechSynthesis.getVoices()', result, details);
+        'window.speechSynthesis.getVoices', result, details);
   };
 
   this.checkTTSPitchAPI = function() {
@@ -407,7 +407,7 @@ function TTSService_WebSpeech()
 
       }
       else{
-        details = 'new SpeechSynthesisUtterance().pitch is not defined'
+        details = 'new SpeechSynthesisUtterance().pitch is not defined';
       }
     } catch (ex) { 
       details = ex.message; 
@@ -431,13 +431,12 @@ function TTSService_WebSpeech()
 
       }
       else{
-        details = 'new SpeechSynthesisUtterance().rate is not defined'
+        details = 'new SpeechSynthesisUtterance().rate is not defined';
       }
     } catch (ex) { 
       details = ex.message; 
-
     }
- 
+  
     Util.Validation.setResultItems(2,
         'Get/Set tts Rate API (text-to-speech synthesis)', 'new SpeechSynthesisUtterance().rate', result, details);
   };
@@ -452,7 +451,7 @@ function TTSService_WebSpeech()
         result  = true;
       }
       else{
-        details = 'new SpeechSynthesisUtterance().volume is not defined'
+        details = 'new SpeechSynthesisUtterance().volume is not defined';
       }
     } catch (ex) { 
       details = ex.message; 
@@ -463,4 +462,55 @@ function TTSService_WebSpeech()
         'Get/Set tts Volume API (text-to-speech synthesis)',
         'new SpeechSynthesisUtterance().volume', result, details);
   };
+  
+  this.checkTTSSpeakAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if(!!window.speechSynthesis.speak){
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2, 'Speak text (text-to-speech synthesis)',
+        'window.speechSynthesis.speak', result, details);
+  };
+  
+  this.checkTTSPauseAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if(!!window.speechSynthesis.pause){
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2, 'Speak speech (text-to-speech synthesis)',
+        'window.speechSynthesis.pause', result, details);
+  };
+  
+  
+  this.checkTTSResumeAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if(!!window.speechSynthesis.resume) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2,
+        'Resume speech (text-to-speech synthesis)', 'window.speechSynthesis.resume',
+        result, details);
+  };
+  
 }

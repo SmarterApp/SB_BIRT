@@ -74,7 +74,14 @@ if (impl) {
   /** SEC-52 API: Get TTS volume (R) and SEC-53 API: Set TTS volume (R)* */
   ttsImpl.checkTTSVolumeAPI();
 
-  // ttsImpl.play('This is API Test for TTS');
+  /** SEC-36 API : TTS Speak (R) * */
+  ttsImpl.checkTTSSpeakAPI();
+
+  /** SEC-40 API : TTS Pause (R) * */
+  ttsImpl.checkTTSPauseAPI();
+
+  /** SEC-41 API : TTS Resume (R) * */
+  ttsImpl.checkTTSResumeAPI();
 } else {
   console.log('No Implementation found for Secure Browser');
 }
@@ -123,7 +130,9 @@ function populateResults() {
       width : 50,
 
       itemTemplate : function(value) {
-        if (value) {
+        if (value == null) {
+          return "";
+        } else if (value) {
           return "Passed";
         } else {
           return "Failed";
@@ -135,7 +144,16 @@ function populateResults() {
       title : "Details",
       name : "details",
       type : "text",
-      width : 150
+      width : 150,
+
+      itemTemplate : function(value) {
+        if (value == null) {
+          return "Not Applicable";
+        } else {
+          return value;
+        }
+
+      }
     }
 
     ]

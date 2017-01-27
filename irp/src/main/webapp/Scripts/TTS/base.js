@@ -284,12 +284,9 @@ function TTSService_Base() {
   };
 
   this.checkTTSPitchAPI = function() {
-    var result = false;
+    var result = null;
 
-    var details = "More Info Needed for Testing";
-    /*
-     * try { this.pitch; result = true; } catch (ex) { details = ex.message; }
-     */
+    var details = null;
 
     Util.Validation
         .setResultItems(2, 'Get/Set tts pitch API (text-to-speech synthesis)',
@@ -297,22 +294,71 @@ function TTSService_Base() {
   };
 
   this.checkTTSRateAPI = function() {
-    var result = false;
+    var result = null;
 
-    var details = "More Info Needed for Testing";
+    var details = null;
 
     Util.Validation.setResultItems(2,
         'Get/Set tts Rate API (text-to-speech synthesis)', '', result, details);
   };
 
   this.checkTTSVolumeAPI = function() {
-    var result = false;
+    var result = null;
 
-    var details = "More Info Needed for Testing";
-
+    var details = null;
     Util.Validation.setResultItems(2,
         'Get/Set tts Volume API (text-to-speech synthesis)', '', result,
         details);
+  };
+
+  this.checkTTSSpeakAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if (!!browser.tts.speak) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2, 'Speak text (text-to-speech synthesis)',
+        'browser.tts.speak', result, details);
+  };
+
+  this.checkTTSPauseAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if (!!browser.tts.pause) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2,
+        'Pause speech (text-to-speech synthesis)', 'browser.tts.pause', result,
+        details);
+  };
+
+  this.checkTTSResumeAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if (!!browser.tts.resume) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2,
+        'Resume speech (text-to-speech synthesis)', 'browser.tts.resume',
+        result, details);
   };
 
 }

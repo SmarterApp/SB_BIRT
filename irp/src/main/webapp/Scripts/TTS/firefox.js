@@ -271,8 +271,6 @@ function TTSService_SB() {
     if (!this.runtime)
       return false;
 
-    alert('Playing from SB API');
-
     // If we have to rely on sync tags on this platform, inject them and build
     // up a list of tags injected and their character positions
     if (this.pluginWordBoundaryFunction == 'SPEI_TTS_BOOKMARK') {
@@ -550,5 +548,55 @@ function TTSService_SB() {
     Util.Validation.setResultItems(2,
         'Get/Set tts Volume API (text-to-speech synthesis)', 'runtime.volume',
         result, details);
+  };
+
+  this.checkTTSSpeakAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if (!!this.runtime.play) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2, 'Speak text (text-to-speech synthesis)',
+        'runtime.play', result, details);
+  };
+
+  this.checkTTSPauseAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if (!!this.runtime.pause) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2,
+        'Pause speech (text-to-speech synthesis)', 'runtime.pause', result,
+        details);
+  };
+
+  this.checkTTSResumeAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if (!!this.runtime.resume) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2,
+        'Resume speech (text-to-speech synthesis)', 'runtime.resume', result,
+        details);
   };
 }

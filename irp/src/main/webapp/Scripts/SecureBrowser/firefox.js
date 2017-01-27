@@ -224,21 +224,20 @@
   // SEC-30
   // TODO placeholder. Need more research
   Firefox.prototype.checkEnableLockDownAPI = function() {
-    var result = false;
-    var details = '';
+    var result = null;
+    var details = null;
 
-    Util.Validation.setResultItems(30, 'Enable LockDown', 'More Info Needed',
-        result, details);
+    Util.Validation.setResultItems(30, 'Enable LockDown', '', result, details);
   };
 
   // SEC-31
   // TODO this is a placeholder. More research is needed.
   Firefox.prototype.checkIsEnvironmentSecureAPI = function() {
-    var result = false;
-    var details = '';
+    var result = null;
+    var details = null;
 
-    Util.Validation.setResultItems(31, 'Is Environment Secure',
-        'More Info Needed', result, details);
+    Util.Validation.setResultItems(31, 'Is Environment Secure', '', result,
+        details);
   };
 
   Firefox.prototype.dispose = function() {

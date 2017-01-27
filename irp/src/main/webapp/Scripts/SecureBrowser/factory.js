@@ -38,7 +38,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       // point in the code
       // So, isSecure() shows up false even if our secure extension is
       // installed.
-      sbImpl = new TDS.SecureBrowser.Certified();
+      sbImpl = new TDS.SecureBrowser.Base();
     }
 
     // set default?

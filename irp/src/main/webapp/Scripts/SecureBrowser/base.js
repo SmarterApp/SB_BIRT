@@ -99,11 +99,11 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   // SEC-31
   Base.prototype.checkIsEnvironmentSecureAPI = function() {
-    var result = true;
-    var details = 'default isEnvironmentSecure is true?';
+    var result = null;
+    var details = null;
 
-    Util.Validation.setResultItems(31, 'Is Environment Secure',
-        '!!browser.security.isEnvironmentSecure()', result, details);
+    Util.Validation.setResultItems(31, 'Is Environment Secure', '', result,
+        details);
   };
 
   // SEC-34
@@ -126,11 +126,10 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   // SEC-30
   Base.prototype.checkEnableLockDownAPI = function() {
-    var result = false;
-    var details = '';
+    var result = null;
+    var details = null;
 
-    Util.Validation.setResultItems(30, 'Enable LockDown',
-        '!!browser.security.enableLockDown()', result, details);
+    Util.Validation.setResultItems(30, 'Enable LockDown', '', result, details);
   };
 
   Base.prototype.dispose = function() {
