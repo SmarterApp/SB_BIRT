@@ -247,7 +247,7 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Stop speech (text-to-speech synthesis)',
+    Util.Validation.setResultItems(2, messageResource.get('testname.checkTTSStopAPI', 'message'),
         'browser.tts.stop()', result, details);
   };
 
@@ -263,7 +263,7 @@ function TTSService_Base() {
     }
 
     Util.Validation.setResultItems(2,
-        'Get speech status (text-to-speech synthesis)',
+        messageResource.get('testname.checkTTSStatusAPI', 'message'),
         'browser.tts.getStatus()', result, details);
   };
 
@@ -279,7 +279,7 @@ function TTSService_Base() {
     }
 
     Util.Validation.setResultItems(2,
-        'Get available voices (text-to-speech synthesis)',
+        messageResource.get('testname.checkTTSVoicesAPI', 'message'),
         'browser.tts.getVoices()', result, details);
   };
 
@@ -289,7 +289,7 @@ function TTSService_Base() {
     var details = null;
 
     Util.Validation
-        .setResultItems(2, 'Get/Set tts pitch API (text-to-speech synthesis)',
+        .setResultItems(2, messageResource.get('testname.checkTTSPitchAPI', 'message'),
             '', result, details);
   };
 
@@ -299,7 +299,7 @@ function TTSService_Base() {
     var details = null;
 
     Util.Validation.setResultItems(2,
-        'Get/Set tts Rate API (text-to-speech synthesis)', '', result, details);
+        messageResource.get('testname.checkTTSRateAPI', 'message'), '', result, details);
   };
 
   this.checkTTSVolumeAPI = function() {
@@ -307,7 +307,7 @@ function TTSService_Base() {
 
     var details = null;
     Util.Validation.setResultItems(2,
-        'Get/Set tts Volume API (text-to-speech synthesis)', '', result,
+        messageResource.get('testname.checkTTSVolumeAPI', 'message'), '', result,
         details);
   };
 
@@ -323,7 +323,7 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Speak text (text-to-speech synthesis)',
+    Util.Validation.setResultItems(2, messageResource.get('testname.checkTTSSpeakAPI', 'message'),
         'browser.tts.speak', result, details);
   };
 
@@ -340,7 +340,7 @@ function TTSService_Base() {
     }
 
     Util.Validation.setResultItems(2,
-        'Pause speech (text-to-speech synthesis)', 'browser.tts.pause', result,
+        messageResource.get('testname.checkTTSPauseAPI', 'message'), 'browser.tts.pause', result,
         details);
   };
 
@@ -357,7 +357,7 @@ function TTSService_Base() {
     }
 
     Util.Validation.setResultItems(2,
-        'Resume speech (text-to-speech synthesis)', 'browser.tts.resume',
+        messageResource.get('testname.checkTTSResumeAPI', 'message'), 'browser.tts.resume',
         result, details);
   };
 

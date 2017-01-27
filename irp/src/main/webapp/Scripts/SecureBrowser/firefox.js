@@ -78,8 +78,9 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(3, 'Retrieve device details',
-        'runtime.getDeviceInfo()', result, details);
+    Util.Validation.setResultItems(3, messageResource.get(
+        'testname.checkDeviceInfo', 'message'), 'runtime.getDeviceInfo()',
+        result, details);
   };
 
   Firefox.prototype.checkMACAddressAPI = function() {
@@ -92,8 +93,9 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Retrieve system MAC address(es)',
-        'runtime.getMACAddress()', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkMACAddressAPI', 'message'), 'runtime.getMACAddress()',
+        result, details);
 
   };
 
@@ -107,8 +109,9 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(4, 'Retrieve system IP address(es)',
-        'runtime.getIPAddressList()', result, details);
+    Util.Validation.setResultItems(4, messageResource.get(
+        'testname.checkIPAddressAPI', 'message'), 'runtime.getIPAddressList()',
+        result, details);
 
   };
 
@@ -130,8 +133,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Get application start time', apiInfo,
-        result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkAppStartTimeAPI', 'message'), apiInfo, result, details);
   };
 
   // SEC-32
@@ -147,7 +150,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(32, 'Clear cache',
+    Util.Validation.setResultItems(32, messageResource.get(
+        'testname.checkClearCacheAPI', 'message'),
         '!!SecureBrowser.clearCache()', result, details);
   };
   // SEC-33
@@ -164,7 +168,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(33, 'Clear Cookies',
+    Util.Validation.setResultItems(33, messageResource.get(
+        'testname.checkClearCookiesAPI', 'message'),
         '!!SecureBrowser.clearCookies()', result, details);
 
   };
@@ -183,7 +188,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(26, 'Empty ClipBoard',
+    Util.Validation.setResultItems(26, messageResource.get(
+        'testname.checkEmptyClipBoardAPI', 'message'),
         '!!SecureBrowser.emptyClipBoard()', result, details);
   };
 
@@ -200,7 +206,8 @@
       details = ex.getMessage();
     }
 
-    Util.Validation.setResultItems(34, 'Get Process List',
+    Util.Validation.setResultItems(34, messageResource.get(
+        'testname.checkGetProcessListAPI', 'message'),
         '!!this.runtime.getRunningProcessList()', result, details);
   };
 
@@ -217,8 +224,9 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(35, 'Close browser',
-        '!!SecureBrowser.CloseWindow', result, details);
+    Util.Validation.setResultItems(35, messageResource.get(
+        'testname.checkCloseAPI', 'message'), '!!SecureBrowser.CloseWindow',
+        result, details);
   };
 
   // SEC-30
@@ -227,7 +235,8 @@
     var result = null;
     var details = null;
 
-    Util.Validation.setResultItems(30, 'Enable LockDown', '', result, details);
+    Util.Validation.setResultItems(30, messageResource.get(
+        'testname.checkEnableLockDownAPI', 'message'), '', result, details);
   };
 
   // SEC-31
@@ -236,8 +245,10 @@
     var result = null;
     var details = null;
 
-    Util.Validation.setResultItems(31, 'Is Environment Secure', '', result,
-        details);
+    Util.Validation
+        .setResultItems(31, messageResource.get(
+            'testname.checkIsEnvironmentSecureAPI', 'message'), '', result,
+            details);
   };
 
   Firefox.prototype.dispose = function() {

@@ -466,7 +466,7 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Stop speech (text-to-speech synthesis)',
+    Util.Validation.setResultItems(2, messageResource.get('testname.checkTTSStopAPI', 'message'),
         'runtime.stop()', result, details);
   };
 
@@ -482,7 +482,7 @@ function TTSService_SB() {
     }
 
     Util.Validation.setResultItems(2,
-        'Get speech status (text-to-speech synthesis)', 'runtime.status',
+        messageResource.get('testname.checkTTSStatusAPI', 'message'), 'runtime.status',
         result, details);
   };
 
@@ -498,7 +498,7 @@ function TTSService_SB() {
     }
 
     Util.Validation.setResultItems(2,
-        'Get available voices (text-to-speech synthesis)', 'runtime.voices',
+        messageResource.get('testname.checkTTSVoicesAPI', 'message'), 'runtime.voices',
         result, details);
   };
 
@@ -514,7 +514,7 @@ function TTSService_SB() {
     }
 
     Util.Validation.setResultItems(2,
-        'Get/Set tts pitch API (text-to-speech synthesis)', 'runtime.pitch',
+        messageResource.get('testname.checkTTSPitchAPI', 'message'), 'runtime.pitch',
         result, details);
   };
 
@@ -530,7 +530,7 @@ function TTSService_SB() {
     }
 
     Util.Validation.setResultItems(2,
-        'Get/Set tts Rate API (text-to-speech synthesis)', 'runtime.rate',
+        messageResource.get('testname.checkTTSRateAPI', 'message'), 'runtime.rate',
         result, details);
   };
 
@@ -546,7 +546,7 @@ function TTSService_SB() {
     }
 
     Util.Validation.setResultItems(2,
-        'Get/Set tts Volume API (text-to-speech synthesis)', 'runtime.volume',
+        messageResource.get('testname.checkTTSVolumeAPI', 'message'), 'runtime.volume',
         result, details);
   };
 
@@ -562,7 +562,7 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Speak text (text-to-speech synthesis)',
+    Util.Validation.setResultItems(2, messageResource.get('testname.checkTTSSpeakAPI', 'message'),
         'runtime.play', result, details);
   };
 
@@ -579,7 +579,7 @@ function TTSService_SB() {
     }
 
     Util.Validation.setResultItems(2,
-        'Pause speech (text-to-speech synthesis)', 'runtime.pause', result,
+        messageResource.get('testname.checkTTSPauseAPI', 'message'), 'runtime.pause', result,
         details);
   };
 
@@ -596,7 +596,7 @@ function TTSService_SB() {
     }
 
     Util.Validation.setResultItems(2,
-        'Resume speech (text-to-speech synthesis)', 'runtime.resume', result,
+        messageResource.get('testname.checkTTSResumeAPI', 'message'), 'runtime.resume', result,
         details);
   };
 }

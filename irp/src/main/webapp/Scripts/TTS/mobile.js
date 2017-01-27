@@ -303,8 +303,9 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Stop speech (text-to-speech synthesis)',
-        'runtime.tts.stop()', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSStopAPI', 'message'), 'runtime.tts.stop()', result,
+        details);
   };
 
   this.checkTTSStatusAPI = function() {
@@ -318,9 +319,9 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        'Get speech status (text-to-speech synthesis)',
-        'runtime.tts.getStatus()', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSStatusAPI', 'message'), 'runtime.tts.getStatus()',
+        result, details);
   };
 
   this.checkTTSVoicesAPI = function() {
@@ -334,9 +335,9 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        'Get available voices (text-to-speech synthesis)',
-        'runtime.tts.getVoices()', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSVoicesAPI', 'message'), 'runtime.tts.getVoices()',
+        result, details);
   };
 
   this.checkTTSPitchAPI = function() {
@@ -351,9 +352,9 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        'Get/Set tts pitch API (text-to-speech synthesis)',
-        'runtime.device.ttsPitch', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSPitchAPI', 'message'), 'runtime.device.ttsPitch',
+        result, details);
   };
 
   this.checkTTSRateAPI = function() {
@@ -367,9 +368,9 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        'Get/Set tts Rate API (text-to-speech synthesis)',
-        'runtime.device.ttsRate', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSRateAPI', 'message'), 'runtime.device.ttsRate',
+        result, details);
   };
 
   this.checkTTSVolumeAPI = function() {
@@ -383,9 +384,9 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        'Get/Set tts Volume API (text-to-speech synthesis)',
-        'runtime.device.ttsVolume', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSVolumeAPI', 'message'), 'runtime.device.ttsVolume',
+        result, details);
   };
 
   this.checkTTSSpeakAPI = function() {
@@ -400,8 +401,9 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Speak text (text-to-speech synthesis)',
-        'runtime.tts.speak', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSSpeakAPI', 'message'), 'runtime.tts.speak', result,
+        details);
   };
 
   this.checkTTSPauseAPI = function() {
@@ -416,8 +418,8 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        'Speak speech (text-to-speech synthesis)', 'runtime.tts.pause', result,
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSPauseAPI', 'message'), 'runtime.tts.pause', result,
         details);
   };
 
@@ -434,7 +436,7 @@ function TTSService_MobileSB() {
     }
 
     Util.Validation.setResultItems(2,
-        'Resume speech (text-to-speech synthesis)', 'runtime.tts.resume',
+        messageResource.get('testname.checkTTSResumeAPI', 'message'), 'runtime.tts.resume',
         result, details);
   };
 }

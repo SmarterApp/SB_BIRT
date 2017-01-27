@@ -52,7 +52,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Retrieve device details',
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkDeviceInfo', 'message'),
         'browser.security.getDeviceInfo()', result, details);
   };
 
@@ -66,7 +67,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Retrieve system MAC address(es)',
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkMACAddressAPI', 'message'),
         'browser.security.getMACAddress()', result, details);
 
   };
@@ -81,7 +83,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Retrieve system IP address(es)',
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkIPAddressAPI', 'message'),
         'browser.security.getIPAddressList()', result, details);
 
   };
@@ -96,7 +99,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, 'Get application start time',
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkAppStartTimeAPI', 'message'),
         'browser.security.getStartTime()', result, details);
   };
 
@@ -113,7 +117,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(32, 'Clear cache',
+    Util.Validation.setResultItems(32, messageResource.get(
+        'testname.checkClearCacheAPI', 'message'),
         '!!browser.security.clearCache', result, details);
   };
 
@@ -130,7 +135,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(33, 'Clear Cookies',
+    Util.Validation.setResultItems(33, messageResource.get(
+        'testname.checkClearCookiesAPI', 'message'),
         '!!browser.security.clearCookies', result, details);
   };
 
@@ -147,7 +153,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(26, 'Empty ClipBoard',
+    Util.Validation.setResultItems(26, messageResource.get(
+        'testname.checkEmptyClipBoardAPI', 'message'),
         '!!browser.security.emptyClipBoard', result, details);
 
   };
@@ -165,7 +172,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(34, 'Get Process List',
+    Util.Validation.setResultItems(34, messageResource.get(
+        'testname.checkGetProcessListAPI', 'message'),
         '!!browser.security.getProcessList', result, details);
 
   };
@@ -192,8 +200,8 @@
     } catch (ex) {
       details = ex.getMessage();
     }
-    Util.Validation.setResultItems(35, 'Close browser', testApi, result,
-        details);
+    Util.Validation.setResultItems(35, messageResource.get(
+        'testname.checkCloseAPI', 'message'), testApi, result, details);
   };
 
   // SEC-30
@@ -210,7 +218,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(30, 'Enable LockDown',
+    Util.Validation.setResultItems(30, messageResource.get(
+        'testname.checkEnableLockDownAPI', 'message'),
         '!!browser.security.enableLockDown', result, details);
   };
 
@@ -227,7 +236,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(31, 'Is Environment Secure',
+    Util.Validation.setResultItems(31, messageResource.get(
+        'testname.checkIsEnvironmentSecureAPI', 'message'),
         '!!browser.security.isEnvironmentSecure', result, details);
   };
 

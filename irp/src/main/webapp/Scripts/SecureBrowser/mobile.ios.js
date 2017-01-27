@@ -311,7 +311,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkDeviceInfo = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(2, 'Retrieve device details',
+  Util.Validation.setResultItems(2, messageResource.get(
+      'testname.checkDeviceInfo', 'message'),
       'runtime.security.getDeviceInfo()', result, details);
 };
 
@@ -325,7 +326,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkMACAddressAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(2, 'Retrieve system MAC address(es)',
+  Util.Validation.setResultItems(2, messageResource.get(
+      'testname.checkMACAddressAPI', 'message'),
       'runtime.security.getMACAddress()', result, details);
 
 };
@@ -340,7 +342,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkIPAddressAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(2, 'Retrieve system IP address(es)',
+  Util.Validation.setResultItems(2, messageResource.get(
+      'testname.checkIPAddressAPI', 'message'),
       'runtime.security.getIPAddressList()', result, details);
 
 };
@@ -355,7 +358,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkAppStartTimeAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(2, 'Get application start time',
+  Util.Validation.setResultItems(2, messageResource.get(
+      'testname.checkAppStartTimeAPI', 'message'),
       'runtime.security.getStartTime()', result, details);
 };
 
@@ -370,7 +374,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkEnableLockDownAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(30, 'Enable Lockdown',
+  Util.Validation.setResultItems(30, messageResource.get(
+      'testname.checkEnableLockDownAPI', 'message'),
       'runtime.security.enableLockdown()', result, details);
 };
 
@@ -385,7 +390,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCookiesAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(33, 'Clear Cookies',
+  Util.Validation.setResultItems(33, messageResource.get(
+      'testname.checkClearCookiesAPI', 'message'),
       'runtime.security.clearCookies()', result, details);
 };
 
@@ -400,7 +406,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCacheAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(32, 'Clear Cache',
+  Util.Validation.setResultItems(32, messageResource.get(
+      'testname.checkClearCacheAPI', 'message'),
       'runtime.security.clearCache()', result, details);
 };
 
@@ -415,7 +422,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkIsEnvironmentSecureAPI = function() 
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(31, 'Is Environment Secure',
+  Util.Validation.setResultItems(31, messageResource.get(
+      'testname.checkIsEnvironmentSecureAPI', 'message'),
       'runtime.security.isEnvironmentSecure()', result, details);
 };
 
@@ -431,8 +439,9 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkCloseAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(35, 'Close Browser',
-      'runtime.security.close()', result, details);
+  Util.Validation.setResultItems(35, messageResource.get(
+      'testname.checkCloseAPI', 'message'), 'runtime.security.close()', result,
+      details);
 };
 
 // SEC-34
@@ -446,7 +455,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkGetProcessListAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(34, 'Get Process List',
+  Util.Validation.setResultItems(34, messageResource.get(
+      'testname.checkGetProcessListAPI', 'message'),
       'runtime.security.getProcessList()', result, details);
 };
 
@@ -456,6 +466,7 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkEmptyClipBoardAPI = function() {
   var result = false;
   var details = "Not supported ";
 
-  Util.Validation.setResultItems(26, 'Empty ClipBoard', 'xxx', result, details);
+  Util.Validation.setResultItems(26, messageResource.get(
+      'testname.checkEmptyClipBoardAPI', 'message'), 'xxx', result, details);
 
 };
