@@ -39,6 +39,18 @@ function TTSService_Chrome() {
     var thisObj = this;
     this.status = TTS.Status.Initializing;
 
+    TDS.AppWindow = window;
+
+    var bootstrap = function(event) {
+      if (event.data.type && event.data.type == "CHROME RESPONSE"
+          && event.data.command == "APP WELCOME") {
+        TDS.AppWindow = event.source;
+        window.removeEventListener("message", bootstrap, true);
+      }
+    };
+
+    window.addEventListener("message", bootstrap, true);
+
     window
         .addEventListener(
             "message",
