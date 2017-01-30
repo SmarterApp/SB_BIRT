@@ -42,6 +42,13 @@ testResult : false}`
 * jQuery v1.11.1
 * jsGrid v1.5.3 
 * messageResource.js , A simple JavaScript library for reading message resource property files of following format.
+```
+#example.properties
+
+home.title = My Tile
+home.welcome = Welcome Message
+description = This is a brief description message.
+```
 
 ### Pre-Dependencies
 * Tomcat 6 or higher
