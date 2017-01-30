@@ -32,11 +32,12 @@ The Webapp module contains the IRP UI and REST APIs.
 * index.js will call implementation method and other API test calls.
 * For each test , test API will populate a json array with test info like test name, test api signature, result and details (Info about failure or other require details). Check below sample json
 
-`
+```
 {details: "window.browser is not defined",
 testApi : "!!window.browser"
 testName : "[window.browser] global object check"
-testResult : false}`
+testResult : false}
+```
 
 ### UI Framework
 * jQuery v1.11.1
