@@ -109,60 +109,65 @@ function closeBrowser() {
 }
 
 function populateResults() {
-  $("#jsGrid").jsGrid({
-    width : "100%",
-    height : "100%",
+  $("#jsGrid")
+      .jsGrid(
+          {
+            width : "100%",
+            height : "100%",
 
-    data : Util.Validation.getResult(),
+            data : Util.Validation.getResult(),
 
-    fields : [
-    /*
-     * { title: "ID", name: "id", type: "number", width: 20, validate:
-     * "required" },
-     */
-    {
-      title : "Test Name",
-      name : "testName",
-      type : "text",
-      width : 150
-    }, {
-      title : "Test API",
-      name : "testApi",
-      type : "text",
-      width : 150
-    }, {
-      title : "Result",
-      name : "testResult",
-      type : "text",
-      width : 50,
+            fields : [
+                /*
+                 * { title: "ID", name: "id", type: "number", width: 20,
+                 * validate: "required" },
+                 */
+                {
+                  title : "Test Name",
+                  name : "testName",
+                  type : "text",
+                  width : 150
+                },
+                {
+                  title : "Test API",
+                  name : "testApi",
+                  type : "text",
+                  width : 150
+                },
+                {
+                  title : "Result",
+                  name : "testResult",
+                  type : "text",
+                  width : 30,
+                  align : "center",
 
-      itemTemplate : function(value) {
-        if (value == null) {
-          return "";
-        } else if (value) {
-          return "Passed";
-        } else {
-          return "Failed";
-        }
+                  itemTemplate : function(value) {
+                    if (value == null) {
+                      return "";
+                    } else if (value) {
+                      return '<img alt="failure" src="../../../Shared/images/passed.jpg" height="30px" width="40px">';
+                    } else {
+                      return '<img alt="failure" src="../../../Shared/images/failed.jpg" height="30px" width="40px">';
+                    }
 
-      }
+                  }
 
-    }, {
-      title : "Details",
-      name : "details",
-      type : "text",
-      width : 150,
+                }, {
+                  title : "Details",
+                  name : "details",
+                  type : "text",
+                  width : 150,
 
-      itemTemplate : function(value) {
-        if (value == null) {
-          return "Not Available";
-        } else {
-          return value;
-        }
+                  itemTemplate : function(value) {
+                    if (value == null) {
+                      return "Not Available";
+                    } else {
+                      return value;
+                    }
 
-      }
-    }
+                  }
+                }
 
-    ]
-  });
+            ]
+          });
 }

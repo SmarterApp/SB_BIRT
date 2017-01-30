@@ -42,11 +42,12 @@
 
   Certified.prototype.checkDeviceInfo = function() {
 
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
     try {
       if (!!browser.security.getDeviceInfo) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
 
     } catch (ex) {
@@ -59,11 +60,12 @@
   };
 
   Certified.prototype.checkMACAddressAPI = function() {
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
     try {
       if (!!browser.security.getMACAddress) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
     } catch (ex) {
       details = ex.message;
@@ -76,11 +78,12 @@
   };
 
   Certified.prototype.checkIPAddressAPI = function() {
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
     try {
       if (!!browser.security.getIPAddressList) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
     } catch (ex) {
       details = ex.message;
@@ -111,11 +114,12 @@
   // SEC-32
   Certified.prototype.checkClearCacheAPI = function() {
 
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
     try {
       if (!!browser.security.clearCache) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
     } catch (ex) {
       details = ex.message;
@@ -128,12 +132,13 @@
 
   // SEC-33
   Certified.prototype.checkClearCookiesAPI = function() {
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     try {
       if (!!browser.security.clearCookies) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
     } catch (ex) {
       details = ex.message;
@@ -165,12 +170,13 @@
 
   // SEC-34
   Certified.prototype.checkGetProcessListAPI = function() {
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     try {
       if (!!browser.security.getProcessList) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
     } catch (ex) {
       details = ex.message;
@@ -229,12 +235,13 @@
 
   // SEC-31
   Certified.prototype.checkIsEnvironmentSecureAPI = function() {
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     try {
       if (!!browser.security.isEnvironmentSecure) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
     } catch (ex) {
       details = ex.message;

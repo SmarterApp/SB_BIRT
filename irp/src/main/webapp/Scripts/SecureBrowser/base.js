@@ -37,8 +37,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   Base.prototype.checkDeviceInfo = function() {
 
-    var result = false;
-    var details = "browser.security.getDeviceInfo() is not defined";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     Util.Validation.setResultItems(2, messageResource.get(
         'testname.checkDeviceInfo', 'message'),
@@ -46,8 +46,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   };
 
   Base.prototype.checkMACAddressAPI = function() {
-    var result = false;
-    var details = "browser.security.getMACAddress() is not defined";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     Util.Validation.setResultItems(2, messageResource.get(
         'testname.checkMACAddressAPI', 'message'),
@@ -56,8 +56,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   };
 
   Base.prototype.checkIPAddressAPI = function() {
-    var result = false;
-    var details = "browser.security.getIPAddressList() is not defined";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     Util.Validation.setResultItems(2, messageResource.get(
         'testname.checkIPAddressAPI', 'message'),
@@ -76,8 +76,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   // SEC-32
   Base.prototype.checkClearCacheAPI = function() {
-    var result = false;
-    var details = 'browser.security.clearCache() is not defined';
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     Util.Validation.setResultItems(32, messageResource.get(
         'testname.checkClearCacheAPI', 'message'),
@@ -96,8 +96,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   // SEC-33
   Base.prototype.checkClearCookiesAPI = function() {
-    var result = false;
-    var details = 'browser.security.clearCookies() is not defined';
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     Util.Validation.setResultItems(33, messageResource.get(
         'testname.checkClearCookiesAPI', 'message'),
@@ -106,8 +106,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   // SEC-31
   Base.prototype.checkIsEnvironmentSecureAPI = function() {
-    var result = null;
-    var details = null;
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     Util.Validation
         .setResultItems(31, messageResource.get(
@@ -117,8 +117,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   // SEC-34
   Base.prototype.checkGetProcessListAPI = function() {
-    var result = false;
-    var details = 'browser.security.getProcessList() is not defined';
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     Util.Validation.setResultItems(34, messageResource.get(
         'testname.checkGetProcessListAPI', 'message'),
@@ -137,8 +137,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   // SEC-30
   Base.prototype.checkEnableLockDownAPI = function() {
-    var result = null;
-    var details = null;
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     Util.Validation.setResultItems(30, messageResource.get(
         'testname.checkEnableLockDownAPI', 'message'), '', result, details);
@@ -246,7 +246,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
             trim : true,
             ignoreCase : true
           })) {
-            // compare parent
+            // compare parent 
             // process with
             // exemptions, if either
             // the parent process or

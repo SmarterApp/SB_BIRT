@@ -68,11 +68,12 @@
 
   Firefox.prototype.checkDeviceInfo = function() {
 
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
     try {
       if (!!this.runtime.getDeviceInfo) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
 
     } catch (ex) {
@@ -85,11 +86,12 @@
   };
 
   Firefox.prototype.checkMACAddressAPI = function() {
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
     try {
       if (!!this.runtime.getMACAddress) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
     } catch (ex) {
       details = ex.message;
@@ -102,11 +104,12 @@
   };
 
   Firefox.prototype.checkIPAddressAPI = function() {
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
     try {
       if (!!this.runtime.getIPAddressList) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
     } catch (ex) {
       details = ex.message;
@@ -142,12 +145,13 @@
 
   // SEC-32
   Firefox.prototype.checkClearCacheAPI = function() {
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     try {
       if (!!SecureBrowser.clearCache) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
     } catch (ex) {
       details = ex.message;
@@ -159,13 +163,14 @@
   };
   // SEC-33
   Firefox.prototype.checkClearCookiesAPI = function() {
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     try {
 
       if (!!SecureBrowser.clearCookies) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
     } catch (ex) {
       details = ex.message;
@@ -198,12 +203,13 @@
 
   // SEC-34
   Firefox.prototype.checkGetProcessListAPI = function() {
-    var result = false;
-    var details = "";
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     try {
       if (!!this.runtime.getRunningProcessList) {
-        result = true;
+        result = false;
+        details = messageResource.get('testApi.exist', 'message');
       }
     } catch (e) {
       details = ex.getMessage();
@@ -235,8 +241,8 @@
   // SEC-30
   // TODO placeholder. Need more research
   Firefox.prototype.checkEnableLockDownAPI = function() {
-    var result = null;
-    var details = null;
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     Util.Validation.setResultItems(30, messageResource.get(
         'testname.checkEnableLockDownAPI', 'message'), '', result, details);
@@ -245,8 +251,8 @@
   // SEC-31
   // TODO this is a placeholder. More research is needed.
   Firefox.prototype.checkIsEnvironmentSecureAPI = function() {
-    var result = null;
-    var details = null;
+    var result = true;
+    var details = messageResource.get('testApi.remove', 'message');
 
     Util.Validation
         .setResultItems(31, messageResource.get(
