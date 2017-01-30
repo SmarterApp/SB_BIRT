@@ -297,8 +297,9 @@ function TTSService_MobileSB() {
     var result = false;
     var details = "";
     try {
-      this.browserComponent.tts.stop(null, null);
-      result = true;
+      if (!!this.browserComponent.tts.stop) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
@@ -313,8 +314,9 @@ function TTSService_MobileSB() {
 
     var details = "";
     try {
-      this.browserComponent.tts.getStatus();
-      result = true;
+      if (!!this.browserComponent.tts.getStatus) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
@@ -329,8 +331,9 @@ function TTSService_MobileSB() {
 
     var details = "";
     try {
-      this.browserComponent.tts.getVoices();
-      result = true;
+      if (!!this.browserComponent.tts.getVoices) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
@@ -345,9 +348,9 @@ function TTSService_MobileSB() {
 
     var details = "";
     try {
-      this.browserComponent.device.ttsPitch;
-      result = true;
-
+      if (!!this.browserComponent.device.ttsPitch) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
@@ -362,8 +365,9 @@ function TTSService_MobileSB() {
 
     var details = "";
     try {
-      this.browserComponent.device.ttsRate;
-      result = true;
+      if (!!this.browserComponent.device.ttsRate) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
@@ -378,8 +382,9 @@ function TTSService_MobileSB() {
 
     var details = "";
     try {
-      this.browserComponent.device.ttsVolume;
-      result = true;
+      if (!!this.browserComponent.device.ttsVolume) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
@@ -435,8 +440,18 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSResumeAPI', 'message'), 'runtime.tts.resume',
-        result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSResumeAPI', 'message'), 'runtime.tts.resume', result,
+        details);
+  };
+
+  this.checkTTSVoiceNameAPI = function() {
+
+    var result = null;
+
+    var details = null;
+
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSVoiceNameAPI', 'message'), '', result, details);
   };
 }

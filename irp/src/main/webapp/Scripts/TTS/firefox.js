@@ -460,14 +460,16 @@ function TTSService_SB() {
 
     var details = "";
     try {
-      this.runtime.stop();
-      result = true;
+      if (!!this.runtime.stop) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get('testname.checkTTSStopAPI', 'message'),
-        'runtime.stop()', result, details);
+    Util.Validation
+        .setResultItems(2, messageResource.get('testname.checkTTSStopAPI',
+            'message'), 'runtime.stop', result, details);
   };
 
   this.checkTTSStatusAPI = function() {
@@ -475,15 +477,16 @@ function TTSService_SB() {
 
     var details = "";
     try {
-      this.runtime.status;
-      result = true;
+      if (!!this.runtime.status) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSStatusAPI', 'message'), 'runtime.status',
-        result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSStatusAPI', 'message'), 'runtime.status', result,
+        details);
   };
 
   this.checkTTSVoicesAPI = function() {
@@ -491,15 +494,16 @@ function TTSService_SB() {
 
     var details = "";
     try {
-      this.runtime.voices;
-      result = true;
+      if (!!this.runtime.voices) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSVoicesAPI', 'message'), 'runtime.voices',
-        result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSVoicesAPI', 'message'), 'runtime.voices', result,
+        details);
   };
 
   this.checkTTSPitchAPI = function() {
@@ -507,15 +511,16 @@ function TTSService_SB() {
 
     var details = "";
     try {
-      this.runtime.pitch;
-      result = true;
+      if (!!this.runtime.pitch) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSPitchAPI', 'message'), 'runtime.pitch',
-        result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSPitchAPI', 'message'), 'runtime.pitch', result,
+        details);
   };
 
   this.checkTTSRateAPI = function() {
@@ -523,15 +528,16 @@ function TTSService_SB() {
 
     var details = "";
     try {
-      this.runtime.rate;
-      result = true;
+      if (!!this.runtime.rate) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSRateAPI', 'message'), 'runtime.rate',
-        result, details);
+    Util.Validation
+        .setResultItems(2, messageResource.get('testname.checkTTSRateAPI',
+            'message'), 'runtime.rate', result, details);
   };
 
   this.checkTTSVolumeAPI = function() {
@@ -539,15 +545,16 @@ function TTSService_SB() {
 
     var details = "";
     try {
-      this.runtime.volume;
-      result = true;
+      if (!!this.runtime.volume) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSVolumeAPI', 'message'), 'runtime.volume',
-        result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSVolumeAPI', 'message'), 'runtime.volume', result,
+        details);
   };
 
   this.checkTTSSpeakAPI = function() {
@@ -562,8 +569,9 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get('testname.checkTTSSpeakAPI', 'message'),
-        'runtime.play', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSSpeakAPI', 'message'), 'runtime.play', result,
+        details);
   };
 
   this.checkTTSPauseAPI = function() {
@@ -578,8 +586,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSPauseAPI', 'message'), 'runtime.pause', result,
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSPauseAPI', 'message'), 'runtime.pause', result,
         details);
   };
 
@@ -595,8 +603,25 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSResumeAPI', 'message'), 'runtime.resume', result,
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSResumeAPI', 'message'), 'runtime.resume', result,
         details);
+  };
+
+  this.checkTTSVoiceNameAPI = function() {
+
+    var result = false;
+    var details = '';
+    try {
+      if (!!this.runtime.voiceName) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSVoiceNameAPI', 'message'), 'runtime.voiceName',
+        result, details);
   };
 }

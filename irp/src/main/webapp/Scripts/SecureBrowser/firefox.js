@@ -71,15 +71,16 @@
     var result = false;
     var details = "";
     try {
-      this.runtime.getDeviceInfo();
-      result = true;
+      if (!!this.runtime.getDeviceInfo) {
+        result = true;
+      }
 
     } catch (ex) {
       details = ex.message;
     }
 
     Util.Validation.setResultItems(3, messageResource.get(
-        'testname.checkDeviceInfo', 'message'), 'runtime.getDeviceInfo()',
+        'testname.checkDeviceInfo', 'message'), '!!runtime.getDeviceInfo',
         result, details);
   };
 
@@ -87,14 +88,15 @@
     var result = false;
     var details = "";
     try {
-      this.runtime.getMACAddress();
-      result = true;
+      if (!!this.runtime.getMACAddress) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
 
     Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkMACAddressAPI', 'message'), 'runtime.getMACAddress()',
+        'testname.checkMACAddressAPI', 'message'), '!!runtime.getMACAddress',
         result, details);
 
   };
@@ -103,14 +105,15 @@
     var result = false;
     var details = "";
     try {
-      this.runtime.getIPAddressList();
-      result = true;
+      if (!!this.runtime.getIPAddressList) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
 
     Util.Validation.setResultItems(4, messageResource.get(
-        'testname.checkIPAddressAPI', 'message'), 'runtime.getIPAddressList()',
+        'testname.checkIPAddressAPI', 'message'), '!!runtime.getIPAddressList',
         result, details);
 
   };
@@ -152,7 +155,7 @@
 
     Util.Validation.setResultItems(32, messageResource.get(
         'testname.checkClearCacheAPI', 'message'),
-        '!!SecureBrowser.clearCache()', result, details);
+        '!!SecureBrowser.clearCache', result, details);
   };
   // SEC-33
   Firefox.prototype.checkClearCookiesAPI = function() {
@@ -170,7 +173,7 @@
 
     Util.Validation.setResultItems(33, messageResource.get(
         'testname.checkClearCookiesAPI', 'message'),
-        '!!SecureBrowser.clearCookies()', result, details);
+        '!!SecureBrowser.clearCookies', result, details);
 
   };
 
@@ -190,7 +193,7 @@
 
     Util.Validation.setResultItems(26, messageResource.get(
         'testname.checkEmptyClipBoardAPI', 'message'),
-        '!!SecureBrowser.emptyClipBoard()', result, details);
+        '!!SecureBrowser.emptyClipBoard', result, details);
   };
 
   // SEC-34
@@ -199,7 +202,7 @@
     var details = "";
 
     try {
-      if (!!this.runtime.getRunningProcessList()) {
+      if (!!this.runtime.getRunningProcessList) {
         result = true;
       }
     } catch (e) {
@@ -208,7 +211,7 @@
 
     Util.Validation.setResultItems(34, messageResource.get(
         'testname.checkGetProcessListAPI', 'message'),
-        '!!this.runtime.getRunningProcessList()', result, details);
+        '!!this.runtime.getRunningProcessList', result, details);
   };
 
   // SEC-35

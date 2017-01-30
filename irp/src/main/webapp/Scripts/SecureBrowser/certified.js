@@ -45,8 +45,9 @@
     var result = false;
     var details = "";
     try {
-      browser.security.getDeviceInfo();
-      result = true;
+      if (!!browser.security.getDeviceInfo) {
+        result = true;
+      }
 
     } catch (ex) {
       details = ex.message;
@@ -61,8 +62,9 @@
     var result = false;
     var details = "";
     try {
-      browser.security.getMACAddress();
-      result = true;
+      if (!!browser.security.getMACAddress) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
@@ -77,8 +79,9 @@
     var result = false;
     var details = "";
     try {
-      browser.security.getIPAddressList();
-      result = true;
+      if (!!browser.security.getIPAddressList) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
@@ -93,8 +96,9 @@
     var result = false;
     var details = "";
     try {
-      browser.security.getStartTime();
-      result = true;
+      if (!!browser.security.getStartTime) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }

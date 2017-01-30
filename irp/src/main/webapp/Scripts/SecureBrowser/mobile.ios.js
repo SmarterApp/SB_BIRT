@@ -305,30 +305,32 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkDeviceInfo = function() {
   var result = false;
   var details = "";
   try {
-    this._airMobile.security.getDeviceInfo();
-    result = true;
+    if (!!this._airMobile.security.getDeviceInfo) {
+      result = true;
+    }
   } catch (ex) {
     details = ex.message;
   }
 
   Util.Validation.setResultItems(2, messageResource.get(
       'testname.checkDeviceInfo', 'message'),
-      'runtime.security.getDeviceInfo()', result, details);
+      '!!runtime.security.getDeviceInfo', result, details);
 };
 
 TDS.SecureBrowser.Mobile.iOS.prototype.checkMACAddressAPI = function() {
   var result = false;
   var details = "";
   try {
-    this._airMobile.security.getMACAddress();
-    result = true;
+    if (!!this._airMobile.security.getMACAddress) {
+      result = true;
+    }
   } catch (ex) {
     details = ex.message;
   }
 
   Util.Validation.setResultItems(2, messageResource.get(
       'testname.checkMACAddressAPI', 'message'),
-      'runtime.security.getMACAddress()', result, details);
+      '!!runtime.security.getMACAddress', result, details);
 
 };
 
@@ -336,15 +338,16 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkIPAddressAPI = function() {
   var result = false;
   var details = "";
   try {
-    this._airMobile.security.getIPAddressList();
-    result = true;
+    if (!!this._airMobile.security.getIPAddressList) {
+      result = true;
+    }
   } catch (ex) {
     details = ex.message;
   }
 
   Util.Validation.setResultItems(2, messageResource.get(
       'testname.checkIPAddressAPI', 'message'),
-      'runtime.security.getIPAddressList()', result, details);
+      '!!runtime.security.getIPAddressList', result, details);
 
 };
 
@@ -352,15 +355,16 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkAppStartTimeAPI = function() {
   var result = false;
   var details = "";
   try {
-    this._airMobile.security.getStartTime();
-    result = true;
+    if (!!this._airMobile.security.getStartTime) {
+      result = true;
+    }
   } catch (ex) {
     details = ex.message;
   }
 
   Util.Validation.setResultItems(2, messageResource.get(
       'testname.checkAppStartTimeAPI', 'message'),
-      'runtime.security.getStartTime()', result, details);
+      '!!runtime.security.getStartTime', result, details);
 };
 
 // SEC-30
@@ -368,15 +372,16 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkEnableLockDownAPI = function() {
   var result = false;
   var details = "";
   try {
-    this._airMobile.security.enableLockdown();
-    result = true;
+    if (!!this._airMobile.security.enableLockdown) {
+      result = true;
+    }
   } catch (ex) {
     details = ex.message;
   }
 
   Util.Validation.setResultItems(30, messageResource.get(
       'testname.checkEnableLockDownAPI', 'message'),
-      'runtime.security.enableLockdown()', result, details);
+      '!!runtime.security.enableLockdown', result, details);
 };
 
 // SEC-33
@@ -384,15 +389,16 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCookiesAPI = function() {
   var result = false;
   var details = "";
   try {
-    this._airMobile.security.clearCookies();
-    result = true;
+    if (!!this._airMobile.security.clearCookies) {
+      result = true;
+    }
   } catch (ex) {
     details = ex.message;
   }
 
   Util.Validation.setResultItems(33, messageResource.get(
       'testname.checkClearCookiesAPI', 'message'),
-      'runtime.security.clearCookies()', result, details);
+      '!!runtime.security.clearCookies', result, details);
 };
 
 // SEC-32
@@ -400,15 +406,16 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCacheAPI = function() {
   var result = false;
   var details = "";
   try {
-    this._airMobile.security.clearCache();
-    result = true;
+    if (!!this._airMobile.security.clearCache) {
+      result = true;
+    }
   } catch (ex) {
     details = ex.message;
   }
 
   Util.Validation.setResultItems(32, messageResource.get(
       'testname.checkClearCacheAPI', 'message'),
-      'runtime.security.clearCache()', result, details);
+      '!!runtime.security.clearCache', result, details);
 };
 
 // SEC-31
@@ -416,15 +423,16 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkIsEnvironmentSecureAPI = function() 
   var result = false;
   var details = "";
   try {
-    this._airMobile.security.isEnvironmentSecure();
-    result = true;
+    if (!!this._airMobile.security.isEnvironmentSecure) {
+      result = true;
+    }
   } catch (ex) {
     details = ex.message;
   }
 
   Util.Validation.setResultItems(31, messageResource.get(
       'testname.checkIsEnvironmentSecureAPI', 'message'),
-      'runtime.security.isEnvironmentSecure()', result, details);
+      '!!runtime.security.isEnvironmentSecure', result, details);
 };
 
 // SEC-35
@@ -433,14 +441,15 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkCloseAPI = function() {
   var details = "";
   var restart = false;
   try {
-    this._airMobile.security.close(restart);
-    result = true;
+    if (!!this._airMobile.security.close) {
+      result = true;
+    }
   } catch (ex) {
     details = ex.message;
   }
 
   Util.Validation.setResultItems(35, messageResource.get(
-      'testname.checkCloseAPI', 'message'), 'runtime.security.close()', result,
+      'testname.checkCloseAPI', 'message'), '!!runtime.security.close', result,
       details);
 };
 
@@ -449,24 +458,25 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkGetProcessListAPI = function() {
   var result = false;
   var details = "";
   try {
-    this._airMobile.security.getProcessList();
-    result = true;
+    if (!!this._airMobile.security.getProcessList) {
+      result = true;
+    }
   } catch (ex) {
     details = ex.message;
   }
 
   Util.Validation.setResultItems(34, messageResource.get(
       'testname.checkGetProcessListAPI', 'message'),
-      'runtime.security.getProcessList()', result, details);
+      '!!runtime.security.getProcessList', result, details);
 };
 
 // SEC-26
 // air_mobile.js does not have support for emptyClipBoard function
 TDS.SecureBrowser.Mobile.iOS.prototype.checkEmptyClipBoardAPI = function() {
-  var result = false;
-  var details = "Not supported ";
+  var result = null;
+  var details = null;
 
   Util.Validation.setResultItems(26, messageResource.get(
-      'testname.checkEmptyClipBoardAPI', 'message'), 'xxx', result, details);
+      'testname.checkEmptyClipBoardAPI', 'message'), '', result, details);
 
 };

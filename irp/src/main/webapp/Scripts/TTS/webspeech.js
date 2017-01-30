@@ -513,4 +513,14 @@ function TTSService_WebSpeech()
         result, details);
   };
   
+  this.checkTTSVoiceNameAPI = function() {
+
+    var result = null;
+
+    var details = null;
+
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSVoiceNameAPI', 'message'), '', result, details);
+  };
+  
 }

@@ -84,6 +84,8 @@ function beginBrowserAPITest() {
 
     /** SEC-41 API : TTS Resume (R) * */
     ttsImpl.checkTTSResumeAPI();
+
+    ttsImpl.checkTTSVoiceNameAPI();
   } else {
     console.log('No Implementation found for Secure Browser');
   }
@@ -152,7 +154,7 @@ function populateResults() {
 
       itemTemplate : function(value) {
         if (value == null) {
-          return "Not Applicable";
+          return "Not Available";
         } else {
           return value;
         }

@@ -241,14 +241,16 @@ function TTSService_Base() {
     var result = false;
     var details = "";
     try {
-      browser.tts.stop();
-      result = true;
+      if (!!browser.tts.stop) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get('testname.checkTTSStopAPI', 'message'),
-        'browser.tts.stop()', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSStopAPI', 'message'), 'browser.tts.stop()', result,
+        details);
   };
 
   this.checkTTSStatusAPI = function() {
@@ -256,15 +258,16 @@ function TTSService_Base() {
 
     var details = "";
     try {
-      browser.tts.getStatus();
-      result = true;
+      if (!!browser.tts.getStatus) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSStatusAPI', 'message'),
-        'browser.tts.getStatus()', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSStatusAPI', 'message'), 'browser.tts.getStatus()',
+        result, details);
   };
 
   this.checkTTSVoicesAPI = function() {
@@ -272,25 +275,24 @@ function TTSService_Base() {
 
     var details = "";
     try {
-      browser.tts.getVoices();
-      result = true;
+      if (!!browser.tts.getVoices) {
+        result = true;
+      }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSVoicesAPI', 'message'),
-        'browser.tts.getVoices()', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSVoicesAPI', 'message'), 'browser.tts.getVoices()',
+        result, details);
   };
 
   this.checkTTSPitchAPI = function() {
     var result = null;
 
     var details = null;
-
-    Util.Validation
-        .setResultItems(2, messageResource.get('testname.checkTTSPitchAPI', 'message'),
-            '', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSPitchAPI', 'message'), '', result, details);
   };
 
   this.checkTTSRateAPI = function() {
@@ -298,17 +300,17 @@ function TTSService_Base() {
 
     var details = null;
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSRateAPI', 'message'), '', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSRateAPI', 'message'), '', result, details);
   };
 
   this.checkTTSVolumeAPI = function() {
     var result = null;
 
     var details = null;
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSVolumeAPI', 'message'), '', result,
-        details);
+
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSVolumeAPI', 'message'), '', result, details);
   };
 
   this.checkTTSSpeakAPI = function() {
@@ -323,8 +325,9 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get('testname.checkTTSSpeakAPI', 'message'),
-        'browser.tts.speak', result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSSpeakAPI', 'message'), 'browser.tts.speak', result,
+        details);
   };
 
   this.checkTTSPauseAPI = function() {
@@ -339,8 +342,8 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSPauseAPI', 'message'), 'browser.tts.pause', result,
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSPauseAPI', 'message'), 'browser.tts.pause', result,
         details);
   };
 
@@ -356,9 +359,18 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSResumeAPI', 'message'), 'browser.tts.resume',
-        result, details);
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSResumeAPI', 'message'), 'browser.tts.resume', result,
+        details);
   };
 
+  this.checkTTSVoiceNameAPI = function() {
+
+    var result = null;
+
+    var details = null;
+
+    Util.Validation.setResultItems(2, messageResource.get(
+        'testname.checkTTSVoiceNameAPI', 'message'), '', result, details);
+  };
 }
