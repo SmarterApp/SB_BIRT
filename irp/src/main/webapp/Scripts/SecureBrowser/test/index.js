@@ -104,7 +104,8 @@ function getMethods(obj) {
 }
 
 function closeBrowser() {
-  impl.close();
+
+  impl.close(false);
 }
 
 function populateResults() {

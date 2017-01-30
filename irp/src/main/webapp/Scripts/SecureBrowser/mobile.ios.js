@@ -480,3 +480,18 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkEmptyClipBoardAPI = function() {
       'testname.checkEmptyClipBoardAPI', 'message'), '', result, details);
 
 };
+
+TDS.SecureBrowser.Mobile.iOS.prototype.close = function(restart) {
+
+  try {
+    if (!!this._airMobile) {
+      if (this._airMobile.security.close === 'function') {
+        this._airMobile.security.close(restart);
+
+      }
+      return true;
+    }
+  } catch (ex) {
+  }
+  return false;
+};

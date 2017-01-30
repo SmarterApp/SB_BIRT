@@ -483,7 +483,7 @@
     return false;
   };
 
-  Firefox.prototype.close = function() {
+  Firefox.prototype.close = function(_restart) {
 
     // if the browser is Mac OS 10.8 or higher, re-enable screenshots
     if (Util.Browser.isMac() && Util.Browser.osxVersionIsAtLeast(10, 8)
