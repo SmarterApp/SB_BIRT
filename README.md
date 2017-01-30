@@ -41,6 +41,7 @@ testResult : false}`
 ### UI Framework
 * jQuery v1.11.1
 * jsGrid v1.5.3 
+* messageResource.js , A simple JavaScript library for reading message resource property files of following format.
 
 ### Pre-Dependencies
 * Tomcat 6 or higher
