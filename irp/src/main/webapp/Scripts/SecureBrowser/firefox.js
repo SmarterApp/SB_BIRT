@@ -17,9 +17,11 @@
   function Firefox() {
     Firefox.superclass.constructor.call(this);
     this.runtime = null;
-    this._ignoringBreachEvents = null; // Timer object in case we are
-    // temporarily not reacting to
-    // sb-breach-events.
+
+    /*
+     * Timer object in case we are temporarily not reacting to sb-breach-events.
+     */
+    this._ignoringBreachEvents = null;
   }
   ;
 
@@ -61,63 +63,63 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(1, '[SecureBrowser] global object check',
-        'SecureBrowser', result, details);
+    Util.Validation.setResultItems('constant.checkGlobalObject',
+        'testname.checkGlobalObject.SB', 'api.checkGlobalObject.SB', result,
+        details);
 
   };
 
   Firefox.prototype.checkDeviceInfo = function() {
 
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
     try {
       if (!!this.runtime.getDeviceInfo) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
 
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(3, messageResource.get(
-        'testname.checkDeviceInfo', 'message'), '!!runtime.getDeviceInfo',
-        result, details);
+    Util.Validation.setResultItems('constant.checkDeviceInfo',
+        'testname.checkDeviceInfo', 'api.checkDeviceInfo.SB', result, details);
   };
 
   Firefox.prototype.checkMACAddressAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
     try {
       if (!!this.runtime.getMACAddress) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkMACAddressAPI', 'message'), '!!runtime.getMACAddress',
-        result, details);
+    Util.Validation.setResultItems('constant.checkMACAddressAPI',
+        'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.SB', result,
+        details);
 
   };
 
   Firefox.prototype.checkIPAddressAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
     try {
       if (!!this.runtime.getIPAddressList) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(4, messageResource.get(
-        'testname.checkIPAddressAPI', 'message'), '!!runtime.getIPAddressList',
-        result, details);
+    Util.Validation.setResultItems('constant.checkIPAddressAPI',
+        'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.SB', result,
+        details);
 
   };
 
@@ -130,55 +132,55 @@
       if (startTimePref != null) {
         Date.parse(startTimePref);
         result = true;
-        apiInfo = 'Mozilla.getPreference("bmakiosk.startup.timestamp")';
+        apiInfo = 'api.checkAppStartTimeAPI.SB.mozilla.preference';
       } else if (window.sessionStorage.getItem("appStartTime") != null) {
         result = true;
-        apiInfo = 'window.sessionStorage.getItem("appStartTime")';
+        apiInfo = 'api.checkAppStartTimeAPI.SB';
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkAppStartTimeAPI', 'message'), apiInfo, result, details);
+    Util.Validation.setResultItems('constant.checkAppStartTimeAPI',
+        'testname.checkAppStartTimeAPI', apiInfo, result, details);
   };
 
   // SEC-32
   Firefox.prototype.checkClearCacheAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
     try {
       if (!!SecureBrowser.clearCache) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(32, messageResource.get(
-        'testname.checkClearCacheAPI', 'message'),
-        '!!SecureBrowser.clearCache', result, details);
+    Util.Validation.setResultItems('constant.checkClearCacheAPI',
+        'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.SB', result,
+        details);
   };
   // SEC-33
   Firefox.prototype.checkClearCookiesAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
     try {
 
       if (!!SecureBrowser.clearCookies) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(33, messageResource.get(
-        'testname.checkClearCookiesAPI', 'message'),
-        '!!SecureBrowser.clearCookies', result, details);
+    Util.Validation.setResultItems('constant.checkClearCookiesAPI',
+        'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.SB', result,
+        details);
 
   };
 
@@ -196,28 +198,28 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(26, messageResource.get(
-        'testname.checkEmptyClipBoardAPI', 'message'),
-        '!!SecureBrowser.emptyClipBoard', result, details);
+    Util.Validation.setResultItems('constant.checkEmptyClipBoardAPI',
+        'testname.checkEmptyClipBoardAPI', 'api.checkEmptyClipBoardAPI.SB',
+        result, details);
   };
 
   // SEC-34
   Firefox.prototype.checkGetProcessListAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
     try {
       if (!!this.runtime.getRunningProcessList) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
     } catch (e) {
       details = ex.getMessage();
     }
 
-    Util.Validation.setResultItems(34, messageResource.get(
-        'testname.checkGetProcessListAPI', 'message'),
-        '!!this.runtime.getRunningProcessList', result, details);
+    Util.Validation.setResultItems('constant.checkGetProcessListAPI',
+        'testname.checkGetProcessListAPI', 'api.checkGetProcessListAPI.SB',
+        result, details);
   };
 
   // SEC-35
@@ -233,31 +235,28 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(35, messageResource.get(
-        'testname.checkCloseAPI', 'message'), '!!SecureBrowser.CloseWindow',
-        result, details);
+    Util.Validation.setResultItems('constant.checkCloseAPI',
+        'testname.checkCloseAPI', 'api.checkCloseAPI.SB', result, details);
   };
 
   // SEC-30
-  // TODO placeholder. Need more research
   Firefox.prototype.checkEnableLockDownAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(30, messageResource.get(
-        'testname.checkEnableLockDownAPI', 'message'), '', result, details);
+    Util.Validation.setResultItems('constant.checkEnableLockDownAPI',
+        'testname.checkEnableLockDownAPI', 'api.checkEnableLockDownAPI.SB',
+        result, details);
   };
 
   // SEC-31
-  // TODO this is a placeholder. More research is needed.
   Firefox.prototype.checkIsEnvironmentSecureAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation
-        .setResultItems(31, messageResource.get(
-            'testname.checkIsEnvironmentSecureAPI', 'message'), '', result,
-            details);
+    Util.Validation.setResultItems('constant.checkIsEnvironmentSecureAPI',
+        'testname.checkIsEnvironmentSecureAPI',
+        'api.checkIsEnvironmentSecureAPI.SB', result, details);
   };
 
   Firefox.prototype.dispose = function() {
@@ -271,8 +270,10 @@
   };
 
   Firefox.prototype.disableDevToolWindow = function() {
-    // disable the development tools window which would be invoked by
-    // shortcut key Shift+F5 (bug # 169134)
+    /*
+     * disable the development tools window which would be invoked by shortcut
+     * key Shift+F5 (bug # 169134)
+     */
     Components.utils.import("resource://gre/modules/Services.jsm");
     var w = Services.wm.getMostRecentWindow("navigator:browser");
     w.gDevToolsBrowser = null;
@@ -450,9 +451,11 @@
 
   Firefox.prototype.fixFocus = function() {
 
-    // We need to temporarily suspend listening for security breach events
-    // because the act of opening up hidden windows will trigger that
-    // We will resume shortly afterwards
+    /*
+     * We need to temporarily suspend listening for security breach events
+     * because the act of opening up hidden windows will trigger that We will
+     * resume shortly afterwards
+     */
     var stopIgnoringBreachEvents = function() {
       this._ignoringBreachEvents = null;
       Util.log("Resuming breach detection");
@@ -507,8 +510,9 @@
     // close the secure browser
     try {
       if (Util.Browser.isWindows()) {
-        // restore the capability for language and keyboard layout
-        // switch
+        /*
+         * restore the capability for language and keyboard layout switch
+         */
         this.restoreKeyboardLayoutSettings();
       }
 
@@ -522,8 +526,10 @@
       // simulate page unload so that listeners can gracefully cleanup
       $(window).trigger('beforeunload');
 
-      // We are putting this in a setTimeout so that listeners to the
-      // beforeunload event have a chance to clean up gracefully
+      /*
+       * We are putting this in a setTimeout so that listeners to the
+       * beforeunload event have a chance to clean up gracefully
+       */
       setTimeout(function() {
         SecureBrowser.CloseWindow();
       }, 1000);
@@ -554,8 +560,10 @@
 
   // check if we can lock down the Secure Browser by calling kill process API
   Firefox.prototype.canKillProcess = function() {
-    // we can and only need to kill process for Secure Browser 8 or later
-    // versions running on Windows 8.0 and 8.1
+    /*
+     * we can and only need to kill process for Secure Browser 8 or later
+     * versions running on Windows 8.0 and 8.1
+     */
     return (Util.Browser.isWindows()
         && Util.Browser.getWindowsNTVersion() >= 6.2 && Util.Browser
         .getSecureVersion() >= 8);
@@ -565,10 +573,11 @@
     try {
       var that = this;
       if (lockDown) {
-        // disable the capability for language and keyboard layout
-        // switch
+        /*
+         * disable the capability for language and keyboard layout switch
+         */
         this.disableKeyboardLayoutChanges();
-        // lock dow the secure browser by killing explorer.exe
+        // lock down the secure browser by killing explorer.exe
         if (this._hasRuntime() && this.canKillProcess()) {
           this.killProcess("explorer.exe");
         }
@@ -603,10 +612,9 @@
         } else if (this.runtime.systemVolume != null) {
           console.log('mute volume');
           Util.Storage.set('tds-mutedVolume', this.runtime.systemVolume); // store
-          // the
-          // system
-          // volume, will be
-          // restored after unmute
+          /*
+           * the system volume, will be restored after unmute
+           */
           this._setRuntimeVolume(0);
           return true;
         }
@@ -704,9 +712,10 @@
       if (this._hasRuntime() && typeof this.runtime.permissive == 'boolean') {
         this.runtime.permissive = enabled;
         changed = true;
-        // restart process explorer.exe if permissive mode is enabled,
-        // or kill this process if
-        // permissive mode is disabled
+        /*
+         * restart process explorer.exe if permissive mode is enabled, or kill
+         * this process if permissive mode is disabled
+         */
         if (this.canKillProcess()) {
           if (enabled) {
             var systemRoot = this.getEnvironment("SYSTEMROOT");
@@ -822,12 +831,15 @@
     }
   };
 
-  // disable keyboard layout changes using shortcut keys
-  // the solution is to modify certain registry key values to disable the
-  // feature
+  /*
+   * disable keyboard layout changes using shortcut keys the solution is to
+   * modify certain registry key values to disable the feature
+   */
   Firefox.prototype.disableKeyboardLayoutChanges = function() {
-    // change the registry key value only if this is the first time the
-    // login page is loaded after the browser is launched
+    /*
+     * change the registry key value only if this is the first time the login
+     * page is loaded after the browser is launched
+     */
     if (Mozilla.getPreference("windows.previouslanguagehotkeyvalue") == null) {
       var languageHotKeyValue = this.readRegistryValue(
           Util.SecureBrowser.HKEY_CURRENT_USER, "Keyboard Layout\\toggle",
@@ -837,8 +849,10 @@
         this.writeRegistryValue(Util.SecureBrowser.HKEY_CURRENT_USER,
             "Keyboard Layout\\toggle", "Language Hotkey", "string", "3");
       }
-      // use local storage to keep the previous value, we need to restore
-      // to this value when we close the browser
+      /*
+       * use local storage to keep the previous value, we need to restore to
+       * this value when we close the browser
+       */
       if (languageHotKeyValue == null) {
         Mozilla.setPreference("windows.previouslanguagehotkeyvalue", "");
       } else {
@@ -846,7 +860,6 @@
             languageHotKeyValue);
       }
     }
-    // if (localStorage.previousLayoutHotKeyValue == null) {
     if (Mozilla.getPreference("windows.previouslayouthotkeyvalue") == null) {
       var layoutHotKeyValue = this.readRegistryValue(
           Util.SecureBrowser.HKEY_CURRENT_USER, "Keyboard Layout\\toggle",
@@ -856,8 +869,10 @@
         this.writeRegistryValue(Util.SecureBrowser.HKEY_CURRENT_USER,
             "Keyboard Layout\\toggle", "Layout Hotkey", "string", "3");
       }
-      // use local storage to keep the previous value, we need to revert
-      // to this value when we close the browser
+      /*
+       * use local storage to keep the previous value, we need to revert to this
+       * value when we close the browser
+       */
       if (layoutHotKeyValue == null) {
         Mozilla.setPreference("windows.previouslayouthotkeyvalue", "");
       } else {
@@ -867,9 +882,11 @@
     }
   };
 
-  // restore the registry key values for keyboard layout capability using
-  // shortcut keys
-  // this function is called when the secure browser is being closed
+  /*
+   * restore the registry key values for keyboard layout capability using
+   * shortcut keys this function is called when the secure browser is being
+   * closed
+   */
   Firefox.prototype.restoreKeyboardLayoutSettings = function() {
     // remove the registry key value or restore it to previous value
     if (Mozilla.getPreference('windows.previouslanguagehotkeyvalue') == '') {
@@ -910,9 +927,11 @@
     return null;
   }
 
-  // read a registry key value
-  // https://developer.mozilla.org/en-US/docs/Accessing_the_Windows_Registry_Using_XPCOM
-  // http://stackoverflow.com/questions/62289/read-write-to-windows-registry-using-java
+  /*
+   * read a registry key value
+   * https://developer.mozilla.org/en-US/docs/Accessing_the_Windows_Registry_Using_XPCOM
+   * http://stackoverflow.com/questions/62289/read-write-to-windows-registry-using-java
+   */
   function readRegistryValue(hkey, key, valueName) {
     var value = null;
     var regClass = Components.classes["@mozilla.org/windows-registry-key;1"];
@@ -926,17 +945,21 @@
     return value;
   }
 
-  // get windows registry key in the native value type (string, binary, int or
-  // int64)
+  /*
+   * get windows registry key in the native value type (string, binary, int or
+   * int64)
+   */
   Firefox.prototype.readRegistryValue = function(hkey, key, valueName) {
     var value = null;
     Mozilla.execPrivileged(function() {
       try {
         value = readRegistryValue(hkey, key, valueName);
       } catch (ex) {
-        // If you try and open a key that doesn't exist we get:
-        // "Component returned failure code: 0x80004005
-        // (NS_ERROR_FAILURE) [nsIWindowsRegKey.open]"
+        /*
+         * If you try and open a key that doesn't exist we get: "Component
+         * returned failure code: 0x80004005 (NS_ERROR_FAILURE)
+         * [nsIWindowsRegKey.open]"
+         */
       }
     });
     return value;
@@ -959,10 +982,11 @@
     }
   }
 
-  // write a new value to a registry key
-  // https://developer.mozilla.org/en-US/docs/Accessing_the_Windows_Registry_Using_XPCOM
-  // http://stackoverflow.com/questions/62289/read-write-to-windows-registry-using-java
-  function writeRegistryValue(hkey, key, valueName, type, value) {
+  /*
+   * write a new value to a registry key
+   * https://developer.mozilla.org/en-US/docs/Accessing_the_Windows_Registry_Using_XPCOM
+   * http://stackoverflow.com/questions/62289/read-write-to-windows-registry-using-java
+   */function writeRegistryValue(hkey, key, valueName, type, value) {
     var regClass = Components.classes["@mozilla.org/windows-registry-key;1"];
     var registry = regClass
         .createInstance(Components.interfaces.nsIWindowsRegKey);
@@ -983,9 +1007,11 @@
     });
   };
 
-  // remove a registry key value
-  // https://developer.mozilla.org/en-US/docs/Accessing_the_Windows_Registry_Using_XPCOM
-  // http://stackoverflow.com/questions/62289/read-write-to-windows-registry-using-java
+  /*
+   * remove a registry key value
+   * https://developer.mozilla.org/en-US/docs/Accessing_the_Windows_Registry_Using_XPCOM
+   * http://stackoverflow.com/questions/62289/read-write-to-windows-registry-using-java
+   */
   function removeRegistryValue(hkey, key, valueName) {
     var regClass = Components.classes["@mozilla.org/windows-registry-key;1"];
     var registry = regClass

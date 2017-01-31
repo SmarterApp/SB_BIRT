@@ -20,8 +20,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   }
   ;
 
-  // Any SB initialization code. This is called upon instantiation and only
-  // once
+  /* Any SB initialization code. This is called upon instantiation and only once */
   Base.prototype.initialize = function() {
   };
 
@@ -30,38 +29,39 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'window.browser is not defined';
 
-    Util.Validation.setResultItems(1, '[window.browser] global object check',
-        'window.browser', result, details);
+    Util.Validation.setResultItems('constant.checkGlobalObject',
+        'testname.checkGlobalObject.certified',
+        'api.checkGlobalObject.certified', result, details);
 
   };
 
   Base.prototype.checkDeviceInfo = function() {
 
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkDeviceInfo', 'message'),
-        'browser.security.getDeviceInfo()', result, details);
+    Util.Validation.setResultItems('constant.checkDeviceInfo',
+        'testname.checkDeviceInfo', 'api.checkDeviceInfo.certified', result,
+        details);
   };
 
   Base.prototype.checkMACAddressAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkMACAddressAPI', 'message'),
-        'browser.security.getMACAddress()', result, details);
+    Util.Validation.setResultItems('constant.checkMACAddressAPI',
+        'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.certified',
+        result, details);
 
   };
 
   Base.prototype.checkIPAddressAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkIPAddressAPI', 'message'),
-        'browser.security.getIPAddressList()', result, details);
+    Util.Validation.setResultItems('constant.checkIPAddressAPI',
+        'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.certified',
+        result, details);
 
   };
 
@@ -69,19 +69,19 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = "browser.security.getStartTime() is not defined";
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkAppStartTimeAPI', 'message'),
-        'browser.security.getStartTime()', result, details);
+    Util.Validation.setResultItems('constant.checkAppStartTimeAPI',
+        'testname.checkAppStartTimeAPI', 'api.checkAppStartTimeAPI.certified',
+        result, details);
   };
 
   // SEC-32
   Base.prototype.checkClearCacheAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(32, messageResource.get(
-        'testname.checkClearCacheAPI', 'message'),
-        '!!browser.security.clearCache()', result, details);
+    Util.Validation.setResultItems('constant.checkClearCacheAPI',
+        'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.certified',
+        result, details);
   };
 
   // SEC-26
@@ -89,40 +89,39 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'browser.security.emptyClipBoard() is not defined';
 
-    Util.Validation.setResultItems(26, messageResource.get(
-        'testname.checkEmptyClipBoardAPI', 'message'),
-        '!!browser.security.emptyClipBoard()', result, details);
+    Util.Validation.setResultItems('constant.checkEmptyClipBoardAPI',
+        'testname.checkEmptyClipBoardAPI',
+        'api.checkEmptyClipBoardAPI.certified', result, details);
   };
 
   // SEC-33
   Base.prototype.checkClearCookiesAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(33, messageResource.get(
-        'testname.checkClearCookiesAPI', 'message'),
-        '!!browser.security.clearCookies()', result, details);
+    Util.Validation.setResultItems('constant.checkClearCookiesAPI',
+        'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.certified',
+        result, details);
   };
 
   // SEC-31
   Base.prototype.checkIsEnvironmentSecureAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation
-        .setResultItems(31, messageResource.get(
-            'testname.checkIsEnvironmentSecureAPI', 'message'), '', result,
-            details);
+    Util.Validation.setResultItems('constant.checkIsEnvironmentSecureAPI',
+        'testname.checkIsEnvironmentSecureAPI',
+        'api.checkIsEnvironmentSecureAPI.certified', result, details);
   };
 
   // SEC-34
   Base.prototype.checkGetProcessListAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(34, messageResource.get(
-        'testname.checkGetProcessListAPI', 'message'),
-        '!!browser.security.getProcessList()', result, details);
+    Util.Validation.setResultItems('constant.checkGetProcessListAPI',
+        'testname.checkGetProcessListAPI',
+        'api.checkGetProcessListAPI.certified', result, details);
   };
 
   // SEC-35
@@ -130,18 +129,19 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'browser.security.close() is not defined';
 
-    Util.Validation.setResultItems(35, messageResource.get(
-        'testname.checkCloseAPI', 'message'), '!!browser.security.close()',
-        result, details);
+    Util.Validation.setResultItems('constant.checkCloseAPI',
+        'testname.checkCloseAPI', 'api.checkCloseAPI.certified', result,
+        details);
   };
 
   // SEC-30
   Base.prototype.checkEnableLockDownAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(30, messageResource.get(
-        'testname.checkEnableLockDownAPI', 'message'), '', result, details);
+    Util.Validation.setResultItems('constant.checkEnableLockDownAPI',
+        'testname.checkEnableLockDownAPI',
+        'api.checkEnableLockDownAPI.certified', result, details);
   };
 
   Base.prototype.dispose = function() {
@@ -212,26 +212,25 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     return [];
   };
 
-  // get list of blacklisted processes
+  /* get list of blacklisted processes */
   Base.prototype.getForbiddenApps = function() {
     var currentForbiddenApps = [];
 
-    // make sure forbidden apps list exists
+    /* make sure forbidden apps list exists */
     if (typeof (TDS) != 'object' || typeof (TDS.Config) != 'object'
         || typeof (TDS.Config.forbiddenApps) != 'object'
         || (TDS.Config.forbiddenApps == null)) {
       return currentForbiddenApps;
     }
 
-    // get currently running processes
-    var processList = this.getProcessList(); // []<string>
+    /* get currently running processes []<string> */
+    var processList = this.getProcessList();
 
     if (processList) {
       Util.Array.each(processList, function(currentProcess) {
         var processName = currentProcess;
         var parentProcessName = '';
-        // check if the process contains parent process
-        // info
+        /* check if the process contains parent process info */
         if (currentProcess.indexOf("|") > -1) {
           var processInfoArray = currentProcess.split("|");
           processName = processInfoArray[0];
@@ -239,30 +238,24 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         }
         var matchingApp = Util.Array.find(TDS.Config.forbiddenApps, function(
             forbiddenApp) {
-          // check if there is any
-          // proceses on the forbidden
-          // app list
+          /* check if there is any proceses on the forbidden app list */
           if (Util.String.equals(forbiddenApp.name, processName, {
             trim : true,
             ignoreCase : true
           })) {
-            // compare parent 
-            // process with
-            // exemptions, if either
-            // the parent process or
-            // exemptions are
-            // unavailable, mark
-            // this process as
-            // forbidden
+            /*
+             * compare parent process with exemptions, if either the parent
+             * process or exemptions are unavailable, mark this process as
+             * forbidden
+             */
             if (Util.String.isNullOrEmpty(parentProcessName)
                 || Util.String.isNullOrEmpty(forbiddenApp.exemptions)) {
               return true;
             } else {
-              // check if the
-              // parent process
-              // name matches with
-              // any exemption
-              // processes
+              /*
+               * check if the parent process name matches with any exemption
+               * processes
+               */
               var exemptionList = forbiddenApp.exemptions.split(",");
               var exemptionMatchFound = Util.Array.find(exemptionList,
                   function(exemption) {
@@ -281,36 +274,40 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     return currentForbiddenApps;
   };
 
-  // call this function to fix an issue with the SB not getting proper focus
-  // and arrow keys not working
+  /*
+   * call this function to fix an issue with the SB not getting proper focus and
+   * arrow keys not working
+   */
   Base.prototype.fixFocus = function() {
     return false;
   };
 
-  // force close the secure browser
+  /* force close the secure browser */
   Base.prototype.close = function() {
     window.close();
   };
 
-  // Get the start time of when the app was launched
+  /* Get the start time of when the app was launched */
   Base.prototype.getAppStartTime = function() {
-    // set a session storage appStartTime item
+    /* set a session storage appStartTime item */
     if (window.sessionStorage.getItem("appStartTime") != null) {
       return Date.parse(window.sessionStorage.getItem("appStartTime"));
     }
-    // OK - we don't know anymore
+
     return null;
   };
 
-  // Method called at startup to see if we need to set the appStartTime incase
-  // we dont have a pref to report this
+  /*
+   * Method called at startup to see if we need to set the appStartTime incase
+   * we dont have a pref to report this
+   */
   Base.prototype.setAppStartTime = function(timestamp, forceSet) {
     if (forceSet || this.getAppStartTime() == null) {
       window.sessionStorage.setItem("appStartTime", timestamp);
     }
   };
 
-  // Returns a handle to the native browser engine.
+  /* Returns a handle to the native browser engine. */
   Base.prototype.getRunTime = function() {
     return null;
   };

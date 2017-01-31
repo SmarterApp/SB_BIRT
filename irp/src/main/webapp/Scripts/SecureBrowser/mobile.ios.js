@@ -74,22 +74,26 @@ TDS.SecureBrowser.Mobile.iOS.prototype.initialize = function() {
     return isLockedDown;
   };
   var isAutonomousGuidedAccessEnabled; // we cannot determine whether
-  // autonomous guided access is
-  // available until the student app
-  // is fully loaded
+  /*
+   * autonomous guided access is available until the student app is fully loaded
+   */
   var ASAMMode = this._ASAMMode;
   var self = this;
 
-  // a function to check if Automatic Assessment Configurator is enabled for a
-  // given iOS version (yes for iOS 9.3.2 or later)
+  /*
+   * a function to check if Automatic Assessment Configurator is enabled for a
+   * given iOS version (yes for iOS 9.3.2 or later)
+   */
   this.isAACEnabled = function() {
     // retrieve and parse iOS version
     var osVersion = secBrowser.device.operatingSystemVersion;
     if (osVersion == null || osVersion == '' || osVersion == 'unknown') {
       return false;
     }
-    // the version retrieved from iOS brower contains build id which should
-    // be ignored; an example iOS version is '8.3 12F69'
+    /*
+     * the version retrieved from iOS brower contains build id which should be
+     * ignored; an example iOS version is '8.3 12F69'
+     */
     var versions = osVersion.split(' ')[0].split('.');
     if (versions.length == 1) {
       versions.push(0, 0);
@@ -106,9 +110,11 @@ TDS.SecureBrowser.Mobile.iOS.prototype.initialize = function() {
 
   this.checkAutonomousGuidedAccess = function() {
     if (typeof (isAutonomousGuidedAccessEnabled) == 'undefined') {
-      // Determine whether autonomous guided access is available. ASAM
-      // will cause the browser to crash on iOS 7.0.x,
-      // so we limit the use of ASAM to iOS 7.1 or later versions.
+      /*
+       * Determine whether autonomous guided access is available. ASAM will
+       * cause the browser to crash on iOS 7.0.x, so we limit the use of ASAM to
+       * iOS 7.1 or later versions.
+       */
       if (Util.Browser.getIOSVersion() >= 7.1) {
         isAutonomousGuidedAccessEnabled = TDS.getAppSetting(
             'sb.iosAutonomousGuidedAccessAllowed', false);
@@ -160,8 +166,10 @@ TDS.SecureBrowser.Mobile.iOS.prototype.initialize = function() {
       }
     } else if (this.checkAutonomousGuidedAccess()
         && guidedAccessMode == 'disabled') {
-      // if autonomous guided access is available, enable guided access
-      // when system lockdown
+      /*
+       * if autonomous guided access is available, enable guided access when
+       * system lockdown
+       */
       secBrowser.enableGuidedAccess(lockdown, null, function(enableResults) {
         if (enableResults.didSucceed) {
           guidedAccessMode = 'enabled';
@@ -201,8 +209,9 @@ TDS.SecureBrowser.Mobile.iOS.prototype.initialize = function() {
 
   // listen and check if the browser has been pushed to the background
   secBrowser.listen(secBrowser.EVENT_ENTER_BACKGROUND, document, function() {
-    // record the time when the browser enters background during a test
-    // session
+    /*
+     * record the time when the browser enters background during a test session
+     */
     if (isLockedDown) {
       startTimeBackground = (new Date()).getTime();
     }
@@ -294,63 +303,62 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkGlobalObject = function() {
     details = ex.message;
   }
 
-  Util.Validation
-      .setResultItems(1, '[Summit SecureBrowser Mobile] global object check',
-          '(new Summit.SecureBrowser.Mobile()).getNativeBrowser()', result,
-          details);
+  Util.Validation.setResultItems('constant.checkGlobalObject',
+      'testname.checkGlobalObject.mobile', 'api.checkGlobalObject.mobile',
+      result, details);
 
 };
 
 TDS.SecureBrowser.Mobile.iOS.prototype.checkDeviceInfo = function() {
   var result = true;
-  var details = messageResource.get('testApi.remove', 'message');
+  var details = 'testApi.remove';
   try {
     if (!!this._airMobile.security.getDeviceInfo) {
       result = false;
-      details = messageResource.get('testApi.exist', 'message');
+      details = 'testApi.exist';
     }
   } catch (ex) {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(2, messageResource.get(
-      'testname.checkDeviceInfo', 'message'),
-      '!!runtime.security.getDeviceInfo', result, details);
+  Util.Validation
+      .setResultItems('constant.checkDeviceInfo', 'testname.checkDeviceInfo',
+          'api.checkDeviceInfo.mobile', result, details);
 };
 
 TDS.SecureBrowser.Mobile.iOS.prototype.checkMACAddressAPI = function() {
   var result = true;
-  var details = messageResource.get('testApi.remove', 'message');
+  var details = 'testApi.remove';
   try {
     if (!!this._airMobile.security.getMACAddress) {
       result = false;
-      details = messageResource.get('testApi.exist', 'message');
+      details = 'testApi.exist';
     }
   } catch (ex) {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(2, messageResource.get(
-      'testname.checkMACAddressAPI', 'message'),
-      '!!runtime.security.getMACAddress', result, details);
+  Util.Validation.setResultItems('constant.checkMACAddressAPI',
+      'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.mobile', result,
+      details);
 
 };
 
 TDS.SecureBrowser.Mobile.iOS.prototype.checkIPAddressAPI = function() {
   var result = true;
-  var details = messageResource.get('testApi.remove', 'message');
+  var details = 'testApi.remove';
   try {
     if (!!this._airMobile.security.getIPAddressList) {
       result = false;
-      details = messageResource.get('testApi.exist', 'message');
+      details = 'testApi.exist';
     }
   } catch (ex) {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(2, messageResource.get(
-      'testname.checkIPAddressAPI', 'message'),
-      '!!runtime.security.getIPAddressList', result, details);
+  Util.Validation.setResultItems('constant.checkIPAddressAPI',
+      'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.mobile', result,
+      details);
 
 };
 
@@ -365,9 +373,9 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkAppStartTimeAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(2, messageResource.get(
-      'testname.checkAppStartTimeAPI', 'message'),
-      '!!runtime.security.getStartTime', result, details);
+  Util.Validation.setResultItems('constant.checkAppStartTimeAPI',
+      'testname.checkAppStartTimeAPI', 'api.checkAppStartTimeAPI.mobile',
+      result, details);
 };
 
 // SEC-30
@@ -382,63 +390,63 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkEnableLockDownAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(30, messageResource.get(
-      'testname.checkEnableLockDownAPI', 'message'),
-      '!!runtime.security.enableLockdown', result, details);
+  Util.Validation.setResultItems('constant.checkEnableLockDownAPI',
+      'testname.checkEnableLockDownAPI', 'api.checkEnableLockDownAPI.mobile',
+      result, details);
 };
 
 // SEC-33
 TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCookiesAPI = function() {
   var result = true;
-  var details = messageResource.get('testApi.remove', 'message');
+  var details = 'testApi.remove';
   try {
     if (!!this._airMobile.security.clearCookies) {
       result = false;
-      details = messageResource.get('testApi.exist', 'message');
+      details = 'testApi.exist';
     }
   } catch (ex) {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(33, messageResource.get(
-      'testname.checkClearCookiesAPI', 'message'),
-      '!!runtime.security.clearCookies', result, details);
+  Util.Validation.setResultItems('constant.checkClearCookiesAPI',
+      'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.mobile',
+      result, details);
 };
 
 // SEC-32
 TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCacheAPI = function() {
   var result = true;
-  var details = messageResource.get('testApi.remove', 'message');
+  var details = 'testApi.remove';
   try {
     if (!!this._airMobile.security.clearCache) {
       result = false;
-      details = messageResource.get('testApi.exist', 'message');
+      details = 'testApi.exist';
     }
   } catch (ex) {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(32, messageResource.get(
-      'testname.checkClearCacheAPI', 'message'),
-      '!!runtime.security.clearCache', result, details);
+  Util.Validation.setResultItems('constant.checkClearCacheAPI',
+      'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.mobile', result,
+      details);
 };
 
 // SEC-31
 TDS.SecureBrowser.Mobile.iOS.prototype.checkIsEnvironmentSecureAPI = function() {
   var result = true;
-  var details = messageResource.get('testApi.remove', 'message');
+  var details = 'testApi.remove';
   try {
     if (!!this._airMobile.security.isEnvironmentSecure) {
       result = false;
-      details = messageResource.get('testApi.exist', 'message');
+      details = 'testApi.exist';
     }
   } catch (ex) {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(31, messageResource.get(
-      'testname.checkIsEnvironmentSecureAPI', 'message'),
-      '!!runtime.security.isEnvironmentSecure', result, details);
+  Util.Validation.setResultItems('constant.checkIsEnvironmentSecureAPI',
+      'testname.checkIsEnvironmentSecureAPI',
+      'api.checkIsEnvironmentSecureAPI.mobile', result, details);
 };
 
 // SEC-35
@@ -454,27 +462,26 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkCloseAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(35, messageResource.get(
-      'testname.checkCloseAPI', 'message'), '!!runtime.security.close', result,
-      details);
+  Util.Validation.setResultItems('constant.checkCloseAPI',
+      'testname.checkCloseAPI', 'api.checkCloseAPI.mobile', result, details);
 };
 
 // SEC-34
 TDS.SecureBrowser.Mobile.iOS.prototype.checkGetProcessListAPI = function() {
   var result = true;
-  var details = messageResource.get('testApi.remove', 'message');
+  var details = 'testApi.remove';
   try {
     if (!!this._airMobile.security.getProcessList) {
       result = false;
-      details = messageResource.get('testApi.exist', 'message');
+      details = 'testApi.exist';
     }
   } catch (ex) {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems(34, messageResource.get(
-      'testname.checkGetProcessListAPI', 'message'),
-      '!!runtime.security.getProcessList', result, details);
+  Util.Validation.setResultItems('constant.checkGetProcessListAPI',
+      'testname.checkGetProcessListAPI', 'api.checkGetProcessListAPI.mobile',
+      result, details);
 };
 
 // SEC-26
@@ -483,8 +490,9 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkEmptyClipBoardAPI = function() {
   var result = true;
   var details = 'Mobile Secure browser does not support emptyClipBoard function';
 
-  Util.Validation.setResultItems(26, messageResource.get(
-      'testname.checkEmptyClipBoardAPI', 'message'), '', result, details);
+  Util.Validation.setResultItems('constant.checkEmptyClipBoardAPI',
+      'testname.checkEmptyClipBoardAPI', 'api.checkEmptyClipBoardAPI.mobile',
+      result, details);
 
 };
 
