@@ -38,7 +38,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   Base.prototype.checkDeviceInfo = function() {
 
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
 
     Util.Validation.setResultItems('apiId.checkDeviceInfo',
         'testname.checkDeviceInfo', 'api.checkDeviceInfo.certified', result,
@@ -47,7 +47,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   Base.prototype.checkMACAddressAPI = function() {
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
 
     Util.Validation.setResultItems('apiId.checkMACAddressAPI',
         'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.certified',
@@ -57,7 +57,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   Base.prototype.checkIPAddressAPI = function() {
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
 
     Util.Validation.setResultItems('apiId.checkIPAddressAPI',
         'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.certified',
@@ -77,7 +77,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   // SEC-32
   Base.prototype.checkClearCacheAPI = function() {
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
 
     Util.Validation.setResultItems('apiId.checkClearCacheAPI',
         'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.certified',
@@ -97,7 +97,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   // SEC-33
   Base.prototype.checkClearCookiesAPI = function() {
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
 
     Util.Validation.setResultItems('apiId.checkClearCookiesAPI',
         'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.certified',
@@ -107,7 +107,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   // SEC-31
   Base.prototype.checkIsEnvironmentSecureAPI = function() {
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
 
     Util.Validation.setResultItems('apiId.checkIsEnvironmentSecureAPI',
         'testname.checkIsEnvironmentSecureAPI',
@@ -117,7 +117,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   // SEC-34
   Base.prototype.checkGetProcessListAPI = function() {
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
 
     Util.Validation.setResultItems('apiId.checkGetProcessListAPI',
         'testname.checkGetProcessListAPI',
@@ -137,7 +137,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   // SEC-30
   Base.prototype.checkEnableLockDownAPI = function() {
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
 
     Util.Validation.setResultItems('apiId.checkEnableLockDownAPI',
         'testname.checkEnableLockDownAPI',

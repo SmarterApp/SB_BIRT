@@ -159,11 +159,11 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkGlobalObject = function() {
 
 TDS.SecureBrowser.Mobile.Android.prototype.checkDeviceInfo = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.getDeviceInfo) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;
@@ -176,11 +176,11 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkDeviceInfo = function() {
 
 TDS.SecureBrowser.Mobile.Android.prototype.checkMACAddressAPI = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.getMACAddress) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;
@@ -194,11 +194,11 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkMACAddressAPI = function() {
 
 TDS.SecureBrowser.Mobile.Android.prototype.checkIPAddressAPI = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.getIPAddressList) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;
@@ -246,11 +246,11 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkEnableLockDownAPI = function() {
 // SEC-33
 TDS.SecureBrowser.Mobile.Android.prototype.checkClearCookiesAPI = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.clearCookies) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;
@@ -264,11 +264,11 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkClearCookiesAPI = function() {
 // SEC-32
 TDS.SecureBrowser.Mobile.Android.prototype.checkClearCacheAPI = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.clearCache) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;
@@ -282,11 +282,11 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkClearCacheAPI = function() {
 // SEC-31
 TDS.SecureBrowser.Mobile.Android.prototype.checkIsEnvironmentSecureAPI = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.isEnvironmentSecure) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;
@@ -317,11 +317,11 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkCloseAPI = function() {
 // SEC-34
 TDS.SecureBrowser.Mobile.Android.prototype.checkGetProcessListAPI = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.getProcessList) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;

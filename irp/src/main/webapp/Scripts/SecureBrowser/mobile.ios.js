@@ -311,11 +311,11 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkGlobalObject = function() {
 
 TDS.SecureBrowser.Mobile.iOS.prototype.checkDeviceInfo = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.getDeviceInfo) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;
@@ -328,11 +328,11 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkDeviceInfo = function() {
 
 TDS.SecureBrowser.Mobile.iOS.prototype.checkMACAddressAPI = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.getMACAddress) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;
@@ -346,11 +346,11 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkMACAddressAPI = function() {
 
 TDS.SecureBrowser.Mobile.iOS.prototype.checkIPAddressAPI = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.getIPAddressList) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;
@@ -398,11 +398,11 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkEnableLockDownAPI = function() {
 // SEC-33
 TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCookiesAPI = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.clearCookies) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;
@@ -416,11 +416,11 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCookiesAPI = function() {
 // SEC-32
 TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCacheAPI = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.clearCache) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;
@@ -434,11 +434,11 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCacheAPI = function() {
 // SEC-31
 TDS.SecureBrowser.Mobile.iOS.prototype.checkIsEnvironmentSecureAPI = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.isEnvironmentSecure) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;
@@ -469,11 +469,11 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkCloseAPI = function() {
 // SEC-34
 TDS.SecureBrowser.Mobile.iOS.prototype.checkGetProcessListAPI = function() {
   var result = true;
-  var details = 'testApi.remove';
+  var details = 'testApi.removed';
   try {
     if (!!this._airMobile.security.getProcessList) {
       result = false;
-      details = 'testApi.exist';
+      details = 'testApi.exists';
     }
   } catch (ex) {
     details = ex.message;

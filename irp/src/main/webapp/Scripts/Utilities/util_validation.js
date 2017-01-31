@@ -40,7 +40,7 @@
    */
   Validation.setResultItems = function(id, testName, testAPI, result, details) {
 
-    if (details == 'testApi.remove' || details == 'testApi.exist') {
+    if (details == 'testApi.removed' || details == 'testApi.exists') {
       details = messageResource.get(details, 'message');
     }
     resultArray.push({

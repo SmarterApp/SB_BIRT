@@ -45,11 +45,11 @@
   Certified.prototype.checkDeviceInfo = function() {
 
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
     try {
       if (!!browser.security.getDeviceInfo) {
         result = false;
-        details = 'testApi.exist';
+        details = 'testApi.exists';
       }
 
     } catch (ex) {
@@ -63,11 +63,11 @@
 
   Certified.prototype.checkMACAddressAPI = function() {
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
     try {
       if (!!browser.security.getMACAddress) {
         result = false;
-        details = 'testApi.exist';
+        details = 'testApi.exists';
       }
     } catch (ex) {
       details = ex.message;
@@ -81,11 +81,11 @@
 
   Certified.prototype.checkIPAddressAPI = function() {
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
     try {
       if (!!browser.security.getIPAddressList) {
         result = false;
-        details = 'testApi.exist';
+        details = 'testApi.exists';
       }
     } catch (ex) {
       details = ex.message;
@@ -117,11 +117,11 @@
   Certified.prototype.checkClearCacheAPI = function() {
 
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
     try {
       if (!!browser.security.clearCache) {
         result = false;
-        details = 'testApi.exist';
+        details = 'testApi.exists';
       }
     } catch (ex) {
       details = ex.message;
@@ -135,12 +135,12 @@
   // SEC-33
   Certified.prototype.checkClearCookiesAPI = function() {
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
 
     try {
       if (!!browser.security.clearCookies) {
         result = false;
-        details = 'testApi.exist';
+        details = 'testApi.exists';
       }
     } catch (ex) {
       details = ex.message;
@@ -173,12 +173,12 @@
   // SEC-34
   Certified.prototype.checkGetProcessListAPI = function() {
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
 
     try {
       if (!!browser.security.getProcessList) {
         result = false;
-        details = 'testApi.exist';
+        details = 'testApi.exists';
       }
     } catch (ex) {
       details = ex.message;
@@ -237,12 +237,12 @@
   // SEC-31
   Certified.prototype.checkIsEnvironmentSecureAPI = function() {
     var result = true;
-    var details = 'testApi.remove';
+    var details = 'testApi.removed';
 
     try {
       if (!!browser.security.isEnvironmentSecure) {
         result = false;
-        details = 'testApi.exist';
+        details = 'testApi.exists';
       }
     } catch (ex) {
       details = ex.message;
