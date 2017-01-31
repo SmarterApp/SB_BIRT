@@ -27,21 +27,30 @@
     return (false)
   };
 
+  /**
+   * This method will set individual test details in a final JSON array
+   * 
+   * @id : Constant key to be read from message.properties
+   * @testName : testName key to be read from message.properties
+   * @testAPI : API signature key which is tested and to be read from
+   *          message.properties
+   * @result : true/false based on API specification test
+   * @details : Details about test
+   * 
+   */
   Validation.setResultItems = function(id, testName, testAPI, result, details) {
+
+    if (details == 'testApi.remove' || details == 'testApi.exist') {
+      details = messageResource.get(details, 'message');
+    }
     resultArray.push({
-      "id" : id,
-      "testName" : testName,
-      "testApi" : testAPI,
+      "id" : messageResource.get(id, 'message'),
+      "testName" : messageResource.get(testName, 'message'),
+      "testApi" : messageResource.get(testAPI, 'message'),
       "testResult" : result,
       "details" : details
     });
   };
-
-  /*
-   * Validation.setResultItems = function(id,testName,testAPI,result){
-   * resultArray.push({ "id": id,"testName": testName,"testApi":
-   * testAPI,"testResult":result}); };
-   */
 
   Validation.getResult = function() {
     return resultArray;

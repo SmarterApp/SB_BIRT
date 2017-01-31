@@ -19,11 +19,13 @@
 
     var result = false;
     var details = "";
+    var apiKey = "api.checkGlobalObject.certified";
     try {
       var hasAPI = (typeof (window.browser) === 'object');
 
       if (hasAPI && Util.Browser.isEdge() && !!window.browser.addEventListener) {
         result = true;
+        apiKey = "api.checkGlobalObject.certified.edge";
       } else if (!!window.browser) {
         result = true;
       } else {
@@ -35,63 +37,63 @@
       details = ex.message
     }
 
-    Util.Validation.setResultItems(1, '[window.browser] global object check',
-        'window.browser', result, details);
+    Util.Validation.setResultItems('constant.checkGlobalObject',
+        'testname.checkGlobalObject.certified', apiKey, result, details);
 
   };
 
   Certified.prototype.checkDeviceInfo = function() {
 
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
     try {
       if (!!browser.security.getDeviceInfo) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
 
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkDeviceInfo', 'message'),
-        'browser.security.getDeviceInfo()', result, details);
+    Util.Validation.setResultItems('constant.checkDeviceInfo',
+        'testname.checkDeviceInfo', 'api.checkDeviceInfo.certified', result,
+        details);
   };
 
   Certified.prototype.checkMACAddressAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
     try {
       if (!!browser.security.getMACAddress) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkMACAddressAPI', 'message'),
-        'browser.security.getMACAddress()', result, details);
+    Util.Validation.setResultItems('constant.checkMACAddressAPI',
+        'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.certified',
+        result, details);
 
   };
 
   Certified.prototype.checkIPAddressAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
     try {
       if (!!browser.security.getIPAddressList) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkIPAddressAPI', 'message'),
-        'browser.security.getIPAddressList()', result, details);
+    Util.Validation.setResultItems('constant.checkIPAddressAPI',
+        'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.certified',
+        result, details);
 
   };
 
@@ -106,47 +108,47 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkAppStartTimeAPI', 'message'),
-        'browser.security.getStartTime()', result, details);
+    Util.Validation.setResultItems('constant.checkAppStartTimeAPI',
+        'testname.checkAppStartTimeAPI', 'api.checkAppStartTimeAPI.certified',
+        result, details);
   };
 
   // SEC-32
   Certified.prototype.checkClearCacheAPI = function() {
 
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
     try {
       if (!!browser.security.clearCache) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(32, messageResource.get(
-        'testname.checkClearCacheAPI', 'message'),
-        '!!browser.security.clearCache', result, details);
+    Util.Validation.setResultItems('constant.checkClearCacheAPI',
+        'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.certified',
+        result, details);
   };
 
   // SEC-33
   Certified.prototype.checkClearCookiesAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
     try {
       if (!!browser.security.clearCookies) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(33, messageResource.get(
-        'testname.checkClearCookiesAPI', 'message'),
-        '!!browser.security.clearCookies', result, details);
+    Util.Validation.setResultItems('constant.checkClearCookiesAPI',
+        'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.certified',
+        result, details);
   };
 
   // SEC-26
@@ -162,29 +164,29 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(26, messageResource.get(
-        'testname.checkEmptyClipBoardAPI', 'message'),
-        '!!browser.security.emptyClipBoard', result, details);
+    Util.Validation.setResultItems('constant.checkEmptyClipBoardAPI',
+        'testname.checkEmptyClipBoardAPI',
+        'api.checkEmptyClipBoardAPI.certified', result, details);
 
   };
 
   // SEC-34
   Certified.prototype.checkGetProcessListAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
     try {
       if (!!browser.security.getProcessList) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(34, messageResource.get(
-        'testname.checkGetProcessListAPI', 'message'),
-        '!!browser.security.getProcessList', result, details);
+    Util.Validation.setResultItems('constant.checkGetProcessListAPI',
+        'testname.checkGetProcessListAPI',
+        'api.checkGetProcessListAPI.certified', result, details);
 
   };
 
@@ -199,10 +201,10 @@
       // TDS-1403: Our latest API specifies 'close' as the name of this function
       // which MS Edge SB uses
       if (!!browser.security.closeWindow) {
-        testApi = '!!browser.security.closeWindow';
+        testApi = 'api.checkCloseWindowAPI.certified';
         result = true;
       } else if (!!browser.security.close) {
-        testApi = '!!browser.security.close';
+        testApi = 'api.checkCloseAPI.certified';
         result = true;
 
       }
@@ -210,8 +212,7 @@
     } catch (ex) {
       details = ex.getMessage();
     }
-    Util.Validation.setResultItems(35, messageResource.get(
-        'testname.checkCloseAPI', 'message'), testApi, result, details);
+    Util.Validation.setResultItems('constant.checkCloseAPI', 'testname.checkCloseAPI', testApi, result, details);
   };
 
   // SEC-30
@@ -228,28 +229,29 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(30, messageResource.get(
-        'testname.checkEnableLockDownAPI', 'message'),
-        '!!browser.security.enableLockDown', result, details);
+    Util.Validation.setResultItems('constant.checkEnableLockDownAPI',
+        'testname.checkEnableLockDownAPI',
+        'api.checkEnableLockDownAPI.certified', result, details);
   };
 
   // SEC-31
   Certified.prototype.checkIsEnvironmentSecureAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
     try {
       if (!!browser.security.isEnvironmentSecure) {
         result = false;
-        details = messageResource.get('testApi.exist', 'message');
+        details = 'testApi.exist';
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(31, messageResource.get(
-        'testname.checkIsEnvironmentSecureAPI', 'message'),
-        '!!browser.security.isEnvironmentSecure', result, details);
+    Util.Validation.setResultItems('constant.checkIsEnvironmentSecureAPI',
+        'testname.checkIsEnvironmentSecureAPI',
+        'api.checkIsEnvironmentSecureAPI.certified', result, details);
+
   };
 
   Certified.prototype._hasAPI = function() {

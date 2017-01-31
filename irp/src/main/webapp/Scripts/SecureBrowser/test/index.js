@@ -11,7 +11,7 @@ TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
 
 TTS.Manager.init(true);
-var ttsImpl = TTS.Manager._service;
+var ttsImpl = null/* TTS.Manager._service */;
 
 function beginBrowserAPITest() {
   var isIOSDevice = Util.Browser.isIOS();
@@ -58,34 +58,36 @@ function beginBrowserAPITest() {
     /** SEC-30 : API: Enable Lock Down (R)* */
     impl.checkEnableLockDownAPI();
 
-    /** SEC-37 : API: TTS Stop (R) */
-    ttsImpl.checkTTSStopAPI();
+    if (ttsImpl != null) {
+      /** SEC-37 : API: TTS Stop (R) */
+      ttsImpl.checkTTSStopAPI();
 
-    /** SEC-38 : API: Get TTS Status (R) * */
-    ttsImpl.checkTTSStatusAPI();
+      /** SEC-38 : API: Get TTS Status (R) * */
+      ttsImpl.checkTTSStatusAPI();
 
-    /** SEC-39 : API: Get Voices for TTS (R) * */
-    ttsImpl.checkTTSVoicesAPI();
+      /** SEC-39 : API: Get Voices for TTS (R) * */
+      ttsImpl.checkTTSVoicesAPI();
 
-    /** SEC-50 : API: Set TTS pitch (R) * */
-    ttsImpl.checkTTSPitchAPI();
+      /** SEC-50 : API: Set TTS pitch (R) * */
+      ttsImpl.checkTTSPitchAPI();
 
-    /** SEC-51 API: Set TTS rate (R) * */
-    ttsImpl.checkTTSRateAPI();
+      /** SEC-51 API: Set TTS rate (R) * */
+      ttsImpl.checkTTSRateAPI();
 
-    /** SEC-52 API: Get TTS volume (R) and SEC-53 API: Set TTS volume (R)* */
-    ttsImpl.checkTTSVolumeAPI();
+      /** SEC-52 API: Get TTS volume (R) and SEC-53 API: Set TTS volume (R)* */
+      ttsImpl.checkTTSVolumeAPI();
 
-    /** SEC-36 API : TTS Speak (R) * */
-    ttsImpl.checkTTSSpeakAPI();
+      /** SEC-36 API : TTS Speak (R) * */
+      ttsImpl.checkTTSSpeakAPI();
 
-    /** SEC-40 API : TTS Pause (R) * */
-    ttsImpl.checkTTSPauseAPI();
+      /** SEC-40 API : TTS Pause (R) * */
+      ttsImpl.checkTTSPauseAPI();
 
-    /** SEC-41 API : TTS Resume (R) * */
-    ttsImpl.checkTTSResumeAPI();
+      /** SEC-41 API : TTS Resume (R) * */
+      ttsImpl.checkTTSResumeAPI();
 
-    ttsImpl.checkTTSVoiceNameAPI();
+      ttsImpl.checkTTSVoiceNameAPI();
+    }
   } else {
     console.log('No Implementation found for Secure Browser');
   }

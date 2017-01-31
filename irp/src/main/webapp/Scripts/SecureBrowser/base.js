@@ -20,8 +20,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   }
   ;
 
-  // Any SB initialization code. This is called upon instantiation and only
-  // once
+  /* Any SB initialization code. This is called upon instantiation and only once */
   Base.prototype.initialize = function() {
   };
 
@@ -30,38 +29,39 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'window.browser is not defined';
 
-    Util.Validation.setResultItems(1, '[window.browser] global object check',
-        'window.browser', result, details);
+    Util.Validation.setResultItems('constant.checkGlobalObject',
+        'testname.checkGlobalObject.certified',
+        'api.checkGlobalObject.certified', result, details);
 
   };
 
   Base.prototype.checkDeviceInfo = function() {
 
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkDeviceInfo', 'message'),
-        'browser.security.getDeviceInfo()', result, details);
+    Util.Validation.setResultItems('constant.checkDeviceInfo',
+        'testname.checkDeviceInfo', 'api.checkDeviceInfo.certified', result,
+        details);
   };
 
   Base.prototype.checkMACAddressAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkMACAddressAPI', 'message'),
-        'browser.security.getMACAddress()', result, details);
+    Util.Validation.setResultItems('constant.checkMACAddressAPI',
+        'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.certified',
+        result, details);
 
   };
 
   Base.prototype.checkIPAddressAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkIPAddressAPI', 'message'),
-        'browser.security.getIPAddressList()', result, details);
+    Util.Validation.setResultItems('constant.checkIPAddressAPI',
+        'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.certified',
+        result, details);
 
   };
 
@@ -69,19 +69,19 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = "browser.security.getStartTime() is not defined";
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkAppStartTimeAPI', 'message'),
-        'browser.security.getStartTime()', result, details);
+    Util.Validation.setResultItems('constant.checkAppStartTimeAPI',
+        'testname.checkAppStartTimeAPI', 'api.checkAppStartTimeAPI.certified',
+        result, details);
   };
 
   // SEC-32
   Base.prototype.checkClearCacheAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(32, messageResource.get(
-        'testname.checkClearCacheAPI', 'message'),
-        '!!browser.security.clearCache()', result, details);
+    Util.Validation.setResultItems('constant.checkClearCacheAPI',
+        'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.certified',
+        result, details);
   };
 
   // SEC-26
@@ -89,40 +89,39 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'browser.security.emptyClipBoard() is not defined';
 
-    Util.Validation.setResultItems(26, messageResource.get(
-        'testname.checkEmptyClipBoardAPI', 'message'),
-        '!!browser.security.emptyClipBoard()', result, details);
+    Util.Validation.setResultItems('constant.checkEmptyClipBoardAPI',
+        'testname.checkEmptyClipBoardAPI',
+        'api.checkEmptyClipBoardAPI.certified', result, details);
   };
 
   // SEC-33
   Base.prototype.checkClearCookiesAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(33, messageResource.get(
-        'testname.checkClearCookiesAPI', 'message'),
-        '!!browser.security.clearCookies()', result, details);
+    Util.Validation.setResultItems('constant.checkClearCookiesAPI',
+        'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.certified',
+        result, details);
   };
 
   // SEC-31
   Base.prototype.checkIsEnvironmentSecureAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation
-        .setResultItems(31, messageResource.get(
-            'testname.checkIsEnvironmentSecureAPI', 'message'), '', result,
-            details);
+    Util.Validation.setResultItems('constant.checkIsEnvironmentSecureAPI',
+        'testname.checkIsEnvironmentSecureAPI',
+        'api.checkIsEnvironmentSecureAPI.certified', result, details);
   };
 
   // SEC-34
   Base.prototype.checkGetProcessListAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(34, messageResource.get(
-        'testname.checkGetProcessListAPI', 'message'),
-        '!!browser.security.getProcessList()', result, details);
+    Util.Validation.setResultItems('constant.checkGetProcessListAPI',
+        'testname.checkGetProcessListAPI',
+        'api.checkGetProcessListAPI.certified', result, details);
   };
 
   // SEC-35
@@ -130,18 +129,19 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'browser.security.close() is not defined';
 
-    Util.Validation.setResultItems(35, messageResource.get(
-        'testname.checkCloseAPI', 'message'), '!!browser.security.close()',
-        result, details);
+    Util.Validation.setResultItems('constant.checkCloseAPI',
+        'testname.checkCloseAPI', 'api.checkCloseAPI.certified', result,
+        details);
   };
 
   // SEC-30
   Base.prototype.checkEnableLockDownAPI = function() {
     var result = true;
-    var details = messageResource.get('testApi.remove', 'message');
+    var details = 'testApi.remove';
 
-    Util.Validation.setResultItems(30, messageResource.get(
-        'testname.checkEnableLockDownAPI', 'message'), '', result, details);
+    Util.Validation.setResultItems('constant.checkEnableLockDownAPI',
+        'testname.checkEnableLockDownAPI',
+        'api.checkEnableLockDownAPI.certified', result, details);
   };
 
   Base.prototype.dispose = function() {
