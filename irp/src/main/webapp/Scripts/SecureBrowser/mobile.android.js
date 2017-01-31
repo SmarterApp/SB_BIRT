@@ -151,7 +151,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkGlobalObject = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('constant.checkGlobalObject',
+  Util.Validation.setResultItems('apiId.checkGlobalObject',
       'testname.checkGlobalObject.mobile', 'api.checkGlobalObject.mobile',
       result, details);
 
@@ -170,7 +170,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkDeviceInfo = function() {
   }
 
   Util.Validation
-      .setResultItems('constant.checkDeviceInfo', 'testname.checkDeviceInfo',
+      .setResultItems('apiId.checkDeviceInfo', 'testname.checkDeviceInfo',
           'api.checkDeviceInfo.mobile', result, details);
 };
 
@@ -186,7 +186,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkMACAddressAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('constant.checkMACAddressAPI',
+  Util.Validation.setResultItems('apiId.checkMACAddressAPI',
       'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.mobile', result,
       details);
 
@@ -204,7 +204,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkIPAddressAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('constant.checkIPAddressAPI',
+  Util.Validation.setResultItems('apiId.checkIPAddressAPI',
       'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.mobile', result,
       details);
 
@@ -221,7 +221,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkAppStartTimeAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('constant.checkAppStartTimeAPI',
+  Util.Validation.setResultItems('apiId.checkAppStartTimeAPI',
       'testname.checkAppStartTimeAPI', 'api.checkAppStartTimeAPI.mobile',
       result, details);
 };
@@ -238,7 +238,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkEnableLockDownAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('constant.checkEnableLockDownAPI',
+  Util.Validation.setResultItems('apiId.checkEnableLockDownAPI',
       'testname.checkEnableLockDownAPI', 'api.checkEnableLockDownAPI.mobile',
       result, details);
 };
@@ -256,7 +256,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkClearCookiesAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('constant.checkClearCookiesAPI',
+  Util.Validation.setResultItems('apiId.checkClearCookiesAPI',
       'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.mobile',
       result, details);
 };
@@ -274,7 +274,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkClearCacheAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('constant.checkClearCacheAPI',
+  Util.Validation.setResultItems('apiId.checkClearCacheAPI',
       'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.mobile', result,
       details);
 };
@@ -292,7 +292,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkIsEnvironmentSecureAPI = functio
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('constant.checkIsEnvironmentSecureAPI',
+  Util.Validation.setResultItems('apiId.checkIsEnvironmentSecureAPI',
       'testname.checkIsEnvironmentSecureAPI',
       'api.checkIsEnvironmentSecureAPI.mobile', result, details);
 };
@@ -310,7 +310,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkCloseAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('constant.checkCloseAPI',
+  Util.Validation.setResultItems('apiId.checkCloseAPI',
       'testname.checkCloseAPI', 'api.checkCloseAPI.mobile', result, details);
 };
 
@@ -327,7 +327,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkGetProcessListAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('constant.checkGetProcessListAPI',
+  Util.Validation.setResultItems('apiId.checkGetProcessListAPI',
       'testname.checkGetProcessListAPI', 'api.checkGetProcessListAPI.mobile',
       result, details);
 };
@@ -338,7 +338,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkEmptyClipBoardAPI = function() {
   var result = true;
   var details = 'Mobile Secure browser does not support emptyClipBoard function';
 
-  Util.Validation.setResultItems('constant.checkEmptyClipBoardAPI',
+  Util.Validation.setResultItems('apiId.checkEmptyClipBoardAPI',
       'testname.checkEmptyClipBoardAPI', 'api.checkEmptyClipBoardAPI.mobile',
       result, details);
 

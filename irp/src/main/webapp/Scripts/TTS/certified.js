@@ -83,14 +83,6 @@ function TTSService_Certified() {
     }
     TTS.Manager.Events.onServiceLoad.fire();
 
-    // ToDo? Amplify doesn't have EVENT_TTS_CHANGED to indicate when TTS being
-    // enabled/disabled changes
-    // this.browserComponent.listen(this.browserComponent.EVENT_TTS_CHANGED,
-    // document, function () {
-    // var service0 = that;
-    // var deviceStatus = service0.browserComponent.device.ttsEngineStatus;
-    // service0.status = convertDeviceStatusToTTStatus(deviceStatus);
-    // });
     return true;
   };
 
@@ -120,16 +112,6 @@ function TTSService_Certified() {
         return;
       // this.unregisterAll();
       this.eM = EventManager;
-      // ToDo #2: certified device/browser needs to define
-      // EVENT_TTS_SYNCHRONIZED to allow TTS pause/resume
-      // this.browserComponent.listen(this.browserComponent.EVENT_TTS_SYNCHRONIZED,
-      // document, function (result) {
-      // var service = that;
-      // if ((result) && (result.data)) {
-      // service.eM.fire({ index: result.data.location, length:
-      // result.data.length });
-      // }
-      // });
 
     } catch (e) {
       console.error("Failed to subscribe to EventManager MSB tts events", e);
@@ -252,8 +234,8 @@ function TTSService_Certified() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSStopAPI', 'message'), 'browser.tts.stop()', result,
+    Util.Validation.setResultItems('apiId.checkTTSStopAPI',
+        'testname.checkTTSStopAPI', 'api.checkTTSStopAPI.certified', result,
         details);
   };
 
@@ -269,8 +251,8 @@ function TTSService_Certified() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSStatusAPI', 'message'), 'browser.tts.getStatus()',
+    Util.Validation.setResultItems('apiId.checkTTSStatusAPI',
+        'testname.checkTTSStatusAPI', 'api.checkTTSStatusAPI.certified',
         result, details);
   };
 
@@ -286,8 +268,8 @@ function TTSService_Certified() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSVoicesAPI', 'message'), 'browser.tts.getVoices()',
+    Util.Validation.setResultItems('apiId.checkTTSVoicesAPI',
+        'testname.checkTTSVoicesAPI', 'api.checkTTSVoicesAPI.certified',
         result, details);
   };
 
@@ -295,8 +277,8 @@ function TTSService_Certified() {
     var result = null;
 
     var details = null;
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSPitchAPI', 'message'), '', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSPitchAPI',
+        'testname.checkTTSPitchAPI', '', result, details);
   };
 
   this.checkTTSRateAPI = function() {
@@ -304,8 +286,8 @@ function TTSService_Certified() {
 
     var details = null;
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSRateAPI', 'message'), '', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSRateAPI',
+        'testname.checkTTSRateAPI', '', result, details);
   };
 
   this.checkTTSVolumeAPI = function() {
@@ -313,8 +295,8 @@ function TTSService_Certified() {
 
     var details = null;
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSVolumeAPI', 'message'), '', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSVolumeAPI',
+        'testname.checkTTSVolumeAPI', '', result, details);
   };
 
   this.checkTTSSpeakAPI = function() {
@@ -329,8 +311,8 @@ function TTSService_Certified() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSSpeakAPI', 'message'), 'browser.tts.speak', result,
+    Util.Validation.setResultItems('apiId.checkTTSSpeakAPI',
+        'testname.checkTTSSpeakAPI', 'api.checkTTSSpeakAPI.certified', result,
         details);
   };
 
@@ -346,8 +328,8 @@ function TTSService_Certified() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSPauseAPI', 'message'), 'browser.tts.pause', result,
+    Util.Validation.setResultItems('apiId.checkTTSPauseAPI',
+        'testname.checkTTSPauseAPI', 'api.checkTTSPauseAPI.certified', result,
         details);
   };
 
@@ -363,9 +345,9 @@ function TTSService_Certified() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSResumeAPI', 'message'), 'browser.tts.resume', result,
-        details);
+    Util.Validation.setResultItems('apiId.checkTTSResumeAPI',
+        'testname.checkTTSResumeAPI', 'api.checkTTSResumeAPI.certified',
+        result, details);
   };
 
   this.checkTTSVoiceNameAPI = function() {
@@ -374,8 +356,8 @@ function TTSService_Certified() {
 
     var details = null;
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSVoiceNameAPI', 'message'), '', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSVoiceNameAPI',
+        'testname.checkTTSVoiceNameAPI', '', result, details);
   };
 
 }

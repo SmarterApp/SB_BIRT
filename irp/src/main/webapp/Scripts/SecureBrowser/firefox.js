@@ -63,7 +63,7 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('constant.checkGlobalObject',
+    Util.Validation.setResultItems('apiId.checkGlobalObject',
         'testname.checkGlobalObject.SB', 'api.checkGlobalObject.SB', result,
         details);
 
@@ -83,7 +83,7 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('constant.checkDeviceInfo',
+    Util.Validation.setResultItems('apiId.checkDeviceInfo',
         'testname.checkDeviceInfo', 'api.checkDeviceInfo.SB', result, details);
   };
 
@@ -99,7 +99,7 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('constant.checkMACAddressAPI',
+    Util.Validation.setResultItems('apiId.checkMACAddressAPI',
         'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.SB', result,
         details);
 
@@ -117,7 +117,7 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('constant.checkIPAddressAPI',
+    Util.Validation.setResultItems('apiId.checkIPAddressAPI',
         'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.SB', result,
         details);
 
@@ -141,7 +141,7 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('constant.checkAppStartTimeAPI',
+    Util.Validation.setResultItems('apiId.checkAppStartTimeAPI',
         'testname.checkAppStartTimeAPI', apiInfo, result, details);
   };
 
@@ -159,7 +159,7 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('constant.checkClearCacheAPI',
+    Util.Validation.setResultItems('apiId.checkClearCacheAPI',
         'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.SB', result,
         details);
   };
@@ -178,7 +178,7 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('constant.checkClearCookiesAPI',
+    Util.Validation.setResultItems('apiId.checkClearCookiesAPI',
         'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.SB', result,
         details);
 
@@ -198,7 +198,7 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('constant.checkEmptyClipBoardAPI',
+    Util.Validation.setResultItems('apiId.checkEmptyClipBoardAPI',
         'testname.checkEmptyClipBoardAPI', 'api.checkEmptyClipBoardAPI.SB',
         result, details);
   };
@@ -217,7 +217,7 @@
       details = ex.getMessage();
     }
 
-    Util.Validation.setResultItems('constant.checkGetProcessListAPI',
+    Util.Validation.setResultItems('apiId.checkGetProcessListAPI',
         'testname.checkGetProcessListAPI', 'api.checkGetProcessListAPI.SB',
         result, details);
   };
@@ -235,7 +235,7 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('constant.checkCloseAPI',
+    Util.Validation.setResultItems('apiId.checkCloseAPI',
         'testname.checkCloseAPI', 'api.checkCloseAPI.SB', result, details);
   };
 
@@ -244,7 +244,7 @@
     var result = true;
     var details = 'testApi.remove';
 
-    Util.Validation.setResultItems('constant.checkEnableLockDownAPI',
+    Util.Validation.setResultItems('apiId.checkEnableLockDownAPI',
         'testname.checkEnableLockDownAPI', 'api.checkEnableLockDownAPI.SB',
         result, details);
   };
@@ -254,7 +254,7 @@
     var result = true;
     var details = 'testApi.remove';
 
-    Util.Validation.setResultItems('constant.checkIsEnvironmentSecureAPI',
+    Util.Validation.setResultItems('apiId.checkIsEnvironmentSecureAPI',
         'testname.checkIsEnvironmentSecureAPI',
         'api.checkIsEnvironmentSecureAPI.SB', result, details);
   };

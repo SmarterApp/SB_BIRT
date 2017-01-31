@@ -15,27 +15,19 @@ function TTSService_SB() {
 
   this.runtime = null;
   this.wordBoundaryRegex = new RegExp(/<[^>]+>|[\s,.;]+|[^<^ ]+/g); // Our word
-  // boundary
-  // detection
-  // logic. We
-  // add sync
-  // tags
-  // around
-  // these
-  // boundaries
-  // if there
-  // is
-  // speakable
-  // text in
-  // them
+  /*
+   * boundary detection logic. We add sync tags around these boundaries if there
+   * is speakable text in them
+   */
   this.isSpeakable = new RegExp(/[A-Za-z0-9_]+/); // This regex checks if a
-  // match has any speakable
-  // characters in it. Only
-  // those get a sync tag around
-  // them
+  /*
+   * match has any speakable characters in it. Only those get a sync tag around
+   * them
+   */
   this.BOOKMARK_TAG = '<bookmark mark="start"/> '; // This is our sync tag -
-  // WINDOWS ONLY!!! This is
-  // OS specific
+  /*
+   * WINDOWS ONLY!!! This is OS specific
+   */
   this.bookmarks = []; // our registry of sync tags added
 
   this.supportsVolumeControl = function() {
@@ -77,21 +69,21 @@ function TTSService_SB() {
         return false;
       }
 
-      // dispose of runtime. Neospeech voice is finicky
-      // and we need to make sure that it gets closed out correctly before we
-      // try to use it
-      // again. Specifically, we are trying to address an issue with VW Julie
-      // where page reloads
-      // can cause TTS to stop working while Julie is reestablishing
+      /*
+       * dispose of runtime. Neospeech voice is finicky and we need to make sure
+       * that it gets closed out correctly before we try to use it again.
+       * Specifically, we are trying to address an issue with VW Julie where
+       * page reloads can cause TTS to stop working while Julie is
+       * reestablishing
+       */
       YUE.on(window, 'beforeunload', this.dispose.bind(this));
 
-      // This will throw on exception on Linux when sox is installed but
-      // festival is not
-      // and we need to catch it and keep going so that the onServiceLoad
-      // fires...
-      // otherwise the TTS check page does not show a proper error message and
-      // is
-      // blank instead
+      /*
+       * This will throw on exception on Linux when sox is installed but
+       * festival is not and we need to catch it and keep going so that the
+       * onServiceLoad fires... otherwise the TTS check page does not show a
+       * proper error message and is blank instead
+       */
       try {
         this.runtime.initialize();
       } catch (ex) {
@@ -105,11 +97,11 @@ function TTSService_SB() {
 
       this.osHacks();
 
-      // HACK: If the TTS gets reinitialized you have to play something then set
-      // volume
-      // NOTE: This fix is lazily done the first time playing occurs now
-      // this.play(' ');
-      // this.setVolume(10);
+      /*
+       * HACK: If the TTS gets reinitialized you have to play something then set
+       * volume NOTE: This fix is lazily done the first time playing occurs now
+       * this.play(' '); this.setVolume(10);
+       */
       setTimeout(function() {
         TTS.Manager.Events.onServiceLoad.fire();
       }, 0);
@@ -134,20 +126,16 @@ function TTSService_SB() {
       return;
     } else if (Util.Browser.isWindows()
         && Util.Browser.getSecureVersion() >= 6.4) { // 6.4+ reports the
-      // character position and
-      // lenght of the native
-      // word boundary event
+      /*
+       * character position and length of the native word boundary event
+       */
       this.pluginWordBoundaryFunction = 'SPEI_WORD_BOUNDARY';
     } else if (Util.Browser.isWindows()) {
       this.pluginWordBoundaryFunction = 'SPEI_TTS_BOOKMARK'; // We have to
-      // emulate word
-      // boundaries
-      // ourselves since
-      // the word start
-      // index was NOT
-      // coming through
-      // in SB6.3 and
-      // before
+      /*
+       * emulate word boundaries ourselves since the word start index was NOT
+       * coming through in SB6.3 and before
+       */
     } else if (Util.Browser.isMac()) {
       this.pluginWordBoundaryFunction = 'soWordCallBack';
     }
@@ -467,9 +455,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation
-        .setResultItems(2, messageResource.get('testname.checkTTSStopAPI',
-            'message'), 'runtime.stop', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSStopAPI',
+        'testname.checkTTSStopAPI', 'api.checkTTSStopAPI.SB', result, details);
   };
 
   this.checkTTSStatusAPI = function() {
@@ -484,8 +471,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSStatusAPI', 'message'), 'runtime.status', result,
+    Util.Validation.setResultItems('apiId.checkTTSStatusAPI',
+        'testname.checkTTSStatusAPI', 'api.checkTTSStatusAPI.SB', result,
         details);
   };
 
@@ -501,8 +488,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSVoicesAPI', 'message'), 'runtime.voices', result,
+    Util.Validation.setResultItems('apiId.checkTTSVoicesAPI',
+        'testname.checkTTSVoicesAPI', 'api.checkTTSVoicesAPI.SB', result,
         details);
   };
 
@@ -518,9 +505,9 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSPitchAPI', 'message'), 'runtime.pitch', result,
-        details);
+    Util.Validation
+        .setResultItems('apiId.checkTTSPitchAPI', 'testname.checkTTSPitchAPI',
+            'api.checkTTSPitchAPI.SB', result, details);
   };
 
   this.checkTTSRateAPI = function() {
@@ -535,9 +522,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation
-        .setResultItems(2, messageResource.get('testname.checkTTSRateAPI',
-            'message'), 'runtime.rate', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSRateAPI',
+        'testname.checkTTSRateAPI', 'api.checkTTSRateAPI.SB', result, details);
   };
 
   this.checkTTSVolumeAPI = function() {
@@ -552,8 +538,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSVolumeAPI', 'message'), 'runtime.volume', result,
+    Util.Validation.setResultItems('apiId.checkTTSVolumeAPI',
+        'testname.checkTTSVolumeAPI', 'api.checkTTSVolumeAPI.SB', result,
         details);
   };
 
@@ -569,9 +555,9 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSSpeakAPI', 'message'), 'runtime.play', result,
-        details);
+    Util.Validation
+        .setResultItems('apiId.checkTTSSpeakAPI', 'testname.checkTTSSpeakAPI',
+            'api.checkTTSSpeakAPI.SB', result, details);
   };
 
   this.checkTTSPauseAPI = function() {
@@ -586,9 +572,9 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSPauseAPI', 'message'), 'runtime.pause', result,
-        details);
+    Util.Validation
+        .setResultItems('apiId.checkTTSPauseAPI', 'testname.checkTTSPauseAPI',
+            'api.checkTTSPauseAPI.SB', result, details);
   };
 
   this.checkTTSResumeAPI = function() {
@@ -603,8 +589,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSResumeAPI', 'message'), 'runtime.resume', result,
+    Util.Validation.setResultItems('apiId.checkTTSResumeAPI',
+        'testname.checkTTSResumeAPI', 'api.checkTTSResumeAPI.SB', result,
         details);
   };
 
@@ -620,8 +606,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSVoiceNameAPI', 'message'), 'runtime.voiceName',
-        result, details);
+    Util.Validation.setResultItems('apiId.checkTTSVoiceNameAPI',
+        'testname.checkTTSVoiceNameAPI', 'api.checkTTSVoiceNameAPI.SB', result,
+        details);
   };
 }

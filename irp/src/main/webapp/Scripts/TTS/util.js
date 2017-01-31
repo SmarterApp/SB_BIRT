@@ -1,29 +1,21 @@
-﻿//*******************************************************************************
+﻿// *******************************************************************************
 // Educational Online Test Delivery System
 // Copyright (c) 2017 American Institutes for Research
 //
 // Distributed under the AIR Open Source License, Version 1.0
 // See accompanying file AIR-License-1_0.txt or at
 // http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
-//*******************************************************************************
+// *******************************************************************************
 /**
  * The parsing is made up of TTS.Parser.Container -> Wrapper interface for all
- * the parsing logic
- * 
- * TTS.Parser.DOM -> Parses Dom fragements / nodes TTS.Parser.HTML -> Parser an
- * html string, then parsed by DOM TTS.Parser.Selection -> Parses the user
- * selection, then hands off to the DOM parser
- * 
- * TTS.Util -> Helper methods for determining content
- * 
- * TODO: More test cases Provide standard namespace usage TTS.Parser.* Fix up
- * the 'language divider' code for all the parsing elements. Consider a better
- * option for the stored dom / element references.
- * 
- * 
- * Provide something that the TTS highlighter can use to actually track word
- * boundary modifications => alt text, ssml etc.
- * 
+ * the parsing logic TTS.Parser.DOM -> Parses Dom fragements / nodes
+ * TTS.Parser.HTML -> Parser an html string, then parsed by DOM
+ * TTS.Parser.Selection -> Parses the user selection, then hands off to the DOM
+ * parser TTS.Util -> Helper methods for determining content TODO: More test
+ * cases Provide standard namespace usage TTS.Parser.* Fix up the 'language
+ * divider' code for all the parsing elements. Consider a better option for the
+ * stored dom / element references. Provide something that the TTS highlighter
+ * can use to actually track word boundary modifications => alt text, ssml etc.
  * //Example SSML tag <SPAN class=”tts” ssml=”sub” ssml_alias=”the alternate
  * text”>
  */
@@ -84,17 +76,14 @@ TTS.Util = (function() {
 
     /*
      * sanitizeLang: function(lang) { if (lang == 'ENU') { return 'en-us'; }
-     * else if (lang == 'ESN') { return 'es-mx'; } },
-     * 
-     * markLang: function(node, lang) { if (node && node.nodeType != 3 && lang) {
-     * YUD.setAttribute(node, 'lang', lang); } },
-     * 
-     * isLang: function(node, lang) { lang = TTS.Util.sanitizeLang(lang); if
-     * (TTS.Util.getLang(node) == lang) { return true; } return false; },
-     * 
-     * getLang: function(node) { if (node) { if (node.nodeType == 3) { //Text
-     * node return TTS.Util.getLang(node.parentNode); } else { return
-     * YUD.getAttribute(node, 'lang'); } } },
+     * else if (lang == 'ESN') { return 'es-mx'; } }, markLang: function(node,
+     * lang) { if (node && node.nodeType != 3 && lang) { YUD.setAttribute(node,
+     * 'lang', lang); } }, isLang: function(node, lang) { lang =
+     * TTS.Util.sanitizeLang(lang); if (TTS.Util.getLang(node) == lang) { return
+     * true; } return false; }, getLang: function(node) { if (node) { if
+     * (node.nodeType == 3) { //Text node return
+     * TTS.Util.getLang(node.parentNode); } else { return YUD.getAttribute(node,
+     * 'lang'); } } },
      */
 
     hasAlt : function(node) { // Does the node contain alternative text
@@ -111,7 +100,6 @@ TTS.Util = (function() {
      * hasLanguageAttr: function(node) { //Check to see if there is a language
      * divider if (node && node.nodeType == Node.ELEMENT_NODE &&
      * YUD.hasClass(node, 'languagedivider')) { return node; } return null; },
-     * 
      * hasLanguageAttributes: function(domNodesArray) { //Check to see if there
      * is a language divider for (var i = 0; i < domNodesArray.length; ++i) {
      * var domNode = domNodesArray[i]; if (domNode != null && domNode.nodeType ==
@@ -174,32 +162,32 @@ TTS.Util = (function() {
         text = TTS.Util.addTagsAndHacks(text);
       }
 
-      // Replace multi space with single spaces, replace endlines with space.
-      // text = text.replace(/(\r\n|\n|\r)/gm, " ").replace(/\s+/gm, ' ');
+      /*
+       * Replace multi space with single spaces, replace endlines with space.
+       * text = text.replace(/(\r\n|\n|\r)/gm, " ").replace(/\s+/gm, ' ');
+       */
 
       text = text.replace(/{silence}/g, "{silence:200}");
 
-      // Convert our <silence> tags into tags the given Speech Synthesis engine
-      // will recognize
+      /*
+       * Convert our <silence> tags into tags the given Speech Synthesis engine
+       * will recognize
+       */
       if (TTS.Util.supportsSSML()) {
-        text = text.replace(/{silence:([0-9]+)}/g, ',<break time="$1ms"/>'); // the
-        // , is
-        // to
-        // soften
-        // the
-        // breaks.
+        text = text.replace(/{silence:([0-9]+)}/g, ',<break time="$1ms"/>');
+        /*
+         * is to soften the breaks.
+         */
       } else if (Util.Browser.getFirefoxVersion() >= 49) {
         text = text.replace(/{silence:([0-9]+)}/g, " ; ");
       } else if (Util.Browser.isWindows()) {
-        text = text.replace(/{silence:([0-9]+)}/g, ',<silence msec="$1"/>'); // the
-        // , is
-        // to
-        // soften
-        // the
-        // breaks.
-        // In SB4.0, we need to include this pretag to force the code to
-        // understand that speech
-        // tags are embedded. Otherwise, it reads the tags as text
+        text = text.replace(/{silence:([0-9]+)}/g, ',<silence msec="$1"/>');
+
+        /*
+         * is to soften the breaks. In SB4.0, we need to include this pretag to
+         * force the code to understand that speech tags are embedded.
+         * Otherwise, it reads the tags as text
+         */
       } else if (Util.Browser.isMac()) {
         // Bug 112603 Non-blanking spaces (unicode 00A0) cause misalignment in
         // TTS tracking in OSx 10.7 and earlier
@@ -227,14 +215,16 @@ TTS.Util = (function() {
         var prefixRegExp = new RegExp('^' + prefix + '\\s*' + expString);
 
         var replacement = prefixRegExp.exec(target); // get string containing
-        // prefix, separating
-        // whitespace, and
-        // replacement target
+        /*
+         * prefix, separating whitespace, and replacement target
+         */
         if (replacement && replacement[0]) {
           var spaces = exp.exec(replacement[0]); // get replacement target
           if (spaces && spaces[0]) {
-            // Convert characters of replacement target to spaces, preserving
-            // the string length
+            /*
+             * Convert characters of replacement target to spaces, preserving
+             * the string length
+             */
             spaces = spaces[0].replace(/\S/g, ' ');
             replacement = replacement[0].replace(exp, spaces);
           }

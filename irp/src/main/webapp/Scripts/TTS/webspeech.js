@@ -17,31 +17,21 @@ function TTSService_WebSpeech()
   this.rate = 10;    // Max 20
   this.pitch = 10;   // Max 20
   this._utterances = []; // A hack. Chrome stops firing progress events if
-  // the utterances sent to the speech engine are
-  // garbage collected.
-  // https://gist.github.com/woollsta/2d146f13878a301b36d7#file-chunkify-js
+  /*
+   * the utterances sent to the speech engine are garbage collected.
+   * https://gist.github.com/woollsta/2d146f13878a301b36d7#file-chunkify-js
+   */  
   this._utterancePrefix = '';
   this._utterancePostfix = '';
 
   this.wordBoundaryRegex = new RegExp(/<[^>]+>|\x5b\x5b[^\5d]+\x5d\x5d|[\s,.;]+|[^<^ ]+/g); // Our
-  // word
-  // boundary
-  // detection
-  // logic.
-  // We
-  // use
-  // this
-  // regex
-  // to
-  // chunk
-  // text
-  // into
-  // "words"
+  /*
+   * word boundary detection logic. We use this regex to chunk text into "words"
+   */
   this.isSpeakable = new RegExp(/[A-Za-z0-9_]+/);  // This regex checks if a
-  // match has any speakable
-  // characters in it. Only
-  // those get counted as
-  // "words"
+  /*
+   * match has any speakable characters in it. Only those get counted as "words"
+   */
 
 
   this.supportsVolumeControl = function () {
@@ -81,16 +71,20 @@ function TTSService_WebSpeech()
 
     setTimeout('', 2000);
 
-    // Web Speech voices load asynchronously and onvoiceschanged notifies us
-    // of this... we need this so we know when
-    // this module is fully initialized
-    // http://stackoverflow.com/questions/21513706/getting-the-list-of-voices-in-speechsynthesis-of-chrome-web-speech-api
+    /*
+     * Web Speech voices load asynchronously and onvoiceschanged notifies us of
+     * this... we need this so we know when this module is fully initialized
+     * http://stackoverflow.com/questions/21513706/getting-the-list-of-voices-in-speechsynthesis-of-chrome-web-speech-api
+     */    
     if (this.speechSynthesisInstance.onvoiceschanged !== undefined) {
       this.speechSynthesisInstance.onvoiceschanged = loadVoices;
     }
 
-    loadVoices(); // Call now in the event that onvoicechanged has already
-    // fired and we have our voices
+    loadVoices(); 
+     /*
+       * Call now in the event that onvoicechanged has already fired and we have
+       * our voices
+       */
 
     if (TTS.Util.supportsSSML()) {
       this._utterancePrefix = '<?xml version="1.0"?><speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
@@ -123,8 +117,10 @@ function TTSService_WebSpeech()
 
     var chunks;
     if (Util.Browser.isChrome()) {
-      // Chrome has an issue with garbling text for longer strings so we
-      // break it into smaller chunks divided at word boundaries
+       /*
+         * Chrome has an issue with garbling text for longer strings so we break
+         * it into smaller chunks divided at word boundaries
+         */
       var maxwordsperchunk = 25;
       chunks = this.chunkText(text, maxwordsperchunk);
     } else {
@@ -136,12 +132,12 @@ function TTSService_WebSpeech()
     chunks.forEach(function (chunk) {
       var utter = new SpeechSynthesisUtterance();
       if (!Util.Browser.isChrome() || !Util.Browser.isWindows()) {
-        // Note: If you set this, voice does not play on Windows Chrome
-        // Update: What I am seeing on Win 7/Chrome 53 is that it plays,
-        // but
-        // a) it reads the <bookmark>s we insert
-        // b) Tracking stops working
-        // OSX Chrome works fine with this
+        /*
+         * Note: If you set this, voice does not play on Windows Chrome Update:
+         * What I am seeing on Win 7/Chrome 53 is that it plays, but a) it reads
+         * the <bookmark>s we insert b) Tracking stops working OSX Chrome works
+         * fine with this
+         */
         utter.voice = this.currentVoice;
       }
       utter.volume = (this.volume / 10) * 1; // 0 to 1
@@ -188,10 +184,11 @@ function TTSService_WebSpeech()
 
   this.stop = function()
   {
-    // TDS-633: FireFox WebSpeech doesn't seem to like having cancel()
-    // called when the speech engine is paused so ensure that it isn't
-    // paused
-    // This FireFox bug was fixed in FF V49+
+    /*
+     * TDS-633: FireFox WebSpeech doesn't seem to like having cancel() called
+     * when the speech engine is paused so ensure that it isn't paused This
+     * FireFox bug was fixed in FF V49+
+     */
     if (Util.Browser.isFirefox() && Util.Browser.getFirefoxVersion() < 49 && this.speechSynthesisInstance.paused) {
       this.speechSynthesisInstance.resume();
     }
@@ -240,15 +237,10 @@ function TTSService_WebSpeech()
 
   this.getVoices = function()
   {
-    return this.voices.map(function (voice) { return voice.name; }); // Setup
-    // and
-    // assigned
-    // by
-    // listening
-    // for
-    // the
-    // init
-    // call.
+    return this.voices.map(function (voice) { return voice.name; }); 
+    /*
+     * Setup and assigned by listening for the init call.
+     */
   };
 
   // get the current system voice
@@ -276,8 +268,10 @@ function TTSService_WebSpeech()
       if (match.trim().length == 0 || match.indexOf('<') > 0 || !this.isSpeakable.test(match)) continue;
       wordCount++;
       if (wordCount > 0 && wordCount % wordsPerChunk == 0) {
-        // console.log('Chunk ' + chunks.length + '=' +
-        // text.substring(chunkStart, chunkEnd))
+        /*
+         * console.log('Chunk ' + chunks.length + '=' +
+         * text.substring(chunkStart, chunkEnd))
+         */
         chunks.push(text.substring(chunkStart, chunkEnd));
         chunkStart = chunkEnd;
       }
@@ -301,8 +295,7 @@ function TTSService_WebSpeech()
     // step 1 - find the length of the current word. We have the last char
     // index, walk backwards
     var chromesStr = chunkText.replace(/\s+/g, ' ');  // collapse all
-    // contiguous
-    // whitespace
+     /* contiguous whitespace */
     var currWordLength = 0;
     for (var i = charIndex; i >= 0; i--) {
       if (chromesStr[i] == ' ') break;
@@ -352,8 +345,8 @@ function TTSService_WebSpeech()
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get('testname.checkTTSStopAPI', 'message'),
-        'window.speechSynthesis.cancel', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSStopAPI', 'testname.checkTTSStopAPI',
+        'api.checkTTSStopAPI.webspeech', result, details);
   };
 
   this.checkTTSStatusAPI = function() {
@@ -373,9 +366,9 @@ function TTSService_WebSpeech()
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSStatusAPI', 'message'),
-        'window.speechSynthesis.paused[pending|speaking]', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSStatusAPI',
+        'testname.checkTTSStatusAPI',
+        'api.checkTTSStatusAPI.webspeech', result, details);
   };
 
   this.checkTTSVoicesAPI = function() {
@@ -390,9 +383,9 @@ function TTSService_WebSpeech()
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSVoicesAPI', 'message'),
-        'window.speechSynthesis.getVoices', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSVoicesAPI',
+        'testname.checkTTSVoicesAPI',
+        'api.checkTTSVoicesAPI.webspeech', result, details);
   };
 
   this.checkTTSPitchAPI = function() {
@@ -416,8 +409,8 @@ function TTSService_WebSpeech()
 
 
     Util.Validation
-    .setResultItems(2, messageResource.get('testname.checkTTSPitchAPI', 'message'),
-        'new SpeechSynthesisUtterance().pitch', result, details);
+    .setResultItems('apiId.checkTTSPitchAPI', 'testname.checkTTSPitchAPI',
+        'api.checkTTSPitchAPI.webspeech', result, details);
   };
 
   this.checkTTSRateAPI = function() {
@@ -437,8 +430,8 @@ function TTSService_WebSpeech()
       details = ex.message; 
     }
   
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSRateAPI', 'message'), 'new SpeechSynthesisUtterance().rate', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSRateAPI',
+        'api.checkTTSRateAPI.webspeech', 'new SpeechSynthesisUtterance().rate', result, details);
   };
 
   this.checkTTSVolumeAPI = function() {
@@ -458,9 +451,9 @@ function TTSService_WebSpeech()
 
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSVolumeAPI', 'message'),
-        'new SpeechSynthesisUtterance().volume', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSVolumeAPI',
+        'testname.checkTTSVolumeAPI',
+        'api.checkTTSVolumeAPI.webspeech', result, details);
   };
   
   this.checkTTSSpeakAPI = function() {
@@ -475,8 +468,8 @@ function TTSService_WebSpeech()
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get('testname.checkTTSSpeakAPI', 'message'),
-        'window.speechSynthesis.speak', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSSpeakAPI', 'testname.checkTTSSpeakAPI',
+        'api.checkTTSSpeakAPI.webspeech', result, details);
   };
   
   this.checkTTSPauseAPI = function() {
@@ -491,8 +484,8 @@ function TTSService_WebSpeech()
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2, messageResource.get('testname.checkTTSPauseAPI', 'message'),
-        'window.speechSynthesis.pause', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSPauseAPI', 'testname.checkTTSPauseAPI',
+        'api.checkTTSPauseAPI.webspeech', result, details);
   };
   
   
@@ -508,8 +501,8 @@ function TTSService_WebSpeech()
       details = ex.message;
     }
 
-    Util.Validation.setResultItems(2,
-        messageResource.get('testname.checkTTSResumeAPI', 'message'), 'window.speechSynthesis.resume',
+    Util.Validation.setResultItems('apiId.checkTTSResumeAPI',
+        'testname.checkTTSResumeAPI', 'api.checkTTSResumeAPI.webspeech',
         result, details);
   };
   
@@ -519,8 +512,8 @@ function TTSService_WebSpeech()
 
     var details = null;
 
-    Util.Validation.setResultItems(2, messageResource.get(
-        'testname.checkTTSVoiceNameAPI', 'message'), '', result, details);
+    Util.Validation.setResultItems('apiId.checkTTSVoiceNameAPI', 
+        'testname.checkTTSVoiceNameAPI', '', result, details);
   };
   
 }

@@ -29,7 +29,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'window.browser is not defined';
 
-    Util.Validation.setResultItems('constant.checkGlobalObject',
+    Util.Validation.setResultItems('apiId.checkGlobalObject',
         'testname.checkGlobalObject.certified',
         'api.checkGlobalObject.certified', result, details);
 
@@ -40,7 +40,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = true;
     var details = 'testApi.remove';
 
-    Util.Validation.setResultItems('constant.checkDeviceInfo',
+    Util.Validation.setResultItems('apiId.checkDeviceInfo',
         'testname.checkDeviceInfo', 'api.checkDeviceInfo.certified', result,
         details);
   };
@@ -49,7 +49,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = true;
     var details = 'testApi.remove';
 
-    Util.Validation.setResultItems('constant.checkMACAddressAPI',
+    Util.Validation.setResultItems('apiId.checkMACAddressAPI',
         'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.certified',
         result, details);
 
@@ -59,7 +59,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = true;
     var details = 'testApi.remove';
 
-    Util.Validation.setResultItems('constant.checkIPAddressAPI',
+    Util.Validation.setResultItems('apiId.checkIPAddressAPI',
         'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.certified',
         result, details);
 
@@ -69,7 +69,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = "browser.security.getStartTime() is not defined";
 
-    Util.Validation.setResultItems('constant.checkAppStartTimeAPI',
+    Util.Validation.setResultItems('apiId.checkAppStartTimeAPI',
         'testname.checkAppStartTimeAPI', 'api.checkAppStartTimeAPI.certified',
         result, details);
   };
@@ -79,7 +79,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = true;
     var details = 'testApi.remove';
 
-    Util.Validation.setResultItems('constant.checkClearCacheAPI',
+    Util.Validation.setResultItems('apiId.checkClearCacheAPI',
         'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.certified',
         result, details);
   };
@@ -89,7 +89,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'browser.security.emptyClipBoard() is not defined';
 
-    Util.Validation.setResultItems('constant.checkEmptyClipBoardAPI',
+    Util.Validation.setResultItems('apiId.checkEmptyClipBoardAPI',
         'testname.checkEmptyClipBoardAPI',
         'api.checkEmptyClipBoardAPI.certified', result, details);
   };
@@ -99,7 +99,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = true;
     var details = 'testApi.remove';
 
-    Util.Validation.setResultItems('constant.checkClearCookiesAPI',
+    Util.Validation.setResultItems('apiId.checkClearCookiesAPI',
         'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.certified',
         result, details);
   };
@@ -109,7 +109,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = true;
     var details = 'testApi.remove';
 
-    Util.Validation.setResultItems('constant.checkIsEnvironmentSecureAPI',
+    Util.Validation.setResultItems('apiId.checkIsEnvironmentSecureAPI',
         'testname.checkIsEnvironmentSecureAPI',
         'api.checkIsEnvironmentSecureAPI.certified', result, details);
   };
@@ -119,7 +119,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = true;
     var details = 'testApi.remove';
 
-    Util.Validation.setResultItems('constant.checkGetProcessListAPI',
+    Util.Validation.setResultItems('apiId.checkGetProcessListAPI',
         'testname.checkGetProcessListAPI',
         'api.checkGetProcessListAPI.certified', result, details);
   };
@@ -129,7 +129,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'browser.security.close() is not defined';
 
-    Util.Validation.setResultItems('constant.checkCloseAPI',
+    Util.Validation.setResultItems('apiId.checkCloseAPI',
         'testname.checkCloseAPI', 'api.checkCloseAPI.certified', result,
         details);
   };
@@ -139,7 +139,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = true;
     var details = 'testApi.remove';
 
-    Util.Validation.setResultItems('constant.checkEnableLockDownAPI',
+    Util.Validation.setResultItems('apiId.checkEnableLockDownAPI',
         'testname.checkEnableLockDownAPI',
         'api.checkEnableLockDownAPI.certified', result, details);
   };

@@ -11,7 +11,7 @@ TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
 
 TTS.Manager.init(true);
-var ttsImpl = null/* TTS.Manager._service */;
+var ttsImpl = TTS.Manager._service;
 
 function beginBrowserAPITest() {
   var isIOSDevice = Util.Browser.isIOS();
