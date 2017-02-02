@@ -217,7 +217,7 @@ kbd {
 
 <h2 id="toc_0">Secure Browser API Specification</h2>
 
-<p>All vendors are required to expose a window global object called <code>browser</code>. The APIs discussed below are exposed through this global object.</p>
+<p>All vendors are required to expose a window global object called <code>browser</code>. The APIs discussed below are exposed through this global object. Some APIs are supported as part of existing W3C specifications, and are identified as such.</p>
 
 <h2 id="toc_1">Required Methods</h2>
 
@@ -231,6 +231,11 @@ kbd {
 returns either a Javascript object or literal with the following structure
 <code>{&lt;feature&gt;:true|false, ...}</code>
 Example: <code>{&quot;screencapture&quot;:true, &quot;voicerecording&quot;:false, &quot;videocamera&quot;:false, &quot;cortana&quot;: true}</code></p></li>
+<li><p><strong>Retrieve information on the environment</strong>. The testing web application will invoke this to gather details about the platform on which it is running. This is used to augment any information that was discernible from the user agent.</p>
+
+<p><code>object browser.security.getDeviceInfo()</code></p>
+
+<p>The returned object has the following properties: <code>manufacturer</code>,<code>HWVer</code>, <code>SWVer</code></p></li>
 <li><p><strong>Empty system clipboard (optional)</strong>. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the <code>browser.security.enableLockDown</code> to perform the same operation. </p>
 
 <p><code>void browser.security.emptyClipBoard()</code></p></li>
@@ -288,19 +293,26 @@ Example: <code>{&quot;screencapture&quot;:true, &quot;voicerecording&quot;:false
 <li><p>[TBD] <strong>Mute System Volume</strong>. TBD </p></li>
 <li><p>[TBD] <strong>Unmute System Volume</strong>. TBD </p></li>
 <li><p>[TBD] <strong>Check if System Volume is muted</strong>. TBD </p></li>
-<li><p>[TBD] <strong>Enable permissive mode</strong>. TBD - deprecate?</p></li>
+<li><p>[TBD] <strong>Enable permissive mode</strong>. TBD</p></li>
 </ol>
 
 <h3 id="toc_2">Optional APIs</h3>
 
 <ol>
-<li><p>[TBD] <strong>Get Application Start Time (optional)</strong>. The testing application will invoke this to determine the local client side time that the application was launched. This is mainly used to track application uptime. If this is not provided, the web application can track it using local/session storage but it is desirable to have this information natively supported</p>
+<li><p>[TBD] <strong>Get Application Start Time</strong>. The testing application will invoke this to determine the local client side time that the application was launched. This is mainly used to track application uptime. If this is not provided, the web application can track it using local/session storage but it is desirable to have this information natively supported</p>
 
 <p><code>DateTime browser.security.getStartTime()</code></p>
 
 <p>Example response:</p>
 
 <p><code>&quot;Thu May 29 2016 17:35:24 GMT-0500 (Central Standard Time)&quot;</code></p></li>
+</ol>
+
+<h4 id="toc_3">Audio Recorder (optional - deprecated)</h4>
+
+<p><em>NOTE: All recorder APIs are being deprecated and replaced by W3C&#39;s HTML5 Media Recorder API (https://w3c.github.io/mediacapture-record/MediaRecorder.html).</em></p>
+
+<ol>
 <li><p><strong>Initialize audio recorder</strong>. This method is called by the testing application once to initialize the audio API after a page loads. The event listener passed in as argument is used to notify events to caller about progress.  Any attempts to call this method when it has already been called should be treated as a reset and re-init.</p>
 
 <p><code>void browser.recorder.initialize (eventListener)</code></p>
@@ -386,21 +398,23 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 <p><code>void browser.recorder.resumePlayback()</code></p></li>
 </ol>
 
-<h2 id="toc_3">Secure Browser Standards Compliance</h2>
+<h2 id="toc_4">Secure Browser Standards Compliance</h2>
 
-<h3 id="toc_4">Required</h3>
+<h3 id="toc_5">Required</h3>
 
 <ol>
-<li><p>[TBD] <strong>HTML5 compliant</strong>. The secure browser must be HTML5 compliant</p></li>
-<li><p>[TBD] <strong>Acid3 compliant</strong>. The secure browser must be Acid3 compliant</p></li>
-<li><p>[TBD] <strong>HTML5 compliant</strong>. The secure browser must be CSS3 compliant</p></li>
+<li><p>[TBD] <strong>HTML5 compliant</strong>. The secure browser must be HTML5 compliant: https://www.w3.org/TR/html5/ and http://html5test.com</p></li>
+<li><p>[TBD] <strong>Acid3 compliant</strong>. The secure browser must be Acid3 compliant: http://www.acidtests.org and http://acid3.acidtests.org</p></li>
+<li><p>[TBD] <strong>CSS3 compliant</strong>. The secure browser must be CSS3 compliant: https://www.w3.org/TR/2014/REC-css-namespaces-3-20140320 and http://css3test.com</p></li>
 </ol>
 
-<h3 id="toc_5">Optional</h3>
+<h3 id="toc_6">Optional</h3>
 
 <ol>
-<li><p>[TBD] <strong>W3C Web Audio compliant</strong>. </p></li>
-<li><p>[TBD] <strong>W3C Web Speech compliant</strong>. </p></li>
+<li><p><strong>W3C Web Audio compliant</strong>. W3C Web Audio API:
+https://www.w3.org/TR/webaudio</p></li>
+<li><p><strong>W3C Web Speech compliant</strong>. W3C Web Speech API:
+https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html</p></li>
 </ol>
 
 
