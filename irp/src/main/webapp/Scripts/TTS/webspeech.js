@@ -132,7 +132,7 @@ function TTSService_WebSpeech()
 
     chunks.forEach(function (chunk) {
       var utter = new SpeechSynthesisUtterance();
-      if (!Util.Browser.isChrome() || !Util.Browser.isWindows()) {
+     /* if (!Util.Browser.isChrome() || !Util.Browser.isWindows()) { */
         /*
          * Note: If you set this, voice does not play on Windows Chrome Update:
          * What I am seeing on Win 7/Chrome 53 is that it plays, but a) it reads
@@ -140,7 +140,7 @@ function TTSService_WebSpeech()
          * fine with this
          */
         utter.voice = this.currentVoice;
-      }
+      /* } */
       utter.volume = (this.volume / 10) * 1; // 0 to 1
       utter.rate = (this.rate / 10) * 1; // 0.1 to 10
       utter.pitch = (this.pitch / 10) * 1; // 0 to 2

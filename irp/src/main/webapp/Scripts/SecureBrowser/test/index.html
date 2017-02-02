@@ -71,152 +71,45 @@
 <script type="text/javascript" src="../../TTS/util.js"></script>
 <script type="text/javascript" src="../../TTS/webspeech.js"></script>
 <script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="ttsTest.js"></script>
 
 <script type="text/javascript">
   document.title = 'SecureBrowser Specification Test Suite';
 
-  $(document).ready(
-      function() {
+  $(document)
+      .ready(
+          function() {
 
-        // initialize messageResource.js with settings
-        messageResource.init({
-          // path to directory containing message resource files(.properties files),
-          // give empty string or discard this configuration if files are in the
-          // same directory as that of html file.
-          filePath : '../../Libraries/messageresource'
-        });
-
-        // will load the file 'path/messageresource/moduleName.properties'
-        // and callbackFunction will be executed when loading is complete.
-        messageResource.load('message', beginBrowserAPITest);
-        // file name without extension is taken as module name.
-
-        $("#closeBrowser").click(function() {
-          closeBrowser();
-        });
-
-        var ttsVolumeText = $("#ttsVolumeText");
-        var ttsPitchText = $("#ttsPitchText");
-        var ttsRateText = $("#ttsRateText");
-
-        $("#ttsVolume").slider(
-            {
-              orientation : "horizontal",
-              min : 0,
-              max : 10,
-              value : 10,
-              range : "min",
-              animate : true,
-              create : function() {
-                ttsVolumeText.text('Volume (' + $(this).slider("value") + ')');
-                var opt = $(this).data().uiSlider.options;
-                // Get the number of possible values
-                var vals = opt.max - opt.min;
-                var elMin = $('<label>' + (opt.min) + '</label>').css('left',
-                    (opt.min / vals * 100) + '%');
-                var elMax = $('<label>' + (opt.max) + '</label>').css('left',
-                    (opt.max / vals * 100) + '%');
-                $("#ttsVolume").append(elMin);
-                $("#ttsVolume").append(elMax);
-              }
+            // initialize messageResource.js with settings
+            messageResource.init({
+              // path to directory containing message resource files(.properties files),
+              // give empty string or discard this configuration if files are in the
+              // same directory as that of html file.
+              filePath : '../../Libraries/messageresource'
             });
 
-        $("#ttsVolume").on("slidechange", function(event, ui) {
+            // will load the file 'path/messageresource/moduleName.properties'
+            // and callbackFunction will be executed when loading is complete.
+            messageResource.load('message', beginBrowserAPITest);
+            // file name without extension is taken as module name.
 
-          ttsVolumeText.text('Volume (' + ui.value + ')');
-          /* alert(ui.value); */
-        });
-
-        $("#ttsPitch").slider(
-            {
-              orientation : "horizontal",
-              min : 0,
-              max : 20,
-              value : 10,
-              range : "min",
-              animate : true,
-              create : function() {
-                ttsPitchText.text('Pitch (' + $(this).slider("value") + ')');
-                var opt = $(this).data().uiSlider.options;
-                // Get the number of possible values
-                var vals = opt.max - opt.min;
-                var elMin = $('<label>' + (opt.min) + '</label>').css('left',
-                    (opt.min / vals * 100) + '%');
-                var elMax = $('<label>' + (opt.max) + '</label>').css('left',
-                    (opt.max / vals * 100) + '%');
-                $("#ttsPitch").append(elMin);
-                $("#ttsPitch").append(elMax);
-              }
+            $("#closeBrowser").click(function() {
+              closeBrowser();
             });
 
-        $("#ttsPitch").on("slidechange", function(event, ui) {
-          ttsPitchText.text('Pitch (' + ui.value + ')');
-          /* alert(ui.value); */
-        });
+            createSlider($("#ttsVolume"), $("#ttsVolumeText"), 'Volume', 0, 10,
+                10);
+            createSlider($("#ttsPitch"), $("#ttsPitchText"), 'Pitch', 0, 20, 10);
+            createSlider($("#ttsRate"), $("#ttsRateText"), 'Rate', 0, 20, 10);
+            createSlider($("#systemVolume"), $("#systemVolumeText"),
+                'System Volume', 0, 10, 10);
 
-        $("#ttsRate").slider(
-            {
-              orientation : "horizontal",
-              min : 0,
-              max : 20,
-              value : 10,
-              range : "min",
-              animate : true,
-              create : function() {
-                ttsRateText.text('Rate (' + $(this).slider("value") + ')');
-                var opt = $(this).data().uiSlider.options;
-                // Get the number of possible values
-                var vals = opt.max - opt.min;
-                var elMin = $('<label>' + (opt.min) + '</label>').css('left',
-                    (opt.min / vals * 100) + '%');
-                var elMax = $('<label>' + (opt.max) + '</label>').css('left',
-                    (opt.max / vals * 100) + '%');
-                $("#ttsRate").append(elMin);
-                $("#ttsRate").append(elMax);
-              }
-            });
+            createButton($("#play"), 'Play');
+            createButton($("#pause"), 'Pause');
+            createButton($("#resume"), 'Resume');
+            createButton($("#stop"), 'Stop');
 
-        $("#ttsRate").on("slidechange", function(event, ui) {
-          ttsRateText.text('Rate (' + ui.value + ')');
-          /* alert(ui.value); */
-        });
-
-        var systemVolumeText = $("#systemVolumeText");
-
-        $("#systemVolume").slider(
-            {
-              orientation : "horizontal",
-              min : 0,
-              max : 10,
-              value : 10,
-              range : "min",
-              animate : true,
-              create : function() {
-                systemVolumeText.text('System Volume ('
-                    + $(this).slider("value") + ')');
-                var opt = $(this).data().uiSlider.options;
-                // Get the number of possible values
-                var vals = opt.max - opt.min;
-                var elMin = $('<label>' + (opt.min) + '</label>').css('left',
-                    (opt.min / vals * 100) + '%');
-                var elMax = $('<label>' + (opt.max) + '</label>').css('left',
-                    (opt.max / vals * 100) + '%');
-                $("#systemVolume").append(elMin);
-                $("#systemVolume").append(elMax);
-              }
-            });
-
-        $("#systemVolume").on("slidechange", function(event, ui) {
-          systemVolumeText.text('System Volume (' + ui.value + ')');
-          /* alert(ui.value); */
-        });
-
-        $("#play").button();
-        $("#pause").button();
-        $("#resume").button();
-        $("#stop").button();
-
-      });
+          });
 
   function test() {
     var value = messageResource.get('description', 'message');
@@ -226,7 +119,16 @@
 </head>
 
 <body>
-  <div>
+
+  <div align="center">
+
+    <h3>Welcome to the Smarter Balanced Implementation Readiness
+      Package (IRP) Application</h3>
+
+  </div>
+
+
+  <div style="float: right;">
     <a href="javascript:location.reload(true);">RELOAD</a> | <a href="#"
       id="closeBrowser">CLOSE</a>
   </div>
@@ -259,8 +161,8 @@
 
       <div style="width: 40%">
         <p class="ui-state-default ui-corner-all ui-helper-clearfix"
-          style="padding: 4px;">Use the sliders to adjust pitch,rate
-          and volume</p>
+          style="padding: 4px;">Use the sliders to adjust
+          pitch,rate, volume and system volume</p>
       </div>
 
 
@@ -297,8 +199,20 @@
             <div class="divTableCellRight" id="systemVolume"></div>
           </div>
 
+          <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow">&nbsp;</div>
+
+          <div class="divTableRow">
+            <div class="divTableCell">Voice Selection</div>
+            <div class="divTableCellRight">
+              <select id="voices" onchange="setVoice()"></select>
+            </div>
+          </div>
+
         </div>
       </div>
+
+
 
     </div>
 
@@ -308,8 +222,4 @@
 
 
 </body>
-
-
-
-
 </html>

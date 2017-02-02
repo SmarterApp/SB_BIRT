@@ -498,7 +498,7 @@ function TTSService_SB() {
 
     var details = "";
     try {
-      alert('TTS Pitch ' + this.runtime.pitch);
+      // alert('TTS Pitch ' + this.runtime.pitch);
       if (!!this.runtime.pitch) {
         result = true;
       }
@@ -516,7 +516,7 @@ function TTSService_SB() {
 
     var details = "";
     try {
-      alert('TTS Rate ' + this.runtime.rate);
+      // alert('TTS Rate ' + this.runtime.rate);
       if (!!this.runtime.rate) {
         result = true;
       }
@@ -533,7 +533,7 @@ function TTSService_SB() {
 
     var details = "";
     try {
-      alert('TTS Volume ' + this.runtime.volume);
+      // alert('TTS Volume ' + this.runtime.volume);
       if (!!this.runtime.volume) {
         result = true;
       }

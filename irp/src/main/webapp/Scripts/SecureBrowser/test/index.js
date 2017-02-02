@@ -13,14 +13,15 @@ var impl = TDS.SecureBrowser.getImplementation();
 TTS.Manager.init(true);
 var ttsImpl = TTS.Manager._service;
 
+var isIOSDevice = Util.Browser.isIOS();
+var isAndroidDevice = Util.Browser.isAndroid();
+var isFireFox = Util.Browser.isFirefox();
+var isChrome = Util.Browser.isChrome();
+var isMobile = Util.Browser.isMobile();
+var isCertified = Util.Browser.isCertified();
+var isAIRSecureBrowser = Util.Browser.isSecure();
+
 function beginBrowserAPITest() {
-  var isIOSDevice = Util.Browser.isIOS();
-  var isAndroidDevice = Util.Browser.isAndroid();
-  var isFireFox = Util.Browser.isFirefox();
-  var isChrome = Util.Browser.isChrome();
-  var isMobile = Util.Browser.isMobile();
-  var isCertified = Util.Browser.isCertified();
-  var isAIRSecureBrowser = Util.Browser.isSecure();
 
   if (impl) {
     impl.checkGlobalObject();
@@ -187,10 +188,14 @@ function testTTS(isNew) {
     autoOpen : false,
     width : '900',
     height : '600',
+    title : 'TTS API Manual Test',
     position : {
       my : "center",
       at : "center",
       of : window
+    },
+    create : function(event, ui) {
+      loadVoices();
     },
     buttons : [ {
       text : "Test Pass",
@@ -211,7 +216,12 @@ function testTTS(isNew) {
     } ]
   });
 
-  $("#dialogTTS").dialog("option", "title", "Test TTS").dialog("open");
+  if (ttsImpl != null) {
+    $("#dialogTTS").dialog("open");
+  } else {
+    populateTTSResult(false,
+        'Error: Could not initialize TTS Support for given browser', true);
+  }
 
 }
 
@@ -228,5 +238,45 @@ function populateTTSResult(result, details, isNew) {
   $("#ttsManualTest").css("display", "none");
 
   $("#dialogTTS").dialog("close");
+
+}
+
+function createSlider(id, textId, text, minValue, maxValue, sliderValue) {
+
+  id.slider({
+    orientation : "horizontal",
+    min : minValue,
+    max : maxValue,
+    value : sliderValue,
+    range : "min",
+    animate : true,
+    create : function() {
+      textId.text(text + ' (' + $(this).slider("value") + ')');
+      var opt = $(this).data().uiSlider.options;
+      // Get the number of possible values
+      var vals = opt.max - opt.min;
+      var elMin = $('<label>' + (opt.min) + '</label>').css('left',
+          (opt.min / vals * 100) + '%');
+      var elMax = $('<label>' + (opt.max) + '</label>').css('left',
+          (opt.max / vals * 100) + '%');
+      id.append(elMin);
+      id.append(elMax);
+    }
+  });
+
+  id.on("slidechange", function(event, ui) {
+    textId.text(text + ' (' + ui.value + ')');
+  });
+
+}
+
+function createButton(id, text) {
+
+  id.button();
+
+  id.click(function(event) {
+    alert(text);
+    event.preventDefault();
+  });
 
 }
