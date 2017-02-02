@@ -1,7 +1,7 @@
 Secure Browser API Specification
 ------------------
 
-All vendors are required to expose a window global object called `browser`. The APIs discussed below are exposed through this global object.
+All vendors are required to expose a window global object called `browser`. The APIs discussed below are exposed through this global object. Some APIs are supported as part of existing W3C specifications, and are identified as such.
 
 ## Required Methods
 
@@ -15,6 +15,12 @@ All vendors are required to expose a window global object called `browser`. The 
 returns either a Javascript object or literal with the following structure
 	`{<feature>:true|false, ...}`
 Example: `{"screencapture":true, "voicerecording":false, "videocamera":false, "cortana": true}`
+
+1. **Retrieve information on the environment**. The testing web application will invoke this to gather details about the platform on which it is running. This is used to augment any information that was discernible from the user agent.
+
+	`object browser.security.getDeviceInfo()`
+
+	The returned object has the following properties: `manufacturer`,`HWVer`, `SWVer`
 
 1. **Empty system clipboard (optional)**. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the `browser.security.enableLockDown` to perform the same operation. 
 
@@ -92,16 +98,20 @@ Example: `{"screencapture":true, "voicerecording":false, "videocamera":false, "c
 
 1. [TBD] **Check if System Volume is muted**. TBD 
 
-1. [TBD] **Enable permissive mode**. TBD - deprecate?
+1. [TBD] **Enable permissive mode**. TBD
 
 ### Optional APIs
-1. [TBD] **Get Application Start Time (optional)**. The testing application will invoke this to determine the local client side time that the application was launched. This is mainly used to track application uptime. If this is not provided, the web application can track it using local/session storage but it is desirable to have this information natively supported
+
+1. [TBD] **Get Application Start Time**. The testing application will invoke this to determine the local client side time that the application was launched. This is mainly used to track application uptime. If this is not provided, the web application can track it using local/session storage but it is desirable to have this information natively supported
 
 	`DateTime browser.security.getStartTime()`
 
-     Example response:
+    Example response:
 	 
-     `"Thu May 29 2016 17:35:24 GMT-0500 (Central Standard Time)"`
+    `"Thu May 29 2016 17:35:24 GMT-0500 (Central Standard Time)"`
+
+#### Audio Recorder (optional - deprecated)
+*NOTE: All recorder APIs are being deprecated and replaced by W3C's HTML5 Media Recorder API (https://w3c.github.io/mediacapture-record/MediaRecorder.html).*
 
 1. **Initialize audio recorder**. This method is called by the testing application once to initialize the audio API after a page loads. The event listener passed in as argument is used to notify events to caller about progress.  Any attempts to call this method when it has already been called should be treated as a reset and re-init.
 
@@ -177,7 +187,7 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 
 1. **Pause playback**. This method is invoked to pause an ongoing audio playback. Throws error if status is currently not "PLAYING"
 
-	` void browser.recorder.pausePlayback()`
+	`void browser.recorder.pausePlayback()`
 
 1. **Resume playback**. This method is invoked to resume an already paused audio playback. Throws error if status is currently not "PAUSED"
 
@@ -186,14 +196,16 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 ## Secure Browser Standards Compliance
 ### Required
 
-1. [TBD] **HTML5 compliant**. The secure browser must be HTML5 compliant
+1. [TBD] **HTML5 compliant**. The secure browser must be HTML5 compliant: https://www.w3.org/TR/html5/ and http://html5test.com
 
-1. [TBD] **Acid3 compliant**. The secure browser must be Acid3 compliant
+1. [TBD] **Acid3 compliant**. The secure browser must be Acid3 compliant: http://www.acidtests.org and http://acid3.acidtests.org
 
-1. [TBD] **HTML5 compliant**. The secure browser must be CSS3 compliant
+1. [TBD] **CSS3 compliant**. The secure browser must be CSS3 compliant: https://www.w3.org/TR/2014/REC-css-namespaces-3-20140320 and http://css3test.com
 
 ### Optional
-1. [TBD] **W3C Web Audio compliant**. 
+1. **W3C Web Audio compliant**. W3C Web Audio API:
+https://www.w3.org/TR/webaudio
 
-1. [TBD] **W3C Web Speech compliant**. 
+1. **W3C Web Speech compliant**. W3C Web Speech API:
+https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html
  
