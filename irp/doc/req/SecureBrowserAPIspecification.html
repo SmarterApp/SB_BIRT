@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>SecureBrowserAPIspecification</title>
+
+
+<style type="text/css">
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+ol,
+ul,
+li,
+img {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+html * {
+  font-family: "ff-din-web-pro-1", "ff-din-web-pro-2", sans-serif;
+  font-size: 16px;
+  line-height: 19.2px;
+  color-profile: sRGB;
+}
+body {
+  margin: 40px 70px;
+}
+p {
+  font-weight: lighter;
+  margin-bottom: 20px;
+}
+strong {
+  font-weight: bold;
+}
+ol,
+ul {
+  margin-left: 2em;
+  margin-bottom: 20px;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-top: 10px;
+}
+li {
+  margin-bottom: 10px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: lighter;
+  text-transform: capitalize;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h2 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h3 {
+  font-size: 23.44px;
+  line-height: 28.128px;
+}
+h4 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h5 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h6 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+img {
+  margin-bottom: 20px;
+}
+h1 img,
+h2 img,
+h3 img,
+h4 img,
+h5 img,
+h6 img,
+p img {
+  margin-bottom: 0;
+}
+pre {
+  margin-bottom: 20px;
+}
+pre,
+code {
+  font-family: monospace;
+}
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 15px;
+}
+blockquote {
+  border-left: 4px solid;
+  padding: 0 15px;
+}
+blockquote > :first-child {
+  margin-top: 0;
+}
+blockquote > :last-child {
+  margin-bottom: 15px;
+}
+h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+h2 {
+  border-bottom: 1px solid;
+}
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: none;
+}
+html * {
+  color: #839496;
+}
+html body {
+  background-color: #002b36;
+}
+html h1,
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #93a1a1;
+  border-color: #839496;
+}
+html a,
+html a:active,
+html a:visited {
+  color: #93a1a1;
+}
+html a:hover {
+  background-color: #073642;
+}
+html pre {
+  color: #93a1a1;
+  background-color: #073642;
+}
+html a,
+html a:active,
+html a:visited,
+html code.url {
+  color: #b58900;
+}
+html h1 {
+  color: #b58900;
+}
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #b58900;
+}
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+
+@media print {
+  body {
+    margin: 0;
+  }
+  * {
+    color: #000 !important;
+  }
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h2 id="toc_0">Secure Browser API Specification</h2>
+
+<p>All vendors are required to expose a window global object called <code>browser</code>. The APIs discussed below are exposed through this global object.</p>
+
+<h2 id="toc_1">Required Methods</h2>
+
+<ol>
+<li><p><strong>Lock down environment to begin an assessment</strong>. The testing web application will invoke this call prior to allowing students to start testing. The implementer is required to take any actions necessary to secure the testing environment. The steps taken to secure the environment are device specific and for example, include aspects such as disabling the ability to do screen captures, disabling the ability to voice chat when in secure mode, clearing the system clipboard, entering into a kiosk mode, disabling Spaces in OS X 10.7+ etc. The testing application will enable lockdown before an assessment commences and will disable the lockdown when the student has completed the assessment and is out of the secure test.</p>
+
+<p><code>void browser.security.enableLockDown (boolean lockDown)</code></p></li>
+<li><p>[TBD] <strong>Retrieve List of Features and their status</strong>. In some cases, testing may not require the environment to be fully locked down. We may still allow a test to proceed even if <code>browser.security.isEnvironmentSecure()</code> returns false as long we can determine which features are currently available to the end user and allow the testing application to make a determination. </p>
+
+<p><code>object browser.security.getFeatures()</code>
+returns either a Javascript object or literal with the following structure
+<code>{&lt;feature&gt;:true|false, ...}</code>
+Example: <code>{&quot;screencapture&quot;:true, &quot;voicerecording&quot;:false, &quot;videocamera&quot;:false, &quot;cortana&quot;: true}</code></p></li>
+<li><p><strong>Empty system clipboard (optional)</strong>. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the <code>browser.security.enableLockDown</code> to perform the same operation. </p>
+
+<p><code>void browser.security.emptyClipBoard()</code></p></li>
+<li><p>[TBD] <strong>Examine current list of running processes</strong>. The testing application will invoke this to examine the list of all processes running on the client machine owned by the user, and compare it with a list of processes that we have deemed blacklisted during testing cycle. This call will be invoked both at the start of an assessment and periodically which the student is taking the assessment and at any point, if a blacklisted app is detected, the assessment will be stopped to preserve test integrity. It will return a list of running processes that match one or more of the blacklisted processes, if any.</p>
+
+<p><code>string[] browser.security.examineProcessList(string[] blacklistedProcessList)</code></p>
+
+<p>Example response:</p>
+
+<p><code>&quot;[&#39;taskmgr.exe&#39;,&#39;chrome.exe&#39;,&#39;ccSvcHst.exe&#39;,&#39;Dropbox.exe&#39;,&#39;EXCEL.EXE&#39;,&#39;svchost.exe&#39;,&#39;System&#39;]&quot;</code></p></li>
+<li><p><strong>Shut down the browser</strong>. The testing application will invoke this to close the browser when the user elects to exit the browser. The boolean parameter will determine if the browser should restart on exit or simply exit.</p>
+
+<p><code>void browser.security.close(boolean restart)</code></p></li>
+<li><p><strong>Speak Text (Text to speech Synthesis)</strong>. The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup, an options object to control the speech (optional) and a callback for TTS events (optional). The vendor can support one of the following markup standards, SSML, Microsoft speech markup (for windows) or Apple speech markup (for OS X). The options object include <code>voicename</code>, <code>rate</code>, <code>gender</code>, <code>language</code>, <code>pitch</code>, <code>volume</code>. The callback, if provided, is invoked for TTS events which include <code>start</code>, <code>end</code>, <code>word boundary</code>, <code>sentence boundary</code>, <code>synchronization/marker</code> encountered, <code>paused</code> and <code>error</code>. </p>
+
+<p><code>void browser.tts.speak(string text, object options, function callback)</code></p></li>
+<li><p><strong>Stop speech (Text to speech Synthesis)</strong>. This is called by the testing application to stop any speech that may be in progress. </p>
+
+<p><code>void browser.tts.stop()</code></p></li>
+<li><p><strong>Get speech status (Text to speech Synthesis)</strong>. This is called by the testing application to inspect the current status of speech. The valid values are <code>unavailable</code>, <code>idle</code>, <code>paused</code> and <code>speaking</code></p>
+
+<p><code>string browser.tts.getStatus()</code></p>
+
+<p>Where Status is one of:</p>
+
+<p>&#39;NotSupported&#39;  : tts initialization failed.
+&#39;Uninitialized&#39; : tts is not initialized
+&#39;Initializing&#39;  : tts initialization in progress
+&#39;Stopped&#39;       : tts is initialized and there is nothing playing
+&#39;Playing&#39;       : playing is in progress
+&#39;Paused&#39;        : playing was paused
+&#39;Unknown&#39;       : unknown status</p></li>
+<li><p><strong>Get available voices (Text to speech Synthesis)</strong>. This is called by the testing application to get a listing of the available voice packs in the current system. </p>
+
+<p><code>string[] browser.tts.getVoices()</code></p>
+
+<p>Example Response:</p>
+
+<p><code>[&#39;US English Female TTS&#39;,&#39;en-US&#39;,&#39;es-ES&#39;]</code></p></li>
+<li><p>[TBD] <strong>Get current voice pack (Text to speech Synthesis)</strong>. This is called by the testing application to get the name of the currently active voice pack. </p>
+
+<p><code>string browser.tts.getVoiceName()</code></p></li>
+<li><p><strong>Pause speech (Text to speech Synthesis)</strong>. This is called by the web application to temporarily pause speech. Corresponding events are fired to notify the callback provided in the <code>speak</code> function of this.</p>
+
+<p><code>void browser.tts.pause()</code></p></li>
+<li><p><strong>Resume speech (Text to speech Synthesis)</strong>. This is called by the web application to resume speech if it was previously paused. </p>
+
+<p><code>void browser.tts.resume()</code></p></li>
+<li><p>[TBD] <strong>Get current pitch setting (Text to speech Synthesis)</strong>. This is called by the testing application to get the pitch of the current voice. </p></li>
+<li><p>[TBD] <strong>Get current rate setting (Text to speech Synthesis)</strong>. This is called by the testing application to get the speech rate of the current voice. </p></li>
+<li><p>[TBD] <strong>Get current volume setting (Text to speech Synthesis)</strong>. This is called by the testing application to get the volume of the current voice. </p></li>
+<li><p>[TBD] <strong>Is OSX Spaces Enabled</strong>. Applicable to Mac OS X only. Returns true if Spaces is enabled, false otherwise. </p></li>
+<li><p>[TBD] <strong>Get System Volume</strong>. TBD </p></li>
+<li><p>[TBD] <strong>Set System Volume</strong>. TBD </p></li>
+<li><p>[TBD] <strong>Mute System Volume</strong>. TBD </p></li>
+<li><p>[TBD] <strong>Unmute System Volume</strong>. TBD </p></li>
+<li><p>[TBD] <strong>Check if System Volume is muted</strong>. TBD </p></li>
+<li><p>[TBD] <strong>Enable permissive mode</strong>. TBD - deprecate?</p></li>
+</ol>
+
+<h3 id="toc_2">Optional APIs</h3>
+
+<ol>
+<li><p>[TBD] <strong>Get Application Start Time (optional)</strong>. The testing application will invoke this to determine the local client side time that the application was launched. This is mainly used to track application uptime. If this is not provided, the web application can track it using local/session storage but it is desirable to have this information natively supported</p>
+
+<p><code>DateTime browser.security.getStartTime()</code></p>
+
+<p>Example response:</p>
+
+<p><code>&quot;Thu May 29 2016 17:35:24 GMT-0500 (Central Standard Time)&quot;</code></p></li>
+<li><p><strong>Initialize audio recorder</strong>. This method is called by the testing application once to initialize the audio API after a page loads. The event listener passed in as argument is used to notify events to caller about progress.  Any attempts to call this method when it has already been called should be treated as a reset and re-init.</p>
+
+<p><code>void browser.recorder.initialize (eventListener)</code></p>
+
+<p>Events expected:</p>
+
+<ul>
+<li><code>INITIALIZING</code> – indicates that initialization is in progress</li>
+<li><code>READY</code> – Initialization is done and internal data structures are loaded</li>
+<li><code>ERROR</code> – Initialization failed with information on failure cause</li>
+</ul></li>
+<li><p><strong>Get audio recorder status</strong>. This method is called to inquire about the status of the recorder. </p>
+
+<p><code>string browser.recorder.getStatus()</code></p>
+
+<p>Status values expected are</p>
+
+<ul>
+<li><code>IDLE</code> – no recording in progress</li>
+<li><code>ACTIVE</code>- recording in progress</li>
+<li><code>INITIALIZING</code> – initialization in progress</li>
+<li><code>ERROR</code> – terminal error state and reinit is required </li>
+<li><code>STOPPING</code> – recording is done and final book keeping and generation of encoded audio is in progress</li>
+<li><code>PLAYING</code> - recorder is playing back some audio</li>
+<li><code>PAUSED</code> - recorder is paused playing back some audio</li>
+</ul></li>
+<li><p><strong>Get audio recorder capabilities</strong>. This method is called to enquire about the capabilities of the platform. Throws error if called before initialize is completed successfully. The return value includes</p>
+
+<p><code>object browser.recorder.getCapabilities()</code></p>
+
+<p>Possible return values are:</p>
+
+<ul>
+<li><code>isAvailable</code> – recording is supported (Boolean)</li>
+<li><code>supportedInputDevices</code> – a list of audio input devices detected. Each of these device definitions includesdevice id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported. </li>
+</ul></li>
+<li><p><strong>Initiate audio capture</strong>. This method is called to initiate audio capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE. </p>
+
+<p><code>object browser.recorder.startCapture(options, eventListener)</code></p>
+
+<p>The options object includes:</p>
+
+<ul>
+<li><code>captureDevice</code> – the device id to use for data capture (int)
+sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (specified as int in hz)</li>
+<li><code>channel count</code> – 1 (mono), 2 (stereo) … (specified as int)</li>
+<li><code>sample size</code> – 8bit, 16bit etc. (specified as int)
+<code>encoding format</code> – SPX, HE-AAC, Opus, etc. (specified as string)</li>
+<li><code>quality indicator desired</code> – whether to perform and report a recording quality check or not (Boolean)</li>
+<li><code>progressEventFrequency</code> – how frequently the event listener should be called back to report progress events either based on time or on units of data collected. For example, we could ask for periodic progress events every 2 seconds to keep us notified as recording is happening or every 30KB of new data collected</li>
+<li><code>captureLimit</code>– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). The event listener is passed in to receive capture events. The events include:
+
+<ul>
+<li><code>START</code> – Capture started</li>
+<li><code>INPROGRESS</code> – Progress event with progress data (34 seconds of audio captured, 36 seconds of audio captured etc or 10KB of audio captured, 30 KB of audio captured etc) </li>
+<li><code>END</code> – Capture complete. The <code>END</code> event is special. This event gives us the pointer to the  data collection for the encoded audio. In addition, a quality check is performed on the captured audio stream to evaluate whether it is good or not. </li>
+</ul></li>
+</ul></li>
+<li><p><strong>Stop recording</strong>. This method is called to stop audio capture. Throws error if status is currently not “RECORDING”.</p>
+
+<p><code>void browser.recorder.stopCapture()</code></p></li>
+<li><p><strong>Retrieve recording</strong>. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the <code>END</code> event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this api directly in the callback for the <code>END</code> event.</p>
+
+<p><code>string browser.recorder.retrieveAudio()</code></p></li>
+<li><p><strong>Playback a recording</strong>. This method is called to playback a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 webaudio to playback encoded audio (encoded using the format specified in the <code>startcapture</code> call) obtained by a call to <code>retrieveAudio()</code>. The playback function is passed in the base64 audio string and a call back function.  </p>
+
+<p><code>void browser.recorder.playback(b64audio, callback)</code></p>
+
+<p>The call back function is expecting the following events:</p>
+
+<ul>
+<li><code>PLAYBACK_START</code> - Playback has started. The event includes the id of the audio passed in. </li>
+<li><code>PLAYBACK_STOPPED</code> - Playback has stopped (either because the audio stream is done, <code>pausePlayback()</code> or <code>stopPlayback()</code> has been invoked). The event includes the id of the audio passed in.</li>
+</ul></li>
+<li><p><strong>Stop playback</strong>. This method is invoked to stop an ongoing audio playback. Throws error if status is currently not &quot;PLAYING&quot;.</p>
+
+<p><code>void browser.recorder.stopPlayback()</code></p></li>
+<li><p><strong>Pause playback</strong>. This method is invoked to pause an ongoing audio playback. Throws error if status is currently not &quot;PLAYING&quot;</p>
+
+<p><code>void browser.recorder.pausePlayback()</code></p></li>
+<li><p><strong>Resume playback</strong>. This method is invoked to resume an already paused audio playback. Throws error if status is currently not &quot;PAUSED&quot;</p>
+
+<p><code>void browser.recorder.resumePlayback()</code></p></li>
+</ol>
+
+<h2 id="toc_3">Secure Browser Standards Compliance</h2>
+
+<h3 id="toc_4">Required</h3>
+
+<ol>
+<li><p>[TBD] <strong>HTML5 compliant</strong>. The secure browser must be HTML5 compliant</p></li>
+<li><p>[TBD] <strong>Acid3 compliant</strong>. The secure browser must be Acid3 compliant</p></li>
+<li><p>[TBD] <strong>HTML5 compliant</strong>. The secure browser must be CSS3 compliant</p></li>
+</ol>
+
+<h3 id="toc_5">Optional</h3>
+
+<ol>
+<li><p>[TBD] <strong>W3C Web Audio compliant</strong>. </p></li>
+<li><p>[TBD] <strong>W3C Web Speech compliant</strong>. </p></li>
+</ol>
+
+
+
+
+</body>
+
+</html>
