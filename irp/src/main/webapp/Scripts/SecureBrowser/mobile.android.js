@@ -1,11 +1,11 @@
-﻿//*******************************************************************************
+﻿// *******************************************************************************
 // Educational Online Test Delivery System
 // Copyright (c) 2017 American Institutes for Research
 //
 // Distributed under the AIR Open Source License, Version 1.0
 // See accompanying file AIR-License-1_0.txt or at
 // http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
-//*******************************************************************************
+// *******************************************************************************
 // REQUIRES: SecureBrowser.Base.js, Summit/air_mobile.js
 
 TDS.SecureBrowser.Mobile = TDS.SecureBrowser.Mobile || {};
@@ -357,4 +357,24 @@ TDS.SecureBrowser.Mobile.Android.prototype.close = function(restart) {
   } catch (ex) {
   }
   return false;
+};
+
+// SEC-56
+TDS.SecureBrowser.Mobile.Android.prototype.checkSystemMuteAPI = function() {
+  var result = null;
+  var details = null;
+
+  Util.Validation.setResultItems('apiId.checkSystemMuteAPI',
+      'testname.checkSystemMuteAPI', 'api.checkSystemMuteAPI.mobile', result,
+      details);
+};
+
+// SEC-57
+TDS.SecureBrowser.Mobile.Android.prototype.checkSystemVolumeAPI = function() {
+  var result = null;
+  var details = null;
+
+  Util.Validation.setResultItems('apiId.checkSystemVolumeAPI',
+      'testname.checkSystemVolumeAPI', 'api.checkSystemVolumeAPI.mobile',
+      result, details);
 };

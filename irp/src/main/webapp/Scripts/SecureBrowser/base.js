@@ -1,11 +1,11 @@
-//*******************************************************************************
+// *******************************************************************************
 // Educational Online Test Delivery System
 // Copyright (c) 2017 American Institutes for Research
 //
 // Distributed under the AIR Open Source License, Version 1.0
 // See accompanying file AIR-License-1_0.txt or at
 // http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
-//*******************************************************************************
+// *******************************************************************************
 TDS = window.TDS || {};
 TDS.SecureBrowser = TDS.SecureBrowser || {};
 
@@ -359,6 +359,26 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   // get windows registry key
   Base.prototype.readRegistryValue = function(hkey, key, name) {
     return null;
+  };
+
+  // SEC-56
+  Base.prototype.checkSystemMuteAPI = function() {
+    var result = null;
+    var details = null;
+
+    Util.Validation.setResultItems('apiId.checkSystemMuteAPI',
+        'testname.checkSystemMuteAPI', 'api.checkSystemMuteAPI.certified',
+        result, details);
+  };
+
+  // SEC-57
+  Base.prototype.checkSystemVolumeAPI = function() {
+    var result = null;
+    var details = null;
+
+    Util.Validation.setResultItems('apiId.checkSystemVolumeAPI',
+        'testname.checkSystemVolumeAPI', 'api.checkSystemVolumeAPI.certified',
+        result, details);
   };
 
   SB.Base = Base;

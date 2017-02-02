@@ -1,0 +1,70 @@
+#dialogTTS {
+	display: none;
+	width: 100%;
+}
+
+#ttsTextArea {
+/* 	float: left;
+	width: 30%; */
+}
+
+#ttsTestButtons {
+/*     float: right;
+    width: 70%; */
+}
+
+
+.divTable{
+    display: table;
+    width: 40%;
+}
+.divTableRow {
+    display: table-row;
+}
+.divTableHeading {
+    background-color: #EEE;
+    display: table-header-group;
+}
+.divTableCell, .divTableHead {
+    vertical-align : middle;
+    display: table-cell;
+    float: left;
+    width: 30%;
+}
+
+.divTableCellRight, .divTableHeadRight {
+    vertical-align : middle;
+    display: table-cell;
+    float: left;
+    width: 60%;
+}
+
+
+.divTableCellButton, .divTableHead {
+    vertical-align : middle;
+    display: table-cell;
+    float: left;
+}
+
+.divTableHeading {
+    background-color: #EEE;
+    display: table-header-group;
+    font-weight: bold;
+}
+.divTableFoot {
+    background-color: #EEE;
+    display: table-footer-group;
+    font-weight: bold;
+}
+.divTableBody {
+    display: table-row-group;
+}
+
+
+.ui-slider label {
+  position: absolute;
+  width: 20px;
+  margin-top: 15px;
+  margin-left: -10px;
+  text-align: center;
+}

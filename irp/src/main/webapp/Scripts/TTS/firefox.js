@@ -1,13 +1,13 @@
-//*******************************************************************************
+// *******************************************************************************
 // Educational Online Test Delivery System
 // Copyright (c) 2017 American Institutes for Research
 //
 // Distributed under the AIR Open Source License, Version 1.0
 // See accompanying file AIR-License-1_0.txt or at
 // http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
-//*******************************************************************************
+// *******************************************************************************
 /*
- This is the Firefox API for SB.
+ * This is the Firefox API for SB.
  */
 
 // TTS service: Secure Browser
@@ -498,6 +498,7 @@ function TTSService_SB() {
 
     var details = "";
     try {
+      alert('TTS Pitch ' + this.runtime.pitch);
       if (!!this.runtime.pitch) {
         result = true;
       }
@@ -515,6 +516,7 @@ function TTSService_SB() {
 
     var details = "";
     try {
+      alert('TTS Rate ' + this.runtime.rate);
       if (!!this.runtime.rate) {
         result = true;
       }
@@ -531,6 +533,7 @@ function TTSService_SB() {
 
     var details = "";
     try {
+      alert('TTS Volume ' + this.runtime.volume);
       if (!!this.runtime.volume) {
         result = true;
       }
@@ -599,6 +602,7 @@ function TTSService_SB() {
     var result = false;
     var details = '';
     try {
+
       if (!!this.runtime.voiceName) {
         result = true;
       }

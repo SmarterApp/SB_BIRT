@@ -1,12 +1,13 @@
-//*******************************************************************************
+// *******************************************************************************
 // Educational Online Test Delivery System
 // Copyright (c) 2017 American Institutes for Research
 //
 // Distributed under the AIR Open Source License, Version 1.0
 // See accompanying file AIR-License-1_0.txt or at
 // http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
-//*******************************************************************************
-//TTS service: Webspeech API https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API
+// *******************************************************************************
+// TTS service: Webspeech API
+// https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API
 
 function TTSService_WebSpeech()
 {
@@ -144,7 +145,7 @@ function TTSService_WebSpeech()
       utter.rate = (this.rate / 10) * 1; // 0.1 to 10
       utter.pitch = (this.pitch / 10) * 1; // 0 to 2
       utter.text = this._utterancePrefix + chunk + this._utterancePostfix;
-      // utter.lang = this.currentVoice.lang;
+      utter.lang = this.currentVoice.lang;
 
       utter.onboundary = function (offset) {
         return function (e) {

@@ -1,15 +1,16 @@
-﻿//*******************************************************************************
-//Educational Online Test Delivery System
-//Copyright (c) 2017 American Institutes for Research
+﻿// *******************************************************************************
+// Educational Online Test Delivery System
+// Copyright (c) 2017 American Institutes for Research
 
-//Distributed under the AIR Open Source License, Version 1.0
-//See accompanying file AIR-License-1_0.txt or at
-//http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
-//*******************************************************************************
-//REQUIRES: YUI, IO.js, SecureBrowser.Base.js
+// Distributed under the AIR Open Source License, Version 1.0
+// See accompanying file AIR-License-1_0.txt or at
+// http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
+// *******************************************************************************
+// REQUIRES: YUI, IO.js, SecureBrowser.Base.js
 
 /*
- The Desktop version of the secure browser built on top of the firefox platform.
+ * The Desktop version of the secure browser built on top of the firefox
+ * platform.
  */
 
 (function(SB) {
@@ -242,7 +243,17 @@
   // SEC-30
   Firefox.prototype.checkEnableLockDownAPI = function() {
     var result = true;
-    var details = 'testApi.removed';
+    var details = '';
+
+    var result = false;
+    var details = "";
+    try {
+      if (!!this.runtime.enableLockDown) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
 
     Util.Validation.setResultItems('apiId.checkEnableLockDownAPI',
         'testname.checkEnableLockDownAPI', 'api.checkEnableLockDownAPI.SB',
@@ -1031,6 +1042,44 @@
       } catch (ex) {
       }
     });
+  };
+
+  // SEC-56
+  Firefox.prototype.checkSystemMuteAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      alert('System Mute ' + this.runtime.systemMute);
+      if (!!this.runtime.systemMute) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkSystemMuteAPI',
+        'testname.checkSystemMuteAPI', 'api.checkSystemMuteAPI.SB', result,
+        details);
+  };
+
+  // SEC-57
+  Firefox.prototype.checkSystemVolumeAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      alert('System Volume ' + this.runtime.systemVolume);
+      if (!!this.runtime.systemVolume) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkSystemVolumeAPI',
+        'testname.checkSystemVolumeAPI', 'api.checkSystemVolumeAPI.SB', result,
+        details);
   };
 
   SB.Firefox = Firefox;

@@ -1,11 +1,20 @@
+<!DOCTYPE html>
 <html>
-
 <head>
 
 
 <!-- JQuery -->
 <script src="../../Libraries/jQuery/jquery-3.1.1.js"></script>
 <script src="../../Libraries/jQuery/jquery-ui-1.12.js"></script>
+
+<link type="text/css" rel="stylesheet"
+  href="../../Libraries/jQuery/jquery-ui.css" />
+<link type="text/css" rel="stylesheet"
+  href="../../Libraries/jQuery/jquery-ui.structure.css" />
+<link type="text/css" rel="stylesheet"
+  href="../../Libraries/jQuery/jquery-ui.theme.css" />
+
+<link type="text/css" rel="stylesheet" href="../../../Shared/irp.css" />
 
 <!-- JSGrid -->
 <link type="text/css" rel="stylesheet"
@@ -61,28 +70,155 @@
 <script type="text/javascript" src="../../TTS/tts.js"></script>
 <script type="text/javascript" src="../../TTS/util.js"></script>
 <script type="text/javascript" src="../../TTS/webspeech.js"></script>
+<script type="text/javascript" src="index.js"></script>
 
 <script type="text/javascript">
   document.title = 'SecureBrowser Specification Test Suite';
 
-  $(document).ready(function() {
+  $(document).ready(
+      function() {
 
-    // initialize messageResource.js with settings
-    messageResource.init({
-      // path to directory containing message resource files(.properties files),
-      // give empty string or discard this configuration if files are in the
-      // same directory as that of html file.
-      filePath : '../../Libraries/messageresource'
-    });
+        // initialize messageResource.js with settings
+        messageResource.init({
+          // path to directory containing message resource files(.properties files),
+          // give empty string or discard this configuration if files are in the
+          // same directory as that of html file.
+          filePath : '../../Libraries/messageresource'
+        });
 
-    // will load the file 'path/messageresource/moduleName.properties'
-    // and callbackFunction will be executed when loading is complete.
-    messageResource.load('message', beginBrowserAPITest);
-    // file name without extension is taken as module name.
+        // will load the file 'path/messageresource/moduleName.properties'
+        // and callbackFunction will be executed when loading is complete.
+        messageResource.load('message', beginBrowserAPITest);
+        // file name without extension is taken as module name.
 
-  });
+        $("#closeBrowser").click(function() {
+          closeBrowser();
+        });
 
-  function test() { 
+        var ttsVolumeText = $("#ttsVolumeText");
+        var ttsPitchText = $("#ttsPitchText");
+        var ttsRateText = $("#ttsRateText");
+
+        $("#ttsVolume").slider(
+            {
+              orientation : "horizontal",
+              min : 0,
+              max : 10,
+              value : 10,
+              range : "min",
+              animate : true,
+              create : function() {
+                ttsVolumeText.text('Volume (' + $(this).slider("value") + ')');
+                var opt = $(this).data().uiSlider.options;
+                // Get the number of possible values
+                var vals = opt.max - opt.min;
+                var elMin = $('<label>' + (opt.min) + '</label>').css('left',
+                    (opt.min / vals * 100) + '%');
+                var elMax = $('<label>' + (opt.max) + '</label>').css('left',
+                    (opt.max / vals * 100) + '%');
+                $("#ttsVolume").append(elMin);
+                $("#ttsVolume").append(elMax);
+              }
+            });
+
+        $("#ttsVolume").on("slidechange", function(event, ui) {
+
+          ttsVolumeText.text('Volume (' + ui.value + ')');
+          /* alert(ui.value); */
+        });
+
+        $("#ttsPitch").slider(
+            {
+              orientation : "horizontal",
+              min : 0,
+              max : 20,
+              value : 10,
+              range : "min",
+              animate : true,
+              create : function() {
+                ttsPitchText.text('Pitch (' + $(this).slider("value") + ')');
+                var opt = $(this).data().uiSlider.options;
+                // Get the number of possible values
+                var vals = opt.max - opt.min;
+                var elMin = $('<label>' + (opt.min) + '</label>').css('left',
+                    (opt.min / vals * 100) + '%');
+                var elMax = $('<label>' + (opt.max) + '</label>').css('left',
+                    (opt.max / vals * 100) + '%');
+                $("#ttsPitch").append(elMin);
+                $("#ttsPitch").append(elMax);
+              }
+            });
+
+        $("#ttsPitch").on("slidechange", function(event, ui) {
+          ttsPitchText.text('Pitch (' + ui.value + ')');
+          /* alert(ui.value); */
+        });
+
+        $("#ttsRate").slider(
+            {
+              orientation : "horizontal",
+              min : 0,
+              max : 20,
+              value : 10,
+              range : "min",
+              animate : true,
+              create : function() {
+                ttsRateText.text('Rate (' + $(this).slider("value") + ')');
+                var opt = $(this).data().uiSlider.options;
+                // Get the number of possible values
+                var vals = opt.max - opt.min;
+                var elMin = $('<label>' + (opt.min) + '</label>').css('left',
+                    (opt.min / vals * 100) + '%');
+                var elMax = $('<label>' + (opt.max) + '</label>').css('left',
+                    (opt.max / vals * 100) + '%');
+                $("#ttsRate").append(elMin);
+                $("#ttsRate").append(elMax);
+              }
+            });
+
+        $("#ttsRate").on("slidechange", function(event, ui) {
+          ttsRateText.text('Rate (' + ui.value + ')');
+          /* alert(ui.value); */
+        });
+
+        var systemVolumeText = $("#systemVolumeText");
+
+        $("#systemVolume").slider(
+            {
+              orientation : "horizontal",
+              min : 0,
+              max : 10,
+              value : 10,
+              range : "min",
+              animate : true,
+              create : function() {
+                systemVolumeText.text('System Volume ('
+                    + $(this).slider("value") + ')');
+                var opt = $(this).data().uiSlider.options;
+                // Get the number of possible values
+                var vals = opt.max - opt.min;
+                var elMin = $('<label>' + (opt.min) + '</label>').css('left',
+                    (opt.min / vals * 100) + '%');
+                var elMax = $('<label>' + (opt.max) + '</label>').css('left',
+                    (opt.max / vals * 100) + '%');
+                $("#systemVolume").append(elMin);
+                $("#systemVolume").append(elMax);
+              }
+            });
+
+        $("#systemVolume").on("slidechange", function(event, ui) {
+          systemVolumeText.text('System Volume (' + ui.value + ')');
+          /* alert(ui.value); */
+        });
+
+        $("#play").button();
+        $("#pause").button();
+        $("#resume").button();
+        $("#stop").button();
+
+      });
+
+  function test() {
     var value = messageResource.get('description', 'message');
   }
 </script>
@@ -91,13 +227,89 @@
 
 <body>
   <div>
-    <a href="javascript:location.reload(true);">RELOAD</a> | <a
-      href="javascript:closeBrowser()">CLOSE</a>
+    <a href="javascript:location.reload(true);">RELOAD</a> | <a href="#"
+      id="closeBrowser">CLOSE</a>
   </div>
 
   <div id="jsGrid"></div>
+
+
+  <div id="manualTest">
+    <ul>
+      <li id="ttsManualTest"><a href="javascript:testTTS(true)">TTS
+          Manual Check</a></li>
+    </ul>
+  </div>
+  <div id="dialogTTS" style="display: none;">
+
+    <div id="ttsTest">
+      <div id="ttsTextArea" style="width: 40%">
+        <textarea id="text" cols="40" rows="3">Some dummy text to test TTS Some dummy text to test TTS</textarea>
+      </div>
+
+      <div>&nbsp;</div>
+
+      <div>
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <button id="resume">Resume</button>
+        <button id="stop">Stop</button>
+
+      </div>
+
+      <div style="width: 40%">
+        <p class="ui-state-default ui-corner-all ui-helper-clearfix"
+          style="padding: 4px;">Use the sliders to adjust pitch,rate
+          and volume</p>
+      </div>
+
+
+      <div class="divTable">
+        <div class="divTableBody">
+
+          <div class="divTableRow">
+            <div class="divTableCell" id="ttsVolumeText"></div>
+            <div class="divTableCellRight" id="ttsVolume"></div>
+          </div>
+
+          <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow">&nbsp;</div>
+
+          <div class="divTableRow">
+            <div class="divTableCell" id="ttsPitchText"></div>
+            <div class="divTableCellRight" id="ttsPitch"></div>
+          </div>
+
+          <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow">&nbsp;</div>
+
+          <div class="divTableRow">
+            <div class="divTableCell" id="ttsRateText"></div>
+            <div class="divTableCellRight" id="ttsRate"></div>
+          </div>
+
+
+          <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow">&nbsp;</div>
+
+          <div class="divTableRow">
+            <div class="divTableCell" id="systemVolumeText"></div>
+            <div class="divTableCellRight" id="systemVolume"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div id="ttsManualReport" style="float: right; width: 60%"></div>
+
+  </div>
+
+
 </body>
 
-<script type="text/javascript" src="index.js"></script>
+
+
 
 </html>

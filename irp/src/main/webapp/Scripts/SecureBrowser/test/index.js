@@ -1,11 +1,11 @@
-//*******************************************************************************
+// *******************************************************************************
 // Educational Online Test Delivery System
 // Copyright (c) 2017 American Institutes for Research
 //
 // Distributed under the AIR Open Source License, Version 1.0
 // See accompanying file AIR-License-1_0.txt or at
 // http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
-//*******************************************************************************
+// *******************************************************************************
 
 TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
@@ -57,6 +57,11 @@ function beginBrowserAPITest() {
 
     /** SEC-30 : API: Enable Lock Down (R)* */
     impl.checkEnableLockDownAPI();
+
+    /** SEC-56 : API: System Mute/Unmute/IsMuted (R) * */
+    impl.checkSystemMuteAPI();
+    /** SEC-57 : API: Get/Set System Volume (R) * */
+    impl.checkSystemVolumeAPI();
 
     if (ttsImpl != null) {
       /** SEC-37 : API: TTS Stop (R) */
@@ -116,7 +121,6 @@ function populateResults() {
           {
             width : "100%",
             height : "100%",
-
             data : Util.Validation.getResult(),
 
             fields : [
@@ -147,9 +151,9 @@ function populateResults() {
                     if (value == null) {
                       return "";
                     } else if (value) {
-                      return '<img alt="failure" src="../../../Shared/images/passed.jpg" height="30px" width="40px">';
+                      return '<img alt="passed" src="../../../Shared/images/passed.jpg" height="30px" width="40px">';
                     } else {
-                      return '<img alt="failure" src="../../../Shared/images/failed.jpg" height="30px" width="40px">';
+                      return '<img alt="failed" src="../../../Shared/images/failed.jpg" height="30px" width="40px">';
                     }
 
                   }
@@ -172,4 +176,57 @@ function populateResults() {
 
             ]
           });
+
+  // $("#dialogTTS").dialog("option", "title", "Test TTS").dialog("open");
+
+}
+
+function testTTS(isNew) {
+
+  $("#dialogTTS").dialog({
+    autoOpen : false,
+    width : '900',
+    height : '600',
+    position : {
+      my : "center",
+      at : "center",
+      of : window
+    },
+    buttons : [ {
+      text : "Test Pass",
+      icons : {
+      /* primary : "ui-icon-heart" */
+      },
+      click : function() {
+        populateTTSResult(true, 'TTS PASSED', isNew);
+      }
+    }, {
+      text : "Test Fail",
+      icons : {
+      /* primary : "ui-icon-heart" */
+      },
+      click : function() {
+        populateTTSResult(false, 'TTS FAILED', isNew);
+      }
+    } ]
+  });
+
+  $("#dialogTTS").dialog("option", "title", "Test TTS").dialog("open");
+
+}
+
+function populateTTSResult(result, details, isNew) {
+
+  var itemResult = {};
+
+  $.extend(itemResult, Util.Validation.setResultItemDetail(
+      'apiId.ttsManualCheck', 'testname.ttsManualCheck', 'api.ttsManualCheck',
+      result, details));
+
+  $("#jsGrid").jsGrid("insertItem", itemResult);
+
+  $("#ttsManualTest").css("display", "none");
+
+  $("#dialogTTS").dialog("close");
+
 }
