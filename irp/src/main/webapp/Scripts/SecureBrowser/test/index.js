@@ -275,7 +275,17 @@ function createButton(id, text) {
   id.button();
 
   id.click(function(event) {
-    alert(text);
+
+    if (text == 'Play') {
+      ttsPlay();
+    } else if (text == 'Pause') {
+      ttsPause();
+    } else if (text == 'Resume') {
+      ttsResume();
+    } else if (text == 'Stop') {
+      ttsStop();
+    }
+    // alert(text);
     event.preventDefault();
   });
 

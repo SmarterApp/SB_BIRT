@@ -47,3 +47,35 @@ function setVoice() {
     ttsImpl.setVoice(voice);
   }
 }
+
+function ttsPlay() {
+  var text = document.getElementById("text").value;
+  if (!isMobile) {
+    ttsImpl.play(text);
+    // displayTTSInfo(false);
+  } else {
+    // mobilePlay(text);
+  }
+
+}
+
+function ttsPause() {
+
+  ttsImpl.pause();
+  // displayTTSInfo(false);
+
+}
+
+function ttsResume() {
+
+  ttsImpl.resume();
+  // displayTTSInfo(false);
+
+}
+
+function ttsStop() {
+
+  ttsImpl.stop();
+  // displayTTSInfo(false);
+
+}
