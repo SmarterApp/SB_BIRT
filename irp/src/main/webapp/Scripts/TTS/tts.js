@@ -198,12 +198,8 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
     // Otherwise, rely on the applet based TTS
     var service = null;
 
-    // Check for Web Speech support
-    if (TTS.Util.supportsWebSpeech()) {
-      service = new TTSService_WebSpeech();
-    }
     // check for certified SB
-    else if (Util.Browser.isCertified()) {
+    if (Util.Browser.isCertified()) {
       service = new TTSService_Certified();
     }
     // check for native SB and SB service exists
@@ -222,9 +218,10 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
     // and setup the service.
     else if (Util.Browser.isSecure() && Util.Browser.isChrome()) {
       service = new TTSService_Chrome();
-    } /*
-       * else { service = new TTSService_Base(); }
-       */
+    } // Check for Web Speech support
+    else if (TTS.Util.supportsWebSpeech()) {
+      service = new TTSService_WebSpeech();
+    }
 
     // check if TTS is supported and load it
     if (!service || !service.isSupported()) {
