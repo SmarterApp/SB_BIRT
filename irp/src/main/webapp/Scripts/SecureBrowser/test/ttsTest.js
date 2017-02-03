@@ -23,6 +23,8 @@ function testTTS(isNew) {
           createButton($("#pause"), 'Pause');
           createButton($("#resume"), 'Resume');
           createButton($("#stop"), 'Stop');
+          createButton($("#systemMute"), 'Mute');
+
           loadVoices();
         },
         buttons : [ {

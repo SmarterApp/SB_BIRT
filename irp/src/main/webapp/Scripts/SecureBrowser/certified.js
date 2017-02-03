@@ -469,8 +469,17 @@
 
   // SEC-56
   Certified.prototype.checkSystemMuteAPI = function() {
-    var result = null;
-    var details = null;
+    var result = false;
+    var details = "";
+
+    try {
+      // alert('System Mute ' + this.runtime.systemMute);
+      if (!!browser.systemMute) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
 
     Util.Validation.setResultItems('apiId.checkSystemMuteAPI',
         'testname.checkSystemMuteAPI', 'api.checkSystemMuteAPI.certified',
@@ -479,8 +488,17 @@
 
   // SEC-57
   Certified.prototype.checkSystemVolumeAPI = function() {
-    var result = null;
-    var details = null;
+    var result = false;
+    var details = "";
+
+    try {
+      // alert('System Volume ' + this.runtime.systemVolume);
+      if (!!browser.systemVolume) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
 
     Util.Validation.setResultItems('apiId.checkSystemVolumeAPI',
         'testname.checkSystemVolumeAPI', 'api.checkSystemVolumeAPI.certified',
