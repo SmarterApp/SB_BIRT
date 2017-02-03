@@ -113,6 +113,11 @@ function createButton(id, text) {
 
   id.button();
 
+  if (text == 'Mute') {
+
+    setMuteUnMuteButtonText();
+  }
+
   id.click(function(event) {
 
     if (text == 'Play') {
@@ -123,6 +128,8 @@ function createButton(id, text) {
       ttsResume();
     } else if (text == 'Stop') {
       ttsStop();
+    } else if (text == 'Mute') {
+      muteUnmuteSystem();
     }
 
     // alert(text);
@@ -234,6 +241,27 @@ function setSystemVolume(level) {
 
 function getTTSStatus() {
   return ttsImpl.getStatus();
+}
+
+function muteUnmuteSystem() {
+
+  if (!!ttsImpl.setsystemMute) {
+    ttsImpl.setsystemMute();
+
+    setMuteUnMuteButtonText();
+  }
+}
+
+function setMuteUnMuteButtonText() {
+  if (!!ttsImpl.getsystemMute) {
+    if (ttsImpl.getsystemMute()) {
+      $('button#systemMute').text('Unmute');
+    } else {
+      $('button#systemMute').text('Mute');
+    }
+  } else {
+    $('button#systemMute').text('Mute/UnMute');
+  }
 }
 
 /* var grid = $("#jsGrid").data("JSGrid"); */

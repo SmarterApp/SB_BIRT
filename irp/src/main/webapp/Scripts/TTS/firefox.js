@@ -443,7 +443,7 @@ function TTSService_SB() {
     return this.BOOKMARK_TAG + newText;
   };
 
-  // get the current volume
+  // get the system volume
   this.getSystemVolume = function() {
     if (!this.runtime)
       return -1;
@@ -462,6 +462,28 @@ function TTSService_SB() {
     this.runtime.systemVolume = level;
     return true;
   };
+
+  this.getsystemMute = function() {
+
+    if (!this.runtime) {
+      return false;
+    } else {
+      return this.runtime.systemMute;
+    }
+  }
+
+  this.setsystemMute = function() {
+
+    if (!this.runtime) {
+      return false;
+    } else {
+      this.runtime.systemMute = !this.runtime.systemMute;
+    }
+  }
+
+  function SystemMute() {
+    r.systemMute = !r.systemMute;
+  }
 
   this.checkTTSStopAPI = function() {
     var result = false;
