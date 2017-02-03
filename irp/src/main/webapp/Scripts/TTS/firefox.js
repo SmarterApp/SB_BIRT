@@ -443,6 +443,26 @@ function TTSService_SB() {
     return this.BOOKMARK_TAG + newText;
   };
 
+  // get the current volume
+  this.getSystemVolume = function() {
+    if (!this.runtime)
+      return -1;
+    return Math.min(this.runtime.systemVolume, 10);
+  };
+
+  this.setSystemVolume = function(level) {
+    if (!this.runtime)
+      return false;
+    if (typeof (level) != 'number')
+      return false; // validate type
+    if (level < 0 || level > 10)
+      return false; // validate range
+    if (this.runtime.systemVolume == level)
+      return false; // check if difference
+    this.runtime.systemVolume = level;
+    return true;
+  };
+
   this.checkTTSStopAPI = function() {
     var result = false;
 

@@ -167,6 +167,7 @@ function TTSService_WebSpeech()
       this.speechSynthesisInstance.speak(utterance);
     }, this);
 
+    this.speechSynthesisInstance.speaking = true;
     this.speechSynthesisInstance.resume(); // Ensure that we're not paused
 
     return true;
@@ -174,12 +175,14 @@ function TTSService_WebSpeech()
 
   this.pause = function() {
     this.speechSynthesisInstance.pause();
+    this.speechSynthesisInstance.paused = true;
     return true;
   };
 
   this.resume = function()
   {
     this.speechSynthesisInstance.resume();
+    this.speechSynthesisInstance.speaking = true;
     return true;
   };
 

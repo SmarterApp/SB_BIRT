@@ -1050,7 +1050,7 @@
     var details = "";
 
     try {
-      alert('System Mute ' + this.runtime.systemMute);
+      // alert('System Mute ' + this.runtime.systemMute);
       if (!!this.runtime.systemMute) {
         result = true;
       }
@@ -1069,7 +1069,7 @@
     var details = "";
 
     try {
-      alert('System Volume ' + this.runtime.systemVolume);
+      // alert('System Volume ' + this.runtime.systemVolume);
       if (!!this.runtime.systemVolume) {
         result = true;
       }

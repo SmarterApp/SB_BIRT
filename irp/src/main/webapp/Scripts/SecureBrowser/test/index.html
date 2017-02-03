@@ -97,18 +97,6 @@
               closeBrowser();
             });
 
-            createSlider($("#ttsVolume"), $("#ttsVolumeText"), 'Volume', 0, 10,
-                10);
-            createSlider($("#ttsPitch"), $("#ttsPitchText"), 'Pitch', 0, 20, 10);
-            createSlider($("#ttsRate"), $("#ttsRateText"), 'Rate', 0, 20, 10);
-            createSlider($("#systemVolume"), $("#systemVolumeText"),
-                'System Volume', 0, 10, 10);
-
-            createButton($("#play"), 'Play');
-            createButton($("#pause"), 'Pause');
-            createButton($("#resume"), 'Resume');
-            createButton($("#stop"), 'Stop');
-
           });
 
   function test() {
@@ -146,7 +134,7 @@
 
     <div id="ttsTest">
       <div id="ttsTextArea" style="width: 40%">
-        <textarea id="text" cols="40" rows="3">Some dummy text to test TTS Some dummy text to test TTS</textarea>
+        <textarea id="ttsText" cols="40" rows="3">Some dummy text to test TTS Some dummy text to test TTS</textarea>
       </div>
 
       <div>&nbsp;</div>
