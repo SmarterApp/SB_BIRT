@@ -1,20 +1,18 @@
-﻿//*******************************************************************************
+﻿// *******************************************************************************
 // Educational Online Test Delivery System
 // Copyright (c) 2017 American Institutes for Research
 //
 // Distributed under the AIR Open Source License, Version 1.0
 // See accompanying file AIR-License-1_0.txt or at
 // http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
-//*******************************************************************************
+// *******************************************************************************
 /*
-
- This is the generic API for SB's. Right now the only
- browsers that implement this are:
- - iOS (2.0+)
- - Android (1.0+)
-
- NOTE: Check with Han on the specific versions.
-
+ * 
+ * This is the generic API for SB's. Right now the only browsers that implement
+ * this are: - iOS (2.0+) - Android (1.0+)
+ * 
+ * NOTE: Check with Han on the specific versions.
+ * 
  */
 
 // TTS service: Mobile Secure Browser.
@@ -449,11 +447,18 @@ function TTSService_MobileSB() {
 
   this.checkTTSVoiceNameAPI = function() {
 
-    var result = null;
-
-    var details = null;
+    var result = false;
+    var details = '';
+    try {
+      if (!!this.browserComponent.tts.voiceName) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
 
     Util.Validation.setResultItems('apiId.checkTTSVoiceNameAPI',
-        'testname.checkTTSVoiceNameAPI', '', result, details);
+        'testname.checkTTSVoiceNameAPI', 'api.checkTTSVoiceNameAPI.mobile',
+        result, details);
   };
 }

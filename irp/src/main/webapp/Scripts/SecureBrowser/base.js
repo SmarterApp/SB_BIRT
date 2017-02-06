@@ -363,8 +363,16 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   // SEC-56
   Base.prototype.checkSystemMuteAPI = function() {
-    var result = null;
-    var details = null;
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!browser.systemMute) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
 
     Util.Validation.setResultItems('apiId.checkSystemMuteAPI',
         'testname.checkSystemMuteAPI', 'api.checkSystemMuteAPI.certified',
@@ -373,8 +381,16 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   // SEC-57
   Base.prototype.checkSystemVolumeAPI = function() {
-    var result = null;
-    var details = null;
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!browser.systemVolume) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
 
     Util.Validation.setResultItems('apiId.checkSystemVolumeAPI',
         'testname.checkSystemVolumeAPI', 'api.checkSystemVolumeAPI.certified',

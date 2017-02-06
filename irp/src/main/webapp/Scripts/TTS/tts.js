@@ -223,6 +223,11 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
       service = new TTSService_WebSpeech();
     }
 
+    // set default?
+    if (service == null) {
+      service = new TTSService_Base();
+    }
+
     // check if TTS is supported and load it
     if (!service || !service.isSupported()) {
       TTS.Manager._changeStatus(TTS.Status.NotSupported);

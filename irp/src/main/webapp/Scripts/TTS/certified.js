@@ -1,17 +1,16 @@
-﻿//*******************************************************************************
+﻿// *******************************************************************************
 // Educational Online Test Delivery System
 // Copyright (c) 2017 American Institutes for Research
 //
 // Distributed under the AIR Open Source License, Version 1.0
 // See accompanying file AIR-License-1_0.txt or at
 // http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
-//*******************************************************************************
+// *******************************************************************************
 /*
-
- This is the generic API for certified SB's. Right now the only
- browsers that implement this are:
- - Certified
-
+ * 
+ * This is the generic API for certified SB's. Right now the only browsers that
+ * implement this are: - Certified
+ * 
  */
 
 // TTS service: certified browsers
@@ -274,29 +273,53 @@ function TTSService_Certified() {
   };
 
   this.checkTTSPitchAPI = function() {
-    var result = null;
+    var result = false;
 
-    var details = null;
+    var details = "";
+    try {
+      if (!!browser.tts.getPitch) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
     Util.Validation.setResultItems('apiId.checkTTSPitchAPI',
-        'testname.checkTTSPitchAPI', '', result, details);
+        'testname.checkTTSPitchAPI', 'api.checkTTSPitchAPI.certified', result,
+        details);
   };
 
   this.checkTTSRateAPI = function() {
-    var result = null;
+    var result = false;
 
-    var details = null;
+    var details = "";
+    try {
+      if (!!browser.tts.getRate) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
 
     Util.Validation.setResultItems('apiId.checkTTSRateAPI',
-        'testname.checkTTSRateAPI', '', result, details);
+        'testname.checkTTSRateAPI', 'api.checkTTSRateAPI.certified', result,
+        details);
   };
 
   this.checkTTSVolumeAPI = function() {
-    var result = null;
+    var result = false;
 
-    var details = null;
+    var details = "";
+    try {
+      if (!!browser.tts.getVolume) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
 
     Util.Validation.setResultItems('apiId.checkTTSVolumeAPI',
-        'testname.checkTTSVolumeAPI', '', result, details);
+        'testname.checkTTSVolumeAPI', 'api.checkTTSVolumeAPI.certified',
+        result, details);
   };
 
   this.checkTTSSpeakAPI = function() {
@@ -352,12 +375,20 @@ function TTSService_Certified() {
 
   this.checkTTSVoiceNameAPI = function() {
 
-    var result = null;
+    var result = false;
 
-    var details = null;
+    var details = "";
+    try {
+      if (!!browser.tts.getVoiceName) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
 
     Util.Validation.setResultItems('apiId.checkTTSVoiceNameAPI',
-        'testname.checkTTSVoiceNameAPI', '', result, details);
+        'testname.checkTTSVoiceNameAPI', 'api.checkTTSVoiceNameAPI.certified',
+        result, details);
   };
 
 }
