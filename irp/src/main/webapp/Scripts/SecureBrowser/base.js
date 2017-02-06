@@ -37,8 +37,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   Base.prototype.checkDeviceInfo = function() {
 
-    var result = true;
-    var details = 'testApi.removed';
+    var result = false;
+    var details = "browser.security.getDeviceInfo() is not defined";
 
     Util.Validation.setResultItems('apiId.checkDeviceInfo',
         'testname.checkDeviceInfo', 'api.checkDeviceInfo.certified', result,
@@ -106,8 +106,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   // SEC-31
   Base.prototype.checkIsEnvironmentSecureAPI = function() {
-    var result = true;
-    var details = 'testApi.removed';
+    var result = false;
+    var details = 'browser.security.isEnvironmentSecure is not defined';
 
     Util.Validation.setResultItems('apiId.checkIsEnvironmentSecureAPI',
         'testname.checkIsEnvironmentSecureAPI',

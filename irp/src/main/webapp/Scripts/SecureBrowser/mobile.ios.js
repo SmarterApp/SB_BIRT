@@ -310,12 +310,11 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkGlobalObject = function() {
 };
 
 TDS.SecureBrowser.Mobile.iOS.prototype.checkDeviceInfo = function() {
-  var result = true;
-  var details = 'testApi.removed';
+  var result = false;
+  var details = '';
   try {
     if (!!this._airMobile.security.getDeviceInfo) {
-      result = false;
-      details = 'testApi.exists';
+      result = true;
     }
   } catch (ex) {
     details = ex.message;
@@ -433,12 +432,11 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCacheAPI = function() {
 
 // SEC-31
 TDS.SecureBrowser.Mobile.iOS.prototype.checkIsEnvironmentSecureAPI = function() {
-  var result = true;
-  var details = 'testApi.removed';
+  var result = false;
+  var details = '';
   try {
     if (!!this._airMobile.security.isEnvironmentSecure) {
-      result = false;
-      details = 'testApi.exists';
+      result = true;
     }
   } catch (ex) {
     details = ex.message;

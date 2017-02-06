@@ -72,12 +72,11 @@
 
   Firefox.prototype.checkDeviceInfo = function() {
 
-    var result = true;
-    var details = 'testApi.removed';
+    var result = false;
+    var details = "";
     try {
       if (!!this.runtime.getDeviceInfo) {
-        result = false;
-        details = 'testApi.exists';
+        result = true;
       }
 
     } catch (ex) {
@@ -262,8 +261,16 @@
 
   // SEC-31
   Firefox.prototype.checkIsEnvironmentSecureAPI = function() {
-    var result = true;
-    var details = 'testApi.removed';
+    var result = false;
+    var details = '';
+
+    try {
+      if (!!this.runtime.isEnvironmentSecure) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
 
     Util.Validation.setResultItems('apiId.checkIsEnvironmentSecureAPI',
         'testname.checkIsEnvironmentSecureAPI',

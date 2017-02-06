@@ -44,14 +44,12 @@
 
   Certified.prototype.checkDeviceInfo = function() {
 
-    var result = true;
-    var details = 'testApi.removed';
+    var result = false;
+    var details = '';
     try {
       if (!!browser.security.getDeviceInfo) {
-        result = false;
-        details = 'testApi.exists';
+        result = true;
       }
-
     } catch (ex) {
       details = ex.message;
     }
@@ -237,13 +235,12 @@
 
   // SEC-31
   Certified.prototype.checkIsEnvironmentSecureAPI = function() {
-    var result = true;
-    var details = 'testApi.removed';
+    var result = false;
+    var details = "";
 
     try {
       if (!!browser.security.isEnvironmentSecure) {
-        result = false;
-        details = 'testApi.exists';
+        result = true;
       }
     } catch (ex) {
       details = ex.message;
