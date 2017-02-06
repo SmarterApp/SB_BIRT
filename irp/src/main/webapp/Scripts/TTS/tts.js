@@ -18,6 +18,20 @@ TTS.Status = {
   Unknown : 'Unknown' // unknown status
 };
 
+TTS.Setting = {
+  PLAY : '1',
+  PAUSE : '2',
+  RESUME : '3',
+  STOP : '4',
+  VOLUME : '5', // TTS Volume Change
+  PITCH : '6', // TTS Pitch Change
+  RATE : '7', // TTS Rate Change
+  SYSTEM_VOLUME : '8', // System Volume Change
+  MUTE_UNMUTE : '9', // System Mute/Unmute Change
+  VOICE : '10', // System Voice Change
+  UNKNOWN : '0' // unknown status
+};
+
 /**
  * TTS Language Packs voicename is the ending with keys. because the actual
  * representation of the voice name in Windows is the full registry path we will

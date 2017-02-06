@@ -10,6 +10,8 @@
 
   var resultArray = [];
 
+  var ttsTestArray = [];
+
   var MACREGEX = new RegExp(
       "^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$");
 
@@ -70,6 +72,32 @@
     });
 
     return itemDetail;
+  };
+
+  Validation.setTTSTestResultItems = function(currentTTSTest, result) {
+
+    ttsTestArray.push({
+      "testName" : messageResource.get("ttsTest." + currentTTSTest, 'message'),
+      "testResult" : result
+    });
+
+  };
+
+  Validation.setTTSItemDetail = function(currentTTSTest, result) {
+
+    var itemDetail = {};
+
+    $.extend(itemDetail, {
+      "testName" : messageResource.get("ttsTest." + currentTTSTest, 'message'),
+      "testResult" : result
+    });
+
+    return itemDetail;
+
+  };
+
+  Validation.getTTSResult = function() {
+    return ttsTestArray;
   };
 
   Validation.getResult = function() {

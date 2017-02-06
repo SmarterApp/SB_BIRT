@@ -1,3 +1,7 @@
+var ttsSetting = TTS.Setting.UNKNOWN;
+
+var nextTest = 1;
+
 function loadDialogBox(id, testName, testTitle, isNew) {
 
   id
@@ -25,6 +29,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
             createButton($("#stop"), 'Stop');
             createButton($("#systemMute"), 'Mute');
             loadVoices();
+            Util.Validation.setTTSTestResultItems(TTS.Setting.PLAY, null);
+            populateJsonGrid();
           }
         },
         buttons : [ {
@@ -169,59 +175,74 @@ function loadVoices() {
 }
 
 function setVoice() {
+  ttsSetting = TTS.Setting.VOICE;
   ttsImpl.setVoice($("#voices").val());
 }
 
 function ttsPlay() {
+
+  if (ttsSetting == TTS.Setting.UNKNOWN)
+    ttsSetting = TTS.Setting.PLAY;
+
   var text = $("textarea#ttsText").val();
   ttsImpl.play(text);
-  // displayTTSInfo(false);
+
+  loadTTSDialogConfirm();
 }
 
 function ttsPause() {
 
+  ttsSetting = TTS.Setting.PAUSE;
+
   ttsImpl.pause();
-  // displayTTSInfo(false);
+
+  loadTTSDialogConfirm();
 
 }
 
 function ttsResume() {
 
+  ttsSetting = TTS.Setting.RESUME;
+
   ttsImpl.resume();
-  // displayTTSInfo(false);
+
+  loadTTSDialogConfirm();
 
 }
 
 function ttsStop() {
 
+  ttsSetting = TTS.Setting.STOP;
+
   ttsImpl.stop();
-  // displayTTSInfo(false);
+
+  loadTTSDialogConfirm();
 
 }
 
 function setTTSVolume(level) {
-
+  ttsSetting = TTS.Setting.VOLUME;
   if (ttsImpl.supportsVolumeControl()) {
     ttsImpl.setVolume(level);
   }
 }
 
 function setTTSPitch(level) {
-
+  ttsSetting = TTS.Setting.PITCH;
   if (ttsImpl.supportsPitchControl()) {
     ttsImpl.setPitch(level);
   }
 }
 
 function setTTSRate(level) {
-
+  ttsSetting = TTS.Setting.RATE;
   if (ttsImpl.supportsRateControl()) {
     ttsImpl.setRate(level);
   }
 }
 
 function setSystemVolume(level) {
-
+  ttsSetting = TTS.Setting.SYSTEM_VOLUME;
   if (!!ttsImpl.setSystemVolume) {
     ttsImpl.setSystemVolume(level);
   }
@@ -232,7 +253,7 @@ function getTTSStatus() {
 }
 
 function muteUnmuteSystem() {
-
+  ttsSetting = TTS.Setting.MUTE_UNMUTE;
   if (!!ttsImpl.setsystemMute) {
     ttsImpl.setsystemMute();
 
@@ -249,6 +270,99 @@ function setMuteUnMuteButtonText() {
     }
   } else {
     $('button#systemMute').text('Mute/UnMute');
+  }
+}
+
+/*
+ * function populateJsonArraytoTest() { var resultArray = [];
+ * 
+ * resultArray.push({ "testName" : messageResource.get("ttsTest." +
+ * currentTTSTest, 'message'), "testResult" : null });
+ * 
+ * return resultArray; }
+ */
+
+function populateJsonGrid() {
+
+  $("#ttsGrid")
+      .jsGrid(
+          {
+            width : "100%",
+            data : Util.Validation.getTTSResult(),
+
+            fields : [
+                {
+                  title : "Test Name",
+                  name : "testName",
+                  type : "text",
+                  width : 150
+                },
+                {
+                  title : "Result",
+                  name : "testResult",
+                  type : "text",
+                  width : 30,
+                  align : "center",
+
+                  itemTemplate : function(value) {
+                    if (value == null) {
+                      return "";
+                    } else if (value) {
+                      return '<img alt="passed" src="../../../Shared/images/passed.jpg" height="30px" width="40px">';
+                    } else {
+                      return '<img alt="failed" src="../../../Shared/images/failed.jpg" height="30px" width="40px">';
+                    }
+
+                  }
+
+                }
+
+            ]
+          });
+}
+
+function getTTSTestGridItem(gridIndex) {
+
+  return $("#ttsGrid").data("JSGrid").data[gridIndex - 1];
+
+}
+
+function loadTTSDialogConfirm() {
+
+  $("#dialog-confirm").dialog({
+    resizable : false,
+    height : "auto",
+    width : 400,
+    modal : true,
+    buttons : [ {
+      text : "Yes",
+      click : function() {
+        closeConfirmBox(true);
+      }
+    }, {
+      text : "No",
+      click : function() {
+        closeConfirmBox(false);
+      }
+    } ]
+  });
+}
+
+function closeConfirmBox(result) {
+
+  $("#ttsGrid").jsGrid("updateItem", getTTSTestGridItem(ttsSetting),
+      Util.Validation.setTTSItemDetail(ttsSetting, result));
+
+  $("#dialog-confirm").dialog("close");
+
+  loadNextTTSTest();
+}
+
+function loadNextTTSTest() {
+  nextTest = nextTest + 1;
+  if (nextTest <= 10) {
+    $("#ttsGrid").jsGrid("insertItem",
+        Util.Validation.setTTSItemDetail(nextTest, null));
   }
 }
 

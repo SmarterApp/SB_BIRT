@@ -1,5 +1,5 @@
 <%
 
-response.sendRedirect("/irp-nightly/Scripts/SecureBrowser/test/index.html");
+response.sendRedirect("/irp/Scripts/SecureBrowser/test/index.html");
 
 %>
