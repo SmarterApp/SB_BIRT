@@ -1,56 +1,48 @@
-function testTTS(isNew) {
+function loadDialogBox(id, testName, testTitle, isNew) {
 
-  $("#dialogTTS").dialog(
-      {
+  id
+      .dialog({
         autoOpen : false,
         width : '900',
         height : '600',
-        title : 'TTS API Manual Test',
+        title : testTitle,
         position : {
           my : "center",
           at : "center",
           of : window
         },
         create : function(event, ui) {
-          createSlider($("#ttsVolume"), $("#ttsVolumeText"), 'Volume', 0, 10,
-              10);
-          createSlider($("#ttsPitch"), $("#ttsPitchText"), 'Pitch', 0, 20, 10);
-          createSlider($("#ttsRate"), $("#ttsRateText"), 'Rate', 0, 20, 10);
-          createSlider($("#systemVolume"), $("#systemVolumeText"),
-              'System Volume', 0, 10, 10);
 
-          createButton($("#play"), 'Play');
-          createButton($("#pause"), 'Pause');
-          createButton($("#resume"), 'Resume');
-          createButton($("#stop"), 'Stop');
-          createButton($("#systemMute"), 'Mute');
-
-          loadVoices();
+          if (testName == 'TTS') {
+            createSlider($("#ttsVolume"), $("#ttsVolumeText"), 'Volume', 0, 10,
+                10);
+            createSlider($("#ttsPitch"), $("#ttsPitchText"), 'Pitch', 0, 20, 10);
+            createSlider($("#ttsRate"), $("#ttsRateText"), 'Rate', 0, 20, 10);
+            createSlider($("#systemVolume"), $("#systemVolumeText"),
+                'System Volume', 0, 10, 10);
+            createButton($("#play"), 'Play');
+            createButton($("#pause"), 'Pause');
+            createButton($("#resume"), 'Resume');
+            createButton($("#stop"), 'Stop');
+            createButton($("#systemMute"), 'Mute');
+            loadVoices();
+          }
         },
         buttons : [ {
-          text : "Test Pass",
-          icons : {
-          /* primary : "ui-icon-heart" */
-          },
+          text : "Skip Test",
           click : function() {
-            populateTTSResult(true, 'TTS PASSED', isNew);
-          }
-        }, {
-          text : "Test Fail",
-          icons : {
-          /* primary : "ui-icon-heart" */
-          },
-          click : function() {
-            populateTTSResult(false, 'TTS FAILED', isNew);
+            id.dialog("close");
           }
         } ]
       });
 
-  if (ttsImpl != null) {
-    $("#dialogTTS").dialog("open");
-  } else {
-    populateTTSResult(false,
-        'Error: Could not initialize TTS Support for this browser', true);
+  if (testName == 'TTS') {
+    if (ttsImpl != null) {
+      id.dialog("open");
+    } else {
+      populateTTSResult(false,
+          'Error: Could not initialize TTS Support for this browser', true);
+    }
   }
 
 }

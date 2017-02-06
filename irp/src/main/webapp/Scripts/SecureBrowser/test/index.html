@@ -96,6 +96,8 @@
             $("#closeBrowser").click(function() {
               closeBrowser();
             });
+            
+            $("#ttsTestLoad").load("ttsManualTest.html");
 
           });
 
@@ -126,95 +128,16 @@
 
   <div id="manualTest">
     <ul>
-      <li id="ttsManualTest"><a href="javascript:testTTS(true)">TTS
+      <li id="ttsManualTest"><a href="javascript:loadDialogBox($('#dialogTTS'), 'TTS', 'TTS API Manual Test',true)">TTS
           Manual Check</a></li>
     </ul>
   </div>
-  <div id="dialogTTS" style="display: none;">
-
-    <div id="ttsTest">
-      <div id="ttsTextArea" style="width: 40%">
-        <textarea id="ttsText" cols="40" rows="3">Some dummy text to test TTS Some dummy text to test TTS</textarea>
-      </div>
-
-      <div>&nbsp;</div>
-
-      <div>
-        <button id="play">Play</button>
-        <button id="pause">Pause</button>
-        <button id="resume">Resume</button>
-        <button id="stop">Stop</button>
-
-      </div>
-
-      <div style="width: 40%">
-        <p class="ui-state-default ui-corner-all ui-helper-clearfix"
-          style="padding: 4px;">Use the sliders to adjust
-          pitch,rate, volume and system volume</p>
-      </div>
-
-
-      <div class="divTable">
-        <div class="divTableBody">
-
-          <div class="divTableRow">
-            <div class="divTableCell" id="ttsVolumeText"></div>
-            <div class="divTableCellRight" id="ttsVolume"></div>
-          </div>
-
-          <div class="divTableRow">&nbsp;</div>
-          <div class="divTableRow">&nbsp;</div>
-
-          <div class="divTableRow">
-            <div class="divTableCell" id="ttsPitchText"></div>
-            <div class="divTableCellRight" id="ttsPitch"></div>
-          </div>
-
-          <div class="divTableRow">&nbsp;</div>
-          <div class="divTableRow">&nbsp;</div>
-
-          <div class="divTableRow">
-            <div class="divTableCell" id="ttsRateText"></div>
-            <div class="divTableCellRight" id="ttsRate"></div>
-          </div>
-
-
-          <div class="divTableRow">&nbsp;</div>
-          <div class="divTableRow">&nbsp;</div>
-
-          <div class="divTableRow">
-            <div class="divTableCell" id="systemVolumeText"></div>
-            <div class="divTableCellRight" id="systemVolume"></div>
-          </div>
-          
-           <div class="divTableRow">&nbsp;</div>
-          <div class="divTableRow">&nbsp;</div>
-          
-          <div class="divTableRow" id="systemMuteDivId">
-            <div class="divTableCell">System Mute/Unmute</div>
-            <div class="divTableCellRight"><button id="systemMute"></button></div>
-          </div>
-
-          <div class="divTableRow">&nbsp;</div>
-          <div class="divTableRow">&nbsp;</div>
-
-          <div class="divTableRow">
-            <div class="divTableCell">Voice Selection</div>
-            <div class="divTableCellRight">
-              <select id="voices" onchange="setVoice()"></select>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-
-    </div>
-
-    <div id="ttsManualReport" style="float: right; width: 60%"></div>
-
+  
+  <div id="ttsTestLoad">
+  
+  
   </div>
+ 
 
 
 </body>
