@@ -3,8 +3,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   id
       .dialog({
         autoOpen : false,
-        width : '900',
-        height : '600',
+        width : '90%',
         title : testTitle,
         position : {
           my : "center",
@@ -136,9 +135,6 @@ function loadVoices() {
     if (voices) {
       var selectList = document.getElementById("voices");
       var voiceArray = new Array();
-      /* alert("there are " + voices.length + " voice packs"); */
-      document.getElementById("info").innerHTML = "there are " + voices.length
-          + " voice packs";
       for (var i = 0; i < voices.length; i++) {
         var opt = document.createElement("option");
         var voice = voices[i];
