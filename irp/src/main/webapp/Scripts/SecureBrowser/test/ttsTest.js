@@ -30,6 +30,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
             createButton($("#systemMute"), 'Mute');
             loadVoices();
             Util.Validation.setTTSTestResultItems(TTS.Setting.PLAY, null);
+            disableTTSOptions();
+            enableTTSOptions();
             populateJsonGrid();
           }
         },
@@ -175,34 +177,47 @@ function loadVoices() {
 }
 
 function setVoice() {
-  ttsSetting = TTS.Setting.VOICE;
+  // ttsSetting = TTS.Setting.VOICE;
   ttsImpl.setVoice($("#voices").val());
 }
 
 function ttsPlay() {
 
-  if (ttsSetting == TTS.Setting.UNKNOWN)
-    ttsSetting = TTS.Setting.PLAY;
-
   var text = $("textarea#ttsText").val();
   ttsImpl.play(text);
 
-  loadTTSDialogConfirm();
+  if (ttsSetting == TTS.Setting.UNKNOWN) {
+
+    ttsSetting = TTS.Setting.PLAY;
+
+    setDialogHtml();
+
+    loadTTSDialogConfirm();
+  } else if (ttsSetting > 4) {
+    setDialogHtml();
+
+    loadTTSDialogConfirm();
+  }
 }
 
 function ttsPause() {
 
-  ttsSetting = TTS.Setting.PAUSE;
-
   ttsImpl.pause();
 
-  loadTTSDialogConfirm();
+  if (ttsSetting == TTS.Setting.PAUSE) {
+
+    setDialogHtml();
+
+    loadTTSDialogConfirm();
+  }
 
 }
 
 function ttsResume() {
 
-  ttsSetting = TTS.Setting.RESUME;
+  // ttsSetting = TTS.Setting.RESUME;
+
+  setDialogHtml();
 
   ttsImpl.resume();
 
@@ -212,7 +227,9 @@ function ttsResume() {
 
 function ttsStop() {
 
-  ttsSetting = TTS.Setting.STOP;
+  // ttsSetting = TTS.Setting.STOP;
+
+  setDialogHtml();
 
   ttsImpl.stop();
 
@@ -221,28 +238,30 @@ function ttsStop() {
 }
 
 function setTTSVolume(level) {
-  ttsSetting = TTS.Setting.VOLUME;
+  // ttsSetting = TTS.Setting.VOLUME;
+
   if (ttsImpl.supportsVolumeControl()) {
     ttsImpl.setVolume(level);
   }
 }
 
 function setTTSPitch(level) {
-  ttsSetting = TTS.Setting.PITCH;
+  // ttsSetting = TTS.Setting.PITCH;
+
   if (ttsImpl.supportsPitchControl()) {
     ttsImpl.setPitch(level);
   }
 }
 
 function setTTSRate(level) {
-  ttsSetting = TTS.Setting.RATE;
+  // ttsSetting = TTS.Setting.RATE;
   if (ttsImpl.supportsRateControl()) {
     ttsImpl.setRate(level);
   }
 }
 
 function setSystemVolume(level) {
-  ttsSetting = TTS.Setting.SYSTEM_VOLUME;
+  // ttsSetting = TTS.Setting.SYSTEM_VOLUME;
   if (!!ttsImpl.setSystemVolume) {
     ttsImpl.setSystemVolume(level);
   }
@@ -253,7 +272,7 @@ function getTTSStatus() {
 }
 
 function muteUnmuteSystem() {
-  ttsSetting = TTS.Setting.MUTE_UNMUTE;
+  // ttsSetting = TTS.Setting.MUTE_UNMUTE;
   if (!!ttsImpl.setsystemMute) {
     ttsImpl.setsystemMute();
 
@@ -332,6 +351,7 @@ function loadTTSDialogConfirm() {
   $("#dialog-confirm").dialog({
     resizable : false,
     height : "auto",
+    title : messageResource.get("ttsDialogTitle." + nextTest, 'message'),
     width : 400,
     modal : true,
     buttons : [ {
@@ -350,12 +370,14 @@ function loadTTSDialogConfirm() {
 
 function closeConfirmBox(result) {
 
-  $("#ttsGrid").jsGrid("updateItem", getTTSTestGridItem(ttsSetting),
-      Util.Validation.setTTSItemDetail(ttsSetting, result));
-
   $("#dialog-confirm").dialog("close");
 
-  loadNextTTSTest();
+  if (ttsSetting == nextTest) {
+    $("#ttsGrid").jsGrid("updateItem", getTTSTestGridItem(ttsSetting),
+        Util.Validation.setTTSItemDetail(ttsSetting, result));
+    loadNextTTSTest();
+  }
+
 }
 
 function loadNextTTSTest() {
@@ -363,7 +385,61 @@ function loadNextTTSTest() {
   if (nextTest <= 10) {
     $("#ttsGrid").jsGrid("insertItem",
         Util.Validation.setTTSItemDetail(nextTest, null));
+    ttsSetting = nextTest;
+    disableTTSOptions();
+    enableTTSOptions();
   }
+}
+
+function setDialogHtml() {
+
+  $("#dialog-confirm").html(
+      messageResource.get("ttsDialogHtml." + ttsSetting, 'message'));
+
+}
+
+function disableTTSOptions() {
+  var disableIds = messageResource.get("ttsTest.disableSection." + nextTest,
+      'message');
+
+  var disableArray = disableIds.split(",");
+
+  disableArray.forEach(function(item, index, array) {
+
+    var buttonSliderId = messageResource.get("ttsButtonSliderId." + item,
+        'message');
+
+    if ($('#' + buttonSliderId).is(":ui-button")) {
+      $('#' + buttonSliderId).button("disable");
+    } else if ($('#' + buttonSliderId).is(":ui-slider")) {
+      $('#' + buttonSliderId).slider("disable");
+    } else {
+      document.getElementById(buttonSliderId).disabled = true;
+    }
+
+  });
+}
+
+function enableTTSOptions() {
+  var enableIds = messageResource.get("ttsTest.enableSection." + nextTest,
+      'message');
+
+  var enableArray = enableIds.split(",");
+
+  enableArray.forEach(function(item, index, array) {
+
+    var buttonSliderId = messageResource.get("ttsButtonSliderId." + item,
+        'message');
+
+    if ($('#' + buttonSliderId).is(":ui-button")) {
+      $('#' + buttonSliderId).button("enable");
+    } else if ($('#' + buttonSliderId).is(":ui-slider")) {
+      $('#' + buttonSliderId).slider("enable");
+    } else {
+      document.getElementById(buttonSliderId).disabled = false;
+    }
+
+  });
 }
 
 /* var grid = $("#jsGrid").data("JSGrid"); */
