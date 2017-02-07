@@ -312,6 +312,7 @@ function populateJsonGrid() {
           {
             width : "100%",
             data : ttsGridArray,
+            selecting : false,
 
             fields : [
                 {
@@ -420,6 +421,10 @@ function disableTTSOptions() {
     disableIds = messageResource.get("ttsTest.disableSection.all", 'message');
   }
 
+  if (nextTest <= 4) {
+    $("#ttsOptions").hide();
+  }
+
   var disableArray = disableIds.split(",");
 
   disableArray.forEach(function(item, index, array) {
@@ -441,6 +446,10 @@ function disableTTSOptions() {
 function enableTTSOptions() {
   var enableIds = messageResource.get("ttsTest.enableSection." + nextTest,
       'message');
+
+  if (nextTest > 4) {
+    $("#ttsOptions").show();
+  }
 
   var enableArray = enableIds.split(",");
 
