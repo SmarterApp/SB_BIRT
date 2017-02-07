@@ -225,13 +225,26 @@ kbd {
 <li><p><strong>Lock down environment to begin an assessment</strong>. The testing web application will invoke this call prior to allowing students to start testing. The implementer is required to take any actions necessary to secure the testing environment. The steps taken to secure the environment are device specific and for example, include aspects such as disabling the ability to do screen captures, disabling the ability to voice chat when in secure mode, clearing the system clipboard, entering into a kiosk mode, disabling Spaces in OS X 10.7+ etc. The testing application will enable lockdown before an assessment commences and will disable the lockdown when the student has completed the assessment and is out of the secure test.</p>
 
 <p><code>void browser.security.enableLockDown (boolean lockDown)</code></p></li>
+<li><p>[TBD] <strong>Check if environment is secure</strong>. Check if the environment is secure. The testing web application will invoke this prior to allowing students to start testing and periodically when inside the test. </p>
+
+<p><code>object browser.security.isEnvironmentSecure()</code>  </p>
+
+<p>The return type is a JSON object containing two fields. The first is the <code>secure</code> field, which must return <code>true</code> only if all necessary locks have been enabled (or features disabled) to enable a secure testing environment, and none of these have been compromised since we entered the lockdown mode. The other field (<code>messageKey</code>) includes other details or information.</p>
+
+<p><code>{
+   &#39;secure&#39; : &quot;true/false&quot;,
+   &#39;messageKey&#39; : &quot;some message&quot;
+}</code></p></li>
 <li><p>[TBD] <strong>Retrieve List of Features and their status</strong>. In some cases, testing may not require the environment to be fully locked down. We may still allow a test to proceed even if <code>browser.security.isEnvironmentSecure()</code> returns false as long we can determine which features are currently available to the end user and allow the testing application to make a determination. </p>
 
-<p><code>object browser.security.getFeatures()</code>
-returns either a Javascript object or literal with the following structure
-<code>{&lt;feature&gt;:true|false, ...}</code>
-Example: <code>{&quot;screencapture&quot;:true, &quot;voicerecording&quot;:false, &quot;videocamera&quot;:false, &quot;cortana&quot;: true}</code></p></li>
-<li><p><strong>Retrieve information on the environment</strong>. The testing web application will invoke this to gather details about the platform on which it is running. This is used to augment any information that was discernible from the user agent.</p>
+<p><code>object browser.security.getFeatures()</code></p>
+
+<p>returns either a Javascript object or literal with the following structure</p>
+
+<p><code>{&lt;feature&gt;:true|false, ...}</code></p>
+
+<p>Example: <code>{&quot;screencapture&quot;:true, &quot;voicerecording&quot;:false, &quot;videocamera&quot;:false, &quot;cortana&quot;: true}</code></p></li>
+<li><p><strong>Retrieve information on the environment (device)</strong>. The testing web application will invoke this to gather details about the platform on which it is running. This is used to augment any information that was discernible from the user agent.</p>
 
 <p><code>object browser.security.getDeviceInfo()</code></p>
 
@@ -243,15 +256,16 @@ Example: <code>{&quot;screencapture&quot;:true, &quot;voicerecording&quot;:false
 
 <p><code>string[] browser.security.examineProcessList(string[] blacklistedProcessList)</code></p>
 
-<p>Example response:</p>
-
-<p><code>&quot;[&#39;taskmgr.exe&#39;,&#39;chrome.exe&#39;,&#39;ccSvcHst.exe&#39;,&#39;Dropbox.exe&#39;,&#39;EXCEL.EXE&#39;,&#39;svchost.exe&#39;,&#39;System&#39;]&quot;</code></p></li>
+<p>Example response:
+<code>&quot;[&#39;taskmgr.exe&#39;,&#39;chrome.exe&#39;,&#39;ccSvcHst.exe&#39;,&#39;Dropbox.exe&#39;,&#39;EXCEL.EXE&#39;,&#39;svchost.exe&#39;,&#39;System&#39;]&quot;</code></p></li>
 <li><p><strong>Shut down the browser</strong>. The testing application will invoke this to close the browser when the user elects to exit the browser. The boolean parameter will determine if the browser should restart on exit or simply exit.</p>
 
 <p><code>void browser.security.close(boolean restart)</code></p></li>
 <li><p><strong>Speak Text (Text to speech Synthesis)</strong>. The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup, an options object to control the speech (optional) and a callback for TTS events (optional). The vendor can support one of the following markup standards, SSML, Microsoft speech markup (for windows) or Apple speech markup (for OS X). The options object include <code>voicename</code>, <code>rate</code>, <code>gender</code>, <code>language</code>, <code>pitch</code>, <code>volume</code>. The callback, if provided, is invoked for TTS events which include <code>start</code>, <code>end</code>, <code>word boundary</code>, <code>sentence boundary</code>, <code>synchronization/marker</code> encountered, <code>paused</code> and <code>error</code>. </p>
 
-<p><code>void browser.tts.speak(string text, object options, function callback)</code></p></li>
+<p><code>void browser.tts.speak(string text, object options, function callback)</code></p>
+
+<p>The ability to set the pitch, rate, voice, and volume is provided by this API call through the options object.</p></li>
 <li><p><strong>Stop speech (Text to speech Synthesis)</strong>. This is called by the testing application to stop any speech that may be in progress. </p>
 
 <p><code>void browser.tts.stop()</code></p></li>
@@ -275,7 +289,7 @@ Example: <code>{&quot;screencapture&quot;:true, &quot;voicerecording&quot;:false
 <p>Example Response:</p>
 
 <p><code>[&#39;US English Female TTS&#39;,&#39;en-US&#39;,&#39;es-ES&#39;]</code></p></li>
-<li><p>[TBD] <strong>Get current voice pack (Text to speech Synthesis)</strong>. This is called by the testing application to get the name of the currently active voice pack. </p>
+<li><p><strong>Get current voice pack (Text to speech Synthesis)</strong>. This is called by the testing application to get the name of the currently active voice pack. </p>
 
 <p><code>string browser.tts.getVoiceName()</code></p></li>
 <li><p><strong>Pause speech (Text to speech Synthesis)</strong>. This is called by the web application to temporarily pause speech. Corresponding events are fired to notify the callback provided in the <code>speak</code> function of this.</p>
@@ -284,15 +298,22 @@ Example: <code>{&quot;screencapture&quot;:true, &quot;voicerecording&quot;:false
 <li><p><strong>Resume speech (Text to speech Synthesis)</strong>. This is called by the web application to resume speech if it was previously paused. </p>
 
 <p><code>void browser.tts.resume()</code></p></li>
-<li><p>[TBD] <strong>Get current pitch setting (Text to speech Synthesis)</strong>. This is called by the testing application to get the pitch of the current voice. </p></li>
-<li><p>[TBD] <strong>Get current rate setting (Text to speech Synthesis)</strong>. This is called by the testing application to get the speech rate of the current voice. </p></li>
-<li><p>[TBD] <strong>Get current volume setting (Text to speech Synthesis)</strong>. This is called by the testing application to get the volume of the current voice. </p></li>
 <li><p>[TBD] <strong>Is OSX Spaces Enabled</strong>. Applicable to Mac OS X only. Returns true if Spaces is enabled, false otherwise. </p></li>
-<li><p>[TBD] <strong>Get System Volume</strong>. TBD </p></li>
-<li><p>[TBD] <strong>Set System Volume</strong>. TBD </p></li>
-<li><p>[TBD] <strong>Mute System Volume</strong>. TBD </p></li>
-<li><p>[TBD] <strong>Unmute System Volume</strong>. TBD </p></li>
-<li><p>[TBD] <strong>Check if System Volume is muted</strong>. TBD </p></li>
+<li><p><strong>Get System Volume</strong>. Get system volume: This runtime browser property can be queried by the testing application to get the System Volume. This is only available in desktop secure browsers.</p>
+
+<p><code>browser.systemVolume</code> contains the value of the current system volume (0-10)</p></li>
+<li><p><strong>Set System Volume</strong>. Set system volume: This runtime browser property can be written to by the testing application to set the System Volume. This is only available in desktop secure browsers.</p>
+
+<p><code>browser.systemVolume</code> accepts a value for the system volume (0-10)</p></li>
+<li><p><strong>Mute System Volume</strong>. Mute system volume: This runtime browser property can be written to by the testing application to mute the System Volume. This is only available in desktop secure browsers.</p>
+
+<p><code>browser.systemMute</code> set to true to mute, false to unmute. </p></li>
+<li><p><strong>Unmute System Volume</strong>. Unmute system volume: This runtime browser property can be written to by the testing application to unmute the System Volume. This is only available in desktop secure browsers.</p>
+
+<p><code>browser.systemMute</code> set to true to mute, false to unmute. </p></li>
+<li><p><strong>Check if System Volume is Muted</strong>. Check if System Volume is Muted: This runtime browser property can be read by the testing application to check the mute status of the System Volume. This is only available in desktop secure browsers.</p>
+
+<p><code>browser.systemMute</code> is true if muted, false if unmuted.</p></li>
 <li><p>[TBD] <strong>Enable permissive mode</strong>. TBD</p></li>
 </ol>
 
@@ -414,7 +435,9 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 <li><p><strong>W3C Web Audio compliant</strong>. W3C Web Audio API:
 https://www.w3.org/TR/webaudio</p></li>
 <li><p><strong>W3C Web Speech compliant</strong>. W3C Web Speech API:
-https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html</p></li>
+https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html</p>
+
+<p><em>Note: As of Firefox v.51, SSML support lacks the features necessary for optimal TDS TTS delivery. Thererfore, support for TTS APIs as described in this document is necessary.</em></p></li>
 </ol>
 
 
