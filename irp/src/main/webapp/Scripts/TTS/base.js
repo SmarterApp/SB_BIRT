@@ -134,20 +134,28 @@ function TTSService_Base() {
 
   // Device Certification Required API #15
   this.pause = function() {
-    if (this.pauseEnabled) {
-      browser.tts.pause();
-      return true;
-    } else {
-      this.stop();
+    try {
+      if (this.pauseEnabled) {
+        browser.tts.pause();
+        return true;
+      } else {
+        this.stop();
+      }
+    } catch (ex) {
+      return false;
     }
   };
 
   // Device Certification Required API #16
   this.resume = function() {
-    if (this.pauseEnabled) {
-      browser.tts.resume();
-      return true;
-    } else {
+    try {
+      if (this.pauseEnabled) {
+        browser.tts.resume();
+        return true;
+      } else {
+        return false;
+      }
+    } catch (ex) {
       return false;
     }
   };
