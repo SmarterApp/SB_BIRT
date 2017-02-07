@@ -74,11 +74,14 @@
     return itemDetail;
   };
 
-  Validation.setTTSTestResultItems = function(currentTTSTest, result) {
+  Validation.setTTSTestResultItems = function(currentTTSTest, result, details) {
 
     ttsTestArray.push({
+      "id" : '',
       "testName" : messageResource.get("ttsTest." + currentTTSTest, 'message'),
-      "testResult" : result
+      "testApi" : '',
+      "testResult" : result,
+      "details" : details
     });
 
   };
@@ -93,6 +96,14 @@
     });
 
     return itemDetail;
+
+  };
+
+  Validation.mergeTTSResultIntoResult = function() {
+
+    ttsTestArray.forEach(function(element) {
+      resultArray.push(element);
+    });
 
   };
 

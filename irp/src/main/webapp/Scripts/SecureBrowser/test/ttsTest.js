@@ -29,19 +29,22 @@ function loadDialogBox(id, testName, testTitle, isNew) {
             createButton($("#stop"), 'Stop');
             createButton($("#systemMute"), 'Mute');
             loadVoices();
-            Util.Validation.setTTSTestResultItems(TTS.Setting.PLAY, null);
             disableTTSOptions();
             enableTTSOptions();
             populateJsonGrid();
+            populateReportGridForTTS();
           }
         },
         buttons : [ {
           text : "Skip Test",
           click : function() {
-            id.dialog("close");
+            populateTTSResultIntoResultGrid();
+
           }
         } ]
       });
+
+  // $("#grid").jsGrid("loadData");
 
   if (testName == 'TTS') {
     if (ttsImpl != null) {
@@ -54,15 +57,10 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
 }
 
-function populateTTSResult(result, details, isNew) {
+function populateTTSResultIntoResultGrid() {
 
-  var itemResult = {};
-
-  $.extend(itemResult, Util.Validation.setResultItemDetail(
-      'apiId.ttsManualCheck', 'testname.ttsManualCheck', 'api.ttsManualCheck',
-      result, details));
-
-  $("#jsGrid").jsGrid("insertItem", itemResult);
+  Util.Validation.mergeTTSResultIntoResult();
+  $("#jsGrid").jsGrid("refresh");
 
   $("#ttsManualTest").css("display", "none");
 
@@ -303,11 +301,17 @@ function setMuteUnMuteButtonText() {
 
 function populateJsonGrid() {
 
+  var ttsGridArray = [];
+  ttsGridArray.push({
+    "testName" : messageResource.get("ttsTest.1", 'message'),
+    "testResult" : null
+  });
+
   $("#ttsGrid")
       .jsGrid(
           {
             width : "100%",
-            data : Util.Validation.getTTSResult(),
+            data : ttsGridArray,
 
             fields : [
                 {
@@ -375,6 +379,10 @@ function closeConfirmBox(result) {
   if (ttsSetting == nextTest) {
     $("#ttsGrid").jsGrid("updateItem", getTTSTestGridItem(ttsSetting),
         Util.Validation.setTTSItemDetail(ttsSetting, result));
+
+    Util.Validation.getTTSResult()[ttsSetting - 1].testResult = result;
+    Util.Validation.getTTSResult()[ttsSetting - 1].details = '';
+
     loadNextTTSTest();
   }
 
@@ -388,6 +396,11 @@ function loadNextTTSTest() {
     ttsSetting = nextTest;
     disableTTSOptions();
     enableTTSOptions();
+  } else {
+    var buttons = $('#dialogTTS').dialog("option", "buttons");
+    buttons[0].text = 'Done';
+    $('#dialogTTS').dialog("option", "buttons", buttons);
+    disableTTSOptions();
   }
 }
 
@@ -399,8 +412,13 @@ function setDialogHtml() {
 }
 
 function disableTTSOptions() {
-  var disableIds = messageResource.get("ttsTest.disableSection." + nextTest,
+
+  var disableIds = null;
+  disableIds = messageResource.get("ttsTest.disableSection." + nextTest,
       'message');
+  if (nextTest > 10) {
+    disableIds = messageResource.get("ttsTest.disableSection.all", 'message');
+  }
 
   var disableArray = disableIds.split(",");
 
@@ -440,6 +458,15 @@ function enableTTSOptions() {
     }
 
   });
+}
+
+function populateReportGridForTTS() {
+
+  for (var currentTest = 1; currentTest <= 10; currentTest++) {
+    Util.Validation.setTTSTestResultItems(currentTest, false,
+        'Test not performed');
+  }
+
 }
 
 /* var grid = $("#jsGrid").data("JSGrid"); */
