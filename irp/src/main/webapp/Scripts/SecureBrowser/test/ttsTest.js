@@ -75,7 +75,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
       id.dialog("open");
     } else {
-      Util.Validation.setTTSTestResultItems('apiId.FAILED',
+      Util.Validation.setTTSManualTestResultItems('apiId.FAILED',
           'ttsManualTest.FAILED', null, false,
           'Error: Could not initialize TTS Support for this browser');
       populateTTSResultIntoResultGrid();
@@ -86,7 +86,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
 function populateTTSResultIntoResultGrid() {
 
-  // Util.Validation.mergeTTSResultIntoResult();
+  Util.Validation.mergeTTSResultIntoResult();
+
   $("#jsTTSGrid").jsGrid("refresh");
 
   $("#ttsManualTest").css("display", "none");
@@ -395,8 +396,8 @@ function closeConfirmBox(result) {
     $("#ttsGrid").jsGrid("updateItem", getTTSTestGridItem(currentTestIndex),
         Util.Validation.setTTSItemDetail(ttsSetting, result));
 
-    Util.Validation.getTTSResult()[currentTestIndex].testResult = result;
-    Util.Validation.getTTSResult()[currentTestIndex].details = '';
+    Util.Validation.getTTSManualResult()[currentTestIndex].testResult = result;
+    Util.Validation.getTTSManualResult()[currentTestIndex].details = '';
 
     loadNextTTSTest();
   }
@@ -492,8 +493,8 @@ function populateReportGridForTTS() {
 
   ttsSettingArray.forEach(function(item, index, array) {
     if (item != TTS.Test.UNKNOWN)
-      Util.Validation.setTTSTestResultItems('apiId.' + item, 'ttsManualTest.'
-          + item, null, false, 'Test not performed');
+      Util.Validation.setTTSManualTestResultItems('apiId.' + item,
+          'ttsManualTest.' + item, null, false, 'Test not performed');
   });
 
 }
