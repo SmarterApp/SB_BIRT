@@ -376,3 +376,21 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkSystemVolumeAPI = function() {
       'testname.checkSystemVolumeAPI', 'api.checkSystemVolumeAPI.mobile',
       result, details);
 };
+
+// SEC-10
+TDS.SecureBrowser.Mobile.Android.prototype.checkExamineProcessList = function() {
+  var result = false;
+  var details = "";
+
+  try {
+    if (!!runtime.security.examineProcessList) {
+      result = true;
+    }
+  } catch (ex) {
+    details = ex.message;
+  }
+
+  Util.Validation.setResultItems('apiId.checkExamineProcessList',
+      'testname.checkExamineProcessList', 'api.checkExamineProcessList.mobile',
+      result, details);
+};

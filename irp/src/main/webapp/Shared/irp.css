@@ -64,3 +64,16 @@
   margin-left: -10px;
   text-align: center;
 }
+
+.irp-custom-grid-header {
+	background:#0092bf;
+    position: relative;
+    padding: 0px 10px;
+    height: 30px;
+    font-family: 'League Gothic', Impact;
+    font-weight: normal;
+    font-size: 1.4em;
+    text-align: left;
+    color: #f6f6f6;
+   
+}

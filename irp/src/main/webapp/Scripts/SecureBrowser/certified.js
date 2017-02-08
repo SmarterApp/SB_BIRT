@@ -502,6 +502,24 @@
         result, details);
   };
 
+  // SEC-10
+  Certified.prototype.checkExamineProcessList = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!browser.security.examineProcessList) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkExamineProcessList',
+        'testname.checkExamineProcessList',
+        'api.checkExamineProcessList.certified', result, details);
+  };
+
   SB.Certified = Certified;
 
 })(TDS.SecureBrowser);

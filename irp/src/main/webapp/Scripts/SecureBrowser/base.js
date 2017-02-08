@@ -397,6 +397,24 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         result, details);
   };
 
+  // SEC-10
+  Base.prototype.checkExamineProcessList = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!browser.security.examineProcessList) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkExamineProcessList',
+        'testname.checkExamineProcessList',
+        'api.checkExamineProcessList.certified', result, details);
+  };
+
   SB.Base = Base;
 
 })(TDS.SecureBrowser);

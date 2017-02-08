@@ -75,7 +75,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
       id.dialog("open");
     } else {
-      Util.Validation.setTTSTestResultItems("FAILED", false,
+      Util.Validation.setTTSTestResultItems('apiId.FAILED',
+          'ttsManualTest.FAILED', null, false,
           'Error: Could not initialize TTS Support for this browser');
       populateTTSResultIntoResultGrid();
     }
@@ -85,8 +86,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
 function populateTTSResultIntoResultGrid() {
 
-  Util.Validation.mergeTTSResultIntoResult();
-  $("#jsGrid").jsGrid("refresh");
+  // Util.Validation.mergeTTSResultIntoResult();
+  $("#jsTTSGrid").jsGrid("refresh");
 
   $("#ttsManualTest").css("display", "none");
 
@@ -491,7 +492,8 @@ function populateReportGridForTTS() {
 
   ttsSettingArray.forEach(function(item, index, array) {
     if (item != TTS.Test.UNKNOWN)
-      Util.Validation.setTTSTestResultItems(item, false, 'Test not performed');
+      Util.Validation.setTTSTestResultItems('apiId.' + item, 'ttsManualTest.'
+          + item, null, false, 'Test not performed');
   });
 
 }

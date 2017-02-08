@@ -304,7 +304,7 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSStopAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSStopAPI',
         'testname.checkTTSStopAPI', 'api.checkTTSStopAPI.mobile', result,
         details);
   };
@@ -321,7 +321,7 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSStatusAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSStatusAPI',
         'testname.checkTTSStatusAPI', 'api.checkTTSStatusAPI.mobile', result,
         details);
   };
@@ -338,7 +338,7 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSVoicesAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSVoicesAPI',
         'testname.checkTTSVoicesAPI', 'api.checkTTSVoicesAPI.mobile', result,
         details);
   };
@@ -355,7 +355,7 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSPitchAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSPitchAPI',
         'testname.checkTTSPitchAPI', 'api.checkTTSPitchAPI.mobile', result,
         details);
   };
@@ -372,7 +372,7 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSRateAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSRateAPI',
         'testname.checkTTSRateAPI', 'api.checkTTSRateAPI.mobile', result,
         details);
   };
@@ -389,7 +389,7 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSVolumeAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSVolumeAPI',
         'testname.checkTTSVolumeAPI', 'api.checkTTSVolumeAPI.mobile', result,
         details);
   };
@@ -406,7 +406,7 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSSpeakAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSSpeakAPI',
         'testname.checkTTSSpeakAPI', 'api.checkTTSSpeakAPI.mobile', result,
         details);
   };
@@ -423,7 +423,7 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSPauseAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSPauseAPI',
         'testname.checkTTSPauseAPI', 'api.checkTTSPauseAPI.mobile', result,
         details);
   };
@@ -440,7 +440,7 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSResumeAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSResumeAPI',
         'testname.checkTTSResumeAPI', 'api.checkTTSResumeAPI.mobile', result,
         details);
   };
@@ -457,7 +457,7 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSVoiceNameAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSVoiceNameAPI',
         'testname.checkTTSVoiceNameAPI', 'api.checkTTSVoiceNameAPI.mobile',
         result, details);
   };

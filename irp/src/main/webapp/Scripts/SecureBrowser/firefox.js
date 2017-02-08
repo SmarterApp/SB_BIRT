@@ -1089,6 +1089,24 @@
         details);
   };
 
+  // SEC-10
+  Firefox.prototype.checkExamineProcessList = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!this.runtime.examineProcessList) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkExamineProcessList',
+        'testname.checkExamineProcessList', 'api.checkExamineProcessList.SB',
+        result, details);
+  };
+
   SB.Firefox = Firefox;
 
 })(TDS.SecureBrowser);

@@ -59,29 +59,16 @@ function beginBrowserAPITest() {
     /** SEC-30 : API: Enable Lock Down (R)* */
     impl.checkEnableLockDownAPI();
 
-    /** SEC-56 : API: System Mute/Unmute/IsMuted (R) * */
-    impl.checkSystemMuteAPI();
     /** SEC-57 : API: Get/Set System Volume (R) * */
     impl.checkSystemVolumeAPI();
 
+    /** SEC-56 : API: System Mute/Unmute/IsMuted (R) * */
+    impl.checkSystemMuteAPI();
+
+    /** SEC-10 : API Check examineProcessList * */
+    impl.checkExamineProcessList();
+
     if (ttsImpl != null) {
-      /** SEC-37 : API: TTS Stop (R) */
-      ttsImpl.checkTTSStopAPI();
-
-      /** SEC-38 : API: Get TTS Status (R) * */
-      ttsImpl.checkTTSStatusAPI();
-
-      /** SEC-39 : API: Get Voices for TTS (R) * */
-      ttsImpl.checkTTSVoicesAPI();
-
-      /** SEC-50 : API: Set TTS pitch (R) * */
-      ttsImpl.checkTTSPitchAPI();
-
-      /** SEC-51 API: Set TTS rate (R) * */
-      ttsImpl.checkTTSRateAPI();
-
-      /** SEC-52 API: Get TTS volume (R) and SEC-53 API: Set TTS volume (R)* */
-      ttsImpl.checkTTSVolumeAPI();
 
       /** SEC-36 API : TTS Speak (R) * */
       ttsImpl.checkTTSSpeakAPI();
@@ -92,14 +79,32 @@ function beginBrowserAPITest() {
       /** SEC-41 API : TTS Resume (R) * */
       ttsImpl.checkTTSResumeAPI();
 
+      /** SEC-37 : API: TTS Stop (R) */
+      ttsImpl.checkTTSStopAPI();
+
+      /** SEC-52 API: Get TTS volume (R) and SEC-53 API: Set TTS volume (R)* */
+      ttsImpl.checkTTSVolumeAPI();
+
+      /** SEC-50 : API: Set TTS pitch (R) * */
+      ttsImpl.checkTTSPitchAPI();
+
+      /** SEC-51 API: Set TTS rate (R) * */
+      ttsImpl.checkTTSRateAPI();
+
+      /** SEC-38 : API: Get TTS Status (R) * */
+      ttsImpl.checkTTSStatusAPI();
+
+      /** SEC-39 : API: Get Voices for TTS (R) * */
+      ttsImpl.checkTTSVoicesAPI();
+
       ttsImpl.checkTTSVoiceNameAPI();
     }
   } else {
     console.log('No Implementation found for Secure Browser');
   }
 
-  populateResults();
-
+  populateResults($("#jsGrid"), Util.Validation.getResult());
+  populateResults($("#jsTTSGrid"), Util.Validation.getTTSResult());
 }
 
 function getMethods(obj) {
@@ -116,66 +121,60 @@ function closeBrowser() {
   impl.close(false);
 }
 
-function populateResults() {
-  $("#jsGrid")
-      .jsGrid(
-          {
-            width : "100%",
-            data : Util.Validation.getResult(),
+function populateResults(id, gridData) {
+  id
+      .jsGrid({
+        width : "100%",
+        data : gridData,
+        fields : [
+            {
+              title : "Test Name",
+              name : "testName",
+              type : "text",
+              width : 150
+            },
+            {
+              title : "Test API",
+              name : "testApi",
+              type : "text",
+              width : 150
+            },
+            {
+              title : "Result",
+              name : "testResult",
+              type : "text",
+              width : 30,
+              align : "center",
 
-            fields : [
-                /*
-                 * { title: "ID", name: "id", type: "number", width: 20,
-                 * validate: "required" },
-                 */
-                {
-                  title : "Test Name",
-                  name : "testName",
-                  type : "text",
-                  width : 150
-                },
-                {
-                  title : "Test API",
-                  name : "testApi",
-                  type : "text",
-                  width : 150
-                },
-                {
-                  title : "Result",
-                  name : "testResult",
-                  type : "text",
-                  width : 30,
-                  align : "center",
-
-                  itemTemplate : function(value) {
-                    if (value == null) {
-                      return "";
-                    } else if (value) {
-                      return '<img alt="passed" src="../../../Shared/images/passed.jpg" height="30px" width="40px">';
-                    } else {
-                      return '<img alt="failed" src="../../../Shared/images/failed.jpg" height="30px" width="40px">';
-                    }
-
-                  }
-
-                }, {
-                  title : "Details",
-                  name : "details",
-                  type : "text",
-                  width : 150,
-
-                  itemTemplate : function(value) {
-                    if (value == null) {
-                      return "Not Available";
-                    } else {
-                      return value;
-                    }
-
-                  }
+              itemTemplate : function(value) {
+                if (value == null) {
+                  return "";
+                } else if (value) {
+                  return '<img alt="passed" src="../../../Shared/images/passed.jpg" height="30px" width="40px">';
+                } else {
+                  return '<img alt="failed" src="../../../Shared/images/failed.jpg" height="30px" width="40px">';
                 }
 
-            ]
-          });
+              }
+
+            }, {
+              title : "Details",
+              name : "details",
+              type : "text",
+              width : 150,
+
+              itemTemplate : function(value) {
+                if (value == null) {
+                  return "Not Available";
+                } else {
+                  return value;
+                }
+
+              }
+            }
+
+        ]
+      });
 
   // $("#dialogTTS").dialog("option", "title", "Test TTS").dialog("open");
 

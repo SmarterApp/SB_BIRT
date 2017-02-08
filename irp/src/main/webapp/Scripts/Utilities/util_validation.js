@@ -74,13 +74,14 @@
     return itemDetail;
   };
 
-  Validation.setTTSTestResultItems = function(currentTTSTest, result, details) {
+  Validation.setTTSTestResultItems = function(id, testName, testApi, result,
+      details) {
 
     ttsTestArray.push({
-      "id" : '',
-      "testName" : messageResource.get("ttsManualTest." + currentTTSTest,
-          'message'),
-      "testApi" : '',
+      "id" : messageResource.get(id, 'message'),
+      "testName" : messageResource.get(testName, 'message'),
+      "testApi" : testApi != null ? messageResource.get(testApi, 'message')
+          : '',
       "testResult" : result,
       "details" : details
     });

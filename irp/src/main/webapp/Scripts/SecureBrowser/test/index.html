@@ -76,30 +76,28 @@
 <script type="text/javascript">
   document.title = 'SecureBrowser Specification Test Suite';
 
-  $(document)
-      .ready(
-          function() {
+  $(document).ready(function() {
 
-            // initialize messageResource.js with settings
-            messageResource.init({
-              // path to directory containing message resource files(.properties files),
-              // give empty string or discard this configuration if files are in the
-              // same directory as that of html file.
-              filePath : '../../Libraries/messageresource'
-            });
+    // initialize messageResource.js with settings
+    messageResource.init({
+      // path to directory containing message resource files(.properties files),
+      // give empty string or discard this configuration if files are in the
+      // same directory as that of html file.
+      filePath : '../../Libraries/messageresource'
+    });
 
-            // will load the file 'path/messageresource/moduleName.properties'
-            // and callbackFunction will be executed when loading is complete.
-            messageResource.load('message', beginBrowserAPITest);
-            // file name without extension is taken as module name.
+    // will load the file 'path/messageresource/moduleName.properties'
+    // and callbackFunction will be executed when loading is complete.
+    messageResource.load('message', beginBrowserAPITest);
+    // file name without extension is taken as module name.
 
-            $("#closeBrowser").click(function() {
-              closeBrowser();
-            });
-            
-            $("#ttsTestLoad").load("ttsManualTest.html");
+    $("#closeBrowser").click(function() {
+      closeBrowser();
+    });
 
-          });
+    $("#ttsTestLoad").load("ttsManualTest.html");
+
+  });
 
   function test() {
     var value = messageResource.get('description', 'message');
@@ -114,30 +112,39 @@
 
     <h3>Welcome to the Smarter Balanced Implementation Readiness
       Package (IRP) Application</h3>
-
+    <p align="right">
+      <a href="javascript:location.reload(true);">RELOAD</a> | <a
+        href="#" id="closeBrowser">CLOSE</a>
+    </p>
+  </div>
+  
+  <div class="irp-custom-grid-header">
+  Browser API
   </div>
 
-
-  <div style="float: right;">
-    <a href="javascript:location.reload(true);">RELOAD</a> | <a href="#"
-      id="closeBrowser">CLOSE</a>
-  </div>
+  
 
   <div id="jsGrid"></div>
+
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div class="irp-custom-grid-header">
+    Text-to-speech
+  </div>
+  <div id="jsTTSGrid"></div>
 
 
   <div id="manualTest">
     <ul>
-      <li id="ttsManualTest"><a href="javascript:loadDialogBox($('#dialogTTS'), 'TTS', 'TTS API Manual Test',true)">TTS
-          Manual Check</a></li>
+      <li id="ttsManualTest"><a
+        href="javascript:loadDialogBox($('#dialogTTS'), 'TTS', 'TTS API Manual Test',true)">Click
+          to begin manual TTS tests</a></li>
+      <!-- <li id="ttsManualTest"><a href="#">Click to begin manual Audio Recorder tests</a></li> -->
     </ul>
   </div>
-  
-  <div id="ttsTestLoad">
-  
-  
-  </div>
- 
+
+  <div id="ttsTestLoad"></div>
+
 
 
 </body>

@@ -236,7 +236,7 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSStopAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSStopAPI',
         'testname.checkTTSStopAPI', 'api.checkTTSStopAPI.certified', result,
         details);
   };
@@ -253,7 +253,7 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSStatusAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSStatusAPI',
         'testname.checkTTSStatusAPI', 'api.checkTTSStatusAPI.certified',
         result, details);
   };
@@ -270,7 +270,7 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSVoicesAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSVoicesAPI',
         'testname.checkTTSVoicesAPI', 'api.checkTTSVoicesAPI.certified',
         result, details);
   };
@@ -286,7 +286,7 @@ function TTSService_Base() {
     } catch (ex) {
       details = ex.message;
     }
-    Util.Validation.setResultItems('apiId.checkTTSPitchAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSPitchAPI',
         'testname.checkTTSPitchAPI', 'api.checkTTSPitchAPI.certified', result,
         details);
   };
@@ -303,7 +303,7 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSRateAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSRateAPI',
         'testname.checkTTSRateAPI', 'api.checkTTSRateAPI.certified', result,
         details);
   };
@@ -320,7 +320,7 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSVolumeAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSVolumeAPI',
         'testname.checkTTSVolumeAPI', 'api.checkTTSVolumeAPI.certified',
         result, details);
   };
@@ -337,7 +337,7 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSSpeakAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSSpeakAPI',
         'testname.checkTTSSpeakAPI', 'api.checkTTSSpeakAPI.certified', result,
         details);
   };
@@ -354,7 +354,7 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSPauseAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSPauseAPI',
         'testname.checkTTSPauseAPI', 'api.checkTTSPauseAPI.certified', result,
         details);
   };
@@ -371,7 +371,7 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSResumeAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSResumeAPI',
         'testname.checkTTSResumeAPI', 'api.checkTTSResumeAPI.certified',
         result, details);
   };
@@ -389,7 +389,7 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkTTSVoiceNameAPI',
+    Util.Validation.setTTSTestResultItems('apiId.checkTTSVoiceNameAPI',
         'testname.checkTTSVoiceNameAPI', 'api.checkTTSVoiceNameAPI.certified',
         result, details);
   };
