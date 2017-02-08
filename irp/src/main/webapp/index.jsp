@@ -1,5 +1,6 @@
 <%
 
-response.sendRedirect("/irp-nightly/Scripts/SecureBrowser/test/index.html");
+String contextPath = request.getContextPath();
+response.sendRedirect(contextPath + "/Scripts/SecureBrowser/test/index.html");
 
 %>

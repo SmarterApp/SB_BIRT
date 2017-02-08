@@ -78,7 +78,8 @@
 
     ttsTestArray.push({
       "id" : '',
-      "testName" : messageResource.get("ttsTest." + currentTTSTest, 'message'),
+      "testName" : messageResource.get("ttsManualTest." + currentTTSTest,
+          'message'),
       "testApi" : '',
       "testResult" : result,
       "details" : details

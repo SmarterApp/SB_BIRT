@@ -1,57 +1,83 @@
-var ttsSetting = TTS.Setting.UNKNOWN;
+/**
+ * Javascript file to test TTS Manual Check for respective API, all the test are
+ * given a constant number starting 1 for Play and so on.
+ * 
+ * 
+ */
 
-var nextTest = 1;
+/* Constant for each test is defined in tts.js under TTS.Test */
+var ttsSettingArray = Object.keys(TTS.Test);
+
+// Initial ttsSetting set to UNKNOWN as no test started
+var ttsSetting = TTS.Test.UNKNOWN;
+
+/*
+ * Initial value for currentTestIndex set as 0 so as to load first test (Play)
+ * index from ttsSettingArray
+ */
+var currentTestIndex = 0;
+
+var ttsOptionsEnabled = false;
 
 function loadDialogBox(id, testName, testTitle, isNew) {
 
-  id
-      .dialog({
-        autoOpen : false,
-        width : '90%',
-        title : testTitle,
-        position : {
-          my : "center",
-          at : "center",
-          of : window
-        },
-        create : function(event, ui) {
-
-          if (testName == 'TTS') {
-            createSlider($("#ttsVolume"), $("#ttsVolumeText"), 'Volume', 0, 10,
-                10);
-            createSlider($("#ttsPitch"), $("#ttsPitchText"), 'Pitch', 0, 20, 10);
-            createSlider($("#ttsRate"), $("#ttsRateText"), 'Rate', 0, 20, 10);
-            createSlider($("#systemVolume"), $("#systemVolumeText"),
-                'System Volume', 0, 10, 10);
-            createButton($("#play"), 'Play');
-            createButton($("#pause"), 'Pause');
-            createButton($("#resume"), 'Resume');
-            createButton($("#stop"), 'Stop');
-            createButton($("#systemMute"), 'Mute');
-            loadVoices();
-            disableTTSOptions();
-            enableTTSOptions();
-            populateJsonGrid();
-            populateReportGridForTTS();
-          }
-        },
-        buttons : [ {
-          text : "Skip Test",
-          click : function() {
-            populateTTSResultIntoResultGrid();
-
-          }
-        } ]
-      });
-
-  // $("#grid").jsGrid("loadData");
-
   if (testName == 'TTS') {
     if (ttsImpl != null) {
+
+      id
+          .dialog({
+            autoOpen : false,
+            width : '90%',
+            title : testTitle,
+            position : {
+              my : "center",
+              at : "center",
+              of : window
+            },
+            create : function(event, ui) {
+
+              if (testName == 'TTS') {
+
+                if (ttsSetting == TTS.Test.UNKNOWN) {
+
+                  ttsSetting = TTS.Test.PLAY;
+
+                }
+
+                createSlider($("#ttsVolume"), $("#ttsVolumeText"), 'Volume', 0,
+                    10, 10);
+                createSlider($("#ttsPitch"), $("#ttsPitchText"), 'Pitch', 0,
+                    20, 10);
+                createSlider($("#ttsRate"), $("#ttsRateText"), 'Rate', 0, 20,
+                    10);
+                createSlider($("#systemVolume"), $("#systemVolumeText"),
+                    'System Volume', 0, 10, 10);
+                createButton($("#play"), 'Play');
+                createButton($("#pause"), 'Pause');
+                createButton($("#resume"), 'Resume');
+                createButton($("#stop"), 'Stop');
+                createButton($("#systemMute"), 'Mute');
+                createButton($("#systemUnMute"), 'Ummute');
+                loadVoices();
+                disableTTSOptions();
+                enableTTSOptions();
+                populateJsonGrid();
+                populateReportGridForTTS();
+              }
+            },
+            buttons : [ {
+              text : "Skip Test",
+              click : function() {
+                populateTTSResultIntoResultGrid();
+              }
+            } ]
+          });
+
       id.dialog("open");
     } else {
-      populateTTSResult(false,
-          'Error: Could not initialize TTS Support for this browser', true);
+      Util.Validation.setTTSTestResultItems("FAILED", false,
+          'Error: Could not initialize TTS Support for this browser');
+      populateTTSResultIntoResultGrid();
     }
   }
 
@@ -82,12 +108,14 @@ function createSlider(id, textId, text, minValue, maxValue, sliderValue) {
       var opt = $(this).data().uiSlider.options;
       // Get the number of possible values
       var vals = opt.max - opt.min;
-      var elMin = $('<label>' + (opt.min) + '</label>').css('left',
-          (opt.min / vals * 100) + '%');
-      var elMax = $('<label>' + (opt.max) + '</label>').css('left',
-          (opt.max / vals * 100) + '%');
-      id.append(elMin);
-      id.append(elMax);
+      if (vals != 0) {
+        var elMin = $('<label>' + (opt.min) + '</label>').css('left',
+            (opt.min / vals * 100) + '%');
+        var elMax = $('<label>' + (opt.max) + '</label>').css('left',
+            (opt.max / vals * 100) + '%');
+        id.append(elMin);
+        id.append(elMax);
+      }
     }
   });
 
@@ -109,12 +137,6 @@ function createSlider(id, textId, text, minValue, maxValue, sliderValue) {
 function createButton(id, text) {
 
   id.button();
-
-  if (text == 'Mute') {
-
-    setMuteUnMuteButtonText();
-  }
-
   id.click(function(event) {
 
     if (text == 'Play') {
@@ -125,11 +147,10 @@ function createButton(id, text) {
       ttsResume();
     } else if (text == 'Stop') {
       ttsStop();
-    } else if (text == 'Mute') {
+    } else if (text == 'Mute' || text == 'Ummute') {
       muteUnmuteSystem();
     }
 
-    // alert(text);
     event.preventDefault();
   });
 
@@ -144,15 +165,10 @@ function loadVoices() {
       for (var i = 0; i < voices.length; i++) {
         var opt = document.createElement("option");
         var voice = voices[i];
-        // add English and Spanish voice packs only
-        // if ((voice.language == 'eng') || (voice.language == 'spa') ||
-        // (voice.language == 'en-US') || (voice.language == 'es-ES')) {
         voiceArray[i] = voice.language + " " + (voice.voice ? voice.voice : "");
         opt.value = JSON.stringify(voice);
-        // opt.text = voiceArray[i];
         opt.text = voice.language;
         selectList.options.add(opt);
-        // }
       }
     } else {
       alert("cannot retrieve voice packs");
@@ -175,7 +191,7 @@ function loadVoices() {
 }
 
 function setVoice() {
-  // ttsSetting = TTS.Setting.VOICE;
+  // ttsSetting = TTS.Test.VOICE;
   ttsImpl.setVoice($("#voices").val());
 }
 
@@ -184,14 +200,12 @@ function ttsPlay() {
   var text = $("textarea#ttsText").val();
   ttsImpl.play(text);
 
-  if (ttsSetting == TTS.Setting.UNKNOWN) {
-
-    ttsSetting = TTS.Setting.PLAY;
+  if (ttsSetting == TTS.Test.PLAY) {
 
     setDialogHtml();
 
     loadTTSDialogConfirm();
-  } else if (ttsSetting > 4) {
+  } else if (ttsOptionsEnabled) {
     setDialogHtml();
 
     loadTTSDialogConfirm();
@@ -202,7 +216,7 @@ function ttsPause() {
 
   ttsImpl.pause();
 
-  if (ttsSetting == TTS.Setting.PAUSE) {
+  if (ttsSetting == TTS.Test.PAUSE) {
 
     setDialogHtml();
 
@@ -213,7 +227,7 @@ function ttsPause() {
 
 function ttsResume() {
 
-  // ttsSetting = TTS.Setting.RESUME;
+  // ttsSetting = TTS.Test.RESUME;
 
   setDialogHtml();
 
@@ -225,7 +239,7 @@ function ttsResume() {
 
 function ttsStop() {
 
-  // ttsSetting = TTS.Setting.STOP;
+  // ttsSetting = TTS.Test.STOP;
 
   setDialogHtml();
 
@@ -236,7 +250,7 @@ function ttsStop() {
 }
 
 function setTTSVolume(level) {
-  // ttsSetting = TTS.Setting.VOLUME;
+  // ttsSetting = TTS.Test.VOLUME;
 
   if (ttsImpl.supportsVolumeControl()) {
     ttsImpl.setVolume(level);
@@ -244,7 +258,7 @@ function setTTSVolume(level) {
 }
 
 function setTTSPitch(level) {
-  // ttsSetting = TTS.Setting.PITCH;
+  // ttsSetting = TTS.Test.PITCH;
 
   if (ttsImpl.supportsPitchControl()) {
     ttsImpl.setPitch(level);
@@ -252,14 +266,14 @@ function setTTSPitch(level) {
 }
 
 function setTTSRate(level) {
-  // ttsSetting = TTS.Setting.RATE;
+  // ttsSetting = TTS.Test.RATE;
   if (ttsImpl.supportsRateControl()) {
     ttsImpl.setRate(level);
   }
 }
 
 function setSystemVolume(level) {
-  // ttsSetting = TTS.Setting.SYSTEM_VOLUME;
+  // ttsSetting = TTS.Test.SYSTEM_VOLUME;
   if (!!ttsImpl.setSystemVolume) {
     ttsImpl.setSystemVolume(level);
   }
@@ -270,11 +284,11 @@ function getTTSStatus() {
 }
 
 function muteUnmuteSystem() {
-  // ttsSetting = TTS.Setting.MUTE_UNMUTE;
+  // ttsSetting = TTS.Test.MUTE_UNMUTE;
   if (!!ttsImpl.setsystemMute) {
     ttsImpl.setsystemMute();
 
-    setMuteUnMuteButtonText();
+    // setMuteUnMuteButtonText();
   }
 }
 
@@ -290,20 +304,14 @@ function setMuteUnMuteButtonText() {
   }
 }
 
-/*
- * function populateJsonArraytoTest() { var resultArray = [];
- * 
- * resultArray.push({ "testName" : messageResource.get("ttsTest." +
- * currentTTSTest, 'message'), "testResult" : null });
- * 
- * return resultArray; }
- */
-
 function populateJsonGrid() {
 
+  /**
+   * Loading first test to test TTS Speak.
+   */
   var ttsGridArray = [];
   ttsGridArray.push({
-    "testName" : messageResource.get("ttsTest.1", 'message'),
+    "testName" : messageResource.get("ttsTest." + ttsSetting, 'message'),
     "testResult" : null
   });
 
@@ -347,7 +355,7 @@ function populateJsonGrid() {
 
 function getTTSTestGridItem(gridIndex) {
 
-  return $("#ttsGrid").data("JSGrid").data[gridIndex - 1];
+  return $("#ttsGrid").data("JSGrid").data[gridIndex];
 
 }
 
@@ -356,7 +364,7 @@ function loadTTSDialogConfirm() {
   $("#dialog-confirm").dialog({
     resizable : false,
     height : "auto",
-    title : messageResource.get("ttsDialogTitle." + nextTest, 'message'),
+    title : messageResource.get("ttsDialogTitle." + ttsSetting, 'message'),
     width : 400,
     modal : true,
     buttons : [ {
@@ -369,6 +377,11 @@ function loadTTSDialogConfirm() {
       click : function() {
         closeConfirmBox(false);
       }
+    }, {
+      text : "Retry",
+      click : function() {
+        $(this).dialog("close");
+      }
     } ]
   });
 }
@@ -377,12 +390,12 @@ function closeConfirmBox(result) {
 
   $("#dialog-confirm").dialog("close");
 
-  if (ttsSetting == nextTest) {
-    $("#ttsGrid").jsGrid("updateItem", getTTSTestGridItem(ttsSetting),
+  if (ttsSetting == ttsSettingArray[currentTestIndex]) {
+    $("#ttsGrid").jsGrid("updateItem", getTTSTestGridItem(currentTestIndex),
         Util.Validation.setTTSItemDetail(ttsSetting, result));
 
-    Util.Validation.getTTSResult()[ttsSetting - 1].testResult = result;
-    Util.Validation.getTTSResult()[ttsSetting - 1].details = '';
+    Util.Validation.getTTSResult()[currentTestIndex].testResult = result;
+    Util.Validation.getTTSResult()[currentTestIndex].details = '';
 
     loadNextTTSTest();
   }
@@ -390,11 +403,12 @@ function closeConfirmBox(result) {
 }
 
 function loadNextTTSTest() {
-  nextTest = nextTest + 1;
-  if (nextTest <= 10) {
+  currentTestIndex = currentTestIndex + 1;
+  if (currentTestIndex < ttsSettingArray.length - 1) {
+    ttsSetting = ttsSettingArray[currentTestIndex];
     $("#ttsGrid").jsGrid("insertItem",
-        Util.Validation.setTTSItemDetail(nextTest, null));
-    ttsSetting = nextTest;
+        Util.Validation.setTTSItemDetail(ttsSetting, null));
+
     disableTTSOptions();
     enableTTSOptions();
   } else {
@@ -415,14 +429,14 @@ function setDialogHtml() {
 function disableTTSOptions() {
 
   var disableIds = null;
-  disableIds = messageResource.get("ttsTest.disableSection." + nextTest,
+  disableIds = messageResource.get("ttsTest.disableSection." + ttsSetting,
       'message');
-  if (nextTest > 10) {
-    disableIds = messageResource.get("ttsTest.disableSection.all", 'message');
-  }
 
-  if (nextTest <= 4) {
-    $("#ttsOptions").hide();
+  /**
+   * Disabling all option once all test are completed currently we have 11 test
+   */
+  if (currentTestIndex == ttsSettingArray.length - 1) {
+    disableIds = messageResource.get("ttsTest.disableSection.ALL", 'message');
   }
 
   var disableArray = disableIds.split(",");
@@ -436,6 +450,7 @@ function disableTTSOptions() {
       $('#' + buttonSliderId).button("disable");
     } else if ($('#' + buttonSliderId).is(":ui-slider")) {
       $('#' + buttonSliderId).slider("disable");
+      $('#' + buttonSliderId).slider("option", "value", 10);
     } else {
       document.getElementById(buttonSliderId).disabled = true;
     }
@@ -444,12 +459,8 @@ function disableTTSOptions() {
 }
 
 function enableTTSOptions() {
-  var enableIds = messageResource.get("ttsTest.enableSection." + nextTest,
+  var enableIds = messageResource.get("ttsTest.enableSection." + ttsSetting,
       'message');
-
-  if (nextTest > 4) {
-    $("#ttsOptions").show();
-  }
 
   var enableArray = enableIds.split(",");
 
@@ -462,6 +473,13 @@ function enableTTSOptions() {
       $('#' + buttonSliderId).button("enable");
     } else if ($('#' + buttonSliderId).is(":ui-slider")) {
       $('#' + buttonSliderId).slider("enable");
+      ttsOptionsEnabled = true;
+
+      /**
+       * Enabling Instruction to use sliders for test where its define constant
+       * is greater than 3
+       */
+      $("#ttsOptions").show();
     } else {
       document.getElementById(buttonSliderId).disabled = false;
     }
@@ -471,10 +489,10 @@ function enableTTSOptions() {
 
 function populateReportGridForTTS() {
 
-  for (var currentTest = 1; currentTest <= 10; currentTest++) {
-    Util.Validation.setTTSTestResultItems(currentTest, false,
-        'Test not performed');
-  }
+  ttsSettingArray.forEach(function(item, index, array) {
+    if (item != TTS.Test.UNKNOWN)
+      Util.Validation.setTTSTestResultItems(item, false, 'Test not performed');
+  });
 
 }
 

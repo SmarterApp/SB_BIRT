@@ -18,18 +18,19 @@ TTS.Status = {
   Unknown : 'Unknown' // unknown status
 };
 
-TTS.Setting = {
-  PLAY : '1',
-  PAUSE : '2',
-  RESUME : '3',
-  STOP : '4',
-  VOLUME : '5', // TTS Volume Change
-  PITCH : '6', // TTS Pitch Change
-  RATE : '7', // TTS Rate Change
-  SYSTEM_VOLUME : '8', // System Volume Change
-  MUTE_UNMUTE : '9', // System Mute/Unmute Change
-  VOICE : '10', // System Voice Change
-  UNKNOWN : '0' // unknown status
+TTS.Test = {
+  PLAY : 'PLAY',
+  PAUSE : 'PAUSE',
+  RESUME : 'RESUME',
+  STOP : 'STOP',
+  VOLUME : 'VOLUME', // TTS Volume Change
+  PITCH : 'PITCH', // TTS Pitch Change
+  RATE : 'RATE', // TTS Rate Change
+  SYSTEM_VOLUME : 'SYSTEM_VOLUME', // System Volume Change
+  MUTE : 'MUTE', // System Mute Change
+  UNMUTE : 'UNMUTE', // System Unmute Change
+  VOICE : 'VOICE', // System Voice Change
+  UNKNOWN : 'UNKNOWN' // unknown status
 };
 
 /**

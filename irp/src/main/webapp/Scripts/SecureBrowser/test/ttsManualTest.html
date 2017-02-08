@@ -27,12 +27,11 @@
       <div class="divTable">
         <div class="divTableBody">
 
-          <div class="divTableRow" id="ttsOptions">
+          <div class="divTableRow" id="ttsOptions" style="display: none;">
             <div class="divTableHeading">
               <p
                 
-                style="padding: 4px;">Use the sliders to adjust
-                pitch,rate, volume and system volume</p>
+                style="padding: 4px;">Use the sliders to adjust pitch, rate, volume, system volume, and voice selection</p>
             </div>
           </div>
           <div class="divTableRow">&nbsp;</div>
@@ -73,7 +72,8 @@
           <div class="divTableRow" id="systemMuteDivId">
             <div class="divTableCell">System Mute/Unmute</div>
             <div class="divTableCellRight">
-              <button id="systemMute"></button>
+              <button id="systemMute">Mute</button>
+              <button id="systemUnMute">Unmute</button>
             </div>
           </div>
 
@@ -83,7 +83,7 @@
           <div class="divTableRow">
             <div class="divTableCell">Voice Selection</div>
             <div class="divTableCellRight">
-              <select id="voices" onchange="setVoice()"></select>
+              <select id="voices" onchange="setVoice()" style="width: 50%;"></select>
             </div>
           </div>
 

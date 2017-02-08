@@ -127,7 +127,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   // SEC-35
   Base.prototype.checkCloseAPI = function() {
     var result = false;
-    var details = 'browser.security.close() is not defined';
+    var details = 'browser.security.close is not defined';
 
     Util.Validation.setResultItems('apiId.checkCloseAPI',
         'testname.checkCloseAPI', 'api.checkCloseAPI.certified', result,
@@ -136,8 +136,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   // SEC-30
   Base.prototype.checkEnableLockDownAPI = function() {
-    var result = true;
-    var details = 'testApi.removed';
+    var result = false;
+    var details = 'browser.security.enableLockDown is not defined';
 
     Util.Validation.setResultItems('apiId.checkEnableLockDownAPI',
         'testname.checkEnableLockDownAPI',
