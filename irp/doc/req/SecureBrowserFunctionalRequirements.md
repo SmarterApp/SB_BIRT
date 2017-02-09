@@ -2,14 +2,14 @@ Secure Browser Functional Requirements
 ------------------
 
 ### A. Security Related Requirements
-1. F1. The Secure browser shall NOT provide a means to clear browser cache.
-1. F2. The secure browser shall NOT provide a means to clear browser cookies.
-1. F3. The secure browser shall provide a means to clear system clipboard.
-1. F4. The secure browser shall NOT provide a means to retrieve system MAC address.
-1. F5. The secure browser shall NOT provide a means to retrieve the system IP address(es).
-1. F6. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.
-1. F7. The secure browser shall provide a means to obtain the application start time.
-1. F8. For Mac OS X, the secure browser shall provide a means to query if Spaces is enabled or not.
+1. F01. The Secure browser shall NOT provide a means to clear browser cache.
+1. F02. The secure browser shall NOT provide a means to clear browser cookies.
+1. F03. The secure browser shall provide a means to clear system clipboard.
+1. F04. The secure browser shall NOT provide a means to retrieve system MAC address.
+1. F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).
+1. F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.
+1. F07. The secure browser shall provide a means to obtain the application start time.
+1. F08. The secure browser shall provide a means to query if Spaces is enabled or not, for Mac OS X.
 1. F15. The secure browser shall provide a means to enable permissive mode.
 1. F31. The secure browser shall be able to determine whether blacklisted processes are running on the client machine.
 1. F36. The secure browser may be able to get device info (optional).
@@ -18,7 +18,7 @@ Secure Browser Functional Requirements
 1. F39. The secure browser shall be able to provide a list of features available to the user and their status.
 
 ### B. Device Related Requirements
-1. F9. The secure browser shall provide a means to get system volume.
+1. F09. The secure browser shall provide a means to get system volume.
 1. F10. The secure browser shall provide a means to set system volume.
 1. F11. The secure browser shall provide a means to mute system volume.
 1. F12. The secure browser shall provide a means to unmute system volume.
@@ -52,9 +52,9 @@ These requirements are optional.
 1. F45. The secure browser may provide a means to resume playback of a paused audio recording.
 
 ### E. Standards Compliance Requirements
-1. F32. The secure browser must be HTML5 compliant.
-1. F33. The secure browser must be Acid3 compliant.
-1. F34. The secure browser must be CSS3 compliant.
+1. F32. The secure browser shall be HTML5 compliant.
+1. F33. The secure browser shall be Acid3 compliant.
+1. F34. The secure browser shall be CSS3 compliant.
 
 ### F. Miscellaneous Requirements
 1. F35. The secure browser shall check for an appropriate Global Object for API use.
