@@ -35,10 +35,17 @@ function loadDialogBox(id, testName, testTitle, isNew) {
     }
   }
 
+  if (testName == 'HTML5') {
+    id
+        .html('<object id="objectDataId" data="http://html5test.com/" style="width: 100%; height: 100%;">');
+    isManualTestSupported = true;
+  }
+
   if (isManualTestSupported) {
     id.dialog({
       autoOpen : false,
       width : '90%',
+      height : 800,
       title : testTitle,
       position : {
         my : "center",
@@ -53,7 +60,12 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       buttons : [ {
         text : "Skip Test",
         click : function() {
-          populateTTSResultIntoResultGrid();
+          if (testName == 'TTS') {
+            populateTTSResultIntoResultGrid();
+          }
+          if (testName == 'HTML5') {
+            getDialogBoxScreenShot(id);
+          }
         }
       } ]
     });
@@ -67,7 +79,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       buttons : [ {
         text : "OK",
         click : function() {
-          populateTTSResultIntoResultGrid();
+          if (testName == 'TTS') {
+            populateTTSResultIntoResultGrid();
+          }
         }
       } ]
     });
@@ -82,6 +96,12 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       Util.Validation.setTTSManualTestResultItems('apiId.FAILED',
           'ttsManualTest.FAILED', null, false,
           'Error: Could not initialize TTS Support for this browser');
+    }
+  }
+
+  if (testName == 'HTML5') {
+    if (isManualTestSupported) {
+      id.dialog("open");
     }
   }
 
@@ -229,6 +249,7 @@ function setVoice() {
 function ttsPlay() {
 
   var text = $("textarea#ttsText").val();
+  ttsImpl.stop();
   ttsImpl.play(text);
 
   if (ttsSetting == TTS.Test.PLAY) {
@@ -530,6 +551,21 @@ function populateReportGridForTTS() {
           'ttsManualTest.' + item, null, false, 'Test not performed');
   });
 
+}
+
+function getDialogBoxScreenShot(id) {
+  html2canvas($('#objectDataId div .page'), {
+    onrendered : function(canvas) {
+      theCanvas = canvas;
+
+      var imgString = canvas.toDataURL("image/png");
+      window.open(imgString);
+
+      /*
+       * canvas.toBlob(function(blob) { saveAs(blob, "Dashboard.png"); });
+       */
+    }
+  });
 }
 
 /* var grid = $("#jsGrid").data("JSGrid"); */

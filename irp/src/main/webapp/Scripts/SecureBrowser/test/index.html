@@ -2,7 +2,6 @@
 <html>
 <head>
 
-
 <!-- JQuery -->
 <script src="../../Libraries/jQuery/jquery-3.1.1.js"></script>
 <script src="../../Libraries/jQuery/jquery-ui-1.12.js"></script>
@@ -24,7 +23,8 @@
 <script type="text/javascript"
   src="../../Libraries/jQuery/jsgrid/jsgrid.min.js"></script>
 
-
+<script type="text/javascript"
+  src="../../Libraries/html2canvas/html2canvas.js"></script>
 <!-- YAHOO -->
 <script type="text/javascript"
   src="../../Libraries/yahoo/yahoo-dom-event.js"></script>
@@ -96,6 +96,7 @@
     });
 
     $("#ttsTestLoad").load("ttsManualTest.html");
+    
 
   });
 
@@ -107,14 +108,14 @@
 </head>
 
 <body>
-
+<div id="main">
   <div align="center">
 
     <h3>Welcome to the Smarter Balanced Implementation Readiness
       Package (IRP) Application</h3>
     <p align="right">
       <a href="javascript:location.reload(true);">RELOAD</a> | <a
-        href="#" id="closeBrowser">CLOSE</a>
+        href="#" id="closeBrowser">CLOSE</a> 
     </p>
   </div>
   
@@ -122,8 +123,9 @@
   Browser API
   </div>
 
-  
 
+    
+     
   <div id="jsGrid"></div>
 
   <div>&nbsp;</div>
@@ -139,13 +141,18 @@
       <li id="ttsManualTest"><a
         href="javascript:loadDialogBox($('#dialogTTS'), 'TTS', 'TTS API Manual Test',true)">Click
           to begin manual TTS tests</a></li>
-      <!-- <li id="ttsManualTest"><a href="#">Click to begin manual Audio Recorder tests</a></li> -->
-    </ul>
+     <!--  <li id="html5ExternalTest"><a
+        href="javascript:loadDialogBox($('#extTest'), 'HTML5', 'HTML5 Specification TEST',true)">Click
+            to begin HTML5 Test</a></li> -->
+      </ul>
   </div>
 
   <div id="ttsTestLoad"></div>
 
+</div>
 
+<div id="extTest" style="display:none;">
+</div>
 
 </body>
 </html>
