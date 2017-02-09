@@ -217,51 +217,80 @@ kbd {
 
 <h2 id="toc_0">Secure Browser Functional Requirements</h2>
 
+<h3 id="toc_1">A. Security Related Requirements</h3>
+
 <ol>
-<li>F1. The Secure browser shall NOT provide an API to clear browser cache.</li>
-<li>F2. The secure browser shall NOT provide an API to clear browser cookies.</li>
-<li>F3. The secure browser shall provide an API to clear system clipboard.</li>
-<li>F4. The secure browser shall NOT provide an API to retrieve system MAC address.</li>
-<li>F5. The secure browser shall NOT provide an API to retrieve the system IP address(es).</li>
-<li>F6. The secure browser shall NOT provide an API to retrieve the current list of running processes, their PIDs and their PPIDs.</li>
+<li>F1. The Secure browser shall NOT provide a means to clear browser cache.</li>
+<li>F2. The secure browser shall NOT provide a means to clear browser cookies.</li>
+<li>F3. The secure browser shall provide a means to clear system clipboard.</li>
+<li>F4. The secure browser shall NOT provide a means to retrieve system MAC address.</li>
+<li>F5. The secure browser shall NOT provide a means to retrieve the system IP address(es).</li>
+<li>F6. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.</li>
 <li>F7. The secure browser shall provide a means to obtain the application start time.</li>
-<li>F8. For OSX, the secure browser shall provide a means to query if Spaces is enabled or not.</li>
-<li>F9. The secure browser shall provide an API to get system volume.</li>
-<li>F10. The secure browser shall provide an API to set system volume.</li>
-<li>F11. The secure browser shall provide an API to mute system volume.</li>
-<li>F12. The secure browser shall provide an API to unmute system volume.</li>
-<li>F13. The secure browser shall provide an API to check if system volume is Muted.</li>
-<li>F14. The secure browser shall provide an API to close the browser.</li>
-<li>F15. The secure browser shall provide an API to enable permissive mode.</li>
-<li>F16. The secure browser shall provide TTS API to play arbitrary text.</li>
-<li>F17. The secure browser shall provide TTS API to stop speech in progress.</li>
-<li>F18. The secure browser shall provide TTS API to pause speech in progress.</li>
-<li>F19. The secure browser shall provide TTS API to retrieve list of voice packs available on the machine.</li>
-<li>F20. The secure browser shall provide TTS API to get the current voice pack set as default on the machine.</li>
-<li>F21. The secure browser shall provide TTS API to resume speech previously paused.</li>
-<li>F22. The secure browser shall provide TTS API events to notify the web application of status of TTS and progress of TTS.</li>
-<li>F23. The secure browser shall provide TTS API to set a voice pack as the current voice.</li>
-<li>F25. The secure browser shall provide an API to start an audio recording.</li>
-<li>F26. The secure browser shall provide an API to stop an audio recording.</li>
-<li>F27. The secure browser shall provide an API to playback an audio recording.</li>
-<li>F28. The secure browser shall provide an API to get/set TTS pitch.</li>
-<li>F29. The secure browser shall provide an API to get/set TTS rate.</li>
-<li>F30. The secure browser shall provide an API to get/set TTS volume.</li>
+<li>F8. For Mac OS X, the secure browser shall provide a means to query if Spaces is enabled or not.</li>
+<li>F15. The secure browser shall provide a means to enable permissive mode.</li>
 <li>F31. The secure browser shall be able to determine whether blacklisted processes are running on the client machine.</li>
+<li>F36. The secure browser may be able to get device info (optional).</li>
+<li>F37. The secure browser shall be able to lock down the environment.</li>
+<li>F38. The secure browser shall be able to check if environment is secure for testing.</li>
+<li>F39. The secure browser shall be able to provide a list of features available to the user and their status.</li>
+</ol>
+
+<h3 id="toc_2">B. Device Related Requirements</h3>
+
+<ol>
+<li>F9. The secure browser shall provide a means to get system volume.</li>
+<li>F10. The secure browser shall provide a means to set system volume.</li>
+<li>F11. The secure browser shall provide a means to mute system volume.</li>
+<li>F12. The secure browser shall provide a means to unmute system volume.</li>
+<li>F13. The secure browser shall provide a means to check if system volume is Muted.</li>
+<li>F14. The secure browser shall provide a means to close the browser.</li>
+</ol>
+
+<h3 id="toc_3">C. Text-to-Speech (TTS) Related Requirements</h3>
+
+<ol>
+<li>F16. The secure browser shall provide shall provide a means to play arbitrary text.</li>
+<li>F17. The secure browser shall provide a means to stop TTS speech in progress.</li>
+<li>F18. The secure browser shall provide a means to pause TTS speech in progress.</li>
+<li>F19. The secure browser shall provide a means to retrieve list of TTS voice packs available on the machine.</li>
+<li>F20. The secure browser shall provide a means to get the current TTS voice pack set as default on the machine.</li>
+<li>F21. The secure browser shall provide a means to resume previously paused TTS speech.</li>
+<li>F22. The secure browser shall provide a means events to notify the web application of status and progress of TTS.</li>
+<li>F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.</li>
+<li>F28. The secure browser shall provide a means to get/set TTS pitch.</li>
+<li>F29. The secure browser shall provide a means to get/set TTS rate.</li>
+<li>F30. The secure browser shall provide a means to get/set TTS volume.</li>
+</ol>
+
+<h3 id="toc_4">D. Audio Recording Related Requirements</h3>
+
+<p>These requirements are optional.</p>
+
+<ol>
+<li>F25. The secure browser may provide a means to start an audio recording.</li>
+<li>F26. The secure browser may provide a means to stop an audio recording.</li>
+<li>F27. The secure browser may provide a means to playback an audio recording.</li>
+<li>F40. The secure browser may provide a means to set audio recorder status.</li>
+<li>F41. The secure browser may provide a means to get audio recorder capabilities.</li>
+<li>F42. The secure browser may provide a means to retrieve a recording for playback.</li>
+<li>F43. The secure browser may provide a means to stop playback.</li>
+<li>F44. The secure browser may provide a means to pause playback.</li>
+<li>F45. The secure browser may provide a means to resume playback of a paused audio recording.</li>
+</ol>
+
+<h3 id="toc_5">E. Standards Compliance Requirements</h3>
+
+<ol>
 <li>F32. The secure browser must be HTML5 compliant.</li>
 <li>F33. The secure browser must be Acid3 compliant.</li>
 <li>F34. The secure browser must be CSS3 compliant.</li>
-<li>F35. The secure browser shall check for an appropriate Global Object for API use. .</li>
-<li>F36. The secure browser must be able to get device info (optional).</li>
-<li>F37. The secure browser must be able to lock down the environment.</li>
-<li>F38. The secure browser must be able to check if environment is secure for testing.</li>
-<li>F39. The secure browser must be able to provide a list of features available to the user and their status.</li>
-<li>F40. The secure browser must be able to get audio recorder status.</li>
-<li>F41. The secure browser must be able to get audio recorder capabilities.</li>
-<li>F42. The secure browser must be able to retrieve a recording for playback.</li>
-<li>F43. The secure browser must be able to stop playback.</li>
-<li>F44. The secure browser must be able to pause playback.</li>
-<li>F45. The secure browser must be able to resume playback of a paused audio recording.</li>
+</ol>
+
+<h3 id="toc_6">F. Miscellaneous Requirements</h3>
+
+<ol>
+<li>F35. The secure browser shall check for an appropriate Global Object for API use.</li>
 </ol>
 
 
