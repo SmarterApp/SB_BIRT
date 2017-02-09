@@ -21,67 +21,96 @@ var ttsOptionsEnabled = false;
 
 function loadDialogBox(id, testName, testTitle, isNew) {
 
+  var isManualTestSupported = false;
   if (testName == 'TTS') {
-    if (ttsImpl != null) {
-
-      id
-          .dialog({
-            autoOpen : false,
-            width : '90%',
-            title : testTitle,
-            position : {
-              my : "center",
-              at : "center",
-              of : window
-            },
-            create : function(event, ui) {
-
-              if (testName == 'TTS') {
-
-                if (ttsSetting == TTS.Test.UNKNOWN) {
-
-                  ttsSetting = TTS.Test.PLAY;
-
-                }
-
-                createSlider($("#ttsVolume"), $("#ttsVolumeText"), 'Volume', 0,
-                    10, 10);
-                createSlider($("#ttsPitch"), $("#ttsPitchText"), 'Pitch', 0,
-                    20, 10);
-                createSlider($("#ttsRate"), $("#ttsRateText"), 'Rate', 0, 20,
-                    10);
-                createSlider($("#systemVolume"), $("#systemVolumeText"),
-                    'System Volume', 0, 10, 10);
-                createButton($("#play"), 'Play');
-                createButton($("#pause"), 'Pause');
-                createButton($("#resume"), 'Resume');
-                createButton($("#stop"), 'Stop');
-                createButton($("#systemMute"), 'Mute');
-                createButton($("#systemUnMute"), 'Ummute');
-                loadVoices();
-                disableTTSOptions();
-                enableTTSOptions();
-                populateJsonGrid();
-                populateReportGridForTTS();
-              }
-            },
-            buttons : [ {
-              text : "Skip Test",
-              click : function() {
-                populateTTSResultIntoResultGrid();
-              }
-            } ]
-          });
-
-      id.dialog("open");
+    if (ttsImpl != null
+        && !TTS.Manager._serviceFuncExists('isTTSAPINotSupported')) {
+      isManualTestSupported = true;
     } else {
-      Util.Validation.setTTSManualTestResultItems('apiId.FAILED',
-          'ttsManualTest.FAILED', null, false,
-          'Error: Could not initialize TTS Support for this browser');
-      populateTTSResultIntoResultGrid();
+      var textMessage = messageResource.get("errorDialog." + testName,
+          'message');
+      id
+          .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
+              + textMessage + '</p>');
     }
   }
 
+  if (isManualTestSupported) {
+    id.dialog({
+      autoOpen : false,
+      width : '90%',
+      title : testTitle,
+      position : {
+        my : "center",
+        at : "center",
+        of : window
+      },
+      create : function(event, ui) {
+        if (testName == 'TTS') {
+          ttsComponentInitialize();
+        }
+      },
+      buttons : [ {
+        text : "Skip Test",
+        click : function() {
+          populateTTSResultIntoResultGrid();
+        }
+      } ]
+    });
+  } else {
+    id.dialog({
+      resizable : false,
+      height : "auto",
+      title : testTitle,
+      width : 400,
+      modal : true,
+      buttons : [ {
+        text : "OK",
+        click : function() {
+          populateTTSResultIntoResultGrid();
+        }
+      } ]
+    });
+
+  }
+
+  if (testName == 'TTS') {
+    if (isManualTestSupported) {
+      id.dialog("open");
+    } else {
+      id.dialog("open");
+      Util.Validation.setTTSManualTestResultItems('apiId.FAILED',
+          'ttsManualTest.FAILED', null, false,
+          'Error: Could not initialize TTS Support for this browser');
+    }
+  }
+
+}
+
+function ttsComponentInitialize() {
+
+  if (ttsSetting == TTS.Test.UNKNOWN) {
+
+    ttsSetting = TTS.Test.PLAY;
+
+  }
+
+  createSlider($("#ttsVolume"), $("#ttsVolumeText"), 'Volume', 0, 10, 10);
+  createSlider($("#ttsPitch"), $("#ttsPitchText"), 'Pitch', 0, 20, 10);
+  createSlider($("#ttsRate"), $("#ttsRateText"), 'Rate', 0, 20, 10);
+  createSlider($("#systemVolume"), $("#systemVolumeText"), 'System Volume', 0,
+      10, 10);
+  createButton($("#play"), 'Play');
+  createButton($("#pause"), 'Pause');
+  createButton($("#resume"), 'Resume');
+  createButton($("#stop"), 'Stop');
+  createButton($("#systemMute"), 'Mute');
+  createButton($("#systemUnMute"), 'Ummute');
+  loadVoices();
+  disableTTSOptions();
+  enableTTSOptions();
+  populateJsonGrid();
+  populateReportGridForTTS();
 }
 
 function populateTTSResultIntoResultGrid() {
@@ -414,11 +443,15 @@ function loadNextTTSTest() {
     disableTTSOptions();
     enableTTSOptions();
   } else {
-    var buttons = $('#dialogTTS').dialog("option", "buttons");
-    buttons[0].text = 'Done';
-    $('#dialogTTS').dialog("option", "buttons", buttons);
+    changeDialogBoxButtonText($('#dialogTTS'), 'Done');
     disableTTSOptions();
   }
+}
+
+function changeDialogBoxButtonText(id, buttonText) {
+  var buttons = id.dialog("option", "buttons");
+  buttons[0].text = buttonText;
+  id.dialog("option", "buttons", buttons);
 }
 
 function setDialogHtml() {

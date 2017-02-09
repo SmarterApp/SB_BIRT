@@ -445,39 +445,54 @@ function TTSService_SB() {
 
   // get the system volume
   this.getSystemVolume = function() {
-    if (!this.runtime)
-      return -1;
-    return Math.min(this.runtime.systemVolume, 10);
+    try {
+      if (!this.runtime)
+        return -1;
+      return Math.min(this.runtime.systemVolume, 10);
+    } catch (ex) {
+      return false;
+    }
   };
 
   this.setSystemVolume = function(level) {
-    if (!this.runtime)
+    try {
+      if (!this.runtime)
+        return false;
+      if (typeof (level) != 'number')
+        return false; // validate type
+      if (level < 0 || level > 10)
+        return false; // validate range
+      if (this.runtime.systemVolume == level)
+        return false; // check if difference
+      this.runtime.systemVolume = level;
+      return true;
+    } catch (ex) {
       return false;
-    if (typeof (level) != 'number')
-      return false; // validate type
-    if (level < 0 || level > 10)
-      return false; // validate range
-    if (this.runtime.systemVolume == level)
-      return false; // check if difference
-    this.runtime.systemVolume = level;
+    }
     return true;
   };
 
   this.getsystemMute = function() {
-
-    if (!this.runtime) {
+    try {
+      if (!this.runtime) {
+        return false;
+      } else {
+        return this.runtime.systemMute;
+      }
+    } catch (ex) {
       return false;
-    } else {
-      return this.runtime.systemMute;
     }
   }
 
   this.setsystemMute = function() {
-
-    if (!this.runtime) {
+    try {
+      if (!this.runtime) {
+        return false;
+      } else {
+        this.runtime.systemMute = !this.runtime.systemMute;
+      }
+    } catch (ex) {
       return false;
-    } else {
-      this.runtime.systemMute = !this.runtime.systemMute;
     }
   }
 
@@ -549,8 +564,9 @@ function TTSService_SB() {
     }
 
     Util.Validation
-        .setTTSTestResultItems('apiId.checkTTSPitchAPI', 'testname.checkTTSPitchAPI',
-            'api.checkTTSPitchAPI.SB', result, details);
+        .setTTSTestResultItems('apiId.checkTTSPitchAPI',
+            'testname.checkTTSPitchAPI', 'api.checkTTSPitchAPI.SB', result,
+            details);
   };
 
   this.checkTTSRateAPI = function() {
@@ -601,8 +617,9 @@ function TTSService_SB() {
     }
 
     Util.Validation
-        .setTTSTestResultItems('apiId.checkTTSSpeakAPI', 'testname.checkTTSSpeakAPI',
-            'api.checkTTSSpeakAPI.SB', result, details);
+        .setTTSTestResultItems('apiId.checkTTSSpeakAPI',
+            'testname.checkTTSSpeakAPI', 'api.checkTTSSpeakAPI.SB', result,
+            details);
   };
 
   this.checkTTSPauseAPI = function() {
@@ -618,8 +635,9 @@ function TTSService_SB() {
     }
 
     Util.Validation
-        .setTTSTestResultItems('apiId.checkTTSPauseAPI', 'testname.checkTTSPauseAPI',
-            'api.checkTTSPauseAPI.SB', result, details);
+        .setTTSTestResultItems('apiId.checkTTSPauseAPI',
+            'testname.checkTTSPauseAPI', 'api.checkTTSPauseAPI.SB', result,
+            details);
   };
 
   this.checkTTSResumeAPI = function() {

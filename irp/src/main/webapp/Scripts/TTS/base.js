@@ -8,12 +8,11 @@
 // *******************************************************************************
 /*
  * 
- * This is the generic API for certified SB's. Right now the only browsers that
- * implement this are: - Certified
+ * This is the generic API for non Secure browser or browser where TTS is not
+ * supproted.
  * 
  */
 
-// TTS service: certified browsers
 function TTSService_Base() {
 
   var that = this;
@@ -24,6 +23,10 @@ function TTSService_Base() {
   this.voicepacks = [];
   this.currentVoice = '';
   this.pauseEnabled = true;
+
+  this.isTTSAPINotSupported = function() {
+    return true;
+  };
 
   this.supportsVolumeControl = function() {
     return false;

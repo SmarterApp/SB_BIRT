@@ -215,9 +215,13 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
 
     // check for certified SB
     if (Util.Browser.isCertified()) {
-      service = new TTSService_Certified();
-    }
-    // check for native SB and SB service exists
+
+      if (TTS.Util.supportsWebSpeech()) {
+        service = new TTSService_WebSpeech();
+      } else {
+        service = new TTSService_Certified();
+      }
+    } // check for native SB and SB service exists
     else if (Util.Browser.isSecure() && Util.Browser.getSecureVersion() > 0
         && YAHOO.lang.isFunction(TTSService_SB) && !Util.Browser.isMobile()) {
       service = new TTSService_SB();

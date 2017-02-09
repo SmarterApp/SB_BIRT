@@ -359,8 +359,16 @@ TDS.SecureBrowser.Mobile.Android.prototype.close = function(restart) {
 
 // SEC-56
 TDS.SecureBrowser.Mobile.Android.prototype.checkSystemMuteAPI = function() {
-  var result = null;
-  var details = null;
+  var result = false;
+  var details = "";
+
+  try {
+    if (!!this._airMobile.systemMute) {
+      result = true;
+    }
+  } catch (ex) {
+    details = ex.message;
+  }
 
   Util.Validation.setResultItems('apiId.checkSystemMuteAPI',
       'testname.checkSystemMuteAPI', 'api.checkSystemMuteAPI.mobile', result,
@@ -369,8 +377,16 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkSystemMuteAPI = function() {
 
 // SEC-57
 TDS.SecureBrowser.Mobile.Android.prototype.checkSystemVolumeAPI = function() {
-  var result = null;
-  var details = null;
+  var result = false;
+  var details = "";
+
+  try {
+    if (!!this._airMobile.systemVolume) {
+      result = true;
+    }
+  } catch (ex) {
+    details = ex.message;
+  }
 
   Util.Validation.setResultItems('apiId.checkSystemVolumeAPI',
       'testname.checkSystemVolumeAPI', 'api.checkSystemVolumeAPI.mobile',
@@ -383,7 +399,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkExamineProcessList = function() 
   var details = "";
 
   try {
-    if (!!runtime.security.examineProcessList) {
+    if (!!this._airMobile.security.examineProcessList) {
       result = true;
     }
   } catch (ex) {
