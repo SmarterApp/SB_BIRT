@@ -199,6 +199,8 @@ function createButton(id, text) {
     } else if (text == 'Stop') {
       ttsStop();
     } else if (text == 'Mute' || text == 'Ummute') {
+      id.addClass("irp-custom-button-click");
+      $("#play").focus();
       muteUnmuteSystem();
     }
 
@@ -504,6 +506,7 @@ function disableTTSOptions() {
 
     if ($('#' + buttonSliderId).is(":ui-button")) {
       $('#' + buttonSliderId).button("disable");
+      $("#" + buttonSliderId).removeClass("irp-custom-button-click");
     } else if ($('#' + buttonSliderId).is(":ui-slider")) {
       $('#' + buttonSliderId).slider("disable");
       $('#' + buttonSliderId).slider("option", "value", 10);
