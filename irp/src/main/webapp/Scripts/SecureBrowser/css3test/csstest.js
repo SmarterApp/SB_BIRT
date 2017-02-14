@@ -26,7 +26,7 @@ Score.prototype = {
   },
 
   percent : function() {
-    if (this.total != 0) {
+    if (this.total == 0) {
       return 0;
     } else {
       return Math.round(100 * this.passed / this.total);
