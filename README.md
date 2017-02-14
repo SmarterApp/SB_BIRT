@@ -11,7 +11,8 @@ report.
 * Produce an Implementation Readiness Report for any tested browser.
 
 ## License ##
-This project is licensed under the [AIR Open Source License v1.0](http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf).
+* This project is licensed under the [AIR Open Source License v1.0](http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf).
+* This project contains external source for HTML5 test [Source](https://github.com/NielsLeenheer/html5test)
 
 ## Getting Involved ##
 We would be happy to receive feedback on its capabilities, problems, or future enhancements:
