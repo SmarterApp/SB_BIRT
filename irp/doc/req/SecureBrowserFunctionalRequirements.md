@@ -5,7 +5,7 @@ Secure Browser Functional Requirements
 1. F01. The Secure browser shall NOT provide a means to clear browser cache.
 1. F02. The secure browser shall NOT provide a means to clear browser cookies.
 1. F03. The secure browser shall provide a means to clear system clipboard.
-1. F04. The secure browser shall NOT provide a means to retrieve system MAC address.
+1. F04. The secure browser shall provide a means to retrieve system MAC address.
 1. F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).
 1. F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.
 1. F07. The secure browser shall provide a means to obtain the application start time.
@@ -16,6 +16,8 @@ Secure Browser Functional Requirements
 1. F37. The secure browser shall be able to lock down the environment.
 1. F38. The secure browser shall be able to check if environment is secure for testing.
 1. F39. The secure browser shall be able to provide a list of features available to the user and their status.
+1. F46. The secure browser shall be able to get the status of a particular browser capability.
+1. F47. The secure browser shall be able to set the status of a particular browser capability.
 
 ### B. Device Related Requirements
 1. F09. The secure browser shall provide a means to get system volume.
@@ -53,7 +55,6 @@ These requirements are optional.
 
 ### E. Standards Compliance Requirements
 1. F32. The secure browser shall be HTML5 compliant.
-1. F33. The secure browser shall be Acid3 compliant.
 1. F34. The secure browser shall be CSS3 compliant.
 
 ### F. Miscellaneous Requirements

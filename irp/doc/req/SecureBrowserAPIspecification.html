@@ -245,6 +245,12 @@ kbd {
 <p><code>{&lt;feature&gt;:true|false, ...}</code></p>
 
 <p>Example: <code>{&quot;screencapture&quot;:true, &quot;voicerecording&quot;:false, &quot;videocamera&quot;:false, &quot;cortana&quot;: true}</code></p></li>
+<li><p>R41. [TBD] <strong>Retrieve the status of a particular browser capability</strong>.   <code>object browser.security.getCapability(&quot;feature&quot;)</code></p>
+
+<p>returns either a Javascript object or literal with the following structure</p>
+
+<p><code>{&lt;feature&gt;:true|false}</code></p></li>
+<li><p>R42. [TBD] <strong>Set the status of a particular browser capability</strong>.    <code>object browser.security.setCapability(&quot;feature&quot;, value)</code></p></li>
 <li><p>R05. <strong>Retrieve information on the environment (device)</strong>. The testing web application will invoke this to gather details about the platform on which it is running. This is used to augment any information that was discernible from the user agent.</p>
 
 <p><code>object browser.security.getDeviceInfo()</code></p>
@@ -318,8 +324,6 @@ kbd {
 <ul>
 <li><p><em>Clear browser cache</em> (<code>void browser.security.clearCache()</code>)</p></li>
 <li><p><em>Clear cookies</em> (<code>void browser.security.clearCookies()</code>)</p></li>
-<li><p><em>Empty system clipboard</em> (<code>void browser.security.emptyClipBoard()</code>)</p></li>
-<li><p><em>Retrieve system MAC address(es)</em> (<code>string[] browser.security.getMACAddress()</code>)</p></li>
 <li><p><em>Retrieve client IP address(es)</em>  (<code>string[] browser.security.getIPAddressList()</code>)</p></li>
 <li><p><em>Retrieve current list of running processes</em> (<code>string[] browser.security.getProcessList()</code>)</p></li>
 </ul></li>
@@ -338,6 +342,13 @@ kbd {
 <p>Example response:</p>
 
 <p><code>&quot;Thu May 29 2016 17:35:24 GMT-0500 (Central Standard Time)&quot;</code></p></li>
+<li><p>R40. <strong>Retrieve system MAC address(es)</strong>. The testing application will invoke this to assist in diagnostics. It is difficult to rely on source IP addresses to distinguish between end user machines within our testing servers as firewalls/NATs/Proxies are commonly in use at the schools. The MAC addresses allow us to distinguish end client machines behind a common firewall for diagnostics purposes.</p>
+
+<p><code>string[] browser.security.getMACAddress()</code></p>
+
+<p>Example response:</p>
+
+<p><code>&quot;[&#39;00&#39;,&#39;55&#39;,&#39;65&#39;,&#39;C0&#39;,&#39;00&#39;,&#39;EA&#39;]&quot;</code></p></li>
 </ol>
 
 <h4 id="toc_3">Audio Recorder</h4>
@@ -363,7 +374,6 @@ kbd {
 
 <ol>
 <li><p>R35. [TBD] <strong>HTML5 compliant</strong>. The secure browser must be HTML5 compliant: https://www.w3.org/TR/html5/ and http://html5test.com</p></li>
-<li><p>R36. [TBD] <strong>Acid3 compliant</strong>. The secure browser must be Acid3 compliant: http://www.acidtests.org and http://acid3.acidtests.org</p></li>
 <li><p>R37. [TBD] <strong>CSS3 compliant</strong>. The secure browser must be CSS3 compliant: https://www.w3.org/TR/2014/REC-css-namespaces-3-20140320 and http://css3test.com</p></li>
 </ol>
 

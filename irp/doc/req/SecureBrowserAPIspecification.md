@@ -31,6 +31,13 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
     Example: `{"screencapture":true, "voicerecording":false, "videocamera":false, "cortana": true}`
 
+1. R41. [TBD] **Retrieve the status of a particular browser capability**. 	`object browser.security.getCapability("feature")`
+	
+    returns either a Javascript object or literal with the following structure
+
+	`{<feature>:true|false}`
+1. R42. [TBD] **Set the status of a particular browser capability**. 	`object browser.security.setCapability("feature", value)`
+
 1. R05. **Retrieve information on the environment (device)**. The testing web application will invoke this to gather details about the platform on which it is running. This is used to augment any information that was discernible from the user agent.
 
 	`object browser.security.getDeviceInfo()`
@@ -121,11 +128,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
     * *Clear browser cache* (`void browser.security.clearCache()`)
     
     * *Clear cookies* (`void browser.security.clearCookies()`)
-    
-    * *Empty system clipboard* (`void browser.security.emptyClipBoard()`)
-    
-    * *Retrieve system MAC address(es)* (`string[] browser.security.getMACAddress()`)
-    
+            
     * *Retrieve client IP address(es)*  (`string[] browser.security.getIPAddressList()`)
     
     * *Retrieve current list of running processes* (`string[] browser.security.getProcessList()`)
@@ -143,7 +146,15 @@ The following Secure Browser Application Programming Interface (API) endpoints d
     Example response:
 	 
     `"Thu May 29 2016 17:35:24 GMT-0500 (Central Standard Time)"`
-         
+
+1. R40. **Retrieve system MAC address(es)**. The testing application will invoke this to assist in diagnostics. It is difficult to rely on source IP addresses to distinguish between end user machines within our testing servers as firewalls/NATs/Proxies are commonly in use at the schools. The MAC addresses allow us to distinguish end client machines behind a common firewall for diagnostics purposes.
+
+	`string[] browser.security.getMACAddress()`
+
+     Example response:
+	 
+     `"['00','55','65','C0','00','EA']"`
+     
 #### Audio Recorder 
 *NOTE: All recorder APIs should follow W3C's Web Audio API (https://www.w3.org/TR/webaudio/).*
 
@@ -162,8 +173,6 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 ### Required
 
 1. R35. [TBD] **HTML5 compliant**. The secure browser must be HTML5 compliant: https://www.w3.org/TR/html5/ and http://html5test.com
-
-1. R36. [TBD] **Acid3 compliant**. The secure browser must be Acid3 compliant: http://www.acidtests.org and http://acid3.acidtests.org
 
 1. R37. [TBD] **CSS3 compliant**. The secure browser must be CSS3 compliant: https://www.w3.org/TR/2014/REC-css-namespaces-3-20140320 and http://css3test.com
 
