@@ -336,8 +336,7 @@ onload = function() {
       // alert(test.title);
 
       var result = true;
-      var percent = parseInt(test.score.passedTests / test.score.totalTests
-          * 100, 10);
+      var percent = test.score.percent();
       switch (true) {
       case percent <= css3Passingthreshold:
         result = false;
