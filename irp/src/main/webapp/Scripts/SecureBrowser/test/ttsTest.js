@@ -38,11 +38,23 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
   if (testName == 'HTML5') {
 
-    var iframe = $('<iframe id="irphtml5test" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
+    var iframe = $('<iframe id="irpHTML5Test" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
 
     isManualTestSupported = true;
 
-    id = $("<div id='externalTest'></div>").append(iframe).appendTo("body");
+    id = $("<div id='externalHTML5Test'></div>").append(iframe)
+        .appendTo("body");
+
+    buttonText = 'Save Result';
+  }
+
+  if (testName == 'CSS3') {
+
+    var iframe = $('<iframe id="irpCSS3Test" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
+
+    isManualTestSupported = true;
+
+    id = $("<div id='externalCSS3Test'></div>").append(iframe).appendTo("body");
 
     buttonText = 'Save Result';
   }
@@ -70,7 +82,13 @@ function loadDialogBox(id, testName, testTitle, isNew) {
             populateTTSResultIntoResultGrid();
           }
           if (testName == 'HTML5') {
-            populateReportGridForHTML5();
+            populateReportGridForExternalTest($("#jsHTML5TestGrid"),
+                $("#html5TestHeader"), $("#html5ManualTest"), testName);
+            $(this).dialog("close");
+          }
+          if (testName == 'CSS3') {
+            populateReportGridForExternalTest($("#jsCSS3TestGrid"),
+                $("#css3TestHeader"), $("#css3ManualTest"), testName);
             $(this).dialog("close");
           }
         }
@@ -111,6 +129,19 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
       iframe.attr({
         src : '../html5test/html5test.html',
+        width : '100%',
+        height : '100%'
+      });
+
+      id.dialog("open");
+    }
+  }
+
+  if (testName == 'CSS3') {
+    if (isManualTestSupported) {
+
+      iframe.attr({
+        src : '../css3test/css3test.html',
         width : '100%',
         height : '100%'
       });
@@ -570,13 +601,21 @@ function populateReportGridForTTS() {
 
 }
 
-function populateReportGridForHTML5() {
+function populateReportGridForExternalTest(gridId, headerId, testId, testName) {
+  var iframeObj = null;
+  if (testName == 'HTML5') {
+    iframeObj = document.getElementById('irpHTML5Test');
+    populateResults(gridId, iframeObj.contentWindow.html5TestArray, true);
 
-  var iframeObj = document.getElementById('irphtml5test');
-  populateResults($("#jsHTML5TestGrid"),
-      iframeObj.contentWindow.html5TestArray, true);
+    headerId.html(iframeObj.contentWindow.htmlScoreHTML);
+  }
 
-  $("#html5TestHeader").html(iframeObj.contentWindow.htmlScoreHTML);
+  else if (testName == 'CSS3') {
+    iframeObj = document.getElementById('irpCSS3Test');
+    populateResults(gridId, iframeObj.contentWindow.css3TestArray, true);
 
-  $("#html5ManualTest").css("display", "none");
+    headerId.html(iframeObj.contentWindow.css3ScoreHTML);
+  }
+
+  testId.css("display", "none");
 }

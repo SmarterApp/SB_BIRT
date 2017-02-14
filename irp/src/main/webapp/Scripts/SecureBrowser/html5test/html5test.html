@@ -147,11 +147,14 @@
 
 		<script>
 		
-
+         <!-- Array to populate Test Grid in IRP Report Page -->
 		 var html5TestArray = [];
 		 
+		 <!-- HTML String to populate on Test Grid Header -->
 		 var htmlScoreHTML = '';
 		 
+		 <!-- Test passing threshold is used to determine passed/failed result for given test -->
+		 var html5Passingthreshold = 60;
 			function waitForWhichBrowser(cb) {
 				var callback = cb;
 
@@ -280,7 +283,7 @@
 					c);
 					
 					htmlScoreHTML = tim(             
-              "<span>HTML5 Test Score (Your browser scores</span> <strong>{{score}}</strong> <span>out of {{maximum}} points)</span>",
+              "<span>HTML5 Test (Your browser scores</span> <strong>{{score}}</strong><span>/{{maximum}} points)</span>",
           c);
 
 
@@ -380,7 +383,7 @@
                   var result = true;
                    var percent = parseInt(points / maximum * 100, 10);
               switch (true) {
-              case percent <= 60:
+              case percent <= html5Passingthreshold:
                 result = false;
                 break;
               default:
