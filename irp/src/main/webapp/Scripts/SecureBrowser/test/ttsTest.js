@@ -580,5 +580,3 @@ function populateReportGridForHTML5() {
 
   $("#html5ManualTest").css("display", "none");
 }
-
-/* var grid = $("#jsGrid").data("JSGrid"); */
