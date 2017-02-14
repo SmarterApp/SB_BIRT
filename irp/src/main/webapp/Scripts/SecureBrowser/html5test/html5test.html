@@ -377,13 +377,22 @@
                   /* alert(points   + "    " + maximum); */
                   
                   //ValidArray.Validation.setHTML5TestResult(test.name,points+"/"+maximum);
-                  
+                  var result = true;
+                   var percent = parseInt(points / maximum * 100, 10);
+              switch (true) {
+              case percent <= 60:
+                result = false;
+                break;
+              default:
+                result = true;
+                break;
+              }
+              
                   html5TestArray.push({
                     
                     "testName" : test.name,
-                    
-                    "testResult" : points+"/"+maximum,
-                    "details" : ""
+                    "testResult" : result,
+                    "details" :  points+"/"+maximum
                     
                   });
                  

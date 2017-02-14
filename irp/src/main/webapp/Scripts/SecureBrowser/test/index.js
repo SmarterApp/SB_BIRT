@@ -123,8 +123,16 @@ function closeBrowser() {
 
 function populateResults(id, gridData, extTest) {
   var extCss = '';
+  var detailTitle = 'Details';
+  var detailWidth = 150;
+  var testNameWidth = 150;
+  var detailAlign = "left";
   if (extTest === true) {
     extCss = 'irp-grid-column-hide';
+    detailTitle = 'Score';
+    detailWidth = 50;
+    testNameWidth = 100;
+    detailAlign = "center";
   }
   id
       .jsGrid({
@@ -135,7 +143,7 @@ function populateResults(id, gridData, extTest) {
               title : "Test Name",
               name : "testName",
               type : "text",
-              width : 150
+              width : testNameWidth
             },
             {
               title : "Test API",
@@ -166,12 +174,11 @@ function populateResults(id, gridData, extTest) {
               }
 
             }, {
-              title : "Details",
+              title : detailTitle,
               name : "details",
               type : "text",
-              width : 150,
-              css : extCss,
-
+              align : detailAlign,
+              width : detailWidth,
               itemTemplate : function(value) {
                 if (value == null) {
                   return "Not Available";

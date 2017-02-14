@@ -44,7 +44,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
     id = $("<div id='externalTest'></div>").append(iframe).appendTo("body");
 
-    buttonText = 'Capture Result';
+    buttonText = 'Save Result';
   }
 
   if (isManualTestSupported) {
