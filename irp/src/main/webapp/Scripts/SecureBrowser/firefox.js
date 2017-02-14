@@ -94,6 +94,11 @@
     try {
       if (!!this.runtime.getMACAddress) {
         result = true;
+
+        details = this.runtime.getMACAddress();
+        if (!Util.Validation.isMacAddressValid(details)) {
+          result = false;
+        }
       }
     } catch (ex) {
       details = ex.message;

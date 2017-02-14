@@ -331,6 +331,11 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkMACAddressAPI = function() {
   try {
     if (!!this._airMobile.security.getMACAddress) {
       result = true;
+
+      details = this._airMobile.security.getMACAddress();
+      if (!Util.Validation.isMacAddressValid(details)) {
+        result = false;
+      }
     }
   } catch (ex) {
     details = ex.message;

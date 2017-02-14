@@ -65,6 +65,11 @@
     try {
       if (!!browser.security.getMACAddress) {
         result = true;
+
+        details = browser.security.getMACAddress();
+        if (!Util.Validation.isMacAddressValid(details)) {
+          result = false;
+        }
       }
     } catch (ex) {
       details = ex.message;
