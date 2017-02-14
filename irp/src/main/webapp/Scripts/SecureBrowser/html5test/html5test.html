@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>HTML5test - How well does your browser support HTML5?</title>
+<head>
+<title>HTML5test - How well does your browser support HTML5?</title>
 
-		<meta charset="UTF-8">
+<meta charset="UTF-8">
 
-		<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<link rel="stylesheet" href="css/main.css" type="text/css">
+<link rel="stylesheet" href="css/main.css" type="text/css">
 
-		<script src='scripts/base.js' type='text/javascript'></script>
-		<script src='scripts/8/engine.js' type='text/javascript'></script>
-		<script src='scripts/8/data.js' type='text/javascript'></script>
-    
-        
-        
-    
-		<script>
+<script src='scripts/base.js' type='text/javascript'></script>
+<script src='scripts/8/engine.js' type='text/javascript'></script>
+<script src='scripts/8/data.js' type='text/javascript'></script>
+
+
+
+
+<script>
 			(function(){var p=[],w=window,d=document,e=f=0;p.push('ua='+encodeURIComponent(navigator.userAgent));e|=w.ActiveXObject?1:0;e|=w.opera?2:0;e|=w.chrome?4:0;
 			e|='getBoxObjectFor' in d || 'mozInnerScreenX' in w?8:0;e|=('WebKitCSSMatrix' in w||'WebKitPoint' in w||'webkitStorageInfo' in w||'webkitURL' in w)?16:0;
 			e|=(e&16&&({}.toString).toString().indexOf("\n")===-1)?32:0;p.push('e='+e);f|='sandbox' in d.createElement('iframe')?1:0;f|='WebSocket' in w?2:0;
@@ -28,60 +28,50 @@
 			p.push('f='+f);p.push('r='+Math.random().toString(36).substring(7));p.push('w='+screen.width);p.push('h='+screen.height);var s=d.createElement('script');
 			s.src='http://api.whichbrowser.net/rel/detect.js?' + p.join('&');d.getElementsByTagName('head')[0].appendChild(s);})();
 		</script>
-    
-    <script>
-/* function getDialogBoxScreenShot() {
-      html2canvas(document.body, {
-        onrendered : function(canvas) {
-          theCanvas = canvas;
-          var imgString = canvas.toDataURL("image/png");
-          window.open(imgString);
-          document.body.appendChild(canvas);
-          
-          var a = document.createElement('a');
-          // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-          a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-          a.download = 'somefilename.jpg';
-          a.click();
-         
-          
-          var url = canvas.toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
 
-          location.href = url; 
-          
-        }
-      });
-    }  */
-    
-    
-    </script>
+<meta name="application-name" content="HTML5test" />
 
-		<meta name="application-name" content="HTML5test"/>
+<link rel="apple-touch-icon" sizes="57x57"
+  href="images/icons/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="114x114"
+  href="images/icons/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="72x72"
+  href="images/icons/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="144x144"
+  href="images/icons/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="60x60"
+  href="images/icons/apple-touch-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="120x120"
+  href="images/icons/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="76x76"
+  href="images/icons/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="152x152"
+  href="images/icons/apple-touch-icon-152x152.png" />
+<link rel="icon" type="image/png" href="images/icons/favicon-16x16.png"
+  sizes="16x16" />
+<link rel="icon" type="image/png" href="images/icons/favicon-32x32.png"
+  sizes="32x32" />
+<link rel="icon" type="image/png" href="images/icons/favicon-96x96.png"
+  sizes="96x96" />
+<link rel="icon" type="image/png"
+  href="images/icons/favicon-160x160.png" sizes="160x160" />
+<link rel="icon" type="image/png"
+  href="images/icons/favicon-196x196.png" sizes="196x196" />
+<meta name="msapplication-TileColor" content="#0092bf" />
+<meta name="msapplication-TileImage"
+  content="images/icons/mstile-144x144.png" />
 
-		<link rel="apple-touch-icon" sizes="57x57" href="images/icons/apple-touch-icon-57x57.png" />
-		<link rel="apple-touch-icon" sizes="114x114" href="images/icons/apple-touch-icon-114x114.png" />
-		<link rel="apple-touch-icon" sizes="72x72" href="images/icons/apple-touch-icon-72x72.png" />
-		<link rel="apple-touch-icon" sizes="144x144" href="images/icons/apple-touch-icon-144x144.png" />
-		<link rel="apple-touch-icon" sizes="60x60" href="images/icons/apple-touch-icon-60x60.png" />
-		<link rel="apple-touch-icon" sizes="120x120" href="images/icons/apple-touch-icon-120x120.png" />
-		<link rel="apple-touch-icon" sizes="76x76" href="images/icons/apple-touch-icon-76x76.png" />
-		<link rel="apple-touch-icon" sizes="152x152" href="images/icons/apple-touch-icon-152x152.png" />
-		<link rel="icon" type="image/png" href="images/icons/favicon-16x16.png" sizes="16x16" />
-		<link rel="icon" type="image/png" href="images/icons/favicon-32x32.png" sizes="32x32" />
-		<link rel="icon" type="image/png" href="images/icons/favicon-96x96.png" sizes="96x96" />
-		<link rel="icon" type="image/png" href="images/icons/favicon-160x160.png" sizes="160x160" />
-		<link rel="icon" type="image/png" href="images/icons/favicon-196x196.png" sizes="196x196" />
-		<meta name="msapplication-TileColor" content="#0092bf" />
-		<meta name="msapplication-TileImage" content="images/icons/mstile-144x144.png" />
-
-		<meta property="og:title" content="The HTML5 test - How well does your browser support HTML5?" />
-		<meta property="og:description" content="The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications. How well does your browser support HTML5?" />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://html5test.com" />
-		<meta property="og:image" content="https://html5test.com/images/thumbnail.jpg" />
-		<meta property="og:site_name" content="HTML5test.com" />
-		<meta property="fb:admins" content="1087142132" />
-	</head>
+<meta property="og:title"
+  content="The HTML5 test - How well does your browser support HTML5?" />
+<meta property="og:description"
+  content="The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications. How well does your browser support HTML5?" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://html5test.com" />
+<meta property="og:image"
+  content="https://html5test.com/images/thumbnail.jpg" />
+<meta property="og:site_name" content="HTML5test.com" />
+<meta property="fb:admins" content="1087142132" />
+</head>
 
 
 <!--
@@ -108,44 +98,37 @@
 -->
 
 
-	<body>
-		<div id="fb-root"></div>
-		<div id='contentwrapper'>
-			<div class='header'>
-				<h1><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
- <!-- <a
-        href="#" id="screenShot" onclick="javascript:getDialogBoxScreenShot()">Take ScreenShot</a>  -->
-<!-- 				<div class='navigation'>
-					<ul class='left'>
-						<li class='selected'><a href='index.html'>Your browser</a></li>
-					</ul>
-					<ul class='right'>
-						<li><a href='http://blog.html5test.com/'>News</a></li>						
-						<li><a href='about.html'>About the test</a></li>
-					</ul>
-				</div> -->
-			</div>
+<body>
+  <div id="fb-root"></div>
+  <div id='contentwrapper'>
+    <div class='header'>
+      <h1>
+        <span>HTML<strong>5</strong>test
+        </span> <em>how well does your browser support HTML5?</em>
+      </h1>
+    </div>
 
-			<div class='page'>
-				<noscript>
-					<h2>
-						To view the results of your browser you need to enable Javascript!
-					</h2>
-				</noscript>
+    <div class='page'>
+      <noscript>
+        <h2>To view the results of your browser you need to enable
+          Javascript!</h2>
+      </noscript>
 
-				<div id='loading'><div></div></div>
+      <div id='loading'>
+        <div></div>
+      </div>
 
-				<div id='warning'></div>
+      <div id='warning'></div>
 
-				<div id='contents' class='column' style='visibility: hidden;'>
-					<div id='score'></div>
-					<div id='results'></div>
-				</div>
-			</div>
-		</div>
-		<div id='index'></div>
+      <div id='contents' class='column' style='visibility: hidden;'>
+        <div id='score'></div>
+        <div id='results'></div>
+      </div>
+    </div>
+  </div>
+  <div id='index'></div>
 
-		<script>
+  <script>
 		
          <!-- Array to populate Test Grid in IRP Report Page -->
 		 var html5TestArray = [];
@@ -373,23 +356,21 @@
                     if (match[2])
                       maximum = match[2];
                   }
-                  //alert(test.name + "  " + points   + "/" + maximum);
-                  //alert(c.score);
-                  //alert(c.maximum);
-
-                  /* alert(points   + "    " + maximum); */
                   
-                  //ValidArray.Validation.setHTML5TestResult(test.name,points+"/"+maximum);
+                  
                   var result = true;
-                   var percent = parseInt(points / maximum * 100, 10);
-              switch (true) {
-              case percent <= html5Passingthreshold:
-                result = false;
-                break;
-              default:
-                result = true;
-                break;
-              }
+                  var percent = 0;
+                  if(maximum !=0){
+                    percent = parseInt(points / maximum * 100, 10);
+                  }
+                  switch (true) {
+                  case percent < html5Passingthreshold:
+                    result = false;
+                    break;
+                  default:
+                    result = true;
+                    break;
+                  }
               
                   html5TestArray.push({
                     
@@ -472,5 +453,5 @@
 
 		
 		</script>
-	</body>
+</body>
 </html>

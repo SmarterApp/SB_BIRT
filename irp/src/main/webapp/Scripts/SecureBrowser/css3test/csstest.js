@@ -26,7 +26,11 @@ Score.prototype = {
   },
 
   percent : function() {
-    return Math.round(100 * this.passed / this.total);
+    if (this.total != 0) {
+      return 0;
+    } else {
+      return Math.round(100 * this.passed / this.total);
+    }
   }
 };
 
@@ -338,7 +342,7 @@ onload = function() {
       var result = true;
       var percent = test.score.percent();
       switch (true) {
-      case percent <= css3Passingthreshold:
+      case percent < css3Passingthreshold:
         result = false;
         break;
       default:
