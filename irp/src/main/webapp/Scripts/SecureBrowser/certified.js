@@ -66,9 +66,12 @@
       if (!!browser.security.getMACAddress) {
         result = true;
 
-        details = browser.security.getMACAddress();
-        if (!Util.Validation.isMacAddressValid(details)) {
+        var macAddress = browser.security.getMACAddress();
+        if (!Util.Validation.isMacAddressValid(macAddress)) {
           result = false;
+          details = 'Invalid MAC Address : ' + macAddress;
+        } else {
+          details = 'MAC Address : ' + macAddress;
         }
       }
     } catch (ex) {

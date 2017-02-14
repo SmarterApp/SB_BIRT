@@ -95,9 +95,12 @@
       if (!!this.runtime.getMACAddress) {
         result = true;
 
-        details = this.runtime.getMACAddress();
-        if (!Util.Validation.isMacAddressValid(details)) {
+        var macAddress = this.runtime.getMACAddress();
+        if (!Util.Validation.isMacAddressValid(macAddress)) {
           result = false;
+          details = 'Invalid MAC Address : ' + macAddress;
+        } else {
+          details = 'MAC Address : ' + macAddress;
         }
       }
     } catch (ex) {

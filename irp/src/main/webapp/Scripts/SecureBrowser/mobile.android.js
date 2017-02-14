@@ -180,9 +180,12 @@ TDS.SecureBrowser.Mobile.Android.prototype.checkMACAddressAPI = function() {
     if (!!this._airMobile.security.getMACAddress) {
       result = true;
 
-      details = this._airMobile.security.getMACAddress();
-      if (!Util.Validation.isMacAddressValid(details)) {
+      var macAddress = this._airMobile.security.getMACAddress();
+      if (!Util.Validation.isMacAddressValid(macAddress)) {
         result = false;
+        details = 'Invalid MAC Address : ' + macAddress;
+      } else {
+        details = 'MAC Address : ' + macAddress;
       }
 
     }
