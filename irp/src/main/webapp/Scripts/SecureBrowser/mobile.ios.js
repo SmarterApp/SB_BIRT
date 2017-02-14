@@ -326,12 +326,11 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkDeviceInfo = function() {
 };
 
 TDS.SecureBrowser.Mobile.iOS.prototype.checkMACAddressAPI = function() {
-  var result = true;
-  var details = 'testApi.removed';
+  var result = false;
+  var details = '';
   try {
     if (!!this._airMobile.security.getMACAddress) {
-      result = false;
-      details = 'testApi.exists';
+      result = true;
     }
   } catch (ex) {
     details = ex.message;

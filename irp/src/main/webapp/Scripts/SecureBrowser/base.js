@@ -46,8 +46,15 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   };
 
   Base.prototype.checkMACAddressAPI = function() {
-    var result = true;
-    var details = 'testApi.removed';
+    var result = false;
+    var details = '';
+    try {
+      if (!!browser.security.getMACAddress) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
 
     Util.Validation.setResultItems('apiId.checkMACAddressAPI',
         'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.certified',
