@@ -73,6 +73,7 @@
 <script type="text/javascript" src="index.js"></script>
 <script type="text/javascript" src="ttsTest.js"></script>
 
+
 <script type="text/javascript">
   document.title = 'SecureBrowser Specification Test Suite';
 
@@ -96,6 +97,8 @@
     });
 
     $("#ttsTestLoad").load("ttsManualTest.html");
+    
+
     
 
   });
@@ -134,25 +137,42 @@
     Text-to-speech
   </div>
   <div id="jsTTSGrid"></div>
-
-
-  <div id="manualTest">
+  
+   <div id="ttsManualTest">
     <ul>
-      <li id="ttsManualTest"><a
+      <li><a
         href="javascript:loadDialogBox($('#dialogTTS'), 'TTS', 'TTS API Manual Test',true)">Click
           to begin manual TTS tests</a></li>
-     <!--  <li id="html5ExternalTest"><a
-        href="javascript:loadDialogBox($('#extTest'), 'HTML5', 'HTML5 Specification TEST',true)">Click
-            to begin HTML5 Test</a></li> -->
+
+      </ul>
+  </div>
+  
+  
+   <div>&nbsp;</div>
+ 
+  <div class="irp-custom-grid-header" id="html5TestHeader">
+    HTML5 Test
+  </div>
+  <div id="jsHTML5TestGrid"></div>
+
+
+  <div id="html5ManualTest">
+    <ul>
+      <li><a
+        href="javascript:loadDialogBox('', 'HTML5', 'HTML5 Specification TEST',true)">Click
+            to begin HTML5 Test</a></li> 
       </ul>
   </div>
 
   <div id="ttsTestLoad"></div>
+  
+  
+  
 
 </div>
 
-<div id="extTest" style="display:none;">
-</div>
+
+
 
 </body>
 </html>

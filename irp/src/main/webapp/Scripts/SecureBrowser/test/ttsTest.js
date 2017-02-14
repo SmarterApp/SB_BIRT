@@ -21,6 +21,7 @@ var ttsOptionsEnabled = false;
 
 function loadDialogBox(id, testName, testTitle, isNew) {
 
+  var buttonText = "Skip Test";
   var isManualTestSupported = false;
   if (testName == 'TTS') {
     if (ttsImpl != null
@@ -36,9 +37,14 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   }
 
   if (testName == 'HTML5') {
-    id
-        .html('<object id="objectDataId" data="http://html5test.com/" style="width: 100%; height: 100%;">');
+
+    var iframe = $('<iframe id="irphtml5test" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
+
     isManualTestSupported = true;
+
+    id = $("<div id='externalTest'></div>").append(iframe).appendTo("body");
+
+    buttonText = 'Capture Result';
   }
 
   if (isManualTestSupported) {
@@ -58,13 +64,14 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         }
       },
       buttons : [ {
-        text : "Skip Test",
+        text : buttonText,
         click : function() {
           if (testName == 'TTS') {
             populateTTSResultIntoResultGrid();
           }
           if (testName == 'HTML5') {
-            getDialogBoxScreenShot(id);
+            populateReportGridForHTML5();
+            $(this).dialog("close");
           }
         }
       } ]
@@ -101,6 +108,13 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
   if (testName == 'HTML5') {
     if (isManualTestSupported) {
+
+      iframe.attr({
+        src : '../html5test/html5test.html',
+        width : '100%',
+        height : '100%'
+      });
+
       id.dialog("open");
     }
   }
@@ -556,19 +570,15 @@ function populateReportGridForTTS() {
 
 }
 
-function getDialogBoxScreenShot(id) {
-  html2canvas($('#objectDataId div .page'), {
-    onrendered : function(canvas) {
-      theCanvas = canvas;
+function populateReportGridForHTML5() {
 
-      var imgString = canvas.toDataURL("image/png");
-      window.open(imgString);
+  var iframeObj = document.getElementById('irphtml5test');
+  populateResults($("#jsHTML5TestGrid"),
+      iframeObj.contentWindow.html5TestArray, true);
 
-      /*
-       * canvas.toBlob(function(blob) { saveAs(blob, "Dashboard.png"); });
-       */
-    }
-  });
+  $("#html5TestHeader").html(iframeObj.contentWindow.htmlScoreHTML);
+
+  $("#html5ManualTest").css("display", "none");
 }
 
 /* var grid = $("#jsGrid").data("JSGrid"); */

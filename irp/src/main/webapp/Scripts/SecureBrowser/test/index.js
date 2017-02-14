@@ -103,8 +103,8 @@ function beginBrowserAPITest() {
     console.log('No Implementation found for Secure Browser');
   }
 
-  populateResults($("#jsGrid"), Util.Validation.getResult());
-  populateResults($("#jsTTSGrid"), Util.Validation.getTTSResult());
+  populateResults($("#jsGrid"), Util.Validation.getResult(), false);
+  populateResults($("#jsTTSGrid"), Util.Validation.getTTSResult(), false);
 }
 
 function getMethods(obj) {
@@ -121,7 +121,11 @@ function closeBrowser() {
   impl.close(false);
 }
 
-function populateResults(id, gridData) {
+function populateResults(id, gridData, extTest) {
+  var extCss = '';
+  if (extTest === true) {
+    extCss = 'irp-grid-column-hide';
+  }
   id
       .jsGrid({
         width : "100%",
@@ -137,7 +141,8 @@ function populateResults(id, gridData) {
               title : "Test API",
               name : "testApi",
               type : "text",
-              width : 150
+              width : 150,
+              css : extCss
             },
             {
               title : "Result",
@@ -147,12 +152,15 @@ function populateResults(id, gridData) {
               align : "center",
 
               itemTemplate : function(value) {
+
                 if (value == null) {
                   return "";
-                } else if (value) {
+                } else if (value === true) {
                   return '<img alt="passed" src="../../../Shared/images/passed.jpg" height="30px" width="40px">';
-                } else {
+                } else if (value === false) {
                   return '<img alt="failed" src="../../../Shared/images/failed.jpg" height="30px" width="40px">';
+                } else {
+                  return value;
                 }
 
               }
@@ -162,6 +170,7 @@ function populateResults(id, gridData) {
               name : "details",
               type : "text",
               width : 150,
+              css : extCss,
 
               itemTemplate : function(value) {
                 if (value == null) {

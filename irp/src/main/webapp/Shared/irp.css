@@ -88,3 +88,9 @@
 #main{
 	 padding: 0px 30px 0px 30px;
 }
+
+
+.irp-grid-column-hide
+{
+   display:none;
+}
