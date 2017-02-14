@@ -422,6 +422,24 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         'api.checkExamineProcessList.certified', result, details);
   };
 
+  // SEC-75
+  Base.prototype.checkGetFeatureAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!browser.security.getFeatures) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkGetFeatureAPI',
+        'testname.checkGetFeatureAPI', 'api.checkGetFeatureAPI.certified',
+        result, details);
+  };
+
   SB.Base = Base;
 
 })(TDS.SecureBrowser);

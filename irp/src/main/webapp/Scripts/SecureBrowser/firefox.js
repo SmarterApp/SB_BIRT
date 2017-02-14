@@ -1115,6 +1115,24 @@
         result, details);
   };
 
+  // SEC-75
+  Firefox.prototype.checkGetFeatureAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!this.runtime.getFeatures) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkGetFeatureAPI',
+        'testname.checkGetFeatureAPI', 'api.checkGetFeatureAPI.SB', result,
+        details);
+  };
+
   SB.Firefox = Firefox;
 
 })(TDS.SecureBrowser);

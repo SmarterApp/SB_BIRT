@@ -68,6 +68,9 @@ function beginBrowserAPITest() {
     /** SEC-10 : API Check examineProcessList * */
     impl.checkExamineProcessList();
 
+    /** SEC-75 :Retrieve List of Features and their status * */
+    impl.checkGetFeatureAPI();
+
     if (ttsImpl != null) {
 
       /** SEC-36 API : TTS Speak (R) * */

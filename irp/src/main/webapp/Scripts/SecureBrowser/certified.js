@@ -527,6 +527,24 @@
         'api.checkExamineProcessList.certified', result, details);
   };
 
+  // SEC-75
+  Certified.prototype.checkGetFeatureAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!browser.security.getFeatures) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkGetFeatureAPI',
+        'testname.checkGetFeatureAPI', 'api.checkGetFeatureAPI.certified',
+        result, details);
+  };
+
   SB.Certified = Certified;
 
 })(TDS.SecureBrowser);

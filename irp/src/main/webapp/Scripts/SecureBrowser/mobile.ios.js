@@ -569,3 +569,21 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkExamineProcessList = function() {
       'testname.checkExamineProcessList', 'api.checkExamineProcessList.mobile',
       result, details);
 };
+
+// SEC-75
+TDS.SecureBrowser.Mobile.iOS.prototype.checkGetFeatureAPI = function() {
+  var result = false;
+  var details = "";
+
+  try {
+    if (!!this._airMobile.security.getFeatures) {
+      result = true;
+    }
+  } catch (ex) {
+    details = ex.message;
+  }
+
+  Util.Validation.setResultItems('apiId.checkGetFeatureAPI',
+      'testname.checkGetFeatureAPI', 'api.checkGetFeatureAPI.mobile', result,
+      details);
+};
