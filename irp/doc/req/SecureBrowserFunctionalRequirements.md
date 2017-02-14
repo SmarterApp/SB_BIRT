@@ -52,6 +52,7 @@ These requirements are optional.
 1. F43. The secure browser may provide a means to stop playback.
 1. F44. The secure browser may provide a means to pause playback.
 1. F45. The secure browser may provide a means to resume playback of a paused audio recording.
+1. F48. The secure browser may provide a means to list all available audio recordings.
 
 ### E. Standards Compliance Requirements
 1. F32. The secure browser shall be HTML5 compliant.

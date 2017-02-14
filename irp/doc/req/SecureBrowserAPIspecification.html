@@ -351,9 +351,9 @@ kbd {
 <p><code>&quot;[&#39;00&#39;,&#39;55&#39;,&#39;65&#39;,&#39;C0&#39;,&#39;00&#39;,&#39;EA&#39;]&quot;</code></p></li>
 </ol>
 
-<h4 id="toc_3">Audio Recorder</h4>
+<h4 id="toc_3">Audio Recorder (W3C)</h4>
 
-<p><em>NOTE: All recorder APIs should follow W3C&#39;s Web Audio API (https://www.w3.org/TR/webaudio/).</em></p>
+<p><em>NOTE: All browsers supporting W3C&#39;s Web Audio API (https://www.w3.org/TR/webaudio/) should implement for these functions using the W3C Web Audio API.</em></p>
 
 <ol>
 <li>R25. <strong>Initialize audio recorder</strong></li>
@@ -366,18 +366,112 @@ kbd {
 <li>R32. <strong>Stop playback</strong></li>
 <li>R33. <strong>Pause playback</strong></li>
 <li>R34. <strong>Resume playback</strong></li>
+<li>R43. <strong>Retrieve list of audio recordings</strong></li>
 </ol>
 
-<h2 id="toc_4">Secure Browser Standards Compliance</h2>
-
-<h3 id="toc_5">Required</h3>
+<h4 id="toc_4">Audio Recorder (non-W3C)</h4>
 
 <ol>
-<li><p>R35. [TBD] <strong>HTML5 compliant</strong>. The secure browser must be HTML5 compliant: https://www.w3.org/TR/html5/ and http://html5test.com</p></li>
-<li><p>R37. [TBD] <strong>CSS3 compliant</strong>. The secure browser must be CSS3 compliant: https://www.w3.org/TR/2014/REC-css-namespaces-3-20140320 and http://css3test.com</p></li>
+<li><p>(R25) <strong>Initialize audio recorder</strong>. This method is called by the testing application once to initialize the audio API after a page loads. The event listener passed in as argument is used to notify events to caller about progress.  Any attempts to call this method when it has already been called should be treated as a reset and reinit.</p>
+
+<p><code>void browser.recorder.initialize (eventListener)</code></p>
+
+<p>Events expected</p>
+
+<p><code>INITIALIZING</code> – indicates that initialization is in progress
+<code>READY</code> – Initialization is done and internal data structures are loaded
+<code>ERROR</code> – Initialization failed with information on failure cause</p></li>
+<li><p>(R26) <strong>Get audio recorder status</strong>. This method is called to enquire about the status of the recorder. Return values are </p>
+
+<p><code>string browser.recorder.getStatus()</code></p>
+
+<p>values expected are</p>
+
+<p><code>IDLE</code> – no recording in progress</p>
+
+<p><code>ACTIVE</code>- recording in progress</p>
+
+<p><code>INITIALIZING</code> – initialization in progress</p>
+
+<p><code>ERROR</code> – terminal error state and reinit is required </p>
+
+<p><code>STOPPING</code> – recording is done and final book keeping and generation of encoded audio is in progress</p>
+
+<p><code>PLAYING</code> - recorder is playing back some audio</p>
+
+<p><code>PAUSED</code> - recorder is paused playing back some audio</p></li>
+<li><p>(R27) <strong>Get audio recorder capabilities</strong>. This method is called to enquire about the capabilities of the platform. Throws error if called before initialize is completed successfully. The return value includes</p>
+
+<p><code>object browser.recorder.getCapabilities()</code></p>
+
+<p><code>isAvailable</code> – recording is supported (Boolean)</p>
+
+<p><code>supportedInputDevices</code> – a list of audio input devices detected. Each of these device definitions includesdevice id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported.</p></li>
+<li><p>(R28) <strong>Initiate audio capture</strong>. This method is called to initiate capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE.</p>
+
+<p><code>object browser.recorder.startCapture(options, eventListener)</code></p>
+
+<p>The <code>options</code> object includes:</p>
+
+<p><code>captureDevice</code> – the device id to use for data capture (int)
+sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (specified as int in hz)</p>
+
+<p><code>channel count</code> – 1 (mono), 2(stereo) … (specified as int)</p>
+
+<p><code>sample size</code> – 8bit, 16bit etc     (specified as int)</p>
+
+<p><code>encoding format</code> – SPX, HE-AAC, Opus etc (specified as string)</p>
+
+<p><code>quality indicator desired</code> – whether to perform and report a recording quality check or not (Boolean)</p>
+
+<p><code>progressEventFrequency</code> – how frequently the event listener should be called back to report progress events either based on time or on units of data collected. For example, we could ask for periodic progress events every 2 seconds to keep us notified as recording is happening or every 30KB of new data collected</p>
+
+<p><code>captureLimit</code>– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). The event listener is passed in to receive capture events. The events include</p>
+
+<p><code>START</code> – Capture started</p>
+
+<p><code>INPROGRESS</code> – Progress event with progress data (34 seconds of audio captured, 36 seconds of audio captured etc or 10KB of audio captured, 30 KB of audio captured etc) </p>
+
+<p><code>END</code> – Capture complete. The <code>END</code> event is special. This event gives us the pointer to the  data collection for the encoded audio. In addition, a quality check is performed on the captured audio stream to evaluate whether it is good or not. </p></li>
+<li><p>(R29) <strong>Stop recording</strong>. This method is called to stop audio capture. Throws error if status is currently not “RECORDING”.</p>
+
+<p><code>void browser.recorder.stopCapture()</code></p></li>
+<li><p>(R30) <strong>Retrieve recording</strong>. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the <code>END</code> event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this api directly in the callback for the <code>END</code> event.</p>
+
+<p><code>string browser.recorder.retrieveAudio()</code></p></li>
+<li><p>(R31) <strong>Playback a recording</strong>. This method is called to playback a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 webaudio to playback encoded audio (encoded using the format specified in the <code>startcapture</code> call) obtained by a call to <code>retrieveAudio()</code>. The playback function is passed in the base64 audio string and a call back function.  </p>
+
+<p><code>void browser.recorder.play(b64audio, callback)</code></p>
+
+<p>The call back function is expecting the following events:</p>
+
+<p><code>PLAYBACK_START</code> - Playback has started. The event includes the id of the audio passed in </p>
+
+<p><code>PLAYBACK_STOPPED</code> - Playback has stopped (either because the audio stream is done, <code>pausePlayback()</code> or <code>stopPlayback()</code> has been invoked). The event includes the id of the audio passed in.</p></li>
+<li><p>(R32) <strong>Stop playback</strong>. This method is invoked to stop an ongoing audio playback. Throws error if status is currently not &quot;PLAYING&quot;.</p>
+
+<p><code>void browser.recorder.stopPlay()</code></p></li>
+<li><p>(R33) <strong>Pause playback</strong>. This method is invoked to pause an ongoing audio playback. Throws error if status is currently not &quot;PLAYING&quot;</p>
+
+<p><code>void browser.recorder.pausePlay()</code></p></li>
+<li><p>(R34) <strong>Resume playback</strong>. This method is invoked to resume an already paused audio playback. Throws error if status is currently not &quot;PAUSED&quot;</p>
+
+<p><code>void browser.recorder.resumePlay()</code></p></li>
+<li><p>(R43) <strong>Recorder.retrieveAudioFileList</strong> – retrieve the list of all audio recordings.</p>
+
+<p><code>void browser.recorder.retrieveAudioFileList()</code></p></li>
 </ol>
 
-<h3 id="toc_6">Optional</h3>
+<h2 id="toc_5">Secure Browser Standards Compliance</h2>
+
+<h3 id="toc_6">Required</h3>
+
+<ol>
+<li><p>R35. <strong>HTML5 compliant</strong>. The secure browser must be HTML5 compliant: https://www.w3.org/TR/html5/ and http://html5test.com</p></li>
+<li><p>R37. <strong>CSS3 compliant</strong>. The secure browser must be CSS3 compliant: https://www.w3.org/TR/2014/REC-css-namespaces-3-20140320 and http://css3test.com</p></li>
+</ol>
+
+<h3 id="toc_7">Optional</h3>
 
 <ol>
 <li><p>R38. <strong>W3C Web Audio compliant</strong>. W3C Web Audio API:
