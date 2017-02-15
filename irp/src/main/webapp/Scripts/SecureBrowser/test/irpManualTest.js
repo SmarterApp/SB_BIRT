@@ -45,7 +45,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
     id = $("<div id='externalHTML5Test'></div>").append(iframe)
         .appendTo("body");
 
-    buttonText = 'Save Result';
+    buttonText = 'Save Results';
   }
 
   if (testName == 'CSS3') {
@@ -56,7 +56,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
     id = $("<div id='externalCSS3Test'></div>").append(iframe).appendTo("body");
 
-    buttonText = 'Save Result';
+    buttonText = 'Save Results';
   }
 
   if (isManualTestSupported) {
