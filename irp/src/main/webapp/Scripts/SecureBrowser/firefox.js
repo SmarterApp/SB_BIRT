@@ -1133,6 +1133,42 @@
         details);
   };
 
+  // SEC-76
+  Firefox.prototype.checkGetCapabilityAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!this.runtime.getCapability) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkGetCapabilityAPI',
+        'testname.checkGetCapabilityAPI', 'api.checkGetCapabilityAPI.SB',
+        result, details);
+  };
+
+  // SEC-77
+  Firefox.prototype.checkSetCapabilityAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!this.runtime.setCapability) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkSetCapabilityAPI',
+        'testname.checkSetCapabilityAPI', 'api.checkSetCapabilityAPI.SB',
+        result, details);
+  };
+
   SB.Firefox = Firefox;
 
 })(TDS.SecureBrowser);

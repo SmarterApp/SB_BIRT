@@ -71,6 +71,12 @@ function beginBrowserAPITest() {
     /** SEC-75 :Retrieve List of Features and their status * */
     impl.checkGetFeatureAPI();
 
+    /** SEC-76 : Get Capability of browser based on input string * */
+    impl.checkGetCapabilityAPI();
+
+    /** SEC-77 : Set Capability of browser * */
+    impl.checkSetCapabilityAPI();
+
     if (ttsImpl != null) {
 
       /** SEC-36 API : TTS Speak (R) * */

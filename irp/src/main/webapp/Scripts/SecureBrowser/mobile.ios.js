@@ -587,3 +587,39 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkGetFeatureAPI = function() {
       'testname.checkGetFeatureAPI', 'api.checkGetFeatureAPI.mobile', result,
       details);
 };
+
+// SEC-76
+TDS.SecureBrowser.Mobile.iOS.prototype.checkGetCapabilityAPI = function() {
+  var result = false;
+  var details = "";
+
+  try {
+    if (!!this._airMobile.security.getCapability) {
+      result = true;
+    }
+  } catch (ex) {
+    details = ex.message;
+  }
+
+  Util.Validation.setResultItems('apiId.checkGetCapabilityAPI',
+      'testname.checkGetCapabilityAPI', 'api.checkGetCapabilityAPI.mobile',
+      result, details);
+};
+
+// SEC-77
+TDS.SecureBrowser.Mobile.iOS.prototype.checkSetCapabilityAPI = function() {
+  var result = false;
+  var details = "";
+
+  try {
+    if (!!this._airMobile.security.setCapability) {
+      result = true;
+    }
+  } catch (ex) {
+    details = ex.message;
+  }
+
+  Util.Validation.setResultItems('apiId.checkSetCapabilityAPI',
+      'testname.checkSetCapabilityAPI', 'api.checkSetCapabilityAPI.mobile',
+      result, details);
+};

@@ -545,6 +545,42 @@
         result, details);
   };
 
+  // SEC-76
+  Certified.prototype.checkGetCapabilityAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!browser.security.getCapability) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkGetCapabilityAPI',
+        'testname.checkGetCapabilityAPI',
+        'api.checkGetCapabilityAPI.certified', result, details);
+  };
+
+  // SEC-77
+  Certified.prototype.checkSetCapabilityAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!browser.security.setCapability) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkSetCapabilityAPI',
+        'testname.checkSetCapabilityAPI',
+        'api.checkSetCapabilityAPI.certified', result, details);
+  };
+
   SB.Certified = Certified;
 
 })(TDS.SecureBrowser);

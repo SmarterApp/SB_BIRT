@@ -440,6 +440,42 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         result, details);
   };
 
+  // SEC-76
+  Base.prototype.checkGetCapabilityAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!browser.security.getCapability) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkGetCapabilityAPI',
+        'testname.checkGetCapabilityAPI',
+        'api.checkGetCapabilityAPI.certified', result, details);
+  };
+
+  // SEC-77
+  Base.prototype.checkSetCapabilityAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!browser.security.setCapability) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkSetCapabilityAPI',
+        'testname.checkSetCapabilityAPI',
+        'api.checkSetCapabilityAPI.certified', result, details);
+  };
+
   SB.Base = Base;
 
 })(TDS.SecureBrowser);
