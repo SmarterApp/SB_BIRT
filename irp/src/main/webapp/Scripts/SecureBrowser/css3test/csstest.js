@@ -358,6 +358,8 @@ onload = function() {
 
       });
 
+      populateCSS3ScoreHTML(mainScore);
+
       // Schedule next test
       setTimeout(arguments.callee, 50)
     } else {
@@ -371,25 +373,7 @@ onload = function() {
 
       _bTestResults['Overall'] = mainScore.percent();
 
-      var OverAllPercent = parseInt(mainScore.passedTests
-          / mainScore.totalTests * 100, 10);
-
-      var overAllPassedTest = parseInt(mainScore.passedTests);
-      var overAllTotalTest = parseInt(mainScore.totalTests);
-      var overAllFeatures = parseInt(mainScore.total);
-
-      /*
-       * css3ScoreHTML
-       * 
-       * <span>CSS3 Test (Your browser scores <strong>mainScore.percent()</strong>
-       * </span>
-       */
-
-      css3ScoreHTML = '<span>CSS3 Test [Your browser scores <strong>'
-          + mainScore.percent() + '%</strong></span>, passing <strong>'
-          + overAllPassedTest + '</strong>/<strong>' + overAllTotalTest
-          + '</strong> tests for <strong>' + overAllFeatures
-          + '</strong> features]';
+      populateCSS3ScoreHTML(mainScore);
 
       $u.element.create({
         tag : 'script',
@@ -398,5 +382,19 @@ onload = function() {
       });
     }
   })();
+
+}
+
+function populateCSS3ScoreHTML(mainScore) {
+
+  var overAllPassedTest = parseInt(mainScore.passedTests);
+  var overAllTotalTest = parseInt(mainScore.totalTests);
+  var overAllFeatures = parseInt(mainScore.total);
+
+  css3ScoreHTML = '<span>CSS3 Test [Your browser scores <strong>'
+      + mainScore.percent() + '%</strong></span>, passing <strong>'
+      + overAllPassedTest + '</strong>/<strong>' + overAllTotalTest
+      + '</strong> tests for <strong>' + overAllFeatures
+      + '</strong> features]';
 
 }
