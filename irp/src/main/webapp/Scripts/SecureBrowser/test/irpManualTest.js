@@ -21,6 +21,7 @@ var ttsOptionsEnabled = false;
 
 function loadDialogBox(id, testName, testTitle, isNew) {
 
+  var buttonDisable = false;
   var buttonText = "Skip Test";
   var isManualTestSupported = false;
   if (testName == 'TTS') {
@@ -45,7 +46,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
     id = $("<div id='externalHTML5Test'></div>").append(iframe)
         .appendTo("body");
 
-    buttonText = 'Save Results';
+    buttonText = 'Running...';
+    buttonDisable = true;
   }
 
   if (testName == 'CSS3') {
@@ -56,7 +58,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
     id = $("<div id='externalCSS3Test'></div>").append(iframe).appendTo("body");
 
-    buttonText = 'Save Results';
+    buttonText = 'Running...';
+    buttonDisable = true;
   }
 
   if (isManualTestSupported) {
@@ -76,6 +79,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         }
       },
       buttons : [ {
+        id : "dialogButton",
+        disabled : buttonDisable,
         text : buttonText,
         click : function() {
           if (testName == 'TTS') {
@@ -134,6 +139,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       });
 
       id.dialog("open");
+
     }
   }
 
@@ -147,7 +153,27 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       });
 
       id.dialog("open");
+
     }
+  }
+
+  if (testName == 'HTML5' || testName == 'CSS3') {
+    var saveButtonVar = setInterval(function() {
+      var iframeObj = null;
+      var isTestCompleted = false;
+      if (testName == 'HTML5') {
+        iframeObj = document.getElementById('irpHTML5Test');
+      } else if (testName == 'CSS3') {
+        iframeObj = document.getElementById('irpCSS3Test');
+      }
+      var buttons = id.dialog("option", "buttons");
+      if (iframeObj.contentWindow.isTestCompleted) {
+        buttons[0].text = 'Save Results';
+        buttons[0].disabled = false;
+        id.dialog("option", "buttons", buttons);
+        clearInterval(saveButtonVar);
+      }
+    }, 1000);
   }
 
 }
@@ -614,8 +640,7 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
       headerId.html(iframeObj.contentWindow.htmlScoreHTML);
       dialogId.dialog("close");
       testId.css("display", "none");
-    } else {
-      loadExtTestRunning(testName);
+      headerId.focus();
     }
   }
 
@@ -629,27 +654,23 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
 
       dialogId.dialog("close");
       testId.css("display", "none");
-    } else {
-      loadExtTestRunning(testName);
+      headerId.focus();
     }
   }
 
 }
 
-function loadExtTestRunning(extTest) {
+function enableDisableSaveResultButton(testName, id) {
 
-  $("<div>" + extTest + " Test is still running.</div>").appendTo("body")
-      .dialog({
-        resizable : false,
-        height : "auto",
-        title : messageResource.get("extDialogTitle." + extTest, 'message'),
-        width : 400,
-        modal : true,
-        buttons : [ {
-          text : "OK",
-          click : function() {
-            $(this).dialog("close");
-          }
-        } ]
-      });
+  var iframeObj = null;
+  var isTestCompleted = false;
+  if (testName == 'HTML5') {
+    iframeObj = document.getElementById('irpHTML5Test');
+  } else if (testName == 'CSS3') {
+    iframeObj = document.getElementById('irpCSS3Test');
+  }
+  var buttons = id.dialog("option", "buttons");
+  if (iframeObj.contentWindow.isTestCompleted) {
+    $('#dialogButton').button("enable");
+  }
 }
