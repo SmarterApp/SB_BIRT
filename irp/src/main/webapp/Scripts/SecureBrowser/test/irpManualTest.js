@@ -83,13 +83,13 @@ function loadDialogBox(id, testName, testTitle, isNew) {
           }
           if (testName == 'HTML5') {
             populateReportGridForExternalTest($("#jsHTML5TestGrid"),
-                $("#html5TestHeader"), $("#html5ManualTest"), testName);
-            $(this).dialog("close");
+                $("#html5TestHeader"), $("#html5ManualTest"), testName, id);
+
           }
           if (testName == 'CSS3') {
             populateReportGridForExternalTest($("#jsCSS3TestGrid"),
-                $("#css3TestHeader"), $("#css3ManualTest"), testName);
-            $(this).dialog("close");
+                $("#css3TestHeader"), $("#css3ManualTest"), testName, id);
+
           }
         }
       } ]
@@ -601,21 +601,55 @@ function populateReportGridForTTS() {
 
 }
 
-function populateReportGridForExternalTest(gridId, headerId, testId, testName) {
+function populateReportGridForExternalTest(gridId, headerId, testId, testName,
+    dialogId) {
   var iframeObj = null;
   if (testName == 'HTML5') {
     iframeObj = document.getElementById('irpHTML5Test');
-    populateResults(gridId, iframeObj.contentWindow.html5TestArray, true);
 
-    headerId.html(iframeObj.contentWindow.htmlScoreHTML);
+    if (iframeObj.contentWindow.isTestCompleted) {
+
+      populateResults(gridId, iframeObj.contentWindow.html5TestArray, true);
+
+      headerId.html(iframeObj.contentWindow.htmlScoreHTML);
+      dialogId.dialog("close");
+      testId.css("display", "none");
+    } else {
+      loadExtTestRunning(testName);
+    }
   }
 
   else if (testName == 'CSS3') {
     iframeObj = document.getElementById('irpCSS3Test');
-    populateResults(gridId, iframeObj.contentWindow.css3TestArray, true);
 
-    headerId.html(iframeObj.contentWindow.css3ScoreHTML);
+    if (iframeObj.contentWindow.isTestCompleted) {
+      populateResults(gridId, iframeObj.contentWindow.css3TestArray, true);
+
+      headerId.html(iframeObj.contentWindow.css3ScoreHTML);
+
+      dialogId.dialog("close");
+      testId.css("display", "none");
+    } else {
+      loadExtTestRunning(testName);
+    }
   }
 
-  testId.css("display", "none");
+}
+
+function loadExtTestRunning(extTest) {
+
+  $("<div>" + extTest + " Test is still running.</div>").appendTo("body")
+      .dialog({
+        resizable : false,
+        height : "auto",
+        title : messageResource.get("extDialogTitle." + extTest, 'message'),
+        width : 400,
+        modal : true,
+        buttons : [ {
+          text : "OK",
+          click : function() {
+            $(this).dialog("close");
+          }
+        } ]
+      });
 }

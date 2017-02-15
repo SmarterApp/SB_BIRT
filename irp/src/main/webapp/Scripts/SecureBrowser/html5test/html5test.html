@@ -138,6 +138,9 @@
 		 
 		 <!-- Test passing threshold is used to determine passed/failed result for given test -->
 		 var html5Passingthreshold = 60;
+		 
+		 var isTestCompleted = false;
+		 
 			function waitForWhichBrowser(cb) {
 				var callback = cb;
 
@@ -384,6 +387,8 @@
               }
             }
           }
+          
+          isTestCompleted = true;
 
 					new Index({
 						tests:			tests,

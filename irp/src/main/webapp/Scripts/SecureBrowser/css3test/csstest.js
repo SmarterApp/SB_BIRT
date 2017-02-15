@@ -375,6 +375,8 @@ onload = function() {
 
       populateCSS3ScoreHTML(mainScore);
 
+      isTestCompleted = true;
+
       $u.element.create({
         tag : 'script',
         properties : {},
