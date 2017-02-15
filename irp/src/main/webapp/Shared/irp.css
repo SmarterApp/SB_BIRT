@@ -65,26 +65,28 @@
   text-align: center;
 }
 
-.irp-custom-grid-header-blue {
+.header-irp {
 	background:#008ab1;
     position: relative;
     padding: 0px 10px;
     height: 30px;
-    font-family: 'Sans-serif', Franklin Gothic Medium;
-    font-weight: normal;
-    font-size: 1.2em;
+    font-family: "PT Sans Caption",sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5em;
     text-align: left;
-    color: #f6f6f6;   
+    color: #f6f6f6; 
 }
 
-.irp-custom-grid-header-green {
+.header-ext {
     background:#358c21;
     position: relative;
     padding: 0px 10px;
     height: 30px;
-    font-family: 'Sans-serif', Franklin Gothic Medium;
-    font-weight: normal;
-    font-size: 1.2em;
+    font-family: "PT Sans Caption",sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5em;
     text-align: left;
     color: #f6f6f6;   
 }

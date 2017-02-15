@@ -162,7 +162,7 @@ function populateResults(id, gridData, extTest) {
               name : "testApi",
               type : "text",
               width : 150,
-              css : showCSS + extCss
+              css : showCSS + ' ' + extCss
             },
             {
               title : "Result",
