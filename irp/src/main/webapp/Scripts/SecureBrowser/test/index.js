@@ -126,10 +126,12 @@ function closeBrowser() {
 
 function populateResults(id, gridData, extTest) {
   var extCss = '';
+  var showCSS = 'irp-grid-column-wrap';
   var detailTitle = 'Details';
   var detailWidth = 150;
   var testNameWidth = 150;
   var detailAlign = "left";
+
   if (extTest === true) {
     extCss = 'irp-grid-column-hide';
     detailTitle = 'Score';
@@ -146,21 +148,23 @@ function populateResults(id, gridData, extTest) {
               title : "Test Name",
               name : "testName",
               type : "text",
-              width : testNameWidth
+              width : testNameWidth,
+              css : showCSS
             },
             {
               title : "Test API",
               name : "testApi",
               type : "text",
               width : 150,
-              css : extCss
+              css : showCSS + extCss
             },
             {
               title : "Result",
               name : "testResult",
               type : "text",
-              width : 30,
+              width : 45,
               align : "center",
+              css : showCSS,
 
               itemTemplate : function(value) {
 
@@ -182,6 +186,7 @@ function populateResults(id, gridData, extTest) {
               type : "text",
               align : detailAlign,
               width : detailWidth,
+              css : showCSS,
               itemTemplate : function(value) {
                 if (value == null) {
                   return "Not Available";
