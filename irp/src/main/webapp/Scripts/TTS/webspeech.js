@@ -512,12 +512,18 @@ function TTSService_WebSpeech()
   
   this.checkTTSVoiceNameAPI = function() {
 
-    var result = null;
-
-    var details = null;
+    var result = false;
+    var details = '';
+    try {
+      if(!!window.speechSynthesis.voicename) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
 
     Util.Validation.setTTSTestResultItems('apiId.checkTTSVoiceNameAPI', 
-        'testname.checkTTSVoiceNameAPI', '', result, details);
+        'testname.checkTTSVoiceNameAPI', 'api.checkTTSVoiceNameAPI.webspeech', result, details);
   };
   
 }
