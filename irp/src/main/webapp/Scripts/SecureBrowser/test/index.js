@@ -77,8 +77,10 @@ function beginBrowserAPITest() {
     /** SEC-77 : Set Capability of browser * */
     impl.checkSetCapabilityAPI();
 
-    /** SEC-71 : API: Enable/disable permissive mode * */
+    /** SEC-80 : API: Get status of permissive mode * */
     impl.checkGetPermissiveModeAPI();
+
+    /** SEC-71 : API: Enable/disable permissive mode * */
     impl.checkSetPermissiveModeAPI();
 
     if (ttsImpl != null) {
@@ -116,6 +118,11 @@ function beginBrowserAPITest() {
     console.log('No Implementation found for Secure Browser');
   }
 
+  /*
+   * alert('browserAPI ' + Util.Validation.getResultScore());
+   * alert('textToSpeechAPI ' + Util.Validation.getTTSResultScore());
+   */
+  // textToSpeechAPI
   populateResults($("#jsGrid"), Util.Validation.getResult(), false);
   populateResults($("#jsTTSGrid"), Util.Validation.getTTSResult(), false);
 }
@@ -205,6 +212,12 @@ function populateResults(id, gridData, extTest) {
                 }
 
               }
+            }, {
+              title : 'Points',
+              name : "points",
+              type : 'number',
+              width : 15,
+              css : 'irp-grid-column-hide'
             }
 
         ]

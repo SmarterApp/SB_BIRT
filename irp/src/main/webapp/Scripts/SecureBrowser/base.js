@@ -27,11 +27,27 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   Base.prototype.checkGlobalObject = function() {
 
     var result = false;
-    var details = 'window.browser is not defined';
+    var details = "";
+    var apiKey = "api.checkGlobalObject.certified";
+    try {
+      var hasAPI = (typeof (window.browser) === 'object');
+
+      if (hasAPI && Util.Browser.isEdge() && !!window.browser.addEventListener) {
+        result = true;
+        apiKey = "api.checkGlobalObject.certified.edge";
+      } else if (!!window.browser) {
+        result = true;
+      } else {
+        result = false;
+        details = 'window.browser is not defined';
+      }
+    } catch (ex) {
+      result = false;
+      details = ex.message
+    }
 
     Util.Validation.setResultItems('apiId.checkGlobalObject',
-        'testname.checkGlobalObject.certified',
-        'api.checkGlobalObject.certified', result, details);
+        'testname.checkGlobalObject.certified', apiKey, result, details);
 
   };
 
@@ -476,7 +492,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         'api.checkSetCapabilityAPI.certified', result, details);
   };
 
-  // SEC-71
+  // SEC-80
   Base.prototype.checkGetPermissiveModeAPI = function() {
     var result = false;
     var details = "";

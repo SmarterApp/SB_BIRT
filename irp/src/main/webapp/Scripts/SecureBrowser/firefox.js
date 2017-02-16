@@ -1150,7 +1150,7 @@
         result, details);
   };
 
-  // SEC-71
+  // SEC-80
   Firefox.prototype.checkGetPermissiveModeAPI = function() {
     var result = false;
     var details = "";

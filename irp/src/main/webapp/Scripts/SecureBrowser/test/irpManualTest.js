@@ -210,6 +210,8 @@ function populateTTSResultIntoResultGrid() {
 
   $("#jsTTSGrid").jsGrid("refresh");
 
+  /* alert('textToSpeechAPI ' + Util.Validation.getTTSResultScore()); */
+
   $("#ttsManualTest").css("display", "none");
 
   $("#dialogTTS").dialog("close");
@@ -523,6 +525,13 @@ function closeConfirmBox(result) {
     Util.Validation.getTTSManualResult()[currentTestIndex].testResult = result;
     Util.Validation.getTTSManualResult()[currentTestIndex].details = '';
 
+    if (result === true) {
+      Util.Validation.getTTSManualResult()[currentTestIndex].points = messageResource
+          .get(
+              'ttsManualTest.' + ttsSettingArray[currentTestIndex] + '.points',
+              'message');
+    }
+
     loadNextTTSTest();
   }
 
@@ -673,5 +682,14 @@ function enableDisableSaveResultButton(testName, id) {
   var buttons = id.dialog("option", "buttons");
   if (iframeObj.contentWindow.isTestCompleted) {
     $('#dialogButton').button("enable");
+  }
+}
+
+function populateIRPTestHeaderHTML(headerId, testName) {
+
+  if (testName === 'TTS') {
+
+  } else {
+
   }
 }

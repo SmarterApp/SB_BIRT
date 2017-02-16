@@ -44,6 +44,12 @@
    */
   Validation.setResultItems = function(id, testName, testAPI, result, details) {
 
+    var points = 0;
+
+    if (result === true) {
+      points = messageResource.get(testName + '.points', 'message');
+    }
+
     if (details == 'testApi.removed' || details == 'testApi.exists') {
       details = messageResource.get(details, 'message');
     }
@@ -52,7 +58,8 @@
       "testName" : messageResource.get(testName, 'message'),
       "testApi" : messageResource.get(testAPI, 'message'),
       "testResult" : result,
-      "details" : details
+      "details" : details,
+      "points" : points
     });
   };
 
@@ -79,13 +86,20 @@
   Validation.setTTSTestResultItems = function(id, testName, testApi, result,
       details) {
 
+    var points = 0;
+
+    if (result === true) {
+      points = messageResource.get(testName + '.points', 'message');
+    }
+
     ttsTestArray.push({
       "id" : messageResource.get(id, 'message'),
       "testName" : messageResource.get(testName, 'message'),
       "testApi" : testApi != null ? messageResource.get(testApi, 'message')
           : '',
       "testResult" : result,
-      "details" : details
+      "details" : details,
+      "points" : points
     });
 
   };
@@ -99,7 +113,8 @@
       "testApi" : testApi != null ? messageResource.get(testApi, 'message')
           : '',
       "testResult" : result,
-      "details" : details
+      "details" : details,
+      "points" : 0
     });
 
   };
@@ -137,6 +152,15 @@
     return resultArray;
   };
 
+  Validation.getResultScore = function() {
+    var total = this.getResult().length;
+    return total;
+  };
+
+  Validation.getTTSResultScore = function() {
+    var total = this.getTTSResult().length;
+    return total;
+  };
   Util.Validation = Validation;
 
 })(Util);

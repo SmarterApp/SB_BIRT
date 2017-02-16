@@ -435,7 +435,7 @@ function TTSService_WebSpeech()
     }
   
     Util.Validation.setTTSTestResultItems('apiId.checkTTSRateAPI',
-        'api.checkTTSRateAPI.webspeech', 'new SpeechSynthesisUtterance().rate', result, details);
+        'testname.checkTTSRateAPI', 'testname.checkTTSRateAPI.webspeech', result, details);
   };
 
   this.checkTTSVolumeAPI = function() {

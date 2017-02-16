@@ -581,7 +581,7 @@
         'api.checkSetCapabilityAPI.certified', result, details);
   };
 
-  // SEC-71
+  // SEC-80
   Certified.prototype.checkGetPermissiveModeAPI = function() {
     var result = false;
     var details = "";
