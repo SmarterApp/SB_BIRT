@@ -28,13 +28,13 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
     var result = false;
     var details = "";
-    var apiKey = "api.checkGlobalObject.certified";
+    var apiPrefix = certified;
     try {
       var hasAPI = (typeof (window.browser) === 'object');
 
       if (hasAPI && Util.Browser.isEdge() && !!window.browser.addEventListener) {
         result = true;
-        apiKey = "api.checkGlobalObject.certified.edge";
+        apiPrefix = certified_edge;
       } else if (!!window.browser) {
         result = true;
       } else {
@@ -46,8 +46,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       details = ex.message
     }
 
-    Util.Validation.setResultItems('apiId.checkGlobalObject',
-        'testname.checkGlobalObject.certified', apiKey, result, details);
+    Util.Validation.setIRPTestResults('checkGlobalObject', apiPrefix, result,
+        details, null);
 
   };
 
@@ -56,9 +56,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = "browser.security.getDeviceInfo() is not defined";
 
-    Util.Validation.setResultItems('apiId.checkDeviceInfo',
-        'testname.checkDeviceInfo', 'api.checkDeviceInfo.certified', result,
-        details);
+    Util.Validation.setIRPTestResults('checkDeviceInfo', certified, result,
+        details, null);
   };
 
   Base.prototype.checkMACAddressAPI = function() {
@@ -72,9 +71,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkMACAddressAPI',
-        'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkMACAddressAPI', certified, result,
+        details, null);
 
   };
 
@@ -82,9 +80,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = true;
     var details = 'testApi.removed';
 
-    Util.Validation.setResultItems('apiId.checkIPAddressAPI',
-        'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkIPAddressAPI', certified, result,
+        details, null);
 
   };
 
@@ -92,9 +89,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = "browser.security.getStartTime() is not defined";
 
-    Util.Validation.setResultItems('apiId.checkAppStartTimeAPI',
-        'testname.checkAppStartTimeAPI', 'api.checkAppStartTimeAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkAppStartTimeAPI', certified,
+        result, details, null);
   };
 
   // SEC-32
@@ -102,9 +98,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = true;
     var details = 'testApi.removed';
 
-    Util.Validation.setResultItems('apiId.checkClearCacheAPI',
-        'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkClearCacheAPI', certified, result,
+        details, null);
   };
 
   // SEC-26
@@ -112,9 +107,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'browser.security.emptyClipBoard() is not defined';
 
-    Util.Validation.setResultItems('apiId.checkEmptyClipBoardAPI',
-        'testname.checkEmptyClipBoardAPI',
-        'api.checkEmptyClipBoardAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkEmptyClipBoardAPI', certified,
+        result, details, null);
   };
 
   // SEC-33
@@ -122,9 +116,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = true;
     var details = 'testApi.removed';
 
-    Util.Validation.setResultItems('apiId.checkClearCookiesAPI',
-        'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkClearCookiesAPI', certified,
+        result, details, null);
   };
 
   // SEC-31
@@ -132,9 +125,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'browser.security.isEnvironmentSecure is not defined';
 
-    Util.Validation.setResultItems('apiId.checkIsEnvironmentSecureAPI',
-        'testname.checkIsEnvironmentSecureAPI',
-        'api.checkIsEnvironmentSecureAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkIsEnvironmentSecureAPI', certified,
+        result, details, null);
   };
 
   // SEC-34
@@ -142,9 +134,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = true;
     var details = 'testApi.removed';
 
-    Util.Validation.setResultItems('apiId.checkGetProcessListAPI',
-        'testname.checkGetProcessListAPI',
-        'api.checkGetProcessListAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkGetProcessListAPI', certified,
+        result, details, null);
   };
 
   // SEC-35
@@ -152,9 +143,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'browser.security.close is not defined';
 
-    Util.Validation.setResultItems('apiId.checkCloseAPI',
-        'testname.checkCloseAPI', 'api.checkCloseAPI.certified', result,
-        details);
+    Util.Validation.setIRPTestResults('checkCloseAPI', certified, result,
+        details, null);
   };
 
   // SEC-30
@@ -162,9 +152,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     var result = false;
     var details = 'browser.security.enableLockDown is not defined';
 
-    Util.Validation.setResultItems('apiId.checkEnableLockDownAPI',
-        'testname.checkEnableLockDownAPI',
-        'api.checkEnableLockDownAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkEnableLockDownAPI', certified,
+        result, details, null);
   };
 
   Base.prototype.dispose = function() {
@@ -397,9 +386,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkSystemMuteAPI',
-        'testname.checkSystemMuteAPI', 'api.checkSystemMuteAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkSystemMuteAPI', certified, result,
+        details, null);
   };
 
   // SEC-57
@@ -415,9 +403,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkSystemVolumeAPI',
-        'testname.checkSystemVolumeAPI', 'api.checkSystemVolumeAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkSystemVolumeAPI', certified,
+        result, details, null);
   };
 
   // SEC-10
@@ -433,9 +420,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkExamineProcessList',
-        'testname.checkExamineProcessList',
-        'api.checkExamineProcessList.certified', result, details);
+    Util.Validation.setIRPTestResults('checkExamineProcessList', certified,
+        result, details, null);
   };
 
   // SEC-75
@@ -451,9 +437,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkGetFeatureAPI',
-        'testname.checkGetFeatureAPI', 'api.checkGetFeatureAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkGetFeatureAPI', certified, result,
+        details, null);
   };
 
   // SEC-76
@@ -469,9 +454,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkGetCapabilityAPI',
-        'testname.checkGetCapabilityAPI',
-        'api.checkGetCapabilityAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkGetCapabilityAPI', certified,
+        result, details, null);
   };
 
   // SEC-77
@@ -487,9 +471,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkSetCapabilityAPI',
-        'testname.checkSetCapabilityAPI',
-        'api.checkSetCapabilityAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkSetCapabilityAPI', certified,
+        result, details, null);
   };
 
   // SEC-80
@@ -505,9 +488,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkGetPermissiveModeAPI',
-        'testname.checkGetPermissiveModeAPI',
-        'api.checkGetPermissiveModeAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkGetPermissiveModeAPI', certified,
+        result, details, null);
   };
 
   // SEC-71
@@ -523,9 +505,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkSetPermissiveModeAPI',
-        'testname.checkSetPermissiveModeAPI',
-        'api.checkSetPermissiveModeAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkSetPermissiveModeAPI', certified,
+        result, details, null);
   };
 
   SB.Base = Base;

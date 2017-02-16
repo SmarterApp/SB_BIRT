@@ -64,9 +64,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkGlobalObject',
-        'testname.checkGlobalObject.SB', 'api.checkGlobalObject.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkGlobalObject', securebrowser,
+        result, details, null);
 
   };
 
@@ -83,8 +82,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkDeviceInfo',
-        'testname.checkDeviceInfo', 'api.checkDeviceInfo.SB', result, details);
+    Util.Validation.setIRPTestResults('checkDeviceInfo', securebrowser, result,
+        details, null);
   };
 
   Firefox.prototype.checkMACAddressAPI = function() {
@@ -107,9 +106,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkMACAddressAPI',
-        'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkMACAddressAPI', securebrowser,
+        result, details, null);
 
   };
 
@@ -125,9 +123,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkIPAddressAPI',
-        'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkIPAddressAPI', securebrowser,
+        result, details, null);
 
   };
 
@@ -140,17 +137,17 @@
       if (startTimePref != null) {
         Date.parse(startTimePref);
         result = true;
-        apiInfo = 'api.checkAppStartTimeAPI.SB.mozilla.preference';
+        apiInfo = securebrowser;
       } else if (window.sessionStorage.getItem("appStartTime") != null) {
         result = true;
-        apiInfo = 'api.checkAppStartTimeAPI.SB';
+        apiInfo = 'SB_SS';
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkAppStartTimeAPI',
-        'testname.checkAppStartTimeAPI', apiInfo, result, details);
+    Util.Validation.setIRPTestResults('checkAppStartTimeAPI', apiInfo, result,
+        details, null);
   };
 
   // SEC-32
@@ -167,9 +164,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkClearCacheAPI',
-        'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkClearCacheAPI', securebrowser,
+        result, details, null);
   };
   // SEC-33
   Firefox.prototype.checkClearCookiesAPI = function() {
@@ -186,9 +182,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkClearCookiesAPI',
-        'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkClearCookiesAPI', securebrowser,
+        result, details, null);
 
   };
 
@@ -206,9 +201,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkEmptyClipBoardAPI',
-        'testname.checkEmptyClipBoardAPI', 'api.checkEmptyClipBoardAPI.SB',
-        result, details);
+    Util.Validation.setIRPTestResults('checkEmptyClipBoardAPI', securebrowser,
+        result, details, null);
   };
 
   // SEC-34
@@ -225,9 +219,8 @@
       details = ex.getMessage();
     }
 
-    Util.Validation.setResultItems('apiId.checkGetProcessListAPI',
-        'testname.checkGetProcessListAPI', 'api.checkGetProcessListAPI.SB',
-        result, details);
+    Util.Validation.setIRPTestResults('checkGetProcessListAPI', securebrowser,
+        result, details, null);
   };
 
   // SEC-35
@@ -243,8 +236,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkCloseAPI',
-        'testname.checkCloseAPI', 'api.checkCloseAPI.SB', result, details);
+    Util.Validation.setIRPTestResults('checkCloseAPI', securebrowser, result,
+        details, null);
   };
 
   // SEC-30
@@ -262,9 +255,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkEnableLockDownAPI',
-        'testname.checkEnableLockDownAPI', 'api.checkEnableLockDownAPI.SB',
-        result, details);
+    Util.Validation.setIRPTestResults('checkEnableLockDownAPI', securebrowser,
+        result, details, null);
   };
 
   // SEC-31
@@ -280,9 +272,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkIsEnvironmentSecureAPI',
-        'testname.checkIsEnvironmentSecureAPI',
-        'api.checkIsEnvironmentSecureAPI.SB', result, details);
+    Util.Validation.setIRPTestResults('checkIsEnvironmentSecureAPI',
+        securebrowser, result, details, null);
   };
 
   Firefox.prototype.dispose = function() {
@@ -1073,9 +1064,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkSystemMuteAPI',
-        'testname.checkSystemMuteAPI', 'api.checkSystemMuteAPI.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkSystemMuteAPI', securebrowser,
+        result, details, null);
   };
 
   // SEC-57
@@ -1091,9 +1081,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkSystemVolumeAPI',
-        'testname.checkSystemVolumeAPI', 'api.checkSystemVolumeAPI.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkSystemVolumeAPI', securebrowser,
+        result, details, null);
   };
 
   // SEC-10
@@ -1109,9 +1098,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkExamineProcessList',
-        'testname.checkExamineProcessList', 'api.checkExamineProcessList.SB',
-        result, details);
+    Util.Validation.setIRPTestResults('checkExamineProcessList', securebrowser,
+        result, details, null);
   };
 
   // SEC-75
@@ -1127,9 +1115,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkGetFeatureAPI',
-        'testname.checkGetFeatureAPI', 'api.checkGetFeatureAPI.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkGetFeatureAPI', securebrowser,
+        result, details, null);
   };
 
   // SEC-76
@@ -1145,9 +1132,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkGetCapabilityAPI',
-        'testname.checkGetCapabilityAPI', 'api.checkGetCapabilityAPI.SB',
-        result, details);
+    Util.Validation.setIRPTestResults('checkGetCapabilityAPI', securebrowser,
+        result, details, null);
   };
 
   // SEC-80
@@ -1163,9 +1149,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkGetPermissiveModeAPI',
-        'testname.checkGetPermissiveModeAPI',
-        'api.checkGetPermissiveModeAPI.SB', result, details);
+    Util.Validation.setIRPTestResults('checkGetPermissiveModeAPI',
+        securebrowser, result, details, null);
   };
 
   // SEC-71
@@ -1181,9 +1166,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkSetPermissiveModeAPI',
-        'testname.checkSetPermissiveModeAPI',
-        'api.checkSetPermissiveModeAPI.SB', result, details);
+    Util.Validation.setIRPTestResults('checkSetPermissiveModeAPI',
+        securebrowser, result, details, null);
   };
 
   SB.Firefox = Firefox;

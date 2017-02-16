@@ -304,9 +304,8 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSStopAPI',
-        'testname.checkTTSStopAPI', 'api.checkTTSStopAPI.mobile', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSStopAPI', mobile, result,
+        details, tts_section);
   };
 
   this.checkTTSStatusAPI = function() {
@@ -321,9 +320,8 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSStatusAPI',
-        'testname.checkTTSStatusAPI', 'api.checkTTSStatusAPI.mobile', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSStatusAPI', mobile, result,
+        details, tts_section);
   };
 
   this.checkTTSVoicesAPI = function() {
@@ -338,9 +336,8 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSVoicesAPI',
-        'testname.checkTTSVoicesAPI', 'api.checkTTSVoicesAPI.mobile', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSVoicesAPI', mobile, result,
+        details, tts_section);
   };
 
   this.checkTTSPitchAPI = function() {
@@ -355,9 +352,8 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSPitchAPI',
-        'testname.checkTTSPitchAPI', 'api.checkTTSPitchAPI.mobile', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSPitchAPI', mobile, result,
+        details, tts_section);
   };
 
   this.checkTTSRateAPI = function() {
@@ -372,9 +368,8 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSRateAPI',
-        'testname.checkTTSRateAPI', 'api.checkTTSRateAPI.mobile', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSRateAPI', mobile, result,
+        details, tts_section);
   };
 
   this.checkTTSVolumeAPI = function() {
@@ -389,9 +384,8 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSVolumeAPI',
-        'testname.checkTTSVolumeAPI', 'api.checkTTSVolumeAPI.mobile', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSVolumeAPI', mobile, result,
+        details, tts_section);
   };
 
   this.checkTTSSpeakAPI = function() {
@@ -406,9 +400,8 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSSpeakAPI',
-        'testname.checkTTSSpeakAPI', 'api.checkTTSSpeakAPI.mobile', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSSpeakAPI', mobile, result,
+        details, tts_section);
   };
 
   this.checkTTSPauseAPI = function() {
@@ -423,9 +416,8 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSPauseAPI',
-        'testname.checkTTSPauseAPI', 'api.checkTTSPauseAPI.mobile', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSPauseAPI', mobile, result,
+        details, tts_section);
   };
 
   this.checkTTSResumeAPI = function() {
@@ -440,9 +432,8 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSResumeAPI',
-        'testname.checkTTSResumeAPI', 'api.checkTTSResumeAPI.mobile', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSResumeAPI', mobile, result,
+        details, tts_section);
   };
 
   this.checkTTSVoiceNameAPI = function() {
@@ -457,8 +448,7 @@ function TTSService_MobileSB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSVoiceNameAPI',
-        'testname.checkTTSVoiceNameAPI', 'api.checkTTSVoiceNameAPI.mobile',
-        result, details);
+    Util.Validation.setIRPTestResults('checkTTSVoiceNameAPI', mobile, result,
+        details, tts_section);
   };
 }

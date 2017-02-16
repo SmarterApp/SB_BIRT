@@ -524,8 +524,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSStopAPI',
-        'testname.checkTTSStopAPI', 'api.checkTTSStopAPI.SB', result, details);
+    Util.Validation.setIRPTestResults('checkTTSStopAPI', securebrowser, result,
+        details, tts_section);
   };
 
   this.checkTTSStatusAPI = function() {
@@ -540,9 +540,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSStatusAPI',
-        'testname.checkTTSStatusAPI', 'api.checkTTSStatusAPI.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSStatusAPI', securebrowser,
+        result, details, tts_section);
   };
 
   this.checkTTSVoicesAPI = function() {
@@ -557,9 +556,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSVoicesAPI',
-        'testname.checkTTSVoicesAPI', 'api.checkTTSVoicesAPI.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSVoicesAPI', securebrowser,
+        result, details, tts_section);
   };
 
   this.checkTTSPitchAPI = function() {
@@ -575,10 +573,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation
-        .setTTSTestResultItems('apiId.checkTTSPitchAPI',
-            'testname.checkTTSPitchAPI', 'api.checkTTSPitchAPI.SB', result,
-            details);
+    Util.Validation.setIRPTestResults('checkTTSPitchAPI', securebrowser,
+        result, details, tts_section);
   };
 
   this.checkTTSRateAPI = function() {
@@ -594,8 +590,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSRateAPI',
-        'testname.checkTTSRateAPI', 'api.checkTTSRateAPI.SB', result, details);
+    Util.Validation.setIRPTestResults('checkTTSRateAPI', securebrowser, result,
+        details, tts_section);
   };
 
   this.checkTTSVolumeAPI = function() {
@@ -611,9 +607,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSVolumeAPI',
-        'testname.checkTTSVolumeAPI', 'api.checkTTSVolumeAPI.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSVolumeAPI', securebrowser,
+        result, details, tts_section);
   };
 
   this.checkTTSSpeakAPI = function() {
@@ -628,10 +623,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation
-        .setTTSTestResultItems('apiId.checkTTSSpeakAPI',
-            'testname.checkTTSSpeakAPI', 'api.checkTTSSpeakAPI.SB', result,
-            details);
+    Util.Validation.setIRPTestResults('checkTTSSpeakAPI', securebrowser,
+        result, details, tts_section);
   };
 
   this.checkTTSPauseAPI = function() {
@@ -646,10 +639,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation
-        .setTTSTestResultItems('apiId.checkTTSPauseAPI',
-            'testname.checkTTSPauseAPI', 'api.checkTTSPauseAPI.SB', result,
-            details);
+    Util.Validation.setIRPTestResults('checkTTSPauseAPI', securebrowser,
+        result, details, tts_section);
   };
 
   this.checkTTSResumeAPI = function() {
@@ -664,9 +655,8 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSResumeAPI',
-        'testname.checkTTSResumeAPI', 'api.checkTTSResumeAPI.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSResumeAPI', securebrowser,
+        result, details, tts_section);
   };
 
   this.checkTTSVoiceNameAPI = function() {
@@ -682,8 +672,7 @@ function TTSService_SB() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSVoiceNameAPI',
-        'testname.checkTTSVoiceNameAPI', 'api.checkTTSVoiceNameAPI.SB', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSVoiceNameAPI', securebrowser,
+        result, details, tts_section);
   };
 }

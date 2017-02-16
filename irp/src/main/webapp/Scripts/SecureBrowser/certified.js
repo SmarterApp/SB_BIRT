@@ -19,13 +19,13 @@
 
     var result = false;
     var details = "";
-    var apiKey = "api.checkGlobalObject.certified";
+    var apiPrefix = certified;
     try {
       var hasAPI = (typeof (window.browser) === 'object');
 
       if (hasAPI && Util.Browser.isEdge() && !!window.browser.addEventListener) {
         result = true;
-        apiKey = "api.checkGlobalObject.certified.edge";
+        apiPrefix = certified_edge;
       } else if (!!window.browser) {
         result = true;
       } else {
@@ -37,8 +37,8 @@
       details = ex.message
     }
 
-    Util.Validation.setResultItems('apiId.checkGlobalObject',
-        'testname.checkGlobalObject.certified', apiKey, result, details);
+    Util.Validation.setIRPTestResults('checkGlobalObject', apiPrefix, result,
+        details, null);
 
   };
 
@@ -54,9 +54,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkDeviceInfo',
-        'testname.checkDeviceInfo', 'api.checkDeviceInfo.certified', result,
-        details);
+    Util.Validation.setIRPTestResults('checkDeviceInfo', certified, result,
+        details, null);
   };
 
   Certified.prototype.checkMACAddressAPI = function() {
@@ -78,9 +77,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkMACAddressAPI',
-        'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkMACAddressAPI', certified, result,
+        details, null);
 
   };
 
@@ -96,9 +94,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkIPAddressAPI',
-        'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkIPAddressAPI', certified, result,
+        details, null);
 
   };
 
@@ -113,9 +110,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkAppStartTimeAPI',
-        'testname.checkAppStartTimeAPI', 'api.checkAppStartTimeAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkAppStartTimeAPI', certified,
+        result, details, null);
   };
 
   // SEC-32
@@ -132,9 +128,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkClearCacheAPI',
-        'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkClearCacheAPI', certified, result,
+        details, null);
   };
 
   // SEC-33
@@ -151,9 +146,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkClearCookiesAPI',
-        'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkClearCookiesAPI', certified,
+        result, details, null);
   };
 
   // SEC-26
@@ -169,9 +163,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkEmptyClipBoardAPI',
-        'testname.checkEmptyClipBoardAPI',
-        'api.checkEmptyClipBoardAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkEmptyClipBoardAPI', certified,
+        result, details, null);
 
   };
 
@@ -189,9 +182,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkGetProcessListAPI',
-        'testname.checkGetProcessListAPI',
-        'api.checkGetProcessListAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkGetProcessListAPI', certified,
+        result, details, null);
 
   };
 
@@ -206,10 +198,10 @@
       // TDS-1403: Our latest API specifies 'close' as the name of this function
       // which MS Edge SB uses
       if (!!browser.security.closeWindow) {
-        testApi = 'api.checkCloseWindowAPI.certified';
+        testApi = certified;
         result = true;
       } else if (!!browser.security.close) {
-        testApi = 'api.checkCloseAPI.certified';
+        testApi = certified_edge;
         result = true;
 
       }
@@ -217,8 +209,9 @@
     } catch (ex) {
       details = ex.getMessage();
     }
-    Util.Validation.setResultItems('apiId.checkCloseAPI',
-        'testname.checkCloseAPI', testApi, result, details);
+
+    Util.Validation.setIRPTestResults('checkCloseAPI', testApi, result,
+        details, null);
   };
 
   // SEC-30
@@ -235,9 +228,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkEnableLockDownAPI',
-        'testname.checkEnableLockDownAPI',
-        'api.checkEnableLockDownAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkEnableLockDownAPI', certified,
+        result, details, null);
   };
 
   // SEC-31
@@ -253,9 +245,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkIsEnvironmentSecureAPI',
-        'testname.checkIsEnvironmentSecureAPI',
-        'api.checkIsEnvironmentSecureAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkIsEnvironmentSecureAPI', certified,
+        result, details, null);
 
   };
 
@@ -485,9 +476,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkSystemMuteAPI',
-        'testname.checkSystemMuteAPI', 'api.checkSystemMuteAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkSystemMuteAPI', certified, result,
+        details, null);
   };
 
   // SEC-57
@@ -504,9 +494,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkSystemVolumeAPI',
-        'testname.checkSystemVolumeAPI', 'api.checkSystemVolumeAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkSystemVolumeAPI', certified,
+        result, details, null);
   };
 
   // SEC-10
@@ -522,9 +511,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkExamineProcessList',
-        'testname.checkExamineProcessList',
-        'api.checkExamineProcessList.certified', result, details);
+    Util.Validation.setIRPTestResults('checkExamineProcessList', certified,
+        result, details, null);
   };
 
   // SEC-75
@@ -540,9 +528,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkGetFeatureAPI',
-        'testname.checkGetFeatureAPI', 'api.checkGetFeatureAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkGetFeatureAPI', certified, result,
+        details, null);
   };
 
   // SEC-76
@@ -558,9 +545,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkGetCapabilityAPI',
-        'testname.checkGetCapabilityAPI',
-        'api.checkGetCapabilityAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkGetCapabilityAPI', certified,
+        result, details, null);
   };
 
   // SEC-77
@@ -576,9 +562,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkSetCapabilityAPI',
-        'testname.checkSetCapabilityAPI',
-        'api.checkSetCapabilityAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkSetCapabilityAPI', certified,
+        result, details, null);
   };
 
   // SEC-80
@@ -594,9 +579,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkGetPermissiveModeAPI',
-        'testname.checkGetPermissiveModeAPI',
-        'api.checkGetPermissiveModeAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkGetPermissiveModeAPI', certified,
+        result, details, null);
   };
 
   // SEC-71
@@ -612,9 +596,8 @@
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkSetPermissiveModeAPI',
-        'testname.checkSetPermissiveModeAPI',
-        'api.checkSetPermissiveModeAPI.certified', result, details);
+    Util.Validation.setIRPTestResults('checkSetPermissiveModeAPI', certified,
+        result, details, null);
   };
 
   SB.Certified = Certified;

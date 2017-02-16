@@ -239,9 +239,8 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSStopAPI',
-        'testname.checkTTSStopAPI', 'api.checkTTSStopAPI.certified', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSStopAPI', certified, result,
+        details, tts_section);
   };
 
   this.checkTTSStatusAPI = function() {
@@ -256,9 +255,8 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSStatusAPI',
-        'testname.checkTTSStatusAPI', 'api.checkTTSStatusAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkTTSStatusAPI', certified, result,
+        details, tts_section);
   };
 
   this.checkTTSVoicesAPI = function() {
@@ -273,9 +271,8 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSVoicesAPI',
-        'testname.checkTTSVoicesAPI', 'api.checkTTSVoicesAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkTTSVoicesAPI', certified, result,
+        details, tts_section);
   };
 
   this.checkTTSPitchAPI = function() {
@@ -289,9 +286,9 @@ function TTSService_Base() {
     } catch (ex) {
       details = ex.message;
     }
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSPitchAPI',
-        'testname.checkTTSPitchAPI', 'api.checkTTSPitchAPI.certified', result,
-        details);
+
+    Util.Validation.setIRPTestResults('checkTTSPitchAPI', certified, result,
+        details, tts_section);
   };
 
   this.checkTTSRateAPI = function() {
@@ -306,9 +303,8 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSRateAPI',
-        'testname.checkTTSRateAPI', 'api.checkTTSRateAPI.certified', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSRateAPI', certified, result,
+        details, tts_section);
   };
 
   this.checkTTSVolumeAPI = function() {
@@ -323,9 +319,8 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSVolumeAPI',
-        'testname.checkTTSVolumeAPI', 'api.checkTTSVolumeAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkTTSVolumeAPI', certified, result,
+        details, tts_section);
   };
 
   this.checkTTSSpeakAPI = function() {
@@ -340,9 +335,8 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSSpeakAPI',
-        'testname.checkTTSSpeakAPI', 'api.checkTTSSpeakAPI.certified', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSSpeakAPI', certified, result,
+        details, tts_section);
   };
 
   this.checkTTSPauseAPI = function() {
@@ -357,9 +351,8 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSPauseAPI',
-        'testname.checkTTSPauseAPI', 'api.checkTTSPauseAPI.certified', result,
-        details);
+    Util.Validation.setIRPTestResults('checkTTSPauseAPI', certified, result,
+        details, tts_section);
   };
 
   this.checkTTSResumeAPI = function() {
@@ -374,9 +367,8 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSResumeAPI',
-        'testname.checkTTSResumeAPI', 'api.checkTTSResumeAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkTTSResumeAPI', certified, result,
+        details, tts_section);
   };
 
   this.checkTTSVoiceNameAPI = function() {
@@ -392,8 +384,7 @@ function TTSService_Base() {
       details = ex.message;
     }
 
-    Util.Validation.setTTSTestResultItems('apiId.checkTTSVoiceNameAPI',
-        'testname.checkTTSVoiceNameAPI', 'api.checkTTSVoiceNameAPI.certified',
-        result, details);
+    Util.Validation.setIRPTestResults('checkTTSVoiceNameAPI', certified,
+        result, details, tts_section);
   };
 }

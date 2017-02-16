@@ -123,9 +123,11 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       id.dialog("open");
     } else {
       id.dialog("open");
-      Util.Validation.setTTSManualTestResultItems('apiId.FAILED',
-          'ttsManualTest.FAILED', null, false,
-          'Error: Could not initialize TTS Support for this browser');
+
+      Util.Validation.setIRPTestResults('FAILED', null, false,
+          'Error: Could not initialize TTS Support for this browser',
+          ttsmanual_section);
+
     }
   }
 
@@ -438,10 +440,10 @@ function populateJsonGrid() {
    * Loading first test to test TTS Speak.
    */
   var ttsGridArray = [];
-  ttsGridArray.push({
-    "testName" : messageResource.get("ttsTest." + ttsSetting, 'message'),
-    "testResult" : null
-  });
+
+  var playObj = eval('irp.ApiSpecs.ttsmanualapi.' + ttsSetting);
+  playObj.testResult = null;
+  ttsGridArray.push(playObj);
 
   $("#ttsGrid")
       .jsGrid(
@@ -453,7 +455,7 @@ function populateJsonGrid() {
             fields : [
                 {
                   title : "Test Name",
-                  name : "testName",
+                  name : "instruction",
                   type : "text",
                   width : 150
                 },
@@ -541,6 +543,7 @@ function loadNextTTSTest() {
   currentTestIndex = currentTestIndex + 1;
   if (currentTestIndex < ttsSettingArray.length - 1) {
     ttsSetting = ttsSettingArray[currentTestIndex];
+
     $("#ttsGrid").jsGrid("insertItem",
         Util.Validation.setTTSItemDetail(ttsSetting, null));
 
@@ -630,9 +633,12 @@ function enableTTSOptions() {
 function populateReportGridForTTS() {
 
   ttsSettingArray.forEach(function(item, index, array) {
-    if (item != TTS.Test.UNKNOWN)
-      Util.Validation.setTTSManualTestResultItems('apiId.' + item,
-          'ttsManualTest.' + item, null, false, 'Test not performed');
+    if (item != TTS.Test.UNKNOWN) {
+
+      Util.Validation.setIRPTestResults(item, null, false,
+          'Test not performed', ttsmanual_section);
+    }
+
   });
 
 }

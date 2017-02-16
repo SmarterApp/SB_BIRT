@@ -14,6 +14,8 @@
 
   var ttsManualTestArray = [];
 
+  var irpApiSpecConstant = 'irp.ApiSpecs.';
+
   var MACREGEX = new RegExp(
       "^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$");
 
@@ -42,80 +44,94 @@
    * @details : Details about test
    * 
    */
-  Validation.setResultItems = function(id, testName, testAPI, result, details) {
+  /*
+   * Validation.setResultItems = function(id, testName, testAPI, result,
+   * details) {
+   * 
+   * var points = 0;
+   * 
+   * if (result === true) { points = messageResource.get(testName + '.points',
+   * 'message'); }
+   * 
+   * if (details == 'testApi.removed' || details == 'testApi.exists') { details =
+   * messageResource.get(details, 'message'); } resultArray.push({ "id" :
+   * messageResource.get(id, 'message'), "testName" :
+   * messageResource.get(testName, 'message'), "testApi" :
+   * messageResource.get(testAPI, 'message'), "testResult" : result, "details" :
+   * details, "points" : points }); };
+   */
+
+  /*
+   * Validation.setTTSTestResultItems = function(id, testName, testApi, result,
+   * details) {
+   * 
+   * var points = 0;
+   * 
+   * if (result === true) { points = messageResource.get(testName + '.points',
+   * 'message'); }
+   * 
+   * ttsTestArray.push({ "id" : messageResource.get(id, 'message'), "testName" :
+   * messageResource.get(testName, 'message'), "testApi" : testApi != null ?
+   * messageResource.get(testApi, 'message') : '', "testResult" : result,
+   * "details" : details, "testApi_certified" : "", "testApi_certified_edge" :
+   * "", "testApi_SB" : "", "testApi_mobile" : "", "points" : "1", "required" :
+   * true, "testPoints" : "0" }); };
+   */
+
+  /*
+   * Validation.setTTSManualTestResultItems = function(id, testName, testApi,
+   * result, details) {
+   * 
+   * ttsManualTestArray.push({ "id" : messageResource.get(id, 'message'),
+   * "testName" : messageResource.get(testName, 'message'), "testApi" : testApi !=
+   * null ? messageResource.get(testApi, 'message') : '', "testResult" : result,
+   * "details" : details, "testApi_certified" : "", "testApi_certified_edge" :
+   * "", "testApi_SB" : "", "testApi_mobile" : "", "points" : "1", "required" :
+   * true, "testPoints" : "0" }); };
+   */
+
+  Validation.setIRPTestResults = function(testName, apiPrefix, result, details,
+      section) {
+    var apiSpec = "";
+    if (section == 'TTS') {
+      apiSpec = irpApiSpecConstant + 'ttsapi.' + testName;
+    } else if (section == 'TTS_MANUAL') {
+      apiSpec = irpApiSpecConstant + 'ttsmanualapi.' + testName;
+    } else {
+      apiSpec = irpApiSpecConstant + 'browserapi.' + testName;
+    }
+
+    var apiSpecObject = eval(apiSpec);
 
     var points = 0;
 
+    var testApi = "";
+    if (apiPrefix == null) {
+      testApi = apiSpecObject.testApi;
+    } else {
+      testApi = eval(apiSpec + '.testApi_' + apiPrefix);
+    }
+
     if (result === true) {
-      points = messageResource.get(testName + '.points', 'message');
+      apiSpecObject.testPoints = apiSpecObject.points;
     }
 
     if (details == 'testApi.removed' || details == 'testApi.exists') {
       details = messageResource.get(details, 'message');
     }
-    resultArray.push({
-      "id" : messageResource.get(id, 'message'),
-      "testName" : messageResource.get(testName, 'message'),
-      "testApi" : messageResource.get(testAPI, 'message'),
-      "testResult" : result,
-      "details" : details,
-      "points" : points
-    });
-  };
 
-  Validation.setResultItemDetail = function(id, testName, testAPI, result,
-      details) {
+    apiSpecObject.testResult = result;
+    apiSpecObject.details = details;
+    apiSpecObject.testApi = testApi;
 
-    var itemDetail = {};
-
-    if (details == 'testApi.removed' || details == 'testApi.exists') {
-      details = messageResource.get(details, 'message');
+    if (section == 'TTS') {
+      ttsTestArray.push(apiSpecObject);
+    } else if (section == 'TTS_MANUAL') {
+      apiSpecObject.testResult = null;
+      ttsManualTestArray.push(apiSpecObject);
+    } else {
+      resultArray.push(apiSpecObject);
     }
-
-    $.extend(itemDetail, {
-      "id" : messageResource.get(id, 'message'),
-      "testName" : messageResource.get(testName, 'message'),
-      "testApi" : messageResource.get(testAPI, 'message'),
-      "testResult" : result,
-      "details" : details
-    });
-
-    return itemDetail;
-  };
-
-  Validation.setTTSTestResultItems = function(id, testName, testApi, result,
-      details) {
-
-    var points = 0;
-
-    if (result === true) {
-      points = messageResource.get(testName + '.points', 'message');
-    }
-
-    ttsTestArray.push({
-      "id" : messageResource.get(id, 'message'),
-      "testName" : messageResource.get(testName, 'message'),
-      "testApi" : testApi != null ? messageResource.get(testApi, 'message')
-          : '',
-      "testResult" : result,
-      "details" : details,
-      "points" : points
-    });
-
-  };
-
-  Validation.setTTSManualTestResultItems = function(id, testName, testApi,
-      result, details) {
-
-    ttsManualTestArray.push({
-      "id" : messageResource.get(id, 'message'),
-      "testName" : messageResource.get(testName, 'message'),
-      "testApi" : testApi != null ? messageResource.get(testApi, 'message')
-          : '',
-      "testResult" : result,
-      "details" : details,
-      "points" : 0
-    });
 
   };
 
@@ -123,10 +139,10 @@
 
     var itemDetail = {};
 
-    $.extend(itemDetail, {
-      "testName" : messageResource.get("ttsTest." + currentTTSTest, 'message'),
-      "testResult" : result
-    });
+    var specObj = eval('irp.ApiSpecs.ttsmanualapi.' + currentTTSTest);
+    specObj.testResult = result;
+
+    $.extend(itemDetail, specObj);
 
     return itemDetail;
 
@@ -135,6 +151,10 @@
   Validation.mergeTTSResultIntoResult = function() {
 
     ttsManualTestArray.forEach(function(element) {
+
+      if (element.testResult == null) {
+        element.testResult = false;
+      }
       ttsTestArray.push(element);
     });
 
@@ -161,6 +181,7 @@
     var total = this.getTTSResult().length;
     return total;
   };
+
   Util.Validation = Validation;
 
 })(Util);

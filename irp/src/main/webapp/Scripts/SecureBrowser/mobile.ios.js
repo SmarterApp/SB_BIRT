@@ -303,9 +303,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkGlobalObject = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkGlobalObject',
-      'testname.checkGlobalObject.mobile', 'api.checkGlobalObject.mobile',
-      result, details);
+  Util.Validation.setIRPTestResults('checkGlobalObject', mobile, result,
+      details, null);
 
 };
 
@@ -320,9 +319,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkDeviceInfo = function() {
     details = ex.message;
   }
 
-  Util.Validation
-      .setResultItems('apiId.checkDeviceInfo', 'testname.checkDeviceInfo',
-          'api.checkDeviceInfo.mobile', result, details);
+  Util.Validation.setIRPTestResults('checkDeviceInfo', mobile, result, details,
+      null);
 };
 
 TDS.SecureBrowser.Mobile.iOS.prototype.checkMACAddressAPI = function() {
@@ -339,14 +337,14 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkMACAddressAPI = function() {
       } else {
         details = 'MAC Address : ' + macAddress;
       }
+
     }
   } catch (ex) {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkMACAddressAPI',
-      'testname.checkMACAddressAPI', 'api.checkMACAddressAPI.mobile', result,
-      details);
+  Util.Validation.setIRPTestResults('checkMACAddressAPI', mobile, result,
+      details, null);
 
 };
 
@@ -362,9 +360,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkIPAddressAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkIPAddressAPI',
-      'testname.checkIPAddressAPI', 'api.checkIPAddressAPI.mobile', result,
-      details);
+  Util.Validation.setIRPTestResults('checkIPAddressAPI', mobile, result,
+      details, null);
 
 };
 
@@ -379,9 +376,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkAppStartTimeAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkAppStartTimeAPI',
-      'testname.checkAppStartTimeAPI', 'api.checkAppStartTimeAPI.mobile',
-      result, details);
+  Util.Validation.setIRPTestResults('checkAppStartTimeAPI', mobile, result,
+      details, null);
 };
 
 // SEC-30
@@ -396,9 +392,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkEnableLockDownAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkEnableLockDownAPI',
-      'testname.checkEnableLockDownAPI', 'api.checkEnableLockDownAPI.mobile',
-      result, details);
+  Util.Validation.setIRPTestResults('checkEnableLockDownAPI', mobile, result,
+      details, null);
 };
 
 // SEC-33
@@ -414,9 +409,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCookiesAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkClearCookiesAPI',
-      'testname.checkClearCookiesAPI', 'api.checkClearCookiesAPI.mobile',
-      result, details);
+  Util.Validation.setIRPTestResults('checkClearCookiesAPI', mobile, result,
+      details, null);
 };
 
 // SEC-32
@@ -432,9 +426,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkClearCacheAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkClearCacheAPI',
-      'testname.checkClearCacheAPI', 'api.checkClearCacheAPI.mobile', result,
-      details);
+  Util.Validation.setIRPTestResults('checkClearCacheAPI', mobile, result,
+      details, null);
 };
 
 // SEC-31
@@ -449,9 +442,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkIsEnvironmentSecureAPI = function() 
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkIsEnvironmentSecureAPI',
-      'testname.checkIsEnvironmentSecureAPI',
-      'api.checkIsEnvironmentSecureAPI.mobile', result, details);
+  Util.Validation.setIRPTestResults('checkIsEnvironmentSecureAPI', mobile,
+      result, details, null);
 };
 
 // SEC-35
@@ -467,8 +459,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkCloseAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkCloseAPI',
-      'testname.checkCloseAPI', 'api.checkCloseAPI.mobile', result, details);
+  Util.Validation.setIRPTestResults('checkCloseAPI', mobile, result, details,
+      null);
 };
 
 // SEC-34
@@ -484,9 +476,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkGetProcessListAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkGetProcessListAPI',
-      'testname.checkGetProcessListAPI', 'api.checkGetProcessListAPI.mobile',
-      result, details);
+  Util.Validation.setIRPTestResults('checkGetProcessListAPI', mobile, result,
+      details, null);
 };
 
 // SEC-26
@@ -495,9 +486,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkEmptyClipBoardAPI = function() {
   var result = true;
   var details = 'Mobile Secure browser does not support emptyClipBoard function';
 
-  Util.Validation.setResultItems('apiId.checkEmptyClipBoardAPI',
-      'testname.checkEmptyClipBoardAPI', 'api.checkEmptyClipBoardAPI.mobile',
-      result, details);
+  Util.Validation.setIRPTestResults('checkEmptyClipBoardAPI', mobile, result,
+      details, null);
 
 };
 
@@ -529,9 +519,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkSystemMuteAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkSystemMuteAPI',
-      'testname.checkSystemMuteAPI', 'api.checkSystemMuteAPI.mobile', result,
-      details);
+  Util.Validation.setIRPTestResults('checkSystemMuteAPI', mobile, result,
+      details, null);
 };
 
 // SEC-57
@@ -547,9 +536,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkSystemVolumeAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkSystemVolumeAPI',
-      'testname.checkSystemVolumeAPI', 'api.checkSystemVolumeAPI.mobile',
-      result, details);
+  Util.Validation.setIRPTestResults('checkSystemVolumeAPI', mobile, result,
+      details, null);
 };
 
 // SEC-10
@@ -565,9 +553,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkExamineProcessList = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkExamineProcessList',
-      'testname.checkExamineProcessList', 'api.checkExamineProcessList.mobile',
-      result, details);
+  Util.Validation.setIRPTestResults('checkExamineProcessList', mobile, result,
+      details, null);
 };
 
 // SEC-75
@@ -583,9 +570,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkGetFeatureAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkGetFeatureAPI',
-      'testname.checkGetFeatureAPI', 'api.checkGetFeatureAPI.mobile', result,
-      details);
+  Util.Validation.setIRPTestResults('checkGetFeatureAPI', mobile, result,
+      details, null);
 };
 
 // SEC-76
@@ -601,9 +587,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkGetCapabilityAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkGetCapabilityAPI',
-      'testname.checkGetCapabilityAPI', 'api.checkGetCapabilityAPI.mobile',
-      result, details);
+  Util.Validation.setIRPTestResults('checkGetCapabilityAPI', mobile, result,
+      details, null);
 };
 
 // SEC-77
@@ -619,9 +604,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkSetCapabilityAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkSetCapabilityAPI',
-      'testname.checkSetCapabilityAPI', 'api.checkSetCapabilityAPI.mobile',
-      result, details);
+  Util.Validation.setIRPTestResults('checkSetCapabilityAPI', mobile, result,
+      details, null);
 };
 
 // SEC-80
@@ -637,9 +621,8 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkGetPermissiveModeAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkGetPermissiveModeAPI',
-      'testname.checkGetPermissiveModeAPI',
-      'api.checkGetPermissiveModeAPI.mobile', result, details);
+  Util.Validation.setIRPTestResults('checkGetPermissiveModeAPI', mobile,
+      result, details, null);
 };
 
 // SEC-71
@@ -655,7 +638,6 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkSetPermissiveModeAPI = function() {
     details = ex.message;
   }
 
-  Util.Validation.setResultItems('apiId.checkSetPermissiveModeAPI',
-      'testname.checkSetPermissiveModeAPI',
-      'api.checkSetPermissiveModeAPI.mobile', result, details);
+  Util.Validation.setIRPTestResults('checkSetPermissiveModeAPI', mobile,
+      result, details, null);
 };
