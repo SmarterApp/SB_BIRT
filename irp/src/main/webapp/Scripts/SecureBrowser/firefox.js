@@ -1066,7 +1066,7 @@
 
     try {
       // alert('System Mute ' + this.runtime.systemMute);
-      if (!!this.runtime.systemMute) {
+      if (typeof this.runtime.systemMute == 'boolean') {
         result = true;
       }
     } catch (ex) {
@@ -1084,7 +1084,6 @@
     var details = "";
 
     try {
-      // alert('System Volume ' + this.runtime.systemVolume);
       if (!!this.runtime.systemVolume) {
         result = true;
       }
@@ -1151,22 +1150,40 @@
         result, details);
   };
 
-  // SEC-77
-  Firefox.prototype.checkSetCapabilityAPI = function() {
+  // SEC-71
+  Firefox.prototype.checkGetPermissiveModeAPI = function() {
     var result = false;
     var details = "";
 
     try {
-      if (!!this.runtime.setCapability) {
+      if (typeof this.runtime.permissive == 'boolean') {
         result = true;
       }
     } catch (ex) {
       details = ex.message;
     }
 
-    Util.Validation.setResultItems('apiId.checkSetCapabilityAPI',
-        'testname.checkSetCapabilityAPI', 'api.checkSetCapabilityAPI.SB',
-        result, details);
+    Util.Validation.setResultItems('apiId.checkGetPermissiveModeAPI',
+        'testname.checkGetPermissiveModeAPI',
+        'api.checkGetPermissiveModeAPI.SB', result, details);
+  };
+
+  // SEC-71
+  Firefox.prototype.checkSetPermissiveModeAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (typeof this.runtime.permissive == 'boolean') {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkSetPermissiveModeAPI',
+        'testname.checkSetPermissiveModeAPI',
+        'api.checkSetPermissiveModeAPI.SB', result, details);
   };
 
   SB.Firefox = Firefox;

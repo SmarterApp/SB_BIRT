@@ -496,6 +496,18 @@ function TTSService_SB() {
     }
   }
 
+  this.setTTSsystemMute = function(enable) {
+    try {
+      if (!this.runtime) {
+        return false;
+      } else {
+        this.runtime.systemMute = enable;
+      }
+    } catch (ex) {
+      return false;
+    }
+  }
+
   function SystemMute() {
     r.systemMute = !r.systemMute;
   }

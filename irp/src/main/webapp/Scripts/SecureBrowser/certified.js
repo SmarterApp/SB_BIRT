@@ -581,6 +581,42 @@
         'api.checkSetCapabilityAPI.certified', result, details);
   };
 
+  // SEC-71
+  Certified.prototype.checkGetPermissiveModeAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!browser.security.getPermissiveMode) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkGetPermissiveModeAPI',
+        'testname.checkGetPermissiveModeAPI',
+        'api.checkGetPermissiveModeAPI.certified', result, details);
+  };
+
+  // SEC-71
+  Certified.prototype.checkSetPermissiveModeAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!browser.security.setPermissiveMode) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setResultItems('apiId.checkSetPermissiveModeAPI',
+        'testname.checkSetPermissiveModeAPI',
+        'api.checkSetPermissiveModeAPI.certified', result, details);
+  };
+
   SB.Certified = Certified;
 
 })(TDS.SecureBrowser);

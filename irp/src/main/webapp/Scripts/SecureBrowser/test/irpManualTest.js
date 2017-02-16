@@ -269,10 +269,14 @@ function createButton(id, text) {
       ttsResume();
     } else if (text == 'Stop') {
       ttsStop();
-    } else if (text == 'Mute' || text == 'Ummute') {
+    } else if (text == 'Mute') {
       id.addClass("irp-custom-button-click");
       $("#play").focus();
-      muteUnmuteSystem();
+      muteUnmuteSystem(true);
+    } else if (text == 'Ummute') {
+      id.addClass("irp-custom-button-click");
+      $("#play").focus();
+      muteUnmuteSystem(false);
     }
 
     event.preventDefault();
@@ -408,12 +412,9 @@ function getTTSStatus() {
   return ttsImpl.getStatus();
 }
 
-function muteUnmuteSystem() {
-  // ttsSetting = TTS.Test.MUTE_UNMUTE;
+function muteUnmuteSystem(enable) {
   if (!!ttsImpl.setsystemMute) {
-    ttsImpl.setsystemMute();
-
-    // setMuteUnMuteButtonText();
+    ttsImpl.setTTSsystemMute(enable);
   }
 }
 

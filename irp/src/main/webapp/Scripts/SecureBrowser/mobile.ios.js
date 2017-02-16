@@ -623,3 +623,39 @@ TDS.SecureBrowser.Mobile.iOS.prototype.checkSetCapabilityAPI = function() {
       'testname.checkSetCapabilityAPI', 'api.checkSetCapabilityAPI.mobile',
       result, details);
 };
+
+// SEC-71
+TDS.SecureBrowser.Mobile.iOS.prototype.checkGetPermissiveModeAPI = function() {
+  var result = false;
+  var details = "";
+
+  try {
+    if (!!this._airMobile.security.getPermissiveMode) {
+      result = true;
+    }
+  } catch (ex) {
+    details = ex.message;
+  }
+
+  Util.Validation.setResultItems('apiId.checkGetPermissiveModeAPI',
+      'testname.checkGetPermissiveModeAPI',
+      'api.checkGetPermissiveModeAPI.mobile', result, details);
+};
+
+// SEC-71
+TDS.SecureBrowser.Mobile.iOS.prototype.checkSetPermissiveModeAPI = function() {
+  var result = false;
+  var details = "";
+
+  try {
+    if (!!this._airMobile.security.setPermissiveMode) {
+      result = true;
+    }
+  } catch (ex) {
+    details = ex.message;
+  }
+
+  Util.Validation.setResultItems('apiId.checkSetPermissiveModeAPI',
+      'testname.checkSetPermissiveModeAPI',
+      'api.checkSetPermissiveModeAPI.mobile', result, details);
+};

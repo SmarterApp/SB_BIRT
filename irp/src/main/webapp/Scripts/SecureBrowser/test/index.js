@@ -77,6 +77,10 @@ function beginBrowserAPITest() {
     /** SEC-77 : Set Capability of browser * */
     impl.checkSetCapabilityAPI();
 
+    /** SEC-71 : API: Enable/disable permissive mode * */
+    impl.checkGetPermissiveModeAPI();
+    impl.checkSetPermissiveModeAPI();
+
     if (ttsImpl != null) {
 
       /** SEC-36 API : TTS Speak (R) * */
