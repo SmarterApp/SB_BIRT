@@ -63,9 +63,6 @@
   src="../../Utilities/util_securebrowser.js"></script>
 
 
-<script src="../../Libraries/messageresource/messageResource.js"></script>
-
-
 <script type="text/javascript" src="../../TTS/certified.js"></script>
 <script type="text/javascript" src="../../TTS/chrome.js"></script>
 <script type="text/javascript" src="../../TTS/firefox.js"></script>
@@ -83,19 +80,6 @@
 
   $(document).ready(function() {
 
-    // initialize messageResource.js with settings
-    messageResource.init({
-      // path to directory containing message resource files(.properties files),
-      // give empty string or discard this configuration if files are in the
-      // same directory as that of html file.
-      filePath : '../../Libraries/messageresource'
-    });
-
-    // will load the file 'path/messageresource/moduleName.properties'
-    // and callbackFunction will be executed when loading is complete.
-    messageResource.load('message', beginBrowserAPITest);
-    // file name without extension is taken as module name.
-
     $("#closeBrowser").click(function() {
       closeBrowser();
     });
@@ -103,13 +87,10 @@
     $("#ttsTestLoad").load("ttsManualTest.html");
     
 
-    
+    beginBrowserAPITest();
 
   });
 
-  function test() {
-    var value = messageResource.get('description', 'message');
-  }
 </script>
 
 </head>

@@ -15,8 +15,22 @@ var mobile = "mobile";
 var webspeech = "webspeech";
 var tts_section = 'TTS';
 var ttsmanual_section = 'TTS_MANUAL';
+var irpApiSpecConstant = 'irp.ApiSpecs';
+
+var specMessage = "message";
+var specTTSApi = "ttsapi";
+var specTTSManualApi = "ttsmanualapi";
+var specBrowserapi = "browserapi";
+var specSeperator = ".";
 
 irp.ApiSpecs = {
+  "message" : {
+    "testApi_removed" : "As per specification, this API has been removed",
+    "testApi_exists" : "This deprecated API still exists",
+    "errorDialog_TTS" : "Your browser does not support TTS, so manual testing will be skipped",
+    "disable_all" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH", "RATE",
+        "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ]
+  },
   "browserapi" : {
     "checkGlobalObject" : {
       "id" : "1",
@@ -456,7 +470,13 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Play Test",
+      "buttonSliderId" : "play",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
+          "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY" ]
     },
     "PAUSE" : {
       "id" : "12",
@@ -471,7 +491,13 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "dialogHtml" : "<p>Did text-to-speech pause? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Pause Test",
+      "buttonSliderId" : "pause",
+      "disableSection" : [ "RESUME", "STOP", "VOLUME", "PITCH", "RATE",
+          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "PAUSE" ]
     },
     "RESUME" : {
       "id" : "13",
@@ -486,7 +512,13 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "dialogHtml" : "<p>Did text-to-speech resume? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Resume Test",
+      "buttonSliderId" : "resume",
+      "disableSection" : [ "STOP", "VOLUME", "PITCH", "RATE", "SYSTEM_VOLUME",
+          "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "PAUSE", "RESUME" ]
     },
     "STOP" : {
       "id" : "14",
@@ -501,7 +533,13 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "dialogHtml" : "<p>Did text-to-speech stop? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Stop Test",
+      "buttonSliderId" : "stop",
+      "disableSection" : [ "PAUSE", "RESUME", "VOLUME", "PITCH", "RATE",
+          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "STOP" ]
     },
     "VOLUME" : {
       "id" : "15",
@@ -516,7 +554,13 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Volume Test",
+      "buttonSliderId" : "ttsVolume",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "PITCH", "RATE",
+          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "VOLUME" ]
     },
     "PITCH" : {
       "id" : "16",
@@ -531,7 +575,13 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Pitch Test",
+      "buttonSliderId" : "ttsPitch",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "RATE",
+          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "PITCH" ]
     },
     "RATE" : {
       "id" : "17",
@@ -546,7 +596,13 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Rate Test",
+      "buttonSliderId" : "ttsRate",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
+          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "RATE" ]
     },
     "SYSTEM_VOLUME" : {
       "id" : "18",
@@ -561,7 +617,13 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "System Volume Test",
+      "buttonSliderId" : "systemVolume",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
+          "RATE", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "SYSTEM_VOLUME" ]
     },
     "MUTE" : {
       "id" : "19",
@@ -576,7 +638,13 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you didn't hear the voice at all, choose <b>Yes</b>. If you did hear the voice, choose <b>No</b></p>",
+      "dialogTitle" : "System Mute Test",
+      "buttonSliderId" : "systemMute",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
+          "RATE", "SYSTEM_VOLUME", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "MUTE" ]
     },
     "UNMUTE" : {
       "id" : "20",
@@ -591,7 +659,13 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you did hear the voice, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "System Unmute Test",
+      "buttonSliderId" : "systemUnMute",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
+          "RATE", "SYSTEM_VOLUME", "MUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "UNMUTE" ]
     },
     "VOICE" : {
       "id" : "21",
@@ -606,7 +680,13 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Voice Selection Test",
+      "buttonSliderId" : "voices",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
+          "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE" ],
+      "enableSection" : [ "PLAY", "VOICE" ]
     },
     "FAILED" : {
       "id" : "22",
@@ -621,7 +701,12 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "dialogHtml" : "",
+      "dialogTitle" : "",
+      "buttonSliderId" : "",
+      "disableSection" : "",
+      "enableSection" : ""
     }
   }
 };

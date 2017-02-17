@@ -84,11 +84,11 @@
 
   Certified.prototype.checkIPAddressAPI = function() {
     var result = true;
-    var details = 'testApi.removed';
+    var details = 'testApi_removed';
     try {
       if (!!browser.security.getIPAddressList) {
         result = false;
-        details = 'testApi.exists';
+        details = 'testApi_exists';
       }
     } catch (ex) {
       details = ex.message;
@@ -118,11 +118,11 @@
   Certified.prototype.checkClearCacheAPI = function() {
 
     var result = true;
-    var details = 'testApi.removed';
+    var details = 'testApi_removed';
     try {
       if (!!browser.security.clearCache) {
         result = false;
-        details = 'testApi.exists';
+        details = 'testApi_exists';
       }
     } catch (ex) {
       details = ex.message;
@@ -135,12 +135,12 @@
   // SEC-33
   Certified.prototype.checkClearCookiesAPI = function() {
     var result = true;
-    var details = 'testApi.removed';
+    var details = 'testApi_removed';
 
     try {
       if (!!browser.security.clearCookies) {
         result = false;
-        details = 'testApi.exists';
+        details = 'testApi_exists';
       }
     } catch (ex) {
       details = ex.message;
@@ -171,12 +171,12 @@
   // SEC-34
   Certified.prototype.checkGetProcessListAPI = function() {
     var result = true;
-    var details = 'testApi.removed';
+    var details = 'testApi_removed';
 
     try {
       if (!!browser.security.getProcessList) {
         result = false;
-        details = 'testApi.exists';
+        details = 'testApi_exists';
       }
     } catch (ex) {
       details = ex.message;

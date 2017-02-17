@@ -113,11 +113,11 @@
 
   Firefox.prototype.checkIPAddressAPI = function() {
     var result = true;
-    var details = 'testApi.removed';
+    var details = 'testApi_removed';
     try {
       if (!!this.runtime.getIPAddressList) {
         result = false;
-        details = 'testApi.exists';
+        details = 'testApi_exists';
       }
     } catch (ex) {
       details = ex.message;
@@ -153,12 +153,12 @@
   // SEC-32
   Firefox.prototype.checkClearCacheAPI = function() {
     var result = true;
-    var details = 'testApi.removed';
+    var details = 'testApi_removed';
 
     try {
       if (!!SecureBrowser.clearCache) {
         result = false;
-        details = 'testApi.exists';
+        details = 'testApi_exists';
       }
     } catch (ex) {
       details = ex.message;
@@ -170,13 +170,13 @@
   // SEC-33
   Firefox.prototype.checkClearCookiesAPI = function() {
     var result = true;
-    var details = 'testApi.removed';
+    var details = 'testApi_removed';
 
     try {
 
       if (!!SecureBrowser.clearCookies) {
         result = false;
-        details = 'testApi.exists';
+        details = 'testApi_exists';
       }
     } catch (ex) {
       details = ex.message;
@@ -208,12 +208,12 @@
   // SEC-34
   Firefox.prototype.checkGetProcessListAPI = function() {
     var result = true;
-    var details = 'testApi.removed';
+    var details = 'testApi_removed';
 
     try {
       if (!!this.runtime.getRunningProcessList) {
         result = false;
-        details = 'testApi.exists';
+        details = 'testApi_exists';
       }
     } catch (e) {
       details = ex.getMessage();

@@ -78,7 +78,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   Base.prototype.checkIPAddressAPI = function() {
     var result = true;
-    var details = 'testApi.removed';
+    var details = 'testApi_removed';
 
     Util.Validation.setIRPTestResults('checkIPAddressAPI', certified, result,
         details, null);
@@ -96,7 +96,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   // SEC-32
   Base.prototype.checkClearCacheAPI = function() {
     var result = true;
-    var details = 'testApi.removed';
+    var details = 'testApi_removed';
 
     Util.Validation.setIRPTestResults('checkClearCacheAPI', certified, result,
         details, null);
@@ -114,7 +114,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   // SEC-33
   Base.prototype.checkClearCookiesAPI = function() {
     var result = true;
-    var details = 'testApi.removed';
+    var details = 'testApi_removed';
 
     Util.Validation.setIRPTestResults('checkClearCookiesAPI', certified,
         result, details, null);
@@ -132,7 +132,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   // SEC-34
   Base.prototype.checkGetProcessListAPI = function() {
     var result = true;
-    var details = 'testApi.removed';
+    var details = 'testApi_removed';
 
     Util.Validation.setIRPTestResults('checkGetProcessListAPI', certified,
         result, details, null);
