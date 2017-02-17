@@ -1136,6 +1136,23 @@
         result, details, null);
   };
 
+  // SEC-77
+  Firefox.prototype.checkSetCapabilityAPI = function() {
+    var result = false;
+    var details = "";
+
+    try {
+      if (!!this.runtime.setCapability) {
+        result = true;
+      }
+    } catch (ex) {
+      details = ex.message;
+    }
+
+    Util.Validation.setIRPTestResults('checkSetCapabilityAPI', securebrowser,
+        result, details, null);
+  };
+
   // SEC-80
   Firefox.prototype.checkGetPermissiveModeAPI = function() {
     var result = false;
