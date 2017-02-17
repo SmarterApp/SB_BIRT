@@ -531,7 +531,7 @@ function closeConfirmBox(result) {
     Util.Validation.getTTSManualResult()[currentTestIndex].details = '';
 
     if (result === true) {
-      Util.Validation.getTTSManualResult()[currentTestIndex].points = eval(irpApiSpecConstant
+      Util.Validation.getTTSManualResult()[currentTestIndex].testPoints = eval(irpApiSpecConstant
           + specSeperator
           + specTTSManualApi
           + specSeperator

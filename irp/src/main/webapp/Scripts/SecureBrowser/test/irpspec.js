@@ -28,8 +28,8 @@ irp.ApiSpecs = {
     "testApi_removed" : "As per specification, this API has been removed",
     "testApi_exists" : "This deprecated API still exists",
     "errorDialog_TTS" : "Your browser does not support TTS, so manual testing will be skipped",
-    "disable_all" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH", "RATE",
-        "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ]
+    "disable_all" : [ "PLAY", "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
+        "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ]
   },
   "browserapi" : {
     "checkGlobalObject" : {

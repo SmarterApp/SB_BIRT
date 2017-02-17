@@ -59,8 +59,6 @@
 
     var apiSpecObject = eval(apiSpec);
 
-    var points = 0;
-
     var testApi = "";
     if (apiPrefix == null) {
       testApi = apiSpecObject.testApi;
