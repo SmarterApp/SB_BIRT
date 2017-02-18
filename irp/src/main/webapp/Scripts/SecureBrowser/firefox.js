@@ -52,6 +52,11 @@
     }
   };
 
+  // Returns a handle to the native browser engine.
+  Firefox.prototype.getRunTime = function() {
+    return this.runtime;
+  };
+
   Firefox.prototype.checkGlobalObject = function() {
     var result = false;
     var details = "";

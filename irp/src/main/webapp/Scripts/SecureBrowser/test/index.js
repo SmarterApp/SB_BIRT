@@ -9,9 +9,12 @@
 
 TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
-
+var implBrowserType = TDS.SecureBrowser.getBrowserType();
+var runtime = impl.getRunTime();
 TTS.Manager.init(true);
 var ttsImpl = TTS.Manager._service;
+
+var ttsBrowserType = TTS.Manager.browserType;
 
 var isIOSDevice = Util.Browser.isIOS();
 var isAndroidDevice = Util.Browser.isAndroid();
@@ -25,15 +28,19 @@ function beginBrowserAPITest() {
 
   if (impl) {
 
-    irp.testspec.browserapi.forEach(function(element) {
-      eval(element);
-    });
+    var browserApiJsonKey = irpApiSpecConstant + specSeparator + specBrowserapi;
+    var irpSpecBrowserApiObj = eval(browserApiJsonKey);
+
+    runIRPAutomateTest(irpSpecBrowserApiObj, browserApiJsonKey, runtime,
+        implBrowserType, null);
 
     if (ttsImpl != null) {
 
-      irp.testspec.ttsapi.forEach(function(element) {
-        eval(element);
-      });
+      var ttsApiJsonKey = irpApiSpecConstant + specSeparator + specTTSApi;
+      var irpSpecTTSApiObj = eval(ttsApiJsonKey);
+
+      runIRPAutomateTest(irpSpecTTSApiObj, ttsApiJsonKey, runtime,
+          ttsBrowserType, tts_section);
 
     }
   } else {
@@ -63,6 +70,83 @@ function closeBrowser() {
   impl.close(false);
 }
 
+function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
+    testBrowserType, section) {
+
+  Object.keys(irpSpecApiObj).forEach(
+      function(element) {
+        try {
+          var elementKey = irpSpecApiJsonKey + specSeparator + element
+              + specSeparator;
+
+          var actualTest = elementKey + 'testApi_' + testBrowserType;
+          var result = false;
+          var details = "";
+
+          var isDeprecated = eval(elementKey + "isDeprecated");
+
+          if (isDeprecated) {
+            result = true;
+            details = 'testApi_removed';
+          }
+
+          var irpSpecApiType = eval(elementKey + "apiType");
+          var actualTestObj = eval(eval(actualTest));
+          if (irpSpecApiType == "object") {
+            Object.getPrototypeOf(actualTestObj);
+            result = true;
+          } else if (irpSpecApiType == "function") {
+            if (typeof actualTestObj === 'function') {
+              if (isDeprecated) {
+                result = false;
+                details = 'testApi_exists';
+              } else {
+                result = true;
+              }
+            }
+          } else if (irpSpecApiType == "function,string") {
+            if (typeof actualTestObj === 'function'
+                || typeof actualTestObj === 'string') {
+              if (isDeprecated) {
+                result = false;
+                details = 'testApi_exists';
+              } else {
+                result = true;
+              }
+            }
+          } else if (irpSpecApiType == "number") {
+            if (typeof actualTestObj === 'number') {
+              result = true;
+            }
+          } else if (irpSpecApiType == "boolean") {
+            if (typeof actualTestObj === 'boolean') {
+              result = true;
+            }
+          } else if (irpSpecApiType == "boolean,string") {
+            if (typeof actualTestObj === 'boolean'
+                || typeof actualTestObj === 'string') {
+              result = true;
+            }
+          } else if (irpSpecApiType == "string") {
+            if (typeof actualTestObj === 'string') {
+              result = true;
+            }
+          }
+        } catch (ex) {
+          if (isDeprecated) {
+            result = true;
+            details = 'testApi_removed';
+          } else {
+            result = false;
+            details = ex.message;
+          }
+        }
+
+        Util.Validation.setIRPTestResults(element, testBrowserType, result,
+            details, section);
+
+      });
+}
 function populateResults(id, gridData, extTest) {
   var extCss = '';
   var showCSS = 'irp-grid-column-wrap';

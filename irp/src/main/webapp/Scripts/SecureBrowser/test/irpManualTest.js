@@ -29,8 +29,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         && !TTS.Manager._serviceFuncExists('isTTSAPINotSupported')) {
       isManualTestSupported = true;
     } else {
-      var textMessage = eval(irpApiSpecConstant + specSeperator + specMessage
-          + specSeperator + "errorDialog_" + testName);
+      var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
+          + specSeparator + "errorDialog_" + testName);
       id
           .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
               + textMessage + '</p>');
@@ -441,8 +441,8 @@ function populateJsonGrid() {
    */
   var ttsGridArray = [];
 
-  var playObj = eval(irpApiSpecConstant + specSeperator + specTTSManualApi
-      + specSeperator + ttsSetting);
+  var playObj = eval(irpApiSpecConstant + specSeparator + specTTSManualApi
+      + specSeparator + ttsSetting);
   playObj.testResult = null;
   ttsGridArray.push(playObj);
 
@@ -496,8 +496,8 @@ function loadTTSDialogConfirm() {
       {
         resizable : false,
         height : "auto",
-        title : eval(irpApiSpecConstant + specSeperator + specTTSManualApi
-            + specSeperator + ttsSetting + specSeperator + "dialogTitle"),
+        title : eval(irpApiSpecConstant + specSeparator + specTTSManualApi
+            + specSeparator + ttsSetting + specSeparator + "dialogTitle"),
         width : 400,
         modal : true,
         buttons : [ {
@@ -532,10 +532,10 @@ function closeConfirmBox(result) {
 
     if (result === true) {
       Util.Validation.getTTSManualResult()[currentTestIndex].testPoints = eval(irpApiSpecConstant
-          + specSeperator
+          + specSeparator
           + specTTSManualApi
-          + specSeperator
-          + ttsSettingArray[currentTestIndex] + specSeperator + "points");
+          + specSeparator
+          + ttsSettingArray[currentTestIndex] + specSeparator + "points");
 
     }
 
@@ -569,31 +569,31 @@ function changeDialogBoxButtonText(id, buttonText) {
 function setDialogHtml() {
 
   $("#dialog-confirm").html(
-      eval(irpApiSpecConstant + specSeperator + specTTSManualApi
-          + specSeperator + ttsSetting + specSeperator + "dialogHtml"));
+      eval(irpApiSpecConstant + specSeparator + specTTSManualApi
+          + specSeparator + ttsSetting + specSeparator + "dialogHtml"));
 
 }
 
 function disableTTSOptions() {
 
   var disableIds = null;
-  disableIds = eval(irpApiSpecConstant + specSeperator + specTTSManualApi
-      + specSeperator + ttsSetting + specSeperator + "disableSection");
+  disableIds = eval(irpApiSpecConstant + specSeparator + specTTSManualApi
+      + specSeparator + ttsSetting + specSeparator + "disableSection");
 
   /**
    * Disabling all option once all test are completed currently we have 11 test
    */
   if (currentTestIndex == ttsSettingArray.length - 1) {
-    disableIds = eval(irpApiSpecConstant + specSeperator + specMessage
-        + specSeperator + "disable_all");
+    disableIds = eval(irpApiSpecConstant + specSeparator + specMessage
+        + specSeparator + "disable_all");
   }
 
   /* var disableArray = disableIds.split(","); */
 
   disableIds.forEach(function(item, index, array) {
 
-    var buttonSliderId = eval(irpApiSpecConstant + specSeperator
-        + specTTSManualApi + specSeperator + item + specSeperator
+    var buttonSliderId = eval(irpApiSpecConstant + specSeparator
+        + specTTSManualApi + specSeparator + item + specSeparator
         + "buttonSliderId");
 
     if ($('#' + buttonSliderId).is(":ui-button")) {
@@ -610,15 +610,15 @@ function disableTTSOptions() {
 }
 
 function enableTTSOptions() {
-  var enableIds = eval(irpApiSpecConstant + specSeperator + specTTSManualApi
-      + specSeperator + ttsSetting + specSeperator + "enableSection");
+  var enableIds = eval(irpApiSpecConstant + specSeparator + specTTSManualApi
+      + specSeparator + ttsSetting + specSeparator + "enableSection");
 
   /* var enableArray = enableIds.split(","); */
 
   enableIds.forEach(function(item, index, array) {
 
-    var buttonSliderId = eval(irpApiSpecConstant + specSeperator
-        + specTTSManualApi + specSeperator + item + specSeperator
+    var buttonSliderId = eval(irpApiSpecConstant + specSeparator
+        + specTTSManualApi + specSeparator + item + specSeparator
         + "buttonSliderId");
 
     if ($('#' + buttonSliderId).is(":ui-button")) {

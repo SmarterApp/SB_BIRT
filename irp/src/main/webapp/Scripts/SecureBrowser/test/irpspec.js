@@ -21,7 +21,7 @@ var specMessage = "message";
 var specTTSApi = "ttsapi";
 var specTTSManualApi = "ttsmanualapi";
 var specBrowserapi = "browserapi";
-var specSeperator = ".";
+var specSeparator = ".";
 
 irp.ApiSpecs = {
   "message" : {
@@ -44,7 +44,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "(new Summit.SecureBrowser.Mobile()).getNativeBrowser()",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "object",
+      "isDeprecated" : false
     },
     "checkDeviceInfo" : {
       "id" : "2",
@@ -58,7 +60,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.getDeviceInfo",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkMACAddressAPI" : {
       "id" : "3",
@@ -72,7 +76,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.getMACAddress",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkIPAddressAPI" : {
       "id" : "4",
@@ -86,7 +92,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.getIPAddressList",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : true
     },
     "checkAppStartTimeAPI" : {
       "id" : "5",
@@ -101,7 +109,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.getStartTime",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkClearCacheAPI" : {
       "id" : "6",
@@ -115,7 +125,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.clearCache",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : true
     },
     "checkEmptyClipBoardAPI" : {
       "id" : "7",
@@ -129,7 +141,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkClearCookiesAPI" : {
       "id" : "8",
@@ -143,7 +157,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.clearCookies",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : true
     },
     "checkGetProcessListAPI" : {
       "id" : "9",
@@ -157,7 +173,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.getProcessList",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : true
     },
     "checkCloseAPI" : {
       "id" : "10",
@@ -171,7 +189,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.close",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkIsEnvironmentSecureAPI" : {
       "id" : "11",
@@ -185,7 +205,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.isEnvironmentSecure",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkEnableLockDownAPI" : {
       "id" : "12",
@@ -199,7 +221,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.enableLockdown",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkSystemVolumeAPI" : {
       "id" : "13",
@@ -213,7 +237,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.systemVolume",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "number",
+      "isDeprecated" : false
     },
     "checkSystemMuteAPI" : {
       "id" : "14",
@@ -227,7 +253,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.systemMute",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "boolean",
+      "isDeprecated" : false
     },
     "checkExamineProcessList" : {
       "id" : "15",
@@ -241,24 +269,21 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.examineProcessList",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
-    "checkGetFeatureAPI" : {
-      "id" : "16",
-      "testName" : "Retrieve List of Features and their status",
-      "testApi" : "",
-      "testResult" : null,
-      "details" : "",
-      "testApi_certified" : "browser.security.getFeatures",
-      "testApi_certified_edge" : "",
-      "testApi_SB" : "runtime.getFeatures",
-      "testApi_mobile" : "runtime.security.getFeatures",
-      "points" : "1",
-      "required" : true,
-      "testPoints" : "0"
-    },
+    /*
+     * "checkGetFeatureAPI" : { "id" : "16", "testName" : "Retrieve List of
+     * Features and their status", "testApi" : "", "testResult" : null,
+     * "details" : "", "testApi_certified" : "browser.security.getFeatures",
+     * "testApi_certified_edge" : "", "testApi_SB" : "runtime.getFeatures",
+     * "testApi_mobile" : "runtime.security.getFeatures", "points" : "1",
+     * "required" : true, "testPoints" : "0", "apiType" : "function",
+     * "isDeprecated" : false },
+     */
     "checkGetCapabilityAPI" : {
-      "id" : "17",
+      "id" : "16",
       "testName" : "Get Capability",
       "testApi" : "",
       "testResult" : null,
@@ -269,10 +294,12 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.getCapability",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkSetCapabilityAPI" : {
-      "id" : "18",
+      "id" : "17",
       "testName" : "Set Capability",
       "testApi" : "",
       "testResult" : null,
@@ -283,10 +310,12 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.setCapability",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkGetPermissiveModeAPI" : {
-      "id" : "19",
+      "id" : "18",
       "testName" : "Get permissive mode",
       "testApi" : "",
       "testResult" : null,
@@ -297,10 +326,12 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.getPermissiveMode",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "boolean",
+      "isDeprecated" : false
     },
     "checkSetPermissiveModeAPI" : {
-      "id" : "20",
+      "id" : "19",
       "testName" : "Set permissive mode",
       "testApi" : "",
       "testResult" : null,
@@ -311,7 +342,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.security.setPermissiveMode",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "boolean",
+      "isDeprecated" : false
     }
   },
   "ttsapi" : {
@@ -327,7 +360,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.speak",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkTTSPauseAPI" : {
       "id" : "2",
@@ -341,7 +376,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.pause",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkTTSResumeAPI" : {
       "id" : "3",
@@ -355,7 +392,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.resume",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkTTSStopAPI" : {
       "id" : "4",
@@ -369,7 +408,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.stop",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function",
+      "isDeprecated" : false
     },
     "checkTTSVolumeAPI" : {
       "id" : "5",
@@ -383,7 +424,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.device.ttsVolume",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "number",
+      "isDeprecated" : false
     },
     "checkTTSPitchAPI" : {
       "id" : "6",
@@ -397,7 +440,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.device.ttsPitch",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "number",
+      "isDeprecated" : false
     },
     "checkTTSRateAPI" : {
       "id" : "7",
@@ -411,7 +456,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.device.ttsRate",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "number",
+      "isDeprecated" : false
     },
     "checkTTSStatusAPI" : {
       "id" : "8",
@@ -420,12 +467,14 @@ irp.ApiSpecs = {
       "testResult" : true,
       "details" : "",
       "testApi_certified" : "browser.tts.getStatus",
-      "testApi_webspeech" : "window.speechSynthesis.paused[pending|speaking]",
+      "testApi_webspeech" : "(window.speechSynthesis.paused || window.speechSynthesis.pending || window.speechSynthesis.speaking)",
       "testApi_SB" : "runtime.status",
       "testApi_mobile" : "runtime.tts.getStatus",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "boolean,string",
+      "isDeprecated" : false
     },
     "checkTTSVoicesAPI" : {
       "id" : "9",
@@ -439,7 +488,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.getVoices",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "function,string",
+      "isDeprecated" : false
     },
     "checkTTSVoiceNameAPI" : {
       "id" : "10",
@@ -453,7 +504,9 @@ irp.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.voiceName",
       "points" : "1",
       "required" : true,
-      "testPoints" : "0"
+      "testPoints" : "0",
+      "apiType" : "string",
+      "isDeprecated" : false
     }
   },
   "ttsmanualapi" : {

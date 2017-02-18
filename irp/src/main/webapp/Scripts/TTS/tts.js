@@ -139,7 +139,9 @@ TTS.Manager = {
   _knownLanguages : {}, // see comment for TTS.Manager.isKnownLanguage
   _pausedEl : null,
 
-  _initialized : false
+  _initialized : false,
+
+  browserType : certified
 
 };
 
@@ -218,6 +220,7 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
 
       if (TTS.Util.supportsWebSpeech()) {
         service = new TTSService_WebSpeech();
+        TTS.Manager.browserType = webspeech;
       } else {
         service = new TTSService_Certified();
       }
@@ -225,12 +228,14 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
     else if (Util.Browser.isSecure() && Util.Browser.getSecureVersion() > 0
         && YAHOO.lang.isFunction(TTSService_SB) && !Util.Browser.isMobile()) {
       service = new TTSService_SB();
+      TTS.Manager.browserType = securebrowser;
     }
     // check for mobile secure browser
     else if (Util.Browser.isSecure()
         && (Util.Browser.isAndroid() || (Util.Browser.isIOS() && (Util.Browser
             .getSecureVersion() >= 2)))) {
       service = new TTSService_MobileSB();
+      TTS.Manager.browserType = mobile;
     }
     // if we are in chrome, we might be running an extension or packaged app.
     // Even if we are not, the load will not succeed but we can still go ahead
@@ -240,6 +245,7 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
     } // Check for Web Speech support
     else if (TTS.Util.supportsWebSpeech()) {
       service = new TTSService_WebSpeech();
+      TTS.Manager.browserType = webspeech;
     }
 
     // set default?

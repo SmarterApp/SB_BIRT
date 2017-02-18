@@ -47,14 +47,14 @@
       section) {
     var apiSpec = "";
     if (section == 'TTS') {
-      apiSpec = irpApiSpecConstant + specSeperator + specTTSApi + specSeperator
+      apiSpec = irpApiSpecConstant + specSeparator + specTTSApi + specSeparator
           + testName;
     } else if (section == 'TTS_MANUAL') {
-      apiSpec = irpApiSpecConstant + specSeperator + specTTSManualApi
-          + specSeperator + testName;
+      apiSpec = irpApiSpecConstant + specSeparator + specTTSManualApi
+          + specSeparator + testName;
     } else {
-      apiSpec = irpApiSpecConstant + specSeperator + specBrowserapi
-          + specSeperator + testName;
+      apiSpec = irpApiSpecConstant + specSeparator + specBrowserapi
+          + specSeparator + testName;
     }
 
     var apiSpecObject = eval(apiSpec);
@@ -72,8 +72,8 @@
 
     if (details == 'testApi_removed' || details == 'testApi_exists') {
 
-      details = eval(irpApiSpecConstant + specSeperator + specMessage
-          + specSeperator + details);
+      details = eval(irpApiSpecConstant + specSeparator + specMessage
+          + specSeparator + details);
     }
 
     apiSpecObject.testResult = result;
@@ -95,8 +95,8 @@
 
     var itemDetail = {};
 
-    var specObj = eval(irpApiSpecConstant + specSeperator + specTTSManualApi
-        + specSeperator + currentTTSTest);
+    var specObj = eval(irpApiSpecConstant + specSeparator + specTTSManualApi
+        + specSeparator + currentTTSTest);
     specObj.testResult = result;
 
     $.extend(itemDetail, specObj);

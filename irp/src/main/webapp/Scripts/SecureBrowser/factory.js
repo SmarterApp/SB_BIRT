@@ -17,6 +17,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   var sbImpl = null;
 
+  var browserType = certified;
+
   function initialize() {
 
     if (Util.Browser.isCertified()) {
@@ -26,18 +28,18 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         sbImpl = new TDS.SecureBrowser.Certified();
       } else if (Util.Browser.isIOS()) {
         sbImpl = new TDS.SecureBrowser.Mobile.iOS();
+        browserType = mobile;
       } else if (Util.Browser.isAndroid()) {
         sbImpl = new TDS.SecureBrowser.Mobile.Android();
-      } else if (Util.Browser.isChrome()) {
-        sbImpl = new TDS.SecureBrowser.Chrome();
-      } else {
+        browserType = mobile;
+      } /*
+         * else if (Util.Browser.isChrome()) { sbImpl = new
+         * TDS.SecureBrowser.Chrome(); }
+         */else {
         sbImpl = new TDS.SecureBrowser.Firefox();
+        browserType = securebrowser;
       }
     } else if (Util.Browser.isChrome()) {
-      // HACK! currently, the TDS.BrowserInfo is not available at this
-      // point in the code
-      // So, isSecure() shows up false even if our secure extension is
-      // installed.
       sbImpl = new TDS.SecureBrowser.Base();
     }
 
@@ -57,6 +59,10 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   // exist)
   SB.getImplementation = function() {
     return sbImpl;
+  };
+
+  SB.getBrowserType = function() {
+    return browserType;
   };
 
 })(TDS.SecureBrowser);
