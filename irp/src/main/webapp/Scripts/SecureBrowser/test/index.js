@@ -28,17 +28,38 @@ function beginBrowserAPITest() {
 
   if (impl) {
 
+    /**
+     * browserapi JSON Key from irpspec.js for Browser API Section Automation
+     * Test
+     */
     var browserApiJsonKey = irpApiSpecConstant + specSeparator + specBrowserapi;
+
+    /**
+     * browserapi JSON object from irpspec.js
+     */
     var irpSpecBrowserApiObj = eval(browserApiJsonKey);
 
+    /**
+     * running browserapi configured test in irpspec.js
+     */
     runIRPAutomateTest(irpSpecBrowserApiObj, browserApiJsonKey, runtime,
         implBrowserType, null);
 
     if (ttsImpl != null) {
 
+      /**
+       * ttsapi JSON Key from irpspec.js for Text-to-speech Section Automation
+       * Test
+       */
       var ttsApiJsonKey = irpApiSpecConstant + specSeparator + specTTSApi;
+      /**
+       * ttsapi JSON object from irpspec.js
+       */
       var irpSpecTTSApiObj = eval(ttsApiJsonKey);
 
+      /**
+       * running ttsapi configured test in irpspec.js
+       */
       runIRPAutomateTest(irpSpecTTSApiObj, ttsApiJsonKey, runtime,
           ttsBrowserType, tts_section);
 
@@ -56,47 +77,86 @@ function closeBrowser() {
   impl.close(false);
 }
 
+/**
+ * 
+ * @param irpSpecApiObj :
+ *          JSON Object from irpspec like browserapi or ttsapi
+ * @param irpSpecApiJsonKey :
+ *          JSON Key from irpspec related to irpSpecApiObj
+ * @param runtime :
+ *          runtime object in case of securebrowser or AIR mobile browser
+ * @param testBrowserType :
+ *          Browser Type to identified whether it is certified/securebrowser or
+ *          mobile securebrowser
+ * @param section :
+ *          Grid section for report like browser api or tts api
+ * 
+ */
 function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
     testBrowserType, section) {
 
   Object.keys(irpSpecApiObj).forEach(
       function(element) {
+
+        var isDeprecated = false;
         try {
+          /*
+           * key to get for element under irpSpecApiObj for e.g
+           * irp.ApiSpecs.browserapi.checkGlobalObject
+           */
           var elementKey = irpSpecApiJsonKey + specSeparator + element
               + specSeparator;
 
-          var actualTest = elementKey + 'testApi_' + testBrowserType;
+          /**
+           * Load test key to get api signature using elementKey and test
+           * testBrowserType for e.g.
+           * irp.ApiSpecs.browserapi.checkGlobalObject.testApi_certified
+           */
+          var testApiJsonKey = elementKey + 'testApi_' + testBrowserType;
           var result = false;
           var details = "";
 
-          var isDeprecated = eval(elementKey + "isDeprecated");
+          /**
+           * get Deprecated jsonKey value it will return either true/false
+           */
+          isDeprecated = eval(elementKey + "isDeprecated");
 
           if (isDeprecated) {
             result = true;
             details = 'testApi_removed';
           }
 
+          /**
+           * apiType to test for Object, function or boolean
+           */
           var irpSpecApiType = eval(elementKey + "apiType");
 
+          /**
+           * manualData key to populate other info in details column
+           */
           var irpSpecManualData = eval(elementKey + "manualData");
 
-          var actualTestkey = eval(actualTest);
+          /**
+           * Load actual api method value from testApiJsonKey for e.g.
+           * "window.browser"
+           */
+          var actualTestApiMethod = eval(testApiJsonKey);
 
           if (irpSpecApiType == "object") {
-            Object.getPrototypeOf(eval(actualTestkey));
+            Object.getPrototypeOf(eval(actualTestApiMethod));
             result = true;
           } else {
             if (irpSpecApiType == "boolean,function") {
-              if (!!eval(actualTestkey)
-                  || typeof eval(actualTestkey) === 'boolean') {
+              if (!!eval(actualTestApiMethod)
+                  || typeof eval(actualTestApiMethod) === 'boolean') {
                 result = true;
               }
             } else if (irpSpecApiType == "boolean") {
-              if (typeof eval(actualTestkey) === 'boolean') {
+              if (typeof eval(actualTestApiMethod) === 'boolean') {
                 result = true;
               }
             } else {
-              if (!!eval(actualTestkey)) {
+              if (!!eval(actualTestApiMethod)) {
                 result = true;
               }
             }
@@ -106,8 +166,8 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
 
             var apiManualData = "";
             if (element == "checkMACAddressAPI") {
-              actualTestkey = actualTestkey + '()';
-              apiManualData = eval(actualTestkey);
+              actualTestApiMethod = actualTestApiMethod + '()';
+              apiManualData = eval(actualTestApiMethod);
               if (!Util.Validation.isMacAddressValid(apiManualData)) {
                 result = false;
                 details = 'Invalid MAC Address : ' + apiManualData;
@@ -115,7 +175,7 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
                 details = 'MAC Address : ' + apiManualData;
               }
             } else {
-              details = eval(actualTestkey);
+              details = eval(actualTestApiMethod);
             }
           }
 
@@ -138,6 +198,7 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
 
       });
 }
+
 function populateResults(id, gridData, extTest) {
   var extCss = '';
   var showCSS = 'irp-grid-column-wrap';

@@ -34,17 +34,17 @@
   /**
    * This method will set individual test details in a final JSON array
    * 
-   * @id : Constant key to be read from message.properties
-   * @testName : testName key to be read from message.properties
-   * @testAPI : API signature key which is tested and to be read from
-   *          message.properties
+   * 
+   * @testName : testName key to be read from irpSpect.js
+   * @testBrowserType : Browser Type to identified whether it is
+   *                  certified/securebrowser or mobile securebrowser
    * @result : true/false based on API specification test
    * @details : Details about test
-   * 
+   * @section : Result Grid Section like TTS / TTS_MANUAL or null
    */
 
-  Validation.setIRPTestResults = function(testName, apiPrefix, result, details,
-      section) {
+  Validation.setIRPTestResults = function(testName, testBrowserType, result,
+      details, section) {
     var apiSpec = "";
     if (section == 'TTS') {
       apiSpec = irpApiSpecConstant + specSeparator + specTTSApi + specSeparator
@@ -60,10 +60,10 @@
     var apiSpecObject = eval(apiSpec);
 
     var testApi = "";
-    if (apiPrefix == null) {
+    if (testBrowserType == null) {
       testApi = apiSpecObject.testApi;
     } else {
-      testApi = eval(apiSpec + '.testApi_' + apiPrefix);
+      testApi = eval(apiSpec + '.testApi_' + testBrowserType);
     }
 
     if (result === true) {
