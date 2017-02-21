@@ -236,15 +236,6 @@ kbd {
    &#39;secure&#39; : &quot;true/false&quot;,
    &#39;messageKey&#39; : &quot;some message&quot;
 }</code></p></li>
-<li><p>R04. [TBD] <strong>Retrieve List of Features and their status</strong>. In some cases, testing may not require the environment to be fully locked down. We may still allow a test to proceed even if <code>browser.security.isEnvironmentSecure()</code> returns false as long we can determine which features are currently available to the end user and allow the testing application to make a determination. </p>
-
-<p><code>object browser.security.getFeatures()</code></p>
-
-<p>returns either a Javascript object or literal with the following structure</p>
-
-<p><code>{&lt;feature&gt;:true|false, ...}</code></p>
-
-<p>Example: <code>{&quot;screencapture&quot;:true, &quot;voicerecording&quot;:false, &quot;videocamera&quot;:false, &quot;cortana&quot;: true}</code></p></li>
 <li><p>R41. [TBD] <strong>Retrieve the status of a particular browser capability</strong>.   <code>object browser.security.getCapability(&quot;feature&quot;)</code></p>
 
 <p>returns either a Javascript object or literal with the following structure</p>
