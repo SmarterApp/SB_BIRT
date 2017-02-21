@@ -342,51 +342,7 @@
 
 					table.updateColumn(0, { points: c.points, maximum: c.maximum, score: c.score, results: r.results });
 					
-					var irpTests = m.data;
-          for (var testIndex = 0; testIndex < irpTests.length; testIndex++){
-            for (var i = 0; i < irpTests[testIndex].items.length; i++) {
-              var test = irpTests[testIndex].items[i];
-         
-              if (typeof test != 'string') {
-                if (typeof test != 'undefined') {
-                  var points = 0;
-                  var maximum = 0;
-
-                  if (match = (new RegExp(test.id
-                      + "=([0-9]+)(?:\\/([0-9]+))?(?:\\+([0-9]+))?"))
-                      .exec(c.points)) {
-                    points = match[1];
-                    if (match[2])
-                      maximum = match[2];
-                  }
-                  
-                  
-                  var result = true;
-                  var percent = 0;
-                  if(maximum !=0){
-                    percent = parseInt(points / maximum * 100, 10);
-                  }
-                  switch (true) {
-                  case percent < html5Passingthreshold:
-                    result = false;
-                    break;
-                  default:
-                    result = true;
-                    break;
-                  }
-              
-                  html5TestArray.push({
-                    
-                    "testName" : test.name,
-                    "testResult" : result,
-                    "details" :  points+"/"+maximum
-                    
-                  });
-                 
-                }
-              }
-            }
-          }
+		
           
           isTestCompleted = true;
 

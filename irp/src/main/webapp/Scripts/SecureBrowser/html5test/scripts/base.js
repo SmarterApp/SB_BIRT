@@ -755,10 +755,13 @@ ResultsTable.prototype = {
             var cell = row.childNodes[0].firstChild.nextSibling;
 
             var content = "<div class='grade'>";
-
+            var percent = 0;
+            if (maximum != 0) {
+              percent = parseInt(points / maximum * 100, 10);
+            }
             if (this.options.grading) {
               var grade = '';
-              var percent = parseInt(points / maximum * 100, 10);
+
               switch (true) {
               case percent == 0:
                 grade = 'none';
@@ -789,6 +792,25 @@ ResultsTable.prototype = {
             content += "</div>";
 
             cell.innerHTML = content;
+
+            var irpResult = true;
+            switch (true) {
+            case percent < html5Passingthreshold:
+              irpResult = false;
+              break;
+            default:
+              irpResult = true;
+              break;
+            }
+
+            html5TestArray.push({
+
+              "testName" : test.name,
+              "testResult" : irpResult,
+              "details" : points + "/" + maximum
+
+            });
+
             this.updateItems(column, data, test.items);
           }
         }

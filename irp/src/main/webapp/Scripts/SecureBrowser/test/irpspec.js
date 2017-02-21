@@ -22,7 +22,9 @@ var specTTSApi = "ttsapi";
 var specTTSManualApi = "ttsmanualapi";
 var specBrowserapi = "browserapi";
 var specSeparator = ".";
-
+/**
+ * Comments
+ */
 irp.ApiSpecs = {
   "message" : {
     "testApi_removed" : "As per specification, this API has been removed",
@@ -32,6 +34,7 @@ irp.ApiSpecs = {
         "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ]
   },
   "browserapi" : {
+    // R01. Expose a window global object called `browser` SEC-1 R01 F35
     "checkGlobalObject" : {
       "id" : "1",
       "testName" : "Browser global object check",
