@@ -62,6 +62,10 @@ function loadDialogBox(id, testName, testTitle, isNew) {
     buttonDisable = true;
   }
 
+  if (testName == 'CAPABILITY') {
+    isManualTestSupported = true;
+  }
+
   if (isManualTestSupported) {
     id.dialog({
       autoOpen : false,
@@ -95,6 +99,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
             populateReportGridForExternalTest($("#jsCSS3TestGrid"),
                 $("#css3TestHeader"), $("#css3ManualTest"), testName, id);
 
+          }
+          if (testName == 'CAPABILITY') {
+            $(this).dialog('close');
           }
         }
       } ]
@@ -155,6 +162,19 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       });
 
       id.dialog("open");
+
+    }
+  }
+
+  if (testName == 'CAPABILITY') {
+    if (isManualTestSupported) {
+      id.dialog("open");
+    } else {
+      id.dialog("open");
+
+      Util.Validation.setIRPTestResults('FAILED', null, false,
+          'Error: Could not initialize TTS Support for this browser',
+          ttsmanual_section);
 
     }
   }

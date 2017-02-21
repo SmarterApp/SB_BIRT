@@ -227,6 +227,30 @@
     return false;
   };
 
+  Certified.prototype.setCapability = function(property, enable) {
+    try {
+      if (this._hasAPI()
+          && typeof browser.security.setCapability === 'function') {
+        browser.security.setCapability(property, false);
+        return true;
+      }
+    } catch (ex) {
+
+    }
+    return false;
+  };
+
+  Certified.prototype.getCapability = function(property) {
+    try {
+      if (this._hasAPI()
+          && typeof browser.security.getCapability === 'function') {
+        return browser.security.getCapability(property);
+      }
+    } catch (ex) {
+    }
+    return false;
+  };
+
   SB.Certified = Certified;
 
 })(TDS.SecureBrowser);
