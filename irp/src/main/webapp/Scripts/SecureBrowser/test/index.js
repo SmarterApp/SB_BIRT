@@ -129,7 +129,7 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
           /**
            * apiType to test for Object, function or boolean
            */
-          var irpSpecApiType = eval(elementKey + "apiType");
+          var irpSpecApiArray = eval(elementKey + "apiType");
 
           /**
            * manualData key to populate other info in details column
@@ -142,14 +142,13 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
            */
           var actualTestApiMethod = eval(testApiJsonKey);
 
-          if (irpSpecApiType == "object") {
-            Object.getPrototypeOf(eval(actualTestApiMethod));
-            result = true;
-          } else {
-            if (irpSpecApiType == "boolean,function") {
-              if (!!eval(actualTestApiMethod)
-                  || typeof eval(actualTestApiMethod) === 'boolean') {
+          irpSpecApiArray.forEach(function(irpSpecApiType) {
+
+            if (irpSpecApiType == "object") {
+              if (typeof eval(actualTestApiMethod) === 'object') {
                 result = true;
+              } else {
+                details = actualTestApiMethod + ' is not defined';
               }
             } else if (irpSpecApiType == "boolean") {
               if (typeof eval(actualTestApiMethod) === 'boolean') {
@@ -160,7 +159,20 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
                 result = true;
               }
             }
-          }
+
+          });
+
+          /*
+           * if (irpSpecApiType == "object") { if (typeof
+           * eval(actualTestApiMethod) === 'object') { result = true; } else {
+           * details = actualTestApiMethod + ' is not defined'; } } else { if
+           * (irpSpecApiType == "boolean,function") { if
+           * (!!eval(actualTestApiMethod) || typeof eval(actualTestApiMethod)
+           * === 'boolean') { result = true; } } else if (irpSpecApiType ==
+           * "boolean") { if (typeof eval(actualTestApiMethod) === 'boolean') {
+           * result = true; } } else { if (!!eval(actualTestApiMethod)) { result =
+           * true; } } }
+           */
 
           if (irpSpecManualData !== undefined && irpSpecManualData) {
 

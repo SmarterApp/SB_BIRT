@@ -48,7 +48,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "object",
+      "apiType" : [ "object" ],
       "isDeprecated" : false
     },
     "checkDeviceInfo" : {
@@ -64,7 +64,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkMACAddressAPI" : {
@@ -80,7 +80,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false,
       "manualData" : true
     },
@@ -97,7 +97,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : true
     },
     "checkAppStartTimeAPI" : {
@@ -113,7 +113,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false,
       "manualData" : true
     },
@@ -130,7 +130,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : true
     },
     "checkEmptyClipBoardAPI" : {
@@ -146,7 +146,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkClearCookiesAPI" : {
@@ -162,7 +162,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : true
     },
     "checkGetProcessListAPI" : {
@@ -178,7 +178,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : true
     },
     "checkCloseAPI" : {
@@ -194,7 +194,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkIsEnvironmentSecureAPI" : {
@@ -210,7 +210,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkEnableLockDownAPI" : {
@@ -226,7 +226,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkSystemVolumeAPI" : {
@@ -242,7 +242,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkSystemMuteAPI" : {
@@ -258,7 +258,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "boolean",
+      "apiType" : [ "boolean" ],
       "isDeprecated" : false
     },
     "checkExamineProcessList" : {
@@ -274,7 +274,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     /*
@@ -283,7 +283,7 @@ irp.ApiSpecs = {
      * "details" : "", "testApi_certified" : "browser.security.getFeatures",
      * "testApi_certified_edge" : "", "testApi_SB" : "runtime.getFeatures",
      * "testApi_mobile" : "runtime.security.getFeatures", "points" : "1",
-     * "required" : true, "testPoints" : "0", "apiType" : "function",
+     * "required" : true, "testPoints" : "0", "apiType" : ["function"],
      * "isDeprecated" : false },
      */
     "checkGetCapabilityAPI" : {
@@ -299,7 +299,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkSetCapabilityAPI" : {
@@ -315,7 +315,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkGetPermissiveModeAPI" : {
@@ -331,7 +331,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "boolean",
+      "apiType" : [ "boolean" ],
       "isDeprecated" : false
     },
     "checkSetPermissiveModeAPI" : {
@@ -347,7 +347,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "boolean",
+      "apiType" : [ "boolean" ],
       "isDeprecated" : false
     }
   },
@@ -365,7 +365,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkTTSPauseAPI" : {
@@ -381,7 +381,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkTTSResumeAPI" : {
@@ -397,7 +397,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkTTSStopAPI" : {
@@ -413,7 +413,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkTTSVolumeAPI" : {
@@ -429,7 +429,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkTTSPitchAPI" : {
@@ -445,7 +445,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkTTSRateAPI" : {
@@ -461,7 +461,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkTTSStatusAPI" : {
@@ -477,7 +477,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "boolean,function",
+      "apiType" : [ "boolean", "function" ],
       "isDeprecated" : false
     },
     "checkTTSVoicesAPI" : {
@@ -493,7 +493,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkTTSVoiceNameAPI" : {
@@ -509,7 +509,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function",
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     }
   },

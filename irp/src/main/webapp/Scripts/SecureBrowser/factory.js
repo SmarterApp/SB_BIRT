@@ -32,10 +32,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       } else if (Util.Browser.isAndroid()) {
         sbImpl = new TDS.SecureBrowser.Mobile.Android();
         browserType = mobile;
-      } /*
-         * else if (Util.Browser.isChrome()) { sbImpl = new
-         * TDS.SecureBrowser.Chrome(); }
-         */else {
+      } else {
         sbImpl = new TDS.SecureBrowser.Firefox();
         browserType = securebrowser;
       }

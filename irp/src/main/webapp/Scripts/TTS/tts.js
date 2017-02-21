@@ -237,12 +237,7 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
       service = new TTSService_MobileSB();
       TTS.Manager.browserType = mobile;
     }
-    // if we are in chrome, we might be running an extension or packaged app.
-    // Even if we are not, the load will not succeed but we can still go ahead
-    // and setup the service.
-    else if (Util.Browser.isSecure() && Util.Browser.isChrome()) {
-      service = new TTSService_Chrome();
-    } // Check for Web Speech support
+    // Check for Web Speech support
     else if (TTS.Util.supportsWebSpeech()) {
       service = new TTSService_WebSpeech();
       TTS.Manager.browserType = webspeech;
