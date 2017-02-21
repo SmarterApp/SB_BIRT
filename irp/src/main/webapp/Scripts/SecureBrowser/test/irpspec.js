@@ -78,7 +78,8 @@ irp.ApiSpecs = {
       "required" : true,
       "testPoints" : "0",
       "apiType" : "function",
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "manualData" : true
     },
     "checkIPAddressAPI" : {
       "id" : "4",
@@ -104,14 +105,14 @@ irp.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "browser.security.getStartTime",
       "testApi_certified_edge" : "",
-      "testApi_SB" : "Mozilla.getPreference(bmakiosk.startup.timestamp)",
-      "testApi_SB_SS" : "window.sessionStorage.getItem(appStartTime)",
+      "testApi_SB" : "Mozilla.getPreference('bmakiosk.startup.timestamp')",
       "testApi_mobile" : "runtime.security.getStartTime",
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
       "apiType" : "function",
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "manualData" : true
     },
     "checkClearCacheAPI" : {
       "id" : "6",
@@ -238,7 +239,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "number",
+      "apiType" : "function",
       "isDeprecated" : false
     },
     "checkSystemMuteAPI" : {
@@ -425,7 +426,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "number",
+      "apiType" : "function",
       "isDeprecated" : false
     },
     "checkTTSPitchAPI" : {
@@ -441,7 +442,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "number",
+      "apiType" : "function",
       "isDeprecated" : false
     },
     "checkTTSRateAPI" : {
@@ -457,7 +458,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "number",
+      "apiType" : "function",
       "isDeprecated" : false
     },
     "checkTTSStatusAPI" : {
@@ -473,7 +474,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "boolean,string",
+      "apiType" : "boolean,function",
       "isDeprecated" : false
     },
     "checkTTSVoicesAPI" : {
@@ -489,7 +490,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "function,string",
+      "apiType" : "function",
       "isDeprecated" : false
     },
     "checkTTSVoiceNameAPI" : {
@@ -505,7 +506,7 @@ irp.ApiSpecs = {
       "points" : "1",
       "required" : true,
       "testPoints" : "0",
-      "apiType" : "string",
+      "apiType" : "function",
       "isDeprecated" : false
     }
   },
