@@ -230,6 +230,7 @@ function populateResults(id, gridData, extTest) {
       .jsGrid({
         width : "100%",
         data : gridData,
+        selecting : false,
         fields : [
             {
               title : "Test Name",

@@ -96,7 +96,7 @@
 
 
 .jsgrid-selected-row .jsgrid-cell {
-    /* cursor: pointer; */
+    cursor: pointer;
 }
 
 .jsgrid-nodata-row .jsgrid-cell {
