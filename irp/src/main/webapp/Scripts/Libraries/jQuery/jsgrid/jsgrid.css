@@ -48,7 +48,7 @@
     padding: 0.5em 0.5em;
 }
 
-.jsgrid-сell,
+.jsgrid-Ñ�ell,
 .jsgrid-header-cell {
     box-sizing: border-box;
 }
@@ -96,7 +96,7 @@
 
 
 .jsgrid-selected-row .jsgrid-cell {
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .jsgrid-nodata-row .jsgrid-cell {
