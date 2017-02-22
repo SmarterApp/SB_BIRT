@@ -6,7 +6,7 @@
 // See accompanying file AIR-License-1_0.txt or at
 // http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
 // *******************************************************************************
-var irp = {};
+var IRT = {};
 
 var certified = "certified";
 var certified_edge = "certified_edge";
@@ -15,7 +15,7 @@ var mobile = "mobile";
 var webspeech = "webspeech";
 var tts_section = 'TTS';
 var ttsmanual_section = 'TTS_MANUAL';
-var irpApiSpecConstant = 'irp.ApiSpecs';
+var irpApiSpecConstant = 'IRT.ApiSpecs';
 
 var specMessage = "message";
 var specTTSApi = "ttsapi";
@@ -25,7 +25,7 @@ var specSeparator = ".";
 /**
  * Comments
  */
-irp.ApiSpecs = {
+IRT.ApiSpecs = {
   "message" : {
     "testApi_removed" : "As per specification, this API has been removed",
     "testApi_exists" : "This deprecated API still exists",
@@ -46,7 +46,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "SecureBrowser",
       "testApi_mobile" : "(new Summit.SecureBrowser.Mobile()).getNativeBrowser()",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "object" ],
       "isDeprecated" : false
@@ -62,7 +66,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.getDeviceInfo",
       "testApi_mobile" : "runtime.security.getDeviceInfo",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -78,7 +86,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.getMACAddress",
       "testApi_mobile" : "runtime.security.getMACAddress",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false,
@@ -95,7 +107,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.getIPAddressList",
       "testApi_mobile" : "runtime.security.getIPAddressList",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : true
@@ -111,7 +127,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "Mozilla.getPreference('bmakiosk.startup.timestamp')",
       "testApi_mobile" : "runtime.security.getStartTime",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false,
@@ -128,7 +148,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "SecureBrowser.clearCache",
       "testApi_mobile" : "runtime.security.clearCache",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : true
@@ -144,7 +168,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "SecureBrowser.emptyClipBoard",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -160,7 +188,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "SecureBrowser.clearCookies",
       "testApi_mobile" : "runtime.security.clearCookies",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : true
@@ -176,7 +208,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.getRunningProcessList",
       "testApi_mobile" : "runtime.security.getProcessList",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : true
@@ -192,7 +228,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "SecureBrowser.CloseWindow",
       "testApi_mobile" : "runtime.security.close",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -208,7 +248,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.isEnvironmentSecure",
       "testApi_mobile" : "runtime.security.isEnvironmentSecure",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -224,7 +268,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.enableLockDown",
       "testApi_mobile" : "runtime.security.enableLockdown",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -240,7 +288,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.systemVolume",
       "testApi_mobile" : "runtime.systemVolume",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -256,7 +308,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.systemMute",
       "testApi_mobile" : "runtime.systemMute",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "boolean" ],
       "isDeprecated" : false
@@ -272,20 +328,15 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.examineProcessList",
       "testApi_mobile" : "runtime.security.examineProcessList",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
     },
-    /*
-     * "checkGetFeatureAPI" : { "id" : "16", "testName" : "Retrieve List of
-     * Features and their status", "testApi" : "", "testResult" : null,
-     * "details" : "", "testApi_certified" : "browser.security.getFeatures",
-     * "testApi_certified_edge" : "", "testApi_SB" : "runtime.getFeatures",
-     * "testApi_mobile" : "runtime.security.getFeatures", "points" : "1",
-     * "required" : true, "testPoints" : "0", "apiType" : ["function"],
-     * "isDeprecated" : false },
-     */
     "checkGetCapabilityAPI" : {
       "id" : "16",
       "testName" : "Get Capability",
@@ -297,7 +348,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.getCapability",
       "testApi_mobile" : "runtime.security.getCapability",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -313,7 +368,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.setCapability",
       "testApi_mobile" : "runtime.security.setCapability",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -329,7 +388,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.permissive",
       "testApi_mobile" : "runtime.security.getPermissiveMode",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "boolean" ],
       "isDeprecated" : false
@@ -345,7 +408,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.permissive",
       "testApi_mobile" : "runtime.security.setPermissiveMode",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "boolean" ],
       "isDeprecated" : false
@@ -363,7 +430,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.play",
       "testApi_mobile" : "runtime.tts.speak",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -379,7 +450,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.pause",
       "testApi_mobile" : "runtime.tts.pause",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -395,7 +470,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.resume",
       "testApi_mobile" : "runtime.tts.resume",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -411,7 +490,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.stop",
       "testApi_mobile" : "runtime.tts.stop",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -427,7 +510,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.volume",
       "testApi_mobile" : "runtime.device.ttsVolume",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -443,7 +530,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.pitch",
       "testApi_mobile" : "runtime.device.ttsPitch",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -459,7 +550,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.rate",
       "testApi_mobile" : "runtime.device.ttsRate",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -475,7 +570,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.status",
       "testApi_mobile" : "runtime.tts.getStatus",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "boolean", "function" ],
       "isDeprecated" : false
@@ -491,7 +590,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.voices",
       "testApi_mobile" : "runtime.tts.getVoices",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -507,7 +610,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "runtime.voiceName",
       "testApi_mobile" : "runtime.tts.voiceName",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
@@ -526,7 +633,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Play Test",
@@ -547,7 +658,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "dialogHtml" : "<p>Did text-to-speech pause? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Pause Test",
@@ -568,7 +683,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "dialogHtml" : "<p>Did text-to-speech resume? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Resume Test",
@@ -589,7 +708,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "dialogHtml" : "<p>Did text-to-speech stop? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Stop Test",
@@ -610,7 +733,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Volume Test",
@@ -631,7 +758,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Pitch Test",
@@ -652,7 +783,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Rate Test",
@@ -673,7 +808,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "System Volume Test",
@@ -694,7 +833,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "dialogHtml" : "<p>If you didn't hear the voice at all, choose <b>Yes</b>. If you did hear the voice, choose <b>No</b></p>",
       "dialogTitle" : "System Mute Test",
@@ -715,7 +858,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "dialogHtml" : "<p>If you did hear the voice, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "System Unmute Test",
@@ -736,7 +883,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Voice Selection Test",
@@ -757,7 +908,11 @@ irp.ApiSpecs = {
       "testApi_SB" : "",
       "testApi_mobile" : "",
       "points" : "1",
-      "required" : true,
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
       "testPoints" : "0",
       "dialogHtml" : "",
       "dialogTitle" : "",

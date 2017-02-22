@@ -102,7 +102,7 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
         try {
           /*
            * key to get for element under irpSpecApiObj for e.g
-           * irp.ApiSpecs.browserapi.checkGlobalObject
+           * IRT.ApiSpecs.browserapi.checkGlobalObject
            */
           var elementKey = irpSpecApiJsonKey + specSeparator + element
               + specSeparator;
@@ -110,7 +110,7 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
           /**
            * Load test key to get api signature using elementKey and test
            * testBrowserType for e.g.
-           * irp.ApiSpecs.browserapi.checkGlobalObject.testApi_certified
+           * IRT.ApiSpecs.browserapi.checkGlobalObject.testApi_certified
            */
           var testApiJsonKey = elementKey + 'testApi_' + testBrowserType;
           var result = false;
