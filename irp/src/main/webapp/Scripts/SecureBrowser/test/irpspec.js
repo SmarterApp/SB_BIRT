@@ -26,6 +26,11 @@ var specBrowserManualApi = "browsermanualapi";
 var specSeparator = ".";
 /**
  * Comments
+ * 
+ * @F : F# indicates functional requirement number
+ * @R : R# indicates Requirement # from SecureBrowserAPIspecification.md
+ * @SEC : SEC-# indicates internal JIRA number
+ * 
  */
 IRT.ApiSpecs = {
   "message" : {
@@ -37,7 +42,8 @@ IRT.ApiSpecs = {
         "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ]
   },
   "browserapi" : {
-    // R01. Expose a window global object called `browser` SEC-1 R01 F35
+    // F35. The secure browser shall check for an appropriate Global Object for
+    // API use. R01 SEC-1
     "checkGlobalObject" : {
       "id" : "1",
       "testName" : "Browser global object check",
@@ -59,6 +65,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkDeviceInfo" : {
+      // F36. The secure browser may be able to get device info (optional). R05
+      // SEC-25
       "id" : "2",
       "testName" : "Retrieve device details",
       "testApi" : "",
@@ -79,6 +87,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkMACAddressAPI" : {
+      // F04. The secure browser shall provide a means to retrieve system MAC
+      // address. R40 SEC-27
       "id" : "3",
       "testName" : "Retrieve system MAC address(es)",
       "testApi" : "",
@@ -100,6 +110,8 @@ IRT.ApiSpecs = {
       "manualData" : true
     },
     "checkIPAddressAPI" : {
+      // F05. The secure browser shall NOT provide a means to retrieve the
+      // system IP address(es). R22 SEC-28
       "id" : "4",
       "testName" : "Retrieve system IP address(es)",
       "testApi" : "",
@@ -120,6 +132,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : true
     },
     "checkAppStartTimeAPI" : {
+      // F07. The secure browser shall provide a means to obtain the application
+      // start time. R24 SEC-29, SEC-59
       "id" : "5",
       "testName" : "Get application start time",
       "testApi" : "",
@@ -141,6 +155,9 @@ IRT.ApiSpecs = {
       "manualData" : true
     },
     "checkClearCacheAPI" : {
+      // F01. The Secure browser shall NOT provide a means to clear browser
+      // cache. R22 SEC-32
+
       "id" : "6",
       "testName" : "Clear cache",
       "testApi" : "",
@@ -161,6 +178,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : true
     },
     "checkEmptyClipBoardAPI" : {
+      // F03. The secure browser shall provide a means to clear system
+      // clipboard. R23 SEC-26
       "id" : "7",
       "testName" : "Empty Clipboard",
       "testApi" : "",
@@ -181,6 +200,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkClearCookiesAPI" : {
+      // F02. The secure browser shall NOT provide a means to clear browser
+      // cookies. R22 SEC-33
       "id" : "8",
       "testName" : "Clear Cookies",
       "testApi" : "",
@@ -201,6 +222,9 @@ IRT.ApiSpecs = {
       "isDeprecated" : true
     },
     "checkGetProcessListAPI" : {
+      // F06. The secure browser shall NOT provide a means to retrieve the
+      // current list of running processes, their PIDs and their PPIDs. R06
+      // SEC-10, SEC-62
       "id" : "9",
       "testName" : "Get Process List",
       "testApi" : "",
@@ -221,6 +245,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : true
     },
     "checkCloseAPI" : {
+      // F14. The secure browser shall provide a means to close the browser. R07
+      // SEC-35
       "id" : "10",
       "testName" : "Close browser",
       "testApi" : "",
@@ -241,6 +267,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkIsEnvironmentSecureAPI" : {
+      // F38. The secure browser shall be able to check if environment is secure
+      // for testing. R03 SEC-31
       "id" : "11",
       "testName" : "Is Environment Secure",
       "testApi" : "",
@@ -261,6 +289,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkEnableLockDownAPI" : {
+      // F37. The secure browser shall be able to lock down the environment. R02
+      // SEC-30
       "id" : "12",
       "testName" : "Enable Lockdown",
       "testApi" : "",
@@ -281,6 +311,9 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkSystemVolumeAPI" : {
+      // F09. The secure browser shall provide a means to get system volume.
+      // F10. The secure browser shall provide a means to set system volume. R16
+      // SEC-57, SEC-58
       "id" : "13",
       "testName" : "Get/Set System Volume",
       "testApi" : "",
@@ -301,6 +334,10 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkSystemMuteAPI" : {
+      // F11. The secure browser shall provide a means to mute system volume.
+      // F12. The secure browser shall provide a means to unmute system volume.
+      // F13. The secure browser shall provide a means to check if system volume
+      // is Muted.R19, R20, R21 SEC-56, SEC-58
       "id" : "14",
       "testName" : "Mute/Unmute/IsMuted System Volume",
       "testApi" : "",
@@ -321,6 +358,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkExamineProcessList" : {
+      // F31. The secure browser shall be able to determine whether blacklisted
+      // processes are running on the client machine. R06 SEC-10, SEC-62
       "id" : "15",
       "testName" : "Examine Process List",
       "testApi" : "",
@@ -341,6 +380,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkGetCapabilityAPI" : {
+      // F46. The secure browser shall be able to get the status of a particular
+      // browser capability. R41 SEC-76, SEC-81
       "id" : "16",
       "testName" : "Get Capability",
       "testApi" : "",
@@ -361,6 +402,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkSetCapabilityAPI" : {
+      // F47. The secure browser shall be able to set the status of a particular
+      // browser capability. R42 SEC-77, SEC-81
       "id" : "17",
       "testName" : "Set Capability",
       "testApi" : "",
@@ -381,6 +424,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkGetPermissiveModeAPI" : {
+      // F49. The secure browser shall provide a means to query the status of
+      // permissive mode. R44 SEC-80
       "id" : "18",
       "testName" : "Get permissive mode",
       "testApi" : "",
@@ -401,6 +446,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkSetPermissiveModeAPI" : {
+      // F15. The secure browser shall provide a means to set permissive mode.
+      // R21 SEC-71
       "id" : "19",
       "testName" : "Set permissive mode",
       "testApi" : "",
@@ -423,6 +470,8 @@ IRT.ApiSpecs = {
   },
   "ttsapi" : {
     "checkTTSSpeakAPI" : {
+      // F16. The secure browser shall provide shall provide a means to play
+      // arbitrary text. R08 SEC-36, SEC-50, SEC-51, SEC-52, SEC-53
       "id" : "1",
       "testName" : "Speak text (text-to-speech synthesis)",
       "testApi" : "",
@@ -443,6 +492,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkTTSPauseAPI" : {
+      // F18. The secure browser shall provide a means to pause TTS speech in
+      // progress. R13 SEC-40
       "id" : "2",
       "testName" : "Pause speech (text-to-speech synthesis)",
       "testApi" : "",
@@ -463,6 +514,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkTTSResumeAPI" : {
+      // F21. The secure browser shall provide a means to resume previously
+      // paused TTS speech. R14 SEC-41
       "id" : "3",
       "testName" : "Resume speech (text-to-speech synthesis)",
       "testApi" : "",
@@ -483,6 +536,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkTTSStopAPI" : {
+      // F17. The secure browser shall provide a means to stop TTS speech in
+      // progress. R09 SEC-37
       "id" : "4",
       "testName" : "Stop speech (text-to-speech synthesis)",
       "testApi" : "",
@@ -503,6 +558,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkTTSVolumeAPI" : {
+      // F30. The secure browser shall provide a means to get/set TTS volume.
+      // R08 SEC-36, SEC-50, SEC-51, SEC-52, SEC-53
       "id" : "5",
       "testName" : "Get/Set TTS volume API (text-to-speech synthesis)",
       "testApi" : "",
@@ -523,6 +580,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkTTSPitchAPI" : {
+      // F28. The secure browser shall provide a means to get/set TTS pitch.
+      // R11, R12 SEC-11, SEC-39
       "id" : "6",
       "testName" : "Get/Set TTS pitch API (text-to-speech synthesis)",
       "testApi" : "",
@@ -543,6 +602,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkTTSRateAPI" : {
+      // F29. The secure browser shall provide a means to get/set TTS rate. R11,
+      // R12 SEC-11, SEC-39
       "id" : "7",
       "testName" : "Get/Set TTS rate API (text-to-speech synthesis)",
       "testApi" : "",
@@ -563,6 +624,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkTTSStatusAPI" : {
+      // F22. The secure browser shall provide a means events to notify the web
+      // application of status and progress of TTS. R10 SEC-11, SEC-38
       "id" : "8",
       "testName" : "Get speech status (text-to-speech synthesis)",
       "testApi" : "",
@@ -583,6 +646,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkTTSVoicesAPI" : {
+      // F19. The secure browser shall provide a means to retrieve list of TTS
+      // voice packs available on the machine. R11, R12 SEC-11, SEC-39
       "id" : "9",
       "testName" : "Get available voices (text-to-speech synthesis)",
       "testApi" : "",
@@ -603,6 +668,8 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
     "checkTTSVoiceNameAPI" : {
+      // F20. The secure browser shall provide a means to get the current TTS
+      // voice pack set as default on the machine. R11, R12 SEC-11, SEC-39
       "id" : "10",
       "testName" : "Get/Set TTS voice name API (text-to-speech synthesis)",
       "testApi" : "",
@@ -625,6 +692,7 @@ IRT.ApiSpecs = {
   },
   "ttsmanualapi" : {
     "PLAY" : {
+      // Play R11, R12 SEC-11, SEC-39
       "id" : "11",
       "testName" : "Manual test for TTS Speak",
       "instruction" : "Click Play to test TTS Speech",
@@ -650,6 +718,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ "PLAY" ]
     },
     "PAUSE" : {
+      // Pause R11, R12 SEC-11, SEC-39
       "id" : "12",
       "testName" : "Manual test for TTS Pause",
       "instruction" : "Click Play and then Pause to test TTS Pause",
@@ -675,6 +744,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ "PLAY", "PAUSE" ]
     },
     "RESUME" : {
+      // Resume R11, R12 SEC-11, SEC-39
       "id" : "13",
       "testName" : "Manual test for TTS Resume",
       "instruction" : "Click Play, Pause, and then Resume to test TTS Resume",
@@ -700,6 +770,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ "PLAY", "PAUSE", "RESUME" ]
     },
     "STOP" : {
+      // Stop R09 SEC-37
       "id" : "14",
       "testName" : "Manual test for TTS Stop",
       "instruction" : "Click Play and then Stop to test TTS Stop",
@@ -725,6 +796,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ "PLAY", "STOP" ]
     },
     "VOLUME" : {
+      // Volume R11, R12 SEC-11, SEC-39
       "id" : "15",
       "testName" : "Manual test for TTS Volume",
       "instruction" : "Change Volume and Click Play to test",
@@ -750,6 +822,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ "PLAY", "VOLUME" ]
     },
     "PITCH" : {
+      // Pitch R11, R12 SEC-11, SEC-39
       "id" : "16",
       "testName" : "Manual test for TTS Pitch",
       "instruction" : "Change Pitch and Click Play to test",
@@ -775,6 +848,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ "PLAY", "PITCH" ]
     },
     "RATE" : {
+      // Rate R11, R12 SEC-11, SEC-39
       "id" : "17",
       "testName" : "Manual test for TTS Rate",
       "instruction" : "Change Rate and Click Play to test",
@@ -800,6 +874,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ "PLAY", "RATE" ]
     },
     "SYSTEM_VOLUME" : {
+      // System Volume R16 SEC-57, SEC-58
       "id" : "18",
       "testName" : "Manual test for System Volume",
       "instruction" : "Change System Volume and Click Play to test",
@@ -825,6 +900,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ "PLAY", "SYSTEM_VOLUME" ]
     },
     "MUTE" : {
+      // Mute/Unmute R19, R20, R21 SEC-56, SEC-58
       "id" : "19",
       "testName" : "Manual test for System Mute",
       "instruction" : "Click Mute and Click Play to test",
@@ -850,6 +926,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ "PLAY", "MUTE" ]
     },
     "UNMUTE" : {
+      // Mute/Unmute R19, R20, R21 SEC-56, SEC-58
       "id" : "20",
       "testName" : "Manual test for System Unmute",
       "instruction" : "Click Unmute and Click Play to test",
@@ -875,6 +952,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ "PLAY", "UNMUTE" ]
     },
     "VOICE" : {
+      // Voice Selection R11, R12 SEC-11, SEC-39
       "id" : "21",
       "testName" : "Manual test for TTS Voice Selection",
       "instruction" : "Change Voice Selection and Click Play to test",
