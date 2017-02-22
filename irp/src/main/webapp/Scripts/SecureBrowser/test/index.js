@@ -181,7 +181,6 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
               actualTestApiMethod = actualTestApiMethod + '()';
               apiManualData = eval(actualTestApiMethod);
               if (!Util.Validation.isMacAddressValid(apiManualData)) {
-                result = false;
                 details = 'Invalid MAC Address : ' + apiManualData;
               } else {
                 details = 'MAC Address : ' + apiManualData;
