@@ -15,15 +15,22 @@ var mobile = "mobile";
 var webspeech = "webspeech";
 var tts_section = 'TTS';
 var ttsmanual_section = 'TTS_MANUAL';
-var browsermanual_section = 'BROWSER_MANUAL';
+var capability_section = 'CAPABILITY_MANUAL';
 var irpApiSpecConstant = 'IRT.ApiSpecs';
 
 var specMessage = "message";
 var specTTSApi = "ttsapi";
 var specTTSManualApi = "ttsmanualapi";
 var specBrowserapi = "browserapi";
-var specBrowserManualApi = "browsermanualapi";
+var specCapabilityManualApi = "capabilityManualAPI";
 var specSeparator = ".";
+
+IRT.CapabilityTest = {
+  SET : 'SET',
+  GET : 'GET',
+  UNKNOWN : 'UNKNOWN' // unknown status
+};
+
 /**
  * Comments
  * 
@@ -38,7 +45,7 @@ IRT.ApiSpecs = {
     "testApi_exists" : "This deprecated API still exists",
     "errorDialog_TTS" : "Your browser does not support TTS, so manual testing will be skipped",
     "errorDialog_CAPABILITY" : "Your browser does not support GET/SET Capability, so manual testing will be skipped",
-    "disable_all" : [ "PLAY", "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
+    "tts_disable_all" : [ "PLAY", "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
         "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ]
   },
   "browserapi" : {
@@ -1002,9 +1009,59 @@ IRT.ApiSpecs = {
       "enableSection" : ""
     }
   },
-  "browsermanualapi" : {
-    "FAILED" : {
+  "capabilityManualAPI" : {
+    "SET" : {
       "id" : "1",
+      "testName" : "Manual test for Set Capability",
+      "instruction" : "Select Capability, Functionality and Click Set button",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you see capability changed in Property Grid Selection as per your selection,choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "Set Capability Test",
+      "buttonSliderId" : "setCapability",
+      "disableSection" : [ "getCapability" ],
+      "enableSection" : [ "setCapability", "enableCapability",
+          "disableCapability", "capabilityType" ]
+    },
+    "GET" : {
+      "id" : "1",
+      "testName" : "Manual test for Get Capability",
+      "instruction" : "Select Capability and Click Get button",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you see capability changed in Property Grid Selection as per your selection,choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "Get Capability Test",
+      "buttonSliderId" : "getCapability",
+      "disableSection" : [ "setCapability", "enableCapability",
+          "disableCapability", ],
+      "enableSection" : [ "getCapability", "capabilityType" ]
+    },
+    "FAILED" : {
+      "id" : "3",
       "testName" : "Get/Set Capability Manual Test",
       "instruction" : "",
       "testApi" : "",

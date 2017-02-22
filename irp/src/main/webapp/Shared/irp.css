@@ -41,6 +41,7 @@
     vertical-align : middle;
     display: table-cell;
     float: left;
+    width: 90%;
 }
 
 .divTableHeading {

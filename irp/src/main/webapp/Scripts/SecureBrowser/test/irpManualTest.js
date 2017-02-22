@@ -8,9 +8,10 @@
 /* Constant for each test is defined in tts.js under TTS.Test */
 var ttsSettingArray = Object.keys(TTS.Test);
 
-// Initial ttsSetting set to UNKNOWN as no test started
-var ttsSetting = TTS.Test.UNKNOWN;
+// Initial currentTestSetting set to UNKNOWN as no test started
+var currentTestSetting = "UNKNOWN";
 
+var capabilityTestArray = Object.keys(IRT.CapabilityTest);
 /*
  * Initial value for currentTestIndex set as 0 so as to load first test (Play)
  * index from ttsSettingArray
@@ -66,8 +67,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
   if (testName == 'CAPABILITY') {
     if (impl != null && !!impl.setCapability && !!impl.getCapability) {
-      var dialogWidth = '60%';
-      var dialogHeight = 500;
+      var dialogWidth = '70%';
+      var dialogHeight = 600;
       isManualTestSupported = true;
     } else {
       var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
@@ -92,6 +93,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       create : function(event, ui) {
         if (testName == 'TTS') {
           ttsComponentInitialize();
+        }
+        if (testName == 'CAPABILITY') {
+          capabilityComponentInitialize();
         }
       },
       buttons : [ {
@@ -196,7 +200,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
               null,
               false,
               'Error: Could not initialize Get/Set Capability Support for this browser',
-              browsermanual_section);
+              capability_section);
 
     }
   }
@@ -222,11 +226,35 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
 }
 
+function capabilityComponentInitialize() {
+
+  if (currentTestSetting == IRT.CapabilityTest.UNKNOWN) {
+
+    currentTestSetting = IRT.CapabilityTest.SET;
+
+  }
+
+  createSelectMenu($("#capabilityType"), 'CAPABILITY');
+  createRadioButton($("#enableCapability"));
+  createRadioButton($("#disableCapability"));
+  createButton($("#setCapability"), 'Set');
+  createButton($("#getCapability"), 'Get');
+
+  populateJsonGrid($("#capabilityTestGrid"), 'CAPABILITY', false);
+
+  populateJsonGrid($("#capabilityPropertyGrid"), 'PROPERTY', true);
+
+  populateReportGrid(capabilityTestArray, capability_section);
+
+  // $('input[name="getSetCapability"]:checked').val();
+  // $('#capabilityType').val()
+}
+
 function ttsComponentInitialize() {
 
-  if (ttsSetting == TTS.Test.UNKNOWN) {
+  if (currentTestSetting == TTS.Test.UNKNOWN) {
 
-    ttsSetting = TTS.Test.PLAY;
+    currentTestSetting = TTS.Test.PLAY;
 
   }
 
@@ -241,11 +269,12 @@ function ttsComponentInitialize() {
   createButton($("#stop"), 'Stop');
   createButton($("#systemMute"), 'Mute');
   createButton($("#systemUnMute"), 'Ummute');
+  createSelectMenu($("#voices"), 'TTS');
   loadVoices();
   disableTTSOptions();
   enableTTSOptions();
-  populateJsonGrid();
-  populateReportGridForTTS();
+  populateJsonGrid($("#ttsGrid"), 'TTS', false);
+  populateReportGrid(ttsSettingArray, ttsmanual_section);
 }
 
 function populateTTSResultIntoResultGrid(testName, gridId, linkId, dialogId) {
@@ -253,10 +282,17 @@ function populateTTSResultIntoResultGrid(testName, gridId, linkId, dialogId) {
   if (testName == 'TTS') {
     Util.Validation.mergeTTSResultIntoResult();
   }
+  if (testName == 'CAPABILITY') {
+    Util.Validation.mergeCapabilityResultIntoResult();
+  }
 
   gridId.jsGrid("refresh");
 
   linkId.css("display", "none");
+
+  currentTestSetting = 'UNKNOWN';
+
+  currentTestIndex = 0;
 
   dialogId.dialog("close");
 
@@ -302,9 +338,26 @@ function createSlider(id, textId, text, minValue, maxValue, sliderValue) {
 
 }
 
+function createSelectMenu(id, testName) {
+  id.selectmenu({
+    change : function(event, ui) {
+      if (testName == 'TTS') {
+        setVoice();
+      }
+    }
+  });
+}
+
+function createRadioButton(id) {
+  id.checkboxradio();
+}
+
 function createButton(id, text) {
 
-  id.button();
+  id.button({
+    label : text
+  });
+
   id.click(function(event) {
 
     if (text == 'Play') {
@@ -323,11 +376,26 @@ function createButton(id, text) {
       id.addClass("irp-custom-button-click");
       $("#play").focus();
       muteUnmuteSystem(false);
+    } else if (text == 'Set') {
+      setSystemCapability();
+    } else if (text == 'Get') {
+      getSystemCapability();
     }
 
     event.preventDefault();
   });
 
+}
+
+function setSystemCapability() {
+  setDialogHtml(specCapabilityManualApi);
+  loadTestDialogConfirm($('#capabilityTestGrid'), 'CAPABILITY',
+      specCapabilityManualApi)
+  alert('Set Capability Code');
+}
+
+function getSystemCapability() {
+  alert('Get Capability Code');
 }
 
 function loadVoices() {
@@ -365,7 +433,7 @@ function loadVoices() {
 }
 
 function setVoice() {
-  // ttsSetting = TTS.Test.VOICE;
+  // currentTestSetting = TTS.Test.VOICE;
   ttsImpl.setVoice($("#voices").val());
 }
 
@@ -375,15 +443,15 @@ function ttsPlay() {
   ttsImpl.stop();
   ttsImpl.play(text);
 
-  if (ttsSetting == TTS.Test.PLAY) {
+  if (currentTestSetting == TTS.Test.PLAY) {
 
-    setDialogHtml();
+    setDialogHtml(specTTSManualApi);
 
-    loadTTSDialogConfirm();
+    loadTestDialogConfirm($("#ttsGrid"), 'TTS', specTTSManualApi);
   } else if (ttsOptionsEnabled) {
-    setDialogHtml();
+    setDialogHtml(specTTSManualApi);
 
-    loadTTSDialogConfirm();
+    loadTestDialogConfirm($("#ttsGrid"), 'TTS', specTTSManualApi);
   }
 }
 
@@ -391,41 +459,41 @@ function ttsPause() {
 
   ttsImpl.pause();
 
-  if (ttsSetting == TTS.Test.PAUSE) {
+  if (currentTestSetting == TTS.Test.PAUSE) {
 
-    setDialogHtml();
+    setDialogHtml(specTTSManualApi);
 
-    loadTTSDialogConfirm();
+    loadTestDialogConfirm($("#ttsGrid"), 'TTS', specTTSManualApi);
   }
 
 }
 
 function ttsResume() {
 
-  // ttsSetting = TTS.Test.RESUME;
+  // currentTestSetting = TTS.Test.RESUME;
 
-  setDialogHtml();
+  setDialogHtml(specTTSManualApi);
 
   ttsImpl.resume();
 
-  loadTTSDialogConfirm();
+  loadTestDialogConfirm($("#ttsGrid"), 'TTS', specTTSManualApi);
 
 }
 
 function ttsStop() {
 
-  // ttsSetting = TTS.Test.STOP;
+  // currentTestSetting = TTS.Test.STOP;
 
-  setDialogHtml();
+  setDialogHtml(specTTSManualApi);
 
   ttsImpl.stop();
 
-  loadTTSDialogConfirm();
+  loadTestDialogConfirm($("#ttsGrid"), 'TTS', specTTSManualApi);
 
 }
 
 function setTTSVolume(level) {
-  // ttsSetting = TTS.Test.VOLUME;
+  // currentTestSetting = TTS.Test.VOLUME;
 
   if (ttsImpl.supportsVolumeControl()) {
     ttsImpl.setVolume(level);
@@ -433,7 +501,7 @@ function setTTSVolume(level) {
 }
 
 function setTTSPitch(level) {
-  // ttsSetting = TTS.Test.PITCH;
+  // currentTestSetting = TTS.Test.PITCH;
 
   if (ttsImpl.supportsPitchControl()) {
     ttsImpl.setPitch(level);
@@ -441,14 +509,14 @@ function setTTSPitch(level) {
 }
 
 function setTTSRate(level) {
-  // ttsSetting = TTS.Test.RATE;
+  // currentTestSetting = TTS.Test.RATE;
   if (ttsImpl.supportsRateControl()) {
     ttsImpl.setRate(level);
   }
 }
 
 function setSystemVolume(level) {
-  // ttsSetting = TTS.Test.SYSTEM_VOLUME;
+  // currentTestSetting = TTS.Test.SYSTEM_VOLUME;
   if (!!ttsImpl.setSystemVolume) {
     ttsImpl.setSystemVolume(level);
   }
@@ -476,81 +544,123 @@ function setMuteUnMuteButtonText() {
   }
 }
 
-function populateJsonGrid() {
+function populateJsonGrid(id, testName, hideResult) {
 
-  /**
-   * Loading first test to test TTS Speak.
-   */
-  var ttsGridArray = [];
+  var gridArray = [];
+  var testNameTitle = 'Test Name';
+  var resultColumnCss = "";
+  var valueColumnCss = "";
+  if (testName == 'TTS') {
+    /**
+     * Loading first test to test TTS Speak.
+     */
+    var ttsGridArray = [];
 
-  var playObj = eval(irpApiSpecConstant + specSeparator + specTTSManualApi
-      + specSeparator + ttsSetting);
-  playObj.testResult = null;
-  ttsGridArray.push(playObj);
+    var playObj = eval(irpApiSpecConstant + specSeparator + specTTSManualApi
+        + specSeparator + currentTestSetting);
+    playObj.testResult = null;
+    ttsGridArray.push(playObj);
 
-  $("#ttsGrid")
-      .jsGrid(
-          {
-            width : "100%",
-            data : ttsGridArray,
-            selecting : false,
+    gridArray = ttsGridArray.slice();
+  }
 
-            fields : [
-                {
-                  title : "Test Name",
-                  name : "instruction",
-                  type : "text",
-                  width : 150
-                },
-                {
-                  title : "Result",
-                  name : "testResult",
-                  type : "text",
-                  width : 30,
-                  align : "center",
+  if (testName == 'CAPABILITY') {
 
-                  itemTemplate : function(value) {
-                    if (value == null) {
-                      return "";
-                    } else if (value) {
-                      return '<img alt="passed" src="../../../Shared/images/passed.jpg" height="30px" width="40px">';
-                    } else {
-                      return '<img alt="failed" src="../../../Shared/images/failed.jpg" height="30px" width="40px">';
-                    }
+    var capabilityGridArray = [];
 
-                  }
+    var setObj = eval(irpApiSpecConstant + specSeparator
+        + specCapabilityManualApi + specSeparator + currentTestSetting);
+    setObj.testResult = null;
+    capabilityGridArray.push(setObj);
+    gridArray = capabilityGridArray.slice();
 
+  }
+  if (testName == 'PROPERTY') {
+
+    /*
+     * ttsTestArray.push({ "testName" : "", "testResult" : ""
+     * 
+     * });
+     */
+
+  }
+
+  if (hideResult) {
+    testNameTitle = 'Capability'
+    resultColumnCss = 'irp-grid-column-hide';
+  } else {
+    valueColumnCss = 'irp-grid-column-hide';
+  }
+
+  id
+      .jsGrid({
+        width : "100%",
+        data : gridArray,
+        selecting : false,
+
+        fields : [
+            {
+              title : testNameTitle,
+              name : "instruction",
+              type : "text",
+              width : 150
+            },
+            {
+              title : "Result",
+              name : "testResult",
+              type : "text",
+              width : 30,
+              align : "center",
+              css : resultColumnCss,
+              itemTemplate : function(value) {
+                if (value == null) {
+                  return "";
+                } else if (value) {
+                  return '<img alt="passed" src="../../../Shared/images/passed.jpg" height="30px" width="40px">';
+                } else {
+                  return '<img alt="failed" src="../../../Shared/images/failed.jpg" height="30px" width="40px">';
                 }
 
-            ]
-          });
+              }
+
+            }, {
+              title : "Functionality",
+              name : "testResult",
+              type : "text",
+              width : 50,
+              css : valueColumnCss
+            },
+
+        ]
+      });
 }
 
-function getTTSTestGridItem(gridIndex) {
+function getTTSTestGridItem(manualGridId, gridIndex) {
 
-  return $("#ttsGrid").data("JSGrid").data[gridIndex];
+  return manualGridId.data("JSGrid").data[gridIndex];
 
 }
 
-function loadTTSDialogConfirm() {
+function loadTestDialogConfirm(manualGridId, testName, currentManualApi) {
 
   $("#dialog-confirm").dialog(
       {
         resizable : false,
         height : "auto",
-        title : eval(irpApiSpecConstant + specSeparator + specTTSManualApi
-            + specSeparator + ttsSetting + specSeparator + "dialogTitle"),
+        title : eval(irpApiSpecConstant + specSeparator + currentManualApi
+            + specSeparator + currentTestSetting + specSeparator
+            + "dialogTitle"),
         width : 400,
         modal : true,
         buttons : [ {
           text : "Yes",
           click : function() {
-            closeConfirmBox(true);
+            closeConfirmBox(manualGridId, testName, currentManualApi, true);
           }
         }, {
           text : "No",
           click : function() {
-            closeConfirmBox(false);
+            closeConfirmBox(manualGridId, testName, currentManualApi, false);
           }
         }, {
           text : "Retry",
@@ -561,38 +671,47 @@ function loadTTSDialogConfirm() {
       });
 }
 
-function closeConfirmBox(result) {
+function closeConfirmBox(manualGridId, testName, currentManualApi, result) {
 
   $("#dialog-confirm").dialog("close");
+  var manualResultArray = null;
+  var testingArray = null;
+  if (testName == 'TTS') {
+    manualResultArray = Util.Validation.getTTSManualResult();
+    testingArray = ttsSettingArray.slice();
+  } else if (testName == 'CAPABILITY') {
+    manualResultArray = Util.Validation.getCapabilityManualResult();
+    testingArray = capabilityTestArray.slice();
 
-  if (ttsSetting == ttsSettingArray[currentTestIndex]) {
-    $("#ttsGrid").jsGrid("updateItem", getTTSTestGridItem(currentTestIndex),
-        Util.Validation.setTTSItemDetail(ttsSetting, result));
+  }
+  if (currentTestSetting == testingArray[currentTestIndex]) {
+    manualGridId.jsGrid("updateItem", getTTSTestGridItem(manualGridId,
+        currentTestIndex), Util.Validation.setTTSItemDetail(currentTestSetting,
+        currentManualApi, result));
 
-    Util.Validation.getTTSManualResult()[currentTestIndex].testResult = result;
-    Util.Validation.getTTSManualResult()[currentTestIndex].details = '';
+    manualResultArray[currentTestIndex].testResult = result;
+    manualResultArray[currentTestIndex].details = '';
 
     if (result === true) {
-      Util.Validation.getTTSManualResult()[currentTestIndex].testPoints = eval(irpApiSpecConstant
-          + specSeparator
-          + specTTSManualApi
-          + specSeparator
-          + ttsSettingArray[currentTestIndex] + specSeparator + "points");
+      manualResultArray[currentTestIndex].testPoints = eval(irpApiSpecConstant
+          + specSeparator + currentManualApi + specSeparator
+          + testingArray[currentTestIndex] + specSeparator + "points");
 
     }
 
-    loadNextTTSTest();
+    loadNextManualTest(manualGridId, testName, currentManualApi, testingArray);
   }
 
 }
 
-function loadNextTTSTest() {
+function loadNextManualTest(manualGridId, testName, currentManualApi,
+    testingArray) {
   currentTestIndex = currentTestIndex + 1;
-  if (currentTestIndex < ttsSettingArray.length - 1) {
-    ttsSetting = ttsSettingArray[currentTestIndex];
+  if (currentTestIndex < testingArray.length - 1) {
+    currentTestSetting = testingArray[currentTestIndex];
 
-    $("#ttsGrid").jsGrid("insertItem",
-        Util.Validation.setTTSItemDetail(ttsSetting, null));
+    manualGridId.jsGrid("insertItem", Util.Validation.setTTSItemDetail(
+        currentTestSetting, currentManualApi, null));
 
     disableTTSOptions();
     enableTTSOptions();
@@ -608,11 +727,11 @@ function changeDialogBoxButtonText(id, buttonText) {
   id.dialog("option", "buttons", buttons);
 }
 
-function setDialogHtml() {
+function setDialogHtml(currentManualApi) {
 
   $("#dialog-confirm").html(
-      eval(irpApiSpecConstant + specSeparator + specTTSManualApi
-          + specSeparator + ttsSetting + specSeparator + "dialogHtml"));
+      eval(irpApiSpecConstant + specSeparator + currentManualApi
+          + specSeparator + currentTestSetting + specSeparator + "dialogHtml"));
 
 }
 
@@ -620,14 +739,14 @@ function disableTTSOptions() {
 
   var disableIds = null;
   disableIds = eval(irpApiSpecConstant + specSeparator + specTTSManualApi
-      + specSeparator + ttsSetting + specSeparator + "disableSection");
+      + specSeparator + currentTestSetting + specSeparator + "disableSection");
 
   /**
    * Disabling all option once all test are completed currently we have 11 test
    */
   if (currentTestIndex == ttsSettingArray.length - 1) {
     disableIds = eval(irpApiSpecConstant + specSeparator + specMessage
-        + specSeparator + "disable_all");
+        + specSeparator + "tts_disable_all");
   }
 
   /* var disableArray = disableIds.split(","); */
@@ -645,7 +764,7 @@ function disableTTSOptions() {
       $('#' + buttonSliderId).slider("disable");
       $('#' + buttonSliderId).slider("option", "value", 10);
     } else {
-      document.getElementById(buttonSliderId).disabled = true;
+      $('#' + buttonSliderId).selectmenu("disable");
     }
 
   });
@@ -653,7 +772,7 @@ function disableTTSOptions() {
 
 function enableTTSOptions() {
   var enableIds = eval(irpApiSpecConstant + specSeparator + specTTSManualApi
-      + specSeparator + ttsSetting + specSeparator + "enableSection");
+      + specSeparator + currentTestSetting + specSeparator + "enableSection");
 
   /* var enableArray = enableIds.split(","); */
 
@@ -675,19 +794,19 @@ function enableTTSOptions() {
        */
       $("#ttsOptions").show();
     } else {
-      document.getElementById(buttonSliderId).disabled = false;
+      $('#' + buttonSliderId).selectmenu("enable");
     }
 
   });
 }
 
-function populateReportGridForTTS() {
+function populateReportGrid(sectionArray, section) {
 
-  ttsSettingArray.forEach(function(item, index, array) {
+  sectionArray.forEach(function(item, index, array) {
     if (item != TTS.Test.UNKNOWN) {
 
       Util.Validation.setIRPTestResults(item, null, false,
-          'Test not performed', ttsmanual_section);
+          'Test not performed', section);
     }
 
   });

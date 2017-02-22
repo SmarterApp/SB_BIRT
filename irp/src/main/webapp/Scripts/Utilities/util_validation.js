@@ -14,6 +14,8 @@
 
   var ttsManualTestArray = [];
 
+  var capabilityTestArray = [];
+
   var MACREGEX = new RegExp(
       "^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$");
 
@@ -52,8 +54,8 @@
     } else if (section == 'TTS_MANUAL') {
       apiSpec = irpApiSpecConstant + specSeparator + specTTSManualApi
           + specSeparator + testName;
-    } else if (section == 'BROWSER_MANUAL') {
-      apiSpec = irpApiSpecConstant + specSeparator + specBrowserManualApi
+    } else if (section == 'CAPABILITY_MANUAL') {
+      apiSpec = irpApiSpecConstant + specSeparator + specCapabilityManualApi
           + specSeparator + testName;
     } else {
       apiSpec = irpApiSpecConstant + specSeparator + specBrowserapi
@@ -88,17 +90,21 @@
     } else if (section == 'TTS_MANUAL') {
       apiSpecObject.testResult = null;
       ttsManualTestArray.push(apiSpecObject);
+    } else if (section == 'CAPABILITY_MANUAL') {
+      apiSpecObject.testResult = null;
+      capabilityTestArray.push(apiSpecObject);
     } else {
       resultArray.push(apiSpecObject);
     }
 
   };
 
-  Validation.setTTSItemDetail = function(currentTTSTest, result) {
+  Validation.setTTSItemDetail = function(currentTTSTest, currentManualApi,
+      result) {
 
     var itemDetail = {};
 
-    var specObj = eval(irpApiSpecConstant + specSeparator + specTTSManualApi
+    var specObj = eval(irpApiSpecConstant + specSeparator + currentManualApi
         + specSeparator + currentTTSTest);
     specObj.testResult = result;
 
@@ -118,6 +124,22 @@
       ttsTestArray.push(element);
     });
 
+  };
+
+  Validation.mergeCapabilityResultIntoResult = function() {
+
+    capabilityTestArray.forEach(function(element) {
+
+      if (element.testResult == null) {
+        element.testResult = false;
+      }
+      resultArray.push(element);
+    });
+
+  };
+
+  Validation.getCapabilityManualResult = function() {
+    return capabilityTestArray;
   };
 
   Validation.getTTSManualResult = function() {
