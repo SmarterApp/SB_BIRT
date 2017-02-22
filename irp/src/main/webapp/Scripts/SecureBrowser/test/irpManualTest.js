@@ -24,6 +24,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   var buttonDisable = false;
   var buttonText = "Skip Test";
   var isManualTestSupported = false;
+  var dialogWidth = '90%';
+  var dialogHeight = 800;
   if (testName == 'TTS') {
     if (ttsImpl != null
         && !TTS.Manager._serviceFuncExists('isTTSAPINotSupported')) {
@@ -63,14 +65,24 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   }
 
   if (testName == 'CAPABILITY') {
-    isManualTestSupported = true;
+    if (impl != null && !!impl.setCapability && !!impl.getCapability) {
+      var dialogWidth = '60%';
+      var dialogHeight = 500;
+      isManualTestSupported = true;
+    } else {
+      var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
+          + specSeparator + "errorDialog_" + testName);
+      id
+          .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
+              + textMessage + '</p>');
+    }
   }
 
   if (isManualTestSupported) {
     id.dialog({
       autoOpen : false,
-      width : '90%',
-      height : 800,
+      width : dialogWidth,
+      height : dialogHeight,
       title : testTitle,
       position : {
         my : "center",
@@ -88,7 +100,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         text : buttonText,
         click : function() {
           if (testName == 'TTS') {
-            populateTTSResultIntoResultGrid();
+            populateTTSResultIntoResultGrid(testName, $("#jsTTSGrid"),
+                $("#ttsManualTest"), id);
           }
           if (testName == 'HTML5') {
             populateReportGridForExternalTest($("#jsHTML5TestGrid"),
@@ -101,7 +114,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
           }
           if (testName == 'CAPABILITY') {
-            $(this).dialog('close');
+            populateTTSResultIntoResultGrid(testName, $("#jsGrid"),
+                $("#browserApiManualTest"), id);
           }
         }
       } ]
@@ -117,7 +131,11 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         text : "OK",
         click : function() {
           if (testName == 'TTS') {
-            populateTTSResultIntoResultGrid();
+            populateTTSResultIntoResultGrid(testName, $("#jsTTSGrid"),
+                $("#ttsManualTest"), id);
+          } else if (testName == 'CAPABILITY') {
+            populateTTSResultIntoResultGrid(testName, $("#jsGrid"),
+                $("#browserApiManualTest"), id);
           }
         }
       } ]
@@ -172,9 +190,13 @@ function loadDialogBox(id, testName, testTitle, isNew) {
     } else {
       id.dialog("open");
 
-      Util.Validation.setIRPTestResults('FAILED', null, false,
-          'Error: Could not initialize TTS Support for this browser',
-          ttsmanual_section);
+      Util.Validation
+          .setIRPTestResults(
+              'FAILED',
+              null,
+              false,
+              'Error: Could not initialize Get/Set Capability Support for this browser',
+              browsermanual_section);
 
     }
   }
@@ -226,17 +248,17 @@ function ttsComponentInitialize() {
   populateReportGridForTTS();
 }
 
-function populateTTSResultIntoResultGrid() {
+function populateTTSResultIntoResultGrid(testName, gridId, linkId, dialogId) {
 
-  Util.Validation.mergeTTSResultIntoResult();
+  if (testName == 'TTS') {
+    Util.Validation.mergeTTSResultIntoResult();
+  }
 
-  $("#jsTTSGrid").jsGrid("refresh");
+  gridId.jsGrid("refresh");
 
-  /* alert('textToSpeechAPI ' + Util.Validation.getTTSResultScore()); */
+  linkId.css("display", "none");
 
-  $("#ttsManualTest").css("display", "none");
-
-  $("#dialogTTS").dialog("close");
+  dialogId.dialog("close");
 
 }
 

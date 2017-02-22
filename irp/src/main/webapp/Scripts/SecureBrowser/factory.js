@@ -36,8 +36,6 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         sbImpl = new TDS.SecureBrowser.Firefox();
         browserType = securebrowser;
       }
-    } else if (Util.Browser.isChrome()) {
-      sbImpl = new TDS.SecureBrowser.Base();
     }
 
     // set default?

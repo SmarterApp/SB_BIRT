@@ -41,10 +41,12 @@
       onClosingEvent = onClosingEventHandler.bind(this);
       browser.addEventListener("onclosing", onClosingEvent);
 
-      if (typeof browser.security.setCapability === 'function') {
-        browser.security.setCapability('screenCapture', false);
-        browser.security.setCapability('printing', false);
-      }
+      /*
+       * if (typeof browser.security.setCapability === 'function') {
+       * browser.security.setCapability('screenCapture', false);
+       * browser.security.setCapability('printing', false); }
+       */
+
     }
   };
 

@@ -15,12 +15,14 @@ var mobile = "mobile";
 var webspeech = "webspeech";
 var tts_section = 'TTS';
 var ttsmanual_section = 'TTS_MANUAL';
+var browsermanual_section = 'BROWSER_MANUAL';
 var irpApiSpecConstant = 'IRT.ApiSpecs';
 
 var specMessage = "message";
 var specTTSApi = "ttsapi";
 var specTTSManualApi = "ttsmanualapi";
 var specBrowserapi = "browserapi";
+var specBrowserManualApi = "browsermanualapi";
 var specSeparator = ".";
 /**
  * Comments
@@ -30,6 +32,7 @@ IRT.ApiSpecs = {
     "testApi_removed" : "As per specification, this API has been removed",
     "testApi_exists" : "This deprecated API still exists",
     "errorDialog_TTS" : "Your browser does not support TTS, so manual testing will be skipped",
+    "errorDialog_CAPABILITY" : "Your browser does not support GET/SET Capability, so manual testing will be skipped",
     "disable_all" : [ "PLAY", "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
         "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ]
   },
@@ -899,6 +902,32 @@ IRT.ApiSpecs = {
     "FAILED" : {
       "id" : "22",
       "testName" : "TTS Manual Test",
+      "instruction" : "",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "",
+      "dialogTitle" : "",
+      "buttonSliderId" : "",
+      "disableSection" : "",
+      "enableSection" : ""
+    }
+  },
+  "browsermanualapi" : {
+    "FAILED" : {
+      "id" : "1",
+      "testName" : "Get/Set Capability Manual Test",
       "instruction" : "",
       "testApi" : "",
       "testResult" : false,

@@ -52,6 +52,9 @@
     } else if (section == 'TTS_MANUAL') {
       apiSpec = irpApiSpecConstant + specSeparator + specTTSManualApi
           + specSeparator + testName;
+    } else if (section == 'BROWSER_MANUAL') {
+      apiSpec = irpApiSpecConstant + specSeparator + specBrowserManualApi
+          + specSeparator + testName;
     } else {
       apiSpec = irpApiSpecConstant + specSeparator + specBrowserapi
           + specSeparator + testName;
