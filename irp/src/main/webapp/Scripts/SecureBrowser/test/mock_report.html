@@ -30,7 +30,7 @@
     
   <script type="text/javascript"
   src="mock_report.js"></script>
-<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="populateGrid.js"></script>
 
 <script type="text/javascript">
 
@@ -39,9 +39,13 @@
     var reportJson = IRT_REPORT;
     
     var reportGridKeys = Object.keys(reportJson);
+    var extReport = false;
     reportGridKeys.forEach(function(item, index, array) {
+      extReport = eval ('reportJson.externalReportConfig.' + item);
       
-      populateResults($("#" + item), eval ('reportJson.' + item), false);
+      if(item != "externalReportConfig"){
+        populateResults($("#" + item), eval ('reportJson.' + item), extReport);
+      }
       
     });
     

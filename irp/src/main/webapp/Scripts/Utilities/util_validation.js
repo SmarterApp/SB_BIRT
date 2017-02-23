@@ -146,6 +146,12 @@
 
     var itemDetail = {};
     $.extend(itemDetail, {
+      "externalReportConfig" : {
+        "jsGrid" : false,
+        "jsTTSGrid" : false,
+        "jsHTML5TestGrid" : true,
+        "jsCSS3TestGrid" : true
+      },
       "jsGrid" : resultArray,
       "jsTTSGrid" : ttsTestArray,
       "jsHTML5TestGrid" : html5TestArray,
