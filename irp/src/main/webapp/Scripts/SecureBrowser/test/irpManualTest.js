@@ -929,9 +929,6 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
       populateResults(gridId, iframeObj.contentWindow.html5TestArray, true);
 
       headerId.html(iframeObj.contentWindow.htmlScoreHTML);
-      dialogId.dialog("close");
-      testId.css("display", "none");
-      headerId.focus();
     }
   }
 
@@ -943,12 +940,13 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
 
       headerId.html(iframeObj.contentWindow.css3ScoreHTML);
 
-      dialogId.dialog("close");
-      testId.css("display", "none");
-      headerId.focus();
     }
   }
-
+  dialogId.dialog("close");
+  testId.css("display", "none");
+  $('html, body').animate({
+    'scrollTop' : headerId.position().top
+  });
 }
 
 function enableDisableSaveResultButton(testName, id) {
