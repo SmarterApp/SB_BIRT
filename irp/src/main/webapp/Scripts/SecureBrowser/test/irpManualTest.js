@@ -97,7 +97,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       close : function(event, ui) {
         currentTestSetting = 'UNKNOWN';
         currentTestIndex = 0;
-        id.dialog("destroy");
+        if (testName != 'HTML5' && testName != 'CSS3') {
+          id.dialog("destroy");
+        }
       },
       create : function(event, ui) {
         if (testName == 'TTS') {
@@ -113,7 +115,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         text : buttonText,
         click : function() {
           if (testName == 'TTS') {
-            populateTTSResultIntoResultGrid(testName, $("#jsTTSGrid"),
+            populateManualResultIntoResultGrid(testName, $("#jsTTSGrid"),
                 $("#ttsManualTest"), id);
           }
           if (testName == 'HTML5') {
@@ -127,7 +129,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
           }
           if (testName == 'CAPABILITY') {
-            populateTTSResultIntoResultGrid(testName, $("#jsGrid"),
+            populateManualResultIntoResultGrid(testName, $("#jsGrid"),
                 $("#browserApiManualTest"), id);
           }
         }
@@ -144,10 +146,10 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         text : "OK",
         click : function() {
           if (testName == 'TTS') {
-            populateTTSResultIntoResultGrid(testName, $("#jsTTSGrid"),
+            populateManualResultIntoResultGrid(testName, $("#jsTTSGrid"),
                 $("#ttsManualTest"), id);
           } else if (testName == 'CAPABILITY') {
-            populateTTSResultIntoResultGrid(testName, $("#jsGrid"),
+            populateManualResultIntoResultGrid(testName, $("#jsGrid"),
                 $("#browserApiManualTest"), id);
           }
         }
@@ -258,8 +260,6 @@ function capabilityComponentInitialize() {
 
   populateReportGrid(capabilityTestArray, capability_section);
 
-  // $('input[name="getSetCapability"]:checked').val();
-  // $('#capabilityType').val()
 }
 
 function ttsComponentInitialize() {
@@ -289,7 +289,7 @@ function ttsComponentInitialize() {
   populateReportGrid(ttsSettingArray, ttsmanual_section);
 }
 
-function populateTTSResultIntoResultGrid(testName, gridId, linkId, dialogId) {
+function populateManualResultIntoResultGrid(testName, gridId, linkId, dialogId) {
 
   if (testName == 'TTS') {
     Util.Validation.mergeTTSResultIntoResult();

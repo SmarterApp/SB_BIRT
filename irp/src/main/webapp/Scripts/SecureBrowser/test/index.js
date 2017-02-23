@@ -162,18 +162,6 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
 
           });
 
-          /*
-           * if (irpSpecApiType == "object") { if (typeof
-           * eval(actualTestApiMethod) === 'object') { result = true; } else {
-           * details = actualTestApiMethod + ' is not defined'; } } else { if
-           * (irpSpecApiType == "boolean,function") { if
-           * (!!eval(actualTestApiMethod) || typeof eval(actualTestApiMethod)
-           * === 'boolean') { result = true; } } else if (irpSpecApiType ==
-           * "boolean") { if (typeof eval(actualTestApiMethod) === 'boolean') {
-           * result = true; } } else { if (!!eval(actualTestApiMethod)) { result =
-           * true; } } }
-           */
-
           if (irpSpecManualData !== undefined && irpSpecManualData) {
 
             var apiManualData = "";
