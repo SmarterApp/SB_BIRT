@@ -258,7 +258,9 @@ function capabilityComponentInitialize() {
 
   populateJsonGrid($("#capabilityPropertyGrid"), 'PROPERTY', true);
 
-  populateReportGrid(capabilityTestArray, capability_section);
+  if (Util.Validation.getCapabilityManualResult().length == 0) {
+    populateReportGrid(capabilityTestArray, capability_section);
+  }
 
 }
 
@@ -286,7 +288,9 @@ function ttsComponentInitialize() {
   disableUIOptions('TTS', specTTSManualApi, ttsSettingArray);
   enableUIOptions('TTS', specTTSManualApi, ttsSettingArray);
   populateJsonGrid($("#ttsGrid"), 'TTS', false);
-  populateReportGrid(ttsSettingArray, ttsmanual_section);
+  if (Util.Validation.getTTSManualResult().length == 0) {
+    populateReportGrid(ttsSettingArray, ttsmanual_section);
+  }
 }
 
 function populateManualResultIntoResultGrid(testName, gridId, linkId, dialogId) {
