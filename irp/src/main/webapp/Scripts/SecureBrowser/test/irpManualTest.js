@@ -94,6 +94,11 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         at : "center",
         of : window
       },
+      close : function(event, ui) {
+        currentTestSetting = 'UNKNOWN';
+        currentTestIndex = 0;
+        id.dialog("destroy");
+      },
       create : function(event, ui) {
         if (testName == 'TTS') {
           ttsComponentInitialize();
