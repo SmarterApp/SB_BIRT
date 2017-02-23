@@ -12,6 +12,8 @@ var ttsSettingArray = Object.keys(TTS.Test);
 var currentTestSetting = "UNKNOWN";
 
 var capabilityTestArray = Object.keys(IRT.CapabilityTest);
+
+var propertyArray = Object.keys(IRT.CAPABILITY_PROPERTY);
 /*
  * Initial value for currentTestIndex set as 0 so as to load first test (Play)
  * index from ttsSettingArray
@@ -19,6 +21,8 @@ var capabilityTestArray = Object.keys(IRT.CapabilityTest);
 var currentTestIndex = 0;
 
 var ttsOptionsEnabled = false;
+
+var selectedCapability = {};
 
 function loadDialogBox(id, testName, testTitle, isNew) {
 
@@ -239,6 +243,9 @@ function capabilityComponentInitialize() {
   createRadioButton($("#disableCapability"));
   createButton($("#setCapability"), 'Set');
   createButton($("#getCapability"), 'Get');
+  loadCapabilities();
+  disableUIOptions('CAPABILITY', specCapabilityManualApi, capabilityTestArray);
+  enableUIOptions('CAPABILITY', specCapabilityManualApi, capabilityTestArray);
 
   populateJsonGrid($("#capabilityTestGrid"), 'CAPABILITY', false);
 
@@ -271,8 +278,8 @@ function ttsComponentInitialize() {
   createButton($("#systemUnMute"), 'Ummute');
   createSelectMenu($("#voices"), 'TTS');
   loadVoices();
-  disableTTSOptions();
-  enableTTSOptions();
+  disableUIOptions('TTS', specTTSManualApi, ttsSettingArray);
+  enableUIOptions('TTS', specTTSManualApi, ttsSettingArray);
   populateJsonGrid($("#ttsGrid"), 'TTS', false);
   populateReportGrid(ttsSettingArray, ttsmanual_section);
 }
@@ -340,9 +347,12 @@ function createSlider(id, textId, text, minValue, maxValue, sliderValue) {
 
 function createSelectMenu(id, testName) {
   id.selectmenu({
-    change : function(event, ui) {
+    select : function(event, ui) {
       if (testName == 'TTS') {
         setVoice();
+      }
+      if (testName == 'CAPABILITY') {
+        setSelectedCapability(ui.item.label, ui.item.value, ui.item.index);
       }
     }
   });
@@ -387,15 +397,74 @@ function createButton(id, text) {
 
 }
 
+function setSelectedCapability(label, value, index) {
+  selectedCapability = {};
+  $.extend(selectedCapability, {
+    "label" : label,
+    "value" : value,
+    "index" : index
+  });
+
+}
+
+function udpateCapabilityStatusGrid() {
+  var testResult = impl.getCapability(selectedCapability.value);
+
+  var itemDetail = {};
+  $.extend(itemDetail, {
+    "instruction" : selectedCapability.label + " [ " + selectedCapability.value
+        + " ] ",
+    "testResult" : testResult.toString()
+  });
+
+  $("#capabilityPropertyGrid")
+      .jsGrid(
+          "updateItem",
+          getTTSTestGridItem($("#capabilityPropertyGrid"),
+              selectedCapability.index), itemDetail);
+
+}
+
 function setSystemCapability() {
-  setDialogHtml(specCapabilityManualApi);
-  loadTestDialogConfirm($('#capabilityTestGrid'), 'CAPABILITY',
-      specCapabilityManualApi)
-  alert('Set Capability Code');
+
+  var capabilityType = $('#capabilityType').val();
+  var functionality = $('input[name="getSetCapability"]:checked').val();
+
+  if (capabilityType != null && capabilityType != undefined
+      && functionality != null && functionality != undefined) {
+    impl.setCapability(capabilityType, (functionality == 'true'));
+    udpateCapabilityStatusGrid();
+    setDialogHtml(specCapabilityManualApi);
+    loadTestDialogConfirm($('#capabilityTestGrid'), 'CAPABILITY',
+        specCapabilityManualApi);
+  }
+
 }
 
 function getSystemCapability() {
-  alert('Get Capability Code');
+
+  var capabilityType = $('#capabilityType').val();
+
+  if (capabilityType != null && capabilityType != undefined) {
+    udpateCapabilityStatusGrid();
+    setDialogHtml(specCapabilityManualApi);
+    loadTestDialogConfirm($("#capabilityTestGrid"), 'CAPABILITY',
+        specCapabilityManualApi);
+  }
+
+}
+
+function loadCapabilities() {
+  var selectList = document.getElementById("capabilityType");
+  propertyArray.forEach(function(item, index, array) {
+
+    var capabilityType = eval('IRT.CAPABILITY_PROPERTY.' + item);
+    var opt = document.createElement("option");
+    opt.value = capabilityType;
+    opt.text = item;
+    selectList.options.add(opt);
+
+  });
 }
 
 function loadVoices() {
@@ -576,13 +645,7 @@ function populateJsonGrid(id, testName, hideResult) {
 
   }
   if (testName == 'PROPERTY') {
-
-    /*
-     * ttsTestArray.push({ "testName" : "", "testResult" : ""
-     * 
-     * });
-     */
-
+    gridArray = populatePropertyGrid().slice();
   }
 
   if (hideResult) {
@@ -624,7 +687,7 @@ function populateJsonGrid(id, testName, hideResult) {
               }
 
             }, {
-              title : "Functionality",
+              title : "Status",
               name : "testResult",
               type : "text",
               width : 50,
@@ -713,11 +776,11 @@ function loadNextManualTest(manualGridId, testName, currentManualApi,
     manualGridId.jsGrid("insertItem", Util.Validation.setTTSItemDetail(
         currentTestSetting, currentManualApi, null));
 
-    disableTTSOptions();
-    enableTTSOptions();
+    disableUIOptions(testName, currentManualApi, testingArray);
+    enableUIOptions(testName, currentManualApi, testingArray);
   } else {
-    changeDialogBoxButtonText($('#dialogTTS'), 'Done');
-    disableTTSOptions();
+    changeDialogBoxButtonText($('#dialog' + testName), 'Done');
+    disableUIOptions(testName, currentManualApi, testingArray);
   }
 }
 
@@ -735,29 +798,35 @@ function setDialogHtml(currentManualApi) {
 
 }
 
-function disableTTSOptions() {
+function disableUIOptions(testName, currentManualApi, testingArray) {
 
   var disableIds = null;
-  disableIds = eval(irpApiSpecConstant + specSeparator + specTTSManualApi
+  disableIds = eval(irpApiSpecConstant + specSeparator + currentManualApi
       + specSeparator + currentTestSetting + specSeparator + "disableSection");
 
   /**
    * Disabling all option once all test are completed currently we have 11 test
    */
-  if (currentTestIndex == ttsSettingArray.length - 1) {
+  if (currentTestIndex == testingArray.length - 1) {
     disableIds = eval(irpApiSpecConstant + specSeparator + specMessage
-        + specSeparator + "tts_disable_all");
+        + specSeparator + testName + "_disable_all");
   }
 
   /* var disableArray = disableIds.split(","); */
 
   disableIds.forEach(function(item, index, array) {
 
-    var buttonSliderId = eval(irpApiSpecConstant + specSeparator
-        + specTTSManualApi + specSeparator + item + specSeparator
-        + "buttonSliderId");
-
-    if ($('#' + buttonSliderId).is(":ui-button")) {
+    var buttonSliderId = null;
+    if (testName == 'TTS') {
+      buttonSliderId = eval(irpApiSpecConstant + specSeparator
+          + currentManualApi + specSeparator + item + specSeparator
+          + "buttonSliderId");
+    } else {
+      buttonSliderId = item;
+    }
+    if ($('#' + buttonSliderId).is(":ui-checkboxradio")) {
+      $('#' + buttonSliderId).checkboxradio("disable");
+    } else if ($('#' + buttonSliderId).is(":ui-button")) {
       $('#' + buttonSliderId).button("disable");
       $("#" + buttonSliderId).removeClass("irp-custom-button-click");
     } else if ($('#' + buttonSliderId).is(":ui-slider")) {
@@ -770,19 +839,26 @@ function disableTTSOptions() {
   });
 }
 
-function enableTTSOptions() {
-  var enableIds = eval(irpApiSpecConstant + specSeparator + specTTSManualApi
+function enableUIOptions(testName, currentManualApi, testingArray) {
+  var enableIds = eval(irpApiSpecConstant + specSeparator + currentManualApi
       + specSeparator + currentTestSetting + specSeparator + "enableSection");
 
   /* var enableArray = enableIds.split(","); */
 
   enableIds.forEach(function(item, index, array) {
 
-    var buttonSliderId = eval(irpApiSpecConstant + specSeparator
-        + specTTSManualApi + specSeparator + item + specSeparator
-        + "buttonSliderId");
+    var buttonSliderId = null;
+    if (testName == 'TTS') {
+      buttonSliderId = eval(irpApiSpecConstant + specSeparator
+          + currentManualApi + specSeparator + item + specSeparator
+          + "buttonSliderId");
+    } else {
+      buttonSliderId = item;
+    }
 
-    if ($('#' + buttonSliderId).is(":ui-button")) {
+    if ($('#' + buttonSliderId).is(":ui-checkboxradio")) {
+      $('#' + buttonSliderId).checkboxradio("enable");
+    } else if ($('#' + buttonSliderId).is(":ui-button")) {
       $('#' + buttonSliderId).button("enable");
     } else if ($('#' + buttonSliderId).is(":ui-slider")) {
       $('#' + buttonSliderId).slider("enable");
@@ -810,6 +886,26 @@ function populateReportGrid(sectionArray, section) {
     }
 
   });
+
+}
+
+function populatePropertyGrid() {
+
+  var propertyGridArray = [];
+
+  propertyArray.forEach(function(item, index, array) {
+
+    var capabilityType = eval('IRT.CAPABILITY_PROPERTY.' + item);
+    var testResult = impl.getCapability(capabilityType);
+
+    propertyGridArray.push({
+      "instruction" : item + " [ " + capabilityType + " ] ",
+      "testResult" : testResult.toString()
+    });
+
+  });
+
+  return propertyGridArray;
 
 }
 

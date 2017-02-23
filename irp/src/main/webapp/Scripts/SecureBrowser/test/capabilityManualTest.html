@@ -6,7 +6,7 @@
 
 <body>
 
-  <div id="dialogCapability" style="display: none;">
+  <div id="dialogCAPABILITY" style="display: none;">
 
     <div id="capabilityTest" style="float: left; width: 50%">
       <div class="divTable" style="width: 100%;">
@@ -15,14 +15,12 @@
             <div class="divTableCell">Select Capability:</div>
             <div class="divTableCellRight">
               <select id="capabilityType">
-                <option value="printing">Printing</option>
-                <option value="screenCapture">Screen Capture</option>
               </select>
             </div>
           </div>
           <div class="divTableRow">&nbsp;</div>
           <div class="divTableRow">&nbsp;</div>
-          <div class="divTableRow">
+          <div class="divTableRow" id="functionalityRow">
             <div class="divTableCell">Functionality:</div>
             <div class="divTableCellRight">
               <label for="enableCapability">Enable</label> <input
@@ -45,11 +43,12 @@
           <div class="divTableRow">&nbsp;</div>
           <div class="divTableRow">&nbsp;</div>
           <div class="divTableRow">
+          
             <div class="divTableCellButton">
-              <div class="header-irp">Get/Set Capability Manual
-                Result</div>
-              <div id="capabilityTestGrid"></div>
+             <div id="capabilityPropertyGrid"></div>
             </div>
+            
+            
           </div>
 
         </div>
@@ -59,8 +58,8 @@
     </div>
 
     <div id="capabilityManualReport" style="float: right; width: 50%">
-      <div class="header-irp">Property Grid Section</div>
-      <div id="capabilityPropertyGrid"></div>
+      <div class="header-irp">Manual test instructions</div>
+              <div id="capabilityTestGrid"></div>
     </div>
 
   </div>

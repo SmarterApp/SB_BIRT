@@ -31,6 +31,11 @@ IRT.CapabilityTest = {
   UNKNOWN : 'UNKNOWN' // unknown status
 };
 
+IRT.CAPABILITY_PROPERTY = {
+  Printing : 'printing',
+  ScreenCapture : 'screenCapture'
+};
+
 /**
  * Comments
  * 
@@ -45,8 +50,10 @@ IRT.ApiSpecs = {
     "testApi_exists" : "This deprecated API still exists",
     "errorDialog_TTS" : "Your browser does not support TTS, so manual testing will be skipped",
     "errorDialog_CAPABILITY" : "Your browser does not support GET/SET Capability, so manual testing will be skipped",
-    "tts_disable_all" : [ "PLAY", "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
-        "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ]
+    "TTS_disable_all" : [ "PLAY", "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
+        "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+    "CAPABILITY_disable_all" : [ "setCapability", "enableCapability",
+        "disableCapability", "getCapability", "capabilityType" ]
   },
   "browserapi" : {
     // F35. The secure browser shall check for an appropriate Global Object for
