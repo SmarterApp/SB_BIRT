@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- JQuery -->
+<script src="../../Libraries/jQuery/jquery-3.1.1.js"></script>
+<script src="../../Libraries/jQuery/jquery-ui-1.12.js"></script>
+
+<link type="text/css" rel="stylesheet"
+  href="../../Libraries/jQuery/jquery-ui.css" />
+<link type="text/css" rel="stylesheet"
+  href="../../Libraries/jQuery/jquery-ui.structure.css" />
+<link type="text/css" rel="stylesheet"
+  href="../../Libraries/jQuery/jquery-ui.theme.css" />
+
+<link type="text/css" rel="stylesheet" href="../../../Shared/irp.css" />
+
+<!-- JSGrid -->
+<link type="text/css" rel="stylesheet"
+  href="../../Libraries/jQuery/jsgrid/jsgrid.min.css" />
+<link type="text/css" rel="stylesheet"
+  href="../../Libraries/jQuery/jsgrid/jsgrid-theme.min.css" />
+<script type="text/javascript"
+  src="../../Libraries/jQuery/jsgrid/jsgrid.min.js"></script>
+
+ 
+    
+  <script type="text/javascript"
+  src="irpspec.js"></script>
+    
+  <script type="text/javascript"
+  src="report.js"></script>
+<script type="text/javascript" src="index.js"></script>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+    var reportJson = IRT_REPORT;
+    
+    var reportGridKeys = Object.keys(reportJson);
+    reportGridKeys.forEach(function(item, index, array) {
+      
+      populateResults($("#" + item), eval ('reportJson.' + item), false);
+      
+    });
+    
+
+  });
+
+</script>
+
+</head>
+
+<body>
+  <div id="main">
+    <div>
+
+      <h1 class="entry-title">
+        <img alt="Smarter Balanced Assessment Consortium"
+          style="width: 183px !important; float: lef"
+          src="../../../Shared/images/SmarterBalanced_logo.png" /> <span>
+          &nbsp;&nbsp;Secure Browser Implementation Readiness Test (IRT)
+          Report </span>
+      </h1>
+      <p align="right">
+        <a href="javascript:location.reload(true);">RELOAD</a>
+      </p>
+    </div>
+
+    <div class="header-irp" id="browserAPI">Browser API</div>
+    <div id="jsGrid"></div>
+
+
+
+
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div class="header-irp" id="textToSpeechAPI">Text-to-speech</div>
+    <div id="jsTTSGrid"></div>
+
+
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div id="html5TestMain">
+      <div class="header-ext" id="html5TestHeader">HTML5 Test</div>
+      <div id="jsHTML5TestGrid"></div>
+    </div>
+
+
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div id="css3TestMain">
+      <div class="header-ext" id="css3TestHeader">CSS3 Test</div>
+      <div id="jsCSS3TestGrid"></div>
+    </div>
+
+
+
+
+  </div>
+</body>
+</html>

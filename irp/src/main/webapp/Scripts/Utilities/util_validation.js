@@ -12,6 +12,10 @@
 
   var ttsTestArray = [];
 
+  var html5TestArray = [];
+
+  var css3TestArray = [];
+
   var ttsManualTestArray = [];
 
   var capabilityTestArray = [];
@@ -138,6 +142,19 @@
 
   };
 
+  Validation.formulateJsonForReport = function() {
+
+    var itemDetail = {};
+    $.extend(itemDetail, {
+      "jsGrid" : resultArray,
+      "jsTTSGrid" : ttsTestArray,
+      "jsHTML5TestGrid" : html5TestArray,
+      "jsCSS3TestGrid" : css3TestArray
+    });
+
+    return itemDetail;
+  };
+
   Validation.getCapabilityManualResult = function() {
     return capabilityTestArray;
   };
@@ -162,6 +179,22 @@
   Validation.getTTSResultScore = function() {
     var total = this.getTTSResult().length;
     return total;
+  };
+
+  Validation.setHtml5TestArray = function(extTestResultArray) {
+    html5TestArray = extTestResultArray.slice();
+  };
+
+  Validation.getHtml5TestArray = function() {
+    return html5TestArray;
+  };
+
+  Validation.setCSS3TestArray = function(extTestResultArray) {
+    css3TestArray = extTestResultArray.slice();
+  };
+
+  Validation.getCSS3TestArray = function() {
+    return css3TestArray;
   };
 
   Util.Validation = Validation;

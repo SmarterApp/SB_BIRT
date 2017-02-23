@@ -926,7 +926,8 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
 
     if (iframeObj.contentWindow.isTestCompleted) {
 
-      populateResults(gridId, iframeObj.contentWindow.html5TestArray, true);
+      Util.Validation.setHtml5TestArray(iframeObj.contentWindow.html5TestArray);
+      populateResults(gridId, Util.Validation.getHtml5TestArray(), true);
 
       headerId.html(iframeObj.contentWindow.htmlScoreHTML);
     }
@@ -936,7 +937,9 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
     iframeObj = document.getElementById('irpCSS3Test');
 
     if (iframeObj.contentWindow.isTestCompleted) {
-      populateResults(gridId, iframeObj.contentWindow.css3TestArray, true);
+
+      Util.Validation.setCSS3TestArray(iframeObj.contentWindow.css3TestArray);
+      populateResults(gridId, Util.Validation.getCSS3TestArray(), true);
 
       headerId.html(iframeObj.contentWindow.css3ScoreHTML);
 
