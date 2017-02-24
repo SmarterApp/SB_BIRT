@@ -86,9 +86,18 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   }
 
   if (testName == 'PROCESS') {
-    dialogWidth = '70%';
-    dialogHeight = 600;
-    isManualTestSupported = true;
+
+    if (impl != null && !!impl.examineProcessList) {
+      dialogWidth = '70%';
+      dialogHeight = 600;
+      isManualTestSupported = true;
+    } else {
+      var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
+          + specSeparator + "errorDialog_" + testName);
+      id
+          .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
+              + textMessage + '</p>');
+    }
   }
 
   if (isManualTestSupported) {
@@ -239,6 +248,17 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   if (testName == 'PROCESS') {
     if (isManualTestSupported) {
       id.dialog("open");
+    } else {
+      id.dialog("open");
+
+      Util.Validation
+          .setIRPTestResults(
+              'FAILED',
+              null,
+              false,
+              'Error: Could not initialize Examine Process List Support for this browser',
+              process_section);
+
     }
   }
 
@@ -447,6 +467,8 @@ function createButton(id, text) {
       getSystemCapability();
     } else if (text == 'Examine') {
       examineProcessList();
+    } else if (text == 'OK') {
+      concludeExamineProcess();
     }
 
     event.preventDefault();
@@ -455,6 +477,23 @@ function createButton(id, text) {
 }
 
 function examineProcessList() {
+
+  var selectedArray = $('#multiselect_to option');
+  var selectedProcess = [];
+  selectedArray.each(function() {
+    selectedProcess.push(this.value);
+  });
+
+  $("#runningForBiddenApps").show();
+  $("#concludeButton").show();
+
+  createButton($("#conclude"), "OK");
+  var forbiddenRunningApps = impl.examineProcessList(selectedProcess);
+  populateRunningForbiddenApplist(forbiddenRunningApps);
+
+}
+
+function concludeExamineProcess() {
   setDialogHtml(specProcessManualApi);
   loadTestDialogConfirm($("#processTestGrid"), 'PROCESS', specProcessManualApi);
 }
@@ -1059,4 +1098,51 @@ function populateIRPTestHeaderHTML(headerId, testName) {
   } else {
 
   }
+}
+
+function loadRunningForbiddenApps(forbiddenArrayFromApi) {
+
+  var operatingSystem = Util.Browser.getOperatingSystem();
+
+  var forbiddenArray = eval('IRT_FORBIDDEN.' + operatingSystem);
+
+  var runningForbiddenArray = [];
+
+  forbiddenArrayFromApi.forEach(function(apiItem, apiIndex, apiArray) {
+
+    forbiddenArray.forEach(function(item, index, array) {
+
+      if (apiItem == item.processname) {
+        runningForbiddenArray.push(item);
+      }
+
+    });
+
+  });
+
+  return runningForbiddenArray;
+
+}
+
+function populateRunningForbiddenApplist(forbiddenArrayFromApi) {
+
+  $("#forbiddenAppListGrid").jsGrid({
+    width : "100%",
+    data : loadRunningForbiddenApps(forbiddenArrayFromApi),
+    selecting : false,
+
+    fields : [ {
+      title : 'Description',
+      name : "processdescription",
+      type : "text",
+      width : 200
+    }, {
+      title : 'Name',
+      name : "processname",
+      type : "text",
+      width : 100
+    }
+
+    ]
+  });
 }

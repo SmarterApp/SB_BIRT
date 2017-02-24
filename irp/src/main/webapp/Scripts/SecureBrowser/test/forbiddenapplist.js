@@ -1,974 +1,974 @@
 var IRT_FORBIDDEN = {
   "IOS" : [ {
     "processname" : "FaceTime",
-    "processdescription" : "FaceTime",
-    "clientname" : "SBAC"
+    "processdescription" : "FaceTime"
+
   }, {
     "processname" : "Skype",
-    "processdescription" : "Skype",
-    "clientname" : "SBAC"
+    "processdescription" : "Skype"
+
   } ],
   "LINUX" : [ {
 
     "processname" : "acroread",
-    "processdescription" : "Adobe Acrobat Reader",
-    "clientname" : "SBAC"
+    "processdescription" : "Adobe Acrobat Reader"
+
   }, {
 
     "processname" : "compiz/compiz-fusion",
-    "processdescription" : "Compiz",
-    "clientname" : "SBAC"
+    "processdescription" : "Compiz"
+
   }, {
 
     "processname" : "dropbox",
-    "processdescription" : "DropBox File Sharing",
-    "clientname" : "SBAC"
+    "processdescription" : "DropBox File Sharing"
+
   }, {
 
     "processname" : "evolution",
-    "processdescription" : "Evolution Email Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Evolution Email Client"
+
   }, {
 
     "processname" : "gcalctool",
-    "processdescription" : "Gnome Calculator Utility",
-    "clientname" : "SBAC"
+    "processdescription" : "Gnome Calculator Utility"
+
   }, {
 
     "processname" : "gnome-screenshot",
-    "processdescription" : "Gnome-Screenshot",
-    "clientname" : "SBAC"
+    "processdescription" : "Gnome-Screenshot"
+
   }, {
 
     "processname" : "gtk-recordMyDes",
-    "processdescription" : "recordMyDesktop",
-    "clientname" : "SBAC"
+    "processdescription" : "recordMyDesktop"
+
   }, {
 
     "processname" : "iexplore.exe",
-    "processdescription" : "Internet Explorer",
-    "clientname" : "SBAC"
+    "processdescription" : "Internet Explorer"
+
   }, {
 
     "processname" : "konqueror",
-    "processdescription" : "Konqueror Web Browser",
-    "clientname" : "SBAC"
+    "processdescription" : "Konqueror Web Browser"
+
   }, {
 
     "processname" : "ksnapshot",
-    "processdescription" : "Ksnapshot",
-    "clientname" : "SBAC"
+    "processdescription" : "Ksnapshot"
+
   }, {
 
     "processname" : "oosplash",
-    "processdescription" : "LibreOffice",
-    "clientname" : "SBAC"
+    "processdescription" : "LibreOffice"
+
   }, {
 
     "processname" : "opera",
-    "processdescription" : "Opera",
-    "clientname" : "SBAC"
+    "processdescription" : "Opera"
+
   }, {
 
     "processname" : "pidgen",
-    "processdescription" : "Pidgen IM Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Pidgen IM Client"
+
   }, {
 
     "processname" : "seamonkey-bin",
-    "processdescription" : "SeaMonkey",
-    "clientname" : "SBAC"
+    "processdescription" : "SeaMonkey"
+
   }, {
 
     "processname" : "shutter",
-    "processdescription" : "Shutter",
-    "clientname" : "SBAC"
+    "processdescription" : "Shutter"
+
   }, {
 
     "processname" : "skype",
-    "processdescription" : "Skype",
-    "clientname" : "SBAC"
+    "processdescription" : "Skype"
+
   }, {
 
     "processname" : "soffice",
-    "processdescription" : "OpenOffice",
-    "clientname" : "SBAC"
+    "processdescription" : "OpenOffice"
+
   }, {
 
     "processname" : "soffice.bin",
-    "processdescription" : "Open Office",
-    "clientname" : "SBAC"
+    "processdescription" : "Open Office"
+
   }, {
 
     "processname" : "spadmin.bin",
-    "processdescription" : "LibreOffice",
-    "clientname" : "SBAC"
+    "processdescription" : "LibreOffice"
+
   }, {
 
     "processname" : "TeamViewer.exe",
-    "processdescription" : "TeamViewer",
-    "clientname" : "SBAC"
+    "processdescription" : "TeamViewer"
+
   }, {
 
     "processname" : "thunderbird-bin",
-    "processdescription" : "Thunderbird Email Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Thunderbird Email Client"
+
   }, {
 
     "processname" : "wink",
-    "processdescription" : "Wink",
-    "clientname" : "SBAC"
+    "processdescription" : "Wink"
+
   } ],
   "OSX" : [ {
 
     "processname" : "Activity Monitor",
-    "processdescription" : "Apple Activity Monitor",
-    "clientname" : "SBAC"
+    "processdescription" : "Apple Activity Monitor"
+
   }, {
 
     "processname" : "Address Book",
-    "processdescription" : "Address Book - Contacts Manager",
-    "clientname" : "SBAC"
+    "processdescription" : "Address Book - Contacts Manager"
+
   }, {
 
     "processname" : "Adium",
-    "processdescription" : "Apple Instant Messaging Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Apple Instant Messaging Client"
+
   }, {
 
     "processname" : "Adobe Reader",
-    "processdescription" : "Adobe Acrobat Reader",
-    "clientname" : "SBAC"
+    "processdescription" : "Adobe Acrobat Reader"
+
   }, {
 
     "processname" : "AIM",
-    "processdescription" : "AOL Instant Messenger",
-    "clientname" : "SBAC"
+    "processdescription" : "AOL Instant Messenger"
+
   }, {
 
     "processname" : "aLunch",
-    "processdescription" : "aLunch - Launcher",
-    "clientname" : "SBAC"
+    "processdescription" : "aLunch - Launcher"
+
   }, {
 
     "processname" : "AppleVNCServer",
-    "processdescription" : "Apple VNC Server",
-    "clientname" : "SBAC"
+    "processdescription" : "Apple VNC Server"
+
   }, {
 
     "processname" : "AppleWorks",
-    "processdescription" : "AppleWorks",
-    "clientname" : "SBAC"
+    "processdescription" : "AppleWorks"
+
   }, {
 
     "processname" : "Butler",
-    "processdescription" : "Butler - Launcher",
-    "clientname" : "SBAC"
+    "processdescription" : "Butler - Launcher"
+
   }, {
 
     "processname" : "Calculator",
-    "processdescription" : "Apple Calculator",
-    "clientname" : "SBAC"
+    "processdescription" : "Apple Calculator"
+
   }, {
 
     "processname" : "Calculator DashboardClient",
-    "processdescription" : "Calculator DashboardClient",
-    "clientname" : "SBAC"
+    "processdescription" : "Calculator DashboardClient"
+
   }, {
 
     "processname" : "Calendar DashboardClient",
-    "processdescription" : "Calendar DashboardClient",
-    "clientname" : "SBAC"
+    "processdescription" : "Calendar DashboardClient"
+
   }, {
 
     "processname" : "Camtasia",
-    "processdescription" : "Camtasia",
-    "clientname" : "SBAC"
+    "processdescription" : "Camtasia"
+
   }, {
 
     "processname" : "Capture Me",
-    "processdescription" : "CaptureMe",
-    "clientname" : "SBAC"
+    "processdescription" : "CaptureMe"
+
   }, {
 
     "processname" : "CaptureIt!",
-    "processdescription" : "Captureit",
-    "clientname" : "SBAC"
+    "processdescription" : "Captureit"
+
   }, {
 
     "processname" : "Copernicus",
-    "processdescription" : "Copernicus",
-    "clientname" : "SBAC"
+    "processdescription" : "Copernicus"
+
   }, {
 
     "processname" : "DashboardClient",
-    "processdescription" : "Apple Dashboard and widgets",
-    "clientname" : "SBAC"
+    "processdescription" : "Apple Dashboard and widgets"
+
   }, {
 
     "processname" : "Dictionary",
-    "processdescription" : "Dictionary",
-    "clientname" : "SBAC"
+    "processdescription" : "Dictionary"
+
   }, {
 
     "processname" : "Dictionary DashboardClient",
-    "processdescription" : "Dictionary DashboardClient",
-    "clientname" : "SBAC"
+    "processdescription" : "Dictionary DashboardClient"
+
   }, {
 
     "processname" : "DragThing",
-    "processdescription" : "DragThing - Launcher",
-    "clientname" : "SBAC"
+    "processdescription" : "DragThing - Launcher"
+
   }, {
 
     "processname" : "Dropbox",
-    "processdescription" : "DropBox File Sharing",
-    "clientname" : "SBAC"
+    "processdescription" : "DropBox File Sharing"
+
   }, {
 
     "processname" : "Evernote",
-    "processdescription" : "Evernote - File sharing and blogging",
-    "clientname" : "SBAC"
+    "processdescription" : "Evernote - File sharing and blogging"
+
   }, {
 
     "processname" : "FaceTime",
-    "processdescription" : "Facetime",
-    "clientname" : "SBAC"
+    "processdescription" : "Facetime"
+
   }, {
 
     "processname" : "Firefox",
-    "processdescription" : "Firefox Web Browser",
-    "clientname" : "SBAC"
+    "processdescription" : "Firefox Web Browser"
+
   }, {
 
     "processname" : "FirstClass",
-    "processdescription" : "FirstClass",
-    "clientname" : "SBAC"
+    "processdescription" : "FirstClass"
+
   }, {
 
     "processname" : "Google Chrome",
-    "processdescription" : "Google Chrome Web Browser",
-    "clientname" : "SBAC"
+    "processdescription" : "Google Chrome Web Browser"
+
   }, {
 
     "processname" : "Google DashboardClient",
-    "processdescription" : "Google DashboardClient",
-    "clientname" : "SBAC"
+    "processdescription" : "Google DashboardClient"
+
   }, {
 
     "processname" : "Google Notifier",
-    "processdescription" : "Gmail Desktop Alerts",
-    "clientname" : "SBAC"
+    "processdescription" : "Gmail Desktop Alerts"
+
   }, {
 
     "processname" : "Google Quick Search Box",
-    "processdescription" : "Google Quick Search Box - Launcher",
-    "clientname" : "SBAC"
+    "processdescription" : "Google Quick Search Box - Launcher"
+
   }, {
 
     "processname" : "Grab",
-    "processdescription" : "Grab Screenshot Utility",
-    "clientname" : "SBAC"
+    "processdescription" : "Grab Screenshot Utility"
+
   }, {
 
     "processname" : "Grapher",
-    "processdescription" : "Grapher",
-    "clientname" : "SBAC"
+    "processdescription" : "Grapher"
+
   }, {
 
     "processname" : "HimmelBar",
-    "processdescription" : "HimmelBar - Launcher",
-    "clientname" : "SBAC"
+    "processdescription" : "HimmelBar - Launcher"
+
   }, {
 
     "processname" : "iCal",
-    "processdescription" : "iCal - Calendar and Task Scheduling Utility",
-    "clientname" : "SBAC"
+    "processdescription" : "iCal - Calendar and Task Scheduling Utility"
+
   }, {
 
     "processname" : "iChat",
-    "processdescription" : "iChat - Internet Chat Utility",
-    "clientname" : "SBAC"
+    "processdescription" : "iChat - Internet Chat Utility"
+
   }, {
 
     "processname" : "Image Capture",
-    "processdescription" : "Image Capture",
-    "clientname" : "SBAC"
+    "processdescription" : "Image Capture"
+
   }, {
 
     "processname" : "iMovie",
-    "processdescription" : "iMovie - Movie Tool",
-    "clientname" : "SBAC"
+    "processdescription" : "iMovie - Movie Tool"
+
   }, {
 
     "processname" : "InstantShot!",
-    "processdescription" : "Screen Capture Utility",
-    "clientname" : "SBAC"
+    "processdescription" : "Screen Capture Utility"
+
   }, {
 
     "processname" : "Internet Explorer",
-    "processdescription" : "Internet Explorer",
-    "clientname" : "SBAC"
+    "processdescription" : "Internet Explorer"
+
   }, {
 
     "processname" : "iPhoto",
-    "processdescription" : "iPhoto - Photo Management Tool",
-    "clientname" : "SBAC"
+    "processdescription" : "iPhoto - Photo Management Tool"
+
   }, {
 
     "processname" : "iShowU",
-    "processdescription" : "iShowU",
-    "clientname" : "SBAC"
+    "processdescription" : "iShowU"
+
   }, {
 
     "processname" : "iSync",
-    "processdescription" : "iSync - Desktop and Portable Device Sync Manager",
-    "clientname" : "SBAC"
+    "processdescription" : "iSync - Desktop and Portable Device Sync Manager"
+
   }, {
 
     "processname" : "iTunes",
-    "processdescription" : "iTunes Music Catalogue",
-    "clientname" : "SBAC"
+    "processdescription" : "iTunes Music Catalogue"
+
   }, {
 
     "processname" : "iTunes DashboardClient",
-    "processdescription" : "iTunes DashboardClient",
-    "clientname" : "SBAC"
+    "processdescription" : "iTunes DashboardClient"
+
   }, {
 
     "processname" : "Jing",
-    "processdescription" : "Jing - Screenshot and Recording application",
-    "clientname" : "SBAC"
+    "processdescription" : "Jing - Screenshot and Recording application"
+
   }, {
 
     "processname" : "Keynote",
-    "processdescription" : "Mac Keynote - Spreadsheets",
-    "clientname" : "SBAC"
+    "processdescription" : "Mac Keynote - Spreadsheets"
+
   }, {
 
     "processname" : "LaunchBar",
-    "processdescription" : "LaunchBar - Launcher",
-    "clientname" : "SBAC"
+    "processdescription" : "LaunchBar - Launcher"
+
   }, {
 
     "processname" : "LittleSnap",
-    "processdescription" : "LittleSnapper",
-    "clientname" : "SBAC"
+    "processdescription" : "LittleSnapper"
+
   }, {
 
     "processname" : "Mail",
-    "processdescription" : "Apple Email Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Apple Email Client"
+
   }, {
 
     "processname" : "Microsoft Excel",
-    "processdescription" : "Microsoft Excel",
-    "clientname" : "SBAC"
+    "processdescription" : "Microsoft Excel"
+
   }, {
 
     "processname" : "Microsoft Outlook",
-    "processdescription" : "Outlook",
-    "clientname" : "SBAC"
+    "processdescription" : "Outlook"
+
   }, {
 
     "processname" : "Microsoft PowerPoint",
-    "processdescription" : "Mac",
-    "clientname" : "SBAC"
+    "processdescription" : "Mac"
+
   }, {
 
     "processname" : "Microsoft Word",
-    "processdescription" : "Microsoft Word",
-    "clientname" : "SBAC"
+    "processdescription" : "Microsoft Word"
+
   }, {
 
     "processname" : "Mozilla",
-    "processdescription" : "Mozilla Web Browser",
-    "clientname" : "SBAC"
+    "processdescription" : "Mozilla Web Browser"
+
   }, {
 
     "processname" : "Namely",
-    "processdescription" : "Namely - Launcher",
-    "clientname" : "SBAC"
+    "processdescription" : "Namely - Launcher"
+
   }, {
 
     "processname" : "Navigator",
-    "processdescription" : "Netscape",
-    "clientname" : "SBAC"
+    "processdescription" : "Netscape"
+
   }, {
 
     "processname" : "NeoOffice",
-    "processdescription" : "NeoOffice Office Application",
-    "clientname" : "SBAC"
+    "processdescription" : "NeoOffice Office Application"
+
   }, {
 
     "processname" : "Numbers",
-    "processdescription" : "Mac Numbers - Spreadsheets",
-    "clientname" : "SBAC"
+    "processdescription" : "Mac Numbers - Spreadsheets"
+
   }, {
 
     "processname" : "OpenOffice.org",
-    "processdescription" : "Sun OpenOffice.org",
-    "clientname" : "SBAC"
+    "processdescription" : "Sun OpenOffice.org"
+
   }, {
 
     "processname" : "OpenOffice.org ",
-    "processdescription" : "Open Office",
-    "clientname" : "SBAC"
+    "processdescription" : "Open Office"
+
   }, {
 
     "processname" : "Opera",
-    "processdescription" : "Opera Web Browser",
-    "clientname" : "SBAC"
+    "processdescription" : "Opera Web Browser"
+
   }, {
 
     "processname" : "OSxVNC-server",
-    "processdescription" : "OSX VNC Server",
-    "clientname" : "SBAC"
+    "processdescription" : "OSX VNC Server"
+
   }, {
 
     "processname" : "Overflow",
-    "processdescription" : "Overflow - Launcher",
-    "clientname" : "SBAC"
+    "processdescription" : "Overflow - Launcher"
+
   }, {
 
     "processname" : "Pages",
-    "processdescription" : "Mac Pages - Word processing",
-    "clientname" : "SBAC"
+    "processdescription" : "Mac Pages - Word processing"
+
   }, {
 
     "processname" : "Picasa",
-    "processdescription" : "Google Picasa",
-    "clientname" : "SBAC"
+    "processdescription" : "Google Picasa"
+
   }, {
 
     "processname" : "Pidgin",
-    "processdescription" : "Pidgin",
-    "clientname" : "SBAC"
+    "processdescription" : "Pidgin"
+
   }, {
 
     "processname" : "Podcast Capture",
-    "processdescription" : "Podcast Capture",
-    "clientname" : "SBAC"
+    "processdescription" : "Podcast Capture"
+
   }, {
 
     "processname" : "Quicksilver",
-    "processdescription" : "Quicksilver - Launcher",
-    "clientname" : "SBAC"
+    "processdescription" : "Quicksilver - Launcher"
+
   }, {
 
     "processname" : "RemoteDesktop DashboardClient",
-    "processdescription" : "RemoteDesktop DashboardClient",
-    "clientname" : "SBAC"
+    "processdescription" : "RemoteDesktop DashboardClient"
+
   }, {
 
     "processname" : "Screen Mimic",
-    "processdescription" : "Screen Mimic",
-    "clientname" : "SBAC"
+    "processdescription" : "Screen Mimic"
+
   }, {
 
     "processname" : "Screenflick",
-    "processdescription" : "Screenflick",
-    "clientname" : "SBAC"
+    "processdescription" : "Screenflick"
+
   }, {
 
     "processname" : "ScreenFlow",
-    "processdescription" : "ScreenFlow",
-    "clientname" : "SBAC"
+    "processdescription" : "ScreenFlow"
+
   }, {
 
     "processname" : "Screenium",
-    "processdescription" : "Screenium",
-    "clientname" : "SBAC"
+    "processdescription" : "Screenium"
+
   }, {
 
     "processname" : "ScreenRecord",
-    "processdescription" : "ScreenRecord",
-    "clientname" : "SBAC"
+    "processdescription" : "ScreenRecord"
+
   }, {
 
     "processname" : "SeaMonkey",
-    "processdescription" : "Seamonkey Web Browser ",
-    "clientname" : "SBAC"
+    "processdescription" : "Seamonkey Web Browser "
+
   }, {
 
     "processname" : "Sherlock",
-    "processdescription" : "Sherlock - File and Web Search Tool",
-    "clientname" : "SBAC"
+    "processdescription" : "Sherlock - File and Web Search Tool"
+
   }, {
 
     "processname" : "Skitch",
-    "processdescription" : "Skitch",
-    "clientname" : "SBAC"
+    "processdescription" : "Skitch"
+
   }, {
 
     "processname" : "Skype",
-    "processdescription" : "Skype Communication Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Skype Communication Client"
+
   }, {
 
     "processname" : "Snagit",
-    "processdescription" : "Snagit",
-    "clientname" : "SBAC"
+    "processdescription" : "Snagit"
+
   }, {
 
     "processname" : "Snapz Pro X",
-    "processdescription" : "Snapz Pro X",
-    "clientname" : "SBAC"
+    "processdescription" : "Snapz Pro X"
+
   }, {
 
     "processname" : "Stickies DashboardClient",
-    "processdescription" : "Stickies DashboardClient",
-    "clientname" : "SBAC"
+    "processdescription" : "Stickies DashboardClient"
+
   }, {
 
     "processname" : "System Preferences",
-    "processdescription" : "Apple System Preferences",
-    "clientname" : "SBAC"
+    "processdescription" : "Apple System Preferences"
+
   }, {
 
     "processname" : "Team Speak 3",
-    "processdescription" : "teamspeak",
-    "clientname" : "SBAC"
+    "processdescription" : "teamspeak"
+
   }, {
 
     "processname" : "TeamViewer",
-    "processdescription" : "TeamViewer",
-    "clientname" : "SBAC"
+    "processdescription" : "TeamViewer"
+
   }, {
 
     "processname" : "TextEdit",
-    "processdescription" : "Apple Text Editor",
-    "clientname" : "SBAC"
+    "processdescription" : "Apple Text Editor"
+
   }, {
 
     "processname" : "Thunderbird",
-    "processdescription" : "Thunderbird Email Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Thunderbird Email Client"
+
   }, {
 
     "processname" : "Tile Game DashboardClient",
-    "processdescription" : "Tile Game DashboardClient",
-    "clientname" : "SBAC"
+    "processdescription" : "Tile Game DashboardClient"
+
   }, {
 
     "processname" : "Translation DashboardClient",
-    "processdescription" : "Translation DashboardClient",
-    "clientname" : "SBAC"
+    "processdescription" : "Translation DashboardClient"
+
   }, {
 
     "processname" : "Trillian",
-    "processdescription" : "Trillian Instant Messaging Client ",
-    "clientname" : "SBAC"
+    "processdescription" : "Trillian Instant Messaging Client "
+
   }, {
 
     "processname" : "TweetDeck",
-    "processdescription" : "Social Networking Utility",
-    "clientname" : "SBAC"
+    "processdescription" : "Social Networking Utility"
+
   }, {
 
     "processname" : "twhirl",
-    "processdescription" : "Social Networking Utility",
-    "clientname" : "SBAC"
+    "processdescription" : "Social Networking Utility"
+
   }, {
 
     "processname" : "Unit Converter DashboardClient",
-    "processdescription" : "Unit Converter DashboardClient",
-    "clientname" : "SBAC"
+    "processdescription" : "Unit Converter DashboardClient"
+
   }, {
 
     "processname" : "Valet",
-    "processdescription" : "Valet - Launcher",
-    "clientname" : "SBAC"
+    "processdescription" : "Valet - Launcher"
+
   }, {
 
     "processname" : "Ventrillo",
-    "processdescription" : "ventrillo",
-    "clientname" : "SBAC"
+    "processdescription" : "ventrillo"
+
   }, {
 
     "processname" : "Vine Server",
-    "processdescription" : "Apple Vine Server",
-    "clientname" : "SBAC"
+    "processdescription" : "Apple Vine Server"
+
   }, {
 
     "processname" : "Weather DashboardClient",
-    "processdescription" : "Weather DashboardClient",
-    "clientname" : "SBAC"
+    "processdescription" : "Weather DashboardClient"
+
   }, {
 
     "processname" : "Widgets DashboardClient",
-    "processdescription" : "Widgets DashboardClient ",
-    "clientname" : "SBAC"
+    "processdescription" : "Widgets DashboardClient "
+
   }, {
 
     "processname" : "Windows Messenger",
-    "processdescription" : "Microsoft Instant Messenger Client ",
-    "clientname" : "SBAC"
+    "processdescription" : "Microsoft Instant Messenger Client "
+
   }, {
 
     "processname" : "World Clock DashboardClient",
-    "processdescription" : "World Clock DashboardClient",
-    "clientname" : "SBAC"
+    "processdescription" : "World Clock DashboardClient"
+
   }, {
 
     "processname" : "Yahoo! Messenger",
-    "processdescription" : "Yahoo Instant Messenger ",
-    "clientname" : "SBAC"
+    "processdescription" : "Yahoo Instant Messenger "
+
   } ],
   "WINDOWS" : [ {
 
     "processname" : "acrord32.exe",
-    "processdescription" : "Adobe Acrobat Reader",
-    "clientname" : "SBAC"
+    "processdescription" : "Adobe Acrobat Reader"
+
   }, {
 
     "processname" : "aim.exe",
-    "processdescription" : "AOL Instant Messenger",
-    "clientname" : "SBAC"
+    "processdescription" : "AOL Instant Messenger"
+
   }, {
 
     "processname" : "calc.exe",
-    "processdescription" : "Windows Calculator",
-    "clientname" : "SBAC"
+    "processdescription" : "Windows Calculator"
+
   }, {
 
     "processname" : "CamtasiaStudio.exe",
-    "processdescription" : "Camtasia",
-    "clientname" : "SBAC"
+    "processdescription" : "Camtasia"
+
   }, {
 
     "processname" : "capture.exe",
-    "processdescription" : "AnalogX Capture",
-    "clientname" : "SBAC"
+    "processdescription" : "AnalogX Capture"
+
   }, {
 
     "processname" : "CaptureAssistant.exe",
-    "processdescription" : "Capture Assistant",
-    "clientname" : "SBAC"
+    "processdescription" : "Capture Assistant"
+
   }, {
 
     "processname" : "Captus.exe",
-    "processdescription" : "Softario Captus",
-    "clientname" : "SBAC"
+    "processdescription" : "Softario Captus"
+
   }, {
 
     "processname" : "chrome.exe",
-    "processdescription" : "Google Chrome Web browser",
-    "clientname" : "SBAC"
+    "processdescription" : "Google Chrome Web browser"
+
   }, {
 
     "processname" : "digsby.exe",
-    "processdescription" : "Digsby Instant Messaging Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Digsby Instant Messaging Client"
+
   }, {
 
     "processname" : "Dropbox.exe",
-    "processdescription" : "DropBox File Sharing",
-    "clientname" : "SBAC"
+    "processdescription" : "DropBox File Sharing"
+
   }, {
 
     "processname" : "EXCEL.EXE",
-    "processdescription" : "Microsoft Excel",
-    "clientname" : "SBAC"
+    "processdescription" : "Microsoft Excel"
+
   }, {
 
     "processname" : "fcc32.exe",
-    "processdescription" : "FirstClass",
-    "clientname" : "SBAC"
+    "processdescription" : "FirstClass"
+
   }, {
 
     "processname" : "firefox.exe",
-    "processdescription" : "Firefox Web Browser",
-    "clientname" : "SBAC"
+    "processdescription" : "Firefox Web Browser"
+
   }, {
 
     "processname" : "fscapture.exe",
-    "processdescription" : "Faststone Screen Capture",
-    "clientname" : "SBAC"
+    "processdescription" : "Faststone Screen Capture"
+
   }, {
 
     "processname" : "googletalk.exe",
-    "processdescription" : "Google Talk Instant Messaging Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Google Talk Instant Messaging Client"
+
   }, {
 
     "processname" : "Greenshot.exe",
-    "processdescription" : "Greenshot",
-    "clientname" : "SBAC"
+    "processdescription" : "Greenshot"
+
   }, {
 
     "processname" : "Groupwise.exe",
-    "processdescription" : "Novell Groupwise E-mail Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Novell Groupwise E-mail Client"
+
   }, {
 
     "processname" : "Grpwise.exe",
-    "processdescription" : "Novell Groupwise E-mail Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Novell Groupwise E-mail Client"
+
   }, {
 
     "processname" : "HprSnap7.exe",
-    "processdescription" : "HyperSnap",
-    "clientname" : "SBAC"
+    "processdescription" : "HyperSnap"
+
   }, {
 
     "processname" : "icq.exe",
-    "processdescription" : "ICQ Instant Messaging Client",
-    "clientname" : "SBAC"
+    "processdescription" : "ICQ Instant Messaging Client"
+
   }, {
 
     "processname" : "iexplore.exe",
-    "processdescription" : "Internet Explorer Web Browser",
-    "clientname" : "SBAC"
+    "processdescription" : "Internet Explorer Web Browser"
+
   }, {
 
     "processname" : "i_view32.exe",
-    "processdescription" : "IrfanView",
-    "clientname" : "SBAC"
+    "processdescription" : "IrfanVie"
+
   }, {
 
     "processname" : "LaunchPad.exe",
-    "processdescription" : "U3 Flash Drive",
-    "clientname" : "SBAC"
+    "processdescription" : "U3 Flash Drive"
+
   }, {
 
     "processname" : "lightscreen.exe",
-    "processdescription" : "Lightscreen",
-    "clientname" : "SBAC"
+    "processdescription" : "Lightscreen"
+
   }, {
 
     "processname" : "Lightshot.exe",
-    "processdescription" : "Lightshot",
-    "clientname" : "SBAC"
+    "processdescription" : "Lightshot"
+
   }, {
 
     "processname" : "msconfig.exe",
-    "processdescription" : "Microsoft Windows Configuration Utility",
-    "clientname" : "SBAC"
+    "processdescription" : "Microsoft Windows Configuration Utility"
+
   }, {
 
     "processname" : "msimn.exe",
-    "processdescription" : "Microsoft Outlook Express",
-    "clientname" : "SBAC"
+    "processdescription" : "Microsoft Outlook Express"
+
   }, {
 
     "processname" : "msmsgs.exe",
-    "processdescription" : "Windows Live Messenger",
-    "clientname" : "SBAC"
+    "processdescription" : "Windows Live Messenger"
+
   }, {
 
     "processname" : "msnmsgr.exe",
-    "processdescription" : "MSN Messenger",
-    "clientname" : "SBAC"
+    "processdescription" : "MSN Messenger"
+
   }, {
 
     "processname" : "mspaint.exe",
-    "processdescription" : "Microsoft Paint",
-    "clientname" : "SBAC"
+    "processdescription" : "Microsoft Paint"
+
   }, {
 
     "processname" : "mstsc.exe",
-    "processdescription" : "Microsoft Remote Desktop",
-    "clientname" : "SBAC"
+    "processdescription" : "Microsoft Remote Desktop"
+
   }, {
 
     "processname" : "MWSnap.exe",
-    "processdescription" : "MWSnap",
-    "clientname" : "SBAC"
+    "processdescription" : "MWSnap"
+
   }, {
 
     "processname" : "navigator.exe",
-    "processdescription" : "Netscape",
-    "clientname" : "SBAC"
+    "processdescription" : "Netscape"
+
   }, {
 
     "processname" : "nlnotes.exe",
-    "processdescription" : "Lotus Notes",
-    "clientname" : "SBAC"
+    "processdescription" : "Lotus Notes"
+
   }, {
 
     "processname" : "notepad.exe",
-    "processdescription" : "Windows Notepad",
-    "clientname" : "SBAC"
+    "processdescription" : "Windows Notepad"
+
   }, {
 
     "processname" : "notes2w.exe",
-    "processdescription" : "Lotus Notes",
-    "clientname" : "SBAC"
+    "processdescription" : "Lotus Notes"
+
   }, {
 
     "processname" : "onenote.exe",
-    "processdescription" : "Microsoft OneNote",
-    "clientname" : "SBAC"
+    "processdescription" : "Microsoft OneNote"
+
   }, {
 
     "processname" : "opera.exe",
-    "processdescription" : "Opera Web Browser",
-    "clientname" : "SBAC"
+    "processdescription" : "Opera Web Browser"
+
   }, {
 
     "processname" : "OUTLOOK.EXE",
-    "processdescription" : "Outlook Mail Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Outlook Mail Client"
+
   }, {
 
     "processname" : "picpick.exe",
-    "processdescription" : "PicPick Screenshot App",
-    "clientname" : "SBAC"
+    "processdescription" : "PicPick Screenshot App"
+
   }, {
 
     "processname" : "pidgin.exe",
-    "processdescription" : "Pidgin",
-    "clientname" : "SBAC"
+    "processdescription" : "Pidgin"
+
   }, {
 
     "processname" : "powerpnt.exe",
-    "processdescription" : "Microsoft Powerpoint",
-    "clientname" : "SBAC"
+    "processdescription" : "Microsoft Powerpoint"
+
   }, {
 
     "processname" : "Printkey2000.exe",
-    "processdescription" : "PrintKey 2000",
-    "clientname" : "SBAC"
+    "processdescription" : "PrintKey 2000"
+
   }, {
 
     "processname" : "procexp.exe",
-    "processdescription" : "Process Explorer",
-    "clientname" : "SBAC"
+    "processdescription" : "Process Explorer"
+
   }, {
 
     "processname" : "psr.exe",
-    "processdescription" : "Windows Problem Steps Recorder",
-    "clientname" : "SBAC"
+    "processdescription" : "Windows Problem Steps Recorder"
+
   }, {
 
     "processname" : "quicktimeplayer.exe",
-    "processdescription" : "Apple Quicktime Player",
-    "clientname" : "SBAC"
+    "processdescription" : "Apple Quicktime Player"
+
   }, {
 
     "processname" : "Safari.exe",
-    "processdescription" : "Safari Web Browser",
-    "clientname" : "SBAC"
+    "processdescription" : "Safari Web Browser"
+
   }, {
 
     "processname" : "screenshot.exe",
-    "processdescription" : "Screenshot Application",
-    "clientname" : "SBAC"
+    "processdescription" : "Screenshot Application"
+
   }, {
 
     "processname" : "scrybe.exe",
-    "processdescription" : "Scrybe (Synaptics)",
-    "clientname" : "SBAC"
+    "processdescription" : "Scrybe (Synaptics)"
+
   }, {
 
     "processname" : "seamonkey.exe",
-    "processdescription" : "Seamonkey Web Browser",
-    "clientname" : "SBAC"
+    "processdescription" : "Seamonkey Web Browser"
+
   }, {
 
     "processname" : "skype.exe",
-    "processdescription" : "Skype",
-    "clientname" : "SBAC"
+    "processdescription" : "Skype"
+
   }, {
 
     "processname" : "Snagit32.exe",
-    "processdescription" : "Snagit",
-    "clientname" : "SBAC"
+    "processdescription" : "Snagit"
+
   }, {
 
     "processname" : "SnippingTool.exe",
-    "processdescription" : "Snipping Tool",
-    "clientname" : "SBAC"
+    "processdescription" : "Snipping Tool"
+
   }, {
 
     "processname" : "soffice.exe",
-    "processdescription" : "OpenOffice.org - Sun OpenOffice",
-    "clientname" : "SBAC"
+    "processdescription" : "OpenOffice.org - Sun OpenOffice"
+
   }, {
 
     "processname" : "SoundRecorder.exe",
-    "processdescription" : "Sound Recorder",
-    "clientname" : "SBAC"
+    "processdescription" : "Sound Recorder"
+
   }, {
 
     "processname" : "StikyNot.exe",
-    "processdescription" : "Sticky Notes",
-    "clientname" : "SBAC"
+    "processdescription" : "Sticky Notes"
+
   }, {
 
     "processname" : "taskmgr.exe",
-    "processdescription" : "Windows Task Manager",
-    "clientname" : "SBAC"
+    "processdescription" : "Windows Task Manager"
+
   }, {
 
     "processname" : "TeamViewer.exe",
-    "processdescription" : "TeamViewer",
-    "clientname" : "SBAC"
+    "processdescription" : "TeamViewer"
+
   }, {
 
     "processname" : "thunderbird.exe",
-    "processdescription" : "Thunderbird",
-    "clientname" : "SBAC"
+    "processdescription" : "Thunderbird"
+
   }, {
 
     "processname" : "trillian.exe",
-    "processdescription" : "Trillian Instant Messaging Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Trillian Instant Messaging Client"
+
   }, {
 
     "processname" : "ts3_client_win64.exe",
-    "processdescription" : "teamspeak",
-    "clientname" : "SBAC"
+    "processdescription" : "teamspeak"
+
   }, {
 
     "processname" : "Ventrillo.exe",
-    "processdescription" : "ventrillo",
-    "clientname" : "SBAC"
+    "processdescription" : "ventrillo"
+
   }, {
 
     "processname" : "VirtualBox.exe",
-    "processdescription" : "Virtual Box",
-    "clientname" : "SBAC"
+    "processdescription" : "Virtual Box"
+
   }, {
 
     "processname" : "VVCap.exe",
-    "processdescription" : "VVCap",
-    "clientname" : "SBAC"
+    "processdescription" : "VVCap"
+
   }, {
 
     "processname" : "WindowClipping.exe",
-    "processdescription" : "Window Clippings",
-    "clientname" : "SBAC"
+    "processdescription" : "Window Clippings"
+
   }, {
 
     "processname" : "wink.exe",
-    "processdescription" : "Wink",
-    "clientname" : "SBAC"
+    "processdescription" : "Wink"
+
   }, {
 
     "processname" : "WinMail.exe",
-    "processdescription" : "Windows Mail Client",
-    "clientname" : "SBAC"
+    "processdescription" : "Windows Mail Client"
+
   }, {
 
     "processname" : "winword.exe",
-    "processdescription" : "Microsoft Word",
-    "clientname" : "SBAC"
+    "processdescription" : "Microsoft Word"
+
   }, {
 
     "processname" : "wmplayer.exe",
-    "processdescription" : "Windows Media Player",
-    "clientname" : "SBAC"
+    "processdescription" : "Windows Media Player"
+
   }, {
 
     "processname" : "wordpad.exe",
-    "processdescription" : "Windows Wordpad",
-    "clientname" : "SBAC"
+    "processdescription" : "Windows Wordpad"
+
   }, {
 
     "processname" : "yahoomessenger.exe",
-    "processdescription" : "Yahoo Instant Messenger",
-    "clientname" : "SBAC"
+    "processdescription" : "Yahoo Instant Messenger"
+
   } ]
 };

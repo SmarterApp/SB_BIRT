@@ -8,7 +8,7 @@
   <div id="dialogPROCESS" style="display: none;">
 
     <div id="processTest" style="float: left; width: 50%">
-      <div class="divTable" style="width: 100%;">
+      <div class="divTable" style="width: 100%;" id="processTestTable">
         <div class="divTableBody">
           <div class="divTableRow">
             <div class="divTableCellMultiSelect">Available :</div>
@@ -19,7 +19,7 @@
             <div class="divTableCellMultiSelect">
               <select name="from[]" id="multiselect"
                 class="form-control" size="8" multiple="multiple"
-                style="width: 90%; ">
+                style="width: 90%;">
               </select>
             </div>
 
@@ -51,7 +51,7 @@
 
 
           </div>
-           <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow">&nbsp;</div>
           <div class="divTableRow">
             <div class="divTableCellMultiSelect">
               <button id="examineProcess"></button>
@@ -59,9 +59,28 @@
             <div>&nbsp;</div>
             <div>&nbsp;</div>
           </div>
+          <div class="divTableRow">&nbsp;</div>
+
         </div>
       </div>
-
+      <div class="divTable" style="display: none; width: 100%;"
+        id="runningForBiddenApps">
+        <div class="divTableBody">
+          <div class="divTableRow">
+          <div style="width: 80%;float: left;">
+            <div class="header-irp">Running Forbidden Apps</div>
+            <div id="forbiddenAppListGrid"></div>
+            </div>
+            <div style="width: 10%;float: right;">
+             <button id="conclude" style="float: right;"></button>
+            </div>
+          </div>
+          <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow">
+           
+          </div>
+        </div>
+      </div>
 
 
     </div>

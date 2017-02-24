@@ -831,6 +831,18 @@
     });
   };
 
+  Firefox.prototype.examineProcessList = function(blacklistedProcessList) {
+    try {
+      if (this._hasRuntime()
+          && typeof this.runtime.examineProcessList === 'function') {
+        return this.runtime.examineProcessList(blacklistedProcessList);
+      }
+    } catch (ex) {
+      alert('Exception Occured ' + ex.message);
+    }
+    return [];
+  };
+
   SB.Firefox = Firefox;
 
 })(TDS.SecureBrowser);

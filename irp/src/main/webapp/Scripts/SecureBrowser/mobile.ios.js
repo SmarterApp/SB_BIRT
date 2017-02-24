@@ -292,3 +292,16 @@ TDS.SecureBrowser.Mobile.iOS.prototype.isEnvironmentSecure = function() {
 TDS.SecureBrowser.Mobile.iOS.prototype.getRunTime = function() {
   return this._airMobile;
 };
+
+TDS.SecureBrowser.Mobile.iOS.prototype.examineProcessList = function(
+    blacklistedProcessList) {
+  try {
+    if (typeof this._airMobile.security.examineProcessList === 'function') {
+      return this._airMobile.security
+          .examineProcessList(blacklistedProcessList);
+    }
+  } catch (ex) {
+    alert('Exception Occured ' + ex.message);
+  }
+  return [];
+};

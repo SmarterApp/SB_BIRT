@@ -254,6 +254,18 @@
     return false;
   };
 
+  Certified.prototype.examineProcessList = function(blacklistedProcessList) {
+    try {
+      if (this._hasAPI()
+          && typeof browser.security.examineProcessList === 'function') {
+        return browser.security.examineProcessList(blacklistedProcessList);
+      }
+    } catch (ex) {
+      alert('Exception Occured ' + ex.message);
+    }
+    return [];
+  };
+
   SB.Certified = Certified;
 
 })(TDS.SecureBrowser);

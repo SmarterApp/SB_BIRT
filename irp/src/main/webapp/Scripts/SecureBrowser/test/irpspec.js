@@ -63,7 +63,7 @@ IRT.ApiSpecs = {
         "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
     "CAPABILITY_disable_all" : [ "setCapability", "enableCapability",
         "disableCapability", "getCapability", "capabilityType" ],
-    "PROCESS_disable_all" : [ "examineProcess" ]
+    "PROCESS_disable_all" : [ "examineProcess", "conclude" ]
   },
   "browserapi" : {
     // F35. The secure browser shall check for an appropriate Global Object for
@@ -1106,7 +1106,7 @@ IRT.ApiSpecs = {
     "EXAMINE" : {
       "id" : "1",
       "testName" : "Manual test for Examine Process List",
-      "instruction" : "Select available process to test and Click Examine button",
+      "instruction" : "Select available process to test and Click Examine button. <br/> System will populate any running forbidden apps in Running forbidden apps grid. Click OK to conclude test",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
