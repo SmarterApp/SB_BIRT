@@ -281,7 +281,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     } catch (ex) {
       alert('Exception Occured ' + ex.message);
     }
-    return [ "wmplayer.exe", "wordpad.exe", "wink.exe", "chrome.exe" ];
+    return [];
   };
 
   SB.Base = Base;
