@@ -1126,7 +1126,7 @@ function populateRunningForbiddenApplist(forbiddenArrayFromApi) {
 
   $("#forbiddenAppListGrid").jsGrid({
     width : "100%",
-    height : 300,
+    height : 250,
     data : loadRunningForbiddenApps(forbiddenArrayFromApi),
     selecting : false,
 
