@@ -257,7 +257,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         return true;
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return false;
   };
@@ -268,7 +268,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         return browser.security.getCapability(property);
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return false;
   };
@@ -279,7 +279,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         return browser.security.examineProcessList(blacklistedProcessList);
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return blacklistedProcessList;
   };

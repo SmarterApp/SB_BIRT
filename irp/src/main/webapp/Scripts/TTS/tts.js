@@ -678,7 +678,7 @@ TTS.Manager._updateStatus = function() {
   // get the TTS current status
   var currentStatus = TTS.Manager.getStatus();
 
-  // check if a status change occured
+  // check if a status change occurred
   if (currentStatus != TTS.Manager._lastStatus) {
     this._changeStatus(currentStatus);
   }
@@ -689,10 +689,10 @@ TTS.Manager._updateStatus = function() {
     TTS.Manager._statusPollingInterval = TTS.Manager._statusPollingIntervalActive;
   } else if (currentStatus == TTS.Status.Stopped
       || currentStatus == TTS.Status.Paused) {
-    // get how many milliseconds have occured since active polling started
+    // get how many milliseconds have occurred since active polling started
     var diffPollingActive = (new Date() - (TTS.Manager._statusPollingDateActive || 0));
 
-    // check if the min polling time has occured for active
+    // check if the min polling time has occurred for active
     if (TTS.Manager._statusPollingMinActive == 0
         || diffPollingActive > TTS.Manager._statusPollingMinActive) {
       TTS.Manager._statusPollingDateActive = null;

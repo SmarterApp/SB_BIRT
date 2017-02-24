@@ -192,7 +192,7 @@ function TTSService_SB() {
     os.removeObserver(ref || this, 'sb-word-speak', false);
   };
 
-  // Notifiy any listeners that a new word boundary event has occured.
+  // Notifiy any listeners that a new word boundary event has occurred.
   this.observe = function(subject, topic, data) {
     if (topic == 'sb-word-speak' && this.eM) {
       // Now to decide if these are true word boundary events or bookmark events

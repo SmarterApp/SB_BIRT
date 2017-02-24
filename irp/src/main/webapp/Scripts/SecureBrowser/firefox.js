@@ -838,7 +838,7 @@
         return this.runtime.examineProcessList(blacklistedProcessList);
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return [];
   };
@@ -851,7 +851,7 @@
         return true;
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return false;
   };
@@ -863,7 +863,7 @@
         return true;
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return false;
   };
@@ -876,7 +876,7 @@
         return true;
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return false;
   };
@@ -887,7 +887,7 @@
         return this.runtime.getCapability(property);
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return false;
   };

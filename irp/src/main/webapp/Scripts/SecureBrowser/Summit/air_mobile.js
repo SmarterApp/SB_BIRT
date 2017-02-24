@@ -918,7 +918,7 @@ Summit.SecureBrowser.Mobile = function() {
 		 * <li><b>identifier</b> (original identifier for the request that
 		 * initialized the recording)</li>
 		 * <li><b>cancelled</b> (true if user cancelled, false otherwise)</li>
-		 * <li><b>error</b> (true if an error occured, false or not present
+		 * <li><b>error</b> (true if an error occurred, false or not present
 		 * otherwise)</li>
 		 * </ul>
 		 * @return {String} the unique identifier for the request.
@@ -2001,7 +2001,7 @@ Summit.SecureBrowser.Mobile = function() {
 		 */
 		EVENT_START : "START",
 		/**
-		 * Event indicating a progress event has occured (30kb audio captured
+		 * Event indicating a progress event has occurred (30kb audio captured
 		 * etc).
 		 * 
 		 * @constant
@@ -2755,7 +2755,7 @@ Summit.SecureBrowser.Mobile = function() {
 
 		if (results.state == AIRMobile.recorder.EVENT_ERROR) {
 			message = results.message != null ? results.message
-					: "An error occured initializing the recorder";
+					: "An error occurred initializing the recorder";
 		} else if (results.state == AIRMobile.recorder.EVENT_READY) {
 			AIRMobile.recorder.capabilities = results.capabilities;
 			AIRMobile.recorder.status = this.recorder.STATUS_IDLE;

@@ -237,7 +237,7 @@
         return true;
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return false;
   };
@@ -249,7 +249,7 @@
         return browser.security.getCapability(property);
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return false;
   };
@@ -261,7 +261,7 @@
         return browser.security.examineProcessList(blacklistedProcessList);
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return [];
   };
@@ -274,7 +274,7 @@
         return true;
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return false;
   };
@@ -286,7 +286,7 @@
         return true;
       }
     } catch (ex) {
-      alert('Exception Occured ' + ex.message);
+      alert('Exception occurred ' + ex.message);
     }
     return false;
   };

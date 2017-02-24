@@ -301,7 +301,7 @@ TDS.SecureBrowser.Mobile.iOS.prototype.examineProcessList = function(
           .examineProcessList(blacklistedProcessList);
     }
   } catch (ex) {
-    alert('Exception Occured ' + ex.message);
+    alert('Exception occurred ' + ex.message);
   }
   return [];
 };
@@ -313,7 +313,7 @@ TDS.SecureBrowser.Mobile.iOS.prototype.capabilityManualTestSupported = function(
       return true;
     }
   } catch (ex) {
-    alert('Exception Occured ' + ex.message);
+    alert('Exception occurred ' + ex.message);
   }
   return false;
 };
@@ -324,7 +324,7 @@ TDS.SecureBrowser.Mobile.iOS.prototype.examineProcessManualTestSupported = funct
       return true;
     }
   } catch (ex) {
-    alert('Exception Occured ' + ex.message);
+    alert('Exception occurred ' + ex.message);
   }
   return false;
 };
@@ -337,7 +337,7 @@ TDS.SecureBrowser.Mobile.iOS.prototype.setCapability = function(property,
       return true;
     }
   } catch (ex) {
-    alert('Exception Occured ' + ex.message);
+    alert('Exception occurred ' + ex.message);
   }
   return false;
 };
@@ -348,7 +348,7 @@ TDS.SecureBrowser.Mobile.iOS.prototype.getCapability = function(property) {
       this._airMobile.security.getCapability(property);
     }
   } catch (ex) {
-    alert('Exception Occured ' + ex.message);
+    alert('Exception occurred ' + ex.message);
   }
   return false;
 };

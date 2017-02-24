@@ -148,7 +148,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.capabilityManualTestSupported = funct
       return true;
     }
   } catch (ex) {
-    alert('Exception Occured ' + ex.message);
+    alert('Exception occurred ' + ex.message);
   }
   return false;
 };
@@ -165,7 +165,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.setCapability = function(property,
       return true;
     }
   } catch (ex) {
-    alert('Exception Occured ' + ex.message);
+    alert('Exception occurred ' + ex.message);
   }
   return false;
 };
@@ -176,7 +176,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.getCapability = function(property) {
       this._airMobile.security.getCapability(property);
     }
   } catch (ex) {
-    alert('Exception Occured ' + ex.message);
+    alert('Exception occurred ' + ex.message);
   }
   return false;
 };
