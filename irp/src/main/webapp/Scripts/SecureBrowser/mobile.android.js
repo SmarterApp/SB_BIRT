@@ -140,3 +140,52 @@ TDS.SecureBrowser.Mobile.Android.prototype.getSelectedText = function() {
 TDS.SecureBrowser.Mobile.Android.prototype.getRunTime = function() {
   return this._airMobile;
 };
+
+TDS.SecureBrowser.Mobile.Android.prototype.capabilityManualTest = function(
+    property) {
+  try {
+    if (typeof this._airMobile.security.getCapability === 'function'
+        && typeof this._airMobile.security.setCapability === 'function') {
+      return true;
+    }
+  } catch (ex) {
+    alert('Exception Occured ' + ex.message);
+  }
+  return false;
+};
+
+TDS.SecureBrowser.Mobile.Android.prototype.examineProcessManualTest = function(
+    property) {
+  try {
+    if (typeof this._airMobile.security.examineProcessList === 'function') {
+      return true;
+    }
+  } catch (ex) {
+    alert('Exception Occured ' + ex.message);
+  }
+  return false;
+};
+
+TDS.SecureBrowser.Mobile.Android.prototype.setCapability = function(property,
+    enable) {
+  try {
+    if (typeof this._airMobile.security.setCapability === 'function') {
+      this._airMobile.security.setCapability(property, false);
+      return true;
+    }
+  } catch (ex) {
+    alert('Exception Occured ' + ex.message);
+  }
+  return false;
+};
+
+TDS.SecureBrowser.Mobile.Android.prototype.getCapability = function(property) {
+  try {
+    if (typeof this._airMobile.security.getCapability === 'function') {
+      this._airMobile.security.getCapability(property);
+    }
+  } catch (ex) {
+    alert('Exception Occured ' + ex.message);
+  }
+  return false;
+};

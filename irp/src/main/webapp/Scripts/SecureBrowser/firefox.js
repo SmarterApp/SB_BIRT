@@ -843,6 +843,55 @@
     return [];
   };
 
+  Firefox.prototype.capabilityManualTest = function(property) {
+    try {
+      if (this._hasRuntime()
+          && typeof this.runtime.getCapability === 'function'
+          && typeof this.runtime.setCapability === 'function') {
+        return true;
+      }
+    } catch (ex) {
+      alert('Exception Occured ' + ex.message);
+    }
+    return false;
+  };
+
+  Firefox.prototype.examineProcessManualTest = function(property) {
+    try {
+      if (this._hasRuntime()
+          && typeof this.runtime.examineProcessList === 'function') {
+        return true;
+      }
+    } catch (ex) {
+      alert('Exception Occured ' + ex.message);
+    }
+    return false;
+  };
+
+  Firefox.prototype.setCapability = function(property, enable) {
+    try {
+      if (this._hasRuntime()
+          && typeof this.runtime.setCapability === 'function') {
+        this.runtime.setCapability(property, false);
+        return true;
+      }
+    } catch (ex) {
+      alert('Exception Occured ' + ex.message);
+    }
+    return false;
+  };
+
+  Firefox.prototype.getCapability = function(property) {
+    try {
+      if (this._hasRuntime() && typeof runtime.getCapability === 'function') {
+        return this.runtime.getCapability(property);
+      }
+    } catch (ex) {
+      alert('Exception Occured ' + ex.message);
+    }
+    return false;
+  };
+
   SB.Firefox = Firefox;
 
 })(TDS.SecureBrowser);

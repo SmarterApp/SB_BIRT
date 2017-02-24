@@ -72,7 +72,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   }
 
   if (testName == 'CAPABILITY') {
-    if (impl != null && !!impl.setCapability && !!impl.getCapability) {
+    if (impl.capabilityManualTest()) {
       dialogWidth = '70%';
       dialogHeight = 600;
       isManualTestSupported = true;
@@ -87,7 +87,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
   if (testName == 'PROCESS') {
 
-    if (impl != null && !!impl.examineProcessList) {
+    if (impl.examineProcessManualTest()) {
       dialogWidth = '70%';
       dialogHeight = 600;
       isManualTestSupported = true;

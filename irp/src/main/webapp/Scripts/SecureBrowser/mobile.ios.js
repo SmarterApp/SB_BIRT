@@ -305,3 +305,51 @@ TDS.SecureBrowser.Mobile.iOS.prototype.examineProcessList = function(
   }
   return [];
 };
+
+TDS.SecureBrowser.Mobile.iOS.prototype.capabilityManualTest = function(property) {
+  try {
+    if (typeof this._airMobile.security.getCapability === 'function'
+        && typeof this._airMobile.security.setCapability === 'function') {
+      return true;
+    }
+  } catch (ex) {
+    alert('Exception Occured ' + ex.message);
+  }
+  return false;
+};
+
+TDS.SecureBrowser.Mobile.iOS.prototype.examineProcessManualTest = function(
+    property) {
+  try {
+    if (typeof this._airMobile.security.examineProcessList === 'function') {
+      return true;
+    }
+  } catch (ex) {
+    alert('Exception Occured ' + ex.message);
+  }
+  return false;
+};
+
+TDS.SecureBrowser.Mobile.iOS.prototype.setCapability = function(property,
+    enable) {
+  try {
+    if (typeof this._airMobile.security.setCapability === 'function') {
+      this._airMobile.security.setCapability(property, false);
+      return true;
+    }
+  } catch (ex) {
+    alert('Exception Occured ' + ex.message);
+  }
+  return false;
+};
+
+TDS.SecureBrowser.Mobile.iOS.prototype.getCapability = function(property) {
+  try {
+    if (typeof this._airMobile.security.getCapability === 'function') {
+      this._airMobile.security.getCapability(property);
+    }
+  } catch (ex) {
+    alert('Exception Occured ' + ex.message);
+  }
+  return false;
+};

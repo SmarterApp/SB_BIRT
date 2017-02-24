@@ -241,6 +241,49 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     return null;
   };
 
+  Base.prototype.capabilityManualTest = function(property) {
+    return false;
+  };
+
+  Base.prototype.examineProcessManualTest = function(property) {
+
+    return false;
+  };
+
+  Base.prototype.setCapability = function(property, enable) {
+    try {
+      if (typeof browser.security.setCapability === 'function') {
+        browser.security.setCapability(property, false);
+        return true;
+      }
+    } catch (ex) {
+      alert('Exception Occured ' + ex.message);
+    }
+    return false;
+  };
+
+  Base.prototype.getCapability = function(property) {
+    try {
+      if (typeof browser.security.getCapability === 'function') {
+        return browser.security.getCapability(property);
+      }
+    } catch (ex) {
+      alert('Exception Occured ' + ex.message);
+    }
+    return false;
+  };
+
+  Base.prototype.examineProcessList = function(blacklistedProcessList) {
+    try {
+      if (typeof browser.security.examineProcessList === 'function') {
+        return browser.security.examineProcessList(blacklistedProcessList);
+      }
+    } catch (ex) {
+      alert('Exception Occured ' + ex.message);
+    }
+    return [];
+  };
+
   SB.Base = Base;
 
 })(TDS.SecureBrowser);

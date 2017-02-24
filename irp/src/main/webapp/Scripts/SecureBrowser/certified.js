@@ -266,6 +266,31 @@
     return [];
   };
 
+  Certified.prototype.capabilityManualTest = function(property) {
+    try {
+      if (this._hasAPI()
+          && typeof browser.security.getCapability === 'function'
+          && typeof browser.security.setCapability === 'function') {
+        return true;
+      }
+    } catch (ex) {
+      alert('Exception Occured ' + ex.message);
+    }
+    return false;
+  };
+
+  Certified.prototype.examineProcessManualTest = function(property) {
+    try {
+      if (this._hasAPI()
+          && typeof browser.security.examineProcessList === 'function') {
+        return true;
+      }
+    } catch (ex) {
+      alert('Exception Occured ' + ex.message);
+    }
+    return false;
+  };
+
   SB.Certified = Certified;
 
 })(TDS.SecureBrowser);
