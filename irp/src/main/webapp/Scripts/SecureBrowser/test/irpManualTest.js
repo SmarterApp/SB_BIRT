@@ -88,8 +88,6 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   if (testName == 'PROCESS') {
 
     if (impl.examineProcessManualTest()) {
-      dialogWidth = '70%';
-      dialogHeight = 600;
       isManualTestSupported = true;
     } else {
       var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage

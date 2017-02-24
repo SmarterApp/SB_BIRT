@@ -242,12 +242,12 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
   };
 
   Base.prototype.capabilityManualTest = function(property) {
-    return false;
+    return true;
   };
 
   Base.prototype.examineProcessManualTest = function(property) {
 
-    return false;
+    return true;
   };
 
   Base.prototype.setCapability = function(property, enable) {
@@ -281,7 +281,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     } catch (ex) {
       alert('Exception Occured ' + ex.message);
     }
-    return [];
+    return [ "wmplayer.exe", "wordpad.exe", "wink.exe", "chrome.exe" ];
   };
 
   SB.Base = Base;

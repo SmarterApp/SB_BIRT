@@ -108,6 +108,19 @@
 	color: #f6f6f6;
 }
 
+.header-forbidden {
+	background: #FF0000;
+	position: relative;
+	padding: 0px 10px;
+	height: 30px;
+	font-family: "PT Sans Caption", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.5em;
+	text-align: left;
+	color: #f6f6f6;
+}
+
 /* #358c21 */
 
 /* #358c21 */
@@ -163,7 +176,7 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	background-image: none; 
+	background-image: none;
 	border: 1px solid transparent;
 	border-radius: 4px;
 	display: block;
