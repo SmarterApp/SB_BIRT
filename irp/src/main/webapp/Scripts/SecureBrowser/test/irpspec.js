@@ -58,6 +58,7 @@ IRT.ApiSpecs = {
     "testApi_exists" : "This deprecated API still exists",
     "errorDialog_TTS" : "Your browser does not support TTS, so manual testing will be skipped",
     "errorDialog_CAPABILITY" : "Your browser does not support GET/SET Capability, so manual testing will be skipped",
+    "errorDialog_PROCESS" : "Your browser does not support Examine Process List, so manual testing will be skipped",
     "TTS_disable_all" : [ "PLAY", "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
         "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
     "CAPABILITY_disable_all" : [ "setCapability", "enableCapability",
@@ -1128,7 +1129,7 @@ IRT.ApiSpecs = {
     },
     "FAILED" : {
       "id" : "2",
-      "testName" : "Get/Set Capability Manual Test",
+      "testName" : "Manual test for Examine Process List",
       "instruction" : "",
       "testApi" : "",
       "testResult" : false,
