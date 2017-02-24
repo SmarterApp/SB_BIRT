@@ -72,7 +72,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   }
 
   if (testName == 'CAPABILITY') {
-    if (impl.capabilityManualTest()) {
+    if (impl.capabilityManualTestSupported()) {
       dialogWidth = '70%';
       dialogHeight = 600;
       isManualTestSupported = true;
@@ -87,7 +87,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
   if (testName == 'PROCESS') {
 
-    if (impl.examineProcessManualTest()) {
+    if (impl.examineProcessManualTestSupported()) {
       isManualTestSupported = true;
     } else {
       var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
@@ -1126,6 +1126,7 @@ function populateRunningForbiddenApplist(forbiddenArrayFromApi) {
 
   $("#forbiddenAppListGrid").jsGrid({
     width : "100%",
+    height : 300,
     data : loadRunningForbiddenApps(forbiddenArrayFromApi),
     selecting : false,
 

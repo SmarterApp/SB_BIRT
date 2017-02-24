@@ -843,7 +843,7 @@
     return [];
   };
 
-  Firefox.prototype.capabilityManualTest = function(property) {
+  Firefox.prototype.capabilityManualTestSupported = function() {
     try {
       if (this._hasRuntime()
           && typeof this.runtime.getCapability === 'function'
@@ -856,7 +856,7 @@
     return false;
   };
 
-  Firefox.prototype.examineProcessManualTest = function(property) {
+  Firefox.prototype.examineProcessManualTestSupported = function() {
     try {
       if (this._hasRuntime()
           && typeof this.runtime.examineProcessList === 'function') {

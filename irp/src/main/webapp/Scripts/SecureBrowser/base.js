@@ -241,11 +241,11 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     return null;
   };
 
-  Base.prototype.capabilityManualTest = function(property) {
+  Base.prototype.capabilityManualTestSupported = function() {
     return true;
   };
 
-  Base.prototype.examineProcessManualTest = function(property) {
+  Base.prototype.examineProcessManualTestSupported = function() {
 
     return true;
   };
@@ -281,7 +281,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     } catch (ex) {
       alert('Exception Occured ' + ex.message);
     }
-    return [];
+    return blacklistedProcessList;
   };
 
   SB.Base = Base;

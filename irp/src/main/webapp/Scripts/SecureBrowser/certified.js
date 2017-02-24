@@ -266,7 +266,7 @@
     return [];
   };
 
-  Certified.prototype.capabilityManualTest = function(property) {
+  Certified.prototype.capabilityManualTestSupported = function() {
     try {
       if (this._hasAPI()
           && typeof browser.security.getCapability === 'function'
@@ -279,7 +279,7 @@
     return false;
   };
 
-  Certified.prototype.examineProcessManualTest = function(property) {
+  Certified.prototype.examineProcessManualTestSupported = function() {
     try {
       if (this._hasAPI()
           && typeof browser.security.examineProcessList === 'function') {

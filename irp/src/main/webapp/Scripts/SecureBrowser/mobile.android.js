@@ -141,8 +141,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.getRunTime = function() {
   return this._airMobile;
 };
 
-TDS.SecureBrowser.Mobile.Android.prototype.capabilityManualTest = function(
-    property) {
+TDS.SecureBrowser.Mobile.Android.prototype.capabilityManualTestSupported = function() {
   try {
     if (typeof this._airMobile.security.getCapability === 'function'
         && typeof this._airMobile.security.setCapability === 'function') {
@@ -154,15 +153,7 @@ TDS.SecureBrowser.Mobile.Android.prototype.capabilityManualTest = function(
   return false;
 };
 
-TDS.SecureBrowser.Mobile.Android.prototype.examineProcessManualTest = function(
-    property) {
-  try {
-    if (typeof this._airMobile.security.examineProcessList === 'function') {
-      return true;
-    }
-  } catch (ex) {
-    alert('Exception Occured ' + ex.message);
-  }
+TDS.SecureBrowser.Mobile.Android.prototype.examineProcessManualTestSupported = function() {
   return false;
 };
 

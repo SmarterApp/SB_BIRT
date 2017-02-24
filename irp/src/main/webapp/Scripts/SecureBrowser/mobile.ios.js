@@ -306,7 +306,7 @@ TDS.SecureBrowser.Mobile.iOS.prototype.examineProcessList = function(
   return [];
 };
 
-TDS.SecureBrowser.Mobile.iOS.prototype.capabilityManualTest = function(property) {
+TDS.SecureBrowser.Mobile.iOS.prototype.capabilityManualTestSupported = function() {
   try {
     if (typeof this._airMobile.security.getCapability === 'function'
         && typeof this._airMobile.security.setCapability === 'function') {
@@ -318,8 +318,7 @@ TDS.SecureBrowser.Mobile.iOS.prototype.capabilityManualTest = function(property)
   return false;
 };
 
-TDS.SecureBrowser.Mobile.iOS.prototype.examineProcessManualTest = function(
-    property) {
+TDS.SecureBrowser.Mobile.iOS.prototype.examineProcessManualTestSupported = function() {
   try {
     if (typeof this._airMobile.security.examineProcessList === 'function') {
       return true;
