@@ -615,7 +615,7 @@ var IRT_FORBIDDEN = {
     "processdescription" : "Yahoo Instant Messenger ",
     "clientname" : "SBAC"
   } ],
-  "Windows" : [ {
+  "WINDOWS" : [ {
 
     "processname" : "acrord32.exe",
     "processdescription" : "Adobe Acrobat Reader",

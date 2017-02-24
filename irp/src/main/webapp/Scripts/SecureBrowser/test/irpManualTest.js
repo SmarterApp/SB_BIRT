@@ -273,6 +273,7 @@ function processComponentInitialize() {
   $('#multiselect').multiselect();
   populateJsonGrid($("#processTestGrid"), 'PROCESS', false);
   createButton($("#examineProcess"), 'Examine');
+  loadAvailableForbiddenApps();
   if (Util.Validation.getProcessManualResult().length == 0) {
     populateReportGrid(processTestArray, process_section);
   }
@@ -512,6 +513,24 @@ function getSystemCapability() {
     loadTestDialogConfirm($("#capabilityTestGrid"), 'CAPABILITY',
         specCapabilityManualApi);
   }
+
+}
+
+function loadAvailableForbiddenApps() {
+
+  var selectList = document.getElementById("multiselect");
+
+  var operatingSystem = Util.Browser.getOperatingSystem();
+
+  var forbiddenArray = eval('IRT_FORBIDDEN.' + operatingSystem);
+
+  forbiddenArray.forEach(function(item, index, array) {
+    var opt = document.createElement("option");
+    opt.value = item.processname;
+    opt.text = item.processdescription;
+    selectList.options.add(opt);
+
+  });
 
 }
 

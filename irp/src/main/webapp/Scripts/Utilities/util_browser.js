@@ -1,17 +1,16 @@
-﻿//*******************************************************************************
+﻿// *******************************************************************************
 // Educational Online Test Delivery System
 // Copyright (c) 2017 American Institutes for Research
 //
 // Distributed under the AIR Open Source License, Version 1.0
 // See accompanying file AIR-License-1_0.txt or at
 // http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
-//*******************************************************************************
+// *******************************************************************************
 // REQUIRES: util_event.js, YUI
 
 /*
- Parser help:
- https://github.com/tobie/ua-parser/blob/master/regexes.yaml
- https://github.com/faisalman/ua-parser-js/
+ * Parser help: https://github.com/tobie/ua-parser/blob/master/regexes.yaml
+ * https://github.com/faisalman/ua-parser-js/
  */
 
 (function(Util) {
@@ -377,6 +376,21 @@
     else {
       return;
     }
+  };
+
+  Browser.getOperatingSystem = function() {
+    var operatingSystem = "";
+
+    if (Browser.isWindows())
+      operatingSystem = "WINDOWS";
+    else if (Browser.isLinux())
+      operatingSystem = "LINUX";
+    else if (Browser.isMac())
+      operatingSystem = "OSX";
+    else if (Browser.isIOS())
+      operatingSystem = "IOS";
+
+    return operatingSystem;
   };
 
   Util.Browser = Browser;
