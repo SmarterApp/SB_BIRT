@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+<body>
+  <div id="dialogPROCESS" style="display: none;">
+
+    <div id="processTest" style="float: left; width: 50%">
+      <div class="divTable" style="width: 100%;">
+        <div class="divTableBody">
+          <div class="divTableRow">
+            <div class="divTableCellMultiSelect">Available :</div>
+            <div>&nbsp;</div>
+            <div class="divTableCellMultiSelect">Selected :</div>
+          </div>
+          <div class="divTableRow">
+            <div class="divTableCellMultiSelect">
+              <select name="from[]" id="multiselect"
+                class="form-control" size="8" multiple="multiple"
+                style="width: 90%; position: static;">
+                <option value="1">Item 1</option>
+                <option value="2">Item 5</option>
+                <option value="2">Item 2</option>
+                <option value="2">Item 4</option>
+                <option value="3">Item 3</option>
+              </select>
+            </div>
+
+            <div class="divTableCellMultiSelectButton">
+              <button id="multiselect_rightSelected"
+                class="multiselectButton">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+              </button>
+              <button id="multiselect_leftSelected"
+                class="multiselectButton">
+                <span class="ui-icon ui-icon-triangle-1-w"></span>
+              </button>
+              <button id="multiselect_rightAll"
+                class="multiselectButton">
+                <span class="ui-icon  ui-icon-seek-next"></span>
+              </button>
+              <button id="multiselect_leftAll" class="multiselectButton">
+                <span class="ui-icon ui-icon-seek-prev"></span>
+              </button>
+            </div>
+            <div class="divTableCellMultiSelect">
+              <select name="to[]" id="multiselect_to"
+                class="form-control" size="8" multiple="multiple"
+                style="width: 90%; position: static;">
+
+              </select>
+            </div>
+
+
+
+          </div>
+           <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow">
+            <div class="divTableCellMultiSelect">
+              <button id="examineProcess"></button>
+            </div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div id="processManualReport" style="float: right; width: 50%">
+      <div class="header-irp">Manual test instructions</div>
+      <div id="processTestGrid"></div>
+    </div>
+
+  </div>
+
+</body>
+</html>

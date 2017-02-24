@@ -13,6 +13,10 @@
 <link type="text/css" rel="stylesheet"
   href="../../Libraries/jQuery/jquery-ui.theme.css" />
 
+<!-- JQuery MultiSelect Plugin -->
+
+<script src="../../Libraries/jQuery/multiselect/multiselect.js"></script>
+
 <link type="text/css" rel="stylesheet" href="../../../Shared/irp.css" />
 
 <!-- JSGrid -->
@@ -22,10 +26,9 @@
   href="../../Libraries/jQuery/jsgrid/jsgrid-theme.min.css" />
 <script type="text/javascript"
   src="../../Libraries/jQuery/jsgrid/jsgrid.min.js"></script>
-  
-  <script type="text/javascript"
-  src="irpspec.js"></script>
-  
+
+<script type="text/javascript" src="irpspec.js"></script>
+
 <!-- YAHOO -->
 <script type="text/javascript"
   src="../../Libraries/yahoo/yahoo-dom-event.js"></script>
@@ -69,6 +72,7 @@
 <script type="text/javascript" src="populateGrid.js"></script>
 <script type="text/javascript" src="index.js"></script>
 <script type="text/javascript" src="irpManualTest.js"></script>
+<script type="text/javascript" src="forbiddenapplist.js"></script>
 
 
 <script type="text/javascript">
@@ -76,118 +80,117 @@
 
   $(document).ready(function() {
 
-
-
     $("#ttsTestLoad").load("ttsManualTest.html");
-    
+
     $("#capabilityTestLoad").load("capabilityManualTest.html");
+
+    $("#processTestLoad").load("processManualTest.html");
     beginBrowserAPITest();
-    
-    if(isAIRSecureBrowser && impl!=null && impl.getRunTime()!=null){
+
+    if (isAIRSecureBrowser && impl != null && impl.getRunTime() != null) {
 
       $("#seperator").show();
-      $("#closeBrowser").show();  
+      $("#closeBrowser").show();
       $("#closeBrowser").click(function() {
         closeBrowser();
       });
     }
 
   });
-
 </script>
 
 </head>
 
 <body>
-<div id="main">
-  <div>
-    
-    <h1 class="entry-title">
-    <img alt="Smarter Balanced Assessment Consortium" style="width : 183px !important; float: lef" src="../../../Shared/images/SmarterBalanced_logo.png" />
-    <span>
-    &nbsp;&nbsp;Secure Browser Implementation Readiness
-      Test (IRT)
-      </span></h1>
-    <p align="right">
-      <a href="javascript:location.reload(true);">RELOAD</a> <span id="seperator" style="display: none;">|</span> <a
-        href="#" id="closeBrowser" style="display: none;">CLOSE</a> 
-    </p>
-  </div>
-  
-  <div class="header-irp" id="browserAPI">
-  Browser API
-  </div>
-  <div id="jsGrid"></div>
-  
-   <div id="browserApiManualTest">
-    <ul>
-      <li><a
-        href="javascript:loadDialogBox($('#dialogCAPABILITY'), 'CAPABILITY', 'Getting and Setting Capabilities Test',true)">Click
-          to begin Getting and Setting Capabilities tests</a></li>
+  <div id="main">
+    <div>
+
+      <h1 class="entry-title">
+        <img alt="Smarter Balanced Assessment Consortium"
+          style="width: 183px !important; float: lef"
+          src="../../../Shared/images/SmarterBalanced_logo.png" /> <span>
+          &nbsp;&nbsp;Secure Browser Implementation Readiness Test (IRT)
+        </span>
+      </h1>
+      <p align="right">
+        <a href="javascript:location.reload(true);">RELOAD</a> <span
+          id="seperator" style="display: none;">|</span> <a href="#"
+          id="closeBrowser" style="display: none;">CLOSE</a>
+      </p>
+    </div>
+
+    <div class="header-irp" id="browserAPI">Browser API</div>
+    <div id="jsGrid"></div>
+
+    <div>
+      <ul>
+        <li id="capabilityApiManualTest"><a
+          href="javascript:loadDialogBox($('#dialogCAPABILITY'), 'CAPABILITY', 'Getting and Setting Capabilities Test',true)">Click
+            to begin Getting and Setting Capabilities tests</a></li>
+       
+        <li id="processApiManualTest"><a
+          href="javascript:loadDialogBox($('#dialogPROCESS'), 'PROCESS', 'Examine Process List Test',true)">Click
+            to begin Examine Process List tests</a></li>
+
 
       </ul>
-  </div>
-  
-  
+    </div>
 
-  <div>&nbsp;</div>
-  <div>&nbsp;</div>
-  <div class="header-irp" id="textToSpeechAPI">
-    Text-to-speech
-  </div>
-  <div id="jsTTSGrid"></div>
-  
-   <div id="ttsManualTest">
-    <ul>
-      <li><a
-        href="javascript:loadDialogBox($('#dialogTTS'), 'TTS', 'TTS API Manual Test',true)">Click
-          to begin manual TTS tests</a></li>
+
+
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div class="header-irp" id="textToSpeechAPI">Text-to-speech</div>
+    <div id="jsTTSGrid"></div>
+
+    <div id="ttsManualTest">
+      <ul>
+        <li><a
+          href="javascript:loadDialogBox($('#dialogTTS'), 'TTS', 'TTS API Manual Test',true)">Click
+            to begin manual TTS tests</a></li>
 
       </ul>
-  </div>
-  
-  
-   <div>&nbsp;</div>
-   <div>&nbsp;</div>
-    <div  id="html5TestMain" >
-  <div class="header-ext" id="html5TestHeader">
-    HTML5 Test
-  </div>
-  <div id="jsHTML5TestGrid"></div>
-    <div id="html5ManualTest">
-    <ul>
-      <li><a
-        href="javascript:loadDialogBox('', 'HTML5', 'HTML5 Specification TEST',true)">Click
-            to begin HTML5 Test</a></li> 
-      </ul>
-  </div>
-</div>
+    </div>
 
 
-   <div>&nbsp;</div>
-   <div>&nbsp;</div>
-    <div  id="css3TestMain" >
-  <div class="header-ext" id="css3TestHeader">
-    CSS3 Test
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div id="html5TestMain">
+      <div class="header-ext" id="html5TestHeader">HTML5 Test</div>
+      <div id="jsHTML5TestGrid"></div>
+      <div id="html5ManualTest">
+        <ul>
+          <li><a
+            href="javascript:loadDialogBox('', 'HTML5', 'HTML5 Specification TEST',true)">Click
+              to begin HTML5 Test</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div id="css3TestMain">
+      <div class="header-ext" id="css3TestHeader">CSS3 Test</div>
+      <div id="jsCSS3TestGrid"></div>
+      <div id="css3ManualTest">
+        <ul>
+          <li><a
+            href="javascript:loadDialogBox('', 'CSS3', 'CSS3 Specification TEST',true)">Click
+              to begin CSS3 Test</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div id="ttsTestLoad"></div>
+
+    <div id="capabilityTestLoad"></div>
+
+    <div id="processTestLoad"></div>
+
+
   </div>
-  <div id="jsCSS3TestGrid"></div>
-    <div id="css3ManualTest">
-    <ul>
-      <li><a
-        href="javascript:loadDialogBox('', 'CSS3', 'CSS3 Specification TEST',true)">Click
-            to begin CSS3 Test</a></li> 
-      </ul>
-  </div>
-</div>
-
-
-  <div id="ttsTestLoad"></div>
-    
-  <div id="capabilityTestLoad"></div> 
- 
-  
-
-</div>
 
 
 

@@ -20,6 +20,8 @@
 
   var capabilityTestArray = [];
 
+  var processTestArray = [];
+
   var MACREGEX = new RegExp(
       "^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$");
 
@@ -61,6 +63,9 @@
     } else if (section == 'CAPABILITY_MANUAL') {
       apiSpec = irpApiSpecConstant + specSeparator + specCapabilityManualApi
           + specSeparator + testName;
+    } else if (section == 'PROCESS_MANUAL') {
+      apiSpec = irpApiSpecConstant + specSeparator + specProcessManualApi
+          + specSeparator + testName;
     } else {
       apiSpec = irpApiSpecConstant + specSeparator + specBrowserapi
           + specSeparator + testName;
@@ -97,6 +102,9 @@
     } else if (section == 'CAPABILITY_MANUAL') {
       apiSpecObject.testResult = null;
       capabilityTestArray.push(apiSpecObject);
+    } else if (section == 'PROCESS_MANUAL') {
+      apiSpecObject.testResult = null;
+      processTestArray.push(apiSpecObject);
     } else {
       resultArray.push(apiSpecObject);
     }
@@ -142,6 +150,18 @@
 
   };
 
+  Validation.mergeProcessResultIntoResult = function() {
+
+    processTestArray.forEach(function(element) {
+
+      if (element.testResult == null) {
+        element.testResult = false;
+      }
+      resultArray.push(element);
+    });
+
+  };
+
   Validation.formulateJsonForReport = function() {
 
     var itemDetail = {};
@@ -159,6 +179,10 @@
     });
 
     return itemDetail;
+  };
+
+  Validation.getProcessManualResult = function() {
+    return processTestArray;
   };
 
   Validation.getCapabilityManualResult = function() {

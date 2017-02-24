@@ -1,10 +1,3 @@
-var IRP_EXT_REPORT = {
-  "jsGrid" : false,
-  "jsTTSGrid" : false,
-  "jsHTML5TestGrid" : true,
-  "jsCSS3TestGrid" : true
-};
-
 var IRT_REPORT = {
   "externalReportConfig" : {
     "jsGrid" : false,

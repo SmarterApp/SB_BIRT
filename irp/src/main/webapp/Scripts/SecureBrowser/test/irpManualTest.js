@@ -13,6 +13,8 @@ var currentTestSetting = "UNKNOWN";
 
 var capabilityTestArray = Object.keys(IRT.CapabilityTest);
 
+var processTestArray = Object.keys(IRT.ProcessTest);
+
 var propertyArray = Object.keys(IRT.CAPABILITY_PROPERTY);
 /*
  * Initial value for currentTestIndex set as 0 so as to load first test (Play)
@@ -71,8 +73,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
   if (testName == 'CAPABILITY') {
     if (impl != null && !!impl.setCapability && !!impl.getCapability) {
-      var dialogWidth = '70%';
-      var dialogHeight = 600;
+      dialogWidth = '70%';
+      dialogHeight = 600;
       isManualTestSupported = true;
     } else {
       var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
@@ -81,6 +83,12 @@ function loadDialogBox(id, testName, testTitle, isNew) {
           .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
               + textMessage + '</p>');
     }
+  }
+
+  if (testName == 'PROCESS') {
+    dialogWidth = '70%';
+    dialogHeight = 600;
+    isManualTestSupported = true;
   }
 
   if (isManualTestSupported) {
@@ -108,6 +116,10 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         if (testName == 'CAPABILITY') {
           capabilityComponentInitialize();
         }
+        if (testName == 'PROCESS') {
+
+          processComponentInitialize();
+        }
       },
       buttons : [ {
         id : "dialogButton",
@@ -130,7 +142,11 @@ function loadDialogBox(id, testName, testTitle, isNew) {
           }
           if (testName == 'CAPABILITY') {
             populateManualResultIntoResultGrid(testName, $("#jsGrid"),
-                $("#browserApiManualTest"), id);
+                $("#capabilityApiManualTest"), id);
+          }
+          if (testName == 'PROCESS') {
+            populateManualResultIntoResultGrid(testName, $("#jsGrid"),
+                $("#processApiManualTest"), id);
           }
         }
       } ]
@@ -150,7 +166,11 @@ function loadDialogBox(id, testName, testTitle, isNew) {
                 $("#ttsManualTest"), id);
           } else if (testName == 'CAPABILITY') {
             populateManualResultIntoResultGrid(testName, $("#jsGrid"),
-                $("#browserApiManualTest"), id);
+                $("#capabilityApiManualTest"), id);
+          }
+          if (testName == 'PROCESS') {
+            populateManualResultIntoResultGrid(testName, $("#jsGrid"),
+                $("#processApiManualTest"), id);
           }
         }
       } ]
@@ -216,6 +236,12 @@ function loadDialogBox(id, testName, testTitle, isNew) {
     }
   }
 
+  if (testName == 'PROCESS') {
+    if (isManualTestSupported) {
+      id.dialog("open");
+    }
+  }
+
   if (testName == 'HTML5' || testName == 'CSS3') {
     var saveButtonVar = setInterval(function() {
       var iframeObj = null;
@@ -235,6 +261,21 @@ function loadDialogBox(id, testName, testTitle, isNew) {
     }, 1000);
   }
 
+}
+
+function processComponentInitialize() {
+  if (currentTestSetting == IRT.ProcessTest.UNKNOWN) {
+
+    currentTestSetting = IRT.ProcessTest.EXAMINE;
+
+  }
+
+  $('#multiselect').multiselect();
+  populateJsonGrid($("#processTestGrid"), 'PROCESS', false);
+  createButton($("#examineProcess"), 'Examine');
+  if (Util.Validation.getProcessManualResult().length == 0) {
+    populateReportGrid(processTestArray, process_section);
+  }
 }
 
 function capabilityComponentInitialize() {
@@ -300,6 +341,10 @@ function populateManualResultIntoResultGrid(testName, gridId, linkId, dialogId) 
   }
   if (testName == 'CAPABILITY') {
     Util.Validation.mergeCapabilityResultIntoResult();
+  }
+
+  if (testName == 'PROCESS') {
+    Util.Validation.mergeProcessResultIntoResult();
   }
 
   gridId.jsGrid("refresh");
@@ -399,11 +444,18 @@ function createButton(id, text) {
       setSystemCapability();
     } else if (text == 'Get') {
       getSystemCapability();
+    } else if (text == 'Examine') {
+      examineProcessList();
     }
 
     event.preventDefault();
   });
 
+}
+
+function examineProcessList() {
+  setDialogHtml(specProcessManualApi);
+  loadTestDialogConfirm($("#processTestGrid"), 'PROCESS', specProcessManualApi);
 }
 
 function setSelectedCapability(label, value, index) {
@@ -657,6 +709,16 @@ function populateJsonGrid(id, testName, hideResult) {
     gridArray = populatePropertyGrid().slice();
   }
 
+  if (testName == 'PROCESS') {
+    var processGridArray = [];
+
+    var setObj = eval(irpApiSpecConstant + specSeparator + specProcessManualApi
+        + specSeparator + currentTestSetting);
+    setObj.testResult = null;
+    processGridArray.push(setObj);
+    gridArray = processGridArray.slice();
+  }
+
   if (hideResult) {
     testNameTitle = 'Capability'
     resultColumnCss = 'irp-grid-column-hide';
@@ -754,6 +816,10 @@ function closeConfirmBox(manualGridId, testName, currentManualApi, result) {
   } else if (testName == 'CAPABILITY') {
     manualResultArray = Util.Validation.getCapabilityManualResult();
     testingArray = capabilityTestArray.slice();
+
+  } else if (testName == 'PROCESS') {
+    manualResultArray = Util.Validation.getProcessManualResult();
+    testingArray = processTestArray.slice();
 
   }
   if (currentTestSetting == testingArray[currentTestIndex]) {

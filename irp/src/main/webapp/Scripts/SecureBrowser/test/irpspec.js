@@ -16,6 +16,7 @@ var webspeech = "webspeech";
 var tts_section = 'TTS';
 var ttsmanual_section = 'TTS_MANUAL';
 var capability_section = 'CAPABILITY_MANUAL';
+var process_section = 'PROCESS_MANUAL';
 var irpApiSpecConstant = 'IRT.ApiSpecs';
 
 var specMessage = "message";
@@ -23,11 +24,18 @@ var specTTSApi = "ttsapi";
 var specTTSManualApi = "ttsmanualapi";
 var specBrowserapi = "browserapi";
 var specCapabilityManualApi = "capabilityManualAPI";
+
+var specProcessManualApi = "processManualAPI";
 var specSeparator = ".";
 
 IRT.CapabilityTest = {
   SET : 'SET',
   GET : 'GET',
+  UNKNOWN : 'UNKNOWN' // unknown status
+};
+
+IRT.ProcessTest = {
+  EXAMINE : 'EXAMINE',
   UNKNOWN : 'UNKNOWN' // unknown status
 };
 
@@ -53,7 +61,8 @@ IRT.ApiSpecs = {
     "TTS_disable_all" : [ "PLAY", "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
         "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
     "CAPABILITY_disable_all" : [ "setCapability", "enableCapability",
-        "disableCapability", "getCapability", "capabilityType" ]
+        "disableCapability", "getCapability", "capabilityType" ],
+    "PROCESS_disable_all" : [ "examineProcess" ]
   },
   "browserapi" : {
     // F35. The secure browser shall check for an appropriate Global Object for
@@ -1069,6 +1078,56 @@ IRT.ApiSpecs = {
     },
     "FAILED" : {
       "id" : "3",
+      "testName" : "Get/Set Capability Manual Test",
+      "instruction" : "",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "",
+      "dialogTitle" : "",
+      "buttonSliderId" : "",
+      "disableSection" : "",
+      "enableSection" : ""
+    }
+  },
+  "processManualAPI" : {
+    "EXAMINE" : {
+      "id" : "1",
+      "testName" : "Manual test for Examine Process List",
+      "instruction" : "Select available process to test and Click Examine button",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "mobile" : true,
+        "desktop" : true,
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you see processes in Forbidden Running processes grid, as per your selection,choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "Examine Process List Test",
+      "buttonSliderId" : "examineProcess",
+      "disableSection" : [ "" ],
+      "enableSection" : [ "" ]
+    },
+    "FAILED" : {
+      "id" : "2",
       "testName" : "Get/Set Capability Manual Test",
       "instruction" : "",
       "testApi" : "",
