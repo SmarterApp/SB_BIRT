@@ -1106,7 +1106,7 @@ IRT.ApiSpecs = {
     "EXAMINE" : {
       "id" : "1",
       "testName" : "Manual test for Examine Process List",
-      "instruction" : "Select available process to test and Click Examine button. <br/> System will populate any running forbidden apps in Running forbidden apps grid. Click OK to conclude test",
+      "instruction" : "<ol><li>Select one or more processes from the 'Available' list and move them to the 'Selected' list and click the Examine button.</li><li>Any running forbidden apps found will be populated in the resulting grid.</li><li>Click OK to conclude this test.</li></ol>",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
