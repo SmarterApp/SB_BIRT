@@ -14,23 +14,23 @@ var mobile = "mobile";
 var webspeech = "webspeech";
 
 /**
- * Below variable serve as a constant to access the JSON Object for Automate and
- * Manual Test
+ * Below variables serve as constants to access the JSON Object for automated
+ * and manual testing
  * 
  * @irtApiSpecConstant : Global Level Object created under IRT to get all api
  *                     specification json
  * @specMessage : message object to access global messages to display on UI
- * @specTTSApi : TTS Api section for automate testing
+ * @specTTSApi : TTS Api section for automated testing
  * @specTTSManualApi : TTS Manual API instruction and other info for TTS manual
  *                   testing
- * @specBrowserapi : Browser API section for automate testing
+ * @specBrowserapi : Browser API section for automated testing
  * @specCapabilityManualApi : Get/Set Capability Manual API instruction and
  *                          other info for Get/Set Capability manual testing
  * @specProcessManualApi : Examine Process list Manual API instruction and other
  *                       info for Examine Process list manual testing
  * @specSeparator : JSON object seperator which is always "." to access insider
  *                variables and keys
- * @tts_section : Section variable to define TTS Automate testing
+ * @tts_section : Section variable to define TTS automated testing
  * @ttsmanual_section : Section variable to define TTS Manual testing
  * @capability_section : Section variable to define Get/Set Capability Manual
  *                     testing
