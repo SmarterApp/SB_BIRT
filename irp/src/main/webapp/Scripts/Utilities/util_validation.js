@@ -51,23 +51,23 @@
    * @section : Result Grid Section like TTS / TTS_MANUAL or null
    */
 
-  Validation.setIRPTestResults = function(testName, testBrowserType, result,
+  Validation.setIRTTestResults = function(testName, testBrowserType, result,
       details, section) {
     var apiSpec = "";
     if (section == 'TTS') {
-      apiSpec = irpApiSpecConstant + specSeparator + specTTSApi + specSeparator
+      apiSpec = irtApiSpecConstant + specSeparator + specTTSApi + specSeparator
           + testName;
     } else if (section == 'TTS_MANUAL') {
-      apiSpec = irpApiSpecConstant + specSeparator + specTTSManualApi
+      apiSpec = irtApiSpecConstant + specSeparator + specTTSManualApi
           + specSeparator + testName;
     } else if (section == 'CAPABILITY_MANUAL') {
-      apiSpec = irpApiSpecConstant + specSeparator + specCapabilityManualApi
+      apiSpec = irtApiSpecConstant + specSeparator + specCapabilityManualApi
           + specSeparator + testName;
     } else if (section == 'PROCESS_MANUAL') {
-      apiSpec = irpApiSpecConstant + specSeparator + specProcessManualApi
+      apiSpec = irtApiSpecConstant + specSeparator + specProcessManualApi
           + specSeparator + testName;
     } else {
-      apiSpec = irpApiSpecConstant + specSeparator + specBrowserapi
+      apiSpec = irtApiSpecConstant + specSeparator + specBrowserapi
           + specSeparator + testName;
     }
 
@@ -86,7 +86,7 @@
 
     if (details == 'testApi_removed' || details == 'testApi_exists') {
 
-      details = eval(irpApiSpecConstant + specSeparator + specMessage
+      details = eval(irtApiSpecConstant + specSeparator + specMessage
           + specSeparator + details);
     }
 
@@ -116,7 +116,7 @@
 
     var itemDetail = {};
 
-    var specObj = eval(irpApiSpecConstant + specSeparator + currentManualApi
+    var specObj = eval(irtApiSpecConstant + specSeparator + currentManualApi
         + specSeparator + currentTTSTest);
     specObj.testResult = result;
 

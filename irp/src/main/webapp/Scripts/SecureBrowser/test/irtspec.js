@@ -17,7 +17,7 @@ var webspeech = "webspeech";
  * Below variable serve as a constant to access the JSON Object for Automate and
  * Manual Test
  * 
- * @irpApiSpecConstant : Global Level Object created under IRT to get all api
+ * @irtApiSpecConstant : Global Level Object created under IRT to get all api
  *                     specification json
  * @specMessage : message object to access global messages to display on UI
  * @specTTSApi : TTS Api section for automate testing
@@ -37,7 +37,7 @@ var webspeech = "webspeech";
  * @process_section : Section variable to define Examine Process List Manual
  *                  testing
  */
-var irpApiSpecConstant = 'IRT.ApiSpecs';
+var irtApiSpecConstant = 'IRT.ApiSpecs';
 var specMessage = "message";
 var specTTSApi = "ttsapi";
 var specTTSManualApi = "ttsmanualapi";
@@ -65,6 +65,27 @@ IRT.ProcessTest = {
 IRT.CAPABILITY_PROPERTY = {
   Printing : 'printing',
   ScreenCapture : 'screenCapture'
+};
+
+IRT.AUTOMATE_TEST_SECTION = {
+
+  "browserapi" : {
+    /**
+     * implBrowserType is the variable defined in index.js which will provide
+     * browserType value based on factory.js *
+     */
+    "browserType" : "implBrowserType",
+    "section" : null
+  },
+  "ttsapi" : {
+    /**
+     * ttsBrowserType is the variable defined in index.js which will provide
+     * browserType value based on text-to-speech support for browser *
+     */
+    "browserType" : "ttsBrowserType",
+    "section" : tts_section
+
+  }
 };
 
 /**
