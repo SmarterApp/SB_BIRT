@@ -34,8 +34,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   var dialogWidth = '90%';
   var dialogHeight = 800;
   if (testName == 'TTS') {
-    if (ttsImpl != null
-        && !TTS.Manager._serviceFuncExists('isTTSAPINotSupported')) {
+    if (ttsImpl != null) {
       isManualTestSupported = true;
     } else {
       var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage

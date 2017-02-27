@@ -26,7 +26,7 @@ var isAIRSecureBrowser = Util.Browser.isSecure();
 
 function beginBrowserAPITest() {
 
-  if (impl) {
+  if (impl != null && impl != undefined) {
 
     /**
      * browserapi JSON Key from irpspec.js for Browser API Section Automation
@@ -45,25 +45,22 @@ function beginBrowserAPITest() {
     runIRPAutomateTest(irpSpecBrowserApiObj, browserApiJsonKey, runtime,
         implBrowserType, null);
 
-    if (ttsImpl != null) {
+    /**
+     * ttsapi JSON Key from irpspec.js for Text-to-speech Section Automation
+     * Test
+     */
+    var ttsApiJsonKey = irpApiSpecConstant + specSeparator + specTTSApi;
+    /**
+     * ttsapi JSON object from irpspec.js
+     */
+    var irpSpecTTSApiObj = eval(ttsApiJsonKey);
 
-      /**
-       * ttsapi JSON Key from irpspec.js for Text-to-speech Section Automation
-       * Test
-       */
-      var ttsApiJsonKey = irpApiSpecConstant + specSeparator + specTTSApi;
-      /**
-       * ttsapi JSON object from irpspec.js
-       */
-      var irpSpecTTSApiObj = eval(ttsApiJsonKey);
+    /**
+     * running ttsapi configured test in irpspec.js
+     */
+    runIRPAutomateTest(irpSpecTTSApiObj, ttsApiJsonKey, runtime,
+        ttsBrowserType, tts_section);
 
-      /**
-       * running ttsapi configured test in irpspec.js
-       */
-      runIRPAutomateTest(irpSpecTTSApiObj, ttsApiJsonKey, runtime,
-          ttsBrowserType, tts_section);
-
-    }
   } else {
     console.log('No Implementation found for Secure Browser');
   }

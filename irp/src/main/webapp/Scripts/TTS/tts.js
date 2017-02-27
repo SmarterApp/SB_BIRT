@@ -244,9 +244,9 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
     }
 
     // set default?
-    if (service == null) {
+   /* if (service == null) {
       service = new TTSService_Base();
-    }
+    }*/
 
     // check if TTS is supported and load it
     if (!service || !service.isSupported()) {
