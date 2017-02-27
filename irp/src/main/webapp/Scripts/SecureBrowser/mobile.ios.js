@@ -17,7 +17,7 @@ TDS.SecureBrowser.Mobile = TDS.SecureBrowser.Mobile || {};
 
 TDS.SecureBrowser.Mobile.iOS = function() {
 
-  TDS.SecureBrowser.Mobile.iOS.superclass.constructor.call(this);
+  // TDS.SecureBrowser.Mobile.iOS.superclass.constructor.call(this);
 
   // retrieve the guide access status from local storage.
   this._guidedAccessMode = localStorage.getItem('ios-guidedaccessstatus');
@@ -42,8 +42,6 @@ TDS.SecureBrowser.Mobile.iOS = function() {
   this._airMobile = (new Summit.SecureBrowser.Mobile()).getNativeBrowser();
   this._airMobile.initialize();
 };
-
-YAHOO.lang.extend(TDS.SecureBrowser.Mobile.iOS, TDS.SecureBrowser.Base);
 
 TDS.SecureBrowser.Mobile.iOS.prototype.loadProcessList = function() {
   this.setProcessList();

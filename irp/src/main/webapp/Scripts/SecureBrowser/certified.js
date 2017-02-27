@@ -9,11 +9,9 @@
 (function(SB) {
 
   function Certified() {
-    Certified.superclass.constructor.call(this);
+    // Certified.superclass.constructor.call(this);
   }
   ;
-
-  YAHOO.lang.extend(Certified, TDS.SecureBrowser.Base);
 
   Certified.prototype._hasAPI = function() {
     return Util.Browser.isCertified();
@@ -289,6 +287,10 @@
       alert('Exception occurred ' + ex.message);
     }
     return false;
+  };
+
+  Certified.prototype.getRunTime = function() {
+    return null;
   };
 
   SB.Certified = Certified;
