@@ -451,11 +451,11 @@ function createButton(id, text) {
     } else if (text == 'Stop') {
       ttsStop();
     } else if (text == 'Mute') {
-      id.addClass("irp-custom-button-click");
+      id.addClass("irt-custom-button-click");
       $("#play").focus();
       muteUnmuteSystem(true);
     } else if (text == 'Ummute') {
-      id.addClass("irp-custom-button-click");
+      id.addClass("irt-custom-button-click");
       $("#play").focus();
       muteUnmuteSystem(false);
     } else if (text == 'Set') {
@@ -776,9 +776,9 @@ function populateJsonGrid(id, testName, hideResult) {
 
   if (hideResult) {
     testNameTitle = 'Capability'
-    resultColumnCss = 'irp-grid-column-hide';
+    resultColumnCss = 'irt-grid-column-hide';
   } else {
-    valueColumnCss = 'irp-grid-column-hide';
+    valueColumnCss = 'irt-grid-column-hide';
   }
 
   id
@@ -958,7 +958,7 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
       $('#' + buttonSliderId).checkboxradio("disable");
     } else if ($('#' + buttonSliderId).is(":ui-button")) {
       $('#' + buttonSliderId).button("disable");
-      $("#" + buttonSliderId).removeClass("irp-custom-button-click");
+      $("#" + buttonSliderId).removeClass("irt-custom-button-click");
     } else if ($('#' + buttonSliderId).is(":ui-slider")) {
       $('#' + buttonSliderId).slider("disable");
       $('#' + buttonSliderId).slider("option", "value", 10);

@@ -1,13 +1,13 @@
 function populateResults(id, gridData, extTest) {
   var extCss = '';
-  var showCSS = 'irp-grid-column-wrap';
+  var showCSS = 'irt-grid-column-wrap';
   var detailTitle = 'Details';
   var detailWidth = 150;
   var testNameWidth = 150;
   var detailAlign = "left";
 
   if (extTest === true) {
-    extCss = 'irp-grid-column-hide';
+    extCss = 'irt-grid-column-hide';
     detailTitle = 'Score';
     detailWidth = 50;
     testNameWidth = 100;
@@ -75,7 +75,7 @@ function populateResults(id, gridData, extTest) {
               name : "testPoints",
               type : 'number',
               width : 15,
-              css : 'irp-grid-column-hide'
+              css : 'irt-grid-column-hide'
             } ]
       });
 
