@@ -71,29 +71,47 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   }
 
   if (testName == 'CAPABILITY') {
-    if (impl != null && impl.capabilityManualTestSupported()) {
+
+    if (impl != null) {
+      if (impl.capabilityManualTestSupported()) {
+        dialogWidth = '70%';
+        dialogHeight = 600;
+        isManualTestSupported = true;
+
+      } else {
+        var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
+            + specSeparator + "errorDialog_" + testName);
+        id
+            .html('<p><span     class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px      0;"></span>'
+                + textMessage + '</p>');
+      }
+    } else {
       dialogWidth = '70%';
       dialogHeight = 600;
       isManualTestSupported = true;
-    } else {
-      var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
-          + specSeparator + "errorDialog_" + testName);
-      id
-          .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
-              + textMessage + '</p>');
+
     }
+
   }
 
   if (testName == 'PROCESS') {
 
-    if (impl != null && impl.examineProcessManualTestSupported()) {
-      isManualTestSupported = true;
+    // Below Code needs to be uncomment when actual API for Examine Process List
+    // is
+    // available
+    if (impl != null) {
+      if (impl != null && impl.examineProcessManualTestSupported()) {
+        isManualTestSupported = true;
+      } else {
+        var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
+            + specSeparator + "errorDialog_" + testName);
+        id
+            .html('<p><span class="ui-icon     ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
+                + textMessage + '</p>');
+      }
     } else {
-      var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
-          + specSeparator + "errorDialog_" + testName);
-      id
-          .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
-              + textMessage + '</p>');
+      isManualTestSupported = true;
+
     }
   }
 
@@ -228,6 +246,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   if (testName == 'CAPABILITY') {
     if (isManualTestSupported) {
       id.dialog("open");
+      if (impl != null) {
+        $('#mockupnote').hide();
+      }
     } else {
       id.dialog("open");
 
@@ -245,6 +266,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   if (testName == 'PROCESS') {
     if (isManualTestSupported) {
       id.dialog("open");
+      if (impl != null) {
+        $('#mockupnote').hide();
+      }
     } else {
       id.dialog("open");
 
@@ -485,7 +509,8 @@ function examineProcessList() {
   $("#concludeButton").show();
 
   createButton($("#conclude"), "OK");
-  var forbiddenRunningApps = impl.examineProcessList(selectedProcess);
+  var forbiddenRunningApps = impl != null ? impl
+      .examineProcessList(selectedProcess) : selectedProcess;
   populateRunningForbiddenApplist(forbiddenRunningApps);
 
 }
@@ -506,7 +531,8 @@ function setSelectedCapability(label, value, index) {
 }
 
 function udpateCapabilityStatusGrid() {
-  var testResult = impl.getCapability(selectedCapability.value);
+  var testResult = impl != null ? impl.getCapability(selectedCapability.value)
+      : false;
 
   var itemDetail = {};
   $.extend(itemDetail, {
@@ -530,7 +556,9 @@ function setSystemCapability() {
 
   if (capabilityType != null && capabilityType != undefined
       && functionality != null && functionality != undefined) {
-    impl.setCapability(capabilityType, (functionality == 'true'));
+    if (impl != null) {
+      impl.setCapability(capabilityType, (functionality == 'true'));
+    }
     udpateCapabilityStatusGrid();
     setDialogHtml(specCapabilityManualApi);
     loadTestDialogConfirm($('#capabilityTestGrid'), 'CAPABILITY',
@@ -1026,7 +1054,7 @@ function populatePropertyGrid() {
   propertyArray.forEach(function(item, index, array) {
 
     var capabilityType = eval('IRT.CAPABILITY_PROPERTY.' + item);
-    var testResult = impl.getCapability(capabilityType);
+    var testResult = impl != null ? impl.getCapability(capabilityType) : false;
 
     propertyGridArray.push({
       "instruction" : item + " [ " + capabilityType + " ] ",
