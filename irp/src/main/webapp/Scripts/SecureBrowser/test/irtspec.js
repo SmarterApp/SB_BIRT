@@ -9,24 +9,47 @@
 var IRT = {};
 
 var certified = "certified";
-var certified_edge = "certified_edge";
 var securebrowser = "SB";
 var mobile = "mobile";
 var webspeech = "webspeech";
-var tts_section = 'TTS';
-var ttsmanual_section = 'TTS_MANUAL';
-var capability_section = 'CAPABILITY_MANUAL';
-var process_section = 'PROCESS_MANUAL';
-var irpApiSpecConstant = 'IRT.ApiSpecs';
 
+/**
+ * Below variable serve as a constant to access the JSON Object for Automate and
+ * Manual Test
+ * 
+ * @irpApiSpecConstant : Global Level Object created under IRT to get all api
+ *                     specification json
+ * @specMessage : message object to access global messages to display on UI
+ * @specTTSApi : TTS Api section for automate testing
+ * @specTTSManualApi : TTS Manual API instruction and other info for TTS manual
+ *                   testing
+ * @specBrowserapi : Browser API section for automate testing
+ * @specCapabilityManualApi : Get/Set Capability Manual API instruction and
+ *                          other info for Get/Set Capability manual testing
+ * @specProcessManualApi : Examine Process list Manual API instruction and other
+ *                       info for Examine Process list manual testing
+ * @specSeparator : JSON object seperator which is always "." to access insider
+ *                variables and keys
+ * @tts_section : Section variable to define TTS Automate testing
+ * @ttsmanual_section : Section variable to define TTS Manual testing
+ * @capability_section : Section variable to define Get/Set Capability Manual
+ *                     testing
+ * @process_section : Section variable to define Examine Process List Manual
+ *                  testing
+ */
+var irpApiSpecConstant = 'IRT.ApiSpecs';
 var specMessage = "message";
 var specTTSApi = "ttsapi";
 var specTTSManualApi = "ttsmanualapi";
 var specBrowserapi = "browserapi";
 var specCapabilityManualApi = "capabilityManualAPI";
-
 var specProcessManualApi = "processManualAPI";
 var specSeparator = ".";
+
+var tts_section = 'TTS';
+var ttsmanual_section = 'TTS_MANUAL';
+var capability_section = 'CAPABILITY_MANUAL';
+var process_section = 'PROCESS_MANUAL';
 
 IRT.CapabilityTest = {
   SET : 'SET',
@@ -75,7 +98,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "window.browser",
-      "testApi_certified_edge" : "window.browser && window.browser.addEventListener",
       "testApi_SB" : "SecureBrowser",
       "testApi_mobile" : "(new Summit.SecureBrowser.Mobile()).getNativeBrowser()",
       "points" : "1",
@@ -97,7 +119,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.getDeviceInfo",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.getDeviceInfo",
       "testApi_mobile" : "runtime.security.getDeviceInfo",
       "points" : "1",
@@ -119,7 +141,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.getMACAddress",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.getMACAddress",
       "testApi_mobile" : "runtime.security.getMACAddress",
       "points" : "1",
@@ -142,7 +164,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.getIPAddressList",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.getIPAddressList",
       "testApi_mobile" : "runtime.security.getIPAddressList",
       "points" : "1",
@@ -164,7 +186,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.getStartTime",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "Mozilla.getPreference('bmakiosk.startup.timestamp')",
       "testApi_mobile" : "runtime.security.getStartTime",
       "points" : "1",
@@ -188,7 +210,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.clearCache",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "SecureBrowser.clearCache",
       "testApi_mobile" : "runtime.security.clearCache",
       "points" : "1",
@@ -210,7 +232,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.emptyClipBoard",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "SecureBrowser.emptyClipBoard",
       "testApi_mobile" : "",
       "points" : "1",
@@ -232,7 +254,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.clearCookies",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "SecureBrowser.clearCookies",
       "testApi_mobile" : "runtime.security.clearCookies",
       "points" : "1",
@@ -255,7 +277,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.getProcessList",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.getRunningProcessList",
       "testApi_mobile" : "runtime.security.getProcessList",
       "points" : "1",
@@ -299,7 +321,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.isEnvironmentSecure",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.isEnvironmentSecure",
       "testApi_mobile" : "runtime.security.isEnvironmentSecure",
       "points" : "1",
@@ -321,7 +343,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.enableLockDown",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.enableLockDown",
       "testApi_mobile" : "runtime.security.enableLockdown",
       "points" : "1",
@@ -344,7 +366,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.systemVolume",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.systemVolume",
       "testApi_mobile" : "runtime.systemVolume",
       "points" : "1",
@@ -368,7 +390,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.systemMute",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.systemMute",
       "testApi_mobile" : "runtime.systemMute",
       "points" : "1",
@@ -390,7 +412,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.examineProcessList",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.examineProcessList",
       "testApi_mobile" : "runtime.security.examineProcessList",
       "points" : "1",
@@ -412,7 +434,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.getCapability",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.getCapability",
       "testApi_mobile" : "runtime.security.getCapability",
       "points" : "1",
@@ -434,7 +456,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.setCapability",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.setCapability",
       "testApi_mobile" : "runtime.security.setCapability",
       "points" : "1",
@@ -456,7 +478,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.getPermissiveMode",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.permissive",
       "testApi_mobile" : "runtime.security.getPermissiveMode",
       "points" : "1",
@@ -478,7 +500,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.setPermissiveMode",
-      "testApi_certified_edge" : "",
+
       "testApi_SB" : "runtime.permissive",
       "testApi_mobile" : "runtime.security.setPermissiveMode",
       "points" : "1",
