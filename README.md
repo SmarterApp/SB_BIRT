@@ -1,6 +1,6 @@
-# Welcome to the Secure Browser Implementation Readiness Package (IRP) Application
+# Welcome to the Secure Browser Implementation Readiness Test (IRT) Application
 
-The Implementation Readiness Package is much like a certification program in that it includes services, sample
+The Implementation Readiness Test is much like a certification program in that it includes services, sample
 content, and test scripts necessary to determine that a secure browser meets the requirements. It differs
 from certification in that the emphasis is on self-testing by developers and the generation of a compliance
 report.

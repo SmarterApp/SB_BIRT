@@ -10,7 +10,7 @@
 TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
 var implBrowserType = TDS.SecureBrowser.getBrowserType();
-var runtime = impl.getRunTime();
+var runtime = impl != null ? impl.getRunTime() : null;
 TTS.Manager.init(true);
 var ttsImpl = TTS.Manager._service;
 
@@ -26,47 +26,31 @@ var isAIRSecureBrowser = Util.Browser.isSecure();
 
 function beginBrowserAPITest() {
 
-  if (impl) {
+  Object.keys(IRT.AUTOMATE_TEST_SECTION).forEach(
+      function(element) {
 
-    /**
-     * browserapi JSON Key from irpspec.js for Browser API Section Automation
-     * Test
-     */
-    var browserApiJsonKey = irpApiSpecConstant + specSeparator + specBrowserapi;
+        /**
+         * JSON Key from irtspec.js for API Section Automation Test
+         */
+        var apiJSONKey = irtApiSpecConstant + specSeparator + element;
 
-    /**
-     * browserapi JSON object from irpspec.js
-     */
-    var irpSpecBrowserApiObj = eval(browserApiJsonKey);
+        /**
+         * JSON object from irtspec.js
+         */
+        var apiJSONObj = eval(apiJSONKey);
 
-    /**
-     * running browserapi configured test in irpspec.js
-     */
-    runIRPAutomateTest(irpSpecBrowserApiObj, browserApiJsonKey, runtime,
-        implBrowserType, null);
+        var sectionJSONObj = eval('IRT.AUTOMATE_TEST_SECTION.' + element);
 
-    if (ttsImpl != null) {
+        var apiSupportType = eval(sectionJSONObj.browserType);
+        var apiSection = sectionJSONObj.section;
 
-      /**
-       * ttsapi JSON Key from irpspec.js for Text-to-speech Section Automation
-       * Test
-       */
-      var ttsApiJsonKey = irpApiSpecConstant + specSeparator + specTTSApi;
-      /**
-       * ttsapi JSON object from irpspec.js
-       */
-      var irpSpecTTSApiObj = eval(ttsApiJsonKey);
-
-      /**
-       * running ttsapi configured test in irpspec.js
-       */
-      runIRPAutomateTest(irpSpecTTSApiObj, ttsApiJsonKey, runtime,
-          ttsBrowserType, tts_section);
-
-    }
-  } else {
-    console.log('No Implementation found for Secure Browser');
-  }
+        /**
+         * running configured test in irtspec.js based on apiJSONKey and
+         * apisection
+         */
+        runIRTAutomateTest(apiJSONObj, apiJSONKey, runtime, apiSupportType,
+            apiSection);
+      });
 
   populateResults($("#jsGrid"), Util.Validation.getResult(), false);
   populateResults($("#jsTTSGrid"), Util.Validation.getTTSResult(), false);
@@ -79,10 +63,10 @@ function closeBrowser() {
 
 /**
  * 
- * @param irpSpecApiObj :
- *          JSON Object from irpspec like browserapi or ttsapi
- * @param irpSpecApiJsonKey :
- *          JSON Key from irpspec related to irpSpecApiObj
+ * @param irtSpecApiObj :
+ *          JSON Object from irtspec like browserapi or ttsapi
+ * @param irtSpecApiJsonKey :
+ *          JSON Key from irtspec related to irtSpecApiObj
  * @param runtime :
  *          runtime object in case of securebrowser or AIR mobile browser
  * @param testBrowserType :
@@ -92,19 +76,19 @@ function closeBrowser() {
  *          Grid section for report like browser api or tts api
  * 
  */
-function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
+function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
     testBrowserType, section) {
 
-  Object.keys(irpSpecApiObj).forEach(
+  Object.keys(irtSpecApiObj).forEach(
       function(element) {
 
         var isDeprecated = false;
         try {
           /*
-           * key to get for element under irpSpecApiObj for e.g
+           * key to get for element under irtSpecApiObj for e.g
            * IRT.ApiSpecs.browserapi.checkGlobalObject
            */
-          var elementKey = irpSpecApiJsonKey + specSeparator + element
+          var elementKey = irtSpecApiJsonKey + specSeparator + element
               + specSeparator;
 
           /**
@@ -129,12 +113,12 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
           /**
            * apiType to test for Object, function or boolean
            */
-          var irpSpecApiArray = eval(elementKey + "apiType");
+          var irtSpecApiArray = eval(elementKey + "apiType");
 
           /**
            * manualData key to populate other info in details column
            */
-          var irpSpecManualData = eval(elementKey + "manualData");
+          var irtSpecManualData = eval(elementKey + "manualData");
 
           /**
            * Load actual api method value from testApiJsonKey for e.g.
@@ -142,15 +126,15 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
            */
           var actualTestApiMethod = eval(testApiJsonKey);
 
-          irpSpecApiArray.forEach(function(irpSpecApiType) {
+          irtSpecApiArray.forEach(function(irtSpecApiType) {
 
-            if (irpSpecApiType == "object") {
+            if (irtSpecApiType == "object") {
               if (typeof eval(actualTestApiMethod) === 'object') {
                 result = true;
               } else {
                 details = actualTestApiMethod + ' is not defined';
               }
-            } else if (irpSpecApiType == "boolean") {
+            } else if (irtSpecApiType == "boolean") {
               if (typeof eval(actualTestApiMethod) === 'boolean') {
                 result = true;
               }
@@ -162,7 +146,7 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
 
           });
 
-          if (irpSpecManualData !== undefined && irpSpecManualData) {
+          if (irtSpecManualData !== undefined && irtSpecManualData) {
 
             var apiManualData = "";
             if (element == "checkMACAddressAPI") {
@@ -192,7 +176,7 @@ function runIRPAutomateTest(irpSpecApiObj, irpSpecApiJsonKey, runtime,
           }
         }
 
-        Util.Validation.setIRPTestResults(element, testBrowserType, result,
+        Util.Validation.setIRTTestResults(element, testBrowserType, result,
             details, section);
 
       });

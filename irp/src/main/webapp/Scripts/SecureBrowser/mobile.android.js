@@ -15,7 +15,7 @@ TDS.SecureBrowser.Mobile = TDS.SecureBrowser.Mobile || {};
  * application.
  */
 TDS.SecureBrowser.Mobile.Android = function() {
-  TDS.SecureBrowser.Mobile.Android.superclass.constructor.call(this);
+  // TDS.SecureBrowser.Mobile.Android.superclass.constructor.call(this);
   this._config = {
     pausedSinceLaunch : false,
     keyboardChanged : false,
@@ -31,8 +31,6 @@ TDS.SecureBrowser.Mobile.Android = function() {
   this._miniAppCountThreshold = 3; // count threshold for detecting mini
   // apps, default value is 3 times
 };
-
-YAHOO.lang.extend(TDS.SecureBrowser.Mobile.Android, TDS.SecureBrowser.Base);
 
 TDS.SecureBrowser.Mobile.Android.prototype.initialize = function() {
   var sb = this._airMobile;

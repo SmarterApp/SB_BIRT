@@ -82,7 +82,7 @@
 	text-align: center;
 }
 
-.header-irp {
+.header-irt {
 	background: #008ab1;
 	position: relative;
 	padding: 0px 10px;
@@ -124,7 +124,7 @@
 /* #358c21 */
 
 /* #358c21 */
-.irp-custom-button-click {
+.irt-custom-button-click {
 	color: #FFFFFF;
 	background: #0080FF;
 }
@@ -141,11 +141,11 @@
 #css3TestMain{
 	padding: 0px 20% 0px 20%;
 } */
-.irp-grid-column-hide {
+.irt-grid-column-hide {
 	display: none;
 }
 
-.irp-grid-column-wrap {
+.irt-grid-column-wrap {
 	word-wrap: break-word;
 	overwflow: auto;
 }

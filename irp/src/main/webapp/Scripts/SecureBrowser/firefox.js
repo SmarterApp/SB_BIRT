@@ -16,7 +16,7 @@
 (function(SB) {
 
   function Firefox() {
-    Firefox.superclass.constructor.call(this);
+    // Firefox.superclass.constructor.call(this);
     this.runtime = null;
 
     /*
@@ -25,8 +25,6 @@
     this._ignoringBreachEvents = null;
   }
   ;
-
-  YAHOO.lang.extend(Firefox, TDS.SecureBrowser.Base);
 
   Firefox.prototype.initialize = function() {
     try {

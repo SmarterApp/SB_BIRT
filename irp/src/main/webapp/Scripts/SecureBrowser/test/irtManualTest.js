@@ -34,11 +34,10 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   var dialogWidth = '90%';
   var dialogHeight = 800;
   if (testName == 'TTS') {
-    if (ttsImpl != null
-        && !TTS.Manager._serviceFuncExists('isTTSAPINotSupported')) {
+    if (ttsImpl != null) {
       isManualTestSupported = true;
     } else {
-      var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
+      var textMessage = eval(irtApiSpecConstant + specSeparator + specMessage
           + specSeparator + "errorDialog_" + testName);
       id
           .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
@@ -72,29 +71,47 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   }
 
   if (testName == 'CAPABILITY') {
-    if (impl.capabilityManualTestSupported()) {
+
+    if (impl != null) {
+      if (impl.capabilityManualTestSupported()) {
+        dialogWidth = '70%';
+        dialogHeight = 600;
+        isManualTestSupported = true;
+
+      } else {
+        var textMessage = eval(irtApiSpecConstant + specSeparator + specMessage
+            + specSeparator + "errorDialog_" + testName);
+        id
+            .html('<p><span     class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px      0;"></span>'
+                + textMessage + '</p>');
+      }
+    } else {
       dialogWidth = '70%';
       dialogHeight = 600;
       isManualTestSupported = true;
-    } else {
-      var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
-          + specSeparator + "errorDialog_" + testName);
-      id
-          .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
-              + textMessage + '</p>');
+
     }
+
   }
 
   if (testName == 'PROCESS') {
 
-    if (impl.examineProcessManualTestSupported()) {
-      isManualTestSupported = true;
+    // Below Code needs to be uncomment when actual API for Examine Process List
+    // is
+    // available
+    if (impl != null) {
+      if (impl != null && impl.examineProcessManualTestSupported()) {
+        isManualTestSupported = true;
+      } else {
+        var textMessage = eval(irtApiSpecConstant + specSeparator + specMessage
+            + specSeparator + "errorDialog_" + testName);
+        id
+            .html('<p><span class="ui-icon     ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
+                + textMessage + '</p>');
+      }
     } else {
-      var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage
-          + specSeparator + "errorDialog_" + testName);
-      id
-          .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
-              + textMessage + '</p>');
+      isManualTestSupported = true;
+
     }
   }
 
@@ -191,7 +208,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
     } else {
       id.dialog("open");
 
-      Util.Validation.setIRPTestResults('FAILED', null, false,
+      Util.Validation.setIRTTestResults('FAILED', null, false,
           'Error: Could not initialize TTS Support for this browser',
           ttsmanual_section);
 
@@ -229,11 +246,14 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   if (testName == 'CAPABILITY') {
     if (isManualTestSupported) {
       id.dialog("open");
+      if (impl != null) {
+        $('#mockupnote').hide();
+      }
     } else {
       id.dialog("open");
 
       Util.Validation
-          .setIRPTestResults(
+          .setIRTTestResults(
               'FAILED',
               null,
               false,
@@ -246,11 +266,14 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   if (testName == 'PROCESS') {
     if (isManualTestSupported) {
       id.dialog("open");
+      if (impl != null) {
+        $('#mockupnote').hide();
+      }
     } else {
       id.dialog("open");
 
       Util.Validation
-          .setIRPTestResults(
+          .setIRTTestResults(
               'FAILED',
               null,
               false,
@@ -452,11 +475,11 @@ function createButton(id, text) {
     } else if (text == 'Stop') {
       ttsStop();
     } else if (text == 'Mute') {
-      id.addClass("irp-custom-button-click");
+      id.addClass("irt-custom-button-click");
       $("#play").focus();
       muteUnmuteSystem(true);
     } else if (text == 'Ummute') {
-      id.addClass("irp-custom-button-click");
+      id.addClass("irt-custom-button-click");
       $("#play").focus();
       muteUnmuteSystem(false);
     } else if (text == 'Set') {
@@ -486,7 +509,8 @@ function examineProcessList() {
   $("#concludeButton").show();
 
   createButton($("#conclude"), "OK");
-  var forbiddenRunningApps = impl.examineProcessList(selectedProcess);
+  var forbiddenRunningApps = impl != null ? impl
+      .examineProcessList(selectedProcess) : selectedProcess;
   populateRunningForbiddenApplist(forbiddenRunningApps);
 
 }
@@ -507,7 +531,8 @@ function setSelectedCapability(label, value, index) {
 }
 
 function udpateCapabilityStatusGrid() {
-  var testResult = impl.getCapability(selectedCapability.value);
+  var testResult = impl != null ? impl.getCapability(selectedCapability.value)
+      : false;
 
   var itemDetail = {};
   $.extend(itemDetail, {
@@ -531,7 +556,9 @@ function setSystemCapability() {
 
   if (capabilityType != null && capabilityType != undefined
       && functionality != null && functionality != undefined) {
-    impl.setCapability(capabilityType, (functionality == 'true'));
+    if (impl != null) {
+      impl.setCapability(capabilityType, (functionality == 'true'));
+    }
     udpateCapabilityStatusGrid();
     setDialogHtml(specCapabilityManualApi);
     loadTestDialogConfirm($('#capabilityTestGrid'), 'CAPABILITY',
@@ -742,7 +769,7 @@ function populateJsonGrid(id, testName, hideResult) {
      */
     var ttsGridArray = [];
 
-    var playObj = eval(irpApiSpecConstant + specSeparator + specTTSManualApi
+    var playObj = eval(irtApiSpecConstant + specSeparator + specTTSManualApi
         + specSeparator + currentTestSetting);
     playObj.testResult = null;
     ttsGridArray.push(playObj);
@@ -754,7 +781,7 @@ function populateJsonGrid(id, testName, hideResult) {
 
     var capabilityGridArray = [];
 
-    var setObj = eval(irpApiSpecConstant + specSeparator
+    var setObj = eval(irtApiSpecConstant + specSeparator
         + specCapabilityManualApi + specSeparator + currentTestSetting);
     setObj.testResult = null;
     capabilityGridArray.push(setObj);
@@ -768,7 +795,7 @@ function populateJsonGrid(id, testName, hideResult) {
   if (testName == 'PROCESS') {
     var processGridArray = [];
 
-    var setObj = eval(irpApiSpecConstant + specSeparator + specProcessManualApi
+    var setObj = eval(irtApiSpecConstant + specSeparator + specProcessManualApi
         + specSeparator + currentTestSetting);
     setObj.testResult = null;
     processGridArray.push(setObj);
@@ -777,9 +804,9 @@ function populateJsonGrid(id, testName, hideResult) {
 
   if (hideResult) {
     testNameTitle = 'Capability'
-    resultColumnCss = 'irp-grid-column-hide';
+    resultColumnCss = 'irt-grid-column-hide';
   } else {
-    valueColumnCss = 'irp-grid-column-hide';
+    valueColumnCss = 'irt-grid-column-hide';
   }
 
   id
@@ -837,7 +864,7 @@ function loadTestDialogConfirm(manualGridId, testName, currentManualApi) {
       {
         resizable : false,
         height : "auto",
-        title : eval(irpApiSpecConstant + specSeparator + currentManualApi
+        title : eval(irtApiSpecConstant + specSeparator + currentManualApi
             + specSeparator + currentTestSetting + specSeparator
             + "dialogTitle"),
         width : 400,
@@ -887,7 +914,7 @@ function closeConfirmBox(manualGridId, testName, currentManualApi, result) {
     manualResultArray[currentTestIndex].details = '';
 
     if (result === true) {
-      manualResultArray[currentTestIndex].testPoints = eval(irpApiSpecConstant
+      manualResultArray[currentTestIndex].testPoints = eval(irtApiSpecConstant
           + specSeparator + currentManualApi + specSeparator
           + testingArray[currentTestIndex] + specSeparator + "points");
 
@@ -924,7 +951,7 @@ function changeDialogBoxButtonText(id, buttonText) {
 function setDialogHtml(currentManualApi) {
 
   $("#dialog-confirm").html(
-      eval(irpApiSpecConstant + specSeparator + currentManualApi
+      eval(irtApiSpecConstant + specSeparator + currentManualApi
           + specSeparator + currentTestSetting + specSeparator + "dialogHtml"));
 
 }
@@ -932,14 +959,14 @@ function setDialogHtml(currentManualApi) {
 function disableUIOptions(testName, currentManualApi, testingArray) {
 
   var disableIds = null;
-  disableIds = eval(irpApiSpecConstant + specSeparator + currentManualApi
+  disableIds = eval(irtApiSpecConstant + specSeparator + currentManualApi
       + specSeparator + currentTestSetting + specSeparator + "disableSection");
 
   /**
    * Disabling all option once all test are completed currently we have 11 test
    */
   if (currentTestIndex == testingArray.length - 1) {
-    disableIds = eval(irpApiSpecConstant + specSeparator + specMessage
+    disableIds = eval(irtApiSpecConstant + specSeparator + specMessage
         + specSeparator + testName + "_disable_all");
   }
 
@@ -949,7 +976,7 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
 
     var buttonSliderId = null;
     if (testName == 'TTS') {
-      buttonSliderId = eval(irpApiSpecConstant + specSeparator
+      buttonSliderId = eval(irtApiSpecConstant + specSeparator
           + currentManualApi + specSeparator + item + specSeparator
           + "buttonSliderId");
     } else {
@@ -959,7 +986,7 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
       $('#' + buttonSliderId).checkboxradio("disable");
     } else if ($('#' + buttonSliderId).is(":ui-button")) {
       $('#' + buttonSliderId).button("disable");
-      $("#" + buttonSliderId).removeClass("irp-custom-button-click");
+      $("#" + buttonSliderId).removeClass("irt-custom-button-click");
     } else if ($('#' + buttonSliderId).is(":ui-slider")) {
       $('#' + buttonSliderId).slider("disable");
       $('#' + buttonSliderId).slider("option", "value", 10);
@@ -971,7 +998,7 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
 }
 
 function enableUIOptions(testName, currentManualApi, testingArray) {
-  var enableIds = eval(irpApiSpecConstant + specSeparator + currentManualApi
+  var enableIds = eval(irtApiSpecConstant + specSeparator + currentManualApi
       + specSeparator + currentTestSetting + specSeparator + "enableSection");
 
   /* var enableArray = enableIds.split(","); */
@@ -980,7 +1007,7 @@ function enableUIOptions(testName, currentManualApi, testingArray) {
 
     var buttonSliderId = null;
     if (testName == 'TTS') {
-      buttonSliderId = eval(irpApiSpecConstant + specSeparator
+      buttonSliderId = eval(irtApiSpecConstant + specSeparator
           + currentManualApi + specSeparator + item + specSeparator
           + "buttonSliderId");
     } else {
@@ -1012,7 +1039,7 @@ function populateReportGrid(sectionArray, section) {
   sectionArray.forEach(function(item, index, array) {
     if (item != TTS.Test.UNKNOWN) {
 
-      Util.Validation.setIRPTestResults(item, null, false,
+      Util.Validation.setIRTTestResults(item, null, false,
           'Test not performed', section);
     }
 
@@ -1027,7 +1054,7 @@ function populatePropertyGrid() {
   propertyArray.forEach(function(item, index, array) {
 
     var capabilityType = eval('IRT.CAPABILITY_PROPERTY.' + item);
-    var testResult = impl.getCapability(capabilityType);
+    var testResult = impl != null ? impl.getCapability(capabilityType) : false;
 
     propertyGridArray.push({
       "instruction" : item + " [ " + capabilityType + " ] ",
