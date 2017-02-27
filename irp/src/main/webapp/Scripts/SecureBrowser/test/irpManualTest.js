@@ -71,7 +71,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   }
 
   if (testName == 'CAPABILITY') {
-    if (impl.capabilityManualTestSupported()) {
+    if (impl != null && impl.capabilityManualTestSupported()) {
       dialogWidth = '70%';
       dialogHeight = 600;
       isManualTestSupported = true;
@@ -86,7 +86,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
   if (testName == 'PROCESS') {
 
-    if (impl.examineProcessManualTestSupported()) {
+    if (impl != null && impl.examineProcessManualTestSupported()) {
       isManualTestSupported = true;
     } else {
       var textMessage = eval(irpApiSpecConstant + specSeparator + specMessage

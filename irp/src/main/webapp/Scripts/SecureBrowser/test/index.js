@@ -10,7 +10,7 @@
 TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
 var implBrowserType = TDS.SecureBrowser.getBrowserType();
-var runtime = impl.getRunTime();
+var runtime = impl != null ? impl.getRunTime() : null;
 TTS.Manager.init(true);
 var ttsImpl = TTS.Manager._service;
 
@@ -26,44 +26,36 @@ var isAIRSecureBrowser = Util.Browser.isSecure();
 
 function beginBrowserAPITest() {
 
-  if (impl != null && impl != undefined) {
+  /**
+   * browserapi JSON Key from irpspec.js for Browser API Section Automation Test
+   */
+  var browserApiJsonKey = irpApiSpecConstant + specSeparator + specBrowserapi;
 
-    /**
-     * browserapi JSON Key from irpspec.js for Browser API Section Automation
-     * Test
-     */
-    var browserApiJsonKey = irpApiSpecConstant + specSeparator + specBrowserapi;
+  /**
+   * browserapi JSON object from irpspec.js
+   */
+  var irpSpecBrowserApiObj = eval(browserApiJsonKey);
 
-    /**
-     * browserapi JSON object from irpspec.js
-     */
-    var irpSpecBrowserApiObj = eval(browserApiJsonKey);
+  /**
+   * running browserapi configured test in irpspec.js
+   */
+  runIRPAutomateTest(irpSpecBrowserApiObj, browserApiJsonKey, runtime,
+      implBrowserType, null);
 
-    /**
-     * running browserapi configured test in irpspec.js
-     */
-    runIRPAutomateTest(irpSpecBrowserApiObj, browserApiJsonKey, runtime,
-        implBrowserType, null);
+  /**
+   * ttsapi JSON Key from irpspec.js for Text-to-speech Section Automation Test
+   */
+  var ttsApiJsonKey = irpApiSpecConstant + specSeparator + specTTSApi;
+  /**
+   * ttsapi JSON object from irpspec.js
+   */
+  var irpSpecTTSApiObj = eval(ttsApiJsonKey);
 
-    /**
-     * ttsapi JSON Key from irpspec.js for Text-to-speech Section Automation
-     * Test
-     */
-    var ttsApiJsonKey = irpApiSpecConstant + specSeparator + specTTSApi;
-    /**
-     * ttsapi JSON object from irpspec.js
-     */
-    var irpSpecTTSApiObj = eval(ttsApiJsonKey);
-
-    /**
-     * running ttsapi configured test in irpspec.js
-     */
-    runIRPAutomateTest(irpSpecTTSApiObj, ttsApiJsonKey, runtime,
-        ttsBrowserType, tts_section);
-
-  } else {
-    console.log('No Implementation found for Secure Browser');
-  }
+  /**
+   * running ttsapi configured test in irpspec.js
+   */
+  runIRPAutomateTest(irpSpecTTSApiObj, ttsApiJsonKey, runtime, ttsBrowserType,
+      tts_section);
 
   populateResults($("#jsGrid"), Util.Validation.getResult(), false);
   populateResults($("#jsTTSGrid"), Util.Validation.getTTSResult(), false);
