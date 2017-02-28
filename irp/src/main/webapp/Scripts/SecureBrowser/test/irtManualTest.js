@@ -33,57 +33,18 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   var isManualTestSupported = false;
   var dialogWidth = '90%';
   var dialogHeight = 800;
+
   if (testName == 'TTS') {
     if (ttsImpl != null) {
       isManualTestSupported = true;
-    } else {
-      var textMessage = eval(irtApiSpecConstant + specSeparator + specMessage
-          + specSeparator + "errorDialog_" + testName);
-      id
-          .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
-              + textMessage + '</p>');
     }
-  }
-
-  if (testName == 'HTML5') {
-
-    var iframe = $('<iframe id="irpHTML5Test" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
-
-    isManualTestSupported = true;
-
-    id = $("<div id='externalHTML5Test'></div>").append(iframe)
-        .appendTo("body");
-
-    buttonText = 'Running...';
-    buttonDisable = true;
-  }
-
-  if (testName == 'CSS3') {
-
-    var iframe = $('<iframe id="irpCSS3Test" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
-
-    isManualTestSupported = true;
-
-    id = $("<div id='externalCSS3Test'></div>").append(iframe).appendTo("body");
-
-    buttonText = 'Running...';
-    buttonDisable = true;
-  }
-
-  if (testName == 'CAPABILITY') {
-
+  } else if (testName == 'CAPABILITY') {
     if (impl != null) {
       if (impl.capabilityManualTestSupported()) {
         dialogWidth = '70%';
         dialogHeight = 600;
         isManualTestSupported = true;
 
-      } else {
-        var textMessage = eval(irtApiSpecConstant + specSeparator + specMessage
-            + specSeparator + "errorDialog_" + testName);
-        id
-            .html('<p><span     class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px      0;"></span>'
-                + textMessage + '</p>');
       }
     } else {
       dialogWidth = '70%';
@@ -91,28 +52,54 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       isManualTestSupported = true;
 
     }
-
-  }
-
-  if (testName == 'PROCESS') {
-
-    // Below Code needs to be uncomment when actual API for Examine Process List
-    // is
-    // available
+  } else if (testName == 'PROCESS') {
     if (impl != null) {
       if (impl != null && impl.examineProcessManualTestSupported()) {
         isManualTestSupported = true;
-      } else {
-        var textMessage = eval(irtApiSpecConstant + specSeparator + specMessage
-            + specSeparator + "errorDialog_" + testName);
-        id
-            .html('<p><span class="ui-icon     ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
-                + textMessage + '</p>');
       }
     } else {
       isManualTestSupported = true;
 
     }
+  }
+
+  var extTestIframeId = null;
+  var extTestDivId = null;
+  var extTest = false;
+
+  if (testName == 'HTML5') {
+
+    extTestIframeId = 'irpHTML5Test';
+    extTestDivId = 'externalHTML5Test';
+    extTest = true;
+  }
+
+  if (testName == 'CSS3') {
+    extTestIframeId = 'irpCSS3Test';
+    extTestDivId = 'externalCSS3Test';
+    extTest = true;
+  }
+
+  if (extTest) {
+    var iframe = $('<iframe id="'
+        + extTestIframeId
+        + '" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
+
+    isManualTestSupported = true;
+
+    id = $("<div id='" + extTestDivId + "'></div>").append(iframe).appendTo(
+        "body");
+
+    buttonText = 'Running...';
+    buttonDisable = true;
+  }
+
+  if (!isManualTestSupported) {
+    var textMessage = eval(irtApiSpecConstant + specSeparator + specMessage
+        + specSeparator + "errorDialog_" + testName);
+    id
+        .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
+            + textMessage + '</p>');
   }
 
   if (isManualTestSupported) {
