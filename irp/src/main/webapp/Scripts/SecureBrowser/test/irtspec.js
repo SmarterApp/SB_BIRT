@@ -83,7 +83,7 @@ IRT.CAPABILITY_PROPERTY = {
  * UI Section for automate testing, also it matches with api definition section
  * under IRT.ApiSpecs
  */
-IRT.AUTOMATE_TEST_SECTION = {
+IRT.AUTOMATED_TEST_SECTION = {
 
   "browserapi" : {
     /**

@@ -26,7 +26,7 @@ var isAIRSecureBrowser = Util.Browser.isSecure();
 
 function beginBrowserAPITest() {
 
-  Object.keys(IRT.AUTOMATE_TEST_SECTION).forEach(
+  Object.keys(IRT.AUTOMATED_TEST_SECTION).forEach(
       function(element) {
 
         /**
@@ -39,7 +39,7 @@ function beginBrowserAPITest() {
          */
         var apiJSONObj = eval(apiJSONKey);
 
-        var sectionJSONObj = eval('IRT.AUTOMATE_TEST_SECTION.' + element);
+        var sectionJSONObj = eval('IRT.AUTOMATED_TEST_SECTION.' + element);
 
         var apiSupportType = eval(sectionJSONObj.browserType);
         var apiSection = sectionJSONObj.section;
