@@ -126,25 +126,34 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
            */
           var actualTestApiMethod = eval(testApiJsonKey);
 
-          irtSpecApiArray.forEach(function(irtSpecApiType) {
+          if (irtSpecApiArray != null && Array.isArray(irtSpecApiArray)) {
+            irtSpecApiArray.forEach(function(irtSpecApiType) {
 
-            if (irtSpecApiType == "object") {
-              if (typeof eval(actualTestApiMethod) === 'object') {
-                result = true;
+              if (irtSpecApiType == "object") {
+                if (typeof eval(actualTestApiMethod) === 'object') {
+                  result = true;
+                } else {
+                  details = actualTestApiMethod + ' is not defined';
+                }
+              } else if (irtSpecApiType == "boolean") {
+                if (typeof eval(actualTestApiMethod) === 'boolean') {
+                  result = true;
+                }
               } else {
-                details = actualTestApiMethod + ' is not defined';
+                if (!!eval(actualTestApiMethod)) {
+                  result = true;
+                }
               }
-            } else if (irtSpecApiType == "boolean") {
-              if (typeof eval(actualTestApiMethod) === 'boolean') {
-                result = true;
-              }
-            } else {
-              if (!!eval(actualTestApiMethod)) {
-                result = true;
-              }
-            }
 
-          });
+            });
+          }
+
+          if (irtSpecApiArray == null
+              || (irtSpecApiArray != null && !Array.isArray(irtSpecApiArray))) {
+            if (!!eval(actualTestApiMethod)) {
+              result = true;
+            }
+          }
 
           if (irtSpecManualData !== undefined && irtSpecManualData) {
 
