@@ -20,6 +20,8 @@ var webspeech = "webspeech";
  * @irtApiSpecConstant : Global Level Object created under IRT to get all api
  *                     specification json
  * @specMessage : message object to access global messages to display on UI
+ * @specDisableUI : Object to access UI component id to disable on manual test
+ *                completion
  * @specTTSApi : TTS Api section for automated testing
  * @specTTSManualApi : TTS Manual API instruction and other info for TTS manual
  *                   testing
@@ -39,6 +41,7 @@ var webspeech = "webspeech";
  */
 var irtApiSpecConstant = 'IRT.ApiSpecs';
 var specMessage = "message";
+var specDisableUI = "disableUI";
 var specTTSApi = "ttsapi";
 var specTTSManualApi = "ttsmanualapi";
 var specBrowserapi = "browserapi";
@@ -51,22 +54,35 @@ var ttsmanual_section = 'TTS_MANUAL';
 var capability_section = 'CAPABILITY_MANUAL';
 var process_section = 'PROCESS_MANUAL';
 
+/**
+ * Manual test's to run for get/set capability
+ */
 IRT.CapabilityTest = {
   SET : 'SET',
   GET : 'GET',
   UNKNOWN : 'UNKNOWN' // unknown status
 };
 
+/**
+ * Manual test to run for examine process list
+ */
 IRT.ProcessTest = {
   EXAMINE : 'EXAMINE',
   UNKNOWN : 'UNKNOWN' // unknown status
 };
 
+/**
+ * Get/Set Capability pre-defined properties for manual testing
+ */
 IRT.CAPABILITY_PROPERTY = {
   Printing : 'printing',
   ScreenCapture : 'screenCapture'
 };
 
+/**
+ * UI Section for automate testing, also it matches with api definition section
+ * under IRT.ApiSpecs
+ */
 IRT.AUTOMATE_TEST_SECTION = {
 
   "browserapi" : {
@@ -102,7 +118,9 @@ IRT.ApiSpecs = {
     "testApi_exists" : "This deprecated API still exists",
     "errorDialog_TTS" : "Your browser does not support TTS, so manual testing will be skipped",
     "errorDialog_CAPABILITY" : "Your browser does not support GET/SET Capability, so manual testing will be skipped",
-    "errorDialog_PROCESS" : "Your browser does not support Examine Process List, so manual testing will be skipped",
+    "errorDialog_PROCESS" : "Your browser does not support Examine Process List, so manual testing will be skipped"
+  },
+  "disableUI" : {
     "TTS_disable_all" : [ "PLAY", "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
         "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
     "CAPABILITY_disable_all" : [ "setCapability", "enableCapability",

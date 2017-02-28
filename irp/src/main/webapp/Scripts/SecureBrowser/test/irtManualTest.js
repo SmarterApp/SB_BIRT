@@ -966,7 +966,7 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
    * Disabling all option once all test are completed currently we have 11 test
    */
   if (currentTestIndex == testingArray.length - 1) {
-    disableIds = eval(irtApiSpecConstant + specSeparator + specMessage
+    disableIds = eval(irtApiSpecConstant + specSeparator + specDisableUI
         + specSeparator + testName + "_disable_all");
   }
 
