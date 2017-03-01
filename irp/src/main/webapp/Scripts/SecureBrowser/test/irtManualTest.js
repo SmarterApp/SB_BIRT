@@ -816,13 +816,27 @@ function populateJsonGrid(id, testName, hideResult) {
               width : 30,
               align : "center",
               css : resultColumnCss,
-              itemTemplate : function(value) {
+              itemTemplate : function(value, item) {
+
+                var isRequired = true;
+                if (item != null && item != undefined && item.required != null
+                    && item.required != undefined && item.required.all != null
+                    && item.required.all != undefined && !item.required.all) {
+                  isRequired = false;
+                }
+
                 if (value == null) {
                   return "";
-                } else if (value) {
-                  return '<img alt="passed" src="../../../Shared/images/passed.jpg" height="30px" width="40px">';
+                } else if (isRequired === true && value === true) {
+                  return '<img alt="Required test passed" title="Required test passed" src="../../../Shared/images/button-check_green.png" id="result-icon">';
+                } else if (isRequired === true && value === false) {
+                  return '<img alt="Required test failed" title="Required test failed" src="../../../Shared/images/button-cross_red.png" id="result-icon">';
+                } else if (isRequired === false && value === true) {
+                  return '<img alt="Optional test passed" title="Optional test passed" src="../../../Shared/images/button-check_yellow.png" id="result-icon">';
+                } else if (isRequired === false && value === false) {
+                  return '<img alt="Optional test failed" title="Optional test failed" src="../../../Shared/images/button-cross_yellow.png" id="result-icon">';
                 } else {
-                  return '<img alt="failed" src="../../../Shared/images/failed.jpg" height="30px" width="40px">';
+                  return value;
                 }
 
               }
@@ -1026,8 +1040,8 @@ function populateReportGrid(sectionArray, section) {
   sectionArray.forEach(function(item, index, array) {
     if (item != TTS.Test.UNKNOWN) {
 
-      Util.Validation.setIRTTestResults(item, null, false,
-          'Test not performed', section);
+      Util.Validation.setIRTTestResults(item, null, null,
+          'Test not performed by user', section);
     }
 
   });

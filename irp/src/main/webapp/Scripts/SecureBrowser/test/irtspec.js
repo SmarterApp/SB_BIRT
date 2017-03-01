@@ -141,8 +141,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "(new Summit.SecureBrowser.Mobile()).getNativeBrowser()",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -163,8 +162,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.security.getDeviceInfo",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -185,9 +183,8 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.security.getMACAddress",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
-        "all" : true
+
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -208,8 +205,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.security.getIPAddressList",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -224,15 +220,12 @@ IRT.ApiSpecs = {
       "testApi" : "",
       "testResult" : null,
       "details" : "",
-      "testApi_certified" : "browser.security.getStartTime",
-
+      "testApi_certified" : "browser.settings.appStartTime",
       "testApi_SB" : "Mozilla.getPreference('bmakiosk.startup.timestamp')",
       "testApi_mobile" : "runtime.security.getStartTime",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -242,20 +235,16 @@ IRT.ApiSpecs = {
     "checkClearCacheAPI" : {
       // F01. The Secure browser shall NOT provide a means to clear browser
       // cache. R22 SEC-32
-
       "id" : "6",
       "testName" : "Clear cache",
       "testApi" : "",
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.clearCache",
-
       "testApi_SB" : "SecureBrowser.clearCache",
       "testApi_mobile" : "runtime.security.clearCache",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -271,14 +260,11 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.emptyClipBoard",
-
       "testApi_SB" : "SecureBrowser.emptyClipBoard",
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -293,13 +279,11 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.clearCookies",
-
       "testApi_SB" : "SecureBrowser.clearCookies",
       "testApi_mobile" : "runtime.security.clearCookies",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -316,13 +300,11 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.getProcessList",
-
       "testApi_SB" : "runtime.getRunningProcessList",
       "testApi_mobile" : "runtime.security.getProcessList",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -343,8 +325,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.security.close",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -360,13 +341,11 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.isEnvironmentSecure",
-
       "testApi_SB" : "runtime.isEnvironmentSecure",
       "testApi_mobile" : "runtime.security.isEnvironmentSecure",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -382,13 +361,11 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.enableLockDown",
-
       "testApi_SB" : "runtime.enableLockDown",
       "testApi_mobile" : "runtime.security.enableLockdown",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -405,13 +382,11 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.systemVolume",
-
       "testApi_SB" : "runtime.systemVolume",
       "testApi_mobile" : "runtime.systemVolume",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -429,13 +404,11 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.systemMute",
-
       "testApi_SB" : "runtime.systemMute",
       "testApi_mobile" : "runtime.systemMute",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -451,13 +424,11 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.examineProcessList",
-
       "testApi_SB" : "runtime.examineProcessList",
       "testApi_mobile" : "runtime.security.examineProcessList",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -473,13 +444,11 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.getCapability",
-
       "testApi_SB" : "runtime.getCapability",
       "testApi_mobile" : "runtime.security.getCapability",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -495,13 +464,11 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.setCapability",
-
       "testApi_SB" : "runtime.setCapability",
       "testApi_mobile" : "runtime.security.setCapability",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
+
         "all" : true
       },
       "testPoints" : "0",
@@ -517,13 +484,10 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.getPermissiveMode",
-
       "testApi_SB" : "runtime.permissive",
       "testApi_mobile" : "runtime.security.getPermissiveMode",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -539,13 +503,10 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.setPermissiveMode",
-
       "testApi_SB" : "runtime.permissive",
       "testApi_mobile" : "runtime.security.setPermissiveMode",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -568,8 +529,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.speak",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -590,8 +549,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.pause",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -612,8 +569,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.resume",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -634,8 +589,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.stop",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -656,8 +609,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.device.ttsVolume",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -678,8 +629,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.device.ttsPitch",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -700,8 +649,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.device.ttsRate",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -722,8 +669,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.getStatus",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -744,8 +689,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.getVoices",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -766,8 +709,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.tts.voiceName",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -790,8 +731,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -816,8 +755,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -842,8 +779,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -868,8 +803,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -894,8 +827,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -920,8 +851,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -946,8 +875,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -972,8 +899,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -998,8 +923,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -1024,8 +947,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -1050,8 +971,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -1075,8 +994,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -1101,8 +1018,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -1126,8 +1041,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -1151,8 +1064,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -1177,8 +1088,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",
@@ -1201,8 +1110,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "mobile" : true,
-        "desktop" : true,
         "all" : true
       },
       "testPoints" : "0",

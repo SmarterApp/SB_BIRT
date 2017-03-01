@@ -129,10 +129,6 @@
   Validation.mergeTTSResultIntoResult = function() {
 
     ttsManualTestArray.forEach(function(element) {
-
-      if (element.testResult == null) {
-        element.testResult = false;
-      }
       ttsTestArray.push(element);
     });
 
@@ -141,10 +137,6 @@
   Validation.mergeCapabilityResultIntoResult = function() {
 
     capabilityTestArray.forEach(function(element) {
-
-      if (element.testResult == null) {
-        element.testResult = false;
-      }
       resultArray.push(element);
     });
 
@@ -153,10 +145,6 @@
   Validation.mergeProcessResultIntoResult = function() {
 
     processTestArray.forEach(function(element) {
-
-      if (element.testResult == null) {
-        element.testResult = false;
-      }
       resultArray.push(element);
     });
 
