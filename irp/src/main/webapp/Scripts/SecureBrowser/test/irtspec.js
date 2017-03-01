@@ -47,6 +47,7 @@ var specTTSManualApi = "ttsmanualapi";
 var specBrowserapi = "browserapi";
 var specCapabilityManualApi = "capabilityManualAPI";
 var specProcessManualApi = "processManualAPI";
+var specExternalTest = "externalTest";
 var specSeparator = ".";
 
 var tts_section = 'TTS';
@@ -712,7 +713,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "apiType" : [ "function" ],
+      "apiType" : [ "object", "function" ],
       "isDeprecated" : false
     }
   },
@@ -1118,6 +1119,53 @@ IRT.ApiSpecs = {
       "buttonSliderId" : "",
       "disableSection" : "",
       "enableSection" : ""
+    }
+  },
+
+  "externalTest" : {
+    "HTML5" : {
+      "id" : "1",
+      "testName" : "HTML5 Test",
+      "instruction" : "",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "Test not performed by user",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "",
+      "dialogTitle" : "",
+      "buttonSliderId" : "",
+      "disableSection" : [ "" ],
+      "enableSection" : [ "" ]
+    },
+    "CSS3" : {
+      "id" : "2",
+      "testName" : "CSS3 Test",
+      "instruction" : "",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "Test not performed by user",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "",
+      "dialogTitle" : "",
+      "buttonSliderId" : "",
+      "disableSection" : [ "" ],
+      "enableSection" : [ "" ]
     }
   }
 };

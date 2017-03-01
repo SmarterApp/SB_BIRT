@@ -128,7 +128,7 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
 
           if (irtSpecApiArray != null && Array.isArray(irtSpecApiArray)) {
             irtSpecApiArray.forEach(function(irtSpecApiType) {
-
+              details = '';
               if (irtSpecApiType == "object") {
                 if (typeof eval(actualTestApiMethod) === 'object') {
                   result = true;

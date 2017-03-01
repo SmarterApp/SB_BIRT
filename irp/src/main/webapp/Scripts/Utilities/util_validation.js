@@ -152,6 +152,31 @@
 
   Validation.formulateJsonForReport = function() {
 
+    if (processTestArray.length == 0) {
+      populateReportGrid(Object.keys(IRT.ProcessTest), process_section);
+      Validation.mergeProcessResultIntoResult();
+    }
+
+    if (capabilityTestArray.length == 0) {
+      populateReportGrid(Object.keys(IRT.CapabilityTest), capability_section);
+      Validation.mergeCapabilityResultIntoResult();
+    }
+
+    if (ttsManualTestArray.length == 0) {
+      populateReportGrid(Object.keys(TTS.Test), ttsmanual_section);
+      Validation.mergeTTSResultIntoResult();
+    }
+
+    if (html5TestArray.length == 0) {
+      html5TestArray.push(Validation.setTTSItemDetail('HTML5',
+          specExternalTest, null));
+    }
+
+    if (css3TestArray.length == 0) {
+      css3TestArray.push(Validation.setTTSItemDetail('CSS3', specExternalTest,
+          null));
+    }
+
     var itemDetail = {};
     $.extend(itemDetail, {
       "externalReportConfig" : {
