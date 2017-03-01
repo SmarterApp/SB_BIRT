@@ -334,33 +334,11 @@ var IRT_REPORT = {
       },
       {
         "id" : "1",
-        "testName" : "Manual test for Examine Process List",
-        "instruction" : "<ol><li>Select one or more processes from the 'Available' list and move them to the 'Selected' list and click the Examine button.</li><li>Any running forbidden apps found will be populated in the resulting grid.</li><li>Click OK to conclude this test.</li></ol>",
-        "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
-        "testApi_certified" : "",
-        "testApi_webspeech" : "",
-        "testApi_SB" : "",
-        "testApi_mobile" : "",
-        "points" : "1",
-        "required" : {
-          "all" : true
-        },
-        "testPoints" : "0",
-        "dialogHtml" : "<p>If you see processes in Forbidden Running processes grid, as per your selection,choose <b>Yes</b>. If not, choose <b>No</b></p>",
-        "dialogTitle" : "Examine Process List Test",
-        "buttonSliderId" : "examineProcess",
-        "disableSection" : [ "" ],
-        "enableSection" : [ "" ]
-      },
-      {
-        "id" : "1",
         "testName" : "Manual test for Set Capability",
         "instruction" : "Select Capability, Functionality and Click Set button",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -369,7 +347,7 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>If you see capability changed in Property Grid Selection as per your selection,choose <b>Yes</b>. If not, choose <b>No</b></p>",
         "dialogTitle" : "Set Capability Test",
         "buttonSliderId" : "setCapability",
@@ -382,8 +360,8 @@ var IRT_REPORT = {
         "testName" : "Manual test for Get Capability",
         "instruction" : "Select Capability and Click Get button",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -392,13 +370,35 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>If you see capability changed in Property Grid Selection as per your selection,choose <b>Yes</b>. If not, choose <b>No</b></p>",
         "dialogTitle" : "Get Capability Test",
         "buttonSliderId" : "getCapability",
         "disableSection" : [ "setCapability", "enableCapability",
             "disableCapability" ],
         "enableSection" : [ "getCapability", "capabilityType" ]
+      },
+      {
+        "id" : "1",
+        "testName" : "Manual test for Examine Process List",
+        "instruction" : "<ol><li>Select one or more processes from the 'Available' list and move them to the 'Selected' list and click the Examine button.</li><li>Any running forbidden apps found will be populated in the resulting grid.</li><li>Click OK to conclude this test.</li></ol>",
+        "testApi" : "",
+        "testResult" : true,
+        "details" : "",
+        "testApi_certified" : "",
+        "testApi_webspeech" : "",
+        "testApi_SB" : "",
+        "testApi_mobile" : "",
+        "points" : "1",
+        "required" : {
+          "all" : true
+        },
+        "testPoints" : "1",
+        "dialogHtml" : "<p>If you see processes in Forbidden Running processes grid, as per your selection,choose <b>Yes</b>. If not, choose <b>No</b></p>",
+        "dialogTitle" : "Examine Process List Test",
+        "buttonSliderId" : "examineProcess",
+        "disableSection" : [ "" ],
+        "enableSection" : [ "" ]
       } ],
   "jsTTSGrid" : [
       {
@@ -568,7 +568,7 @@ var IRT_REPORT = {
         "testName" : "Get/Set TTS voice name API (text-to-speech synthesis)",
         "testApi" : "window.speechSynthesis.voicename",
         "testResult" : false,
-        "details" : "window.speechSynthesis.voicename is not defined",
+        "details" : "",
         "testApi_certified" : "browser.tts.getVoiceName",
         "testApi_webspeech" : "window.speechSynthesis.voicename",
         "testApi_SB" : "runtime.voiceName",
@@ -578,7 +578,7 @@ var IRT_REPORT = {
           "all" : true
         },
         "testPoints" : "0",
-        "apiType" : [ "object" ],
+        "apiType" : [ "object", "function" ],
         "isDeprecated" : false
       },
       {
@@ -586,8 +586,8 @@ var IRT_REPORT = {
         "testName" : "Manual test for TTS Speak",
         "instruction" : "Click Play to test TTS Speech",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -596,7 +596,7 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
         "dialogTitle" : "TTS Play Test",
         "buttonSliderId" : "play",
@@ -609,8 +609,8 @@ var IRT_REPORT = {
         "testName" : "Manual test for TTS Pause",
         "instruction" : "Click Play and then Pause to test TTS Pause",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -619,7 +619,7 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>Did text-to-speech pause? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
         "dialogTitle" : "TTS Pause Test",
         "buttonSliderId" : "pause",
@@ -632,8 +632,8 @@ var IRT_REPORT = {
         "testName" : "Manual test for TTS Resume",
         "instruction" : "Click Play, Pause, and then Resume to test TTS Resume",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -642,7 +642,7 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>Did text-to-speech resume? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
         "dialogTitle" : "TTS Resume Test",
         "buttonSliderId" : "resume",
@@ -655,8 +655,8 @@ var IRT_REPORT = {
         "testName" : "Manual test for TTS Stop",
         "instruction" : "Click Play and then Stop to test TTS Stop",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -665,7 +665,7 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>Did text-to-speech stop? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
         "dialogTitle" : "TTS Stop Test",
         "buttonSliderId" : "stop",
@@ -678,8 +678,8 @@ var IRT_REPORT = {
         "testName" : "Manual test for TTS Volume",
         "instruction" : "Change Volume and Click Play to test",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -688,7 +688,7 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
         "dialogTitle" : "TTS Volume Test",
         "buttonSliderId" : "ttsVolume",
@@ -701,8 +701,8 @@ var IRT_REPORT = {
         "testName" : "Manual test for TTS Pitch",
         "instruction" : "Change Pitch and Click Play to test",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -711,7 +711,7 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
         "dialogTitle" : "TTS Pitch Test",
         "buttonSliderId" : "ttsPitch",
@@ -724,8 +724,8 @@ var IRT_REPORT = {
         "testName" : "Manual test for TTS Rate",
         "instruction" : "Change Rate and Click Play to test",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -734,7 +734,7 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
         "dialogTitle" : "TTS Rate Test",
         "buttonSliderId" : "ttsRate",
@@ -747,8 +747,8 @@ var IRT_REPORT = {
         "testName" : "Manual test for System Volume",
         "instruction" : "Change System Volume and Click Play to test",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -757,7 +757,7 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
         "dialogTitle" : "System Volume Test",
         "buttonSliderId" : "systemVolume",
@@ -770,8 +770,8 @@ var IRT_REPORT = {
         "testName" : "Manual test for System Mute",
         "instruction" : "Click Mute and Click Play to test",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -780,7 +780,7 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>If you didn't hear the voice at all, choose <b>Yes</b>. If you did hear the voice, choose <b>No</b></p>",
         "dialogTitle" : "System Mute Test",
         "buttonSliderId" : "systemMute",
@@ -793,8 +793,8 @@ var IRT_REPORT = {
         "testName" : "Manual test for System Unmute",
         "instruction" : "Click Unmute and Click Play to test",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -803,7 +803,7 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>If you did hear the voice, choose <b>Yes</b>. If not, choose <b>No</b></p>",
         "dialogTitle" : "System Unmute Test",
         "buttonSliderId" : "systemUnMute",
@@ -816,8 +816,8 @@ var IRT_REPORT = {
         "testName" : "Manual test for TTS Voice Selection",
         "instruction" : "Change Voice Selection and Click Play to test",
         "testApi" : "",
-        "testResult" : null,
-        "details" : "Test not performed by user",
+        "testResult" : true,
+        "details" : "",
         "testApi_certified" : "",
         "testApi_webspeech" : "",
         "testApi_SB" : "",
@@ -826,7 +826,7 @@ var IRT_REPORT = {
         "required" : {
           "all" : true
         },
-        "testPoints" : "0",
+        "testPoints" : "1",
         "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
         "dialogTitle" : "TTS Voice Selection Test",
         "buttonSliderId" : "voices",
@@ -835,47 +835,285 @@ var IRT_REPORT = {
         "enableSection" : [ "PLAY", "VOICE" ]
       } ],
   "jsHTML5TestGrid" : [ {
-    "id" : "1",
-    "testName" : "HTML5 Test",
-    "instruction" : "",
-    "testApi" : "",
-    "testResult" : null,
-    "details" : "Test not performed by user",
-    "testApi_certified" : "",
-    "testApi_webspeech" : "",
-    "testApi_SB" : "",
-    "testApi_mobile" : "",
-    "points" : "1",
-    "required" : {
-      "all" : true
-    },
-    "testPoints" : "0",
-    "dialogHtml" : "",
-    "dialogTitle" : "",
-    "buttonSliderId" : "",
-    "disableSection" : [ "" ],
-    "enableSection" : [ "" ]
+    "testName" : "Parsing rules",
+    "testResult" : true,
+    "details" : "5/5"
+  }, {
+    "testName" : "Elements",
+    "testResult" : true,
+    "details" : "25/30"
+  }, {
+    "testName" : "Forms",
+    "testResult" : true,
+    "details" : "64/65"
+  }, {
+    "testName" : "Web Components",
+    "testResult" : true,
+    "details" : "10/10"
+  }, {
+    "testName" : "Location and Orientation",
+    "testResult" : true,
+    "details" : "20/20"
+  }, {
+    "testName" : "Output",
+    "testResult" : true,
+    "details" : "8/10"
+  }, {
+    "testName" : "Input",
+    "testResult" : true,
+    "details" : "10/10"
+  }, {
+    "testName" : "Video",
+    "testResult" : true,
+    "details" : "29/33"
+  }, {
+    "testName" : "Audio",
+    "testResult" : true,
+    "details" : "29/30"
+  }, {
+    "testName" : "Streaming",
+    "testResult" : true,
+    "details" : "5/5"
+  }, {
+    "testName" : "Responsive images",
+    "testResult" : true,
+    "details" : "15/15"
+  }, {
+    "testName" : "2D Graphics",
+    "testResult" : true,
+    "details" : "24/25"
+  }, {
+    "testName" : "3D and VR",
+    "testResult" : true,
+    "details" : "20/23"
+  }, {
+    "testName" : "Animation",
+    "testResult" : true,
+    "details" : "8/8"
+  }, {
+    "testName" : "Communication",
+    "testResult" : true,
+    "details" : "40/40"
+  }, {
+    "testName" : "Streams",
+    "testResult" : true,
+    "details" : "4/6"
+  }, {
+    "testName" : "Peer To Peer",
+    "testResult" : true,
+    "details" : "40/45"
+  }, {
+    "testName" : "User interaction",
+    "testResult" : true,
+    "details" : "20/20"
+  }, {
+    "testName" : "Performance",
+    "testResult" : true,
+    "details" : "12/12"
+  }, {
+    "testName" : "Security",
+    "testResult" : true,
+    "details" : "26/32"
+  }, {
+    "testName" : "Payments",
+    "testResult" : false,
+    "details" : "0/5"
+  }, {
+    "testName" : "Web applications",
+    "testResult" : true,
+    "details" : "16/17"
+  }, {
+    "testName" : "Storage",
+    "testResult" : true,
+    "details" : "35/35"
+  }, {
+    "testName" : "Files",
+    "testResult" : true,
+    "details" : "15/15"
+  }, {
+    "testName" : "Scripting",
+    "testResult" : true,
+    "details" : "27/30"
+  }, {
+    "testName" : "Other",
+    "testResult" : true,
+    "details" : "9/9"
   } ],
   "jsCSS3TestGrid" : [ {
-    "id" : "2",
-    "testName" : "CSS3 Test",
-    "instruction" : "",
-    "testApi" : "",
-    "testResult" : null,
-    "details" : "Test not performed by user",
-    "testApi_certified" : "",
-    "testApi_webspeech" : "",
-    "testApi_SB" : "",
-    "testApi_mobile" : "",
-    "points" : "1",
-    "required" : {
-      "all" : true
-    },
-    "testPoints" : "0",
-    "dialogHtml" : "",
-    "dialogTitle" : "",
-    "buttonSliderId" : "",
-    "disableSection" : [ "" ],
-    "enableSection" : [ "" ]
+    "testName" : "Backgrounds and Borders Level 3",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "Backgrounds and Borders Level 4",
+    "testResult" : true,
+    "details" : "80%"
+  }, {
+    "testName" : "Image Values and Replaced Content",
+    "testResult" : true,
+    "details" : "59%"
+  }, {
+    "testName" : "Selectors Level 3",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "Selectors Level 4",
+    "testResult" : false,
+    "details" : "0%"
+  }, {
+    "testName" : "Media Queries",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "Basic User Interface",
+    "testResult" : true,
+    "details" : "71%"
+  }, {
+    "testName" : "Transitions",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "Animations",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "Transforms",
+    "testResult" : true,
+    "details" : "86%"
+  }, {
+    "testName" : "Text Level 3",
+    "testResult" : true,
+    "details" : "57%"
+  }, {
+    "testName" : "Text Level 4",
+    "testResult" : false,
+    "details" : "20%"
+  }, {
+    "testName" : "Text Decoration",
+    "testResult" : false,
+    "details" : "36%"
+  }, {
+    "testName" : "Fonts",
+    "testResult" : true,
+    "details" : "53%"
+  }, {
+    "testName" : "Writing Modes",
+    "testResult" : true,
+    "details" : "93%"
+  }, {
+    "testName" : "Color Level 3",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "Color Level 4",
+    "testResult" : true,
+    "details" : "50%"
+  }, {
+    "testName" : "Multi-column Layout",
+    "testResult" : true,
+    "details" : "98%"
+  }, {
+    "testName" : "Values and Units",
+    "testResult" : true,
+    "details" : "69%"
+  }, {
+    "testName" : "Regions",
+    "testResult" : false,
+    "details" : "0%"
+  }, {
+    "testName" : "Speech",
+    "testResult" : false,
+    "details" : "0%"
+  }, {
+    "testName" : "Flexible Box Layout",
+    "testResult" : true,
+    "details" : "98%"
+  }, {
+    "testName" : "Grid Layout",
+    "testResult" : false,
+    "details" : "0%"
+  }, {
+    "testName" : "Box Alignment",
+    "testResult" : false,
+    "details" : "11%"
+  }, {
+    "testName" : "Cascading and Inheritance Level 3",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "Cascading and Inheritance Level 4",
+    "testResult" : false,
+    "details" : "0%"
+  }, {
+    "testName" : "Conditional Rules",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "Masking",
+    "testResult" : false,
+    "details" : "41%"
+  }, {
+    "testName" : "Compositing and Blending",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "Shapes",
+    "testResult" : true,
+    "details" : "98%"
+  }, {
+    "testName" : "Exclusions",
+    "testResult" : false,
+    "details" : "0%"
+  }, {
+    "testName" : "Filter Effects",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "Pointer Events",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "Fullscreen API",
+    "testResult" : true,
+    "details" : "50%"
+  }, {
+    "testName" : "Fragmentation",
+    "testResult" : true,
+    "details" : "72%"
+  }, {
+    "testName" : "Positioning",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "Will Change",
+    "testResult" : true,
+    "details" : "100%"
+  }, {
+    "testName" : "CSSOM View Module",
+    "testResult" : false,
+    "details" : "0%"
+  }, {
+    "testName" : "Ruby",
+    "testResult" : false,
+    "details" : "0%"
+  }, {
+    "testName" : "Scroll Snap Points",
+    "testResult" : false,
+    "details" : "0%"
+  }, {
+    "testName" : "Logical Properties",
+    "testResult" : false,
+    "details" : "2%"
+  }, {
+    "testName" : "Lists and Counters",
+    "testResult" : false,
+    "details" : "35%"
+  }, {
+    "testName" : "Overflow",
+    "testResult" : false,
+    "details" : "40%"
+  }, {
+    "testName" : "Containment",
+    "testResult" : true,
+    "details" : "100%"
   } ]
 };

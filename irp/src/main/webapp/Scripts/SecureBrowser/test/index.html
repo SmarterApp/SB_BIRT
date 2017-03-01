@@ -78,25 +78,37 @@
 <script type="text/javascript">
   document.title = 'SecureBrowser Specification Test Suite';
 
-  $(document).ready(function() {
+  $(document)
+      .ready(
+          function() {
 
-    $("#ttsTestLoad").load("ttsManualTest.html");
+            $("#ttsTestLoad").load("ttsManualTest.html");
 
-    $("#capabilityTestLoad").load("capabilityManualTest.html");
+            $("#capabilityTestLoad").load("capabilityManualTest.html");
 
-    $("#processTestLoad").load("processManualTest.html");
-    beginBrowserAPITest();
+            $("#processTestLoad").load("processManualTest.html");
+            beginBrowserAPITest();
 
-    if (isAIRSecureBrowser && impl != null && impl.getRunTime() != null) {
+            if (isAIRSecureBrowser && impl != null && impl.getRunTime() != null) {
 
-      $("#seperator").show();
-      $("#closeBrowser").show();
-      $("#closeBrowser").click(function() {
-        closeBrowser();
-      });
-    }
+              $("#seperator").show();
+              $("#closeBrowser").show();
+              $("#closeBrowser").click(function() {
+                closeBrowser();
+              });
+            }
 
-  });
+            createButton($("#capabilityApiManualTest"),
+                'Perform Get/Set Capabilities Manual Test');
+            createButton($("#processApiManualTest"),
+                'Perform Examine Process List Manual Test');
+            createButton($("#ttsManualTest"),
+                'Perform Text-to-speech Manual test');
+            createButton($("#html5ManualTest"), 'Perform HTML5 Test');
+            createButton($("#css3ManualTest"), 'Perform CSS3 Test');
+
+            createButton($("#endBrowserTest"), 'Done');
+          });
 </script>
 
 </head>
@@ -122,18 +134,12 @@
     <div class="header-irt" id="browserAPI">Browser API</div>
     <div id="jsGrid"></div>
 
+    <div>&nbsp;</div>
     <div>
-      <ul>
-        <li id="capabilityApiManualTest"><a
-          href="javascript:loadDialogBox($('#dialogCAPABILITY'), 'CAPABILITY', 'Getting and Setting Capabilities Test',true)">Click
-            to begin Getting and Setting Capabilities tests</a></li>
-       
-        <li id="processApiManualTest"><a
-          href="javascript:loadDialogBox($('#dialogPROCESS'), 'PROCESS', 'Examine Process List Test',true)">Click
-            to begin Examine Process List tests</a></li>
-
-
-      </ul>
+      <button id="capabilityApiManualTest"
+        onclick="javascript:loadDialogBox($('#dialogCAPABILITY'), 'CAPABILITY', 'Getting and Setting Capabilities Test',true)"></button>
+      <button id="processApiManualTest"
+        onclick="javascript:loadDialogBox($('#dialogPROCESS'), 'PROCESS', 'Examine Process List Test',true)"></button>
     </div>
 
 
@@ -143,13 +149,12 @@
     <div class="header-irt" id="textToSpeechAPI">Text-to-speech</div>
     <div id="jsTTSGrid"></div>
 
-    <div id="ttsManualTest">
-      <ul>
-        <li><a
-          href="javascript:loadDialogBox($('#dialogTTS'), 'TTS', 'TTS API Manual Test',true)">Click
-            to begin manual TTS tests</a></li>
+    <div>&nbsp;</div>
+    <div>
 
-      </ul>
+      <button id="ttsManualTest"
+        onclick="javascript:loadDialogBox($('#dialogTTS'), 'TTS', 'TTS API Manual Test',true)"></button>
+
     </div>
 
 
@@ -158,12 +163,12 @@
     <div id="html5TestMain">
       <div class="header-ext" id="html5TestHeader">HTML5 Test</div>
       <div id="jsHTML5TestGrid"></div>
-      <div id="html5ManualTest">
-        <ul>
-          <li><a
-            href="javascript:loadDialogBox('', 'HTML5', 'HTML5 Specification TEST',true)">Click
-              to begin HTML5 Test</a></li>
-        </ul>
+      <div>&nbsp;</div>
+      <div>
+
+        <button id="html5ManualTest"
+          onclick="javascript:loadDialogBox('', 'HTML5', 'HTML5 Specification TEST',true)"></button>
+
       </div>
     </div>
 
@@ -173,15 +178,23 @@
     <div id="css3TestMain">
       <div class="header-ext" id="css3TestHeader">CSS3 Test</div>
       <div id="jsCSS3TestGrid"></div>
-      <div id="css3ManualTest">
-        <ul>
-          <li><a
-            href="javascript:loadDialogBox('', 'CSS3', 'CSS3 Specification TEST',true)">Click
-              to begin CSS3 Test</a></li>
-        </ul>
+
+
+      <div>&nbsp;</div>
+      <div>
+
+        <button id="css3ManualTest"
+          onclick="javascript:loadDialogBox('', 'CSS3', 'CSS3 Specification TEST',true)"></button>
+
       </div>
     </div>
 
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div id="completeTest" style="float: right;">
+      <button id="endBrowserTest"></button>
+    </div>
+    
 
     <div id="ttsTestLoad"></div>
 

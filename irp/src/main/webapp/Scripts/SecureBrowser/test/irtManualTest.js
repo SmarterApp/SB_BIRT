@@ -378,7 +378,7 @@ function populateManualResultIntoResultGrid(testName, gridId, linkId, dialogId) 
 
   gridId.jsGrid("refresh");
 
-  linkId.css("display", "none");
+  linkId.button("disable");
 
   currentTestSetting = 'UNKNOWN';
 
