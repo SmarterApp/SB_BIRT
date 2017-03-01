@@ -14,7 +14,7 @@ report.
 * This project is licensed under the [AIR Open Source License v1.0](http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf).
 * This project includes source code from [HTML5Test](http://html5test.com/) [Source](https://github.com/NielsLeenheer/html5test).
 * This project includes source code from [CSS3Test](http://css3test.com/) [Source](https://github.com/LeaVerou/css3test).
-* This project includes unmodified images from  [Double-J designs](http://www.doublejdesign.co.uk/), distributed under the [Creative Commons (Attribution 3.0 Unported)](https://creativecommons.org/licenses/by/3.0/) license. 
+* This project includes unmodified images from  [Double-J designs](http://www.doublejdesign.co.uk/), distributed under the [Creative Commons Attribution 3.0 Unported](https://creativecommons.org/licenses/by/3.0/) license.
 
 
 
