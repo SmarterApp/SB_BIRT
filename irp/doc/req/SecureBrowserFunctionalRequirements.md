@@ -9,7 +9,7 @@ Secure Browser Functional Requirements
 1. F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).
 1. F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.
 1. F07. The secure browser shall provide a means to obtain the application start time.
-1. F08. The secure browser shall provide a means to query if Spaces is enabled or not, for Mac OS X.
+1. F08. The secure browser shall provide a means to query if `Spaces` is enabled or not, for macOS.
 1. F15. The secure browser shall provide a means to set permissive mode.
 1. F49. The secure browser shall provide a means to query the status of permissive mode.
 1. F31. The secure browser shall be able to determine whether blacklisted processes are running on the client machine.

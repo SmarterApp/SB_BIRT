@@ -70,9 +70,9 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	An empty array indicates no forbidden apps were found. Undefined or null return value to the callback indicates that some error occurred and we were unable to perform the match.
 
-1. R07. **Shut down the browser**. The testing application will invoke this to shut down the browser when the user elects to exit the browser. The boolean parameter will determine if the browser should restart on exit or simply exit.
+1. R07. **Close the browser**. The testing application will invoke this to shut down the browser when the user elects to exit the browser. The boolean parameter will determine if the browser should restart on exit or simply exit.
 
-	`void browser.security.shutdown(boolean restart)`
+	`void browser.security.close(boolean restart)`
 
 1. R08. **Speak Text (Text to speech Synthesis)**. The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup, an options object to control the speech (optional) and a callback for TTS events (optional). The vendor can support one of the following markup standards, SSML, Microsoft speech markup (for windows) or Apple speech markup (for OS X). The options object include `voicename`, `rate`, `gender`, `language`, `pitch`, `volume`. The callback, if provided, is invoked for TTS events which include `start`, `end`, `word boundary`, `sentence boundary`, `synchronization/marker` encountered, `paused` and `error`. 
 
@@ -172,7 +172,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
     `browser.settings.systemMute` set to true to mute, false to unmute. 
     
-1. R44. *[NEW]* **Get permissive mode**. The testing web application will invoke this to determine if permissive mode is on or off. In permissive mode, a browser is expected to relax some of its stringent security hooks to allow assistive technology to work with the secure browser. For example, browsers that aggressively prevent other application UIs from presenting on top of them might want to relax this when in permissive mode. 
+1. R44. [NEW] **Get permissive mode**. The testing web application will invoke this to determine if permissive mode is on or off. In permissive mode, a browser is expected to relax some of its stringent security hooks to allow assistive technology to work with the secure browser. For example, browsers that aggressively prevent other application UIs from presenting on top of them might want to relax this when in permissive mode. 
 
 	`void browser.security.getPermissiveMode(function callback)`
 	
@@ -361,7 +361,7 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 
 	`void browser.recorder.resumePlay()`
 
-1. (R43) **Recorder.retrieveAudioFileList** – retrieve the list of all audio recordings.
+1. (R43) **Retrieve list of audio recordings**. Retrieve the list of all audio recordings.
 
 	`void browser.recorder.retrieveAudioFileList()`
 
