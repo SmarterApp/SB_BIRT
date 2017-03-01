@@ -281,9 +281,9 @@ kbd {
 <code>&quot;[&#39;taskmgr.exe&#39;,&#39;chrome.exe&#39;,&#39;ccSvcHst.exe&#39;,&#39;Dropbox.exe&#39;,&#39;EXCEL.EXE&#39;,&#39;svchost.exe&#39;,&#39;System&#39;]&quot;</code></p>
 
 <p>An empty array indicates no forbidden apps were found. Undefined or null return value to the callback indicates that some error occurred and we were unable to perform the match.</p></li>
-<li><p>R07. <strong>Shut down the browser</strong>. The testing application will invoke this to shut down the browser when the user elects to exit the browser. The boolean parameter will determine if the browser should restart on exit or simply exit.</p>
+<li><p>R07. <strong>Close the browser</strong>. The testing application will invoke this to shut down the browser when the user elects to exit the browser. The boolean parameter will determine if the browser should restart on exit or simply exit.</p>
 
-<p><code>void browser.security.shutdown(boolean restart)</code></p></li>
+<p><code>void browser.security.close(boolean restart)</code></p></li>
 <li><p>R08. <strong>Speak Text (Text to speech Synthesis)</strong>. The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup, an options object to control the speech (optional) and a callback for TTS events (optional). The vendor can support one of the following markup standards, SSML, Microsoft speech markup (for windows) or Apple speech markup (for OS X). The options object include <code>voicename</code>, <code>rate</code>, <code>gender</code>, <code>language</code>, <code>pitch</code>, <code>volume</code>. The callback, if provided, is invoked for TTS events which include <code>start</code>, <code>end</code>, <code>word boundary</code>, <code>sentence boundary</code>, <code>synchronization/marker</code> encountered, <code>paused</code> and <code>error</code>. </p>
 
 <p><code>void browser.tts.speak(string text, object options, function callback)</code></p>
@@ -370,7 +370,7 @@ kbd {
 <li><p>R19. <strong>Unmute System Volume</strong>. Unmute system volume: This runtime browser property can be written to by the testing application to unmute the System Volume. This is only available in desktop secure browsers.</p>
 
 <p><code>browser.settings.systemMute</code> set to true to mute, false to unmute. </p></li>
-<li><p>R44. <em>[NEW]</em> <strong>Get permissive mode</strong>. The testing web application will invoke this to determine if permissive mode is on or off. In permissive mode, a browser is expected to relax some of its stringent security hooks to allow assistive technology to work with the secure browser. For example, browsers that aggressively prevent other application UIs from presenting on top of them might want to relax this when in permissive mode. </p>
+<li><p>R44. [NEW] <strong>Get permissive mode</strong>. The testing web application will invoke this to determine if permissive mode is on or off. In permissive mode, a browser is expected to relax some of its stringent security hooks to allow assistive technology to work with the secure browser. For example, browsers that aggressively prevent other application UIs from presenting on top of them might want to relax this when in permissive mode. </p>
 
 <p><code>void browser.security.getPermissiveMode(function callback)</code></p>
 
@@ -552,7 +552,7 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 <li><p>(R34) <strong>Resume playback</strong>. This method is invoked to resume an already paused audio playback. Throws error if status is currently not &quot;PAUSED&quot;.</p>
 
 <p><code>void browser.recorder.resumePlay()</code></p></li>
-<li><p>(R43) <strong>Recorder.retrieveAudioFileList</strong> – retrieve the list of all audio recordings.</p>
+<li><p>(R43) <strong>Retrieve list of audio recordings</strong>. Retrieve the list of all audio recordings.</p>
 
 <p><code>void browser.recorder.retrieveAudioFileList()</code></p></li>
 </ol>
