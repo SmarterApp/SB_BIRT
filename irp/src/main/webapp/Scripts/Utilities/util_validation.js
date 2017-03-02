@@ -188,7 +188,13 @@
       "jsGrid" : resultArray,
       "jsTTSGrid" : ttsTestArray,
       "jsHTML5TestGrid" : html5TestArray,
-      "jsCSS3TestGrid" : css3TestArray
+      "jsCSS3TestGrid" : css3TestArray,
+      "headerHTML" : {
+        "css3TestHeader" : $('#css3TestHeader').html(),
+        "browserAPI" : $('#browserAPI').html(),
+        "textToSpeechAPI" : $('#textToSpeechAPI').html(),
+        "html5TestHeader" : $('#html5TestHeader').html()
+      }
     });
 
     return itemDetail;

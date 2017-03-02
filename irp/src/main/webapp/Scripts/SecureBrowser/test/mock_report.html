@@ -35,19 +35,39 @@
 <script type="text/javascript">
 
   $(document).ready(function() {
-
-    var reportJson = IRT_REPORT;
     
-    var reportGridKeys = Object.keys(reportJson);
-    var extReport = false;
-    reportGridKeys.forEach(function(item, index, array) {
-      extReport = eval ('reportJson.externalReportConfig.' + item);
-      
-      if(item != "externalReportConfig"){
-        populateResults($("#" + item), eval ('reportJson.' + item), extReport);
-      }
-      
-    });
+    
+    
+    $.getJSON('/irp/report/getReport/103', function (data) {
+      console.log(data);      
+       var reportGridKeys = Object.keys(data);
+      var extReport = false;
+      var jsonObject = null;
+      reportGridKeys.forEach(function(item, index, array) {
+        
+        if(item == "externalReportConfig"){
+         jsonObject = JSON.parse(data.externalReportConfig);
+        }
+        
+       
+        if(item != "externalReportConfig" && item.startsWith("js")){
+          extReport = eval('jsonObject.'+ item);
+          populateResults($("#" + item), JSON.parse(eval('data.' + item)), extReport);
+        }
+        
+        if(item == "headerHTML"){
+          var headerJsonObject = JSON.parse(data.headerHTML);
+          Object.keys(headerJsonObject).forEach(function(htmlItem, htmlIndex, htmlArray) {
+            
+            $("#" + htmlItem).html(eval('headerJsonObject.' + htmlItem));
+          });
+        }
+        
+      });
+  });
+  
+
+   
     
 
   });

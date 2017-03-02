@@ -477,10 +477,38 @@ function createButton(id, text) {
       examineProcessList();
     } else if (text == 'OK') {
       concludeExamineProcess();
+    } else if (text == 'Done') {
+      saveIRTResult();
     }
 
     event.preventDefault();
   });
+
+}
+
+function saveIRTResult() {
+
+  $.ajax({
+    type : "POST",
+    url : '/irp/report/saveReport',
+    data : {
+      "reportJsonData" : JSON.stringify(Util.Validation
+          .formulateJsonForReport())
+    },
+    /*
+     * contentType : "application/json; charset=utf-8", dataType : "json",
+     */
+    success : successFunc,
+    error : errorFunc
+  });
+
+  function successFunc(data, status) {
+    alert("success");
+  }
+
+  function errorFunc() {
+    alert('error');
+  }
 
 }
 
