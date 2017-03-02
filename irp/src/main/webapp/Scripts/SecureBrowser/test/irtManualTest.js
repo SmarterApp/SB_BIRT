@@ -491,6 +491,28 @@ function getContextPath() {
       .indexOf("/", 2));
 }
 
+function showReportIdDialog(html) {
+
+  var id = $('#reportInfoDialog');
+  id
+      .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
+          + html + '</p>');
+
+  id.dialog({
+    resizable : false,
+    height : "auto",
+    title : 'IRT Result Info',
+    width : 400,
+    modal : true,
+    buttons : [ {
+      text : "OK",
+      click : function() {
+        $(this).dialog("close");
+      }
+    } ]
+  });
+}
+
 function saveIRTResult() {
 
   alert(getContextPath());
@@ -509,11 +531,12 @@ function saveIRTResult() {
   });
 
   function successFunc(data, status) {
-    alert("success");
+    $("#endBrowserTest").button("disable");
+    showReportIdDialog("System was able to save report");
   }
 
   function errorFunc() {
-    alert('error');
+    showReportIdDialog("System was unable to save report");
   }
 
 }
