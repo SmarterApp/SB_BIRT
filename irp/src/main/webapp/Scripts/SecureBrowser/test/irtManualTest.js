@@ -486,11 +486,17 @@ function createButton(id, text) {
 
 }
 
+function getContextPath() {
+  return window.location.pathname.substring(0, window.location.pathname
+      .indexOf("/", 2));
+}
+
 function saveIRTResult() {
 
+  alert(getContextPath());
   $.ajax({
     type : "POST",
-    url : '/irp/report/saveReport',
+    url : getContextPath() + '/report/saveReport',
     data : {
       "reportJsonData" : JSON.stringify(Util.Validation
           .formulateJsonForReport())

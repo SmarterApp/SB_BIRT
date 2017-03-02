@@ -31,6 +31,14 @@ import irt.report.mongo.model.BrowserTestResult;
 public class ReportController
 {
 
+  @RequestMapping (value = "/startTest", method = { RequestMethod.GET, RequestMethod.POST }, produces = MediaType.APPLICATION_JSON_VALUE)
+  public void startTest (HttpServletRequest request,
+      HttpServletResponse response, @QueryParam ("name") String name, @QueryParam ("emailId") String emailId,
+      @QueryParam ("browserDetails") String browserDetails) throws Exception {
+
+    System.out.println ("Comes Here");
+  }
+
   @Autowired
   private ReportDAO reportDAO;
 
