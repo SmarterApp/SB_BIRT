@@ -38,25 +38,27 @@
     
     
     
-    $.getJSON('/irp/report/getReport/103', function (data) {
-      console.log(data);      
-       var reportGridKeys = Object.keys(data);
+    $.getJSON('/irp/report/getReport/100', function (data) {
+      
+      if(data.success == true){
+      console.log(data.reportData);      
+      var reportGridKeys = Object.keys(data.reportData);
       var extReport = false;
       var jsonObject = null;
       reportGridKeys.forEach(function(item, index, array) {
         
         if(item == "externalReportConfig"){
-         jsonObject = JSON.parse(data.externalReportConfig);
+         jsonObject = JSON.parse(data.reportData.externalReportConfig);
         }
         
        
         if(item != "externalReportConfig" && item.startsWith("js")){
           extReport = eval('jsonObject.'+ item);
-          populateResults($("#" + item), JSON.parse(eval('data.' + item)), extReport);
+          populateResults($("#" + item), JSON.parse(eval('data.reportData.' + item)), extReport);
         }
         
         if(item == "headerHTML"){
-          var headerJsonObject = JSON.parse(data.headerHTML);
+          var headerJsonObject = JSON.parse(data.reportData.headerHTML);
           Object.keys(headerJsonObject).forEach(function(htmlItem, htmlIndex, htmlArray) {
             
             $("#" + htmlItem).html(eval('headerJsonObject.' + htmlItem));
@@ -64,6 +66,11 @@
         }
         
       });
+      
+      
+    }else{
+      alert(data.message);
+    }
   });
   
 

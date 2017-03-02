@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import irt.report.mongo.dao.ReportDAO;
+import irt.report.mongo.model.BrowserTestResult;
 
 @Controller
 @RequestMapping ("/report")
@@ -38,7 +39,19 @@ public class ReportController
   public Object getReport (HttpServletRequest request,
       HttpServletResponse response, @PathVariable ("reportId") Long reportId) throws Exception {
 
-    return reportDAO.getResultByReportId (reportId);
+    Map<String, Object> returnMap = new LinkedHashMap<String, Object> ();
+
+    BrowserTestResult browserTestResult = reportDAO.getResultByReportId (reportId);
+
+    if (browserTestResult == null) {
+      returnMap.put ("success", false);
+      returnMap.put ("message", "System couldn't find any report with given report id");
+    } else {
+      returnMap.put ("success", true);
+      returnMap.put ("reportData", browserTestResult);
+
+    }
+    return returnMap;
 
   }
 

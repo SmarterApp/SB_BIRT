@@ -66,9 +66,8 @@ public class ReportDAOImpl implements ReportDAO
 
     Query query = new Query (Criteria.where ("reportId").is (reportId));
 
-    BrowserTestResult returnMap = (BrowserTestResult) mongoTemplate.findOne (query, BrowserTestResult.class, RESULT_COLLECTION);
+    return (BrowserTestResult) mongoTemplate.findOne (query, BrowserTestResult.class, RESULT_COLLECTION);
 
-    return returnMap;
   }
 
 }
