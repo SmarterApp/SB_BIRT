@@ -69,7 +69,7 @@
       
       
     }else{
-      alert(data.message);
+      showReportIdDialog(data.message,reportId);
     }
   });
   
@@ -85,6 +85,30 @@
   function getContextPath() {
     return window.location.pathname.substring(0, window.location.pathname
         .indexOf("/", 2));
+  }
+  
+  function showReportIdDialog(textInfo, reportId) {
+
+    var id = $('#reportInfoDialog');
+
+    id
+        .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
+            + textInfo + '</p>');
+
+    id.dialog({
+      resizable : false,
+      height : "auto",
+      title : 'IRT Result Error',
+      width : 400,
+      modal : true,
+      buttons : [ {
+        text : "OK",
+        click : function() {
+          window.location.href = getContextPath();
+          $(this).dialog("close");
+        }
+      } ]
+    });
   }
 
 </script>
@@ -137,7 +161,7 @@
     </div>
 
 
-
+    <div id="reportInfoDialog"></div>
 
   </div>
 </body>

@@ -45,7 +45,7 @@ public class ReportController
 
     if (browserTestResult == null) {
       returnMap.put ("success", false);
-      returnMap.put ("message", "No report found for the requested ID " + reportId);
+      returnMap.put ("message", "No report found for the requested Report ID " + reportId);
     } else {
       returnMap.put ("success", true);
       returnMap.put ("reportData", browserTestResult);

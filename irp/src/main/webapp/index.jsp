@@ -55,7 +55,7 @@
             function(event) {    
               event.preventDefault();
               $.cookie("reportId",  $('#reportId').val());
-              window.location.href = cntxPath + "/Scripts/SecureBrowser/test/mock_report.html";
+              window.location.href = cntxPath + "/Scripts/SecureBrowser/test/report.html";
             });
         
       });
