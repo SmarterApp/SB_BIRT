@@ -12,7 +12,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`onSuccess` and `onError` are optional parameters. These functions are invoked after the lockdown has either been sucessfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:
 
-	`function(currentlockdownstate) {...}`
+	` function(currentlockdownstate) {...}`
 	
 	where `currentstate` indicates whether the lockdown is in effect or not. undefined or null indicates that we don't know what the current state is (likely only the case for onError callbacks)
 
@@ -43,7 +43,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`onSuccess` and `onError` are optional parameters. These functions are invoked after the feature has either been sucessfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:
 
-	`function(jsonliteral) {...}`
+	` function(jsonliteral) {...}`
 	
 	where jsonliteral indicates the current value of the feature and it's state. `{<feature>:true|false|undefined}`. If the feature is unknown to the browser, the value for the key will be undefined
 
@@ -51,17 +51,17 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`void browser.security.getDeviceInfo(function callback)`
 	
-	`callback` is optional. If you specify this parameter, it should be a function that looks like this:
+	`callback` should be a function that looks like this:
 
 	` function(infoObj){...}`
 
 	The infoObj is a JSON literal that includes a set of key value pairs. The complete list of data returned is vendor specific. At a minimum, we expect the following keys to be supported: `manufacturer`,`HWVer`, `SWVer`
 
-1. R06. [NEW] **Examine current list of running processes**. The testing application will invoke this to examine the list of all processes running on the client machine owned by the user, and compare it with a list of processes that we have deemed blacklisted during testing cycle. This call will be invoked both at the start of an assessment and periodically which the student is taking the assessment and at any point, if a blacklisted app is detected, the assessment will be stopped to preserve test integrity. It will return a list of running processes that match one or more of the blacklisted processes, if any.
+1. R06. **Examine current list of running processes**. The testing application will invoke this to examine the list of all processes running on the client machine owned by the user, and compare it with a list of processes that we have deemed blacklisted during testing cycle. This call will be invoked both at the start of an assessment and periodically which the student is taking the assessment and at any point, if a blacklisted app is detected, the assessment will be stopped to preserve test integrity. It will return a list of running processes that match one or more of the blacklisted processes, if any.
 
 	`void browser.security.examineProcessList(string[] blacklistedProcessList, function callback)`
 
-	`callback` is optional. If you specify this parameter, it should be a function that looks like this:
+	`callback` should be a function that looks like this:
 
 	` function(array of process names found){...}`
 
@@ -74,7 +74,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`void browser.security.close(boolean restart)`
 
-1. R08. **Speak Text (Text to speech Synthesis)**. The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup, an options object to control the speech (optional) and a callback for TTS events (optional). The vendor can support one of the following markup standards, SSML, Microsoft speech markup (for windows) or Apple speech markup (for OS X). The options object include `voicename`, `rate`, `gender`, `language`, `pitch`, `volume`. The callback, if provided, is invoked for TTS events which include `start`, `end`, `word boundary`, `sentence boundary`, `synchronization/marker` encountered, `paused` and `error`. 
+1. R08. **Speak Text (Text to speech Synthesis)**. The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup (the param is required, the markup is optional), an options object to control the speech(required param) and a callback for TTS events (optional). The vendor must support plaintext and optionally support one of the following markup standards; SSML, Microsoft speech markup (for windows) or Apple speech markup (for OS X). The options object include `voicename`, `rate`, `gender`, `language`, `pitch`, `volume`. The callback, if provided, is invoked for TTS events which include `start`, `end`, `word boundary`, `sentence boundary`, `synchronization/marker` encountered, `paused` and `error`. 
 
 	`void browser.tts.speak(string text, object options, function callback)`
     
@@ -82,9 +82,11 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 1. R09. **Stop speech (Text to speech Synthesis)**. This is called by the testing application to stop any speech that may be in progress. 
 
-	`void browser.tts.stop()`
+	`void browser.tts.stop(function callback)`
+	
+	'callback' is an optional funtion that if present, will be invoked with a string status when TTS has stopped speaking.  
 
-1. R10. **Get speech status (Text to speech Synthesis)**. This is called by the testing application to inspect the current status of speech. The valid values are `unavailable`, `idle`, `paused` and `speaking`.
+1. R10. **Get speech status (Text to speech Synthesis)**. This is called by the testing application to inspect the current status of speech. The valid values are listed below.
 
 	`void browser.tts.getStatus(function callback)`
 
@@ -114,11 +116,17 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`callback` is optional. If you specify this parameter, it should be a function that looks like this:
 
-	` function(array of voices found){...}`
+	` function(array of voice objects found){...}`
 
-     Example value passed to the callback function:
+	 Each voice object is a JSON literal with the following properties: 
+	 
+	 * name (required)
+	 * language (optional)
+	 * gender (optional).
+	
+    Example value passed to the callback function:
 
-     `['US English Female TTS','en-US','es-ES']`
+     `[{'name':'US English Female TTS', 'gender':'female', language:'en-US'},{'name':'US Spanish Male TTS', 'gender':'male', language:'es-es'}]`
 
 	Empty array indicates no voice packs are available. Undefined or null indicates that an error occurred attempting to get the voices and no information is available.
 
@@ -152,7 +160,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 	
 	Callback is invoked when resume has occurred. If state is null or undefined, then an error occurred during pause. Otherwise 'Playing' or 'Stopped' are the expected states in the callback. 
 
-1. R15. [TBD] **Is macOS Spaces Enabled**. Applicable to macOS only. This runtime browser property can be read by the testing application and returns true if Spaces is enabled, false otherwise. 
+1. R15. **Is macOS Spaces Enabled**. Applicable to macOS only. This runtime browser property can be read by the testing application and returns true if Spaces is enabled, false otherwise. 
 	
 	`browser.settings.isSpacesEnabled`: boolean property specifying if Spaces is enabled or not. It is undefined on all platforms other than those that implement 'Spaces'. 
 
@@ -172,7 +180,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
     `browser.settings.systemMute` set to true to mute, false to unmute. 
     
-1. R44. [NEW] **Get permissive mode**. The testing web application will invoke this to determine if permissive mode is on or off. In permissive mode, a browser is expected to relax some of its stringent security hooks to allow assistive technology to work with the secure browser. For example, browsers that aggressively prevent other application UIs from presenting on top of them might want to relax this when in permissive mode. 
+1. R44. **Get permissive mode**. The testing web application will invoke this to determine if permissive mode is on or off. In permissive mode, a browser is expected to relax some of its stringent security hooks to allow assistive technology to work with the secure browser. For example, browsers that aggressively prevent other application UIs from presenting on top of them might want to relax this when in permissive mode. 
 
 	`void browser.security.getPermissiveMode(function callback)`
 	
@@ -231,22 +239,10 @@ The following Secure Browser Application Programming Interface (API) endpoints d
      `"['00:55:65:C0:00:EA']"`
     
 #### Audio Recorder (W3C)
-*NOTE: All browsers supporting W3C's Web Audio API (https://www.w3.org/TR/webaudio/) should implement these functions using the W3C Web Audio API.*
-
-1. R25. **Initialize audio recorder**
-1. R26. **Get audio recorder status**
-1. R27. **Get audio recorder capabilities**
-1. R28. **Initiate audio capture**
-1. R29. **Stop recording**
-1. R30. **Retrieve recording**
-1. R31. **Playback a recording**
-1. R32. **Stop playback**
-1. R33. **Pause playback**
-1. R34. **Resume playback**
-1. R43. **Retrieve list of audio recordings**
+*NOTE: Browsers supporting W3C's [Web Audio API](https://www.w3.org/TR/webaudio/) and [getUserMedia()](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia) do not need to implement these functions.*
 
 #### Audio Recorder (non-W3C)
-1. (R25) **Initialize audio recorder**. This method is called by the testing application once to initialize the audio API after a page loads. The event listener passed in as argument is used to notify events to caller about progress.  Any attempts to call this method when it has already been called should be treated as a reset and reinit.
+1. R25. **Initialize audio recorder**. This method is called by the testing application once to initialize the audio API after a page loads. The event listener passed in as argument is used to notify events to caller about progress.  Any attempts to call this method when it has already been called should be treated as a reset and reinit.
 
 	`void browser.recorder.initialize (function eventListener)`
 
@@ -258,7 +254,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`ERROR` – Initialization failed with information on failure cause
 
-1. (R26) **Get audio recorder status**. This method is called to enquire about the status of the recorder. Return values are 
+1. R26. **Get audio recorder status**. This method is called to enquire about the status of the recorder. Return values are 
  
 	`void browser.recorder.getStatus(function callback)`
 
@@ -282,7 +278,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 	
 	`PAUSED` - recorder is paused playing back some audio
 
-1. (R27) **Get audio recorder capabilities**. This method is called to enquire about the capabilities of the platform. Throws error if called before initialize is completed successfully.
+1. R27. **Get audio recorder capabilities**. This method is called to enquire about the capabilities of the platform. Throws error if called before initialize is completed successfully.
  
 	`void browser.recorder.getCapabilities(function callback)`
 	
@@ -298,7 +294,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	If the object literal returned is null or undefined, we encountered an error.
 
-1. (R28) **Initiate audio capture**. This method is called to initiate capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE.
+1. R28. **Initiate audio capture**. This method is called to initiate capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE.
 
 	`void browser.recorder.startCapture(options, eventListener)`
 
@@ -325,11 +321,11 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 
     `END` – Capture complete. The `END` event is special. This event gives us the pointer to the  data collection for the encoded audio. In addition, a quality check is performed on the captured audio stream to evaluate whether it is good or not. 
 
-1. (R29) **Stop recording**. This method is called to stop audio capture. Throws error if status is currently not “RECORDING”.
+1. R29. **Stop recording**. This method is called to stop audio capture. Throws error if status is currently not “RECORDING”.
 
 	`void browser.recorder.stopCapture()`
 
-1. (R30) **Retrieve recording**. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the `END` event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this api directly in the callback for the `END` event.
+1. R30. **Retrieve recording**. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the `END` event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this api directly in the callback for the `END` event.
 
 	`void  browser.recorder.retrieveAudio(function callback)`
 	
@@ -339,7 +335,7 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 	
 	null or undefined implies error retrieving audio.
 
-1. (R31) **Playback a recording**. This method is called to play back a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 webaudio to play back encoded audio (encoded using the format specified in the `startcapture` call) obtained by a call to `retrieveAudio()`. The playback function is passed in the base64 audio string and a callback function.  
+1. R31. **Playback a recording**. This method is called to play back a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 webaudio to play back encoded audio (encoded using the format specified in the `startcapture` call) obtained by a call to `retrieveAudio()`. The playback function is passed in the base64 audio string and a callback function.  
 
 	`void browser.recorder.play(b64audio, callback)`
     
@@ -349,21 +345,22 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 
     `PLAYBACK_STOPPED` - Playback has stopped (either because the audio stream is done, `pausePlayback()` or `stopPlayback()` has been invoked). The event includes the id of the audio passed in.
 
-1. (R32) **Stop playback**. This method is invoked to stop an ongoing audio playback. Throws error if status is currently not "PLAYING".
+1. R32. **Stop playback**. This method is invoked to stop an ongoing audio playback. Throws error if status is currently not "PLAYING".
 
 	`void browser.recorder.stopPlay()`
 
-1. (R33) **Pause playback**. This method is invoked to pause an ongoing audio playback. Throws error if status is currently not "PLAYING".
+1. R33. **Pause playback**. This method is invoked to pause an ongoing audio playback. Throws error if status is currently not "PLAYING".
 
 	` void browser.recorder.pausePlay()`
 
-1. (R34) **Resume playback**. This method is invoked to resume an already paused audio playback. Throws error if status is currently not "PAUSED".
+1. R34. **Resume playback**. This method is invoked to resume an already paused audio playback. Throws error if status is currently not "PAUSED".
 
 	`void browser.recorder.resumePlay()`
 
-1. (R43) **Retrieve list of audio recordings**. Retrieve the list of all audio recordings.
+1. R43. **Retrieve list of audio recordings**. Retrieve the list of all audio recordings.
 
 	`void browser.recorder.retrieveAudioFileList()`
+
 
 ## Secure Browser Standards Compliance
 ### Required
