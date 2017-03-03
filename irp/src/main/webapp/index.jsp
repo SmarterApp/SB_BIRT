@@ -62,6 +62,8 @@
         
         $("#versionInfo").html('v.' + $.cookie("version"));
         
+        $( document ).tooltip();
+        
       });
 </script>
 </head>
@@ -74,7 +76,7 @@
       <h1 class="entry-title">
         <img alt="Smarter Balanced Assessment Consortium"
           style="width: 183px !important;"
-          src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png" />
+          src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png" title="Smarter Balanced Assessment Consortium" />
         <span> &nbsp;&nbsp;Secure Browser Implementation
           Readiness Test (IRT) </span>
            <span id="versionInfo" class="version-details"></span>
@@ -89,7 +91,7 @@
         
           <div class="divTableRow" >
                 <div id="instruction">
-                <p style="padding: 4px;">To test your current browser against the IRT, please optionally enter any of the information below then press <strong>Begin IRT Test</strong>.</p>
+                <p style="padding: 4px;">To test your current browser against the IRT, please enter any of the optional information below (which will be included in the final report), then press <strong>Begin IRT Test</strong>.</p>
                 </div>
           </div>
                
@@ -110,14 +112,14 @@
           <div class="divTableRow">
             <div class="divTableCell">Email:</div>
             <div class="divTableCellRight">
-              <input type="text" name="emailId" id="emailId">
+              <input type="text" name="emailId" id="emailId" title="For identification purposes only. No email will be sent">
             </div>
           </div>
           <div class="divTableRow">&nbsp;</div>
           <div class="divTableRow">
             <div class="divTableCell">Browser Info:</div>
             <div class="divTableCellRight">
-            <textarea id="browserDetails" name="browserDetails" cols="40" rows="3" style="resize: none;"></textarea>           
+            <textarea id="browserDetails" name="browserDetails" title="Descriptive text about the browser you are testing" cols="40" rows="3" style="resize: none;"></textarea>           
             </div>
           </div>
           <div class="divTableRow">&nbsp;</div>
@@ -127,7 +129,8 @@
         </div>
       </div>
 
-
+    </form>
+    <form>
       <div class="divTable" id="right-intro-section">
 
         <div class="divTableBody">

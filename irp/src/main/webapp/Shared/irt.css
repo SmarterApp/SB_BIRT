@@ -266,3 +266,26 @@
 	font-weight: bold;
 	
 }
+
+.header-irt-report {
+    background: #000000;
+    position: relative;
+    padding: 0px 10px;
+    height: 30px;
+    font-family: "PT Sans Caption", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5em;
+    text-align: left;
+    color: #f6f6f6;
+    border-top-left-radius: 25px; 
+    border-top-right-radius: 25px;
+}
+
+.border-details{
+	border-width: 1px;
+    border-radius: 25px;
+    border-style: groove;
+    border-color: #000000;
+    border-image: initial;
+}

@@ -195,10 +195,12 @@
         "textToSpeechAPI" : $('#textToSpeechAPI').html(),
         "html5TestHeader" : $('#html5TestHeader').html()
       },
-      "name" : $.cookie("name"),
-      "organization" : $.cookie("organization"),
-      "email" : $.cookie("emailId"),
-      "browserInfo" : $.cookie("browserDetails"),
+      "userInfo" : {
+        "name" : $.cookie("name"),
+        "organization" : $.cookie("organization"),
+        "email" : $.cookie("emailId"),
+        "browserInfo" : $.cookie("browserDetails")
+      },
       "version" : $.cookie("version")
     });
 

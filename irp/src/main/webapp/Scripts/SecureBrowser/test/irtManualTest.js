@@ -515,7 +515,6 @@ function showReportIdDialog(textInfo, reportId) {
       text : "OK",
       click : function() {
         $(this).dialog("close");
-        window.location.href = getContextPath();
       }
     } ]
   });

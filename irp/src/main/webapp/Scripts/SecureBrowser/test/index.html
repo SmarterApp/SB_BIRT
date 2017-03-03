@@ -119,6 +119,8 @@
             
             $("#versionInfo").html('v.' + $.cookie("version"));
             
+            $( document ).tooltip();
+            
           });
 </script>
 
@@ -130,7 +132,7 @@
 
       <h1 class="entry-title">
         <img alt="Smarter Balanced Assessment Consortium"
-          style="width: 183px !important;"
+          style="width: 183px !important;" title="Smarter Balanced Assessment Consortium"
           src="../../../Shared/images/SmarterBalanced_logo.png" /> <span>
           &nbsp;&nbsp;Secure Browser Implementation Readiness Test (IRT)
         </span>
@@ -162,7 +164,7 @@
 
     <div>&nbsp;</div>
     <div>&nbsp;</div>
-    <div class="header-irt" id="textToSpeechAPI">Text-to-speech</div>
+    <div class="header-irt" id="textToSpeechAPI">Text-to-speech (TTS)</div>
     <div id="jsTTSGrid"></div>
 
     <div>&nbsp;</div>
