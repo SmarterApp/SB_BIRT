@@ -119,7 +119,9 @@ IRT.ApiSpecs = {
     "testApi_exists" : "This deprecated API still exists",
     "errorDialog_TTS" : "Your browser does not support TTS, so manual testing will be skipped",
     "errorDialog_CAPABILITY" : "Your browser does not support GET/SET Capability, so manual testing will be skipped",
-    "errorDialog_PROCESS" : "Your browser does not support Examine Process List, so manual testing will be skipped"
+    "errorDialog_PROCESS" : "Your browser does not support Examine Process List, so manual testing will be skipped",
+    "errorDialog_saveSuccess" : "Your test results have been saved successfully. Your report ID is ",
+    "errorDialog_saveFailure" : "System was unable to save test results.",
   },
   "disableUI" : {
     "TTS_disable_all" : [ "PLAY", "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",

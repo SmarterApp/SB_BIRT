@@ -491,12 +491,19 @@ function getContextPath() {
       .indexOf("/", 2));
 }
 
-function showReportIdDialog(html) {
+function showReportIdDialog(textInfo, reportId) {
 
   var id = $('#reportInfoDialog');
+
+  var textMessage = eval(irtApiSpecConstant + specSeparator + specMessage
+      + specSeparator + "errorDialog_" + textInfo);
+
+  if (reportId == null) {
+    reportId = "";
+  }
   id
       .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
-          + html + '</p>');
+          + textMessage + '<b>' + reportId + '</b></p>');
 
   id.dialog({
     resizable : false,
@@ -515,7 +522,6 @@ function showReportIdDialog(html) {
 
 function saveIRTResult() {
 
-  alert(getContextPath());
   $.ajax({
     type : "POST",
     url : getContextPath() + '/report/saveReport',
@@ -526,17 +532,17 @@ function saveIRTResult() {
     /*
      * contentType : "application/json; charset=utf-8", dataType : "json",
      */
-    success : successFunc,
-    error : errorFunc
+    success : successSaveIRTResult,
+    error : errorSaveIRTResult
   });
 
-  function successFunc(data, status) {
+  function successSaveIRTResult(data, status) {
     $("#endBrowserTest").button("disable");
-    showReportIdDialog("System was able to save report");
+    showReportIdDialog("saveSuccess", data.reportId);
   }
 
-  function errorFunc() {
-    showReportIdDialog("System was unable to save report");
+  function errorSaveIRTResult() {
+    showReportIdDialog("saveFailure", null);
   }
 
 }

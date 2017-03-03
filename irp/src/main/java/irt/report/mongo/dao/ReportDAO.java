@@ -13,7 +13,7 @@ import irt.report.mongo.model.BrowserTestResult;
 public interface ReportDAO
 {
 
-  public void insertResult (String reportJsonData) throws Exception;
+  public Long insertResult (String reportJsonData) throws Exception;
 
   public BrowserTestResult getResultByReportId (Long reportId);
 

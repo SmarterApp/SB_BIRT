@@ -6,6 +6,9 @@
 <script src="../../Libraries/jQuery/jquery-3.1.1.js"></script>
 <script src="../../Libraries/jQuery/jquery-ui-1.12.js"></script>
 
+
+<script src="../../Libraries/jQuery/jquery.cookie.js"></script>
+
 <link type="text/css" rel="stylesheet"
   href="../../Libraries/jQuery/jquery-ui.css" />
 <link type="text/css" rel="stylesheet"
@@ -108,6 +111,14 @@
             createButton($("#css3ManualTest"), 'Perform CSS3 Test');
 
             createButton($("#endBrowserTest"), 'Done');
+            
+            
+            $("#irtHome").click(function() {
+              window.location.href = getContextPath();
+            });
+            
+            alert($.cookie("emailId"));
+            
           });
 </script>
 
@@ -125,9 +136,12 @@
         </span>
       </h1>
       <p align="right">
-        <a href="javascript:location.reload(true);">RELOAD</a> <span
+      
+      <a href="#" id="irtHome">Home</a>
+      <span>|</span>
+        <a href="javascript:location.reload(true);">Reload</a> <span
           id="seperator" style="display: none;">|</span> <a href="#"
-          id="closeBrowser" style="display: none;">CLOSE</a>
+          id="closeBrowser" style="display: none;">Close</a>
       </p>
     </div>
 

@@ -31,14 +31,6 @@ import irt.report.mongo.model.BrowserTestResult;
 public class ReportController
 {
 
-  @RequestMapping (value = "/startTest", method = { RequestMethod.GET, RequestMethod.POST }, produces = MediaType.APPLICATION_JSON_VALUE)
-  public void startTest (HttpServletRequest request,
-      HttpServletResponse response, @QueryParam ("name") String name, @QueryParam ("emailId") String emailId,
-      @QueryParam ("browserDetails") String browserDetails) throws Exception {
-
-    System.out.println ("Comes Here");
-  }
-
   @Autowired
   private ReportDAO reportDAO;
 
@@ -53,7 +45,7 @@ public class ReportController
 
     if (browserTestResult == null) {
       returnMap.put ("success", false);
-      returnMap.put ("message", "System couldn't find any report with given report id");
+      returnMap.put ("message", "No report found for the requested ID " + reportId);
     } else {
       returnMap.put ("success", true);
       returnMap.put ("reportData", browserTestResult);
@@ -70,9 +62,10 @@ public class ReportController
 
     Map<String, Object> returnMap = new LinkedHashMap<String, Object> ();
 
-    reportDAO.insertResult (reportJsonData);
+    Long reportId = reportDAO.insertResult (reportJsonData);
 
     returnMap.put ("success", true);
+    returnMap.put ("reportId", reportId);
     return returnMap;
 
   }

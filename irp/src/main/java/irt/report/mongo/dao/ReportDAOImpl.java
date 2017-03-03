@@ -9,6 +9,8 @@
 
 package irt.report.mongo.dao;
 
+import java.util.Date;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,7 @@ public class ReportDAOImpl implements ReportDAO
   private MongoOperations     mongoTemplate;
 
   @Override
-  public void insertResult (String reportJsonData) throws Exception {
+  public Long insertResult (String reportJsonData) throws Exception {
 
     JSONParser parser = new JSONParser ();
     JSONObject reportJsonObj = (JSONObject) parser.parse (reportJsonData);
@@ -56,9 +58,13 @@ public class ReportDAOImpl implements ReportDAO
       }
 
       reportJsonObj.put ("reportId", reportId);
+      reportJsonObj.put ("creationdate", new Date ());
 
       mongoTemplate.insert (reportJsonObj, RESULT_COLLECTION);
+      return reportId;
     }
+
+    return null;
   }
 
   @Override
