@@ -44,7 +44,6 @@ testName : "[window.browser] global object check"
 testResult : false}
 ```
 
-
 ### Tomcat (JVM Configuration)
 IRT must be setup with following properties under JVM
 
@@ -54,8 +53,8 @@ IRT must be setup with following properties under JVM
 * Password : `mongo.db.password`
 * DB Name: `mongo.db.name`
 * IRT Version : `irt.app.version` 
-```
 
+```
 Example:
  -Dmongo.db.host=<DB_HOST> 
  -Dmongo.db.port=<DB_PORT> 
@@ -63,9 +62,7 @@ Example:
  -Dmongo.db.username=<USER_NAME>
  -Dmongo.db.password=<DB_PASSWORD>
  -Dirt.app.version=<IRT_APP_VERSION>
-
 ```
-
 
 ### UI Framework
 * jQuery v3.1.1 [Reference](http://jquery.com/)
@@ -73,7 +70,6 @@ Example:
 * jQuery Multiselect Plugin [Reference](http://crlcu.github.io/multiselect/)
 * jQuery Cookie Plugin [Reference](http://plugins.jquery.com/cookie/)
 * jsGrid v1.5.3 [Reference](http://js-grid.com/)
-
 
 ### Pre-Dependencies
 * Tomcat 6 or higher
