@@ -44,17 +44,36 @@ testName : "[window.browser] global object check"
 testResult : false}
 ```
 
-### UI Framework
-* jQuery v1.11.1
-* jsGrid v1.5.3 
-* messageResource.js , A simple JavaScript library for reading message resource property files of following format.
-```
-#example.properties
 
-home.title = My Tile
-home.welcome = Welcome Message
-description = This is a brief description message.
+### Tomcat (JVM Configuration)
+IRT must be setup with following properties under JVM
+
+* Host : `mongo.db.host`
+* Port : `mongo.db.port`
+* Username : `mongo.db.username`
+* Password : `mongo.db.password`
+* DB Name: `mongo.db.name`
+* IRT Version : `irt.app.version` 
 ```
+
+Example:
+ -Dmongo.db.host=<DB_HOST> 
+ -Dmongo.db.port=<DB_PORT> 
+ -Dmongo.db.name=<DB_NAME> 
+ -Dmongo.db.username=<USER_NAME>
+ -Dmongo.db.password=<DB_PASSWORD>
+ -Dirt.app.version=<IRT_APP_VERSION>
+
+```
+
+
+### UI Framework
+* jQuery v3.1.1 [Reference](http://jquery.com/)
+* jQueryUI v1.12 [Reference](https://jqueryui.com/)
+* jQuery Multiselect Plugin [Reference](http://crlcu.github.io/multiselect/)
+* jQuery Cookie Plugin [Reference](http://plugins.jquery.com/cookie/)
+* jsGrid v1.5.3 [Reference](http://js-grid.com/)
+
 
 ### Pre-Dependencies
 * Tomcat 6 or higher
