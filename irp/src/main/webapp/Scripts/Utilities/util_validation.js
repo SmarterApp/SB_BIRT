@@ -194,7 +194,11 @@
         "browserAPI" : $('#browserAPI').html(),
         "textToSpeechAPI" : $('#textToSpeechAPI').html(),
         "html5TestHeader" : $('#html5TestHeader').html()
-      }
+      },
+      "name" : $.cookie("name"),
+      "organization" : $.cookie("organization"),
+      "email" : $.cookie("emailId"),
+      "browserInfo" : $.cookie("browserDetails")
     });
 
     return itemDetail;

@@ -5,7 +5,7 @@
 <!-- JQuery -->
 <script src="../../Libraries/jQuery/jquery-3.1.1.js"></script>
 <script src="../../Libraries/jQuery/jquery-ui-1.12.js"></script>
-
+<script src="../../Libraries/jQuery/jquery.cookie.js"></script>
 <link type="text/css" rel="stylesheet"
   href="../../Libraries/jQuery/jquery-ui.css" />
 <link type="text/css" rel="stylesheet"
@@ -36,9 +36,9 @@
 
   $(document).ready(function() {
     
+    var reportId =  $.cookie("reportId");
     
-    
-    $.getJSON('/irp/report/getReport/100', function (data) {
+    $.getJSON(getContextPath()+'/report/getReport/'+reportId, function (data) {
       
       if(data.success == true){
       console.log(data.reportData);      
@@ -76,8 +76,16 @@
 
    
     
+    $("#irtHome").click(function() {
+      window.location.href = getContextPath();
+    });
 
   });
+  
+  function getContextPath() {
+    return window.location.pathname.substring(0, window.location.pathname
+        .indexOf("/", 2));
+  }
 
 </script>
 
@@ -95,7 +103,9 @@
           Report </span>
       </h1>
       <p align="right">
-        <a href="javascript:location.reload(true);">RELOAD</a>
+        <a href="#" id="irtHome">Home</a>
+        <span>|</span>
+        <a href="javascript:location.reload(true);">Reload</a>
       </p>
     </div>
 

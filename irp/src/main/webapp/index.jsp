@@ -50,6 +50,14 @@
               $.cookie("organization",  $('#organization').val());
               window.location.href = cntxPath + "/Scripts/SecureBrowser/test/index.html";
             });
+        
+        $('#getIRTResult').click(
+            function(event) {    
+              event.preventDefault();
+              $.cookie("reportId",  $('#reportId').val());
+              window.location.href = cntxPath + "/Scripts/SecureBrowser/test/mock_report.html";
+            });
+        
       });
 </script>
 </head>
@@ -127,7 +135,7 @@
           <div class="divTableRow">
             <div class="divTableCell">Report Id:</div>
             <div class="divTableCellRight">
-              <input type="text" name="reportId" id="reportId">
+              <input type="number" name="reportId" id="reportId">
             </div>
           </div>
           <div class="divTableRow">&nbsp;</div>
