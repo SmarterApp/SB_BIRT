@@ -3,6 +3,7 @@
 <head>
 <%
   String contextPath = request.getContextPath();
+  String version = System.getProperty ("irt.app.version");
             //response.sendRedirect(contextPath + "/Scripts/SecureBrowser/test/index.html");
 %>
 <!-- JQuery -->
@@ -31,6 +32,7 @@
         $.removeCookie("browserDetails");
         $.removeCookie("organization");
         $.removeCookie("reportId");
+        $.cookie("version",  '<%=version%>');
 
         var cntxPath = '<%=contextPath%>';
         $('#beginIRTTest').button({

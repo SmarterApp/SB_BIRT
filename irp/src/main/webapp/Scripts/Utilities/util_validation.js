@@ -198,7 +198,8 @@
       "name" : $.cookie("name"),
       "organization" : $.cookie("organization"),
       "email" : $.cookie("emailId"),
-      "browserInfo" : $.cookie("browserDetails")
+      "browserInfo" : $.cookie("browserDetails"),
+      "version" : $.cookie("version")
     });
 
     return itemDetail;
