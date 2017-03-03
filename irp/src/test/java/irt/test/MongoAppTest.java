@@ -8,6 +8,9 @@
  *************************************************************************/
 package irt.test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.json.simple.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -27,8 +30,13 @@ public class MongoAppTest
     Query query = new Query (Criteria.where ("reportId").is (101));
 
     JSONObject returnMap = (JSONObject) mongoDBOperation.findOne (query, JSONObject.class, RESULT_COLLECTION);
+    System.out.println (returnMap.toJSONString ());
+    System.out.println (new Date ().toString ());
 
-    System.out.println (returnMap);
+    SimpleDateFormat sdf = new SimpleDateFormat ("dd-MMM-yyyy 'at' HH:MM z");
+    Date date = new Date ();
+    String sDate = sdf.format (date);
+    System.out.println (sDate);
   }
 
 }

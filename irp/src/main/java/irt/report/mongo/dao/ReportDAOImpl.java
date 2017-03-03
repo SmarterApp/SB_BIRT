@@ -9,6 +9,7 @@
 
 package irt.report.mongo.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -60,8 +61,12 @@ public class ReportDAOImpl implements ReportDAO
         break;
       }
 
+      SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("dd-MMM-yyyy 'at' HH:MM z");
+      Date date = new Date ();
+      String creationDate = simpleDateFormat.format (date);
+
       reportJsonObj.put ("reportId", reportId);
-      reportJsonObj.put ("creationdate", new Date ().toGMTString ());
+      reportJsonObj.put ("creationdate", creationDate);
 
       mongoTemplate.insert (reportJsonObj, RESULT_COLLECTION);
       return reportId;
