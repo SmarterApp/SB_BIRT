@@ -10,6 +10,7 @@ package irt.test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import org.json.simple.JSONObject;
 import org.springframework.context.ApplicationContext;
@@ -34,6 +35,7 @@ public class MongoAppTest
     System.out.println (new Date ().toString ());
 
     SimpleDateFormat sdf = new SimpleDateFormat ("dd-MMM-yyyy 'at' HH:MM z");
+    sdf.setTimeZone (TimeZone.getTimeZone ("UTC"));
     Date date = new Date ();
     String sDate = sdf.format (date);
     System.out.println (sDate);
