@@ -249,11 +249,20 @@
 	font-family: "PT Sans Caption", sans-serif;
 }
 
-#versionInfo {
+.version-details {
 	float: right;
 	font-weight: bold;
 	font-size: 0.5em;
 	font-family: 'PT Sans Caption', sans-serif;
 	letter-spacing: -.05em;
 	font-style: normal;
+}
+
+.generated-version-details {
+	float: left;
+	color: #008AB1;
+	font-weight: 400;
+	font-size: 0.8em;
+	font-weight: bold;
+	
 }

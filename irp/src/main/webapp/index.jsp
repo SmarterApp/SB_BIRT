@@ -77,7 +77,7 @@
           src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png" />
         <span> &nbsp;&nbsp;Secure Browser Implementation
           Readiness Test (IRT) </span>
-           <span id="versionInfo"></span>
+           <span id="versionInfo" class="version-details"></span>
       </h1>
     </div>
 

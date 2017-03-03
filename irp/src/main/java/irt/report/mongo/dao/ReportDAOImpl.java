@@ -61,7 +61,7 @@ public class ReportDAOImpl implements ReportDAO
       }
 
       reportJsonObj.put ("reportId", reportId);
-      reportJsonObj.put ("creationdate", new Date ());
+      reportJsonObj.put ("creationdate", new Date ().toGMTString ());
 
       mongoTemplate.insert (reportJsonObj, RESULT_COLLECTION);
       return reportId;
