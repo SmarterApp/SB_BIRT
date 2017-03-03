@@ -245,6 +245,15 @@
 }
 
 #instruction {
-    display: table-header-group;	
-    font-family: "PT Sans Caption", sans-serif;
+	display: table-header-group;
+	font-family: "PT Sans Caption", sans-serif;
+}
+
+#versionInfo {
+	float: right;
+	font-weight: bold;
+	font-size: 0.5em;
+	font-family: 'PT Sans Caption', sans-serif;
+	letter-spacing: -.05em;
+	font-style: normal;
 }

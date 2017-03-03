@@ -117,6 +117,8 @@
               window.location.href = getContextPath();
             });
             
+            $("#versionInfo").html('v.' + $.cookie("version"));
+            
           });
 </script>
 
@@ -131,6 +133,8 @@
           style="width: 183px !important;"
           src="../../../Shared/images/SmarterBalanced_logo.png" /> <span>
           &nbsp;&nbsp;Secure Browser Implementation Readiness Test (IRT)
+        </span>
+        <span id="versionInfo">
         </span>
       </h1>
       <p align="right">

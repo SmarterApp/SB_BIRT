@@ -60,6 +60,8 @@
               window.location.href = cntxPath + "/Scripts/SecureBrowser/test/report.html";
             });
         
+        $("#versionInfo").html('v.' + $.cookie("version"));
+        
       });
 </script>
 </head>
@@ -75,6 +77,7 @@
           src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png" />
         <span> &nbsp;&nbsp;Secure Browser Implementation
           Readiness Test (IRT) </span>
+           <span id="versionInfo"></span>
       </h1>
     </div>
 

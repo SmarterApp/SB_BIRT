@@ -8,13 +8,13 @@
  *************************************************************************/
 package irt.report.mongo.dao;
 
-import irt.report.mongo.model.BrowserTestResult;
+import org.json.simple.JSONObject;
 
 public interface ReportDAO
 {
 
   public Long insertResult (String reportJsonData) throws Exception;
 
-  public BrowserTestResult getResultByReportId (Long reportId);
+  public JSONObject getResultByReportId (Long reportId);
 
 }

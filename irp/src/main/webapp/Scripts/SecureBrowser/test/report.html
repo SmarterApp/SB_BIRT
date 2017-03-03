@@ -62,21 +62,18 @@
   function populateReportData(data){
     var reportGridKeys = Object.keys(data.reportData);
     var extReport = false;
-    var jsonObject = null;
+    var jsonObject = data.reportData.externalReportConfig;
+    $("#versionInfo").html('v.' + data.reportData.version);
     reportGridKeys.forEach(function(item, index, array) {
       
-      if(item == "externalReportConfig"){
-       jsonObject = JSON.parse(data.reportData.externalReportConfig);
-      }
-      
-     
+          
       if(item != "externalReportConfig" && item.substring(0, 2) == "js"){
         extReport = eval('jsonObject.'+ item);
-        populateResults($("#" + item), JSON.parse(eval('data.reportData.' + item)), extReport);
+        populateResults($("#" + item), eval('data.reportData.' + item), extReport);
       }
       
       if(item == "headerHTML"){
-        var headerJsonObject = JSON.parse(data.reportData.headerHTML);
+        var headerJsonObject = data.reportData.headerHTML;
         Object.keys(headerJsonObject).forEach(function(htmlItem, htmlIndex, htmlArray) {
           
           $("#" + htmlItem).html(eval('headerJsonObject.' + htmlItem));
@@ -129,6 +126,7 @@
           src="../../../Shared/images/SmarterBalanced_logo.png" /> <span>
           &nbsp;&nbsp;Secure Browser Implementation Readiness Test (IRT)
           Report </span>
+           <span id="versionInfo"></span>
       </h1>
       <p align="right">
         <a href="#" id="irtHome">Home</a>

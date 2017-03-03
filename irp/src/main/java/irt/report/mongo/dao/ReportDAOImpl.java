@@ -23,8 +23,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
-import irt.report.mongo.model.BrowserTestResult;
-
 @Component
 public class ReportDAOImpl implements ReportDAO
 {
@@ -51,14 +49,14 @@ public class ReportDAOImpl implements ReportDAO
 
       query.with (new Sort (new Order (Direction.DESC, "reportId")));
 
-      List<BrowserTestResult> reportIds = mongoTemplate.find (query, BrowserTestResult.class, RESULT_COLLECTION);
+      List<JSONObject> reportIds = mongoTemplate.find (query, JSONObject.class, RESULT_COLLECTION);
 
       /**
        * Incrementing reportid by 1 by fetching data from test_results
        * collection
        */
-      for (BrowserTestResult dbReportId : reportIds) {
-        reportId = Long.valueOf (dbReportId.getReportId ()) + 1;
+      for (JSONObject dbReportId : reportIds) {
+        reportId = Long.valueOf (dbReportId.get ("reportId").toString ()) + 1;
         break;
       }
 
@@ -73,11 +71,11 @@ public class ReportDAOImpl implements ReportDAO
   }
 
   @Override
-  public BrowserTestResult getResultByReportId (Long reportId) {
+  public JSONObject getResultByReportId (Long reportId) {
 
     Query query = new Query (Criteria.where ("reportId").is (reportId));
 
-    return (BrowserTestResult) mongoTemplate.findOne (query, BrowserTestResult.class, RESULT_COLLECTION);
+    return (JSONObject) mongoTemplate.findOne (query, JSONObject.class, RESULT_COLLECTION);
 
   }
 
