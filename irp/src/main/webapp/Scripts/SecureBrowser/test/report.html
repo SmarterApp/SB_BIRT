@@ -27,9 +27,6 @@
     
   <script type="text/javascript"
   src="irtspec.js"></script>
-    
-  <script type="text/javascript"
-  src="mock_report.js"></script>
 <script type="text/javascript" src="populateGrid.js"></script>
 
 <script type="text/javascript">
@@ -38,49 +35,56 @@
     
     var reportId =  $.cookie("reportId");
     
-    $.getJSON(getContextPath()+'/report/getReport/'+reportId, function (data) {
-      
-      if(data.success == true){
-      console.log(data.reportData);      
-      var reportGridKeys = Object.keys(data.reportData);
-      var extReport = false;
-      var jsonObject = null;
-      reportGridKeys.forEach(function(item, index, array) {
-        
-        if(item == "externalReportConfig"){
-         jsonObject = JSON.parse(data.reportData.externalReportConfig);
-        }
-        
-       
-        if(item != "externalReportConfig" && item.startsWith("js")){
-          extReport = eval('jsonObject.'+ item);
-          populateResults($("#" + item), JSON.parse(eval('data.reportData.' + item)), extReport);
-        }
-        
-        if(item == "headerHTML"){
-          var headerJsonObject = JSON.parse(data.reportData.headerHTML);
-          Object.keys(headerJsonObject).forEach(function(htmlItem, htmlIndex, htmlArray) {
-            
-            $("#" + htmlItem).html(eval('headerJsonObject.' + htmlItem));
-          });
-        }
-        
-      });
-      
-      
-    }else{
-      showReportIdDialog(data.message,reportId);
-    }
-  });
-  
-
-   
     
+    $.getJSON(getContextPath()+'/report/getReport/'+reportId, function(data) {
+      if(data.success == true){
+        console.log(data.reportData);      
+        populateReportData(data);
+      }else{
+        showReportIdDialog(data.message,reportId);
+      }
+      
+    })
+      .done(function() {
+        console.log( "Report Populate Done" );
+      })
+      .fail(function(data) {
+        showReportIdDialog(data.message,reportId);
+      });
+    
+  
     $("#irtHome").click(function() {
       window.location.href = getContextPath();
     });
 
   });
+  
+  function populateReportData(data){
+    var reportGridKeys = Object.keys(data.reportData);
+    var extReport = false;
+    var jsonObject = null;
+    reportGridKeys.forEach(function(item, index, array) {
+      
+      if(item == "externalReportConfig"){
+       jsonObject = JSON.parse(data.reportData.externalReportConfig);
+      }
+      
+     
+      if(item != "externalReportConfig" && item.startsWith("js")){
+        extReport = eval('jsonObject.'+ item);
+        populateResults($("#" + item), JSON.parse(eval('data.reportData.' + item)), extReport);
+      }
+      
+      if(item == "headerHTML"){
+        var headerJsonObject = JSON.parse(data.reportData.headerHTML);
+        Object.keys(headerJsonObject).forEach(function(htmlItem, htmlIndex, htmlArray) {
+          
+          $("#" + htmlItem).html(eval('headerJsonObject.' + htmlItem));
+        });
+      }
+      
+    });
+  }
   
   function getContextPath() {
     return window.location.pathname.substring(0, window.location.pathname
