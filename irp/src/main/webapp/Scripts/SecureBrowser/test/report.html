@@ -70,7 +70,7 @@
       }
       
      
-      if(item != "externalReportConfig" && item.startsWith("js")){
+      if(item != "externalReportConfig" && item.substring(0, 2) == "js"){
         extReport = eval('jsonObject.'+ item);
         populateResults($("#" + item), JSON.parse(eval('data.reportData.' + item)), extReport);
       }
