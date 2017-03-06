@@ -19,8 +19,8 @@
 	<context:annotation-config />
 	<context:component-scan base-package="irt.report" />
 
-	<mongo:mongo-client host="${mongo.db.host}" port="${mongo.db.port}" id="reportMongoDB">
-	</mongo:mongo-client>
+	<mongo:mongo host="${mongo.db.host}" port="${mongo.db.port}" id="reportMongoDB">
+	</mongo:mongo>
 
 	<mongo:db-factory dbname="${mongo.db.name}" mongo-ref="reportMongoDB" id="reportMongoDbFactory" username="${mongo.db.username}" password="${mongo.db.password}"/>
 
