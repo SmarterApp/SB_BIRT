@@ -19,10 +19,8 @@
 	<context:annotation-config />
 	<context:component-scan base-package="irt.report" />
 
-	<mongo:mongo host="${mongo.db.host}" port="${mongo.db.port}" id="reportMongoDB">
-	</mongo:mongo>
 
-	<mongo:db-factory dbname="${mongo.db.name}" mongo-ref="reportMongoDB" id="reportMongoDbFactory" username="${mongo.db.username}" password="${mongo.db.password}"/>
+	<mongo:db-factory dbname="${mongo.db.name}" id="reportMongoDbFactory" username="${mongo.db.username}" password="${mongo.db.password}" host="${mongo.db.host}" port="${mongo.db.port}"/>
 
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="reportMongoDbFactory" />
