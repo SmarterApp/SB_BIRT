@@ -82,6 +82,15 @@
               $("#" + htmlItem).html(eval('headerJsonObject.' + htmlItem));
             });
       }
+      
+      if (item == "reportInfo") {
+        var userInfoJsonObj = data.reportData.reportInfo;
+        Object.keys(userInfoJsonObj).forEach(
+            function(userItem, userItemIndex, userArray) {
+
+              $("#" + userItem).html($("#" + userItem).html() + ' ' + eval('userInfoJsonObj.' + userItem));
+            });
+      }
 
     });
   }
@@ -154,14 +163,18 @@
            
         <div class="divTableRow">
         <div class="divTableCell" style="width: 2%;">&nbsp;</div>
-          <div class="divTableCell">Name:</div>
-          <div class="divTableCell">Organization:</div>
+          <div class="divTableCell" id="name"><b>Name:</b></div>
+          <div class="divTableCell" id="organization"><b>Organization:</b></div>
+          <div class="divTableCell" id="email"><b>Email:</b></div>
         </div>
 
+ <div class="divTableRow">
+ &nbsp;
+ </div>
         <div class="divTableRow">
         <div class="divTableCell" style="width: 2%;">&nbsp;</div>
-          <div class="divTableCell">Email:</div>
-          <div class="divTableCell">Browser Info:</div>
+
+          <div class="divTableCell" id="browserInfo"><b>Browser Info:</b></div>
         </div>
         
 

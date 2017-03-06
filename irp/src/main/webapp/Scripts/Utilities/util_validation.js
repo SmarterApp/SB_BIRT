@@ -195,7 +195,7 @@
         "textToSpeechAPI" : $('#textToSpeechAPI').html(),
         "html5TestHeader" : $('#html5TestHeader').html()
       },
-      "userInfo" : {
+      "reportInfo" : {
         "name" : $.cookie("name"),
         "organization" : $.cookie("organization"),
         "email" : $.cookie("emailId"),
