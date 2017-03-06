@@ -37,20 +37,28 @@ public class ReportController
   @RequestMapping (value = "/getReport/{reportId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public Object getReport (HttpServletRequest request,
-      HttpServletResponse response, @PathVariable ("reportId") Long reportId) throws Exception {
-
+      HttpServletResponse response, @PathVariable ("reportId") Long reportId) {
     Map<String, Object> returnMap = new LinkedHashMap<String, Object> ();
+    try {
 
-    JSONObject browserTestResult = reportDAO.getResultByReportId (reportId);
+      JSONObject browserTestResult = reportDAO.getResultByReportId (reportId);
 
-    if (browserTestResult == null) {
+      if (browserTestResult == null) {
+        returnMap.put ("success", false);
+        returnMap.put ("message", "report_not_found");
+      } else {
+        returnMap.put ("success", true);
+        returnMap.put ("reportData", browserTestResult);
+
+      }
+    } catch (Exception e) {
+
       returnMap.put ("success", false);
-      returnMap.put ("message", "No report found for the requested Report ID " + reportId);
-    } else {
-      returnMap.put ("success", true);
-      returnMap.put ("reportData", browserTestResult);
+      returnMap.put ("message", e.getMessage ());
+      e.printStackTrace ();
 
     }
+
     return returnMap;
 
   }
@@ -58,14 +66,24 @@ public class ReportController
   @RequestMapping (value = "/saveReport", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public Object saveReport (HttpServletRequest request,
-      HttpServletResponse response, @QueryParam ("reportJsonData") String reportJsonData) throws Exception {
+      HttpServletResponse response, @QueryParam ("reportJsonData") String reportJsonData) {
 
     Map<String, Object> returnMap = new LinkedHashMap<String, Object> ();
 
-    Long reportId = reportDAO.insertResult (reportJsonData);
+    Long reportId = null;
+    try {
+      reportId = reportDAO.insertResult (reportJsonData);
 
-    returnMap.put ("success", true);
-    returnMap.put ("reportId", reportId);
+      returnMap.put ("success", true);
+      returnMap.put ("reportId", reportId);
+      returnMap.put ("message", "");
+    } catch (Exception e) {
+
+      returnMap.put ("reportId", null);
+      returnMap.put ("success", false);
+      returnMap.put ("message", e.getMessage ());
+      e.printStackTrace ();
+    }
     return returnMap;
 
   }

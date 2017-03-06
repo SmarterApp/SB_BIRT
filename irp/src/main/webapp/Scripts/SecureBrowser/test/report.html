@@ -94,10 +94,15 @@
   function showReportIdDialog(textInfo, reportId) {
 
     var id = $('#reportInfoDialog');
-
-    id
-        .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
-            + textInfo + '</p>');
+    
+    var textMessage = eval(irtApiSpecConstant + specSeparator + specMessage
+        + specSeparator + "errorDialog_" + textInfo);
+    
+  var  iconClass = 'irt-failure-ui-icon';
+  
+  id.html('<p><span class="' + iconClass + '"></span>' + textMessage
+      + '<div class="report-id-details">' + reportId
+      + '</div></p>');
 
     id.dialog({
       resizable : false,

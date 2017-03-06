@@ -264,28 +264,53 @@
 	font-weight: 400;
 	font-size: 0.8em;
 	font-weight: bold;
-	
 }
 
 .header-irt-report {
-    background: #000000;
-    position: relative;
-    padding: 0px 10px;
-    height: 30px;
-    font-family: "PT Sans Caption", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.5em;
-    text-align: left;
-    color: #f6f6f6;
-    border-top-left-radius: 25px; 
-    border-top-right-radius: 25px;
+	background: #000000;
+	position: relative;
+	padding: 0px 10px;
+	height: 30px;
+	font-family: "PT Sans Caption", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.5em;
+	text-align: left;
+	color: #f6f6f6;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
 }
 
-.border-details{
+.border-details {
 	border-width: 1px;
-    border-radius: 25px;
-    border-style: groove;
-    border-color: #000000;
-    border-image: initial;
+	border-radius: 25px;
+	border-style: groove;
+	border-color: #000000;
+	border-image: initial;
+}
+
+.irt-success-ui-icon {
+	background-image: url('images/button-check_green.png');
+	width: 60px;
+	height: 60px;
+	background-repeat: no-repeat;
+	float: left;
+}
+
+.irt-failure-ui-icon {
+    background-image: url('images/button-cross_red.png');
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    float: left;
+}
+
+
+.report-id-details {
+    font-weight: bold;
+    font-size: 2.5em;
+    font-family: 'PT Sans Caption', sans-serif;
+    letter-spacing: -.05em;
+    font-style: normal;
+    color: #008AB1;
 }

@@ -491,19 +491,24 @@ function getContextPath() {
       .indexOf("/", 2));
 }
 
-function showReportIdDialog(textInfo, reportId) {
+function showReportIdDialog(textInfo, reportId, success, errorMessage) {
 
   var id = $('#reportInfoDialog');
-
+  var iconClass = 'irt-success-ui-icon';
   var textMessage = eval(irtApiSpecConstant + specSeparator + specMessage
       + specSeparator + "errorDialog_" + textInfo);
 
-  if (reportId == null) {
+  $("#retry").addClass("irt-grid-column-hide");
+  if (reportId == null && !success) {
+
+    $("#retry").removeClass("irt-grid-column-hide");
+    $("#home").addClass("irt-grid-column-hide");
     reportId = "";
+    iconClass = 'irt-failure-ui-icon';
   }
-  id
-      .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
-          + textMessage + '<b>' + reportId + '</b></p>');
+  id.html('<p><span class="' + iconClass + '"></span>' + textMessage
+      + '<div class="report-id-details">' + reportId + '</div>' + errorMessage
+      + '</p>');
 
   id.dialog({
     resizable : false,
@@ -512,12 +517,33 @@ function showReportIdDialog(textInfo, reportId) {
     width : 400,
     modal : true,
     buttons : [ {
-      text : "OK",
+      id : "retry",
+      text : "Retry",
       click : function() {
         $(this).dialog("close");
       }
+    }, {
+      id : "homeButton",
+      text : "Home",
+      click : function() {
+        $(this).dialog("close");
+        window.location.href = getContextPath();
+      }
+    }, {
+      text : "OK",
+      click : function() {
+        $(this).dialog("close");
+
+      }
     } ]
   });
+
+  if (reportId != null && success) {
+    $("#retry").addClass("irt-grid-column-hide");
+  }
+  if ((reportId == null && !success) || !success) {
+    $("#homeButton").addClass("irt-grid-column-hide");
+  }
 }
 
 function saveIRTResult() {
@@ -529,20 +555,24 @@ function saveIRTResult() {
       "reportJsonData" : JSON.stringify(Util.Validation
           .formulateJsonForReport())
     },
-    /*
-     * contentType : "application/json; charset=utf-8", dataType : "json",
-     */
     success : successSaveIRTResult,
     error : errorSaveIRTResult
   });
 
   function successSaveIRTResult(data, status) {
-    $("#endBrowserTest").button("disable");
-    showReportIdDialog("saveSuccess", data.reportId);
+
+    if (data.success == true) {
+      $("#endBrowserTest").button("disable");
+      showReportIdDialog("saveSuccess", data.reportId, data.success,
+          data.message);
+    } else {
+      showReportIdDialog("saveFailure", data.reportId, data.success,
+          data.message);
+    }
   }
 
-  function errorSaveIRTResult() {
-    showReportIdDialog("saveFailure", null);
+  function errorSaveIRTResult(data) {
+    showReportIdDialog("saveFailure", null, false, "");
   }
 
 }
