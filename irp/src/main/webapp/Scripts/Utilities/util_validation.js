@@ -185,10 +185,12 @@
         "jsHTML5TestGrid" : true,
         "jsCSS3TestGrid" : true
       },
-      "jsGrid" : resultArray,
-      "jsTTSGrid" : ttsTestArray,
-      "jsHTML5TestGrid" : html5TestArray,
-      "jsCSS3TestGrid" : css3TestArray,
+      "reportGridData" : {
+        "jsGrid" : resultArray,
+        "jsTTSGrid" : ttsTestArray,
+        "jsHTML5TestGrid" : html5TestArray,
+        "jsCSS3TestGrid" : css3TestArray
+      },
       "headerHTML" : {
         "css3TestHeader" : $('#css3TestHeader').html(),
         "browserAPI" : $('#browserAPI').html(),
