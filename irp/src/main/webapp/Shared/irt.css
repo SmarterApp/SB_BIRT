@@ -20,6 +20,13 @@
 	width: 60%;
 }
 
+.divTable-report {
+    display: table;
+    padding: 5px 0px 5px 5px;
+    width: 100%;
+
+}
+
 .divTableRow {
 	display: table-row;
 }
@@ -277,16 +284,18 @@
 	font-size: 1.5em;
 	text-align: left;
 	color: #f6f6f6;
-	border-top-left-radius: 25px;
-	border-top-right-radius: 25px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
 }
 
 .border-details {
 	border-width: 1px;
-	border-radius: 25px;
+	border-radius: 15px;
 	border-style: groove;
 	border-color: #000000;
 	border-image: initial;
+	width: 60%;
+	
 }
 
 .irt-success-ui-icon {

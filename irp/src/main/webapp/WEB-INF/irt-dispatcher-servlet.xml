@@ -19,27 +19,12 @@
     <context:annotation-config />
     <context:component-scan base-package="irt.report" />
 
-<!--     <mongo:mongo host="${mongo.db.host}" port="${mongo.db.port}" id="mongoDBConnection"></mongo:mongo>
-
-    <mongo:db-factory dbname="${mongo.db.name}" id="reportMongoDbFactory" username="${mongo.db.username}" password="${mongo.db.password}" authentication-dbname="${mongo.db.name}" 
-    mongo-ref="mongoDBConnection"/>
-
-    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-        <constructor-arg name="mongoDbFactory" ref="reportMongoDbFactory" />
-    </bean>
-     -->
-     
     <mongo:mongo-client credentials="${mongo.db.username}:${mongo.db.password}@${mongo.db.name}" host="${mongo.db.host}" port="${mongo.db.port}"  id="mongoDBConnection" ></mongo:mongo-client>
 
     <mongo:db-factory dbname="${mongo.db.name}" id="reportMongoDbFactory"  mongo-ref="mongoDBConnection" />
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongoDbFactory" ref="reportMongoDbFactory" />
-    </bean>
-    
-    <bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">
-        <constructor-arg name="username" value="${mongo.db.username}" />
-        <constructor-arg name="password" value="${mongo.db.password}" />
     </bean>
 
     
