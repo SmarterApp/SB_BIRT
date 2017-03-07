@@ -60,6 +60,24 @@
               window.location.href = cntxPath + "/Scripts/SecureBrowser/test/report.html";
             });
         
+        
+        $( "#reportId" ).keyup(function( event ) {
+          
+          var reportId = $( "#reportId" ).val();
+            
+            
+          if(reportId > 0 && $.isNumeric(reportId)){
+            $('#getIRTResult').button("enable");
+          }
+          else{ 
+            $('#getIRTResult').button("disable");
+          if (event.which == 13 ) {
+            event.preventDefault();
+          }
+          }
+          
+        });
+        
         $("#versionInfo").html('v.' + $.cookie("version"));
         
         $( document ).tooltip();
@@ -151,7 +169,7 @@
           <div class="divTableRow" align="center">
 
 
-            <button id="getIRTResult"></button>
+            <button id="getIRTResult" disabled="disabled"></button>
 
           </div>
 
