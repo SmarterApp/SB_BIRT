@@ -698,26 +698,6 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
-    },
-    "checkTTSVoiceNameAPI" : {
-      // F20. The secure browser shall provide a means to get the current TTS
-      // voice pack set as default on the machine. R11, R12 SEC-11, SEC-39
-      "id" : "10",
-      "testName" : "Get/Set TTS voice name API (text-to-speech synthesis)",
-      "testApi" : "",
-      "testResult" : false,
-      "details" : "",
-      "testApi_certified" : "browser.tts.getVoiceName",
-      "testApi_webspeech" : "window.speechSynthesis.voicename",
-      "testApi_SB" : "runtime.voiceName",
-      "testApi_mobile" : "runtime.tts.voiceName",
-      "points" : "1",
-      "required" : {
-        "all" : true
-      },
-      "testPoints" : "0",
-      "apiType" : [ "object", "function" ],
-      "isDeprecated" : false
     }
   },
   "ttsmanualapi" : {
