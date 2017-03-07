@@ -258,12 +258,15 @@
 }
 
 .version-details {
-	float: right;
-	font-weight: bold;
 	font-size: 0.5em;
 	font-family: 'PT Sans Caption', sans-serif;
 	letter-spacing: -.05em;
 	font-style: normal;
+	text-align: center;
+	width: 45%;
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .generated-version-details {
@@ -272,6 +275,9 @@
 	font-weight: 400;
 	font-size: 0.8em;
 	font-weight: bold;
+    font-family: 'PT Sans Caption', sans-serif;
+    letter-spacing: -.05em;
+    font-style: normal;
 }
 
 .header-irt-report {

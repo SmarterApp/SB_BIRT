@@ -140,6 +140,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png" title="Smarter Balanced Assessment Consortium" />
         <span> &nbsp;&nbsp;Secure Browser Implementation
           Readiness Test (IRT) </span>
+          <br/>
            <span id="versionInfo" class="version-details"></span>
       </h1>
       <p align="right">
