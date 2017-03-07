@@ -1025,7 +1025,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the capabilities listed in the Capability table match the selection(s) you made, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>If the capabilities listed in the Capability table match the selection(s) you made, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "Set Capability Test",
       "buttonSliderId" : "setCapability",
       "disableSection" : [ "getCapability" ],
@@ -1048,7 +1048,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the capabilities listed in the Capability table match the selection(s) you made, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>If the capabilities listed in the Capability table match the selection(s) you made, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "Get Capability Test",
       "buttonSliderId" : "getCapability",
       "disableSection" : [ "setCapability", "enableCapability",

@@ -21,10 +21,9 @@
 }
 
 .divTable-report {
-    display: table;
-    padding: 5px 0px 5px 5px;
-    width: 100%;
-
+	display: table;
+	padding: 5px 0px 5px 5px;
+	width: 100%;
 }
 
 .divTableRow {
@@ -295,7 +294,9 @@
 	border-color: #000000;
 	border-image: initial;
 	width: 60%;
-	
+	display: table;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .irt-success-ui-icon {
@@ -307,19 +308,18 @@
 }
 
 .irt-failure-ui-icon {
-    background-image: url('images/button-cross_red.png');
-    width: 60px;
-    height: 60px;
-    background-repeat: no-repeat;
-    float: left;
+	background-image: url('images/button-cross_red.png');
+	width: 60px;
+	height: 60px;
+	background-repeat: no-repeat;
+	float: left;
 }
 
-
 .report-id-details {
-    font-weight: bold;
-    font-size: 2.5em;
-    font-family: 'PT Sans Caption', sans-serif;
-    letter-spacing: -.05em;
-    font-style: normal;
-    color: #008AB1;
+	font-weight: bold;
+	font-size: 2.5em;
+	font-family: 'PT Sans Caption', sans-serif;
+	letter-spacing: -.05em;
+	font-style: normal;
+	color: #008AB1;
 }
