@@ -63,6 +63,9 @@ var impl = TDS.SecureBrowser.getImplementation();
       function() {
 
         var reportId = $.cookie("reportId");
+        
+        
+        $("#reportInfo").html($("#reportInfo").html() + ' for Report Id: ' + reportId);
 
         $.getJSON(getContextPath() + '/report/getReport/' + reportId,
             function(data) {
@@ -202,15 +205,19 @@ var impl = TDS.SecureBrowser.getImplementation();
             <div class="divTableCell" id="name">
               <b>Name:</b>
             </div>
-            <div class="divTableCell" id="organization">
-              <b>Organization:</b>
-            </div>
+            <div class="divTableCell">&nbsp;</div>
             <div class="divTableCell" id="email">
               <b>Email:</b>
             </div>
           </div>
+          
 
-          <div class="divTableRow">&nbsp;</div>
+
+          <div class="divTableRow" id="organization">
+              <b>Organization:</b>
+          </div>
+          
+          
           <div class="divTableRow" id="browserInfo">
 
 
