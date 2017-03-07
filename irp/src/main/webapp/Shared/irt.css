@@ -225,12 +225,13 @@
 	-webkit-padding-after: 0.625em;
 	min-width: -webkit-min-content;
 	border-width: 5px;
-	border-radius: 25px;
+	border-radius: 15px;
 	border-style: groove;
 	border-color: #008ab1;
 	border-image: initial;
 	float: left;
 	width: 45%;
+	padding: 0 0 2% 2%;
 }
 
 #right-intro-section {
@@ -242,12 +243,13 @@
 	-webkit-padding-after: 0.625em;
 	min-width: -webkit-min-content;
 	border-width: 5px;
-	border-radius: 25px;
+	border-radius: 15px;
 	border-style: groove;
 	border-color: #358c21;
 	border-image: initial;
 	float: right;
 	width: 45%;
+	padding: 0 0 2% 2%;
 }
 
 #instruction {

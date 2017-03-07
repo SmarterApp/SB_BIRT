@@ -26,9 +26,39 @@
 
 
 <script type="text/javascript" src="irtspec.js"></script>
+
+
+  <!-- YAHOO -->
+<script type="text/javascript"
+  src="../../Libraries/yahoo/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../../Libraries/yahoo/env.js"></script>
+
+<!-- YUI -->
+<script type="text/javascript"
+  src="../../Libraries/YUI/storage/storage-min.js"></script>
+  
+ 
+
+ <script type="text/javascript" src="../Summit/air_mobile.js"></script> 
+
+<script type="text/javascript" src="../factory.js"></script>
+
+<script type="text/javascript" src="../certified.js"></script>
+<script type="text/javascript" src="../firefox.js"></script>
+<script type="text/javascript" src="../mobile.android.js"></script>
+<script type="text/javascript" src="../mobile.ios.js"></script>
+
+
+  <script type="text/javascript" src="../../Utilities/util.js"></script>
+<script type="text/javascript" src="../../Utilities/util_browser.js"></script>
+<script type="text/javascript" src="../../Utilities/util_mozilla.js"></script>
+<script type="text/javascript" src="../../Utilities/util_securebrowser.js"></script>
+  
 <script type="text/javascript" src="populateGrid.js"></script>
 
 <script type="text/javascript">
+TDS.SecureBrowser.initialize();
+var impl = TDS.SecureBrowser.getImplementation();
   $(document).ready(
       function() {
 
@@ -56,6 +86,14 @@
         $("#versionInfo").html('v.' + $.cookie("version"));
 
         $(document).tooltip();
+        
+        if (Util.Browser.isSecure()) {
+          $("#seperator").show();
+          $("#closeBrowser").show();
+          $("#closeBrowser").click(function() {
+            impl.close(false);
+          });
+        }
 
       });
 
@@ -146,7 +184,9 @@
 
 
         <a href="#" id="irtHome">Home</a> <span>|</span> <a
-          href="javascript:location.reload(true);">Reload</a>
+          href="javascript:location.reload(true);">Reload</a> <span
+          id="seperator" style="display: none;">|</span> <a href="#"
+          id="closeBrowser" style="display: none;">Close</a>
       </p>
 
 

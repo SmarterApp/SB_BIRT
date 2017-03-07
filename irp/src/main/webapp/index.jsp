@@ -20,12 +20,46 @@
   href="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-ui.structure.css" />
 <link type="text/css" rel="stylesheet"
   href="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-ui.theme.css" />
+  
+  <!-- YAHOO -->
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/Libraries/yahoo/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/Libraries/yahoo/env.js"></script>
+
+<!-- YUI -->
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/Libraries/YUI/storage/storage-min.js"></script>
+  
+  
+
+
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/test/irtspec.js"></script>
+
+ <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/Summit/air_mobile.js"></script> 
+
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/factory.js"></script>
+
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/certified.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/firefox.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/mobile.android.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/mobile.ios.js"></script>
+
+
+  <script type="text/javascript" src="<%=contextPath%>/Scripts/Utilities/util.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/Utilities/util_browser.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/Utilities/util_mozilla.js"></script>
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/Utilities/util_securebrowser.js"></script>
 
 <link type="text/css" rel="stylesheet"
   href="<%=contextPath%>/Shared/irt.css" />
 <script type="text/javascript">
+TDS.SecureBrowser.initialize();
+var impl = TDS.SecureBrowser.getImplementation();
   $(document).ready(
       function() {
+        
+   
         
         $.removeCookie("name");
         $.removeCookie("emailId");
@@ -82,6 +116,14 @@
         
         $( document ).tooltip();
         
+        
+        if (Util.Browser.isSecure()) {
+          $("#closeBrowser").show();
+          $("#closeBrowser").click(function() {
+            impl.close(false);
+          });
+        }
+        
       });
 </script>
 </head>
@@ -99,6 +141,11 @@
           Readiness Test (IRT) </span>
            <span id="versionInfo" class="version-details"></span>
       </h1>
+      <p align="right">
+      
+      <a href="#"
+          id="closeBrowser" style="display: none;">Close</a>
+      </p>
     </div>
 
     <form>
@@ -137,7 +184,7 @@
           <div class="divTableRow">
             <div class="divTableCell">Browser Info:</div>
             <div class="divTableCellRight">
-            <textarea id="browserDetails" name="browserDetails" title="Descriptive text about the browser you are testing" cols="40" rows="3" style="resize: none;"></textarea>           
+            <textarea id="browserDetails" name="browserDetails" title="Descriptive text about the browser you are testing" cols="30" rows="3" style="resize: none;"></textarea>           
             </div>
           </div>
           <div class="divTableRow">&nbsp;</div>
