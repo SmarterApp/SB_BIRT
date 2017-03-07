@@ -105,6 +105,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           }
           else{ 
             $('#getIRTResult').button("disable");
+           // When user hit enter/return, system will not call the form URL if the report id is not Valid
           if (event.which == 13 ) {
             event.preventDefault();
           }
