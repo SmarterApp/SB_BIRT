@@ -61,7 +61,7 @@ public class ReportDAOImpl implements ReportDAO
         break;
       }
 
-      SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("dd-MMM-yyyy 'at' HH:MM z");
+      SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("dd-MMM-yyyy 'at' HH:mm z");
       Date date = new Date ();
       String creationDate = simpleDateFormat.format (date);
 
