@@ -94,9 +94,12 @@ The following Secure Browser Application Programming Interface (API) endpoints d
     
     The callback function's parameters are as follows:
     
-    **TBD** 
-
-
+    `callback(reason, parms)` 
+    
+    where `reason` is a string like 'word', 'sentence', 'mark' indicating a word, sentence, or mark boundary. For each of these `reason` strings, the `parms` would be an object such as:   
+    
+    `parms = { start, end, length, type };`
+ 
 1. R09. **Stop speech (Text to speech Synthesis)**. This is called by the testing application to stop any speech that may be in progress. 
 
 	`void browser.tts.stop(function callback)`
@@ -123,7 +126,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
     
     `Playing`       : playing is in progress
     
-    `Paused`       : playing was paused
+    `Paused`        : playing was paused
     
     `Unknown`       : unknown status
 
