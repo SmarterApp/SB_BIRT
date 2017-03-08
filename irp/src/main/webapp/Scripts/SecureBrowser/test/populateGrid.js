@@ -6,6 +6,8 @@ function populateResults(id, gridData, extTest) {
   var testNameWidth = 150;
   var detailAlign = "left";
 
+  var cntxPath = getContextPath();
+
   if (extTest === true) {
     extCss = 'irt-grid-column-hide';
     detailTitle = 'Score';
@@ -52,15 +54,25 @@ function populateResults(id, gridData, extTest) {
                 }
 
                 if (value == null) {
-                  return '<img alt="Test not performed by user" title="Test not performed by user" src="../../../Shared/images/question_yellow.png" id="result-icon">';
+                  return '<img alt="Test not performed by user" title="Test not performed by user" src="'
+                      + cntxPath
+                      + '/Shared/images/question_yellow.png" id="result-icon">';
                 } else if (isRequired === true && value === true) {
-                  return '<img alt="Required test passed" title="Required test passed" src="../../../Shared/images/button-check_green.png" id="result-icon">';
+                  return '<img alt="Required test passed" title="Required test passed" src="'
+                      + cntxPath
+                      + '/Shared/images/button-check_green.png" id="result-icon">';
                 } else if (isRequired === true && value === false) {
-                  return '<img alt="Required test failed" title="Required test failed" src="../../../Shared/images/button-cross_red.png" id="result-icon">';
+                  return '<img alt="Required test failed" title="Required test failed" src="'
+                      + cntxPath
+                      + '/Shared/images/button-cross_red.png" id="result-icon">';
                 } else if (isRequired === false && value === true) {
-                  return '<img alt="Optional test passed" title="Optional test passed" src="../../../Shared/images/button-check_yellow.png" id="result-icon">';
+                  return '<img alt="Optional test passed" title="Optional test passed" src="'
+                      + cntxPath
+                      + '/Shared/images/button-check_yellow.png" id="result-icon">';
                 } else if (isRequired === false && value === false) {
-                  return '<img alt="Optional test failed" title="Optional test failed" src="../../../Shared/images/button-cross_yellow.png" id="result-icon">';
+                  return '<img alt="Optional test failed" title="Optional test failed" src="'
+                      + cntxPath
+                      + '/Shared/images/button-cross_yellow.png" id="result-icon">';
                 } else {
                   return value;
                 }
@@ -91,4 +103,9 @@ function populateResults(id, gridData, extTest) {
             } ]
       });
 
+}
+
+function getContextPath() {
+  return window.location.pathname.substring(0, window.location.pathname
+      .indexOf("/", 2));
 }

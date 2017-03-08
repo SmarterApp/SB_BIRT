@@ -65,7 +65,6 @@ var impl = TDS.SecureBrowser.getImplementation();
         $.removeCookie("emailId");
         $.removeCookie("browserDetails");
         $.removeCookie("organization");
-        $.removeCookie("reportId");
         $.cookie("version",  '<%=version%>');
 
         var cntxPath = '<%=contextPath%>';
@@ -90,8 +89,7 @@ var impl = TDS.SecureBrowser.getImplementation();
         $('#getIRTResult').click(
             function(event) {    
               event.preventDefault();
-              $.cookie("reportId",  $('#reportId').val());
-              window.location.href = cntxPath + "/Scripts/SecureBrowser/test/report.html";
+              window.location.href = cntxPath + "/report/" + $('#reportId').val();
             });
         
         

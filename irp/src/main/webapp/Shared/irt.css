@@ -30,6 +30,13 @@
 	display: table-row;
 }
 
+.divTableCellReport {
+    vertical-align: middle;
+    display: table-cell;
+    float: left;
+    width: 40%;
+}
+
 .divTableCell, .divTableHead {
 	vertical-align: middle;
 	display: table-cell;
@@ -300,7 +307,7 @@
 	border-style: groove;
 	border-color: #000000;
 	border-image: initial;
-	width: 45%;
+	width: 55%;
 	display: table;
 	margin-right: auto;
 	margin-left: auto;
