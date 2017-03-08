@@ -93,7 +93,14 @@ IRT.AUTOMATED_TEST_SECTION = {
      */
     "headerId" : "browserAPI",
     "browserType" : "implBrowserType",
-    "section" : null
+    "section" : null,
+    "totalTest" : 0,
+    "rTestPass" : 0,
+    "rTestFail" : 0,
+    "oTestPass" : 0,
+    "oTestFail" : 0,
+    "notperformed" : 0
+
   },
   "ttsapi" : {
     /**
@@ -102,7 +109,13 @@ IRT.AUTOMATED_TEST_SECTION = {
      */
     "headerId" : "textToSpeechAPI",
     "browserType" : "ttsBrowserType",
-    "section" : tts_section
+    "section" : tts_section,
+    "totalTest" : 0,
+    "rTestPass" : 0,
+    "rTestFail" : 0,
+    "oTestPass" : 0,
+    "oTestFail" : 0,
+    "notperformed" : 0
 
   }
 };

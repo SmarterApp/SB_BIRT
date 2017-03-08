@@ -50,7 +50,7 @@ function beginBrowserAPITest() {
          */
 
         runIRTAutomateTest(apiJSONObj, apiJSONKey, runtime, apiSupportType,
-            apiSection, sectionJSONObj.headerId, populateSectionCount);
+            apiSection, sectionJSONObj, populateSectionCount);
 
       });
 
@@ -79,7 +79,7 @@ function closeBrowser() {
  * 
  */
 function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
-    testBrowserType, section, currHeaderId, callback) {
+    testBrowserType, section, sectionObj, callback) {
 
   // Required test passed initial count/
   var rTestPass = 0;
@@ -226,6 +226,12 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
 
       });
 
-  callback($('#' + currHeaderId), rTestPass, rTestFail, oTestPass, oTestFail,
-      totalTest);
+  sectionObj.totalTest = totalTest;
+  sectionObj.rTestPass = rTestPass;
+  sectionObj.rTestFail = rTestFail;
+  sectionObj.oTestPass = oTestPass;
+  sectionObj.oTestFail = oTestFail;
+
+  callback($('#' + sectionObj.headerId), rTestPass, rTestFail, oTestPass,
+      oTestFail, totalTest);
 }

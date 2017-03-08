@@ -365,6 +365,9 @@ function ttsComponentInitialize() {
 
 function populateManualResultIntoResultGrid(testName, gridId, linkId, dialogId) {
 
+  // browserAPI
+  // textToSpeechAPI
+
   if (testName == 'TTS') {
     Util.Validation.mergeTTSResultIntoResult();
   }
