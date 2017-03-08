@@ -350,6 +350,23 @@ onload = function() {
         break;
       }
 
+      if (Specs[spec].required === true) {
+        if (result) {
+          rTestPass = rTestPass + 1;
+        } else {
+          rTestFail = rTestFail + 1;
+        }
+      } else {
+        if (result) {
+          oTestPass = oTestPass + 1;
+        } else {
+          oTestFail = oTestFail + 1;
+        }
+
+      }
+
+      totalTest = totalTest + 1;
+
       css3TestArray.push({
 
         "testName" : test.title,

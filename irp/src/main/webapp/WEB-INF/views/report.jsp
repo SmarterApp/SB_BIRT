@@ -199,7 +199,7 @@ var impl = TDS.SecureBrowser.getImplementation();
     </div>
 
     <div class="border-details">
-      <div class="header-irt-report" id="reportInfo">Report Info</div>
+      <div class="header-irt-report" id="reportInfo">Info</div>
       <div class="divTable-report">
         <div class="divTableBody">
 

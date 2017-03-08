@@ -1,6 +1,7 @@
 window.Specs = {
 	"css3-background": {
-		"title": "Backgrounds and Borders Level 3",
+		"required" : true, "title": "Backgrounds and Borders Level 3",
+		
 		"properties": {
 			"background-repeat": ["space", "round"].concat(["repeat", "space", "round", "no-repeat"].times(2)),
 			"background-attachment": "local",
@@ -35,7 +36,8 @@ window.Specs = {
 	},
 
 	"css-backgrounds-4": {
-		"title": "Backgrounds and Borders Level 4",
+		"required" : true, "title": "Backgrounds and Borders Level 4",
+		
 		"properties": {
 			"background-position-x": ["right", "center", "50%", "left, left", "left, right", "right, left", "left, 0%", "10%, 20%, 40%", "0px", "30px", "0%, 10%, 20%, 30%", "left, left, left, left, left", "calc(20px)", "calc(20px + 1em)", "calc(20px / 2)", "calc(20px + 50%)", "calc(50% - 10px)", "calc(-20px)", "calc(-50%)", "calc(-20%)", "right 20px", "left 20px", "right -50px", "left -50px", "right 20px"],
 			"background-position-y": ["bottom", "center", "50%", "top, top", "top, bottom", "bottom, top", "top, 0%", "10%, 20%, 40%", "0px", "30px", "0%, 10%, 20%, 30%", "top, top, top, top, top", "calc(20px)", "calc(20px + 1em)", "calc(20px / 2)", "calc(20px + 50%)", "calc(50% - 10px)", "calc(-20px)", "calc(-50%)", "calc(-20%)", "bottom 20px", "top 20px", "bottom -50px", "top -50px", "bottom 20px"]
@@ -43,7 +45,8 @@ window.Specs = {
 	},
 
 	"css3-images": {
-		"title": "Image Values and Replaced Content",
+		"required" : true, "title": "Image Values and Replaced Content",
+		
 		"values": {
 			"properties": [
 				"background-image",
@@ -94,7 +97,8 @@ window.Specs = {
 	},
 
 	"css3-selectors": {
-		"title": "Selectors Level 3",
+		"required" : true, "title": "Selectors Level 3",
+		
 		"selectors": {
 			"Sibling combinator": "foo ~ bar",
 			"::before": "::before",
@@ -150,7 +154,8 @@ window.Specs = {
 	},
 
 	"css4-selectors": {
-		"title": "Selectors Level 4",
+		"required" : true, "title": "Selectors Level 4",
+		
 		"selectors": {
 			"Descendant combinator": "foo >> bar"
 		}
@@ -160,7 +165,8 @@ window.Specs = {
 	 * Note: the following media queries must be true in supporting UAs!
 	 */
 	"css3-mediaqueries": {
-		"title": "Media Queries",
+		"required" : true, "title": "Media Queries",
+		
 		"Media queries": {
 			"negation": ["not print", "not all and (width:1px)"],
 			"width": ["(width)", "(min-width:1px)", "(max-width:1000000px)"],
@@ -203,7 +209,8 @@ window.Specs = {
 	},
 
 	"css3-ui": {
-		"title": "Basic User Interface",
+		"required" : true, "title": "Basic User Interface",
+		
 		"properties": {
 			"box-sizing": ["border-box", "content-box"],
 			"outline-offset": ["-5px", "0", "5px"],
@@ -235,7 +242,8 @@ window.Specs = {
 	},
 
 	"css3-transitions": {
-		"title": "Transitions",
+		"required" : true, "title": "Transitions",
+		
 		"properties": {
 			"transition-property": ["none", "all", "width", "width, height"],
 			"transition-duration": ["0s", "1s", "100ms"],
@@ -251,7 +259,8 @@ window.Specs = {
 	},
 
 	"css3-animations": {
-		"title": "Animations",
+		"required" : true, "title": "Animations",
+		
 		"properties": {
 			"animation-name": ["foo", "foo, bar"],
 			"animation-duration": ["0s", "1s", "100ms"],
@@ -274,7 +283,8 @@ window.Specs = {
 	},
 
 	"css3-transforms": {
-		"title": "Transforms",
+		"required" : true, "title": "Transforms",
+		
 		"properties": {
 			"transform": [
 				"none",
@@ -301,7 +311,8 @@ window.Specs = {
 	},
 
 	"css-text-3": {
-		"title": "Text Level 3",
+		"required" : true, "title": "Text Level 3",
+		
 		"properties": {
 			"text-transform": ["full-width"],
 			"tab-size": ["4", "1em"],
@@ -320,7 +331,8 @@ window.Specs = {
 	},
 
 	"css-text-4": {
-		"title": "Text Level 4",
+		"required" : true, "title": "Text Level 4",
+		
 		"properties": {
 			"hyphenate-character": ["auto", "'\2010'"],
 			"hyphenate-limit-zone": ["1%", "1em"],
@@ -331,7 +343,8 @@ window.Specs = {
 	},
 
 	"css-text-decor-3": {
-		"title": "Text Decoration",
+		"required" : true, "title": "Text Decoration",
+		
 		"properties": {
 			"text-decoration-line": ["none", "underline", "overline", "line-through", "underline overline"],
 			"text-decoration-color": "white",
@@ -348,7 +361,8 @@ window.Specs = {
 	},
 
 	"css3-fonts": {
-		"title": "Fonts",
+		"required" : true, "title": "Fonts",
+		
 		"properties": {
 			"font-stretch": ["normal", "ultra-condensed", "extra-condensed", "condensed", "semi-condensed", "semi-expanded", "expanded", "extra-expanded", "ultra-expanded"],
 			"font-size-adjust": ["none", ".5"],
@@ -399,7 +413,8 @@ window.Specs = {
 	},
 
 	"css3-writing-modes": {
-		"title": "Writing Modes",
+		"required" : true, "title": "Writing Modes",
+		
 		"properties": {
 			"direction": ["ltr", "rtl"],
 			"unicode-bidi": ["normal", "embed", "isolate", "bidi-override", "isolate-override", "plaintext"],
@@ -410,7 +425,8 @@ window.Specs = {
 	},
 
 	"css-color-3": {
-		"title": "Color Level 3",
+		"required" : true, "title": "Color Level 3",
+		
 		"values": {
 			"properties": [
 				"color",
@@ -431,7 +447,8 @@ window.Specs = {
 	},
 
 	"css-color-4": {
-		"title": "Color Level 4",
+		"required" : true, "title": "Color Level 4",
+		
 		"values": {
 			"properties": [
 				"color",
@@ -446,7 +463,8 @@ window.Specs = {
 	},
 
 	"css3-multicol": {
-		"title": "Multi-column Layout",
+		"required" : true, "title": "Multi-column Layout",
+		
 		"properties": {
 			"column-width": ["10em", "auto"],
 			"column-count": ["2", "auto"],
@@ -465,7 +483,8 @@ window.Specs = {
 	},
 
 	"css3-values": {
-		"title": "Values and Units",
+		"required" : true, "title": "Values and Units",
+		
 		"values": {
 			"properties": [
 				"width",
@@ -485,7 +504,8 @@ window.Specs = {
 	},
 
 	"css3-regions": {
-		"title": "Regions",
+		"required" : true, "title": "Regions",
+		
 		"properties": {
 			"break-after": ["region"],
 			"break-before": ["region"],
@@ -496,7 +516,8 @@ window.Specs = {
 	},
 
 	"css3-speech": {
-		"title": "Speech",
+		"required" : true, "title": "Speech",
+		
 		"properties": {
 			"voice-volume": ["silent", "x-soft", "soft", "medium", "loud", "x-loud", "-6dB", "0", "6db"],
 			"voice-balance": ["left", "center", "right", "leftwards", "rightwards", "-100", "0", "100"],
@@ -521,7 +542,8 @@ window.Specs = {
 	},
 
 	"css3-flexbox": {
-		"title": "Flexible Box Layout",
+		"required" : true, "title": "Flexible Box Layout",
+		
 		"properties": {
 			"align-content": ["flex-start", "flex-end", "space-between", "space-around"],
 			"align-items": ["flex-start", "flex-end"],
@@ -542,7 +564,8 @@ window.Specs = {
 	},
 
 	"css3-grid-layout": {
-		"title": "Grid Layout",
+		"required" : true, "title": "Grid Layout",
+		
 		"properties": {
 			"display": ["grid", "inline-grid"],
 			"grid-template-columns": ["none", "subgrid", "auto", "100px", "1fr", "100px 1fr auto", "repeat(2, 100px 1fr)", "100px 1fr max-content minmax(min-content, 1fr)", "10px [col-start] 250px [col-end]"],
@@ -567,7 +590,7 @@ window.Specs = {
 	},
 
 	"css3-align": {
-		"title": "Box Alignment",
+		"required" : true, "title": "Box Alignment",
 		"properties": {
 			"align-self": ["auto", "stretch", "baseline", "center", "start", "end", "self-start", "self-end", "left", "right", "true", "safe", "start true", "start safe"],
 			"align-items": ["auto", "stretch", "baseline", "center", "start", "end", "self-start", "self-end", "left", "right", "true", "safe", "start true", "start safe"],
@@ -579,7 +602,7 @@ window.Specs = {
 	},
 
 	"css-cascade-3": {
-		"title": "Cascading and Inheritance Level 3",
+		"required" : true, "title": "Cascading and Inheritance Level 3",
 		"values": {
 			"properties": [
 				"color",
@@ -594,7 +617,7 @@ window.Specs = {
 		}
 	},
 	"css-cascade-4": {
-		"title": "Cascading and Inheritance Level 4",
+		"required" : true, "title": "Cascading and Inheritance Level 4",
 		"values": {
 			"properties": [
 				"color",
@@ -606,7 +629,7 @@ window.Specs = {
 		}
 	},
 	"css3-conditional": {
-		"title": "Conditional Rules",
+		"required" : true, "title": "Conditional Rules",
 		"@rules": {
 			"@support": [
 				"@supports (color: green)",
@@ -620,7 +643,7 @@ window.Specs = {
 	},
 
 	"css-masking": {
-		"title": "Masking",
+		"required" : true, "title": "Masking",
 		"properties": {
 			"clip-path": ["url('#clip')", "inset(50%)", "circle()", "ellipse()", "polygon(0 10px, 30px 0)", "circle() border-box", "border-box", "padding-box", "content-box", "margin-box", "fill-box", "stroke-box", "view-box", "none"],
 			"clip-rule": ["nonzero", "evenodd"],
@@ -644,7 +667,7 @@ window.Specs = {
 	},
 
 	"compositing": {
-		"title": "Compositing and Blending",
+		"required" : true, "title": "Compositing and Blending",
 		"properties": {
 			"mix-blend-mode": ["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"],
 			"isolation": ["auto", "isolate"],
@@ -653,7 +676,7 @@ window.Specs = {
 	},
 
 	"css-shapes": {
-		"title": "Shapes",
+		"required" : true, "title": "Shapes",
 		"properties": {
 			"shape-outside": ["none", "inset(10% round 10% 40% 10% 40%)", "ellipse(at top 50% left 20%)", "circle(at right 5% top)", "polygon(100% 0, 100% 100%, 0 100%)", "margin-box", "border-box", "padding-box", "content-box", "inset(10% round 10% 40% 10% 40%) margin-box", "ellipse(at top 50% left 20%) margin-box", "circle(at right 5% top) margin-box", "polygon(100% 0, 100% 100%, 0 100%) margin-box", "attr(src url)", "url(image.png)"],
 			"shape-image-threshold": ["0", "1", "0.0", "0.1"],
@@ -662,7 +685,7 @@ window.Specs = {
 	},
 
 	"css3-exclusions": {
-		"title": "Exclusions",
+		"required" : true, "title": "Exclusions",
 		"properties": {
 			"wrap-flow": ["auto", "both", "start", "end", "minimum", "maximum", "clear"],
 			"wrap-through": ["wrap", "none"]
@@ -670,21 +693,21 @@ window.Specs = {
 	},
 
 	"filter-effects": {
-		"title": "Filter Effects",
+		"required" : true, "title": "Filter Effects",
 		"properties": {
 			"filter": ["none", "url(#id)", "url(image.svg#id)", "blur(5px)", "brightness(0.5)", "contrast(150%)", "drop-shadow(15px 15px 15px black)", "grayscale(50%)", "hue-rotate(50deg)", "invert(50%)", "opacity(50%)", "sepia(50%)", "saturate(150%)", "grayscale(100%) sepia(100%)"],
 		}
 	},
 
 	"pointerevents": {
-		"title": "Pointer Events",
+		"required" : true, "title": "Pointer Events",
 		"properties": {
 			"touch-action": ["auto", "none", "pan-x", "pan-y", "pan-x pan-y", "manipulation"]
 		}
 	},
 
 	"fullscreen": {
-		"title": "Fullscreen API",
+		"required" : true, "title": "Fullscreen API",
 		"selectors": {
 			"::backdrop": "::backdrop",
 			":fullscreen": ":fullscreen"
@@ -692,7 +715,7 @@ window.Specs = {
 	},
 
 	"css3-break": {
-		"title": "Fragmentation",
+		"required" : true, "title": "Fragmentation",
 		"properties": {
 			"break-after": ["any", "recto", "verso"],
 			"break-before": ["any", "recto", "verso"],
@@ -704,28 +727,28 @@ window.Specs = {
 	},
 
 	"css3-positioning": {
-		"title": "Positioning",
+		"required" : true, "title": "Positioning",
 		"properties": {
 			"position": ["sticky"]
 		}
 	},
 
 	"css-will-change": {
-		"title": "Will Change",
+		"required" : true, "title": "Will Change",
 		"properties": {
 			"will-change": ["scroll-position", "contents", "transform", "top, left"]
 		}
 	},
 
 	"cssom-view": {
-		"title": "CSSOM View Module",
+		"required" : true, "title": "CSSOM View Module",
 		"properties": {
 			"scroll-behavior": ["auto", "smooth "]
 		}
 	},
 
 	"css-ruby-1": {
-		"title": "Ruby",
+		"required" : true, "title": "Ruby",
 		"properties": {
 			"display": ["ruby", "ruby-base", "ruby-text", "ruby-base-container", "ruby-text-container"],
 			"ruby-position" : ["over", "under", "inter-character"],
@@ -735,7 +758,7 @@ window.Specs = {
 	},
 
 	"css-snappoints": {
-		"title": "Scroll Snap Points",
+		"required" : true, "title": "Scroll Snap Points",
 		"properties": {
 			"scroll-snap-type": ["none", "mandatory", "proximity"],
 			"scroll-snap-padding": ["0px", "6px 5px", "10px 20px 30px", "10px 20px 30px 40px", "10%", "20% 3em 1in 5rem", "calc(2px)", "calc(50%)", "calc(3*25px)", "calc(3*25px) 5px 10% calc(10%-5px)"],
@@ -745,7 +768,7 @@ window.Specs = {
 	},
 
 	"css-logical-properties": {
-		"title": "Logical Properties",
+		"required" : true, "title": "Logical Properties",
 		"properties": {
 			"caption-side": ["block-start", "block-end", "inline-start", "inline-end"],
 			"float": ["inline-start", "inline-end"],
@@ -794,7 +817,7 @@ window.Specs = {
 	},
 
 	"css-lists": {
-		"title": "Lists and Counters",
+		"required" : true, "title": "Lists and Counters",
 		"properties": {
 			"list-style-type": [
 				"disclosure-closed", "disclosure-open",
@@ -830,7 +853,7 @@ window.Specs = {
 	},
 
 	"css-overflow-3": {
-		"title": "Overflow",
+		"required" : false, "title": "Overflow",
 		"properties": {
 			"max-lines": ["none", "1"],
 			"overflow-x": ["visible", "hidden", "clip", "scroll", "auto"],
@@ -848,7 +871,7 @@ window.Specs = {
 	},
 
 	"css-containment": {
-		"title": "Containment",
+		"required" : false, "title": "Containment",
 		"properties": {
 			"contain": ["none", "strict", "content", "size", "layout", "style", "paint"]
 		}

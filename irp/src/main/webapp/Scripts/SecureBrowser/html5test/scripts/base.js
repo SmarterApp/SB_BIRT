@@ -803,6 +803,23 @@ ResultsTable.prototype = {
               break;
             }
 
+            if (test.required === true) {
+              if (irpResult) {
+                rTestPass = rTestPass + 1;
+              } else {
+                rTestFail = rTestFail + 1;
+              }
+            } else {
+              if (irpResult) {
+                oTestPass = oTestPass + 1;
+              } else {
+                oTestFail = oTestFail + 1;
+              }
+
+            }
+
+            totalTest = totalTest + 1;
+
             html5TestArray.push({
 
               "testName" : test.name,
