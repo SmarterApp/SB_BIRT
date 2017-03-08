@@ -31,10 +31,10 @@
 }
 
 .divTableCellReport {
-    vertical-align: middle;
-    display: table-cell;
-    float: left;
-    width: 40%;
+	vertical-align: middle;
+	display: table-cell;
+	float: left;
+	width: 40%;
 }
 
 .divTableCell, .divTableHead {
@@ -99,7 +99,7 @@
 	background: #008ab1;
 	position: relative;
 	padding: 0px 10px;
-	height: 30px;
+	height: 40px;
 	font-family: "PT Sans Caption", sans-serif;
 	font-style: normal;
 	font-weight: 400;
@@ -112,7 +112,7 @@
 	background: #358c21;
 	position: relative;
 	padding: 0px 10px;
-	height: 30px;
+	height: 40px;
 	font-family: "PT Sans Caption", sans-serif;
 	font-style: normal;
 	font-weight: 400;
@@ -271,9 +271,9 @@
 	font-style: normal;
 	text-align: center;
 	width: 45%;
-    display: table;
-    margin-right: auto;
-    margin-left: auto;
+	display: table;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .generated-version-details {
@@ -281,9 +281,9 @@
 	color: #008AB1;
 	font-size: 0.8em;
 	font-weight: bold;
-    font-family: 'PT Sans Caption', sans-serif;
-    letter-spacing: -.05em;
-    font-style: normal;
+	font-family: 'PT Sans Caption', sans-serif;
+	letter-spacing: -.05em;
+	font-style: normal;
 }
 
 .header-irt-report {
@@ -336,4 +336,28 @@
 	letter-spacing: -.05em;
 	font-style: normal;
 	color: #008AB1;
+}
+
+.header-result {
+	   display: table;
+	position: relative;
+	padding: 0px 10px;
+	height: 30px;
+	font-family: "PT Sans Caption", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 0.8em;
+	text-align: left;
+	float: right;
+	color: #f6f6f6;
+	top: 10%;
+}
+
+#result-icon-header {
+	width: 30px;
+}
+
+.liketext {
+	display: table-cell;
+    vertical-align: top;
 }

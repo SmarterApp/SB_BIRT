@@ -48,8 +48,10 @@ function beginBrowserAPITest() {
          * running configured test in irtspec.js based on apiJSONKey and
          * apisection
          */
+
         runIRTAutomateTest(apiJSONObj, apiJSONKey, runtime, apiSupportType,
-            apiSection);
+            apiSection, sectionJSONObj.headerId, populateSectionCount);
+
       });
 
   populateResults($("#jsGrid"), Util.Validation.getResult(), false);
@@ -77,7 +79,22 @@ function closeBrowser() {
  * 
  */
 function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
-    testBrowserType, section) {
+    testBrowserType, section, currHeaderId, callback) {
+
+  // Required test passed initial count/
+  var rTestPass = 0;
+
+  // Required test fail initial count/
+  var rTestFail = 0;
+
+  // Optional test passed initial count
+  var oTestPass = 0;
+
+  // Optional test fail initial count
+  var oTestFail = 0;
+
+  // Total # of Test performed and displayed on Grid results
+  var totalTest = 0;
 
   Object.keys(irtSpecApiObj).forEach(
       function(element) {
@@ -185,8 +202,30 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
           }
         }
 
+        var isRequired = eval(elementKey + "required.all");
+
+        if (isRequired === true) {
+          if (result) {
+            rTestPass++;
+          } else {
+            rTestFail++;
+          }
+        } else {
+          if (result) {
+            oTestPass++;
+          } else {
+            oTestFail++;
+          }
+
+        }
+
+        totalTest++;
+
         Util.Validation.setIRTTestResults(element, testBrowserType, result,
             details, section);
 
       });
+
+  callback($('#' + currHeaderId), rTestPass, rTestFail, oTestPass, oTestFail,
+      totalTest);
 }

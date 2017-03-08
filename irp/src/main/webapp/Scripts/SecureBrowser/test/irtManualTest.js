@@ -1188,6 +1188,10 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
 
     }
   }
+
+  populateSectionCount(headerId, iframeObj.contentWindow.rTestPass,
+      iframeObj.contentWindow.rTestFail, iframeObj.contentWindow.oTestPass,
+      iframeObj.contentWindow.oTestFail, iframeObj.contentWindow.totalTest);
   dialogId.dialog("close");
   testId.css("display", "none");
   $('html, body').animate({

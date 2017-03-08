@@ -109,3 +109,28 @@ function getContextPath() {
   return window.location.pathname.substring(0, window.location.pathname
       .indexOf("/", 2));
 }
+
+function populateSectionCount(currHeaderId, rTestPass, rTestFail, oTestPass,
+    oTestFail, totalTest) {
+  $.ajax({
+    url : "apisectioncount.html",
+    success : function(result) {
+      var countStaticHtml = result;
+      var cntxPathRegex = /contextPath/g;
+      countStaticHtml = countStaticHtml
+          .replace(cntxPathRegex, getContextPath());
+      countStaticHtml = countStaticHtml.replace('requiredPassCount', rTestPass
+          + "/" + totalTest);
+      countStaticHtml = countStaticHtml.replace('requiredFailCount', rTestFail
+          + "/" + totalTest);
+      countStaticHtml = countStaticHtml.replace('optionalPassCount', oTestPass
+          + "/" + totalTest);
+      countStaticHtml = countStaticHtml.replace('optionalFailCount', oTestFail
+          + "/" + totalTest);
+
+      sectionCountHtml = countStaticHtml;
+      currHeaderId.append(sectionCountHtml);
+
+    }
+  });
+}

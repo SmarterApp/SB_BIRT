@@ -147,7 +147,6 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "(new Summit.SecureBrowser.Mobile()).getNativeBrowser()",
       "points" : "1",
       "required" : {
-
         "all" : true
       },
       "testPoints" : "0",

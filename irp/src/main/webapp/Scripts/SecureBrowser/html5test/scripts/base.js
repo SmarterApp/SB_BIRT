@@ -803,28 +803,32 @@ ResultsTable.prototype = {
               break;
             }
 
-            if (test.required === true) {
+            var isRequired = test.required;
+            if (isRequired === true) {
               if (irpResult) {
-                rTestPass = rTestPass + 1;
+                rTestPass++;
               } else {
-                rTestFail = rTestFail + 1;
+                rTestFail++;
               }
             } else {
               if (irpResult) {
-                oTestPass = oTestPass + 1;
+                oTestPass++;
               } else {
-                oTestFail = oTestFail + 1;
+                oTestFail++;
               }
 
             }
 
-            totalTest = totalTest + 1;
+            totalTest++;
 
             html5TestArray.push({
 
               "testName" : test.name,
               "testResult" : irpResult,
-              "details" : points + "/" + maximum
+              "details" : points + "/" + maximum,
+              "required" : {
+                "all" : isRequired
+              }
 
             });
 
