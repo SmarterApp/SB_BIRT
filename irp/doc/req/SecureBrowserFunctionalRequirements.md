@@ -32,7 +32,6 @@ Secure Browser Functional Requirements
 1. F17. The secure browser shall provide a means to stop TTS speech in progress.
 1. F18. The secure browser shall provide a means to pause TTS speech in progress.
 1. F19. The secure browser shall provide a means to retrieve list of TTS voice packs available on the machine.
-1. F20. The secure browser shall provide a means to get the current TTS voice pack set as default on the machine.
 1. F21. The secure browser shall provide a means to resume previously paused TTS speech.
 1. F22. The secure browser shall provide a means events to notify the web application of status and progress of TTS.
 1. F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.

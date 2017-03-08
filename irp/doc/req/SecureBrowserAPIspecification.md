@@ -74,11 +74,28 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`void browser.security.close(boolean restart)`
 
-1. R08. **Speak Text (Text to speech Synthesis)**. The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup (the param is required, the markup is optional), an options object to control the speech(required param) and a callback for TTS events (optional). The vendor must support plaintext and optionally support one of the following markup standards; SSML, Microsoft speech markup (for windows) or Apple speech markup (for OS X). The options object include `voicename`, `rate`, `gender`, `language`, `pitch`, `volume`. The callback, if provided, is invoked for TTS events which include `start`, `end`, `word boundary`, `sentence boundary`, `synchronization/marker` encountered, `paused` and `error`. 
+1. R08. **Speak Text (Text to speech Synthesis)**. The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup (the param is required, the markup is optional), an options object to control the speech (required param) and a callback for TTS events (optional). The vendor must support plaintext and optionally support one of the following markup standards; SSML, Microsoft speech markup (for Windows) or Apple speech markup (for macOS). The ability to set the pitch, rate, voice, and volume is provided by this API call through the options object, which includes:
 
-	`void browser.tts.speak(string text, object options, function callback)`
+    `voicename` (required) - The voice to use from the getVoices call.
+
+    `rate` (optional) - Speech playback rate, ranging from 1 to 20, where 10 is the default, 20 is twice as fast as 10, and 5 is half as fast as 10. 1 is the slowest available playback rate.
+
+    `pitch` (optional) - Speech pitch, ranging from 1 to 20, where 10 is the default, but the actual pitch is voicepack dependent.
+
+    `volume` (optional) - Speech volume, ranging from 0 to 10: where 5 is the default and 10 is twice as loud as 5. 0 will mute TTS. The speech volume is dependent on the system volume.
+
+    `language` (optional) - Speech language, following the xml:lang attribute specification.
+
+    `gender` (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: "male", "female", "neutral".
+
+   The callback, if provided, is invoked for TTS events which include `start`, `end`, `word boundary`, `sentence boundary`, `synchronization/marker encountered`, `paused` and `error`. 
+
+    `void browser.tts.speak(string text, object options, function callback)`
     
-    The ability to set the pitch, rate, voice, and volume is provided by this API call through the options object.
+    The callback function's parameters are as follows:
+    
+    **TBD** 
+
 
 1. R09. **Stop speech (Text to speech Synthesis)**. This is called by the testing application to stop any speech that may be in progress. 
 
@@ -114,7 +131,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 	
 	`void browser.tts.getVoices(function callback)`
 
-	`callback` is optional. If you specify this parameter, it should be a function that looks like this:
+	`callback` should be a function that looks like this:
 
 	` function(array of voice objects found){...}`
 
@@ -129,16 +146,6 @@ The following Secure Browser Application Programming Interface (API) endpoints d
      `[{'name':'US English Female TTS', 'gender':'female', language:'en-US'},{'name':'US Spanish Male TTS', 'gender':'male', language:'es-es'}]`
 
 	Empty array indicates no voice packs are available. Undefined or null indicates that an error occurred attempting to get the voices and no information is available.
-
-1. R12. **Get current voice pack (Text to speech Synthesis)**. This is called by the testing application to get the name of the currently active voice pack. 
-
-    `void browser.tts.getVoiceName(function callback)`
-
-	`callback` is optional. If you specify this parameter, it should be a function that looks like this:
-
-	` function(string voicename){...}`
-	
-	If `voicename` passed into the callback is undefined or null, this indicates that an error occurred determing the current voice pack.
 
 1. R13. **Pause speech (Text to speech Synthesis)**. This is called by the web application to temporarily pause speech. Corresponding events are fired to notify the callback provided in the `speak` function of this.
 
@@ -179,6 +186,10 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 1. R19. **Unmute System Volume**. Unmute system volume: This runtime browser property can be written to by the testing application to unmute the System Volume. This is only available in desktop secure browsers.
 
     `browser.settings.systemMute` set to true to mute, false to unmute. 
+
+1. R20. **Get System Mute Status**. Get the current status of the system volume. This is only available in desktop secure browsers.
+
+    `browser.settings.systemMute` true if muted, false if unmuted. 
     
 1. R44. **Get permissive mode**. The testing web application will invoke this to determine if permissive mode is on or off. In permissive mode, a browser is expected to relax some of its stringent security hooks to allow assistive technology to work with the secure browser. For example, browsers that aggressively prevent other application UIs from presenting on top of them might want to relax this when in permissive mode. 
 
