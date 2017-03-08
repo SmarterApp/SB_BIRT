@@ -2,59 +2,68 @@
 <html>
 <head>
 
+<%
+  String contextPath = request.getContextPath();
+  String version = System.getProperty ("irt.app.version");
+            //response.sendRedirect(contextPath + "/Scripts/SecureBrowser/test/index.html");
+%>
 <!-- JQuery -->
-<script src="../../Libraries/jQuery/jquery-3.1.1.js"></script>
-<script src="../../Libraries/jQuery/jquery-ui-1.12.js"></script>
-<script src="../../Libraries/jQuery/jquery.cookie.js"></script>
+<script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>
+<script
+  src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-ui-1.12.js"></script>
+<script
+  src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery.cookie.js"></script>
 <link type="text/css" rel="stylesheet"
-  href="../../Libraries/jQuery/jquery-ui.css" />
+  href="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-ui.css" />
 <link type="text/css" rel="stylesheet"
-  href="../../Libraries/jQuery/jquery-ui.structure.css" />
+  href="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-ui.structure.css" />
 <link type="text/css" rel="stylesheet"
-  href="../../Libraries/jQuery/jquery-ui.theme.css" />
+  href="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-ui.theme.css" />
 
-<link type="text/css" rel="stylesheet" href="../../../Shared/irt.css" />
+<link type="text/css" rel="stylesheet"
+  href="<%=contextPath%>/Shared/irt.css" />
 
 <!-- JSGrid -->
 <link type="text/css" rel="stylesheet"
-  href="../../Libraries/jQuery/jsgrid/jsgrid.min.css" />
+  href="<%=contextPath%>/Scripts/Libraries/jQuery/jsgrid/jsgrid.min.css" />
 <link type="text/css" rel="stylesheet"
-  href="../../Libraries/jQuery/jsgrid/jsgrid-theme.min.css" />
+  href="<%=contextPath%>/Scripts/Libraries/jQuery/jsgrid/jsgrid-theme.min.css" />
 <script type="text/javascript"
-  src="../../Libraries/jQuery/jsgrid/jsgrid.min.js"></script>
+  src="<%=contextPath%>/Scripts/Libraries/jQuery/jsgrid/jsgrid.min.js"></script>
 
 
 
-<script type="text/javascript" src="irtspec.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/test/irtspec.js"></script>
 
 
   <!-- YAHOO -->
 <script type="text/javascript"
-  src="../../Libraries/yahoo/yahoo-dom-event.js"></script>
-<script type="text/javascript" src="../../Libraries/yahoo/env.js"></script>
+  src="<%=contextPath%>/Scripts/Libraries/yahoo/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/Libraries/yahoo/env.js"></script>
 
 <!-- YUI -->
 <script type="text/javascript"
-  src="../../Libraries/YUI/storage/storage-min.js"></script>
+  src="<%=contextPath%>/Scripts/Libraries/YUI/storage/storage-min.js"></script>
   
  
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/Summit/air_mobile.js"></script> 
 
- <script type="text/javascript" src="../Summit/air_mobile.js"></script> 
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/factory.js"></script>
 
-<script type="text/javascript" src="../factory.js"></script>
-
-<script type="text/javascript" src="../certified.js"></script>
-<script type="text/javascript" src="../firefox.js"></script>
-<script type="text/javascript" src="../mobile.android.js"></script>
-<script type="text/javascript" src="../mobile.ios.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/certified.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/firefox.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/mobile.android.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/mobile.ios.js"></script>
 
 
-  <script type="text/javascript" src="../../Utilities/util.js"></script>
-<script type="text/javascript" src="../../Utilities/util_browser.js"></script>
-<script type="text/javascript" src="../../Utilities/util_mozilla.js"></script>
-<script type="text/javascript" src="../../Utilities/util_securebrowser.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/Scripts/Utilities/util.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/Utilities/util_browser.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/Utilities/util_mozilla.js"></script>
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/Utilities/util_securebrowser.js"></script>
+
   
-<script type="text/javascript" src="populateGrid.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/test/populateGrid.js"></script>
 
 <script type="text/javascript">
 TDS.SecureBrowser.initialize();
@@ -62,12 +71,13 @@ var impl = TDS.SecureBrowser.getImplementation();
   $(document).ready(
       function() {
 
-        var reportId = $.cookie("reportId");
+        var reportId = ${reportId};
+        var irtVersion = '${version}';
         
         
         $("#reportInfo").html($("#reportInfo").html() + ' for Report Id: ' + reportId);
 
-        $.getJSON(getContextPath() + '/report/getReport/' + reportId,
+        $.getJSON('<%=contextPath%>/report/getReport/' + reportId,
             function(data) {
               if (data.success == true) {
                 console.log(data.reportData);
@@ -83,10 +93,10 @@ var impl = TDS.SecureBrowser.getImplementation();
         });
 
         $("#irtHome").click(function() {
-          window.location.href = getContextPath();
+          window.location.href = '<%=contextPath%>';
         });
 
-        $("#versionInfo").html('v.' + $.cookie("version"));
+        $("#versionInfo").html('v.' + irtVersion);
 
         $(document).tooltip();
         
@@ -104,11 +114,11 @@ var impl = TDS.SecureBrowser.getImplementation();
 
     var extReport = false;
 
-    var jsonObject = data.reportData.externalReportConfig;
-
-    $("#generatedVersionInfo").html(
-        'Generated by IRT v.' + data.reportData.version + ' on '
-            + data.reportData.creationdate);
+    var jsonObject = data.reportData.externalReportConfig;    
+    $("#testDate").html($("#testDate").html() + ' '+ data.reportData.creationdate);
+    
+    $("#irtVersion").html($("#irtVersion").html() + ' ' + data.reportData.version);
+    
 
     var headerJsonObject = data.reportData.headerHTML;
     Object.keys(headerJsonObject).forEach(
@@ -134,11 +144,6 @@ var impl = TDS.SecureBrowser.getImplementation();
         });
   }
 
-  function getContextPath() {
-    return window.location.pathname.substring(0, window.location.pathname
-        .indexOf("/", 2));
-  }
-
   function showReportIdDialog(textInfo, reportId) {
 
     var id = $('#reportInfoDialog');
@@ -160,7 +165,7 @@ var impl = TDS.SecureBrowser.getImplementation();
       buttons : [ {
         text : "OK",
         click : function() {
-          window.location.href = getContextPath();
+          window.location.href = '<%=contextPath%>';
           $(this).dialog("close");
         }
       } ]
@@ -177,12 +182,10 @@ var impl = TDS.SecureBrowser.getImplementation();
         <img alt="Smarter Balanced Assessment Consortium"
           style="width: 183px !important;"
           title="Smarter Balanced Assessment Consortium"
-          src="../../../Shared/images/SmarterBalanced_logo.png" /> <span>
+          src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png" /> <span>
           &nbsp;&nbsp;Secure Browser Implementation Readiness Test (IRT)
           Report </span> <span id="versionInfo" class="version-details"></span>
       </h1>
-      <span id="generatedVersionInfo"
-        class="generated-version-details"></span>
       <p align="right">
 
 
@@ -195,7 +198,6 @@ var impl = TDS.SecureBrowser.getImplementation();
 
     </div>
 
-    <div>&nbsp;</div>
     <div class="border-details">
       <div class="header-irt-report" id="reportInfo">Report Info</div>
       <div class="divTable-report">
@@ -205,25 +207,25 @@ var impl = TDS.SecureBrowser.getImplementation();
             <div class="divTableCell" id="name">
               <b>Name:</b>
             </div>
-            <div class="divTableCell">&nbsp;</div>
             <div class="divTableCell" id="email">
               <b>Email:</b>
             </div>
+            <div class="divTableCellReport" id="testDate">
+              <b>Test Date:</b>
+            </div>
           </div>
-          
-
-
-          <div class="divTableRow" id="organization">
-              <b>Organization:</b>
+          <div class="divTableRow">
+            <div class="divTableCellRight" id="organization">
+            <b>Organization:</b>
+            </div>
+            <div class="divTableCell" id="irtVersion">
+              <b>IRT Version:</b>
+            </div>
           </div>
-          
-          
           <div class="divTableRow" id="browserInfo">
-
-
             <b>Browser Info:</b>
+              
           </div>
-
 
         </div>
       </div>
