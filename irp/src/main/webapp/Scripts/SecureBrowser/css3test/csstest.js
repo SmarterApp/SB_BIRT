@@ -350,28 +350,32 @@ onload = function() {
         break;
       }
 
-      if (Specs[spec].required === true) {
+      var isRequired = Specs[spec].required;
+      if (isRequired === true) {
         if (result) {
-          rTestPass = rTestPass + 1;
+          rTestPass++;
         } else {
-          rTestFail = rTestFail + 1;
+          rTestFail++;
         }
       } else {
         if (result) {
-          oTestPass = oTestPass + 1;
+          oTestPass++;
         } else {
-          oTestFail = oTestFail + 1;
+          oTestFail++;
         }
 
       }
 
-      totalTest = totalTest + 1;
+      totalTest++;
 
       css3TestArray.push({
 
         "testName" : test.title,
         "testResult" : result,
-        "details" : percent + "%"
+        "details" : percent + "%",
+        "required" : {
+          "all" : isRequired
+        }
 
       });
 
@@ -410,9 +414,9 @@ function populateCSS3ScoreHTML(mainScore) {
   var overAllTotalTest = parseInt(mainScore.totalTests);
   var overAllFeatures = parseInt(mainScore.total);
 
-  css3ScoreHTML = '<span>CSS3 Test [Your browser scores <strong>'
-      + mainScore.percent() + '%</strong></span>, passing <strong>'
-      + overAllPassedTest + '</strong>/<strong>' + overAllTotalTest
+  css3ScoreHTML = '<span>CSS3 Test [Score <strong>' + mainScore.percent()
+      + '%</strong></span>, passing <strong>' + overAllPassedTest
+      + '</strong>/<strong>' + overAllTotalTest
       + '</strong> tests for <strong>' + overAllFeatures
       + '</strong> features]';
 

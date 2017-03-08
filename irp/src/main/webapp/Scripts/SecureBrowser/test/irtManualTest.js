@@ -365,6 +365,9 @@ function ttsComponentInitialize() {
 
 function populateManualResultIntoResultGrid(testName, gridId, linkId, dialogId) {
 
+  // browserAPI
+  // textToSpeechAPI
+
   if (testName == 'TTS') {
     Util.Validation.mergeTTSResultIntoResult();
   }
@@ -1188,6 +1191,10 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
 
     }
   }
+
+  populateSectionCount(headerId, iframeObj.contentWindow.rTestPass,
+      iframeObj.contentWindow.rTestFail, iframeObj.contentWindow.oTestPass,
+      iframeObj.contentWindow.oTestFail, iframeObj.contentWindow.totalTest);
   dialogId.dialog("close");
   testId.css("display", "none");
   $('html, body').animate({
