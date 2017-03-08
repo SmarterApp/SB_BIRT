@@ -92,11 +92,11 @@
 
 <p><code>volume</code> (optional) - Speech volume, ranging from 0 to 10: where 5 is the default and 10 is twice as loud as 5. 0 will mute TTS. The speech volume is dependent on the system volume.</p>
 
-<p><code>language</code> (optional) - Speech language, following the xml:lang attribute specification.</p>
+<p><code>language</code> (optional) - Speech language, following the xml:lang attribute specification. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</p>
 
-<p><code>gender</code> (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: &quot;male&quot;, &quot;female&quot;, &quot;neutral&quot;.</p>
+<p><code>gender</code> (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: &quot;male&quot;, &quot;female&quot;, &quot;neutral&quot;. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</p>
 
-<p>The callback, if provided, is invoked for TTS events which include <code>start</code>, <code>end</code>, <code>word boundary</code>, <code>sentence boundary</code>, <code>subtestsynchronization/marker encountered</code>, <code>paused</code> and <code>error</code>. </p>
+<p>The callback, if provided, is invoked for TTS events which include <code>start</code>, <code>end</code>, <code>word boundary</code>, <code>sentence boundary</code>, <code>synchronization/marker encountered</code>, <code>paused</code> and <code>error</code>. </p>
 
 <p><code>void browser.tts.speak(string text, object options, function callback)</code></p>
 
