@@ -84,9 +84,9 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
     `volume` (optional) - Speech volume, ranging from 0 to 10: where 5 is the default and 10 is twice as loud as 5. 0 will mute TTS. The speech volume is dependent on the system volume.
 
-    `language` (optional) - Speech language, following the xml:lang attribute specification.
+    `language` (optional) - Speech language, following the xml:lang attribute specification. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
 
-    `gender` (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: "male", "female", "neutral".
+    `gender` (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: "male", "female", "neutral". This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
 
    The callback, if provided, is invoked for TTS events which include `start`, `end`, `word boundary`, `sentence boundary`, `synchronization/marker encountered`, `paused` and `error`. 
 
@@ -94,9 +94,12 @@ The following Secure Browser Application Programming Interface (API) endpoints d
     
     The callback function's parameters are as follows:
     
-    **TBD** 
-
-
+    `callback(reason, parms)` 
+    
+    where `reason` is a string like 'word', 'sentence', 'mark' indicating a word, sentence, or mark boundary. For each of these `reason` strings, the `parms` would be an object such as:   
+    
+    `parms = { start, end, length, type };`
+ 
 1. R09. **Stop speech (Text to speech Synthesis)**. This is called by the testing application to stop any speech that may be in progress. 
 
 	`void browser.tts.stop(function callback)`
@@ -123,7 +126,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
     
     `Playing`       : playing is in progress
     
-    `Paused`       : playing was paused
+    `Paused`        : playing was paused
     
     `Unknown`       : unknown status
 

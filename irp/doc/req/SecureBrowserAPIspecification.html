@@ -294,9 +294,9 @@ kbd {
 
 <p><code>volume</code> (optional) - Speech volume, ranging from 0 to 10: where 5 is the default and 10 is twice as loud as 5. 0 will mute TTS. The speech volume is dependent on the system volume.</p>
 
-<p><code>language</code> (optional) - Speech language, following the xml:lang attribute specification.</p>
+<p><code>language</code> (optional) - Speech language, following the xml:lang attribute specification. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</p>
 
-<p><code>gender</code> (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: &quot;male&quot;, &quot;female&quot;, &quot;neutral&quot;.</p>
+<p><code>gender</code> (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: &quot;male&quot;, &quot;female&quot;, &quot;neutral&quot;. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</p>
 
 <p>The callback, if provided, is invoked for TTS events which include <code>start</code>, <code>end</code>, <code>word boundary</code>, <code>sentence boundary</code>, <code>synchronization/marker encountered</code>, <code>paused</code> and <code>error</code>. </p>
 
@@ -304,7 +304,11 @@ kbd {
 
 <p>The callback function&#39;s parameters are as follows:</p>
 
-<p><strong>TBD</strong> </p></li>
+<p><code>callback(reason, parms)</code> </p>
+
+<p>where <code>reason</code> is a string like &#39;word&#39;, &#39;sentence&#39;, &#39;mark&#39; indicating a word, sentence, or mark boundary. For each of these <code>reason</code> strings, the <code>parms</code> would be an object such as:   </p>
+
+<p><code>parms = { start, end, length, type };</code></p></li>
 <li><p>R09. <strong>Stop speech (Text to speech Synthesis)</strong>. This is called by the testing application to stop any speech that may be in progress. </p>
 
 <p><code>void browser.tts.stop(function callback)</code></p>
@@ -330,7 +334,7 @@ kbd {
 
 <p><code>Playing</code>       : playing is in progress</p>
 
-<p><code>Paused</code>       : playing was paused</p>
+<p><code>Paused</code>        : playing was paused</p>
 
 <p><code>Unknown</code>       : unknown status</p></li>
 <li><p>R11. <strong>Get available voices (Text to speech Synthesis)</strong>. This is called by the testing application to get a listing of the available voice packs in the current system. </p>
