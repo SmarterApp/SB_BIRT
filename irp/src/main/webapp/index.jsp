@@ -95,19 +95,13 @@ var impl = TDS.SecureBrowser.getImplementation();
         
         $( "#reportId" ).keyup(function( event ) {
           
-          var reportId = $( "#reportId" ).val();
-            
-            
-          if(reportId > 0 && $.isNumeric(reportId)){
-            $('#getIRTResult').button("enable");
-          }
-          else{ 
-            $('#getIRTResult').button("disable");
-           // When user hit enter/return, system will not call the form URL if the report id is not Valid
-          if (event.which == 13 ) {
-            event.preventDefault();
-          }
-          }
+          enableGetIRTResultButton(event);
+          
+        });
+        
+        $( "#reportId" ).change(function( event ) {
+          
+          enableGetIRTResultButton(event);
           
         });
         
@@ -124,6 +118,24 @@ var impl = TDS.SecureBrowser.getImplementation();
         }
         
       });
+  
+  function enableGetIRTResultButton(event){
+    
+    var reportId = $( "#reportId" ).val();
+    
+    
+    if(reportId > 0 && $.isNumeric(reportId)){
+      $('#getIRTResult').button("enable");
+    }
+    else{ 
+      $('#getIRTResult').button("disable");
+     // When user hit enter/return, system will not call the form URL if the report id is not Valid
+    if (event.which == 13 ) {
+      event.preventDefault();
+    }
+    }
+    
+  }
 </script>
 </head>
 <body>
