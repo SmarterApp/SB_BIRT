@@ -299,6 +299,15 @@
     $('#' + irtTestSectionObj.headerId + ' #tNotPerformed').html(
         irtTestSectionObj.notperformed + '/' + irtTestSectionObj.rTotalTest);
 
+    var percent = 0;
+    if (irtTestSectionObj.rTotalTest > 0) {
+      percent = Math.round(100 * irtTestSectionObj.rTestPass
+          / irtTestSectionObj.rTotalTest);
+    }
+
+    $('#' + irtTestSectionObj.headerId + ' #sectionScore').html(
+        '[Score: <strong>' + percent + '%</strong>]')
+
   };
 
   Validation.getProcessManualResult = function() {

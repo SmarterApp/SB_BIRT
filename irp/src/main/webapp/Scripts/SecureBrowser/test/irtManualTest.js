@@ -517,9 +517,17 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
     reportId = "";
     iconClass = 'irt-failure-ui-icon';
   }
+
+  var reportIdLink = '';
+  if (textInfo == 'saveSuccess') {
+    var cntxPath = getContextPath();
+    reportIdLink = "<a href='" + cntxPath + "/report/" + reportId
+        + "' class='report-id-link' title='Click to view final report'>"
+        + reportId + "</a>";
+  }
   id.html('<p><span class="' + iconClass + '"></span>' + textMessage
-      + '<div class="report-id-details">' + reportId + '</div>' + errorMessage
-      + '</p>');
+      + '<div class="report-id-details">' + reportIdLink + '</div>'
+      + errorMessage + '</p>');
 
   id.dialog({
     resizable : false,

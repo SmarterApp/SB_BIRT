@@ -270,6 +270,14 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
   sectionObj.rTotalTest = rTestPass + rTestFail;
   sectionObj.oTotalTest = oTestPass + oTestFail;
 
+  var percent = 0;
+  if (sectionObj.rTotalTest > 0) {
+    percent = Math.round(100 * sectionObj.rTestPass / sectionObj.rTotalTest);
+  }
+
+  $('#' + sectionObj.headerId + ' #sectionScore').html(
+      '[Score: <strong>' + percent + '%</strong>]')
+
   callback($('#' + sectionObj.headerId), rTestPass, rTestFail, oTestPass,
       oTestFail, totalTest);
 }

@@ -342,6 +342,15 @@
     margin-left: auto;
 }
 
+.ui-widget-content a {
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: 'PT Sans Caption', sans-serif;
+    letter-spacing: -.05em;
+    font-style: normal;
+    color: #008AB1;
+}
+
 .header-result {
 	   display: table;
 	position: relative;

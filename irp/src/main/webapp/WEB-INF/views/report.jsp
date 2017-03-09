@@ -124,6 +124,12 @@ var impl = TDS.SecureBrowser.getImplementation();
         function(htmlItem, htmlIndex, htmlArray) {
 
           $("#" + htmlItem).html(eval('headerJsonObject.' + htmlItem));
+          
+          if(htmlItem == 'browserAPI' || htmlItem == 'textToSpeechAPI'){
+            $('#' + htmlItem + ' #sectionScore').show();
+            $('#' + htmlItem + ' #apiCountHeaderSection').show();
+          }
+          
         });
 
     var userInfoJsonObj = data.reportData.reportInfo;
@@ -132,6 +138,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           $("#" + userItem).html(
               $("#" + userItem).html() + ' '
                   + eval('userInfoJsonObj.' + userItem));
+          
         });
 
     var reportGridDataObj = data.reportData.reportGridData;
