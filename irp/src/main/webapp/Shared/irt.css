@@ -336,6 +336,10 @@
 	letter-spacing: -.05em;
 	font-style: normal;
 	color: #008AB1;
+	width: 40%;
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .header-result {

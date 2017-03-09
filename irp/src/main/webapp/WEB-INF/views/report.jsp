@@ -5,7 +5,6 @@
 <%
   String contextPath = request.getContextPath();
   String version = System.getProperty ("irt.app.version");
-            //response.sendRedirect(contextPath + "/Scripts/SecureBrowser/test/index.html");
 %>
 <!-- JQuery -->
 <script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>
@@ -102,7 +101,9 @@ var impl = TDS.SecureBrowser.getImplementation();
         
         if (Util.Browser.isSecure()) {
           $("#seperator").show();
+          $("#seperatorPrint").show();
           $("#closeBrowser").show();
+          $("#printReport").show();
           $("#closeBrowser").click(function() {
             impl.close(false);
           });
@@ -192,7 +193,9 @@ var impl = TDS.SecureBrowser.getImplementation();
         <a href="#" id="irtHome">Home</a> <span>|</span> <a
           href="javascript:location.reload(true);">Reload</a> <span
           id="seperator" style="display: none;">|</span> <a href="#"
-          id="closeBrowser" style="display: none;">Close</a>
+          id="closeBrowser" style="display: none;">Close</a> <span
+          id="seperatorPrint" style="display: none;">|</span> <a href="#"
+          id="printReport"  onclick="javascript:SecureBrowser.printWithDialog()" style="display: none;">Print</a>
       </p>
 
 

@@ -96,7 +96,9 @@
             if (isAIRSecureBrowser && impl != null && impl.getRunTime() != null) {
 
               $("#seperator").show();
+              $("#seperatorPrint").show();
               $("#closeBrowser").show();
+              $("#printReport").show();
               $("#closeBrowser").click(function() {
                 closeBrowser();
               });
@@ -147,7 +149,9 @@
       <span>|</span>
         <a href="javascript:location.reload(true);">Reload</a> <span
           id="seperator" style="display: none;">|</span> <a href="#"
-          id="closeBrowser" style="display: none;">Close</a>
+          id="closeBrowser" style="display: none;">Close</a> <span
+          id="seperatorPrint" style="display: none;">|</span> <a href="#"
+          id="printReport"  onclick="javascript:SecureBrowser.printWithDialog()" style="display: none;">Print</a>
       </p>
     </div>
 
