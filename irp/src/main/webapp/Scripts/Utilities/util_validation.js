@@ -128,25 +128,85 @@
 
   Validation.mergeTTSResultIntoResult = function() {
 
+    var rTestPass = 0, rTestFail = 0, notperformed = 0;
     ttsManualTestArray.forEach(function(element) {
       ttsTestArray.push(element);
+      if (element.testResult != null || element.testResult != undefined) {
+        if (element.testResult === true) {
+          rTestPass++;
+        } else {
+          rTestFail++;
+        }
+      } else {
+        notperformed++;
+      }
     });
+
+    var itemDetail = {};
+    $.extend(itemDetail, {
+      "rTestPass" : rTestPass,
+      "rTestFail" : rTestFail,
+      "notperformed" : notperformed
+    });
+
+    return itemDetail;
 
   };
 
   Validation.mergeCapabilityResultIntoResult = function() {
 
+    var rTestPass = 0, rTestFail = 0, notperformed = 0;
     capabilityTestArray.forEach(function(element) {
       resultArray.push(element);
+
+      if (element.testResult != null || element.testResult != undefined) {
+        if (element.testResult === true) {
+          rTestPass++;
+        } else {
+          rTestFail++;
+        }
+      } else {
+        notperformed++;
+      }
+
     });
+
+    var itemDetail = {};
+    $.extend(itemDetail, {
+      "rTestPass" : rTestPass,
+      "rTestFail" : rTestFail,
+      "notperformed" : notperformed
+    });
+
+    return itemDetail;
 
   };
 
   Validation.mergeProcessResultIntoResult = function() {
-
+    var rTestPass = 0, rTestFail = 0, notperformed = 0;
     processTestArray.forEach(function(element) {
       resultArray.push(element);
+
+      if (element.testResult != null || element.testResult != undefined) {
+        if (element.testResult === true) {
+          rTestPass++;
+        } else {
+          rTestFail++;
+        }
+      } else {
+        notperformed++;
+      }
+
     });
+
+    var itemDetail = {};
+    $.extend(itemDetail, {
+      "rTestPass" : rTestPass,
+      "rTestFail" : rTestFail,
+      "notperformed" : notperformed
+    });
+
+    return itemDetail;
 
   };
 

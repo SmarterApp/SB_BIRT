@@ -56,7 +56,7 @@ function populateResults(id, gridData, extTest) {
                 if (value == null) {
                   return '<img alt="Test not performed by user" title="Test not performed by user" src="'
                       + cntxPath
-                      + '/Shared/images/question_yellow.png" id="result-icon">';
+                      + '/Shared/images/question_blue.png" id="result-icon">';
                 } else if (isRequired === true && value === true) {
                   return '<img alt="Required test passed" title="Required test passed" src="'
                       + cntxPath
@@ -120,16 +120,18 @@ function populateSectionCount(currHeaderId, rTestPass, rTestFail, oTestPass,
       countStaticHtml = countStaticHtml
           .replace(cntxPathRegex, getContextPath());
       countStaticHtml = countStaticHtml.replace('requiredPassCount', rTestPass
-          + "/" + totalTest);
+          + "/" + (rTestPass + rTestFail));
       countStaticHtml = countStaticHtml.replace('requiredFailCount', rTestFail
-          + "/" + totalTest);
+          + "/" + (rTestPass + rTestFail));
       countStaticHtml = countStaticHtml.replace('optionalPassCount', oTestPass
-          + "/" + totalTest);
+          + "/" + (oTestPass + oTestFail));
       countStaticHtml = countStaticHtml.replace('optionalFailCount', oTestFail
-          + "/" + totalTest);
+          + "/" + (oTestPass + oTestFail));
 
-      sectionCountHtml = countStaticHtml;
-      currHeaderId.append(sectionCountHtml);
+      countStaticHtml = countStaticHtml.replace('notperformedCount', 0 + "/"
+          + (rTestPass + rTestFail));
+
+      currHeaderId.append(countStaticHtml);
 
     }
   });

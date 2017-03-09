@@ -415,9 +415,6 @@ function populateCSS3ScoreHTML(mainScore) {
   var overAllFeatures = parseInt(mainScore.total);
 
   css3ScoreHTML = '<span>CSS3 Test [Score <strong>' + mainScore.percent()
-      + '%</strong></span>, passing <strong>' + overAllPassedTest
-      + '</strong>/<strong>' + overAllTotalTest
-      + '</strong> tests for <strong>' + overAllFeatures
-      + '</strong> features]';
+      + '%</strong></span>]';
 
 }

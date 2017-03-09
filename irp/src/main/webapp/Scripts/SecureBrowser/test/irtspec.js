@@ -99,7 +99,9 @@ IRT.AUTOMATED_TEST_SECTION = {
     "rTestFail" : 0,
     "oTestPass" : 0,
     "oTestFail" : 0,
-    "notperformed" : 0
+    "notperformed" : 0,
+    "rTotalTest" : 0,
+    "oTotalTest" : 0
 
   },
   "ttsapi" : {
@@ -115,7 +117,9 @@ IRT.AUTOMATED_TEST_SECTION = {
     "rTestFail" : 0,
     "oTestPass" : 0,
     "oTestFail" : 0,
-    "notperformed" : 0
+    "notperformed" : 0,
+    "rTotalTest" : 0,
+    "oTotalTest" : 0
 
   }
 };

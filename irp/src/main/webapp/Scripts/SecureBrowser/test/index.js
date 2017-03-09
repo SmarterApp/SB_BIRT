@@ -231,6 +231,8 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
   sectionObj.rTestFail = rTestFail;
   sectionObj.oTestPass = oTestPass;
   sectionObj.oTestFail = oTestFail;
+  sectionObj.rTotalTest = rTestPass + rTestFail;
+  sectionObj.oTotalTest = oTestPass + oTestFail;
 
   callback($('#' + sectionObj.headerId), rTestPass, rTestFail, oTestPass,
       oTestFail, totalTest);
