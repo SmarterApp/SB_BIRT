@@ -379,12 +379,12 @@ function populateManualResultIntoResultGrid(testName, gridId, linkId, dialogId) 
   }
 
   if (testName == 'CAPABILITY' || testName == 'PROCESS') {
-    updateManualResultHeaderCount(manualApiDetails,
-        IRT.AUTOMATED_TEST_SECTION.browserapi)
+    Util.Validation.updateManualResultHeaderCount(manualApiDetails,
+        IRT.AUTOMATED_TEST_SECTION.browserapi);
   }
   if (testName == 'TTS') {
-    updateManualResultHeaderCount(manualApiDetails,
-        IRT.AUTOMATED_TEST_SECTION.ttsapi)
+    Util.Validation.updateManualResultHeaderCount(manualApiDetails,
+        IRT.AUTOMATED_TEST_SECTION.ttsapi);
   }
 
   gridId.jsGrid("refresh");
@@ -396,31 +396,6 @@ function populateManualResultIntoResultGrid(testName, gridId, linkId, dialogId) 
   currentTestIndex = 0;
 
   dialogId.dialog("close");
-
-}
-
-function updateManualResultHeaderCount(manualApiDetails, irtTestSectionObj) {
-
-  irtTestSectionObj.rTotalTest = irtTestSectionObj.rTotalTest
-      + manualApiDetails.rTestPass + manualApiDetails.rTestFail
-      + manualApiDetails.notperformed;
-
-  irtTestSectionObj.rTestPass = irtTestSectionObj.rTestPass
-      + manualApiDetails.rTestPass;
-
-  irtTestSectionObj.rTestFail = irtTestSectionObj.rTestFail
-      + manualApiDetails.rTestFail;
-
-  irtTestSectionObj.notperformed = irtTestSectionObj.notperformed
-      + manualApiDetails.notperformed;
-
-  $('#' + irtTestSectionObj.headerId + ' #rPassCount').html(
-      irtTestSectionObj.rTestPass + '/' + irtTestSectionObj.rTotalTest);
-  $('#' + irtTestSectionObj.headerId + ' #rFailCount').html(
-      irtTestSectionObj.rTestFail + '/' + irtTestSectionObj.rTotalTest);
-
-  $('#' + irtTestSectionObj.headerId + ' #tNotPerformed').html(
-      irtTestSectionObj.notperformed + '/' + irtTestSectionObj.rTotalTest);
 
 }
 

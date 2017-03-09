@@ -214,17 +214,23 @@
 
     if (processTestArray.length == 0) {
       populateReportGrid(Object.keys(IRT.ProcessTest), process_section);
-      Validation.mergeProcessResultIntoResult();
+      var manualApiDetails = Validation.mergeProcessResultIntoResult();
+      Validation.updateManualResultHeaderCount(manualApiDetails,
+          IRT.AUTOMATED_TEST_SECTION.browserapi);
     }
 
     if (capabilityTestArray.length == 0) {
       populateReportGrid(Object.keys(IRT.CapabilityTest), capability_section);
-      Validation.mergeCapabilityResultIntoResult();
+      var manualApiDetails = Validation.mergeCapabilityResultIntoResult();
+      Validation.updateManualResultHeaderCount(manualApiDetails,
+          IRT.AUTOMATED_TEST_SECTION.browserapi);
     }
 
     if (ttsManualTestArray.length == 0) {
       populateReportGrid(Object.keys(TTS.Test), ttsmanual_section);
-      Validation.mergeTTSResultIntoResult();
+      var manualApiDetails = Validation.mergeTTSResultIntoResult();
+      Validation.updateManualResultHeaderCount(manualApiDetails,
+          IRT.AUTOMATED_TEST_SECTION.ttsapi);
     }
 
     if (html5TestArray.length == 0) {
@@ -267,6 +273,32 @@
     });
 
     return itemDetail;
+  };
+
+  Validation.updateManualResultHeaderCount = function(manualApiDetails,
+      irtTestSectionObj) {
+
+    irtTestSectionObj.rTotalTest = irtTestSectionObj.rTotalTest
+        + manualApiDetails.rTestPass + manualApiDetails.rTestFail
+        + manualApiDetails.notperformed;
+
+    irtTestSectionObj.rTestPass = irtTestSectionObj.rTestPass
+        + manualApiDetails.rTestPass;
+
+    irtTestSectionObj.rTestFail = irtTestSectionObj.rTestFail
+        + manualApiDetails.rTestFail;
+
+    irtTestSectionObj.notperformed = irtTestSectionObj.notperformed
+        + manualApiDetails.notperformed;
+
+    $('#' + irtTestSectionObj.headerId + ' #rPassCount').html(
+        irtTestSectionObj.rTestPass + '/' + irtTestSectionObj.rTotalTest);
+    $('#' + irtTestSectionObj.headerId + ' #rFailCount').html(
+        irtTestSectionObj.rTestFail + '/' + irtTestSectionObj.rTotalTest);
+
+    $('#' + irtTestSectionObj.headerId + ' #tNotPerformed').html(
+        irtTestSectionObj.notperformed + '/' + irtTestSectionObj.rTotalTest);
+
   };
 
   Validation.getProcessManualResult = function() {
