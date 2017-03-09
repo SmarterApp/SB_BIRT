@@ -534,6 +534,26 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "apiType" : [ "boolean" ],
       "isDeprecated" : false
+    },
+    "checkspacesenabled" : {
+      // F15. The secure browser shall provide a means to set permissive mode.
+      // R21 SEC-71
+      "id" : "20",
+      "testName" : "Check spaces in macOS",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.settings.isSpacesEnabled",
+      "testApi_SB" : "Mozilla.getPreference('bmakiosk.spaces.enabled')",
+      "testApi_mobile" : "runtime.settings.isSpacesEnabled",
+      "points" : "1",
+      "required" : {
+        "macOS" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "boolean", "function" ],
+      "isDeprecated" : false,
+      "manualData" : true
     }
   },
   "ttsapi" : {

@@ -133,6 +133,35 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
           var irtSpecApiArray = eval(elementKey + "apiType");
 
           /**
+           * Object to identify whether this API check is required in all
+           * platform
+           */
+          var isRequiredAll = eval(elementKey + "required.all");
+          var testForOS = true;
+          var isRequiredForOS = false;
+          if (isRequiredAll == null || isRequiredAll == undefined) {
+            testForOS = false;
+            Object.keys(eval(elementKey + "required")).forEach(
+                function(osKey) {
+
+                  if (osKey == 'macOS'
+                      && eval(elementKey + "required." + osKey) == true
+                      && Util.Browser.isMac()) {
+                    testForOS = true;
+                    isRequiredForOS = true;
+                  }
+
+                  if (osKey == 'windows'
+                      && eval(elementKey + "required." + osKey) == true
+                      && Util.Browser.isWindows()) {
+                    testForOS = true;
+                    isRequiredForOS = true;
+                  }
+
+                });
+          }
+
+          /**
            * manualData key to populate other info in details column
            */
           var irtSpecManualData = eval(elementKey + "manualData");
@@ -183,8 +212,16 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
               } else {
                 details = 'MAC Address : ' + apiManualData;
               }
+            }
+            if (element == "checkspacesenabled") {
+
+              apiManualData = eval(actualTestApiMethod);
+
+              details = "Spaces Enabled : " + apiManualData.toString();
+
             } else {
               details = eval(actualTestApiMethod);
+
             }
           }
 
@@ -202,27 +239,26 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
           }
         }
 
-        var isRequired = eval(elementKey + "required.all");
-
-        if (isRequired === true) {
-          if (result) {
-            rTestPass++;
+        if (testForOS == true) {
+          if (isRequiredAll === true || isRequiredForOS === true) {
+            if (result) {
+              rTestPass++;
+            } else {
+              rTestFail++;
+            }
           } else {
-            rTestFail++;
-          }
-        } else {
-          if (result) {
-            oTestPass++;
-          } else {
-            oTestFail++;
+            if (result) {
+              oTestPass++;
+            } else {
+              oTestFail++;
+            }
           }
 
+          totalTest++;
+
+          Util.Validation.setIRTTestResults(element, testBrowserType, result,
+              details, section);
         }
-
-        totalTest++;
-
-        Util.Validation.setIRTTestResults(element, testBrowserType, result,
-            details, section);
 
       });
 
