@@ -127,6 +127,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           
             $('#' + htmlItem + ' #sectionScore').show();
             $('#' + htmlItem + ' #apiCountHeaderSection').show();
+            $('#' + htmlItem + ' #extScore').show();
           
           
         });

@@ -85,7 +85,6 @@
       .ready(
           function() {
 
-           
             $("#ttsTestLoad").load("ttsManualTest.html");
 
             $("#capabilityTestLoad").load("capabilityManualTest.html");
@@ -96,9 +95,9 @@
             if (isAIRSecureBrowser && impl != null && impl.getRunTime() != null) {
 
               $("#separator").show();
-              
+
               $("#closeBrowser").show();
-              
+
               $("#closeBrowser").click(function() {
                 closeBrowser();
               });
@@ -114,17 +113,15 @@
             createButton($("#css3ManualTest"), 'Perform CSS3 Test');
 
             createButton($("#endBrowserTest"), 'Done');
-            
-            
+
             $("#irtHome").click(function() {
               window.location.href = getContextPath();
             });
-            
-            $("#versionInfo").html('v.' + $.cookie("version"));
-            
-            $( document ).tooltip();
 
-            
+            $("#versionInfo").html('v.' + $.cookie("version"));
+
+            $(document).tooltip();
+
           });
 </script>
 
@@ -136,26 +133,35 @@
 
       <h1 class="entry-title">
         <img alt="Smarter Balanced Assessment Consortium"
-          style="width: 183px !important;" title="Smarter Balanced Assessment Consortium"
+          style="width: 183px !important;"
+          title="Smarter Balanced Assessment Consortium"
           src="../../../Shared/images/SmarterBalanced_logo.png" /> <span>
           &nbsp;&nbsp;Secure Browser Implementation Readiness Test (IRT)
-        </span>
-        <span id="versionInfo" class="version-details">
-        </span>
+        </span> <span id="versionInfo" class="version-details"> </span>
       </h1>
       <p align="right">
-      
-      <a href="#" id="irtHome">Home</a>
-      <span>|</span>
-        <a href="javascript:location.reload(true);">Reload</a>  <span
-          id="seperatorPrint">|</span> <a href="#"
-          id="printReport"  onclick="javascript:window.print()">Print</a> <span
+
+        <a href="#" id="irtHome">Home</a> <span>|</span> <a
+          href="javascript:location.reload(true);">Reload</a> <span
+          id="seperatorPrint">|</span> <a href="#" id="printReport"
+          onclick="javascript:window.print()">Print</a> <span
           id="separator" style="display: none;">|</span> <a href="#"
           id="closeBrowser" style="display: none;">Close</a>
       </p>
     </div>
 
-    <div class="header-irt" id="browserAPI">Browser API <span id="sectionScore" style="display: none;"></span></div>
+    <div class="header-irt" id="browserAPI">
+
+      <div class="divTable-report">
+        <div class="divTableBody">
+          <div class="divTableRow">
+            <div class="divTableCellText">Browser API</div>
+            <div class="divTableCellScore" id="sectionScore"></div>
+            <div class="divTableCellScoreIcon" id="scoreHTML"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="jsGrid"></div>
 
     <div>&nbsp;</div>
@@ -170,7 +176,17 @@
 
     <div>&nbsp;</div>
     <div>&nbsp;</div>
-    <div class="header-irt" id="textToSpeechAPI">Text-to-speech (TTS) <span id="sectionScore" style="display: none;"></span></div>
+    <div class="header-irt" id="textToSpeechAPI">
+        <div class="divTable-report">
+        <div class="divTableBody">
+          <div class="divTableRow">
+            <div class="divTableCellText">Text-to-speech (TTS) </div>
+            <div class="divTableCellScore" id="sectionScore"></div>
+            <div class="divTableCellScoreIcon" id="scoreHTML"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="jsTTSGrid"></div>
 
     <div>&nbsp;</div>
@@ -185,7 +201,17 @@
     <div>&nbsp;</div>
     <div>&nbsp;</div>
     <div id="html5TestMain">
-      <div class="header-ext" id="html5TestHeader">HTML5 Test</div>
+      <div class="header-ext" id="html5TestHeader">
+       <div class="divTable-report">
+        <div class="divTableBody">
+          <div class="divTableRow">
+            <div class="divTableCellText" id="externalTestScore">HTML5 Test </div>
+            <div class="divTableCellScore" id="sectionScore"></div>
+            <div class="divTableCellScoreIcon" id="scoreHTML"></div>
+          </div>
+        </div>
+      </div>
+      </div>
       <div id="jsHTML5TestGrid"></div>
       <div>&nbsp;</div>
       <div>
@@ -200,7 +226,15 @@
     <div>&nbsp;</div>
     <div>&nbsp;</div>
     <div id="css3TestMain">
-      <div class="header-ext" id="css3TestHeader">CSS3 Test</div>
+      <div class="header-ext" id="css3TestHeader"><div class="divTable-report">
+        <div class="divTableBody">
+          <div class="divTableRow">
+           <div class="divTableCellText" id="externalTestScore">CSS3 Test </div>
+            <div class="divTableCellScore" id="sectionScore"></div>
+            <div class="divTableCellScoreIcon" id="scoreHTML"></div>
+          </div>
+        </div>
+      </div></div>
       <div id="jsCSS3TestGrid"></div>
 
 
@@ -218,14 +252,14 @@
     <div id="completeTest" style="float: right;">
       <button id="endBrowserTest"></button>
     </div>
-    
+
 
     <div id="ttsTestLoad"></div>
 
     <div id="capabilityTestLoad"></div>
 
     <div id="processTestLoad"></div>
-    
+
     <div id="reportInfoDialog"></div>
 
     <div id="sectionCountInfo"></div>

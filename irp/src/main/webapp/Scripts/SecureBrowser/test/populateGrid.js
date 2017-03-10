@@ -131,7 +131,7 @@ function populateSectionCount(currHeaderId, rTestPass, rTestFail, oTestPass,
       countStaticHtml = countStaticHtml.replace('notperformedCount', 0 + "/"
           + (rTestPass + rTestFail));
 
-      currHeaderId.append(countStaticHtml);
+      $('#' + currHeaderId[0].id + ' #scoreHTML').append(countStaticHtml);
 
     }
   });

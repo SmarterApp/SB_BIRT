@@ -374,3 +374,50 @@
 	display: table-cell;
     vertical-align: top;
 }
+
+.header-text{
+    display : table;
+    text-align: center;
+    position: relative;
+}
+
+
+#irtScore{
+	display : table;
+	text-align: center;
+	position: relative;
+}
+
+
+
+
+
+.divTableCellText, .divTableHead {
+    vertical-align: middle;
+    display: table-cell;
+    float: left;
+    width: 35%;
+}
+
+.divTableCellScore, .divTableHead {
+    vertical-align: middle;
+    display: table-cell;
+    float: left;
+    width: 35%;
+    text-align: center;
+}
+
+.divTableCellScoreIcon {
+    vertical-align: middle;
+    display: table-cell;
+    float: right;
+    width: 30%;
+}
+
+#sectionScore{
+	display: none;
+}
+
+#extScore{
+	display: none;
+}

@@ -91,6 +91,7 @@ IRT.AUTOMATED_TEST_SECTION = {
      * implBrowserType is the variable defined in index.js which will provide
      * browserType value based on factory.js *
      */
+    "text" : "Browser API",
     "headerId" : "browserAPI",
     "browserType" : "implBrowserType",
     "section" : null,
@@ -109,6 +110,7 @@ IRT.AUTOMATED_TEST_SECTION = {
      * ttsBrowserType is the variable defined in index.js which will provide
      * browserType value based on text-to-speech support for browser *
      */
+    "text" : "Text-to-speech (TTS)",
     "headerId" : "textToSpeechAPI",
     "browserType" : "ttsBrowserType",
     "section" : tts_section,

@@ -1200,7 +1200,8 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
       Util.Validation.setHtml5TestArray(iframeObj.contentWindow.html5TestArray);
       populateResults(gridId, Util.Validation.getHtml5TestArray(), true);
 
-      headerId.append(iframeObj.contentWindow.htmlScoreHTML);
+      $('#' + headerId[0].id + ' #externalTestScore').append(
+          iframeObj.contentWindow.htmlScoreHTML);
     }
   }
 
@@ -1212,10 +1213,22 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
       Util.Validation.setCSS3TestArray(iframeObj.contentWindow.css3TestArray);
       populateResults(gridId, Util.Validation.getCSS3TestArray(), true);
 
-      headerId.append(iframeObj.contentWindow.css3ScoreHTML);
+      $('#' + headerId[0].id + ' #externalTestScore').append(
+          iframeObj.contentWindow.css3ScoreHTML);
 
     }
   }
+
+  var percent = 0;
+  if ((iframeObj.contentWindow.rTestPass + iframeObj.contentWindow.rTestFail) > 0) {
+    percent = Math
+        .round(100
+            * iframeObj.contentWindow.rTestPass
+            / (iframeObj.contentWindow.rTestPass + iframeObj.contentWindow.rTestFail));
+  }
+
+  $('#' + headerId[0].id + ' #sectionScore').append(
+      '[IRT Score: <strong>' + percent + '%</strong>]</span>');
 
   populateSectionCount(headerId, iframeObj.contentWindow.rTestPass,
       iframeObj.contentWindow.rTestFail, iframeObj.contentWindow.oTestPass,
