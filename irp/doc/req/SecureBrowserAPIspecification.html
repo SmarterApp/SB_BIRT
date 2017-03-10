@@ -284,98 +284,6 @@ kbd {
 <li><p>R07. <strong>Close the browser</strong>. The testing application will invoke this to shut down the browser when the user elects to exit the browser. The boolean parameter will determine if the browser should restart on exit or simply exit.</p>
 
 <p><code>void browser.security.close(boolean restart)</code></p></li>
-<li><p>R08. <strong>Speak Text (Text to speech Synthesis)</strong>. The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup (the param is required, the markup is optional), an options object to control the speech (required param) and a callback for TTS events (optional). The vendor must support plaintext and optionally support one of the following markup standards; SSML, Microsoft speech markup (for Windows) or Apple speech markup (for macOS). The ability to set the pitch, rate, voice, and volume is provided by this API call through the options object, which includes:</p>
-
-<p><code>voicename</code> (required) - The voice to use from the getVoices call.</p>
-
-<p><code>rate</code> (optional) - Speech playback rate, ranging from 1 to 20, where 10 is the default, 20 is twice as fast as 10, and 5 is half as fast as 10. 1 is the slowest available playback rate.</p>
-
-<p><code>pitch</code> (optional) - Speech pitch, ranging from 1 to 20, where 10 is the default, but the actual pitch is voicepack dependent.</p>
-
-<p><code>volume</code> (optional) - Speech volume, ranging from 0 to 10: where 5 is the default and 10 is twice as loud as 5. 0 will mute TTS. The speech volume is dependent on the system volume.</p>
-
-<p><code>language</code> (optional) - Speech language, following the xml:lang attribute specification. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</p>
-
-<p><code>gender</code> (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: &quot;male&quot;, &quot;female&quot;, &quot;neutral&quot;. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</p>
-
-<p>The callback, if provided, is invoked for TTS events which include <code>start</code>, <code>end</code>, <code>word boundary</code>, <code>sentence boundary</code>, <code>synchronization/marker encountered</code>, <code>paused</code> and <code>error</code>. </p>
-
-<p><code>void browser.tts.speak(string text, object options, function callback)</code></p>
-
-<p>The callback function&#39;s parameters are as follows:</p>
-
-<p><code>callback(reason, parms)</code> </p>
-
-<p>where <code>reason</code> is a string like &#39;word&#39;, &#39;sentence&#39;, &#39;mark&#39; indicating a word, sentence, or mark boundary. For each of these <code>reason</code> strings, the <code>parms</code> would be an object such as:   </p>
-
-<p><code>parms = { start, end, length, type };</code></p></li>
-<li><p>R09. <strong>Stop speech (Text to speech Synthesis)</strong>. This is called by the testing application to stop any speech that may be in progress. </p>
-
-<p><code>void browser.tts.stop(function callback)</code></p>
-
-<p>&#39;callback&#39; is an optional funtion that if present, will be invoked with a string status when TTS has stopped speaking.  </p></li>
-<li><p>R10. <strong>Get speech status (Text to speech Synthesis)</strong>. This is called by the testing application to inspect the current status of speech. The valid values are listed below.</p>
-
-<p><code>void browser.tts.getStatus(function callback)</code></p>
-
-<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
-
-<p><code>function(status){...}</code></p>
-
-<p>Where <code>status</code> is one of:</p>
-
-<p><code>NotSupported</code>  : TTS initialization failed.</p>
-
-<p><code>Uninitialized</code> : TTS is not initialized</p>
-
-<p><code>Initializing</code>  : TTS initialization in progress</p>
-
-<p><code>Stopped</code>       : TTS is initialized and there is nothing playing</p>
-
-<p><code>Playing</code>       : playing is in progress</p>
-
-<p><code>Paused</code>        : playing was paused</p>
-
-<p><code>Unknown</code>       : unknown status</p></li>
-<li><p>R11. <strong>Get available voices (Text to speech Synthesis)</strong>. This is called by the testing application to get a listing of the available voice packs in the current system. </p>
-
-<p><code>void browser.tts.getVoices(function callback)</code></p>
-
-<p><code>callback</code> should be a function that looks like this:</p>
-
-<p><code>function(array of voice objects found){...}</code></p>
-
-<p>Each voice object is a JSON literal with the following properties: </p>
-
-<ul>
-<li>name (required)</li>
-<li>language (optional)</li>
-<li>gender (optional).</li>
-</ul>
-
-<p>Example value passed to the callback function:</p>
-
-<p><code>[{&#39;name&#39;:&#39;US English Female TTS&#39;, &#39;gender&#39;:&#39;female&#39;, language:&#39;en-US&#39;},{&#39;name&#39;:&#39;US Spanish Male TTS&#39;, &#39;gender&#39;:&#39;male&#39;, language:&#39;es-es&#39;}]</code></p>
-
-<p>Empty array indicates no voice packs are available. Undefined or null indicates that an error occurred attempting to get the voices and no information is available.</p></li>
-<li><p>R13. <strong>Pause speech (Text to speech Synthesis)</strong>. This is called by the web application to temporarily pause speech. Corresponding events are fired to notify the callback provided in the <code>speak</code> function of this.</p>
-
-<p><code>void browser.tts.pause(function callback)</code></p>
-
-<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
-
-<p><code>function(string state){...}</code></p>
-
-<p>Callback is invoked when pause has occurred. If state is null or undefined, then an error occurred during pause. Otherwise &#39;Paused&#39; or &#39;Stopped&#39; are the expected states in the callback.</p></li>
-<li><p>R14. <strong>Resume speech (Text to speech Synthesis)</strong>. This is called by the web application to resume speech if it was previously paused. </p>
-
-<p><code>void browser.tts.resume(function callback)</code></p>
-
-<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
-
-<p><code>function(string state){...}</code></p>
-
-<p>Callback is invoked when resume has occurred. If state is null or undefined, then an error occurred during pause. Otherwise &#39;Playing&#39; or &#39;Stopped&#39; are the expected states in the callback. </p></li>
 <li><p>R15. <strong>Is macOS Spaces Enabled</strong>. Applicable to macOS only. This runtime browser property can be read by the testing application and returns true if Spaces is enabled, false otherwise. </p>
 
 <p><code>browser.settings.isSpacesEnabled</code>: boolean property specifying if Spaces is enabled or not. It is undefined on all platforms other than those that implement &#39;Spaces&#39;. </p></li>
@@ -422,7 +330,106 @@ kbd {
 </ul></li>
 </ol>
 
-<h3 id="toc_2">Optional APIs</h3>
+<h3 id="toc_2">Text to Speech Synthesis (TTS)</h3>
+
+<p><em>NOTE: Browsers supporting W3C&#39;s <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Web Speech API</a> do not need to implement these functions.</em></p>
+
+<ol>
+<li><p>R08. <strong>Speak Text (TTS)</strong>. The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup (the param is required, the markup is optional), an options object to control the speech (required param) and a callback for TTS events (optional). The vendor must support plaintext and optionally support one of the following markup standards; SSML, Microsoft speech markup (for Windows) or Apple speech markup (for macOS). The ability to set the pitch, rate, voice, and volume is provided by this API call through the options object, which includes:</p>
+
+<p><code>voicename</code> (required) - The voice to use from the getVoices call.</p>
+
+<p><code>rate</code> (optional) - Speech playback rate, ranging from 1 to 20, where 10 is the default, 20 is twice as fast as 10, and 5 is half as fast as 10. 1 is the slowest available playback rate.</p>
+
+<p><code>pitch</code> (optional) - Speech pitch, ranging from 1 to 20, where 10 is the default, but the actual pitch is voicepack dependent.</p>
+
+<p><code>volume</code> (optional) - Speech volume, ranging from 0 to 10: where 5 is the default and 10 is twice as loud as 5. 0 will mute TTS. The speech volume is dependent on the system volume.</p>
+
+<p><code>language</code> (optional) - Speech language, following the xml:lang attribute specification. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</p>
+
+<p><code>gender</code> (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: &quot;male&quot;, &quot;female&quot;, &quot;neutral&quot;. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</p>
+
+<p>The callback, if provided, is invoked for TTS events which include <code>start</code>, <code>end</code>, <code>word boundary</code>, <code>sentence boundary</code>, <code>synchronization/marker encountered</code>, <code>paused</code> and <code>error</code>. </p>
+
+<p><code>void browser.tts.speak(string text, object options, function callback)</code></p>
+
+<p>The callback function&#39;s parameters are as follows:</p>
+
+<p><code>callback(reason, parms)</code> </p>
+
+<p>where <code>reason</code> is a string like &#39;word&#39;, &#39;sentence&#39;, &#39;mark&#39; indicating a word, sentence, or mark boundary. For each of these <code>reason</code> strings, the <code>parms</code> would be an object such as:   </p>
+
+<p><code>parms = { start, end, length, type };</code></p></li>
+<li><p>R09. <strong>Stop speech (TTS)</strong>. This is called by the testing application to stop any speech that may be in progress. </p>
+
+<p><code>void browser.tts.stop(function callback)</code></p>
+
+<p>&#39;callback&#39; is an optional funtion that if present, will be invoked with a string status when TTS has stopped speaking.  </p></li>
+<li><p>R10. <strong>Get speech status (TTS)</strong>. This is called by the testing application to inspect the current status of speech. The valid values are listed below.</p>
+
+<p><code>void browser.tts.getStatus(function callback)</code></p>
+
+<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
+
+<p><code>function(status){...}</code></p>
+
+<p>Where <code>status</code> is one of:</p>
+
+<p><code>NotSupported</code>  : TTS initialization failed.</p>
+
+<p><code>Uninitialized</code> : TTS is not initialized</p>
+
+<p><code>Initializing</code>  : TTS initialization in progress</p>
+
+<p><code>Stopped</code>       : TTS is initialized and there is nothing playing</p>
+
+<p><code>Playing</code>       : playing is in progress</p>
+
+<p><code>Paused</code>        : playing was paused</p>
+
+<p><code>Unknown</code>       : unknown status</p></li>
+<li><p>R11. <strong>Get available voices (TTS)</strong>. This is called by the testing application to get a listing of the available voice packs in the current system. </p>
+
+<p><code>void browser.tts.getVoices(function callback)</code></p>
+
+<p><code>callback</code> should be a function that looks like this:</p>
+
+<p><code>function(array of voice objects found){...}</code></p>
+
+<p>Each voice object is a JSON literal with the following properties: </p>
+
+<ul>
+<li>name (required)</li>
+<li>language (optional)</li>
+<li>gender (optional).</li>
+</ul>
+
+<p>Example value passed to the callback function:</p>
+
+<p><code>[{&#39;name&#39;:&#39;US English Female TTS&#39;, &#39;gender&#39;:&#39;female&#39;, language:&#39;en-US&#39;},{&#39;name&#39;:&#39;US Spanish Male TTS&#39;, &#39;gender&#39;:&#39;male&#39;, language:&#39;es-es&#39;}]</code></p>
+
+<p>Empty array indicates no voice packs are available. Undefined or null indicates that an error occurred attempting to get the voices and no information is available.</p></li>
+<li><p>R13. <strong>Pause speech (TTS)</strong>. This is called by the web application to temporarily pause speech. Corresponding events are fired to notify the callback provided in the <code>speak</code> function of this.</p>
+
+<p><code>void browser.tts.pause(function callback)</code></p>
+
+<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
+
+<p><code>function(string state){...}</code></p>
+
+<p>Callback is invoked when pause has occurred. If state is null or undefined, then an error occurred during pause. Otherwise &#39;Paused&#39; or &#39;Stopped&#39; are the expected states in the callback.</p></li>
+<li><p>R14. <strong>Resume speech (TTS)</strong>. This is called by the web application to resume speech if it was previously paused. </p>
+
+<p><code>void browser.tts.resume(function callback)</code></p>
+
+<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
+
+<p><code>function(string state){...}</code></p>
+
+<p>Callback is invoked when resume has occurred. If state is null or undefined, then an error occurred during pause. Otherwise &#39;Playing&#39; or &#39;Stopped&#39; are the expected states in the callback. </p></li>
+</ol>
+
+<h3 id="toc_3">Optional APIs</h3>
 
 <ol>
 <li><p>R23. <strong>Empty system clipboard</strong>. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the <code>browser.security.enableLockDown</code> to perform the same operation. </p>
@@ -450,11 +457,11 @@ kbd {
 <p><code>&quot;[&#39;00:55:65:C0:00:EA&#39;]&quot;</code></p></li>
 </ol>
 
-<h4 id="toc_3">Audio Recorder (W3C)</h4>
+<h4 id="toc_4">Audio Recorder (W3C)</h4>
 
 <p><em>NOTE: Browsers supporting W3C&#39;s <a href="https://www.w3.org/TR/webaudio/">Web Audio API</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia">getUserMedia()</a> do not need to implement these functions.</em></p>
 
-<h4 id="toc_4">Audio Recorder (non-W3C)</h4>
+<h4 id="toc_5">Audio Recorder (non-W3C)</h4>
 
 <ol>
 <li><p>R25. <strong>Initialize audio recorder</strong>. This method is called by the testing application once to initialize the audio API after a page loads. The event listener passed in as argument is used to notify events to caller about progress.  Any attempts to call this method when it has already been called should be treated as a reset and reinit.</p>
@@ -567,16 +574,16 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 <p><code>void browser.recorder.retrieveAudioFileList()</code></p></li>
 </ol>
 
-<h2 id="toc_5">Secure Browser Standards Compliance</h2>
+<h2 id="toc_6">Secure Browser Standards Compliance</h2>
 
-<h3 id="toc_6">Required</h3>
+<h3 id="toc_7">Required</h3>
 
 <ol>
 <li><p>R35. <strong>HTML5 compliant</strong>. The secure browser must be HTML5 compliant: https://www.w3.org/TR/html5/ and http://html5test.com</p></li>
 <li><p>R37. <strong>CSS3 compliant</strong>. The secure browser must be CSS3 compliant: https://www.w3.org/TR/2014/REC-css-namespaces-3-20140320 and http://css3test.com</p></li>
 </ol>
 
-<h3 id="toc_7">Optional</h3>
+<h3 id="toc_8">Optional</h3>
 
 <ol>
 <li><p>R38. <strong>W3C Web Audio compliant</strong>. W3C Web Audio API:
