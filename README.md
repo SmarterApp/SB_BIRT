@@ -64,6 +64,14 @@ Example:
  -Dirt.app.version=<IRT_APP_VERSION>
 ```
 
+### Mongo DB Configuration
+IRT Application connect to mongo DB to store report information.
+
+Below are the two important object required to be created in mongo DB
+* Database : `irt_report` [ Database name to be used in JVM configuration for property `mongo.db.name`.]
+* Collection Name : `test_results`
+
+
 ### UI Framework
 * jQuery v3.1.1 [Reference](http://jquery.com/)
 * jQueryUI v1.12 [Reference](https://jqueryui.com/)
