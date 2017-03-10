@@ -391,6 +391,10 @@
 
 
 
+.divTable-header {
+    display: table;
+    width: 100%;
+}
 
 .divTableCellText, .divTableHead {
     vertical-align: middle;
