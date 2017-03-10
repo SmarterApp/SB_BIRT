@@ -41,7 +41,7 @@ The Webapp module contains the IRP UI and REST APIs.
 {details: "window.browser is not defined",
 testApi : "!!window.browser"
 testName : "[window.browser] global object check"
-testResult : false}
+testResult : false .....}
 ```
 
 ### Tomcat (JVM Configuration)

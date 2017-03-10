@@ -19,7 +19,9 @@
     <context:annotation-config />
     <context:component-scan base-package="irt.report" />
 
-    <mongo:mongo-client credentials="${mongo.db.username}:${mongo.db.password}@${mongo.db.name}" host="${mongo.db.host}" port="${mongo.db.port}"  id="mongoDBConnection" ></mongo:mongo-client>
+    <mongo:mongo-client credentials="${mongo.db.username}:${mongo.db.password}@${mongo.db.name}" host="${mongo.db.host}" port="${mongo.db.port}"  id="mongoDBConnection">
+    <mongo:client-options connections-per-host="4"  connect-timeout="1000" max-wait-time="1500"  socket-keep-alive="true" socket-timeout="1500" />
+    </mongo:mongo-client>
 
     <mongo:db-factory dbname="${mongo.db.name}" id="reportMongoDbFactory"  mongo-ref="mongoDBConnection" />
 
