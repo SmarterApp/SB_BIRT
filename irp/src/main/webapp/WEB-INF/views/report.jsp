@@ -125,10 +125,9 @@ var impl = TDS.SecureBrowser.getImplementation();
 
           $("#" + htmlItem).html(eval('headerJsonObject.' + htmlItem));
           
-          if(htmlItem == 'browserAPI' || htmlItem == 'textToSpeechAPI'){
             $('#' + htmlItem + ' #sectionScore').show();
             $('#' + htmlItem + ' #apiCountHeaderSection').show();
-          }
+          
           
         });
 

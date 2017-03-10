@@ -1191,7 +1191,7 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
       Util.Validation.setHtml5TestArray(iframeObj.contentWindow.html5TestArray);
       populateResults(gridId, Util.Validation.getHtml5TestArray(), true);
 
-      headerId.html(iframeObj.contentWindow.htmlScoreHTML);
+      headerId.append(iframeObj.contentWindow.htmlScoreHTML);
     }
   }
 
@@ -1203,7 +1203,7 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
       Util.Validation.setCSS3TestArray(iframeObj.contentWindow.css3TestArray);
       populateResults(gridId, Util.Validation.getCSS3TestArray(), true);
 
-      headerId.html(iframeObj.contentWindow.css3ScoreHTML);
+      headerId.append(iframeObj.contentWindow.css3ScoreHTML);
 
     }
   }
