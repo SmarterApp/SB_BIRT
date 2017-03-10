@@ -97,9 +97,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   if (!isManualTestSupported) {
     var textMessage = eval(irtApiSpecConstant + specSeparator + specMessage
         + specSeparator + "errorDialog_" + testName);
-    id
-        .html('<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>'
-            + textMessage + '</p>');
+    id.html('<p><span class="irt-failure-ui-icon"></span>' + textMessage
+        + '</p>');
   }
 
   if (isManualTestSupported) {
@@ -521,8 +520,11 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
   var reportIdLink = '';
   if (textInfo == 'saveSuccess') {
     var cntxPath = getContextPath();
-    reportIdLink = "<a href='" + cntxPath + "/report/" + reportId
-        + "' class='report-id-link' title='Click to view final report'>"
+    reportIdLink = "<a href='"
+        + cntxPath
+        + "/report/"
+        + reportId
+        + "' class='report-id-link' title='Click to view final report' id='reportIdLink'>"
         + reportId + "</a>";
   }
   id.html('<p><span class="' + iconClass + '"></span>' + textMessage
@@ -533,7 +535,7 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
     resizable : false,
     height : "auto",
     title : 'IRT Result Info',
-    width : 400,
+    width : 500,
     modal : true,
     buttons : [ {
       id : "retry",
@@ -559,6 +561,13 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
 
   if (reportId != null && success) {
     $("#retry").addClass("irt-grid-column-hide");
+    $('#reportIdLink').blur();
+    $('#reportIdLink').tooltip({
+      position : {
+        my : "left+15 center",
+        at : "right center"
+      }
+    });
   }
   if ((reportId == null && !success) || !success) {
     $("#homeButton").addClass("irt-grid-column-hide");

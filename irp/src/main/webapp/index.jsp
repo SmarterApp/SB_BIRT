@@ -107,7 +107,9 @@ var impl = TDS.SecureBrowser.getImplementation();
         
         $("#versionInfo").html('v.' + $.cookie("version"));
         
-        $( document ).tooltip();
+        $( document ).tooltip({
+              position: { my: "left+15 center", at: "right center"}
+        });
         
         
         if (Util.Browser.isSecure()) {

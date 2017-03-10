@@ -100,7 +100,7 @@ var impl = TDS.SecureBrowser.getImplementation();
         $(document).tooltip();
         
         if (Util.Browser.isSecure()) {
-          $("#seperator").show();
+          $("#separator").show();
           $("#closeBrowser").show();
           $("#closeBrowser").click(function() {
             impl.close(false);
@@ -198,7 +198,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           href="javascript:location.reload(true);">Reload</a>  <span
           id="seperatorPrint">|</span> <a href="#"
           id="printReport"  onclick="javascript:window.print()">Print</a> <span
-          id="seperator" style="display: none;">|</span> <a href="#"
+          id="separator" style="display: none;">|</span> <a href="#"
           id="closeBrowser" style="display: none;">Close</a>
       </p>
 

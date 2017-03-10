@@ -30,7 +30,7 @@ var webspeech = "webspeech";
  *                          other info for Get/Set Capability manual testing
  * @specProcessManualApi : Examine Process list Manual API instruction and other
  *                       info for Examine Process list manual testing
- * @specSeparator : JSON object seperator which is always "." to access insider
+ * @specSeparator : JSON object separator which is always "." to access insider
  *                variables and keys
  * @tts_section : Section variable to define TTS automated testing
  * @ttsmanual_section : Section variable to define TTS Manual testing
