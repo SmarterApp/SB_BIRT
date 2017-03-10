@@ -49,7 +49,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
     } else {
       dialogWidth = '70%';
       dialogHeight = 600;
-      isManualTestSupported = true;
+      isManualTestSupported = false;
 
     }
   } else if (testName == 'PROCESS') {
@@ -58,7 +58,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         isManualTestSupported = true;
       }
     } else {
-      isManualTestSupported = true;
+      isManualTestSupported = false;
 
     }
   }
@@ -1213,9 +1213,9 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
       iframeObj.contentWindow.oTestFail, iframeObj.contentWindow.totalTest);
   dialogId.dialog("close");
   testId.css("display", "none");
-  $('html, body').animate({
-    'scrollTop' : headerId.position().top
-  });
+  /*
+   * $('html, body').animate({ 'scrollTop' : headerId.position().top });
+   */
 }
 
 function enableDisableSaveResultButton(testName, id) {
