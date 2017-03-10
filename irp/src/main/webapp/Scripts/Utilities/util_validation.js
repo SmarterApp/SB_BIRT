@@ -303,7 +303,7 @@
     }
 
     $('#' + irtTestSectionObj.headerId + ' #sectionScore').html(
-        '[Score: <strong>' + percent + '%</strong>]')
+        '[Score: <strong>' + percent + '%</strong>]');
 
   };
 
