@@ -97,13 +97,10 @@
     if (section == 'TTS') {
       ttsTestArray.push(apiSpecObject);
     } else if (section == 'TTS_MANUAL') {
-      apiSpecObject.testResult = null;
       ttsManualTestArray.push(apiSpecObject);
     } else if (section == 'CAPABILITY_MANUAL') {
-      apiSpecObject.testResult = null;
       capabilityTestArray.push(apiSpecObject);
     } else if (section == 'PROCESS_MANUAL') {
-      apiSpecObject.testResult = null;
       processTestArray.push(apiSpecObject);
     } else {
       resultArray.push(apiSpecObject);
