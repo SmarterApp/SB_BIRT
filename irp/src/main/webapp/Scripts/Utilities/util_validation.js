@@ -264,7 +264,8 @@
         "name" : $.cookie("name"),
         "organization" : $.cookie("organization"),
         "email" : $.cookie("emailId"),
-        "browserInfo" : $.cookie("browserDetails")
+        "browserInfo" : $.cookie("browserDetails"),
+        "optionalScoring" : $.cookie("optionalScoring")
       },
       "version" : $.cookie("version")
     });
@@ -298,8 +299,21 @@
 
     var percent = 0;
     if (irtTestSectionObj.rTotalTest > 0) {
-      percent = Math.round(100 * irtTestSectionObj.rTestPass
-          / irtTestSectionObj.rTotalTest);
+
+      var optionalScoringFlag = $.cookie("optionalScoring");
+
+      var totalPassedTest = 0;
+      var totalTest = 0;
+      if (optionalScoringFlag === 'Yes') {
+        totalPassedTest = irtTestSectionObj.rTestPass
+            + irtTestSectionObj.oTestPass;
+        totalTest = irtTestSectionObj.rTotalTest + irtTestSectionObj.oTotalTest;
+      } else {
+        totalPassedTest = irtTestSectionObj.rTestPass;
+        totalTest = irtTestSectionObj.rTotalTest;
+      }
+
+      percent = Math.round(100 * totalPassedTest / totalTest);
     }
 
     $('#' + irtTestSectionObj.headerId + ' #sectionScore').html(

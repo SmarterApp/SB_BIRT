@@ -65,6 +65,7 @@ var impl = TDS.SecureBrowser.getImplementation();
         $.removeCookie("emailId");
         $.removeCookie("browserDetails");
         $.removeCookie("organization");
+        $.removeCookie("optionalScoring");
         $.cookie("version",  '<%=version%>');
 
         var cntxPath = '<%=contextPath%>';
@@ -83,6 +84,10 @@ var impl = TDS.SecureBrowser.getImplementation();
               $.cookie("emailId",  $('#emailId').val());
               $.cookie("browserDetails",  $('#browserDetails').val());
               $.cookie("organization",  $('#organization').val());
+              
+              var optionalScoringFlag = $('input[name="optionalScoring"]:checked').val();
+              $.cookie("optionalScoring",optionalScoringFlag);
+              
               window.location.href = cntxPath + "/Scripts/SecureBrowser/test/index.html";
             });
         
@@ -110,6 +115,9 @@ var impl = TDS.SecureBrowser.getImplementation();
         $( document ).tooltip({
               position: { my: "left+15 center", at: "right center"}
         });
+        
+        $('#enableOptionScoring').checkboxradio();
+        $('#disableOptionScoring').checkboxradio();
         
         
         if (Util.Browser.isSecure()) {
@@ -201,6 +209,24 @@ var impl = TDS.SecureBrowser.getImplementation();
             <textarea id="browserDetails" name="browserDetails" title="Descriptive text about the browser you are testing" cols="30" rows="3" style="resize: none;"></textarea>           
             </div>
           </div>
+          
+          
+          <div class="divTableRow">&nbsp;</div>
+           <div class="divTableRow" id="functionalityRow">
+            <div class="divTableCell">Optional Scoring:</div>
+            <div class="divTableCellRight">
+              <label for="enableOptionScoring">Yes</label> <input
+                type="radio" id="enableOptionScoring" value="Yes"
+                name="optionalScoring"> <label
+                for="disableOptionScoring">No</label> <input
+                type="radio" id="disableOptionScoring" value="No"
+                name="optionalScoring" checked="checked">
+            </div>
+          </div>
+          
+          
+          
+          
           <div class="divTableRow">&nbsp;</div>
           <div class="divTableRow" align="center">
             <button id="beginIRTTest"></button>

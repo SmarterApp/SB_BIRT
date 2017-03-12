@@ -1221,10 +1221,23 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
 
   var percent = 0;
   if ((iframeObj.contentWindow.rTestPass + iframeObj.contentWindow.rTestFail) > 0) {
-    percent = Math
-        .round(100
-            * iframeObj.contentWindow.rTestPass
-            / (iframeObj.contentWindow.rTestPass + iframeObj.contentWindow.rTestFail));
+
+    var optionalScoringFlag = $.cookie("optionalScoring");
+
+    var totalPassedTest = 0;
+    var totalTest = 0;
+    if (optionalScoringFlag === 'Yes') {
+      totalPassedTest = iframeObj.contentWindow.rTestPass
+          + iframeObj.contentWindow.oTestPass;
+
+      totalTest = iframeObj.contentWindow.totalTest;
+    } else {
+      totalPassedTest = iframeObj.contentWindow.rTestPass;
+      totalTest = iframeObj.contentWindow.rTestPass
+          + iframeObj.contentWindow.rTestFail;
+    }
+
+    percent = Math.round(100 * totalPassedTest / totalTest);
   }
 
   $('#' + headerId[0].id + ' #sectionScore').append(

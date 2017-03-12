@@ -223,11 +223,14 @@ var impl = TDS.SecureBrowser.getImplementation();
             </div>
           </div>
           <div class="divTableRow">
-            <div class="divTableCellRight" id="organization">
+            <div class="divTableCell" id="organization">
             <b>Organization:</b>
             </div>
             <div class="divTableCell" id="irtVersion">
               <b>IRT Version:</b>
+            </div>
+             <div class="divTableCell" id="optionalScoring">
+              <b>Optional Scoring:</b>
             </div>
           </div>
           <div class="divTableRow" id="browserInfo">

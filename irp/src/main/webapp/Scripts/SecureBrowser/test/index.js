@@ -272,7 +272,20 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
 
   var percent = 0;
   if (sectionObj.rTotalTest > 0) {
-    percent = Math.round(100 * sectionObj.rTestPass / sectionObj.rTotalTest);
+
+    var optionalScoringFlag = $.cookie("optionalScoring");
+
+    var totalPassedTest = 0;
+    var totalTest = 0;
+    if (optionalScoringFlag === 'Yes') {
+      totalPassedTest = sectionObj.rTestPass + sectionObj.oTestPass;
+      totalTest = sectionObj.rTotalTest + sectionObj.oTotalTest;
+    } else {
+      totalPassedTest = sectionObj.rTestPass;
+      totalTest = sectionObj.rTotalTest;
+    }
+
+    percent = Math.round(100 * totalPassedTest / totalTest);
   }
 
   $('#' + sectionObj.headerId + ' #sectionScore').html(
