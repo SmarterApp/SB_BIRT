@@ -103,7 +103,7 @@
 	font-family: "PT Sans Caption", sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: 1.5em;
+	font-size: 1.3em;
 	text-align: left;
 	color: #f6f6f6;
 }
@@ -116,7 +116,7 @@
 	font-family: "PT Sans Caption", sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: 1.5em;
+	font-size: 1.3em;
 	text-align: left;
 	color: #f6f6f6;
 }
@@ -129,7 +129,7 @@
 	font-family: "PT Sans Caption", sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: 1.5em;
+	font-size: 1.3em;
 	text-align: left;
 	color: #f6f6f6;
 }
@@ -307,7 +307,7 @@
 	border-style: groove;
 	border-color: #000000;
 	border-image: initial;
-	width: 55%;
+	width: 90%;
 	display: table;
 	margin-right: auto;
 	margin-left: auto;
@@ -400,22 +400,21 @@
     vertical-align: middle;
     display: table-cell;
     float: left;
-    width: 35%;
+    width: 40%;
 }
 
 .divTableCellScore, .divTableHead {
     vertical-align: middle;
     display: table-cell;
     float: left;
-    width: 35%;
-    text-align: center;
+    width: 25%;
 }
 
 .divTableCellScoreIcon {
     vertical-align: middle;
     display: table-cell;
     float: right;
-    width: 30%;
+    width: 35%;
 }
 
 #sectionScore{

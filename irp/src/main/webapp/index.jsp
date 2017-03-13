@@ -213,14 +213,14 @@ var impl = TDS.SecureBrowser.getImplementation();
           
           <div class="divTableRow">&nbsp;</div>
            <div class="divTableRow" id="functionalityRow">
-            <div class="divTableCell">Optional Scoring:</div>
+            <div class="divTableCell">Score optional tests?</div>
             <div class="divTableCellRight">
               <label for="enableOptionScoring">Yes</label> <input
                 type="radio" id="enableOptionScoring" value="Yes"
-                name="optionalScoring"> <label
+                name="optionalScoring" title="Include optional tests in score" alt="Include optional tests in score"> <label
                 for="disableOptionScoring">No</label> <input
                 type="radio" id="disableOptionScoring" value="No"
-                name="optionalScoring" checked="checked">
+                name="optionalScoring" checked="checked" title="Exclude optional tests from score" alt="Exclude optional tests from score" >
             </div>
           </div>
           
