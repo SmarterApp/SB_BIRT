@@ -1,5 +1,7 @@
 Secure Browser API Specification
 ------------------
+v.2.0.0-RC  14-Mar-2017
+
 The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system. The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global `browser` object.
 
 ## Required Methods
