@@ -1214,8 +1214,6 @@ IRT.ApiSpecs = {
     }
   },
   "audiorecordapi" : {
-    // F35. The secure browser shall check for an appropriate Global Object for
-    // API use. R01 SEC-1
     "checkAudioRecorderInitialize" : {
       "id" : "1",
       "testName" : "Initialize audio recorder",
@@ -1225,6 +1223,74 @@ IRT.ApiSpecs = {
       "testApi_certified" : "browser.recorder.initialize",
       "testApi_webaudio" : "(window.AudioContext || window.webkitAudioContext)",
       "testApi_mobile" : "runtime.recorder.initialize",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+    "checkAudioRecorderStatus" : {
+      "id" : "2",
+      "testName" : "Get audio recorder status",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.recorder.getStatus",
+      "testApi_webaudio" : "(new MediaRecorder(new MediaStream()).state)",
+      "testApi_mobile" : "runtime.recorder.getStatus",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+    "checkAudioRecorderCapabilities" : {
+      "id" : "3",
+      "testName" : "Get audio recorder capabilities",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.recorder.getCapabilities",
+      "testApi_webaudio" : "(navigator.mediaDevices.getSupportedConstraints && navigator.mediaDevices.enumerateDevices)",
+      "testApi_mobile" : "runtime.recorder.getCapabilities",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+    "checkAudioCapture" : {
+      "id" : "4",
+      "testName" : " Initiate audio capture",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.recorder.startCapture",
+      "testApi_webaudio" : "(new MediaRecorder(new MediaStream()).start)",
+      "testApi_mobile" : "runtime.recorder.startCapture",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+    "checkAudioStopRecording" : {
+      "id" : "5",
+      "testName" : "Stop recording",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.recorder.stopCapture",
+      "testApi_webaudio" : "(new MediaRecorder(new MediaStream()).stop)",
+      "testApi_mobile" : "runtime.recorder.stopCapture",
       "points" : "1",
       "required" : {
         "all" : true
