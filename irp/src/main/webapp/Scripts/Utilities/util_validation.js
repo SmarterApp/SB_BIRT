@@ -22,6 +22,8 @@
 
   var processTestArray = [];
 
+  var audioTestArray = [];
+
   var MACREGEX = new RegExp(
       "^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$");
 
@@ -54,7 +56,10 @@
   Validation.setIRTTestResults = function(testName, testBrowserType, result,
       details, section) {
     var apiSpec = "";
-    if (section == 'TTS') {
+    if (section == 'AUDIO') {
+      apiSpec = irtApiSpecConstant + specSeparator + specAudioRecorderApi
+          + specSeparator + testName;
+    } else if (section == 'TTS') {
       apiSpec = irtApiSpecConstant + specSeparator + specTTSApi + specSeparator
           + testName;
     } else if (section == 'TTS_MANUAL') {
@@ -94,7 +99,9 @@
     apiSpecObject.details = details;
     apiSpecObject.testApi = testApi;
 
-    if (section == 'TTS') {
+    if (section == 'AUDIO') {
+      audioTestArray.push(apiSpecObject)
+    } else if (section == 'TTS') {
       ttsTestArray.push(apiSpecObject);
     } else if (section == 'TTS_MANUAL') {
       ttsManualTestArray.push(apiSpecObject);
@@ -246,19 +253,22 @@
         "jsGrid" : false,
         "jsTTSGrid" : false,
         "jsHTML5TestGrid" : true,
-        "jsCSS3TestGrid" : true
+        "jsCSS3TestGrid" : true,
+        "jsAudioRecorderGrid" : false
       },
       "reportGridData" : {
         "jsGrid" : resultArray,
         "jsTTSGrid" : ttsTestArray,
         "jsHTML5TestGrid" : html5TestArray,
-        "jsCSS3TestGrid" : css3TestArray
+        "jsCSS3TestGrid" : css3TestArray,
+        "jsAudioRecorderGrid" : audioTestArray
       },
       "headerHTML" : {
         "css3TestHeader" : $('#css3TestHeader').html(),
         "browserAPI" : $('#browserAPI').html(),
         "textToSpeechAPI" : $('#textToSpeechAPI').html(),
-        "html5TestHeader" : $('#html5TestHeader').html()
+        "html5TestHeader" : $('#html5TestHeader').html(),
+        "audioAPI" : $('#audioAPI').html()
       },
       "reportInfo" : {
         "name" : $.cookie("name"),
@@ -367,6 +377,9 @@
     return css3TestArray;
   };
 
+  Validation.getAudioTestArray = function() {
+    return audioTestArray;
+  };
   Util.Validation = Validation;
 
 })(Util);
