@@ -12,6 +12,7 @@ var certified = "certified";
 var securebrowser = "SB";
 var mobile = "mobile";
 var webspeech = "webspeech";
+var webaudio = "webaudio";
 
 /**
  * Below variables serve as constants to access the JSON Object for automated
@@ -45,6 +46,7 @@ var specDisableUI = "disableUI";
 var specTTSApi = "ttsapi";
 var specTTSManualApi = "ttsmanualapi";
 var specBrowserapi = "browserapi";
+var specAudioRecorderApi = "audiorecordapi";
 var specCapabilityManualApi = "capabilityManualAPI";
 var specProcessManualApi = "processManualAPI";
 var specExternalTest = "externalTest";
@@ -54,6 +56,7 @@ var tts_section = 'TTS';
 var ttsmanual_section = 'TTS_MANUAL';
 var capability_section = 'CAPABILITY_MANUAL';
 var process_section = 'PROCESS_MANUAL';
+var audio_section = 'AUDIO';
 
 /**
  * Manual test's to run for get/set capability
@@ -123,6 +126,25 @@ IRT.AUTOMATED_TEST_SECTION = {
     "rTotalTest" : 0,
     "oTotalTest" : 0
 
+  },
+  "audiorecordapi" : {
+
+    /**
+     * webAudioBrowserType is the variable defined in index.js which will
+     * provide browserType value based on WebAudioAPI support for browser *
+     */
+    "text" : "Audio Recorder",
+    "headerId" : "audioAPI",
+    "browserType" : "webAudioBrowserType",
+    "section" : audio_section,
+    "totalTest" : 0,
+    "rTestPass" : 0,
+    "rTestFail" : 0,
+    "oTestPass" : 0,
+    "oTestFail" : 0,
+    "notperformed" : 0,
+    "rTotalTest" : 0,
+    "oTotalTest" : 0
   }
 };
 
@@ -1189,6 +1211,27 @@ IRT.ApiSpecs = {
       "buttonSliderId" : "",
       "disableSection" : [ "" ],
       "enableSection" : [ "" ]
+    }
+  },
+  "audiorecordapi" : {
+    // F35. The secure browser shall check for an appropriate Global Object for
+    // API use. R01 SEC-1
+    "checkAudioRecorderInitialize" : {
+      "id" : "1",
+      "testName" : "Initialize audio recorder",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.recorder.initialize",
+      "testApi_webaudio" : "(window.AudioContext || window.webkitAudioContext)",
+      "testApi_mobile" : "runtime.recorder.initialize",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
     }
   }
 };

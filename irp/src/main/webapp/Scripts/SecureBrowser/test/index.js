@@ -24,6 +24,8 @@ var isMobile = Util.Browser.isMobile();
 var isCertified = Util.Browser.isCertified();
 var isAIRSecureBrowser = Util.Browser.isSecure();
 
+var webAudioBrowserType = TDS.SecureBrowser.getWebAudioBrowserType();
+
 function beginBrowserAPITest() {
 
   Object.keys(IRT.AUTOMATED_TEST_SECTION).forEach(
@@ -56,6 +58,8 @@ function beginBrowserAPITest() {
 
   populateResults($("#jsGrid"), Util.Validation.getResult(), false);
   populateResults($("#jsTTSGrid"), Util.Validation.getTTSResult(), false);
+  populateResults($("#jsAudioRecorderGrid"), Util.Validation
+      .getAudioTestArray(), false);
 }
 
 function closeBrowser() {

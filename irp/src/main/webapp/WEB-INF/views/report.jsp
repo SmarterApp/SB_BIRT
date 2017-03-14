@@ -256,6 +256,11 @@ var impl = TDS.SecureBrowser.getImplementation();
     <div id="jsTTSGrid"></div>
 
 
+  <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div class="header-irt" id="audioAPI">Audio Recorder</div>
+    <div id="jsAudioRecorderGrid"></div>
+
     <div>&nbsp;</div>
     <div>&nbsp;</div>
     <div id="html5TestMain">

@@ -393,6 +393,18 @@
     return operatingSystem;
   };
 
+  Browser.isWebAudioApiSupported = function() {
+    try {
+      // Fix up for prefixing
+      var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      return true;
+
+    } catch (e) {
+      console.log('Web Audio API is not supported in this browser');
+      return false;
+    }
+  };
+
   Util.Browser = Browser;
 
 })(Util);

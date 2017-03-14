@@ -19,7 +19,13 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   var browserType = certified;
 
+  var webAudioBrowserType = certified;
+
   function initialize() {
+
+    if (Util.Browser.isWebAudioApiSupported()) {
+      webAudioBrowserType = webaudio
+    }
 
     if (Util.Browser.isCertified()) {
       sbImpl = new TDS.SecureBrowser.Certified();
@@ -29,19 +35,21 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       } else if (Util.Browser.isIOS()) {
         sbImpl = new TDS.SecureBrowser.Mobile.iOS();
         browserType = mobile;
+        webAudioBrowserType = mobile;
       } else if (Util.Browser.isAndroid()) {
         sbImpl = new TDS.SecureBrowser.Mobile.Android();
         browserType = mobile;
+        webAudioBrowserType = mobile;
       } else {
         sbImpl = new TDS.SecureBrowser.Firefox();
         browserType = securebrowser;
       }
     }
 
-/*    // set default?
-    if (sbImpl == null) {
-      sbImpl = new TDS.SecureBrowser.Certified();
-    }*/
+    /*
+     * // set default? if (sbImpl == null) { sbImpl = new
+     * TDS.SecureBrowser.Certified(); }
+     */
 
     if (sbImpl != null)
       sbImpl.initialize();
@@ -58,6 +66,10 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   SB.getBrowserType = function() {
     return browserType;
+  };
+
+  SB.getWebAudioBrowserType = function() {
+    return webAudioBrowserType;
   };
 
 })(TDS.SecureBrowser);
