@@ -146,7 +146,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
     `gender` (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: "male", "female", "neutral". This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
 
-   The callback, if provided, is invoked for TTS events which include `start`, `end`, `word boundary`, `sentence boundary`, `synchronization/marker encountered`, `paused` and `error`. 
+   The callback, if provided, is invoked for TTS events which include `start`, `end`, `word boundary`, `sentence boundary`, `synchronization/marker encountered`, `paused`, `resumed`, and `error`. 
 
     `void browser.tts.speak(string text, object options, function callback)`
     
@@ -154,15 +154,17 @@ The following Secure Browser Application Programming Interface (API) endpoints d
     
     `callback(reason, parms)` 
     
-    where `reason` is a string like 'word', 'sentence', 'mark' indicating a word, sentence, or mark boundary. For each of these `reason` strings, the `parms` would be an object such as:   
-    
+    where `reason` is a string which includes one of the following values:  'start', 'end', 'pause', 'resume', 'word', 'sentence', 'mark', and 'error', indicating a word, sentence, or mark boundary, or an error. For each of these `reason` strings, the `parms` would be an object
+        
     `parms = { start, end, length, type };`
  
 1. R09. **Stop speech (TTS)**. This is called by the testing application to stop any speech that may be in progress. 
 
 	`void browser.tts.stop(function callback)`
 	
-	'callback' is an optional funtion that if present, will be invoked with a string status when TTS has stopped speaking.  
+	'callback' is an optional function that if present, will be invoked with a string status when TTS has stopped speaking, or an error has occurred while trying to make speaking stop (e.g., it was not speaking at the time). The state string will contain a code sych as  'stop' (if speech was stopped) or 'error' (if an error occurred).
+
+    `callback(state)` 
 
 1. R10. **Get speech status (TTS)**. This is called by the testing application to inspect the current status of speech. The valid values are listed below.
 
@@ -204,7 +206,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 	
     Example value passed to the callback function:
 
-     `[{'name':'US English Female TTS', 'gender':'female', language:'en-US'},{'name':'US Spanish Male TTS', 'gender':'male', language:'es-es'}]`
+     `[{name:'US English Female TTS', gender:'female', language:'en-US'},{name:'US Spanish Male TTS', gender':male', language:'es-es'}]`
 
 	Empty array indicates no voice packs are available. Undefined or null indicates that an error occurred attempting to get the voices and no information is available.
 
@@ -216,7 +218,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	` function(string state){...}`
 	
-	Callback is invoked when pause has occurred. If state is null or undefined, then an error occurred during pause. Otherwise 'Paused' or 'Stopped' are the expected states in the callback.
+    Callback is invoked when pause has occurred. If state is null or undefined, then an error occurred during pause. Otherwise 'pause' or 'error' are the expected states in the callback with error meaning something like there was nothing being spoken to pause.
 
 1. R14. **Resume speech (TTS)**. This is called by the web application to resume speech if it was previously paused. 
 
@@ -226,7 +228,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	` function(string state){...}`
 	
-	Callback is invoked when resume has occurred. If state is null or undefined, then an error occurred during pause. Otherwise 'Playing' or 'Stopped' are the expected states in the callback. 
+    Callback is invoked when resume has occurred. If state is null or undefined, then an error occurred during resume. Otherwise 'resume' or 'error' are the expected states in the callback, with error meaning something like the speech engine was not in a paused state.
 
 ### Optional APIs
 
@@ -246,18 +248,18 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`void browser.security.getMACAddress(function callback)`
 
-	`callback` is optional. If you specify this parameter, it should be a function that looks like this:
+	`callback` should be a function that looks like this:
 
-	` function(arry of mac addresses){...}`
+	` function(array of mac addresses){...}`
 	
-	If array passed into the callback is undefined or null, we were unable to retrieve the MAC addresses. 
+	If the array passed into the callback is undefined or null, we were unable to retrieve the MAC addresses. 
 
      Example response:
 	 
      `"['00:55:65:C0:00:EA']"`
     
 #### Audio Recorder (W3C)
-*NOTE: Browsers supporting W3C's [Web Audio API](https://www.w3.org/TR/webaudio/) and [getUserMedia()](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia) do not need to implement these functions.*
+*NOTE: Browsers supporting W3C's [Web Audio API](https://www.w3.org/TR/webaudio/) for playback, [MediaStream Recording](https://www.w3.org/TR/mediastream-recording/) for recording, and Mozilla's [MediaDevices.getUserMedia()](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia) do not need to implement these functions.*
 
 #### Audio Recorder (non-W3C)
 1. R25. **Initialize audio recorder**. This method is called by the testing application once to initialize the audio API after a page loads. The event listener passed in as argument is used to notify events to caller about progress.  Any attempts to call this method when it has already been called should be treated as a reset and reinit.
@@ -300,7 +302,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
  
 	`void browser.recorder.getCapabilities(function callback)`
 	
-	`callback` is optional. If you specify this parameter, it should be a function that looks like this:
+	`callback` should be a function that looks like this:
 
 	` function(capability object literal){...}`
 	
