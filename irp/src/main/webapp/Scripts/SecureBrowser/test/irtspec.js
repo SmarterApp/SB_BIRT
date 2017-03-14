@@ -1298,6 +1298,23 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
+    },
+    "checkAudioStopRecording" : {
+      "id" : "6",
+      "testName" : "Retrive recording",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.recorder.retrieveAudio",
+      "testApi_webaudio" : "(new MediaRecorder(new MediaStream()).requestData)",
+      "testApi_mobile" : "runtime.recorder.retrieveAudioFile",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
     }
   }
 };
