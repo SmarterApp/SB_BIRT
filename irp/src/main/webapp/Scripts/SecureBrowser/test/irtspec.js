@@ -52,11 +52,30 @@ var specProcessManualApi = "processManualAPI";
 var specExternalTest = "externalTest";
 var specSeparator = ".";
 
+var specRecorderManualApi = "recordermanualapi";
+
 var tts_section = 'TTS';
 var ttsmanual_section = 'TTS_MANUAL';
 var capability_section = 'CAPABILITY_MANUAL';
 var process_section = 'PROCESS_MANUAL';
 var recorder_section = 'RECORDER';
+var recordermanual_section = 'RECORDER_MANUAL';
+
+/**
+ * Manual test's to run for get/set capability
+ */
+IRT.RecorderTest = {
+  INITIATE : 'INITIATE',
+  STATUS : 'STATUS',
+  CAPABILITY : 'CAPABILITY',
+  START_RECORD : 'START_RECORD',
+  STOP_RECORD : 'STOP_RECORD',
+  PLAY : 'PLAY',
+  PAUSE : 'PAUSE',
+  RESUME : 'RESUME',
+  STOP : 'STOP',
+  UNKNOWN : 'UNKNOWN' // unknown status
+};
 
 /**
  * Manual test's to run for get/set capability
@@ -1238,7 +1257,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.recorder.getStatus",
-      "testApi_webaudio" : "new MediaRecorder(new MediaStream()).state",
+      "testApi_webaudio" : "audioCtx.state",
       "testApi_mobile" : "runtime.recorder.getStatus",
       "points" : "1",
       "required" : {
@@ -1418,5 +1437,246 @@ IRT.ApiSpecs = {
       "apiType" : [ "function" ],
       "isDeprecated" : false
     }
+  },
+  "recordermanualapi" : {
+    "INITIATE" : {
+
+      "id" : "13",
+      "testName" : "Manual test for Audio Recorder Initialization",
+      "instruction" : "Click Initiate to initialize audio recorder.",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you didn't see any error dialog box, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "Audio Recorder Initialization",
+      "buttonSliderId" : "initiateRecording",
+      "disableSection" : [ 'STATUS', 'CAPABILITY', 'START_RECORD',
+          'STOP_RECORD', 'PLAY', 'PAUSE', 'RESUME', 'STOP' ],
+      "enableSection" : [ "INITIATE" ]
+    },
+    "STATUS" : {
+
+      "id" : "13",
+      "testName" : "Manual test for TTS Speak",
+      "instruction" : "Click Play to test TTS Speech",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Play Test",
+      "buttonSliderId" : "play",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
+          "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY" ]
+    },
+    "CAPABILITY" : {
+      // Pause R11, R12 SEC-11, SEC-39
+      "id" : "12",
+      "testName" : "Manual test for TTS Pause",
+      "instruction" : "Click Play and then Pause to test TTS Pause",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "<p>Did text-to-speech pause? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Pause Test",
+      "buttonSliderId" : "pause",
+      "disableSection" : [ "RESUME", "STOP", "VOLUME", "PITCH", "RATE",
+          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "PAUSE" ]
+    },
+    "START_RECORD" : {
+      // Resume R11, R12 SEC-11, SEC-39
+      "id" : "13",
+      "testName" : "Manual test for TTS Resume",
+      "instruction" : "Click Play, Pause, and then Resume to test TTS Resume",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "<p>Did text-to-speech resume? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Resume Test",
+      "buttonSliderId" : "resume",
+      "disableSection" : [ "STOP", "VOLUME", "PITCH", "RATE", "SYSTEM_VOLUME",
+          "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "PAUSE", "RESUME" ]
+    },
+    "STOP_RECORD" : {
+      // Stop R09 SEC-37
+      "id" : "14",
+      "testName" : "Manual test for TTS Stop",
+      "instruction" : "Click Play and then Stop to test TTS Stop",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "<p>Did text-to-speech stop? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Stop Test",
+      "buttonSliderId" : "stop",
+      "disableSection" : [ "PAUSE", "RESUME", "VOLUME", "PITCH", "RATE",
+          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "STOP" ]
+    },
+    "PLAY" : {
+      // Volume R11, R12 SEC-11, SEC-39
+      "id" : "15",
+      "testName" : "Manual test for TTS Volume",
+      "instruction" : "Change Volume and Click Play to test",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Volume Test",
+      "buttonSliderId" : "ttsVolume",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "PITCH", "RATE",
+          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "VOLUME" ]
+    },
+    "PAUSE" : {
+      // Pitch R11, R12 SEC-11, SEC-39
+      "id" : "16",
+      "testName" : "Manual test for TTS Pitch",
+      "instruction" : "Change Pitch and Click Play to test",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Pitch Test",
+      "buttonSliderId" : "ttsPitch",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "RATE",
+          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "PITCH" ]
+    },
+    "RESUME" : {
+      // Rate R11, R12 SEC-11, SEC-39
+      "id" : "17",
+      "testName" : "Manual test for TTS Rate",
+      "instruction" : "Change Rate and Click Play to test",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "TTS Rate Test",
+      "buttonSliderId" : "ttsRate",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
+          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "RATE" ]
+    },
+    "STOP" : {
+      // System Volume R16 SEC-57, SEC-58
+      "id" : "18",
+      "testName" : "Manual test for System Volume",
+      "instruction" : "Change System Volume and Click Play to test",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "System Volume Test",
+      "buttonSliderId" : "systemVolume",
+      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
+          "RATE", "MUTE", "UNMUTE", "VOICE" ],
+      "enableSection" : [ "PLAY", "SYSTEM_VOLUME" ]
+    },
+    "FAILED" : {
+      "id" : "22",
+      "testName" : "TTS Manual Test",
+      "instruction" : "",
+      "testApi" : "",
+      "testResult" : false,
+      "details" : "",
+      "testApi_certified" : "",
+      "testApi_webspeech" : "",
+      "testApi_SB" : "",
+      "testApi_mobile" : "",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "dialogHtml" : "",
+      "dialogTitle" : "",
+      "buttonSliderId" : "",
+      "disableSection" : "",
+      "enableSection" : ""
+    }
+
   }
 };

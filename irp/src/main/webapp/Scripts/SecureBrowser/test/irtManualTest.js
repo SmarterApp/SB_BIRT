@@ -15,6 +15,8 @@ var capabilityTestArray = Object.keys(IRT.CapabilityTest);
 
 var processTestArray = Object.keys(IRT.ProcessTest);
 
+var recorderTestArray = Object.keys(IRT.RecorderTest);
+
 var propertyArray = Object.keys(IRT.CAPABILITY_PROPERTY);
 /*
  * Initial value for currentTestIndex set as 0 so as to load first test (Play)
@@ -163,6 +165,10 @@ function loadDialogBox(id, testName, testTitle, isNew) {
             populateManualResultIntoResultGrid(testName, $("#jsGrid"),
                 $("#processApiManualTest"), id);
           }
+          if (testName == 'RECORDER') {
+            populateManualResultIntoResultGrid(testName,
+                $("#jsAudioRecorderGrid"), $("#recorderManualTest"), id);
+          }
         }
       } ]
     });
@@ -186,6 +192,10 @@ function loadDialogBox(id, testName, testTitle, isNew) {
           if (testName == 'PROCESS') {
             populateManualResultIntoResultGrid(testName, $("#jsGrid"),
                 $("#processApiManualTest"), id);
+          }
+          if (testName == 'RECORDER') {
+            populateManualResultIntoResultGrid(testName,
+                $("#jsAudioRecorderGrid"), $("#recorderManualTest"), id);
           }
         }
       } ]
@@ -932,6 +942,18 @@ function populateJsonGrid(id, testName, hideResult) {
     gridArray = processGridArray.slice();
   }
 
+  if (testName == 'RECORDER') {
+
+    var recorderGridArray = [];
+
+    var setObj = eval(irtApiSpecConstant + specSeparator
+        + specRecorderManualApi + specSeparator + currentTestSetting);
+    setObj.testResult = null;
+    recorderGridArray.push(setObj);
+    gridArray = recorderGridArray.slice();
+
+  }
+
   if (hideResult) {
     testNameTitle = 'Capability'
     resultColumnCss = 'irt-grid-column-hide';
@@ -1358,5 +1380,17 @@ function recorderComponentInitialize() {
   createButton($("#pausePlaybackRecording"), 'Pause Playback', 'Pause');
   createButton($("#resumePlaybackRecording"), 'Resume Playback', 'Resume');
   createButton($("#stopPlaybackRecording"), 'Stop Playback', 'Stop');
+
+  if (currentTestSetting == IRT.ProcessTest.UNKNOWN) {
+
+    currentTestSetting = IRT.RecorderTest.INITIATE;
+
+  }
+
+  populateJsonGrid($("#recorderGrid"), 'RECORDER', false);
+
+  if (Util.Validation.getProcessManualResult().length == 0) {
+    populateReportGrid(recorderTestArray, recordermanual_section);
+  }
 
 }

@@ -56,7 +56,10 @@
   Validation.setIRTTestResults = function(testName, testBrowserType, result,
       details, section) {
     var apiSpec = "";
-    if (section == recorder_section) {
+    if (section == recordermanual_section) {
+      apiSpec = irtApiSpecConstant + specSeparator + specRecorderManualApi
+          + specSeparator + testName;
+    } else if (section == recorder_section) {
       apiSpec = irtApiSpecConstant + specSeparator + specAudioRecorderApi
           + specSeparator + testName;
     } else if (section == tts_section) {
@@ -99,7 +102,7 @@
     apiSpecObject.details = details;
     apiSpecObject.testApi = testApi;
 
-    if (section == recorder_section) {
+    if (section == recorder_section || section == recordermanual_section) {
       audioTestArray.push(apiSpecObject)
     } else if (section == tts_section) {
       ttsTestArray.push(apiSpecObject);
