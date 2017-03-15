@@ -26,6 +26,8 @@ var isAIRSecureBrowser = Util.Browser.isSecure();
 
 var webAudioBrowserType = TDS.SecureBrowser.getWebAudioBrowserType();
 
+var audioCtx = new (window.AudioContext || webkitAudioContext)();
+
 function beginBrowserAPITest() {
 
   Object.keys(IRT.AUTOMATED_TEST_SECTION).forEach(

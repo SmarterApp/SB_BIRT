@@ -1238,7 +1238,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.recorder.getStatus",
-      "testApi_webaudio" : "(new MediaRecorder(new MediaStream()).state)",
+      "testApi_webaudio" : "new MediaRecorder(new MediaStream()).state",
       "testApi_mobile" : "runtime.recorder.getStatus",
       "points" : "1",
       "required" : {
@@ -1272,7 +1272,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.recorder.startCapture",
-      "testApi_webaudio" : "(new MediaRecorder(new MediaStream()).start)",
+      "testApi_webaudio" : "new MediaRecorder(new MediaStream()).start",
       "testApi_mobile" : "runtime.recorder.startCapture",
       "points" : "1",
       "required" : {
@@ -1289,7 +1289,7 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.recorder.stopCapture",
-      "testApi_webaudio" : "(new MediaRecorder(new MediaStream()).stop)",
+      "testApi_webaudio" : "new MediaRecorder(new MediaStream()).stop",
       "testApi_mobile" : "runtime.recorder.stopCapture",
       "points" : "1",
       "required" : {
@@ -1299,15 +1299,100 @@ IRT.ApiSpecs = {
       "apiType" : [ "function" ],
       "isDeprecated" : false
     },
-    "checkAudioStopRecording" : {
+    "checkAudioRetrieveRecording" : {
       "id" : "6",
-      "testName" : "Retrive recording",
+      "testName" : "Retrieve recording",
       "testApi" : "",
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.recorder.retrieveAudio",
-      "testApi_webaudio" : "(new MediaRecorder(new MediaStream()).requestData)",
+      "testApi_webaudio" : "new MediaRecorder(new MediaStream()).requestData",
       "testApi_mobile" : "runtime.recorder.retrieveAudioFile",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+    "checkStartPlayback" : {
+      "id" : "7",
+      "testName" : "Playback recording",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.recorder.play",
+      "testApi_webaudio" : "audioCtx.createBufferSource().start",
+      "testApi_mobile" : "runtime.recorder.play",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+    "checkStopPlayback" : {
+      "id" : "8",
+      "testName" : "Stop playback",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.recorder.stopPlay",
+      "testApi_webaudio" : "audioCtx.createBufferSource().stop",
+      "testApi_mobile" : "runtime.recorder.stopPlay",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+    "checkPausePlayback" : {
+      "id" : "9",
+      "testName" : "Pause playback",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.recorder.pausePlay",
+      "testApi_webaudio" : "audioCtx.createBufferSource().start",
+      "testApi_mobile" : "runtime.recorder.pausePlay",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+    "checkResumePlayback" : {
+      "id" : "10",
+      "testName" : "Resume playback",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.recorder.resumePlay",
+      "testApi_webaudio" : "audioCtx.createBufferSource().start",
+      "testApi_mobile" : "runtime.recorder.resumePlay",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+    "checkRetieveAudioList" : {
+      "id" : "11",
+      "testName" : "Resume playback",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.recorder.retrieveAudioFileList",
+      "testApi_webaudio" : "audioCtx.retrieveAudioFileList",
+      "testApi_mobile" : "runtime.recorder.retrieveAudioFileList",
       "points" : "1",
       "required" : {
         "all" : true
