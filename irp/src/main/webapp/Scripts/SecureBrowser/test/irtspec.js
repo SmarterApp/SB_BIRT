@@ -56,7 +56,7 @@ var tts_section = 'TTS';
 var ttsmanual_section = 'TTS_MANUAL';
 var capability_section = 'CAPABILITY_MANUAL';
 var process_section = 'PROCESS_MANUAL';
-var audio_section = 'AUDIO';
+var recorder_section = 'RECORDER';
 
 /**
  * Manual test's to run for get/set capability
@@ -136,7 +136,7 @@ IRT.AUTOMATED_TEST_SECTION = {
     "text" : "Audio Recorder",
     "headerId" : "audioAPI",
     "browserType" : "webAudioBrowserType",
-    "section" : audio_section,
+    "section" : recorder_section,
     "totalTest" : 0,
     "rTestPass" : 0,
     "rTestFail" : 0,

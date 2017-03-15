@@ -56,19 +56,19 @@
   Validation.setIRTTestResults = function(testName, testBrowserType, result,
       details, section) {
     var apiSpec = "";
-    if (section == 'AUDIO') {
+    if (section == recorder_section) {
       apiSpec = irtApiSpecConstant + specSeparator + specAudioRecorderApi
           + specSeparator + testName;
-    } else if (section == 'TTS') {
+    } else if (section == tts_section) {
       apiSpec = irtApiSpecConstant + specSeparator + specTTSApi + specSeparator
           + testName;
-    } else if (section == 'TTS_MANUAL') {
+    } else if (section == ttsmanual_section) {
       apiSpec = irtApiSpecConstant + specSeparator + specTTSManualApi
           + specSeparator + testName;
-    } else if (section == 'CAPABILITY_MANUAL') {
+    } else if (section == capability_section) {
       apiSpec = irtApiSpecConstant + specSeparator + specCapabilityManualApi
           + specSeparator + testName;
-    } else if (section == 'PROCESS_MANUAL') {
+    } else if (section == process_section) {
       apiSpec = irtApiSpecConstant + specSeparator + specProcessManualApi
           + specSeparator + testName;
     } else {
@@ -99,15 +99,15 @@
     apiSpecObject.details = details;
     apiSpecObject.testApi = testApi;
 
-    if (section == 'AUDIO') {
+    if (section == recorder_section) {
       audioTestArray.push(apiSpecObject)
-    } else if (section == 'TTS') {
+    } else if (section == tts_section) {
       ttsTestArray.push(apiSpecObject);
-    } else if (section == 'TTS_MANUAL') {
+    } else if (section == ttsmanual_section) {
       ttsManualTestArray.push(apiSpecObject);
-    } else if (section == 'CAPABILITY_MANUAL') {
+    } else if (section == capability_section) {
       capabilityTestArray.push(apiSpecObject);
-    } else if (section == 'PROCESS_MANUAL') {
+    } else if (section == process_section) {
       processTestArray.push(apiSpecObject);
     } else {
       resultArray.push(apiSpecObject);

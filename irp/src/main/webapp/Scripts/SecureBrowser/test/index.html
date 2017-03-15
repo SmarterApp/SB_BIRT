@@ -87,6 +87,8 @@
 
             $("#ttsTestLoad").load("ttsManualTest.html");
 
+            $('#recorderTestLoad').load("recordermanualtest.html");
+            
             $("#capabilityTestLoad").load("capabilityManualTest.html");
 
             $("#processTestLoad").load("processManualTest.html");
@@ -104,15 +106,19 @@
             }
 
             createButton($("#capabilityApiManualTest"),
-                'Perform Get/Set Capabilities Manual Test');
+                'Perform Get/Set Capabilities Manual Test','Perform Get/Set Capabilities Manual Test');
             createButton($("#processApiManualTest"),
-                'Perform Examine Process List Manual Test');
+                'Perform Examine Process List Manual Test','Perform Examine Process List Manual Test');
             createButton($("#ttsManualTest"),
-                'Perform Text-to-speech Manual test');
-            createButton($("#html5ManualTest"), 'Perform HTML5 Test');
-            createButton($("#css3ManualTest"), 'Perform CSS3 Test');
+                'Perform Text-to-speech Manual test','Perform Text-to-speech Manual test');
+            createButton($("#html5ManualTest"), 'Perform HTML5 Test', 'Perform HTML5 Test');
+            createButton($("#css3ManualTest"), 'Perform CSS3 Test','Perform CSS3 Test');
+            
+            createButton($("#recorderManualTest"), 'Perform Audio Recorder Test', 'Perform Audio Recorder Test');
+            
+            
 
-            createButton($("#endBrowserTest"), 'Done');
+            createButton($("#endBrowserTest"), 'Done', 'Done');
 
             $("#irtHome").click(function() {
               window.location.href = getContextPath();
@@ -211,7 +217,14 @@
       </div>
     </div>
     <div id="jsAudioRecorderGrid"></div>
+  <div>&nbsp;</div>
+    <div>
 
+      <button id="recorderManualTest"
+        onclick="javascript:loadDialogBox($('#dialogRecorder'), 'RECORDER', 'Audio Recorder API Manual Test',true)"></button>
+
+    </div>
+    
     <div>&nbsp;</div>
     <div>&nbsp;</div>
     <div id="html5TestMain">
@@ -269,6 +282,8 @@
 
 
     <div id="ttsTestLoad"></div>
+    
+    <div id="recorderTestLoad"></div>
 
     <div id="capabilityTestLoad"></div>
 

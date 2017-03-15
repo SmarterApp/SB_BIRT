@@ -34,7 +34,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   var dialogWidth = '90%';
   var dialogHeight = 800;
 
-  if (testName == 'TTS') {
+  if (testName == 'RECORDER') {
+    isManualTestSupported = true;
+  } else if (testName == 'TTS') {
     if (ttsImpl != null) {
       isManualTestSupported = true;
     }
@@ -130,6 +132,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
           processComponentInitialize();
         }
+        if (testName == 'RECORDER') {
+          recorderComponentInitialize();
+        }
       },
       buttons : [ {
         id : "dialogButton",
@@ -186,6 +191,23 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       } ]
     });
 
+  }
+
+  if (testName == 'RECORDER') {
+    if (isManualTestSupported) {
+      id.dialog("open");
+    } else {
+      id.dialog("open");
+
+      Util.Validation
+          .setIRTTestResults(
+              'FAILED',
+              null,
+              false,
+              'Error: Could not initialize Audio Recorder Support for this browser',
+              recorder_section);
+
+    }
   }
 
   if (testName == 'TTS') {
@@ -299,7 +321,7 @@ function processComponentInitialize() {
 
   $('#multiselect').multiselect();
   populateJsonGrid($("#processTestGrid"), 'PROCESS', false);
-  createButton($("#examineProcess"), 'Examine');
+  createButton($("#examineProcess"), 'Examine', 'Examine');
   loadAvailableForbiddenApps();
   if (Util.Validation.getProcessManualResult().length == 0) {
     populateReportGrid(processTestArray, process_section);
@@ -317,8 +339,8 @@ function capabilityComponentInitialize() {
   createSelectMenu($("#capabilityType"), 'CAPABILITY');
   createRadioButton($("#enableCapability"));
   createRadioButton($("#disableCapability"));
-  createButton($("#setCapability"), 'Set');
-  createButton($("#getCapability"), 'Get');
+  createButton($("#setCapability"), 'Set', 'Set');
+  createButton($("#getCapability"), 'Get', 'Get');
   loadCapabilities();
   disableUIOptions('CAPABILITY', specCapabilityManualApi, capabilityTestArray);
   enableUIOptions('CAPABILITY', specCapabilityManualApi, capabilityTestArray);
@@ -346,13 +368,13 @@ function ttsComponentInitialize() {
   createSlider($("#ttsRate"), $("#ttsRateText"), 'Rate', 0, 20, 10);
   createSlider($("#systemVolume"), $("#systemVolumeText"), 'System Volume', 0,
       10, 10);
-  createButton($("#play"), 'Play');
-  createButton($("#pause"), 'Pause');
-  createButton($("#resume"), 'Resume');
-  createButton($("#stop"), 'Stop');
-  createButton($("#systemMute"), 'Mute');
-  createButton($("#systemUnMute"), 'Ummute');
-  createSelectMenu($("#voices"), 'TTS');
+  createButton($("#play"), 'Play', 'Play');
+  createButton($("#pause"), 'Pause', 'Pause');
+  createButton($("#resume"), 'Resume', 'Resume');
+  createButton($("#stop"), 'Stop', 'Stop');
+  createButton($("#systemMute"), 'Mute', 'Mute');
+  createButton($("#systemUnMute"), 'Ummute', 'Ummute');
+  createSelectMenu($("#voices"), 'TTS', 'TTS');
   loadVoices();
   disableUIOptions('TTS', specTTSManualApi, ttsSettingArray);
   enableUIOptions('TTS', specTTSManualApi, ttsSettingArray);
@@ -455,10 +477,10 @@ function createRadioButton(id) {
   id.checkboxradio();
 }
 
-function createButton(id, text) {
+function createButton(id, text, displaylabel) {
 
   id.button({
-    label : text
+    label : displaylabel
   });
 
   id.click(function(event) {
@@ -616,7 +638,7 @@ function examineProcessList() {
   $("#runningForBiddenApps").show();
   $("#concludeButton").show();
 
-  createButton($("#conclude"), "OK");
+  createButton($("#conclude"), "OK", "OK");
   var forbiddenRunningApps = impl != null ? impl
       .examineProcessList(selectedProcess) : selectedProcess;
   populateRunningForbiddenApplist(forbiddenRunningApps);
@@ -1323,4 +1345,18 @@ function populateRunningForbiddenApplist(forbiddenArrayFromApi) {
 
     ]
   });
+}
+
+function recorderComponentInitialize() {
+
+  createButton($("#initiateRecording"), 'Initiate', 'Initiate');
+  createButton($("#getRecordingStatus"), 'Status', 'Status');
+  createButton($("#getRecordingCapabilities"), 'Capabilities', 'Capabilities');
+  createButton($("#startRecording"), 'Record', 'Start Recording');
+  createButton($("#stopRecording"), 'Stop Recording', 'Stop Recording');
+  createButton($("#startPlaybackRecording"), 'Play Recording', 'Play');
+  createButton($("#pausePlaybackRecording"), 'Pause Playback', 'Pause');
+  createButton($("#resumePlaybackRecording"), 'Resume Playback', 'Resume');
+  createButton($("#stopPlaybackRecording"), 'Stop Playback', 'Stop');
+
 }
