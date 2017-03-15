@@ -1225,7 +1225,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.recorder.initialize",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -1242,7 +1242,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.recorder.getStatus",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -1259,7 +1259,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.recorder.getCapabilities",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -1276,7 +1276,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.recorder.startCapture",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -1293,7 +1293,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.recorder.stopCapture",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -1310,7 +1310,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.recorder.retrieveAudioFile",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -1327,7 +1327,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.recorder.play",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -1344,7 +1344,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.recorder.stopPlay",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -1357,11 +1357,11 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.recorder.pausePlay",
-      "testApi_webaudio" : "audioCtx.createBufferSource().start",
+      "testApi_webaudio" : "audioCtx.createBufferSource().stop",
       "testApi_mobile" : "runtime.recorder.pausePlay",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -1378,7 +1378,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.recorder.resumePlay",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -1386,7 +1386,7 @@ IRT.ApiSpecs = {
     },
     "checkRetieveAudioList" : {
       "id" : "11",
-      "testName" : "Resume playback",
+      "testName" : "Retrieve list of audio recordings",
       "testApi" : "",
       "testResult" : null,
       "details" : "",
@@ -1395,7 +1395,24 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.recorder.retrieveAudioFileList",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+    "checkRetrieveAudioDatafromList" : {
+      "id" : "12",
+      "testName" : "Retrieve audio data",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "browser.recorder.retrieveAudioFile",
+      "testApi_webaudio" : "audioCtx.retrieveAudioFile",
+      "testApi_mobile" : "runtime.recorder.retrieveAudioFile",
+      "points" : "1",
+      "required" : {
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
