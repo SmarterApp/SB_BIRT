@@ -1,6 +1,6 @@
 Secure Browser API Specification
 ------------------
-v.2.0.0-RC  14-Mar-2017
+v.2.0.0-RC-16-Mar-2017
 
 The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system. The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global `browser` object.
 
@@ -234,7 +234,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 ### Optional APIs
 
-1. R23. **Empty system clipboard**. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the `browser.security.enableLockDown` to perform the same operation. 
+1. R23. **Empty system clipboard**. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the `browser.security.lockDown` to perform the same operation. 
 
 	`void browser.security.emptyClipBoard()`
 
@@ -312,8 +312,10 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`isAvailable` – recording is supported (Boolean)
 	
-	`supportedInputDevices` – a list of audio input devices detected. Each of these device definitions includesdevice id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported.
+	`supportedInputDevices` – a list of audio input devices detected. Each of these device definitions includes device id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported, default input device.
 
+	`supportedOutputDevices` – a list of audio output devices detected. Each of these device definitions includes device id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported, default output device.
+	
 	If the object literal returned is null or undefined, we encountered an error.
 
 1. R28. **Initiate audio capture**. This method is called to initiate capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE.
@@ -323,19 +325,20 @@ The following Secure Browser Application Programming Interface (API) endpoints d
     The `options` object includes:
 
     `captureDevice` – the device id to use for data capture (int)
-sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (specified as int in hz)
 
-    `channel count` – 1 (mono), 2(stereo) … (specified as int)
+    `sample rate` – the line rate to capture the raw audio in (8 kHz, 11 kHz etc.) (specified as int in Hz)
+
+    `channel count` – 1 (mono), 2 (stereo) … (specified as int)
     
-    `sample size` – 8bit, 16bit etc 	(specified as int)
+    `sample size` – 8-bit, 16-bit, etc.	(specified as int)
 
-    `encoding format` – SPX, HE-AAC, Opus etc (specified as string)
+    `encoding format` – SPX, HE-AAC, Opus, etc. (specified as string)
 
     `quality indicator desired` – whether to perform and report a recording quality check or not (Boolean)
 
     `progressEventFrequency` – how frequently the event listener should be called back to report progress events either based on time or on units of data collected. For example, we could ask for periodic progress events every 2 seconds to keep us notified as recording is happening, or every 30KB of new data collected.
 
-    `captureLimit `– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). The event listener is passed in to receive capture events. The events include
+    `captureLimit `– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). The event listener is passed in to receive capture events. The events include:
 
     `START` – Capture started
 
@@ -347,19 +350,19 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 
 	`void browser.recorder.stopCapture()`
 
-1. R30. **Retrieve recording**. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the `END` event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this api directly in the callback for the `END` event.
+1. R30. **Retrieve recording**. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the `END` event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this API directly in the callback for the `END` event.
 
 	`void  browser.recorder.retrieveAudio(function callback)`
 	
-	`callback` is optional. If you specify this parameter, it should be a function that looks like this:
+	`callback` should be a function that looks like this:
 
 	` function(recordedAudio){...}`
 	
-	null or undefined implies error retrieving audio.
+	null or undefined implies there was an error retrieving audio.
 
 1. R31. **Playback a recording**. This method is called to play back a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 webaudio to play back encoded audio (encoded using the format specified in the `startcapture` call) obtained by a call to `retrieveAudio()`. The playback function is passed in the base64 audio string and a callback function.  
 
-	`void browser.recorder.play(b64audio, callback)`
+	`void browser.recorder.play(b64audio, function callback)`
     
     The callback function is expecting the following events:
 
@@ -379,9 +382,25 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 
 	`void browser.recorder.resumePlay()`
 
-1. R43. **Retrieve list of audio recordings**. Retrieve the list of all audio recordings.
+1. R43. **Retrieve list of audio recordings**. Retrieve a list of all audio recordings.
 
-	`void browser.recorder.retrieveAudioFileList()`
+	`void browser.recorder.retrieveAudioFileList(function callback)`
+
+	`callback` should be a function that looks like this:
+
+	` function(filenames){...}`
+    
+    Where `filenames` is an object with the property `files`, containing an array of file names.
+    
+    `{'files' : [file1, file2, ...]}`
+
+1. R45. **Retrieve audio file from filename**. Retrieve audio data based on filename obtained from `retrieveAudioFileList()`.
+
+    `void retrieveAudioFile(filename, function callback)`
+    
+	`callback` should be a function that looks like this:
+
+	` function(b64audio){...}`    
 
 
 ## Secure Browser Standards Compliance

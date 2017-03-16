@@ -217,7 +217,7 @@ kbd {
 
 <h2 id="toc_0">Secure Browser API Specification</h2>
 
-<p>v.2.0.0-RC  14-Mar-2017</p>
+<p>v.2.0.0-RC-16-Mar-2017</p>
 
 <p>The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system. The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global <code>browser</code> object.</p>
 
@@ -436,7 +436,7 @@ kbd {
 <h3 id="toc_3">Optional APIs</h3>
 
 <ol>
-<li><p>R23. <strong>Empty system clipboard</strong>. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the <code>browser.security.enableLockDown</code> to perform the same operation. </p>
+<li><p>R23. <strong>Empty system clipboard</strong>. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the <code>browser.security.lockDown</code> to perform the same operation. </p>
 
 <p><code>void browser.security.emptyClipBoard()</code></p></li>
 <li><p>R24. <strong>Get Application Start Time</strong>. The testing application will invoke this to determine the time that the application was launched in UTC. This is mainly used to track application uptime. If this is not provided, the web application can track it using local/session storage but it is desirable to have this information natively supported:</p>
@@ -514,7 +514,9 @@ kbd {
 
 <p><code>isAvailable</code> – recording is supported (Boolean)</p>
 
-<p><code>supportedInputDevices</code> – a list of audio input devices detected. Each of these device definitions includesdevice id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported.</p>
+<p><code>supportedInputDevices</code> – a list of audio input devices detected. Each of these device definitions includes device id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported, default input device.</p>
+
+<p><code>supportedOutputDevices</code> – a list of audio output devices detected. Each of these device definitions includes device id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported, default output device.</p>
 
 <p>If the object literal returned is null or undefined, we encountered an error.</p></li>
 <li><p>R28. <strong>Initiate audio capture</strong>. This method is called to initiate capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE.</p>
@@ -523,20 +525,21 @@ kbd {
 
 <p>The <code>options</code> object includes:</p>
 
-<p><code>captureDevice</code> – the device id to use for data capture (int)
-sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (specified as int in hz)</p>
+<p><code>captureDevice</code> – the device id to use for data capture (int)</p>
 
-<p><code>channel count</code> – 1 (mono), 2(stereo) … (specified as int)</p>
+<p><code>sample rate</code> – the line rate to capture the raw audio in (8 kHz, 11 kHz etc.) (specified as int in Hz)</p>
 
-<p><code>sample size</code> – 8bit, 16bit etc     (specified as int)</p>
+<p><code>channel count</code> – 1 (mono), 2 (stereo) … (specified as int)</p>
 
-<p><code>encoding format</code> – SPX, HE-AAC, Opus etc (specified as string)</p>
+<p><code>sample size</code> – 8-bit, 16-bit, etc. (specified as int)</p>
+
+<p><code>encoding format</code> – SPX, HE-AAC, Opus, etc. (specified as string)</p>
 
 <p><code>quality indicator desired</code> – whether to perform and report a recording quality check or not (Boolean)</p>
 
 <p><code>progressEventFrequency</code> – how frequently the event listener should be called back to report progress events either based on time or on units of data collected. For example, we could ask for periodic progress events every 2 seconds to keep us notified as recording is happening, or every 30KB of new data collected.</p>
 
-<p><code>captureLimit</code>– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). The event listener is passed in to receive capture events. The events include</p>
+<p><code>captureLimit</code>– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). The event listener is passed in to receive capture events. The events include:</p>
 
 <p><code>START</code> – Capture started</p>
 
@@ -546,18 +549,18 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 <li><p>R29. <strong>Stop recording</strong>. This method is called to stop audio capture. Throws error if status is currently not “RECORDING”.</p>
 
 <p><code>void browser.recorder.stopCapture()</code></p></li>
-<li><p>R30. <strong>Retrieve recording</strong>. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the <code>END</code> event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this api directly in the callback for the <code>END</code> event.</p>
+<li><p>R30. <strong>Retrieve recording</strong>. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the <code>END</code> event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this API directly in the callback for the <code>END</code> event.</p>
 
 <p><code>void  browser.recorder.retrieveAudio(function callback)</code></p>
 
-<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
+<p><code>callback</code> should be a function that looks like this:</p>
 
 <p><code>function(recordedAudio){...}</code></p>
 
-<p>null or undefined implies error retrieving audio.</p></li>
+<p>null or undefined implies there was an error retrieving audio.</p></li>
 <li><p>R31. <strong>Playback a recording</strong>. This method is called to play back a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 webaudio to play back encoded audio (encoded using the format specified in the <code>startcapture</code> call) obtained by a call to <code>retrieveAudio()</code>. The playback function is passed in the base64 audio string and a callback function.  </p>
 
-<p><code>void browser.recorder.play(b64audio, callback)</code></p>
+<p><code>void browser.recorder.play(b64audio, function callback)</code></p>
 
 <p>The callback function is expecting the following events:</p>
 
@@ -573,9 +576,24 @@ sample rate – the line rate to capture the raw audio in (8Khz, 11Khz etc) (spe
 <li><p>R34. <strong>Resume playback</strong>. This method is invoked to resume an already paused audio playback. Throws error if status is currently not &quot;PAUSED&quot;.</p>
 
 <p><code>void browser.recorder.resumePlay()</code></p></li>
-<li><p>R43. <strong>Retrieve list of audio recordings</strong>. Retrieve the list of all audio recordings.</p>
+<li><p>R43. <strong>Retrieve list of audio recordings</strong>. Retrieve a list of all audio recordings.</p>
 
-<p><code>void browser.recorder.retrieveAudioFileList()</code></p></li>
+<p><code>void browser.recorder.retrieveAudioFileList(function callback)</code></p>
+
+<p><code>callback</code> should be a function that looks like this:</p>
+
+<p><code>function(filenames){...}</code></p>
+
+<p>Where <code>filenames</code> is an object with the property <code>files</code>, containing an array of file names.</p>
+
+<p><code>{&#39;files&#39; : [file1, file2, ...]}</code></p></li>
+<li><p>R45. <strong>Retrieve audio file from filename</strong>. Retrieve audio data based on filename obtained from <code>retrieveAudioFileList()</code>.</p>
+
+<p><code>void retrieveAudioFile(filename, function callback)</code></p>
+
+<p><code>callback</code> should be a function that looks like this:</p>
+
+<p><code>function(b64audio){...}</code>    </p></li>
 </ol>
 
 <h2 id="toc_6">Secure Browser Standards Compliance</h2>
