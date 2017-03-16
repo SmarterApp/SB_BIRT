@@ -38,7 +38,7 @@ function Recorder_WebAudioService() {
         return new (window.AudioContext || webkitAudioContext)();
 
     } catch (e) {
-      alert('Web Audio API initialization failed');
+      alert('Web Audio API initialization failed ' + e);
       return false;
     }
 
@@ -50,15 +50,9 @@ function Recorder_WebAudioService() {
 
       audioContext = new (window.AudioContext || webkitAudioContext)();
       
-/*
- * navigator.mediaDevices.getUserMedia(constraints).then(function(stream){
- * mediaRecorder = new MediaRecorder(stream); window.stream = stream;
- * }).catch(this.handleError);
- */
-      
       return true;
     } catch (e) {
-      alert('Web Audio API initialization failed');
+      alert('Web Audio API initialization failed ' + e);
       return false;
     }
 
@@ -73,7 +67,7 @@ function Recorder_WebAudioService() {
       return 'Unknown';
     }
     } catch (e) {
-      alert('Recorder Status API Failed');
+      alert('Recorder Status API Failed ' + e);
       return 'Unknown';
     }
   };
@@ -88,7 +82,7 @@ function Recorder_WebAudioService() {
       return false;
     }
     } catch (e) {
-      alert('Web Audio getCapabilities API  failed');
+      alert('Web Audio getCapabilities API  failed ' + e);
       return Unknown;
     }
   };
@@ -118,7 +112,7 @@ function Recorder_WebAudioService() {
     $('#stopRecording').button('enable');
     return mediaRecorder.state;
     } catch (e) {
-      alert('Web Audio failed to start recording API');
+      alert('Web Audio failed to start recording API  ' + e);
       return 'Unknown';
     }
   };
@@ -147,7 +141,7 @@ function Recorder_WebAudioService() {
     
     return mediaRecorder.state;
     } catch (e) {
-      alert('Web Audio failed to start recording API');
+      alert('Web Audio failed to start recording API ' + e );
       return 'Unknown';
     }
   };
