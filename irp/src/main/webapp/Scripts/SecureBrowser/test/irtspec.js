@@ -185,7 +185,7 @@ IRT.ApiSpecs = {
     "errorDialog_saveSuccess" : "Your test results have been saved successfully. Your report ID is:",
     "errorDialog_saveFailure" : "System was unable to save test results.",
     "errorDialog_report_not_found" : "No report found for the requested report ID:",
-    "errorDialog_RECORDER" : "Your browser doens not support Audio Recorder, so manual testing will be skipped"
+    "errorDialog_RECORDER" : "Your browser does not support Audio Recorder, so manual testing will be skipped"
   },
   "disableUI" : {
     "TTS_disable_all" : [ "PLAY", "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
