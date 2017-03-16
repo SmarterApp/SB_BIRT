@@ -153,7 +153,7 @@ function Recorder_WebAudioService() {
   };
   
   this.startAudioPlayback = function(){
-    alert(audioURL);
+    
     fetch(audioURL)
     .then(function(response) { return response.arrayBuffer(); })
     .then(function(mybuffer) {
@@ -177,7 +177,7 @@ function Recorder_WebAudioService() {
        source.buffer = recordedData; 
        source.connect(audioContext.destination); 
        offset = pausedAt;
-       source.start(0, offset); 
+       source.start(0); 
        startedAt = audioContext.currentTime - offset;
        pausedAt = 0;
        playing = true;
@@ -185,9 +185,35 @@ function Recorder_WebAudioService() {
     });
   };
   
-  this.playRecording = function(decodedData) {
-   
- };
+    this.stopAudioPlayback = function() {
+      if (source) {          
+        source.disconnect();
+        source.stop(0);
+        source = null;
+      }
+      pausedAt = 0;
+      startedAt = 0;
+      playing = false;
+   };
+ 
+   this.pauseAudioPlayback = function(){
+     var elapsed = audioContext.currentTime - startedAt;
+     this.stopAudioPlayback();
+     pausedAt = elapsed;
+   };
+ 
+  this.resumeAudioPlayback = function () {
+  // connect the source to the output
+    source = audioCtx.createBufferSource();
+    source.buffer = recordedData; 
+    source.connect(audioCtx.destination); 
+    offset = pausedAt;
+    source.start(0, offset); 
+    startedAt = audioCtx.currentTime - offset;
+    pausedAt = 0;
+    playing = true;
+  };
+
   
   this.handleError = function(error){
     alert('Recorder API Error ' + error);

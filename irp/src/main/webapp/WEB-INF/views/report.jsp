@@ -31,6 +31,14 @@
   src="<%=contextPath%>/Scripts/Libraries/jQuery/jsgrid/jsgrid.min.js"></script>
 
 
+  <!-- WebAudio -->
+
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/WebAudio/mobilerecorder.js"></script>
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/WebAudio/webaudiorecorder.js"></script>
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/WebAudio/certifiedrecorder.js"></script>
 
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/test/irtspec.js"></script>
 

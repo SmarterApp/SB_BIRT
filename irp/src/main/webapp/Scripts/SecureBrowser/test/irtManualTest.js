@@ -28,6 +28,8 @@ var ttsOptionsEnabled = false;
 
 var selectedCapability = {};
 
+var recorderPlayDone = false;
+
 function loadDialogBox(id, testName, testTitle, isNew) {
 
   var buttonDisable = false;
@@ -555,6 +557,12 @@ function createButton(id, text, displaylabel) {
       stopRecordingAudio();
     } else if (text == 'Play Recording') {
       startPlaybackRecording();
+    } else if (text == 'Pause Playback') {
+      pausePlaybackRecording();
+    } else if (text == 'Resume Playback') {
+      resumePlaybackRecording();
+    } else if (text == 'Stop Playback') {
+      stopPlaybackRecording();
     }
 
     event.preventDefault();
@@ -1445,7 +1453,7 @@ function initiateRecorder() {
 }
 
 function getRecorderStatus() {
-  currentTestSetting = IRT.RecorderTest.STATUS;
+  /* currentTestSetting = IRT.RecorderTest.STATUS; */
 
   $('#recorderStatusText').html(recorderImpl.getAudioRecorderStatus());
 
@@ -1468,7 +1476,7 @@ function getDeviceCapabilities() {
 }
 
 function concludeDeviceCapabilityTest() {
-  currentTestSetting = IRT.RecorderTest.CAPABILITY;
+  /* currentTestSetting = IRT.RecorderTest.CAPABILITY; */
   setDialogHtml(specRecorderManualApi);
   loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
 }
@@ -1478,7 +1486,7 @@ function startRecordingAudio() {
   var mediaRecorderStatusText = recorderImpl.startAudioRecording();
   $('#mediaRecorderStatusText').html(mediaRecorderStatusText);
 
-  currentTestSetting = IRT.RecorderTest.START_RECORD;
+  /* currentTestSetting = IRT.RecorderTest.START_RECORD; */
   setDialogHtml(specRecorderManualApi);
   loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
 
@@ -1488,7 +1496,7 @@ function stopRecordingAudio() {
   var mediaRecorderStatusText = recorderImpl.stopAudioRecording();
   $('#mediaRecorderStatusText').html(mediaRecorderStatusText);
 
-  currentTestSetting = IRT.RecorderTest.STOP_RECORD;
+  /* currentTestSetting = IRT.RecorderTest.STOP_RECORD; */
   setDialogHtml(specRecorderManualApi);
   loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
 }
@@ -1499,5 +1507,37 @@ function setRecorderInput(label, value, index) {
 }
 
 function startPlaybackRecording() {
+
   recorderImpl.startAudioPlayback();
+
+  if (currentTestSetting == IRT.RecorderTest.PLAY) {
+
+    setDialogHtml(specRecorderManualApi);
+    loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+  }
+}
+
+function pausePlaybackRecording() {
+
+  recorderImpl.pauseAudioPlayback();
+  if (currentTestSetting == IRT.RecorderTest.PAUSE) {
+    setDialogHtml(specRecorderManualApi);
+    loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+  }
+}
+
+function resumePlaybackRecording() {
+
+  recorderImpl.resumeAudioPlayback();
+  if (currentTestSetting == IRT.RecorderTest.RESUME) {
+    setDialogHtml(specRecorderManualApi);
+    loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+  }
+}
+
+function stopPlaybackRecording() {
+  currentTestSetting = IRT.RecorderTest.STOP;
+  recorderImpl.stopAudioPlayback();
+  setDialogHtml(specRecorderManualApi);
+  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
 }

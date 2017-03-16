@@ -192,7 +192,12 @@ IRT.ApiSpecs = {
         "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
     "CAPABILITY_disable_all" : [ "setCapability", "enableCapability",
         "disableCapability", "getCapability", "capabilityType" ],
-    "PROCESS_disable_all" : [ "examineProcess", "conclude" ]
+    "PROCESS_disable_all" : [ "examineProcess", "conclude" ],
+    "RECORDER_disable_all" : [ "initiateRecording", "getRecordingStatus",
+        "getRecordingCapabilities", "startRecording", "stopRecording",
+        "startPlaybackRecording", "pausePlaybackRecording",
+        "resumePlaybackRecording", "stopPlaybackRecording",
+        "concludeCapability", "audioOutput", "audioSource" ]
   },
   "browserapi" : {
     // F35. The secure browser shall check for an appropriate Global Object for
@@ -1602,8 +1607,8 @@ IRT.ApiSpecs = {
     "PAUSE" : {
       // Pitch R11, R12 SEC-11, SEC-39
       "id" : "16",
-      "testName" : "Manual test for TTS Pitch",
-      "instruction" : "Change Pitch and Click Play to test",
+      "testName" : "Manual test for Audio Recorder Pause Playback",
+      "instruction" : "Click Play and then Pause to test Pause Playback",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1613,11 +1618,11 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
-      "dialogTitle" : "TTS Pitch Test",
+      "dialogHtml" : "<p>Did audio recording playback paused? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "Audio Recorder Pause Playback",
       "buttonSliderId" : "pausePlaybackRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
           "getRecordingCapabilities", "startRecording", "stopRecording",
@@ -1628,8 +1633,8 @@ IRT.ApiSpecs = {
     "RESUME" : {
       // Rate R11, R12 SEC-11, SEC-39
       "id" : "17",
-      "testName" : "Manual test for TTS Rate",
-      "instruction" : "Change Rate and Click Play to test",
+      "testName" : "Manual test for Audio Recorder Resume Playback",
+      "instruction" : "Click Play, Pause, and then Resume to test Resume Playback",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1639,11 +1644,11 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
-      "dialogTitle" : "TTS Rate Test",
+      "dialogHtml" : "<p>If you heard the recording resume clearly, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "Audio Recorder Resume Playback",
       "buttonSliderId" : "resumePlaybackRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
           "getRecordingCapabilities", "startRecording", "stopRecording",
@@ -1655,8 +1660,8 @@ IRT.ApiSpecs = {
     "STOP" : {
       // System Volume R16 SEC-57, SEC-58
       "id" : "18",
-      "testName" : "Manual test for System Volume",
-      "instruction" : "Change System Volume and Click Play to test",
+      "testName" : "Manual test for Audio Recorder Stop Playback",
+      "instruction" : "Click Play and then Stop to test Stop Playback",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1666,11 +1671,11 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
-      "dialogTitle" : "System Volume Test",
+      "dialogHtml" : "<p>Did audio recording playback stopped? choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "Audio Recorder Resume Playback",
       "buttonSliderId" : "stopPlaybackRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
           "getRecordingCapabilities", "startRecording", "stopRecording",

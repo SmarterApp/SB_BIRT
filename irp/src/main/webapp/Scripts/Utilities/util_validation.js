@@ -240,8 +240,8 @@
 
     var itemDetail = {};
     $.extend(itemDetail, {
-      "rTestPass" : rTestPass,
-      "rTestFail" : rTestFail,
+      "oTestPass" : rTestPass,
+      "oTestFail" : rTestFail,
       "notperformed" : notperformed
     });
 
@@ -329,26 +329,47 @@
   Validation.updateManualResultHeaderCount = function(manualApiDetails,
       irtTestSectionObj) {
 
-    irtTestSectionObj.rTotalTest = irtTestSectionObj.rTotalTest
-        + manualApiDetails.rTestPass + manualApiDetails.rTestFail
-        + manualApiDetails.notperformed;
-
-    irtTestSectionObj.rTestPass = irtTestSectionObj.rTestPass
-        + manualApiDetails.rTestPass;
-
-    irtTestSectionObj.rTestFail = irtTestSectionObj.rTestFail
-        + manualApiDetails.rTestFail;
-
     irtTestSectionObj.notperformed = irtTestSectionObj.notperformed
         + manualApiDetails.notperformed;
 
-    $('#' + irtTestSectionObj.headerId + ' #rPassCount').html(
-        irtTestSectionObj.rTestPass + '/' + irtTestSectionObj.rTotalTest);
-    $('#' + irtTestSectionObj.headerId + ' #rFailCount').html(
-        irtTestSectionObj.rTestFail + '/' + irtTestSectionObj.rTotalTest);
+    if (manualApiDetails.rTestPass != undefined
+        && manualApiDetails.rTestFail != undefined) {
+      irtTestSectionObj.rTotalTest = irtTestSectionObj.rTotalTest
+          + manualApiDetails.rTestPass + manualApiDetails.rTestFail
+          + manualApiDetails.notperformed;
 
-    $('#' + irtTestSectionObj.headerId + ' #tNotPerformed').html(
-        irtTestSectionObj.notperformed + '/' + irtTestSectionObj.rTotalTest);
+      irtTestSectionObj.rTestPass = irtTestSectionObj.rTestPass
+          + manualApiDetails.rTestPass;
+
+      irtTestSectionObj.rTestFail = irtTestSectionObj.rTestFail
+          + manualApiDetails.rTestFail;
+      $('#' + irtTestSectionObj.headerId + ' #rPassCount').html(
+          irtTestSectionObj.rTestPass + '/' + irtTestSectionObj.rTotalTest);
+      $('#' + irtTestSectionObj.headerId + ' #rFailCount').html(
+          irtTestSectionObj.rTestFail + '/' + irtTestSectionObj.rTotalTest);
+      $('#' + irtTestSectionObj.headerId + ' #tNotPerformed').html(
+          irtTestSectionObj.notperformed + '/' + irtTestSectionObj.rTotalTest);
+
+    } else if (manualApiDetails.oTestPass != undefined
+        && manualApiDetails.oTestFail != undefined) {
+      irtTestSectionObj.oTotalTest = irtTestSectionObj.oTotalTest
+          + manualApiDetails.oTestPass + manualApiDetails.oTestFail
+          + manualApiDetails.notperformed;
+
+      irtTestSectionObj.oTestPass = irtTestSectionObj.oTestPass
+          + manualApiDetails.oTestPass;
+
+      irtTestSectionObj.oTestFail = irtTestSectionObj.oTestFail
+          + manualApiDetails.oTestFail;
+
+      $('#' + irtTestSectionObj.headerId + ' #oPassCount').html(
+          irtTestSectionObj.oTestPass + '/' + irtTestSectionObj.oTotalTest);
+      $('#' + irtTestSectionObj.headerId + ' #oFailCount').html(
+          irtTestSectionObj.oTestFail + '/' + irtTestSectionObj.oTotalTest);
+      $('#' + irtTestSectionObj.headerId + ' #tNotPerformed').html(
+          irtTestSectionObj.notperformed + '/' + irtTestSectionObj.oTotalTest);
+
+    }
 
     var percent = 0;
     if (irtTestSectionObj.rTotalTest > 0) {
