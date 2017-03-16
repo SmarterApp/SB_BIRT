@@ -1,0 +1,25 @@
+title IRT Automated Testing
+
+IRT_WEB_APP->factory.js / tts.js: Set browserType based on operating system \n and platform type as well as specific information \n from the browser
+
+IRT_WEB_APP->factory.js / tts.js: Set ttsBrowserType based on browser \n text-to-speech support
+
+factory.js / tts.js->index.js:browserType & ttsBrowserType
+note right of factory.js / tts.js: 
+Default value for both 
+“browserType” & “ttsBrowserType” 
+variable is “certified”.
+end note
+
+index.js->irtspec.js:Get number of automated test sections
+note right of index.js:
+Get IRT.AUTOMATED_TEST_SECTION JSON
+object for automated sections
+end note
+
+loop Execute Automated tests
+    index.js->irtspec.js: Get all automated test JSON Object for \n given section
+    irtspec.js->index.js:Run all automated tests \n for the given section based on JSON \n object obtained from irtspec.js
+end
+
+index.js->index.html:Populate IRT result for all \n automated tests under their respective sections

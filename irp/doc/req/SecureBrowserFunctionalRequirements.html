@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>SecureBrowserFunctionalRequirements</title>
+
+
+<style type="text/css">
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+ol,
+ul,
+li,
+img {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+html * {
+  font-family: "ff-din-web-pro-1", "ff-din-web-pro-2", sans-serif;
+  font-size: 16px;
+  line-height: 19.2px;
+  color-profile: sRGB;
+}
+body {
+  margin: 40px 70px;
+}
+p {
+  font-weight: lighter;
+  margin-bottom: 20px;
+}
+strong {
+  font-weight: bold;
+}
+ol,
+ul {
+  margin-left: 2em;
+  margin-bottom: 20px;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-top: 10px;
+}
+li {
+  margin-bottom: 10px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: lighter;
+  text-transform: capitalize;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h2 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h3 {
+  font-size: 23.44px;
+  line-height: 28.128px;
+}
+h4 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h5 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h6 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+img {
+  margin-bottom: 20px;
+}
+h1 img,
+h2 img,
+h3 img,
+h4 img,
+h5 img,
+h6 img,
+p img {
+  margin-bottom: 0;
+}
+pre {
+  margin-bottom: 20px;
+}
+pre,
+code {
+  font-family: monospace;
+}
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 15px;
+}
+blockquote {
+  border-left: 4px solid;
+  padding: 0 15px;
+}
+blockquote > :first-child {
+  margin-top: 0;
+}
+blockquote > :last-child {
+  margin-bottom: 15px;
+}
+h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+h2 {
+  border-bottom: 1px solid;
+}
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: none;
+}
+html * {
+  color: #839496;
+}
+html body {
+  background-color: #002b36;
+}
+html h1,
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #93a1a1;
+  border-color: #839496;
+}
+html a,
+html a:active,
+html a:visited {
+  color: #93a1a1;
+}
+html a:hover {
+  background-color: #073642;
+}
+html pre {
+  color: #93a1a1;
+  background-color: #073642;
+}
+html a,
+html a:active,
+html a:visited,
+html code.url {
+  color: #b58900;
+}
+html h1 {
+  color: #b58900;
+}
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #b58900;
+}
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+
+@media print {
+  body {
+    margin: 0;
+  }
+  * {
+    color: #000 !important;
+  }
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h2 id="toc_0">Secure Browser Functional Requirements</h2>
+
+<h3 id="toc_1">A. Security Related Requirements</h3>
+
+<ol>
+<li>F01. The Secure browser shall NOT provide a means to clear browser cache.</li>
+<li>F02. The secure browser shall NOT provide a means to clear browser cookies.</li>
+<li>F03. The secure browser shall provide a means to clear system clipboard.</li>
+<li>F04. The secure browser shall provide a means to retrieve system MAC address.</li>
+<li>F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).</li>
+<li>F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.</li>
+<li>F07. The secure browser shall provide a means to obtain the application start time.</li>
+<li>F08. The secure browser shall provide a means to query if <code>Spaces</code> is enabled or not, for macOS.</li>
+<li>F15. The secure browser shall provide a means to set permissive mode.</li>
+<li>F49. The secure browser shall provide a means to query the status of permissive mode.</li>
+<li>F31. The secure browser shall be able to determine whether blacklisted processes are running on the client machine.</li>
+<li>F36. The secure browser may be able to get device info (optional).</li>
+<li>F37. The secure browser shall be able to lock down the environment.</li>
+<li>F38. The secure browser shall be able to check if environment is secure for testing.</li>
+<li>F46. The secure browser shall be able to get the status of a particular browser capability.</li>
+<li>F47. The secure browser shall be able to set the status of a particular browser capability.</li>
+</ol>
+
+<h3 id="toc_2">B. Device Related Requirements</h3>
+
+<ol>
+<li>F09. The secure browser shall provide a means to get system volume.</li>
+<li>F10. The secure browser shall provide a means to set system volume.</li>
+<li>F11. The secure browser shall provide a means to mute system volume.</li>
+<li>F12. The secure browser shall provide a means to unmute system volume.</li>
+<li>F13. The secure browser shall provide a means to check if system volume is Muted.</li>
+<li>F14. The secure browser shall provide a means to close the browser.</li>
+</ol>
+
+<h3 id="toc_3">C. Text-to-Speech (TTS) Related Requirements</h3>
+
+<ol>
+<li>F16. The secure browser shall provide shall provide a means to play arbitrary text.</li>
+<li>F17. The secure browser shall provide a means to stop TTS speech in progress.</li>
+<li>F18. The secure browser shall provide a means to pause TTS speech in progress.</li>
+<li>F19. The secure browser shall provide a means to retrieve list of TTS voice packs available on the machine.</li>
+<li>F21. The secure browser shall provide a means to resume previously paused TTS speech.</li>
+<li>F22. The secure browser shall provide a means events to notify the web application of status and progress of TTS.</li>
+<li>F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.</li>
+<li>F28. The secure browser shall provide a means to get/set TTS pitch.</li>
+<li>F29. The secure browser shall provide a means to get/set TTS rate.</li>
+<li>F30. The secure browser shall provide a means to get/set TTS volume.</li>
+</ol>
+
+<h3 id="toc_4">D. Audio Recording Related Requirements</h3>
+
+<p>These requirements are optional.</p>
+
+<ol>
+<li>F25. The secure browser may provide a means to start an audio recording.</li>
+<li>F26. The secure browser may provide a means to stop an audio recording.</li>
+<li>F27. The secure browser may provide a means to playback an audio recording.</li>
+<li>F40. The secure browser may provide a means to set audio recorder status.</li>
+<li>F41. The secure browser may provide a means to get audio recorder capabilities.</li>
+<li>F42. The secure browser may provide a means to retrieve a recording for playback.</li>
+<li>F43. The secure browser may provide a means to stop playback.</li>
+<li>F44. The secure browser may provide a means to pause playback.</li>
+<li>F45. The secure browser may provide a means to resume playback of a paused audio recording.</li>
+<li>F48. The secure browser may provide a means to list all available audio recordings.</li>
+</ol>
+
+<h3 id="toc_5">E. Standards Compliance Requirements</h3>
+
+<ol>
+<li>F32. The secure browser shall be HTML5 compliant.</li>
+<li>F34. The secure browser shall be CSS3 compliant.</li>
+</ol>
+
+<h3 id="toc_6">F. Miscellaneous Requirements</h3>
+
+<ol>
+<li>F35. The secure browser shall check for an appropriate Global Object for API use.</li>
+</ol>
+
+
+
+
+</body>
+
+</html>

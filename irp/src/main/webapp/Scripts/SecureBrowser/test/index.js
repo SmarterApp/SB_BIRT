@@ -1,59 +1,306 @@
-this.runtime = null;
+// *******************************************************************************
+// Educational Online Test Delivery System
+// Copyright (c) 2017 American Institutes for Research
+//
+// Distributed under the AIR Open Source License, Version 1.0
+// See accompanying file AIR-License-1_0.txt or at
+// http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
+// *******************************************************************************
+
+TDS.SecureBrowser.initialize();
+var impl = TDS.SecureBrowser.getImplementation();
+var implBrowserType = TDS.SecureBrowser.getBrowserType();
+var runtime = impl != null ? impl.getRunTime() : null;
+TTS.Manager.init(true);
+var ttsImpl = TTS.Manager._service;
+
+var ttsBrowserType = TTS.Manager.browserType;
+
 var isIOSDevice = Util.Browser.isIOS();
 var isAndroidDevice = Util.Browser.isAndroid();
 var isFireFox = Util.Browser.isFirefox();
 var isChrome = Util.Browser.isChrome();
-var isDesktop = (Util.Browser.isWindows() || Util.Browser.isLinux() || Util.Browser
-		.isMac());
+var isMobile = Util.Browser.isMobile();
+var isCertified = Util.Browser.isCertified();
+var isAIRSecureBrowser = Util.Browser.isSecure();
 
-if (isIOSDevice || isAndroidDevice) {
-	this.runtime = (new Summit.SecureBrowser.Mobile()).getNativeBrowser();
+var webAudioBrowserType = TDS.SecureBrowser.getWebAudioBrowserType();
+
+var recorderImpl = TDS.SecureBrowser.getRecorderImplementation();
+
+if (Util.Browser.isWebAudioApiSupported()) {
+  var audioCtx = recorderImpl.getAudioContextObject();
 }
 
-if (isDesktop && Util.Browser.isSecure()) {
-	var success = Mozilla.execPrivileged(function() {
-		var sbClass = Components.classes["@mozilla.org/securebrowser;1"];
-		if (sbClass) {
-			this.runtime = sbClass
-					.createInstance(Components.interfaces.mozISecureBrowser);
-		}
-	}.bind(this));
-	if (!success) {
-		alert('SB runtime component failed to load');
-	}
+function beginBrowserAPITest() {
+
+  Object.keys(IRT.AUTOMATED_TEST_SECTION).forEach(
+      function(element) {
+
+        /**
+         * JSON Key from irtspec.js for API Section Automation Test
+         */
+        var apiJSONKey = irtApiSpecConstant + specSeparator + element;
+
+        /**
+         * JSON object from irtspec.js
+         */
+        var apiJSONObj = eval(apiJSONKey);
+
+        var sectionJSONObj = eval('IRT.AUTOMATED_TEST_SECTION.' + element);
+
+        var apiSupportType = eval(sectionJSONObj.browserType);
+        var apiSection = sectionJSONObj.section;
+
+        /**
+         * running configured test in irtspec.js based on apiJSONKey and
+         * apisection
+         */
+
+        runIRTAutomateTest(apiJSONObj, apiJSONKey, runtime, apiSupportType,
+            apiSection, sectionJSONObj, populateSectionCount);
+
+      });
+
+  populateResults($("#jsGrid"), Util.Validation.getResult(), false);
+  populateResults($("#jsTTSGrid"), Util.Validation.getTTSResult(), false);
+  populateResults($("#jsAudioRecorderGrid"), Util.Validation
+      .getAudioTestArray(), false);
 }
 
-QUnit.test('Get process list',function(assert) {
+function closeBrowser() {
 
-		assert.equal(isIOSDevice,true,'Checking if Browser is Mobile Browser, this test will return true only in case of IOS Device');
-		assert.equal(isAndroidDevice,true,'Checking if Browser is Mobile Browser, this test will return true only in case of Android Device');
-		assert.equal(isFireFox, true,'Checking if Browser is Mozilla Firefox Browser');
-		assert.equal(isChrome, true,'Checking if Browser is Chrome Browser');
-		assert.equal(isDesktop, true,'Checking if this is Desktop');
+  impl.close(false);
+}
 
-		assert.equal(typeof (SecureBrowser) != 'undefined', true,'Checking if this is Secure Browser');
-		if (typeof (SecureBrowser) != 'undefined') {
-		}
+/**
+ * 
+ * @param irtSpecApiObj :
+ *          JSON Object from irtspec like browserapi or ttsapi
+ * @param irtSpecApiJsonKey :
+ *          JSON Key from irtspec related to irtSpecApiObj
+ * @param runtime :
+ *          runtime object in case of securebrowser or AIR mobile browser
+ * @param testBrowserType :
+ *          Browser Type to identified whether it is certified/securebrowser or
+ *          mobile securebrowser
+ * @param section :
+ *          Grid section for report like browser api or tts api
+ * 
+ */
+function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
+    testBrowserType, section, sectionObj, callback) {
 
-		assert.equal(Util.Browser.supportsMathML(),true,'Check for MathML Support');
-		
-		assert.equal((runtime != null && typeof (runtime)!='undefined' && typeof(runtime)=='object'), true,'Checking if runtime object for browser is available');
-		if (runtime != null && typeof (runtime)!='undefined' && typeof(runtime)=='object') {
-			
-			assert.equal(typeof (runtime.getRunningProcessList) != 'undefined', true,'Checking if getProcessList method exists');
-			if (typeof (runtime.getRunningProcessList) == 'function') {
-				var processes = runtime.getRunningProcessList();
-				assert.ok(processes.indexOf('chrome.exe') != -1,'Check for process we know exists');
-			}
-		}
+  // Required test passed initial count/
+  var rTestPass = 0;
 
-});
+  // Required test fail initial count/
+  var rTestFail = 0;
 
-function getMethods(obj) {
-	var result = [];
-	for (var method in obj) {
-		result.push(method)
+  // Optional test passed initial count
+  var oTestPass = 0;
 
-	}
-	return result;
+  // Optional test fail initial count
+  var oTestFail = 0;
+
+  // Total # of Test performed and displayed on Grid results
+  var totalTest = 0;
+
+  Object.keys(irtSpecApiObj).forEach(
+      function(element) {
+
+        var isDeprecated = false;
+        try {
+          /*
+           * key to get for element under irtSpecApiObj for e.g
+           * IRT.ApiSpecs.browserapi.checkGlobalObject
+           */
+          var elementKey = irtSpecApiJsonKey + specSeparator + element
+              + specSeparator;
+
+          /**
+           * Load test key to get api signature using elementKey and test
+           * testBrowserType for e.g.
+           * IRT.ApiSpecs.browserapi.checkGlobalObject.testApi_certified
+           */
+          var testApiJsonKey = elementKey + 'testApi_' + testBrowserType;
+          var result = false;
+          var details = "";
+
+          /**
+           * get Deprecated jsonKey value it will return either true/false
+           */
+          isDeprecated = eval(elementKey + "isDeprecated");
+
+          if (isDeprecated) {
+            result = true;
+            details = 'testApi_removed';
+          }
+
+          /**
+           * apiType to test for Object, function or boolean
+           */
+          var irtSpecApiArray = eval(elementKey + "apiType");
+
+          /**
+           * Object to identify whether this API check is required in all
+           * platform
+           */
+          var isRequiredAll = eval(elementKey + "required.all");
+          var testForOS = true;
+          var isRequiredForOS = false;
+          if (isRequiredAll == null || isRequiredAll == undefined) {
+            testForOS = false;
+            Object.keys(eval(elementKey + "required")).forEach(
+                function(osKey) {
+
+                  if (osKey == 'macOS'
+                      && eval(elementKey + "required." + osKey) == true
+                      && Util.Browser.isMac()) {
+                    testForOS = true;
+                    isRequiredForOS = true;
+                  }
+
+                  if (osKey == 'windows'
+                      && eval(elementKey + "required." + osKey) == true
+                      && Util.Browser.isWindows()) {
+                    testForOS = true;
+                    isRequiredForOS = true;
+                  }
+
+                });
+          }
+
+          /**
+           * manualData key to populate other info in details column
+           */
+          var irtSpecManualData = eval(elementKey + "manualData");
+
+          /**
+           * Load actual api method value from testApiJsonKey for e.g.
+           * "window.browser"
+           */
+          var actualTestApiMethod = eval(testApiJsonKey);
+
+          if (irtSpecApiArray != null && Array.isArray(irtSpecApiArray)) {
+            irtSpecApiArray.forEach(function(irtSpecApiType) {
+              details = '';
+              if (irtSpecApiType == "object") {
+                if (typeof eval(actualTestApiMethod) === 'object') {
+                  result = true;
+                } else {
+                  details = actualTestApiMethod + ' is not defined';
+                }
+              } else if (irtSpecApiType == "boolean") {
+                if (typeof eval(actualTestApiMethod) === 'boolean') {
+                  result = true;
+                }
+              } else {
+                if (!!eval(actualTestApiMethod)) {
+                  result = true;
+                }
+              }
+
+            });
+          }
+
+          if (irtSpecApiArray == null
+              || (irtSpecApiArray != null && !Array.isArray(irtSpecApiArray))) {
+            if (!!eval(actualTestApiMethod)) {
+              result = true;
+            }
+          }
+
+          if (irtSpecManualData !== undefined && irtSpecManualData) {
+
+            var apiManualData = "";
+            if (element == "checkMACAddressAPI") {
+              actualTestApiMethod = actualTestApiMethod + '()';
+              apiManualData = eval(actualTestApiMethod);
+              if (!Util.Validation.isMacAddressValid(apiManualData)) {
+                details = 'Invalid MAC Address : ' + apiManualData;
+              } else {
+                details = 'MAC Address : ' + apiManualData;
+              }
+            }
+            if (element == "checkspacesenabled") {
+
+              apiManualData = eval(actualTestApiMethod);
+
+              details = "Spaces Enabled : " + apiManualData.toString();
+
+            } else {
+              details = eval(actualTestApiMethod);
+
+            }
+          }
+
+          if (isDeprecated && result) {
+            result = false;
+            details = 'testApi_exists';
+          }
+        } catch (ex) {
+          if (isDeprecated) {
+            result = true;
+            details = 'testApi_removed';
+          } else {
+            result = false;
+            details = ex.message;
+          }
+        }
+
+        if (testForOS == true) {
+          if (isRequiredAll === true || isRequiredForOS === true) {
+            if (result) {
+              rTestPass++;
+            } else {
+              rTestFail++;
+            }
+          } else {
+            if (result) {
+              oTestPass++;
+            } else {
+              oTestFail++;
+            }
+          }
+
+          totalTest++;
+
+          Util.Validation.setIRTTestResults(element, testBrowserType, result,
+              details, section);
+        }
+
+      });
+
+  sectionObj.totalTest = totalTest;
+  sectionObj.rTestPass = rTestPass;
+  sectionObj.rTestFail = rTestFail;
+  sectionObj.oTestPass = oTestPass;
+  sectionObj.oTestFail = oTestFail;
+  sectionObj.rTotalTest = rTestPass + rTestFail;
+  sectionObj.oTotalTest = oTestPass + oTestFail;
+
+  var percent = 0;
+  if (sectionObj.rTotalTest > 0) {
+
+    var optionalScoringFlag = $.cookie("optionalScoring");
+
+    var totalPassedTest = 0;
+    var totalTest = 0;
+    if (optionalScoringFlag === 'Yes') {
+      totalPassedTest = sectionObj.rTestPass + sectionObj.oTestPass;
+      totalTest = sectionObj.rTotalTest + sectionObj.oTotalTest;
+    } else {
+      totalPassedTest = sectionObj.rTestPass;
+      totalTest = sectionObj.rTotalTest;
+    }
+
+    percent = Math.round(100 * totalPassedTest / totalTest);
+  }
+
+  $('#' + sectionObj.headerId + ' #sectionScore').html(
+      '[Score: <strong>' + percent + '%</strong>]')
+
+  callback($('#' + sectionObj.headerId), rTestPass, rTestFail, oTestPass,
+      oTestFail, totalTest);
 }

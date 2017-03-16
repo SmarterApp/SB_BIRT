@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<title>The CSS3 Test</title>
+<link rel="stylesheet" href="style.css" />
+
+<script>var _gaq = [['_setAccount', 'UA-28874455-1'], ['_trackPageview'], ['_gat._anonymizeIp']];</script>
+<script src="https://www.google-analytics.com/ga.js" async></script>
+
+<script>
+<!-- Array to populate Test Grid in IRT Report Page -->
+var css3TestArray = [];
+
+<!-- HTML String to populate on Test Grid Header -->
+var css3ScoreHTML = '';
+
+<!-- Test passing threshold is used to determine passed/failed result for given test -->
+var css3Passingthreshold = 50;
+
+var isTestCompleted = false;
+
+
+<!--  Required test passed initial count-->
+var rTestPass = 0;
+
+<!--  Required test fail initial count-->
+var rTestFail = 0;
+
+<!--  Optional test passed initial count-->
+ var oTestPass = 0;
+
+ <!--  Optional test fail initial count-->
+ var oTestFail = 0;
+ 
+ <!-- Total # of Test performed and displayed on Grid results -->
+ var totalTest = 0;
+
+</script>
+</head>
+<body>
+
+<h1>The CSS3 test</h1>
+
+<section id="tests">
+	<div id="hgroup">
+		<h1>Your browser scores <strong id="score">0%</strong></h1>
+		<h2>Determined by passing <strong id="passedTests"></strong> tests out of <strong id="totalTests"></strong> total for <strong id="total"></strong> features</h2>
+	</div>
+
+	<section id="all"></section>
+</section>
+
+<aside>
+	<section class="caution">
+		<p><strong>Caution:</strong>
+		This test checks which CSS3 features the browser recognizes, <em>not</em> whether they are implemented correctly.</p>
+	</section>
+
+	<p>Time taken: <strong id="timeTaken"></strong></p>
+
+<!-- 	<section>
+		<script async type="text/javascript" src="carbon.js" id="_carbonads_js"></script>
+	</section> -->
+
+	<section>
+		<h1>Specs tested:</h1>
+		<ul id="specsTested"></ul>
+		<!-- Want more tests? <a href="https://github.com/LeaVerou/css3test" target="_blank">Be my guest!</a> -->
+	</section>
+
+	<section>
+		<h1>Cheaters</h1>
+		<ul>
+			<li>WebKit claims to support CSS3 background-repeat, but it’s LYING</li>
+		</ul>
+	</section>
+</aside>
+
+
+<script src="utopia.js"></script>
+<script src="supports.js"></script>
+<script src="csstest.js"></script>
+<script src="tests.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+<body>
+
+  <div id="dialogCAPABILITY" style="display: none;">
+
+    <div id="capabilityTest" style="float: left; width: 50%">
+      <div class="divTable" style="width: 100%;">
+        <div class="divTableBody">
+          <div class="divTableRow">
+            <div class="divTableCell">Select Capability:</div>
+            <div class="divTableCellRight">
+              <select id="capabilityType">
+              </select>
+            </div>
+          </div>
+          <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow" id="functionalityRow">
+            <div class="divTableCell">Functionality:</div>
+            <div class="divTableCellRight">
+              <label for="enableCapability">Enable</label> <input
+                type="radio" id="enableCapability" value="true"
+                name="getSetCapability"> <label
+                for="disableCapability">Disable</label> <input
+                type="radio" id="disableCapability" value="false"
+                name="getSetCapability">
+            </div>
+          </div>
+          <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow">
+            <div class="divTableCell">Execute:</div>
+            <div class="divTableCellRight">
+              <button id="setCapability"></button>
+              <button id="getCapability"></button>
+            </div>
+          </div>
+          
+               <div class="divTableRow" id="mockupnote">
+        <h3 style="background-color: yellow;">NOTE: THIS IS A
+          MOCK-UP ONLY, for Non-Secure Browsers</h3>
+      </div>
+      
+          <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow">&nbsp;</div>
+          <div class="divTableRow">
+          
+            <div class="divTableCellButton">
+             <div id="capabilityPropertyGrid"></div>
+            </div>
+            
+            
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+
+    <div id="capabilityManualReport" style="float: right; width: 50%">
+      <div class="header-irt">Manual test instructions</div>
+              <div id="capabilityTestGrid"></div>
+    </div>
+
+  </div>
+
+</body>
+</html>
