@@ -24,6 +24,8 @@
 
   var audioTestArray = [];
 
+  var audioTestManualArray = [];
+
   var MACREGEX = new RegExp(
       "^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$");
 
@@ -101,9 +103,10 @@
     apiSpecObject.testResult = result;
     apiSpecObject.details = details;
     apiSpecObject.testApi = testApi;
-
-    if (section == recorder_section || section == recordermanual_section) {
-      audioTestArray.push(apiSpecObject)
+    if (section == recordermanual_section) {
+      audioTestManualArray.push(apiSpecObject);
+    } else if (section == recorder_section) {
+      audioTestArray.push(apiSpecObject);
     } else if (section == tts_section) {
       ttsTestArray.push(apiSpecObject);
     } else if (section == ttsmanual_section) {
@@ -217,6 +220,35 @@
 
   };
 
+  Validation.mergeAudioRecorderManualTestIntoResult = function() {
+
+    var rTestPass = 0, rTestFail = 0, notperformed = 0;
+    audioTestManualArray.forEach(function(element) {
+      audioTestArray.push(element);
+
+      if (element.testResult != null || element.testResult != undefined) {
+        if (element.testResult === true) {
+          rTestPass++;
+        } else {
+          rTestFail++;
+        }
+      } else {
+        notperformed++;
+      }
+
+    });
+
+    var itemDetail = {};
+    $.extend(itemDetail, {
+      "rTestPass" : rTestPass,
+      "rTestFail" : rTestFail,
+      "notperformed" : notperformed
+    });
+
+    return itemDetail;
+
+  };
+
   Validation.formulateJsonForReport = function() {
 
     if (processTestArray.length == 0) {
@@ -248,6 +280,14 @@
     if (css3TestArray.length == 0) {
       css3TestArray.push(Validation.setTTSItemDetail('CSS3', specExternalTest,
           null));
+    }
+
+    if (audioTestManualArray.length == 0) {
+      populateReportGrid(Object.keys(IRT.RecorderTest), recordermanual_section);
+      var manualApiDetails = Validation
+          .mergeAudioRecorderManualTestIntoResult();
+      Validation.updateManualResultHeaderCount(manualApiDetails,
+          IRT.AUTOMATED_TEST_SECTION.audiorecordapi);
     }
 
     var itemDetail = {};
@@ -383,6 +423,11 @@
   Validation.getAudioTestArray = function() {
     return audioTestArray;
   };
+
+  Validation.getAudioTestManualArray = function() {
+    return audioTestManualArray;
+  };
+
   Util.Validation = Validation;
 
 })(Util);

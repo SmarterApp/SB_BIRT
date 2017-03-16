@@ -9,4 +9,23 @@ function Recorder_MobileAudioService() {
       return false;
   };
 
+  this.audioRecorderInitialize = function() {
+
+    try {
+
+      var handler = function(event) {
+
+        document.removeEventListener(event.type, handler, false);
+      };
+
+      AIRMobile.recorder.initialize(handler);
+
+      return true;
+    } catch (e) {
+      alert('Web Audio API initialization failed');
+      return false;
+    }
+
+  };
+
 }

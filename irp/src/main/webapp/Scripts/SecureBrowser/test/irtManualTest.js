@@ -428,6 +428,13 @@ function populateManualResultIntoResultGrid(testName, gridId, linkId, dialogId) 
         IRT.AUTOMATED_TEST_SECTION.ttsapi);
   }
 
+  if (testName == 'RECORDER') {
+
+    manualApiDetails = Util.Validation.mergeAudioRecorderManualTestIntoResult();
+    Util.Validation.updateManualResultHeaderCount(manualApiDetails,
+        IRT.AUTOMATED_TEST_SECTION.audiorecordapi);
+  }
+
   gridId.jsGrid("refresh");
 
   linkId.button("disable");
@@ -531,6 +538,14 @@ function createButton(id, text, displaylabel) {
       concludeExamineProcess();
     } else if (text == 'Done') {
       saveIRTResult();
+    } else if (text == 'Initiate') {
+      initiateRecorder();
+    } else if (text == 'Status') {
+      getRecorderStatus();
+    } else if (text == 'Capabilities') {
+      getDeviceCapabilities();
+    } else if (text == 'Conclude Capability') {
+      concludeDeviceCapabilityTest();
     }
 
     event.preventDefault();
@@ -1080,7 +1095,11 @@ function closeConfirmBox(manualGridId, testName, currentManualApi, result) {
     manualResultArray = Util.Validation.getProcessManualResult();
     testingArray = processTestArray.slice();
 
+  } else if (testName == 'RECORDER') {
+    manualResultArray = Util.Validation.getAudioTestManualArray();
+    testingArray = recorderTestArray.slice();
   }
+
   if (currentTestSetting == testingArray[currentTestIndex]) {
     manualGridId.jsGrid("updateItem", getTTSTestGridItem(manualGridId,
         currentTestIndex), Util.Validation.setTTSItemDetail(currentTestSetting,
@@ -1151,7 +1170,7 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
   disableIds.forEach(function(item, index, array) {
 
     var buttonSliderId = null;
-    if (testName == 'TTS') {
+    if (testName == 'TTS' || testName == 'RECORDER') {
       buttonSliderId = eval(irtApiSpecConstant + specSeparator
           + currentManualApi + specSeparator + item + specSeparator
           + "buttonSliderId");
@@ -1182,7 +1201,7 @@ function enableUIOptions(testName, currentManualApi, testingArray) {
   enableIds.forEach(function(item, index, array) {
 
     var buttonSliderId = null;
-    if (testName == 'TTS') {
+    if (testName == 'TTS' || testName == 'RECORDER') {
       buttonSliderId = eval(irtApiSpecConstant + specSeparator
           + currentManualApi + specSeparator + item + specSeparator
           + "buttonSliderId");
@@ -1399,8 +1418,42 @@ function recorderComponentInitialize() {
 
   populateJsonGrid($("#recorderGrid"), 'RECORDER', false);
 
-  if (Util.Validation.getProcessManualResult().length == 0) {
+  disableUIOptions('RECORDER', specRecorderManualApi, recorderTestArray);
+  enableUIOptions('RECORDER', specRecorderManualApi, recorderTestArray);
+
+  if (Util.Validation.getAudioTestManualArray().length == 0) {
     populateReportGrid(recorderTestArray, recordermanual_section);
   }
 
+}
+
+function initiateRecorder() {
+
+  if (recorderImpl.audioRecorderInitialize()) {
+    setDialogHtml(specRecorderManualApi);
+    loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+  }
+}
+
+function getRecorderStatus() {
+  currentTestSetting = IRT.RecorderTest.STATUS;
+
+  $('#recorderStatusText').html(recorderImpl.getAudioRecorderStatus());
+
+  setDialogHtml(specRecorderManualApi);
+  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+}
+
+function getDeviceCapabilities() {
+  $('#recorderInputOutputSelection').show();
+  $('#concludeCapability').show();
+  createButton($("#concludeCapability"), 'Conclude Capability', 'OK');
+
+  recorderImpl.getDeviceRecorderCapabilities();
+}
+
+function concludeDeviceCapabilityTest() {
+  currentTestSetting = IRT.RecorderTest.CAPABILITY;
+  setDialogHtml(specRecorderManualApi);
+  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
 }

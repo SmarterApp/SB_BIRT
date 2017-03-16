@@ -1454,7 +1454,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "dialogHtml" : "<p>If you didn't see any error dialog box, choose <b>Yes</b>. If not, choose <b>No</b></p>",
@@ -1467,8 +1467,8 @@ IRT.ApiSpecs = {
     "STATUS" : {
 
       "id" : "13",
-      "testName" : "Manual test for TTS Speak",
-      "instruction" : "Click Play to test TTS Speech",
+      "testName" : "Manual test for Audio Recorder Status",
+      "instruction" : "Click Status to get audio recorder status",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1478,21 +1478,21 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
-      "dialogTitle" : "TTS Play Test",
-      "buttonSliderId" : "play",
-      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
-          "RATE", "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
-      "enableSection" : [ "PLAY" ]
+      "dialogHtml" : "<p>If you set status changed, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "Audio Recorder Status Test",
+      "buttonSliderId" : "getRecordingStatus",
+      "disableSection" : [ 'INITIATE', 'CAPABILITY', 'START_RECORD',
+          'STOP_RECORD', 'PLAY', 'PAUSE', 'RESUME', 'STOP' ],
+      "enableSection" : [ 'STATUS' ]
     },
     "CAPABILITY" : {
       // Pause R11, R12 SEC-11, SEC-39
       "id" : "12",
-      "testName" : "Manual test for TTS Pause",
-      "instruction" : "Click Play and then Pause to test TTS Pause",
+      "testName" : "Manual test for Device selection",
+      "instruction" : "<ol><li>Click Capabilities to get input & output audio selection.</li><li>System will show Input Source & Output Destination.</li><li>Click OK to conclude this test.</li></ol>",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1502,15 +1502,15 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did text-to-speech pause? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
-      "dialogTitle" : "TTS Pause Test",
-      "buttonSliderId" : "pause",
-      "disableSection" : [ "RESUME", "STOP", "VOLUME", "PITCH", "RATE",
-          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
-      "enableSection" : [ "PLAY", "PAUSE" ]
+      "dialogHtml" : "<p>Did you see the audio input  & output select box are populated? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "Audio Recorder Device Capabilities Test",
+      "buttonSliderId" : "getRecordingCapabilities",
+      "disableSection" : [ 'INITIATE', 'STATUS', 'START_RECORD', 'STOP_RECORD',
+          'PLAY', 'PAUSE', 'RESUME', 'STOP' ],
+      "enableSection" : [ 'CAPABILITY' ]
     },
     "START_RECORD" : {
       // Resume R11, R12 SEC-11, SEC-39
@@ -1531,10 +1531,10 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "dialogHtml" : "<p>Did text-to-speech resume? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Resume Test",
-      "buttonSliderId" : "resume",
-      "disableSection" : [ "STOP", "VOLUME", "PITCH", "RATE", "SYSTEM_VOLUME",
-          "MUTE", "UNMUTE", "VOICE" ],
-      "enableSection" : [ "PLAY", "PAUSE", "RESUME" ]
+      "buttonSliderId" : "startRecording",
+      "disableSection" : [ 'INITIATE', 'STATUS', 'CAPABILITY', 'STOP_RECORD',
+          'PLAY', 'PAUSE', 'RESUME', 'STOP' ],
+      "enableSection" : [ "START_RECORD" ]
     },
     "STOP_RECORD" : {
       // Stop R09 SEC-37
@@ -1555,10 +1555,10 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "dialogHtml" : "<p>Did text-to-speech stop? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Stop Test",
-      "buttonSliderId" : "stop",
-      "disableSection" : [ "PAUSE", "RESUME", "VOLUME", "PITCH", "RATE",
-          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
-      "enableSection" : [ "PLAY", "STOP" ]
+      "buttonSliderId" : "stopRecording",
+      "disableSection" : [ 'INITIATE', 'STATUS', 'CAPABILITY', 'START_RECORD',
+          'PLAY', 'PAUSE', 'RESUME', 'STOP' ],
+      "enableSection" : [ 'STOP_RECORD' ]
     },
     "PLAY" : {
       // Volume R11, R12 SEC-11, SEC-39
@@ -1579,10 +1579,10 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Volume Test",
-      "buttonSliderId" : "ttsVolume",
-      "disableSection" : [ "PAUSE", "RESUME", "STOP", "PITCH", "RATE",
-          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
-      "enableSection" : [ "PLAY", "VOLUME" ]
+      "buttonSliderId" : "startPlaybackRecording",
+      "disableSection" : [ 'INITIATE', 'STATUS', 'CAPABILITY', 'START_RECORD',
+          'STOP_RECORD', 'PAUSE', 'RESUME', 'STOP' ],
+      "enableSection" : [ 'PLAY' ]
     },
     "PAUSE" : {
       // Pitch R11, R12 SEC-11, SEC-39
@@ -1603,10 +1603,10 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Pitch Test",
-      "buttonSliderId" : "ttsPitch",
-      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "RATE",
-          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
-      "enableSection" : [ "PLAY", "PITCH" ]
+      "buttonSliderId" : "pausePlaybackRecording",
+      "disableSection" : [ 'INITIATE', 'STATUS', 'CAPABILITY', 'START_RECORD',
+          'STOP_RECORD', 'RESUME', 'STOP' ],
+      "enableSection" : [ 'PLAY', 'PAUSE' ]
     },
     "RESUME" : {
       // Rate R11, R12 SEC-11, SEC-39
@@ -1627,10 +1627,10 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Rate Test",
-      "buttonSliderId" : "ttsRate",
-      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
-          "SYSTEM_VOLUME", "MUTE", "UNMUTE", "VOICE" ],
-      "enableSection" : [ "PLAY", "RATE" ]
+      "buttonSliderId" : "resumePlaybackRecording",
+      "disableSection" : [ 'INITIATE', 'STATUS', 'CAPABILITY', 'START_RECORD',
+          'STOP_RECORD', 'STOP' ],
+      "enableSection" : [ 'PLAY', 'PAUSE', 'RESUME' ]
     },
     "STOP" : {
       // System Volume R16 SEC-57, SEC-58
@@ -1651,10 +1651,10 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "System Volume Test",
-      "buttonSliderId" : "systemVolume",
-      "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
-          "RATE", "MUTE", "UNMUTE", "VOICE" ],
-      "enableSection" : [ "PLAY", "SYSTEM_VOLUME" ]
+      "buttonSliderId" : "stopPlaybackRecording",
+      "disableSection" : [ 'INITIATE', 'STATUS', 'CAPABILITY', 'START_RECORD',
+          'STOP_RECORD', 'PAUSE', 'RESUME' ],
+      "enableSection" : [ 'PLAY', 'STOP' ]
     },
     "FAILED" : {
       "id" : "22",
