@@ -1460,9 +1460,11 @@ IRT.ApiSpecs = {
       "dialogHtml" : "<p>If you didn't see any error dialog box, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "Audio Recorder Initialization",
       "buttonSliderId" : "initiateRecording",
-      "disableSection" : [ 'STATUS', 'CAPABILITY', 'START_RECORD',
-          'STOP_RECORD', 'PLAY', 'PAUSE', 'RESUME', 'STOP' ],
-      "enableSection" : [ "INITIATE" ]
+      "disableSection" : [ "getRecordingStatus", "getRecordingCapabilities",
+          "startRecording", "stopRecording", "startPlaybackRecording",
+          "pausePlaybackRecording", "resumePlaybackRecording",
+          "stopPlaybackRecording" ],
+      "enableSection" : [ "initiateRecording" ]
     },
     "STATUS" : {
 
@@ -1484,9 +1486,11 @@ IRT.ApiSpecs = {
       "dialogHtml" : "<p>If you set status changed, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "Audio Recorder Status Test",
       "buttonSliderId" : "getRecordingStatus",
-      "disableSection" : [ 'INITIATE', 'CAPABILITY', 'START_RECORD',
-          'STOP_RECORD', 'PLAY', 'PAUSE', 'RESUME', 'STOP' ],
-      "enableSection" : [ 'STATUS' ]
+      "disableSection" : [ "initiateRecording", "getRecordingCapabilities",
+          "startRecording", "stopRecording", "startPlaybackRecording",
+          "pausePlaybackRecording", "resumePlaybackRecording",
+          "stopPlaybackRecording" ],
+      "enableSection" : [ 'getRecordingStatus' ]
     },
     "CAPABILITY" : {
       // Pause R11, R12 SEC-11, SEC-39
@@ -1508,9 +1512,11 @@ IRT.ApiSpecs = {
       "dialogHtml" : "<p>Did you see the audio input  & output select box are populated? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "Audio Recorder Device Capabilities Test",
       "buttonSliderId" : "getRecordingCapabilities",
-      "disableSection" : [ 'INITIATE', 'STATUS', 'START_RECORD', 'STOP_RECORD',
-          'PLAY', 'PAUSE', 'RESUME', 'STOP' ],
-      "enableSection" : [ 'CAPABILITY' ]
+      "disableSection" : [ "initiateRecording", "getRecordingStatus",
+          "startRecording", "stopRecording", "startPlaybackRecording",
+          "pausePlaybackRecording", "resumePlaybackRecording",
+          "stopPlaybackRecording" ],
+      "enableSection" : [ 'getRecordingCapabilities' ]
     },
     "START_RECORD" : {
       // Resume R11, R12 SEC-11, SEC-39
@@ -1532,9 +1538,12 @@ IRT.ApiSpecs = {
       "dialogHtml" : "<p>Did text-to-speech resume? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Resume Test",
       "buttonSliderId" : "startRecording",
-      "disableSection" : [ 'INITIATE', 'STATUS', 'CAPABILITY', 'STOP_RECORD',
-          'PLAY', 'PAUSE', 'RESUME', 'STOP' ],
-      "enableSection" : [ "START_RECORD" ]
+      "disableSection" : [ "initiateRecording", "getRecordingStatus",
+          "getRecordingCapabilities", "stopRecording",
+          "startPlaybackRecording", "pausePlaybackRecording",
+          "resumePlaybackRecording", "stopPlaybackRecording",
+          "concludeCapability", "audioOutput", "audioSource" ],
+      "enableSection" : [ "startRecording" ]
     },
     "STOP_RECORD" : {
       // Stop R09 SEC-37
@@ -1556,9 +1565,12 @@ IRT.ApiSpecs = {
       "dialogHtml" : "<p>Did text-to-speech stop? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Stop Test",
       "buttonSliderId" : "stopRecording",
-      "disableSection" : [ 'INITIATE', 'STATUS', 'CAPABILITY', 'START_RECORD',
-          'PLAY', 'PAUSE', 'RESUME', 'STOP' ],
-      "enableSection" : [ 'STOP_RECORD' ]
+      "disableSection" : [ "initiateRecording", "getRecordingStatus",
+          "getRecordingCapabilities", "startRecording",
+          "startPlaybackRecording", "pausePlaybackRecording",
+          "resumePlaybackRecording", "stopPlaybackRecording",
+          "concludeCapability", "audioOutput", "audioSource" ],
+      "enableSection" : [ 'stopRecording' ]
     },
     "PLAY" : {
       // Volume R11, R12 SEC-11, SEC-39
@@ -1580,9 +1592,12 @@ IRT.ApiSpecs = {
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Volume Test",
       "buttonSliderId" : "startPlaybackRecording",
-      "disableSection" : [ 'INITIATE', 'STATUS', 'CAPABILITY', 'START_RECORD',
-          'STOP_RECORD', 'PAUSE', 'RESUME', 'STOP' ],
-      "enableSection" : [ 'PLAY' ]
+      "disableSection" : [ "initiateRecording", "getRecordingStatus",
+          "getRecordingCapabilities", "startRecording", "stopRecording",
+          "pausePlaybackRecording", "resumePlaybackRecording",
+          "stopPlaybackRecording", "concludeCapability", "audioOutput",
+          "audioSource" ],
+      "enableSection" : [ 'startPlaybackRecording' ]
     },
     "PAUSE" : {
       // Pitch R11, R12 SEC-11, SEC-39
@@ -1604,9 +1619,11 @@ IRT.ApiSpecs = {
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Pitch Test",
       "buttonSliderId" : "pausePlaybackRecording",
-      "disableSection" : [ 'INITIATE', 'STATUS', 'CAPABILITY', 'START_RECORD',
-          'STOP_RECORD', 'RESUME', 'STOP' ],
-      "enableSection" : [ 'PLAY', 'PAUSE' ]
+      "disableSection" : [ "initiateRecording", "getRecordingStatus",
+          "getRecordingCapabilities", "startRecording", "stopRecording",
+          "resumePlaybackRecording", "stopPlaybackRecording",
+          "concludeCapability", "audioOutput", "audioSource" ],
+      "enableSection" : [ 'startPlaybackRecording', 'pausePlaybackRecording' ]
     },
     "RESUME" : {
       // Rate R11, R12 SEC-11, SEC-39
@@ -1628,9 +1645,12 @@ IRT.ApiSpecs = {
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "TTS Rate Test",
       "buttonSliderId" : "resumePlaybackRecording",
-      "disableSection" : [ 'INITIATE', 'STATUS', 'CAPABILITY', 'START_RECORD',
-          'STOP_RECORD', 'STOP' ],
-      "enableSection" : [ 'PLAY', 'PAUSE', 'RESUME' ]
+      "disableSection" : [ "initiateRecording", "getRecordingStatus",
+          "getRecordingCapabilities", "startRecording", "stopRecording",
+          "stopPlaybackRecording", "concludeCapability", "audioOutput",
+          "audioSource" ],
+      "enableSection" : [ 'startPlaybackRecording', 'pausePlaybackRecording',
+          'resumePlaybackRecording' ]
     },
     "STOP" : {
       // System Volume R16 SEC-57, SEC-58
@@ -1652,9 +1672,11 @@ IRT.ApiSpecs = {
       "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "System Volume Test",
       "buttonSliderId" : "stopPlaybackRecording",
-      "disableSection" : [ 'INITIATE', 'STATUS', 'CAPABILITY', 'START_RECORD',
-          'STOP_RECORD', 'PAUSE', 'RESUME' ],
-      "enableSection" : [ 'PLAY', 'STOP' ]
+      "disableSection" : [ "initiateRecording", "getRecordingStatus",
+          "getRecordingCapabilities", "startRecording", "stopRecording",
+          "pausePlaybackRecording", "resumePlaybackRecording",
+          "concludeCapability", "audioOutput", "audioSource" ],
+      "enableSection" : [ 'startPlaybackRecording', 'stopPlaybackRecording' ]
     },
     "FAILED" : {
       "id" : "22",

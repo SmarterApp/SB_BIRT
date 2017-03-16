@@ -394,7 +394,7 @@ function ttsComponentInitialize() {
   createButton($("#stop"), 'Stop', 'Stop');
   createButton($("#systemMute"), 'Mute', 'Mute');
   createButton($("#systemUnMute"), 'Ummute', 'Ummute');
-  createSelectMenu($("#voices"), 'TTS', 'TTS');
+  createSelectMenu($("#voices"), 'TTS');
   loadVoices();
   disableUIOptions('TTS', specTTSManualApi, ttsSettingArray);
   enableUIOptions('TTS', specTTSManualApi, ttsSettingArray);
@@ -1170,7 +1170,7 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
   disableIds.forEach(function(item, index, array) {
 
     var buttonSliderId = null;
-    if (testName == 'TTS' || testName == 'RECORDER') {
+    if (testName == 'TTS') {
       buttonSliderId = eval(irtApiSpecConstant + specSeparator
           + currentManualApi + specSeparator + item + specSeparator
           + "buttonSliderId");
@@ -1201,7 +1201,7 @@ function enableUIOptions(testName, currentManualApi, testingArray) {
   enableIds.forEach(function(item, index, array) {
 
     var buttonSliderId = null;
-    if (testName == 'TTS' || testName == 'RECORDER') {
+    if (testName == 'TTS') {
       buttonSliderId = eval(irtApiSpecConstant + specSeparator
           + currentManualApi + specSeparator + item + specSeparator
           + "buttonSliderId");
@@ -1447,6 +1447,10 @@ function getRecorderStatus() {
 function getDeviceCapabilities() {
   $('#recorderInputOutputSelection').show();
   $('#concludeCapability').show();
+
+  createSelectMenu($("#audioSource"), 'RECORDER');
+  createSelectMenu($("#audioOutput"), 'RECORDER');
+
   createButton($("#concludeCapability"), 'Conclude Capability', 'OK');
 
   recorderImpl.getDeviceRecorderCapabilities();
