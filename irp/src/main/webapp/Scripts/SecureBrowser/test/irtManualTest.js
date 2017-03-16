@@ -496,6 +496,9 @@ function createSelectMenu(id, testName) {
       if (testName == 'CAPABILITY') {
         setSelectedCapability(ui.item.label, ui.item.value, ui.item.index);
       }
+      if (testName = 'RECORDER_INPUT') {
+        setRecorderInput(ui.item.label, ui.item.value, ui.item.index);
+      }
     }
   });
 }
@@ -546,6 +549,12 @@ function createButton(id, text, displaylabel) {
       getDeviceCapabilities();
     } else if (text == 'Conclude Capability') {
       concludeDeviceCapabilityTest();
+    } else if (text == 'Record') {
+      startRecordingAudio();
+    } else if (text == 'Stop Recording') {
+      stopRecordingAudio();
+    } else if (text == 'Play Recording') {
+      startPlaybackRecording();
     }
 
     event.preventDefault();
@@ -1448,10 +1457,12 @@ function getDeviceCapabilities() {
   $('#recorderInputOutputSelection').show();
   $('#concludeCapability').show();
 
-  createSelectMenu($("#audioSource"), 'RECORDER');
-  createSelectMenu($("#audioOutput"), 'RECORDER');
+  createSelectMenu($("#audioSource"), 'RECORDER_INPUT');
+  createSelectMenu($("#audioOutput"), 'RECORDER_OUTPUT');
 
-  createButton($("#concludeCapability"), 'Conclude Capability', 'OK');
+  createButton($("#concludeCapability"), 'Conclude Capability', 'Use');
+
+  $('#concludeCapability').button('disable');
 
   recorderImpl.getDeviceRecorderCapabilities();
 }
@@ -1460,4 +1471,33 @@ function concludeDeviceCapabilityTest() {
   currentTestSetting = IRT.RecorderTest.CAPABILITY;
   setDialogHtml(specRecorderManualApi);
   loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+}
+
+function startRecordingAudio() {
+
+  var mediaRecorderStatusText = recorderImpl.startAudioRecording();
+  $('#mediaRecorderStatusText').html(mediaRecorderStatusText);
+
+  currentTestSetting = IRT.RecorderTest.START_RECORD;
+  setDialogHtml(specRecorderManualApi);
+  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+
+}
+
+function stopRecordingAudio() {
+  var mediaRecorderStatusText = recorderImpl.stopAudioRecording();
+  $('#mediaRecorderStatusText').html(mediaRecorderStatusText);
+
+  currentTestSetting = IRT.RecorderTest.STOP_RECORD;
+  setDialogHtml(specRecorderManualApi);
+  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+}
+
+function setRecorderInput(label, value, index) {
+  $('#concludeCapability').button('enable');
+  recorderImpl.setRecorderInputDevice(label, value, index);
+}
+
+function startPlaybackRecording() {
+  recorderImpl.startAudioPlayback();
 }

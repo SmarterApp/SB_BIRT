@@ -1483,7 +1483,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you set status changed, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>If you see Status changed to <b>running</b>, choose <b>Yes</b>. If not, choose <b>No</b></p>",
       "dialogTitle" : "Audio Recorder Status Test",
       "buttonSliderId" : "getRecordingStatus",
       "disableSection" : [ "initiateRecording", "getRecordingCapabilities",
@@ -1496,7 +1496,7 @@ IRT.ApiSpecs = {
       // Pause R11, R12 SEC-11, SEC-39
       "id" : "12",
       "testName" : "Manual test for Device selection",
-      "instruction" : "<ol><li>Click Capabilities to get input & output audio selection.</li><li>System will show Input Source & Output Destination.</li><li>Click OK to conclude this test.</li></ol>",
+      "instruction" : "<ol><li>Click Capabilities to get input & output audio selection.</li><li>System will show Input Source & Output Destination. Please select Input Source to use as recording device.</li><li>Click Use to conclude this test.</li></ol>",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1521,8 +1521,8 @@ IRT.ApiSpecs = {
     "START_RECORD" : {
       // Resume R11, R12 SEC-11, SEC-39
       "id" : "13",
-      "testName" : "Manual test for TTS Resume",
-      "instruction" : "Click Play, Pause, and then Resume to test TTS Resume",
+      "testName" : "Manual test for Start Recording",
+      "instruction" : "Click Start Recording to start audio recording",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1532,11 +1532,11 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did text-to-speech resume? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
-      "dialogTitle" : "TTS Resume Test",
+      "dialogHtml" : "<p>If you see status changed to <b>recording</b>, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "Audio Recorder Start Recording Test",
       "buttonSliderId" : "startRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
           "getRecordingCapabilities", "stopRecording",
@@ -1548,8 +1548,8 @@ IRT.ApiSpecs = {
     "STOP_RECORD" : {
       // Stop R09 SEC-37
       "id" : "14",
-      "testName" : "Manual test for TTS Stop",
-      "instruction" : "Click Play and then Stop to test TTS Stop",
+      "testName" : "Manual test for Stop Recording",
+      "instruction" : "Click Stop Recording to stop audio recording",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1559,11 +1559,11 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did text-to-speech stop? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
-      "dialogTitle" : "TTS Stop Test",
+      "dialogHtml" : "<p>If you set status changed <b>inactive</b>, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "Audio Recorder Stop Recording Test",
       "buttonSliderId" : "stopRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
           "getRecordingCapabilities", "startRecording",
@@ -1575,8 +1575,8 @@ IRT.ApiSpecs = {
     "PLAY" : {
       // Volume R11, R12 SEC-11, SEC-39
       "id" : "15",
-      "testName" : "Manual test for TTS Volume",
-      "instruction" : "Change Volume and Click Play to test",
+      "testName" : "Manual test for Audio Recorder Play",
+      "instruction" : "Click Play to hear recording.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1586,11 +1586,11 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
-      "dialogTitle" : "TTS Volume Test",
+      "dialogHtml" : "<p>If you heard the recording clearly, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogTitle" : "Audio Recorder Start Playback",
       "buttonSliderId" : "startPlaybackRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
           "getRecordingCapabilities", "startRecording", "stopRecording",

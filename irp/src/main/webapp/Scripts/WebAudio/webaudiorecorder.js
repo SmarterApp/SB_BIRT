@@ -9,7 +9,19 @@ function Recorder_WebAudioService() {
   var mediaRecorder ;
   
   var chunks = [];
+ 
+  var reader = new FileReader();
 
+  var audioURL = '';
+  
+  var source = null,
+  startedAt = 0,
+  pausedAt = 0,
+  playing = false,
+  offset;
+  
+  var recordedData;
+  
   navigator.mediaDevices.getUserMedia = (navigator.mediaDevices.getUserMedia
       || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
 
@@ -38,10 +50,11 @@ function Recorder_WebAudioService() {
 
       audioContext = new (window.AudioContext || webkitAudioContext)();
       
-      navigator.mediaDevices.getUserMedia(constraints).then(function(stream){
-        mediaRecorder = new MediaRecorder(stream);
-        window.stream = stream;
-      }).catch(this.handleError);
+/*
+ * navigator.mediaDevices.getUserMedia(constraints).then(function(stream){
+ * mediaRecorder = new MediaRecorder(stream); window.stream = stream;
+ * }).catch(this.handleError);
+ */
       
       return true;
     } catch (e) {
@@ -52,27 +65,129 @@ function Recorder_WebAudioService() {
   };
   
   this.getAudioRecorderStatus = function(){
-    
+    try {
     if(audioContext!=null){
-      return audioCtx.state;
+      return audioContext.state;
     }
     else{
+      return 'Unknown';
+    }
+    } catch (e) {
+      alert('Recorder Status API Failed');
       return 'Unknown';
     }
   };
   
   this.getDeviceRecorderCapabilities = function(){
-    
+    try {
     if(audioContext!=null){
-      
       navigator.mediaDevices.enumerateDevices().then(this.gotDevices).catch(this.handleError);
-      
     }
     else{
-      alert('Web Audio API initialization failed');
+      alert('Web Audio getCapabilities API  failed');
       return false;
     }
+    } catch (e) {
+      alert('Web Audio getCapabilities API  failed');
+      return Unknown;
+    }
   };
+  
+  this.setRecorderInputDevice = function(label, value, index){
+    
+    
+    this.constraints = {
+        audio: {deviceId: value ? {exact: value} : undefined}
+     };
+    
+    navigator.mediaDevices.getUserMedia(constraints).then(function(stream){
+      if(mediaRecorder!=null){
+        mediaRecorder = null;
+      }
+      mediaRecorder = new MediaRecorder(stream); 
+      window.stream = stream;
+     }).catch(this.handleError);
+      
+  };
+  
+  this.startAudioRecording = function(){
+    
+    try {
+    mediaRecorder.start();
+    console.log(mediaRecorder.state);
+    $('#stopRecording').button('enable');
+    return mediaRecorder.state;
+    } catch (e) {
+      alert('Web Audio failed to start recording API');
+      return 'Unknown';
+    }
+  };
+  
+  this.stopAudioRecording = function(){
+    
+    try {
+    mediaRecorder.stop();
+    console.log(mediaRecorder.state);
+    
+    mediaRecorder.onstop = function(e) {
+      console.log("data available after MediaRecorder.stop() called.");
+
+      var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+      
+      chunks = [];
+      audioURL = window.URL.createObjectURL(blob);
+     
+      reader.readAsArrayBuffer(blob);
+    
+    }
+
+    mediaRecorder.ondataavailable = function(e) {
+      chunks.push(e.data);
+    }
+    
+    return mediaRecorder.state;
+    } catch (e) {
+      alert('Web Audio failed to start recording API');
+      return 'Unknown';
+    }
+  };
+  
+  this.startAudioPlayback = function(){
+    alert(audioURL);
+    fetch(audioURL)
+    .then(function(response) { return response.arrayBuffer(); })
+    .then(function(mybuffer) {
+      audioContext.decodeAudioData( mybuffer ).then(function(decodedData){
+        if (source != null) {
+          source.disconnect(audioContext.destination);
+          source = null; 
+        }
+        
+        if(decodedData !=null){
+          console.log("File read properly");
+          console.log("Channels: " + decodedData.numberOfChannels);
+          console.log("Length: " + decodedData.length);
+          console.log("Sample Rate: " + decodedData.sampleRate);
+          console.log("Duration: " + decodedData.duration);
+          recordedData = decodedData;
+        }
+          
+        
+       source = audioContext.createBufferSource();
+       source.buffer = recordedData; 
+       source.connect(audioContext.destination); 
+       offset = pausedAt;
+       source.start(0, offset); 
+       startedAt = audioContext.currentTime - offset;
+       pausedAt = 0;
+       playing = true;
+      }).catch(this.handleError);
+    });
+  };
+  
+  this.playRecording = function(decodedData) {
+   
+ };
   
   this.handleError = function(error){
     alert('Recorder API Error ' + error);
@@ -82,6 +197,9 @@ function Recorder_WebAudioService() {
   this.gotDevices = function(deviceInfos) {
     var audioInputSelect = $('#audioSource');
     var audioOutputSelect = $('#audioOutput');
+    
+    audioInputSelect.empty();
+    audioOutputSelect.empty();
     
     for (var i = 0; i !== deviceInfos.length; ++i) {
       var deviceInfo = deviceInfos[i];
