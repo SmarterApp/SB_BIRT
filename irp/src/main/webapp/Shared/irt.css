@@ -329,6 +329,14 @@
 	float: left;
 }
 
+.irt-optional-failure-ui-icon {
+    background-image: url('images/button-cross_yellow.png');
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    float: left;
+}
+
 .report-id-details {
 	font-weight: bold;
 	font-size: 2.5em;

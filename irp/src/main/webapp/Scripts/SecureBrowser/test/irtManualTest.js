@@ -37,7 +37,11 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   var dialogHeight = 800;
 
   if (testName == 'RECORDER') {
-    isManualTestSupported = true;
+
+    if (recorderImpl != null && recorderImpl.isSupported()) {
+      isManualTestSupported = true;
+    }
+
   } else if (testName == 'TTS') {
     if (ttsImpl != null) {
       isManualTestSupported = true;
@@ -101,8 +105,14 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   if (!isManualTestSupported) {
     var textMessage = eval(irtApiSpecConstant + specSeparator + specMessage
         + specSeparator + "errorDialog_" + testName);
-    id.html('<p><span class="irt-failure-ui-icon"></span>' + textMessage
-        + '</p>');
+
+    if (testName == 'RECORDER') {
+      id.html('<p><span class="irt-optional-failure-ui-icon"></span>'
+          + textMessage + '</p>');
+    } else {
+      id.html('<p><span class="irt-failure-ui-icon"></span>' + textMessage
+          + '</p>');
+    }
   }
 
   if (isManualTestSupported) {
@@ -215,7 +225,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
               null,
               false,
               'Error: Could not initialize Audio Recorder Support for this browser',
-              recorder_section);
+              recordermanual_section);
 
     }
   }

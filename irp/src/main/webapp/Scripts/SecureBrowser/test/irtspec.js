@@ -184,7 +184,8 @@ IRT.ApiSpecs = {
     "errorDialog_PROCESS" : "Your browser does not support Examine Process List, so manual testing will be skipped.",
     "errorDialog_saveSuccess" : "Your test results have been saved successfully. Your report ID is:",
     "errorDialog_saveFailure" : "System was unable to save test results.",
-    "errorDialog_report_not_found" : "No report found for the requested report ID:"
+    "errorDialog_report_not_found" : "No report found for the requested report ID:",
+    "errorDialog_RECORDER" : "Your browser doens not support Audio Recorder, so manual testing will be skipped"
   },
   "disableUI" : {
     "TTS_disable_all" : [ "PLAY", "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -1657,7 +1658,7 @@ IRT.ApiSpecs = {
     },
     "FAILED" : {
       "id" : "22",
-      "testName" : "TTS Manual Test",
+      "testName" : "Audio Recorder API Manual Test",
       "instruction" : "",
       "testApi" : "",
       "testResult" : false,
@@ -1668,7 +1669,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "dialogHtml" : "",

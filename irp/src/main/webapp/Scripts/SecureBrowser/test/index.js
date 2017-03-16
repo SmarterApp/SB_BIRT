@@ -26,7 +26,11 @@ var isAIRSecureBrowser = Util.Browser.isSecure();
 
 var webAudioBrowserType = TDS.SecureBrowser.getWebAudioBrowserType();
 
-var audioCtx = new (window.AudioContext || webkitAudioContext)();
+var recorderImpl = TDS.SecureBrowser.getRecorderImplementation();
+
+if (Util.Browser.isWebAudioApiSupported()) {
+  var audioCtx = recorderImpl.getAudioContextObject();
+}
 
 function beginBrowserAPITest() {
 

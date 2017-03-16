@@ -21,10 +21,13 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   var webAudioBrowserType = certified;
 
+  var recorderImpl = null;
+
   function initialize() {
 
     if (Util.Browser.isWebAudioApiSupported()) {
-      webAudioBrowserType = webaudio
+      webAudioBrowserType = webaudio;
+      recorderImpl = new Recorder_WebAudioService();
     }
 
     if (Util.Browser.isCertified()) {
@@ -40,16 +43,16 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         sbImpl = new TDS.SecureBrowser.Mobile.Android();
         browserType = mobile;
         webAudioBrowserType = mobile;
+        recorderImpl = new Recorder_MobileAudioService();
       } else {
         sbImpl = new TDS.SecureBrowser.Firefox();
         browserType = securebrowser;
       }
     }
 
-    /*
-     * // set default? if (sbImpl == null) { sbImpl = new
-     * TDS.SecureBrowser.Certified(); }
-     */
+    if (recorderImpl == null) {
+      recorderImpl = new Recorder_CertifiedService();
+    }
 
     if (sbImpl != null)
       sbImpl.initialize();
@@ -70,6 +73,10 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   SB.getWebAudioBrowserType = function() {
     return webAudioBrowserType;
+  };
+
+  SB.getRecorderImplementation = function() {
+    return recorderImpl;
   };
 
 })(TDS.SecureBrowser);

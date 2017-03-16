@@ -30,7 +30,14 @@
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/Libraries/YUI/storage/storage-min.js"></script>
   
-  
+  <!-- WebAudio -->
+
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/WebAudio/mobilerecorder.js"></script>
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/WebAudio/webaudiorecorder.js"></script>
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/WebAudio/certifiedrecorder.js"></script>
 
 
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/test/irtspec.js"></script>
@@ -50,6 +57,9 @@
 <script type="text/javascript" src="<%=contextPath%>/Scripts/Utilities/util_mozilla.js"></script>
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/Utilities/util_securebrowser.js"></script>
+  
+  
+
 
 <link type="text/css" rel="stylesheet"
   href="<%=contextPath%>/Shared/irt.css" />
