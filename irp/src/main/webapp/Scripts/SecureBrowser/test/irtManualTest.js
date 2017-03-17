@@ -1180,6 +1180,16 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
   if (currentTestIndex == testingArray.length - 1) {
     disableIds = eval(irtApiSpecConstant + specSeparator + specDisableUI
         + specSeparator + testName + "_disable_all");
+
+    if (testName == 'RECORDER') {
+
+      recorderImpl.audioRecorderClosed();
+      setTimeout(function() {
+        var recorderState = recorderImpl.getAudioRecorderStatus();
+        $('#recorderStatusText').html(recorderState);
+      }, 2000);
+
+    }
   }
 
   /* var disableArray = disableIds.split(","); */
@@ -1446,14 +1456,12 @@ function recorderComponentInitialize() {
 
 function initiateRecorder() {
 
-  if (recorderImpl.audioRecorderInitialize()) {
-    setDialogHtml(specRecorderManualApi);
-    loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
-  }
+  recorderImpl.audioRecorderInitialize();
+  setDialogHtml(specRecorderManualApi);
+  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
 }
 
 function getRecorderStatus() {
-  /* currentTestSetting = IRT.RecorderTest.STATUS; */
 
   $('#recorderStatusText').html(recorderImpl.getAudioRecorderStatus());
 
@@ -1476,7 +1484,6 @@ function getDeviceCapabilities() {
 }
 
 function concludeDeviceCapabilityTest() {
-  /* currentTestSetting = IRT.RecorderTest.CAPABILITY; */
   setDialogHtml(specRecorderManualApi);
   loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
 }
@@ -1486,7 +1493,6 @@ function startRecordingAudio() {
   var mediaRecorderStatusText = recorderImpl.startAudioRecording();
   $('#mediaRecorderStatusText').html(mediaRecorderStatusText);
 
-  /* currentTestSetting = IRT.RecorderTest.START_RECORD; */
   setDialogHtml(specRecorderManualApi);
   loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
 
@@ -1496,7 +1502,6 @@ function stopRecordingAudio() {
   var mediaRecorderStatusText = recorderImpl.stopAudioRecording();
   $('#mediaRecorderStatusText').html(mediaRecorderStatusText);
 
-  /* currentTestSetting = IRT.RecorderTest.STOP_RECORD; */
   setDialogHtml(specRecorderManualApi);
   loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
 }

@@ -32,8 +32,14 @@ function Recorder_WebAudioService() {
     try {
       if (!this.isSupported())
         return '';
-      else
-        return new (window.AudioContext || webkitAudioContext)();
+      else{
+        if(this.audioContext == null){
+          audioContext  = new (window.AudioContext || webkitAudioContext)();
+          return audioContext;
+        }
+          
+      }
+      
 
     } catch (e) {
       alert('Web Audio API initialization failed ' + e);
@@ -46,7 +52,7 @@ function Recorder_WebAudioService() {
 
     try {
 
-      audioContext = new (window.AudioContext || webkitAudioContext)();
+      audioContext = this.getAudioContextObject();
       
       navigator.mediaDevices.getUserMedia = (navigator.mediaDevices.getUserMedia
           || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
@@ -110,7 +116,6 @@ function Recorder_WebAudioService() {
     try {
     mediaRecorder.start();
     console.log(mediaRecorder.state);
-    $('#stopRecording').button('enable');
     return mediaRecorder.state;
     } catch (e) {
       alert('Web Audio failed to start recording API  ' + e);
@@ -132,8 +137,8 @@ function Recorder_WebAudioService() {
       chunks = [];
       audioURL = window.URL.createObjectURL(blob);
      
-      reader.readAsArrayBuffer(blob);
-    
+      reader.readAsBinaryString(blob);  
+      
     }
 
     mediaRecorder.ondataavailable = function(e) {
@@ -174,7 +179,6 @@ function Recorder_WebAudioService() {
        offset = pausedAt;
        source.start(0); 
        startedAt = audioContext.currentTime - offset;
-       pausedAt = 0;
        playing = true;
       }).catch(this.handleError);
     });
@@ -240,5 +244,18 @@ function Recorder_WebAudioService() {
     }
 
   };
+  
+  this.audioRecorderClosed = function() {
+
+    try {
+
+      audioContext.close();
+      
+    } catch (e) {
+      alert('Recorder Close failed ' + e);
+    }
+
+  };
+ 
 
 }
