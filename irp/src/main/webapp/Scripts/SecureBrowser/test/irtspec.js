@@ -791,7 +791,7 @@ IRT.ApiSpecs = {
     "PLAY" : {
       // Play R11, R12 SEC-11, SEC-39
       "id" : "11",
-      "testName" : "Manual test for TTS Speak",
+      "testName" : "Manual test: TTS Speak",
       "instruction" : "Click <b>Play</b> to test TTS Speech",
       "testApi" : "",
       "testResult" : false,
@@ -815,7 +815,7 @@ IRT.ApiSpecs = {
     "PAUSE" : {
       // Pause R11, R12 SEC-11, SEC-39
       "id" : "12",
-      "testName" : "Manual test for TTS Pause",
+      "testName" : "Manual test: TTS Pause",
       "instruction" : "Click <b>Play</b> and then <b>Pause</b> to test TTS Pause",
       "testApi" : "",
       "testResult" : false,
@@ -839,7 +839,7 @@ IRT.ApiSpecs = {
     "RESUME" : {
       // Resume R11, R12 SEC-11, SEC-39
       "id" : "13",
-      "testName" : "Manual test for TTS Resume",
+      "testName" : "Manual test: TTS Resume",
       "instruction" : "Click <b>Play</b>, <b>Pause</b>, and then <b>Resume</b> to test TTS Resume",
       "testApi" : "",
       "testResult" : false,
@@ -863,7 +863,7 @@ IRT.ApiSpecs = {
     "STOP" : {
       // Stop R09 SEC-37
       "id" : "14",
-      "testName" : "Manual test for TTS Stop",
+      "testName" : "Manual test: TTS Stop",
       "instruction" : "Click <b>Play</b> and then <b>Stop</b> to test TTS Stop",
       "testApi" : "",
       "testResult" : false,
@@ -887,7 +887,7 @@ IRT.ApiSpecs = {
     "VOLUME" : {
       // Volume R11, R12 SEC-11, SEC-39
       "id" : "15",
-      "testName" : "Manual test for TTS Volume",
+      "testName" : "Manual test: TTS Volume",
       "instruction" : "Change Volume and Click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
@@ -911,7 +911,7 @@ IRT.ApiSpecs = {
     "PITCH" : {
       // Pitch R11, R12 SEC-11, SEC-39
       "id" : "16",
-      "testName" : "Manual test for TTS Pitch",
+      "testName" : "Manual test: TTS Pitch",
       "instruction" : "Change Pitch and Click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
@@ -935,7 +935,7 @@ IRT.ApiSpecs = {
     "RATE" : {
       // Rate R11, R12 SEC-11, SEC-39
       "id" : "17",
-      "testName" : "Manual test for TTS Rate",
+      "testName" : "Manual test: TTS Rate",
       "instruction" : "Change Rate and Click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
@@ -959,7 +959,7 @@ IRT.ApiSpecs = {
     "SYSTEM_VOLUME" : {
       // System Volume R16 SEC-57, SEC-58
       "id" : "18",
-      "testName" : "Manual test for System Volume",
+      "testName" : "Manual test: System Volume",
       "instruction" : "Change System Volume and Click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
@@ -983,7 +983,7 @@ IRT.ApiSpecs = {
     "MUTE" : {
       // Mute/Unmute R19, R20, R21 SEC-56, SEC-58
       "id" : "19",
-      "testName" : "Manual test for System Mute",
+      "testName" : "Manual test: System Mute",
       "instruction" : "Click <b>Mute</b> and click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
@@ -1007,7 +1007,7 @@ IRT.ApiSpecs = {
     "UNMUTE" : {
       // Mute/Unmute R19, R20, R21 SEC-56, SEC-58
       "id" : "20",
-      "testName" : "Manual test for System Unmute",
+      "testName" : "Manual test: System Unmute",
       "instruction" : "Click <b>Unmute</b> and click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
@@ -1031,7 +1031,7 @@ IRT.ApiSpecs = {
     "VOICE" : {
       // Voice Selection R11, R12 SEC-11, SEC-39
       "id" : "21",
-      "testName" : "Manual test for TTS Voice Selection",
+      "testName" : "Manual test: TTS Voice Selection",
       "instruction" : "Change Voice Selection and Click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
@@ -1054,7 +1054,7 @@ IRT.ApiSpecs = {
     },
     "FAILED" : {
       "id" : "22",
-      "testName" : "TTS Manual Test",
+      "testName" : "Manual Test: Text-to-speech (TTS) ",
       "instruction" : "",
       "testApi" : "",
       "testResult" : false,
@@ -1078,7 +1078,7 @@ IRT.ApiSpecs = {
   "capabilityManualAPI" : {
     "SET" : {
       "id" : "1",
-      "testName" : "Manual test for Set Capability",
+      "testName" : "Manual test: Set Capability",
       "instruction" : "Select Capability, Functionality and Click <b>Set</b> button",
       "testApi" : "",
       "testResult" : false,
@@ -1101,7 +1101,7 @@ IRT.ApiSpecs = {
     },
     "GET" : {
       "id" : "1",
-      "testName" : "Manual test for Get Capability",
+      "testName" : "Manual test: Get Capability",
       "instruction" : "Select Capability and Click <b>Get</b> button",
       "testApi" : "",
       "testResult" : false,
@@ -1124,7 +1124,7 @@ IRT.ApiSpecs = {
     },
     "FAILED" : {
       "id" : "3",
-      "testName" : "Get/Set Capability Manual Test",
+      "testName" : "Manual Test: Get/Set Capability",
       "instruction" : "",
       "testApi" : "",
       "testResult" : false,
@@ -1148,7 +1148,7 @@ IRT.ApiSpecs = {
   "processManualAPI" : {
     "EXAMINE" : {
       "id" : "1",
-      "testName" : "Manual test for Examine Process List",
+      "testName" : "Manual test: Examine Process List",
       "instruction" : "<ol><li>Select one or more processes from the 'Available' list and move them to the 'Selected' list and click <b>Examine</b>.</li><li>Any running forbidden apps found will be populated in the resulting grid.</li><li>Click OK to conclude this test.</li></ol>",
       "testApi" : "",
       "testResult" : false,
@@ -1170,7 +1170,7 @@ IRT.ApiSpecs = {
     },
     "FAILED" : {
       "id" : "2",
-      "testName" : "Manual test for Examine Process List",
+      "testName" : "Manual test: Examine Process List",
       "instruction" : "",
       "testApi" : "",
       "testResult" : false,
@@ -1661,7 +1661,7 @@ IRT.ApiSpecs = {
     "STOP" : {
       // Stop playback: SEC-68, R32, F43
       "id" : "18",
-      "testName" : "Audio Recorder Manual Test:Stop Playback",
+      "testName" : "Manual Test:Stop Playback",
       "instruction" : "Click <b>Play</b> and then <b>Stop</b> to test Stop Playback",
       "testApi" : "",
       "testResult" : false,
