@@ -159,7 +159,7 @@ function Recorder_WebAudioService() {
   
   this.startAudioPlayback = function(){
     
-    
+    try{
     var request = new XMLHttpRequest();
     request.open('GET', audioURL, true);
     request.responseType = 'arraybuffer'; // This asks the browser to populate
@@ -193,28 +193,15 @@ function Recorder_WebAudioService() {
       }).catch(this.handleError);
     }
     request.send();
-    
-  /*
-   * fetch(audioURL) .then(function(response) { return response.arrayBuffer(); })
-   * .then(function(mybuffer) { audioContext.decodeAudioData( mybuffer
-   * ).then(function(decodedData){ if (source != null) {
-   * source.disconnect(audioContext.destination); source = null; }
-   * 
-   * if(decodedData !=null){ console.log("File read properly");
-   * console.log("Channels: " + decodedData.numberOfChannels);
-   * console.log("Length: " + decodedData.length); console.log("Sample Rate: " +
-   * decodedData.sampleRate); console.log("Duration: " + decodedData.duration);
-   * recordedData = decodedData; }
-   * 
-   * 
-   * source = audioContext.createBufferSource(); source.buffer = recordedData;
-   * source.connect(audioContext.destination); offset = pausedAt;
-   * source.start(0); startedAt = audioContext.currentTime - offset; playing =
-   * true; }).catch(this.handleError); });
-   */
+    } catch (e) {
+      alert('Error while playing recorded audio ' + e );
+      return false;
+    }
+
   };
   
     this.stopAudioPlayback = function() {
+      try{
       if (source) {          
         source.disconnect();
         source.stop(0);
@@ -223,16 +210,26 @@ function Recorder_WebAudioService() {
       pausedAt = 0;
       startedAt = 0;
       playing = false;
+      } catch (e) {
+        alert('Error while stopping recorded audio ' + e );
+        return false;
+      }
+
    };
  
    this.pauseAudioPlayback = function(){
+     try{
      var elapsed = audioContext.currentTime - startedAt;
      this.stopAudioPlayback();
      pausedAt = elapsed;
+     } catch (e) {
+       alert('Error while pausing recorded audio ' + e );
+       return false;
+     }
    };
  
   this.resumeAudioPlayback = function () {
-  // connect the source to the output
+try{
     source = audioCtx.createBufferSource();
     source.buffer = recordedData; 
     source.connect(audioCtx.destination); 
@@ -241,6 +238,10 @@ function Recorder_WebAudioService() {
     startedAt = audioCtx.currentTime - offset;
     pausedAt = 0;
     playing = true;
+} catch (e) {
+  alert('Error while resuming recorded audio ' + e );
+  return false;
+}
   };
 
   
