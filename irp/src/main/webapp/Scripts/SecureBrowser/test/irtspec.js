@@ -792,7 +792,7 @@ IRT.ApiSpecs = {
       // Play R11, R12 SEC-11, SEC-39
       "id" : "11",
       "testName" : "Manual test for TTS Speak",
-      "instruction" : "Click Play to test TTS Speech",
+      "instruction" : "Click <b>Play</b> to test TTS Speech",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -805,7 +805,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "TTS Play Test",
       "buttonSliderId" : "play",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -816,7 +816,7 @@ IRT.ApiSpecs = {
       // Pause R11, R12 SEC-11, SEC-39
       "id" : "12",
       "testName" : "Manual test for TTS Pause",
-      "instruction" : "Click Play and then Pause to test TTS Pause",
+      "instruction" : "Click <b>Play</b> and then <b>Pause</b> to test TTS Pause",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -829,7 +829,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did text-to-speech pause? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>Did text-to-speech pause? If so choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "TTS Pause Test",
       "buttonSliderId" : "pause",
       "disableSection" : [ "RESUME", "STOP", "VOLUME", "PITCH", "RATE",
@@ -840,7 +840,7 @@ IRT.ApiSpecs = {
       // Resume R11, R12 SEC-11, SEC-39
       "id" : "13",
       "testName" : "Manual test for TTS Resume",
-      "instruction" : "Click Play, Pause, and then Resume to test TTS Resume",
+      "instruction" : "Click <b>Play</b>, <b>Pause</b>, and then <b>Resume</b> to test TTS Resume",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -853,7 +853,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did text-to-speech resume? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>Did text-to-speech resume? If so choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "TTS Resume Test",
       "buttonSliderId" : "resume",
       "disableSection" : [ "STOP", "VOLUME", "PITCH", "RATE", "SYSTEM_VOLUME",
@@ -864,7 +864,7 @@ IRT.ApiSpecs = {
       // Stop R09 SEC-37
       "id" : "14",
       "testName" : "Manual test for TTS Stop",
-      "instruction" : "Click Play and then Stop to test TTS Stop",
+      "instruction" : "Click <b>Play</b> and then <b>Stop</b> to test TTS Stop",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -877,7 +877,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did text-to-speech stop? If so choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>Did text-to-speech stop? If so choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "TTS Stop Test",
       "buttonSliderId" : "stop",
       "disableSection" : [ "PAUSE", "RESUME", "VOLUME", "PITCH", "RATE",
@@ -888,7 +888,7 @@ IRT.ApiSpecs = {
       // Volume R11, R12 SEC-11, SEC-39
       "id" : "15",
       "testName" : "Manual test for TTS Volume",
-      "instruction" : "Change Volume and Click Play to test",
+      "instruction" : "Change Volume and Click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -901,7 +901,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "TTS Volume Test",
       "buttonSliderId" : "ttsVolume",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "PITCH", "RATE",
@@ -912,7 +912,7 @@ IRT.ApiSpecs = {
       // Pitch R11, R12 SEC-11, SEC-39
       "id" : "16",
       "testName" : "Manual test for TTS Pitch",
-      "instruction" : "Change Pitch and Click Play to test",
+      "instruction" : "Change Pitch and Click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -925,7 +925,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "TTS Pitch Test",
       "buttonSliderId" : "ttsPitch",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "RATE",
@@ -936,7 +936,7 @@ IRT.ApiSpecs = {
       // Rate R11, R12 SEC-11, SEC-39
       "id" : "17",
       "testName" : "Manual test for TTS Rate",
-      "instruction" : "Change Rate and Click Play to test",
+      "instruction" : "Change Rate and Click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -949,7 +949,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "TTS Rate Test",
       "buttonSliderId" : "ttsRate",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -960,7 +960,7 @@ IRT.ApiSpecs = {
       // System Volume R16 SEC-57, SEC-58
       "id" : "18",
       "testName" : "Manual test for System Volume",
-      "instruction" : "Change System Volume and Click Play to test",
+      "instruction" : "Change System Volume and Click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -973,7 +973,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "System Volume Test",
       "buttonSliderId" : "systemVolume",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -984,7 +984,7 @@ IRT.ApiSpecs = {
       // Mute/Unmute R19, R20, R21 SEC-56, SEC-58
       "id" : "19",
       "testName" : "Manual test for System Mute",
-      "instruction" : "Click Mute and Click Play to test",
+      "instruction" : "Click <b>Mute</b> and click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -997,7 +997,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you didn't hear the voice at all, choose <b>Yes</b>. If you did hear the voice, choose <b>No</b></p>",
+      "dialogHtml" : "<p>If you didn't hear the voice at all, choose <b>Yes</b>. If you did hear the voice, choose <b>No</b>.</p>",
       "dialogTitle" : "System Mute Test",
       "buttonSliderId" : "systemMute",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -1008,7 +1008,7 @@ IRT.ApiSpecs = {
       // Mute/Unmute R19, R20, R21 SEC-56, SEC-58
       "id" : "20",
       "testName" : "Manual test for System Unmute",
-      "instruction" : "Click Unmute and Click Play to test",
+      "instruction" : "Click <b>Unmute</b> and click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1021,7 +1021,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you did hear the voice, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>If you did hear the voice, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "System Unmute Test",
       "buttonSliderId" : "systemUnMute",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -1032,7 +1032,7 @@ IRT.ApiSpecs = {
       // Voice Selection R11, R12 SEC-11, SEC-39
       "id" : "21",
       "testName" : "Manual test for TTS Voice Selection",
-      "instruction" : "Change Voice Selection and Click Play to test",
+      "instruction" : "Change Voice Selection and Click <b>Play</b> to test",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1045,7 +1045,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "TTS Voice Selection Test",
       "buttonSliderId" : "voices",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -1079,7 +1079,7 @@ IRT.ApiSpecs = {
     "SET" : {
       "id" : "1",
       "testName" : "Manual test for Set Capability",
-      "instruction" : "Select Capability, Functionality and Click Set button",
+      "instruction" : "Select Capability, Functionality and Click <b>Set</b> button",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1102,7 +1102,7 @@ IRT.ApiSpecs = {
     "GET" : {
       "id" : "1",
       "testName" : "Manual test for Get Capability",
-      "instruction" : "Select Capability and Click Get button",
+      "instruction" : "Select Capability and Click <b>Get</b> button",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1149,7 +1149,7 @@ IRT.ApiSpecs = {
     "EXAMINE" : {
       "id" : "1",
       "testName" : "Manual test for Examine Process List",
-      "instruction" : "<ol><li>Select one or more processes from the 'Available' list and move them to the 'Selected' list and click the Examine button.</li><li>Any running forbidden apps found will be populated in the resulting grid.</li><li>Click OK to conclude this test.</li></ol>",
+      "instruction" : "<ol><li>Select one or more processes from the 'Available' list and move them to the 'Selected' list and click <b>Examine</b>.</li><li>Any running forbidden apps found will be populated in the resulting grid.</li><li>Click OK to conclude this test.</li></ol>",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1162,7 +1162,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you see processes in Forbidden Running processes grid, as per your selection,choose <b>Yes</b>. If not, choose <b>No</b></p>",
+      "dialogHtml" : "<p>If you see processes in Forbidden Running processes grid, as per your selection, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "Examine Process List Test",
       "buttonSliderId" : "examineProcess",
       "disableSection" : [ "" ],
@@ -1449,8 +1449,8 @@ IRT.ApiSpecs = {
     "INITIATE" : {
       // Initialize audio recorder: SEC-19, R25, F40
       "id" : "13",
-      "testName" : "Manual test for Audio Recorder Initialization",
-      "instruction" : "Click Initiate to initialize audio recorder.",
+      "testName" : "Manual Test: Initialization",
+      "instruction" : "Click <b>Initiate</b> to initialize audio recorder.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1463,7 +1463,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you saw an error dialog box, choose <b>No</b>. If not, choose <b>Yes</b></p>",
+      "dialogHtml" : "<p>If you saw an error dialog box, choose <b>No</b>. If not, choose <b>Yes</b>.</p>",
       "dialogTitle" : "Audio Recorder Initialization",
       "buttonSliderId" : "initiateRecording",
       "disableSection" : [ "getRecordingStatus", "getRecordingCapabilities",
@@ -1475,8 +1475,8 @@ IRT.ApiSpecs = {
     "STATUS" : {
 	// Get audio recorder status: SEC-20, R26, F41
       "id" : "13",
-      "testName" : "Audio Recorder Manual Test: Status",
-      "instruction" : "Click Status to get audio recorder status",
+      "testName" : "Manual Test: Status",
+      "instruction" : "Click <b>Status</b> to get audio recorder status",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1489,7 +1489,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the Status changed to <b>running</b>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>If the Recording Status changed to <b>Recording</b>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "Audio Recorder Status Test",
       "buttonSliderId" : "getRecordingStatus",
       "disableSection" : [ "initiateRecording", "getRecordingCapabilities",
@@ -1501,8 +1501,8 @@ IRT.ApiSpecs = {
     "CAPABILITY" : {
 	// Get audio recorder capabilities: SEC-21, R27, F41
       "id" : "12",
-      "testName" : "Audio Recorder Manual Test: Input / Output Device selection",
-      "instruction" : "<ol><li>Click Capabilities to get input and output audio selection.</li><li>System will show Input Source and Output Destination. Select an Input Source to use as the recording device.</li><li>Click <b>Use</b> to conclude this test.</li></ol>",
+      "testName" : "Manual Test: Input / Output Device selection",
+      "instruction" : "<ol><li>Click <b>Capabilities</b> to get input and output audio selection.</li><li>System will show Input Source and Output Destination. Select an Input Source to use as the recording device.</li><li>Click <b>Use</b> to conclude this test.</li></ol>",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1527,8 +1527,8 @@ IRT.ApiSpecs = {
     "START_RECORD" : {
 	// Initiate audio capture: SEC-22, R28, F25
       "id" : "13",
-      "testName" : "Audio Recorder Manual Test: Start Recording",
-      "instruction" : "Click Start Recording to start audio recording",
+      "testName" : "Manual Test: Start Recording",
+      "instruction" : "Click <b>Start Recording</b> to start audio recording",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1554,8 +1554,8 @@ IRT.ApiSpecs = {
     "STOP_RECORD" : {
 	// Stop recording: SEC-23, R29, F26
       "id" : "14",
-      "testName" : "Audio Recorder Manual Test: Stop Recording",
-      "instruction" : "Click Stop Recording to stop audio recording",
+      "testName" : "Manual Test: Stop Recording",
+      "instruction" : "Click <b>Stop Recording</b> to stop audio recording",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1581,8 +1581,8 @@ IRT.ApiSpecs = {
     "PLAY" : {
 	// Playback a recording: SEC-67, R31, F27
       "id" : "15",
-      "testName" : "Audio Recorder Manual Test: Play recording",
-      "instruction" : "Click Play to hear recording.",
+      "testName" : "Manual Test: Play recording",
+      "instruction" : "Click <b>Play</b> to hear recording.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1608,8 +1608,8 @@ IRT.ApiSpecs = {
     "PAUSE" : {
 	// Pause playback: SEC-69, R33, F44
       "id" : "16",
-      "testName" : "Audio Recorder Manual Test: Pause Playback",
-      "instruction" : "Click Play and then Pause to test pausing the playback",
+      "testName" : "Manual Test: Pause Playback",
+      "instruction" : "Click <b>Play</b> and then <b>Pause</b> to test pausing the playback",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1634,8 +1634,8 @@ IRT.ApiSpecs = {
     "RESUME" : {
 	// Resume playback: SEC-70, R34, F45
       "id" : "17",
-      "testName" : "Audio Recorder Manual Test: Resume Playback",
-      "instruction" : "Click Play, Pause, and then Resume to test Resume Playback",
+      "testName" : "Manual Test: Resume Playback",
+      "instruction" : "Click <b>Play</b>, <b>Pause</b>, and then <b>Resume</b> to test resuming the playback",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1662,7 +1662,7 @@ IRT.ApiSpecs = {
 	// Stop playback: SEC-68, R32, F43
       "id" : "18",
       "testName" : "Audio Recorder Manual Test:Stop Playback",
-      "instruction" : "Click Play and then Stop to test Stop Playback",
+      "instruction" : "Click <b>Play</b> and then <b>Stop</b> to test Stop Playback",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
