@@ -29,8 +29,8 @@ var webaudio = "webaudio";
  * @specBrowserapi : Browser API section for automated testing
  * @specCapabilityManualApi : Get/Set Capability manual API instructions and
  *                          other info for Get/Set Capability manual testing
- * @specProcessManualApi : Examine Process list manual API instructions and other
- *                       info for Examine Process List manual testing
+ * @specProcessManualApi : Examine Process list manual API instructions and
+ *                       other info for Examine Process List manual testing
  * @specSeparator : JSON object separator which is always "." to access insider
  *                variables and keys
  * @tts_section : Section variable to define TTS automated testing
@@ -1239,7 +1239,7 @@ IRT.ApiSpecs = {
     }
   },
   "audiorecordapi" : {
-      // Initialize audio recorder: SEC-19, R25, F40
+    // Initialize audio recorder: SEC-19, R25, F40
     "checkAudioRecorderInitialize" : {
       "id" : "1",
       "testName" : "Initialize audio recorder",
@@ -1473,7 +1473,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ "initiateRecording" ]
     },
     "STATUS" : {
-	// Get audio recorder status: SEC-20, R26, F41
+      // Get audio recorder status: SEC-20, R26, F41
       "id" : "13",
       "testName" : "Manual Test: Status",
       "instruction" : "Click <b>Status</b> to get audio recorder status",
@@ -1489,7 +1489,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the Recording Status changed to <i>Running</i>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>If the Status changed to <i>running</i>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "Audio Recorder Status Test",
       "buttonSliderId" : "getRecordingStatus",
       "disableSection" : [ "initiateRecording", "getRecordingCapabilities",
@@ -1499,7 +1499,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ 'getRecordingStatus' ]
     },
     "CAPABILITY" : {
-	// Get audio recorder capabilities: SEC-21, R27, F41
+      // Get audio recorder capabilities: SEC-21, R27, F41
       "id" : "12",
       "testName" : "Manual Test: Input / Output Device selection",
       "instruction" : "<ol><li>Click <b>Capabilities</b> to get input and output audio selection.</li><li>System will show Input Source and Output Destination. Select an Input Source to use as the recording device.</li><li>Click <b>Use</b> to conclude this test.</li></ol>",
@@ -1525,7 +1525,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ 'getRecordingCapabilities' ]
     },
     "START_RECORD" : {
-	// Initiate audio capture: SEC-22, R28, F25
+      // Initiate audio capture: SEC-22, R28, F25
       "id" : "13",
       "testName" : "Manual Test: Start Recording",
       "instruction" : "Click <b>Start Recording</b> to start audio recording",
@@ -1541,7 +1541,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the Status changed to <i>Recording</i>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>If the Recording Status changed to <i>recording</i>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "Audio Recorder Start Recording Test",
       "buttonSliderId" : "startRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
@@ -1552,7 +1552,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ "startRecording" ]
     },
     "STOP_RECORD" : {
-	// Stop recording: SEC-23, R29, F26
+      // Stop recording: SEC-23, R29, F26
       "id" : "14",
       "testName" : "Manual Test: Stop Recording",
       "instruction" : "Click <b>Stop Recording</b> to stop audio recording",
@@ -1568,7 +1568,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the Status changed to <i>inactive</i>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>If the Recording Status changed to <i>inactive</i>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "Audio Recorder Stop Recording Test",
       "buttonSliderId" : "stopRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
@@ -1579,7 +1579,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ 'stopRecording' ]
     },
     "PLAY" : {
-	// Playback a recording: SEC-67, R31, F27
+      // Playback a recording: SEC-67, R31, F27
       "id" : "15",
       "testName" : "Manual Test: Play recording",
       "instruction" : "Click <b>Play</b> to hear recording.",
@@ -1606,7 +1606,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ 'startPlaybackRecording' ]
     },
     "PAUSE" : {
-	// Pause playback: SEC-69, R33, F44
+      // Pause playback: SEC-69, R33, F44
       "id" : "16",
       "testName" : "Manual Test: Pause Playback",
       "instruction" : "Click <b>Play</b> and then <b>Pause</b> to test pausing the playback",
@@ -1632,7 +1632,7 @@ IRT.ApiSpecs = {
       "enableSection" : [ 'startPlaybackRecording', 'pausePlaybackRecording' ]
     },
     "RESUME" : {
-	// Resume playback: SEC-70, R34, F45
+      // Resume playback: SEC-70, R34, F45
       "id" : "17",
       "testName" : "Manual Test: Resume Playback",
       "instruction" : "Click <b>Play</b>, <b>Pause</b>, and then <b>Resume</b> to test resuming the playback",
@@ -1659,7 +1659,7 @@ IRT.ApiSpecs = {
           'resumePlaybackRecording' ]
     },
     "STOP" : {
-	// Stop playback: SEC-68, R32, F43
+      // Stop playback: SEC-68, R32, F43
       "id" : "18",
       "testName" : "Audio Recorder Manual Test:Stop Playback",
       "instruction" : "Click <b>Play</b> and then <b>Stop</b> to test Stop Playback",
