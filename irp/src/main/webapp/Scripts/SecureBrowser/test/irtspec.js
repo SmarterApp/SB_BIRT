@@ -805,7 +805,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did you hear the voice clearly with applied settings?</p>",
       "dialogTitle" : "TTS Play Test",
       "buttonSliderId" : "play",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -829,7 +829,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did text-to-speech pause? If so choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did text-to-speech pause?</p>",
       "dialogTitle" : "TTS Pause Test",
       "buttonSliderId" : "pause",
       "disableSection" : [ "RESUME", "STOP", "VOLUME", "PITCH", "RATE",
@@ -853,7 +853,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did text-to-speech resume? If so choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did text-to-speech resume?</p>",
       "dialogTitle" : "TTS Resume Test",
       "buttonSliderId" : "resume",
       "disableSection" : [ "STOP", "VOLUME", "PITCH", "RATE", "SYSTEM_VOLUME",
@@ -877,7 +877,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did text-to-speech stop? If so choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did text-to-speech stop?</p>",
       "dialogTitle" : "TTS Stop Test",
       "buttonSliderId" : "stop",
       "disableSection" : [ "PAUSE", "RESUME", "VOLUME", "PITCH", "RATE",
@@ -901,7 +901,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did you hear the voice clearly with applied settings?</p>",
       "dialogTitle" : "TTS Volume Test",
       "buttonSliderId" : "ttsVolume",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "PITCH", "RATE",
@@ -925,7 +925,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did you hear the voice clearly with applied settings?</p>",
       "dialogTitle" : "TTS Pitch Test",
       "buttonSliderId" : "ttsPitch",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "RATE",
@@ -949,7 +949,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did you hear the voice clearly with applied settings></p>",
       "dialogTitle" : "TTS Rate Test",
       "buttonSliderId" : "ttsRate",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -973,7 +973,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did you hear the voice clearly with applied settings?</p>",
       "dialogTitle" : "System Volume Test",
       "buttonSliderId" : "systemVolume",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -997,7 +997,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you didn't hear the voice at all, choose <b>Yes</b>. If you did hear the voice, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Was the voice completely silent?</p>",
       "dialogTitle" : "System Mute Test",
       "buttonSliderId" : "systemMute",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -1021,7 +1021,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you did hear the voice, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did you hear the voice?</p>",
       "dialogTitle" : "System Unmute Test",
       "buttonSliderId" : "systemUnMute",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -1045,7 +1045,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the voice clearly with applied settings, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did you hear the voice clearly with applied settings</p>",
       "dialogTitle" : "TTS Voice Selection Test",
       "buttonSliderId" : "voices",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
@@ -1092,7 +1092,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the capabilities listed in the Capability table match the selection(s) you made, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did the capabilities listed in the Capability table match the selection(s) you made?</p>",
       "dialogTitle" : "Set Capability Test",
       "buttonSliderId" : "setCapability",
       "disableSection" : [ "getCapability" ],
@@ -1115,7 +1115,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the capabilities listed in the Capability table match the selection(s) you made, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did the capabilities listed in the Capability table match the selection(s) you made?</p>",
       "dialogTitle" : "Get Capability Test",
       "buttonSliderId" : "getCapability",
       "disableSection" : [ "setCapability", "enableCapability",
@@ -1162,7 +1162,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you see processes in Forbidden Running processes grid, as per your selection, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Do you see processes in the Forbidden Running Processes grid as per your selection?</p>",
       "dialogTitle" : "Examine Process List Test",
       "buttonSliderId" : "examineProcess",
       "disableSection" : [ "" ],
@@ -1489,7 +1489,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the Status changed to <i>running</i>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did the Status change to <i>running</i>?</p>",
       "dialogTitle" : "Audio Recorder Status Test",
       "buttonSliderId" : "getRecordingStatus",
       "disableSection" : [ "initiateRecording", "getRecordingCapabilities",
@@ -1515,7 +1515,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Were the audio input and output select boxes populated? If so, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Were the audio input and output select boxes populated?</p>",
       "dialogTitle" : "Audio Recorder Device Capabilities Test",
       "buttonSliderId" : "getRecordingCapabilities",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
@@ -1541,7 +1541,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the Recording Status changed to <i>recording</i>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did the Recording Status change to <i>recording</i>?</p>",
       "dialogTitle" : "Audio Recorder Start Recording Test",
       "buttonSliderId" : "startRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
@@ -1568,7 +1568,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the Recording Status changed to <i>inactive</i>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did the Recording Status change to <i>inactive</i>?</p>",
       "dialogTitle" : "Audio Recorder Stop Recording Test",
       "buttonSliderId" : "stopRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
@@ -1595,7 +1595,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the recording, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did you hear the recording?</p>",
       "dialogTitle" : "Audio Recorder Start Playback",
       "buttonSliderId" : "startPlaybackRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
@@ -1622,7 +1622,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did playback of the audio recording pause? If so choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did playback of the audio recording pause?</p>",
       "dialogTitle" : "Audio Recorder Pause Playback",
       "buttonSliderId" : "pausePlaybackRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
@@ -1648,7 +1648,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you heard the recording resume, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did you hear the recording resume?</p>",
       "dialogTitle" : "Audio Recorder Resume Playback",
       "buttonSliderId" : "resumePlaybackRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
@@ -1675,7 +1675,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did audio recording playback stop? choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>Did audio recording playback stop?</p>",
       "dialogTitle" : "Audio Recorder Resume Playback",
       "buttonSliderId" : "stopPlaybackRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
