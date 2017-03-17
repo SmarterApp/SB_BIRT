@@ -22,8 +22,6 @@ function Recorder_WebAudioService() {
   
   var recordedData;
   
-  navigator.mediaDevices.getUserMedia = (navigator.mediaDevices.getUserMedia
-      || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
 
   this.isSupported = function() {
     return 'AudioContext' in window || 'webkitAudioContext' in window;
@@ -49,6 +47,9 @@ function Recorder_WebAudioService() {
     try {
 
       audioContext = new (window.AudioContext || webkitAudioContext)();
+      
+      navigator.mediaDevices.getUserMedia = (navigator.mediaDevices.getUserMedia
+          || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
       
       return true;
     } catch (e) {
