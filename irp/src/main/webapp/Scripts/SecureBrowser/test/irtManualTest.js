@@ -550,7 +550,9 @@ function createButton(id, text, displaylabel) {
     } else if (text == 'Capabilities') {
       getDeviceCapabilities();
     } else if (text == 'Conclude Capability') {
+
       concludeDeviceCapabilityTest();
+
     } else if (text == 'Record') {
       startRecordingAudio();
     } else if (text == 'Stop Recording') {
@@ -1478,14 +1480,19 @@ function getDeviceCapabilities() {
 
   createButton($("#concludeCapability"), 'Conclude Capability', 'Use');
 
-  $('#concludeCapability').button('disable');
+  /* $('#concludeCapability').button('disable'); */
 
   recorderImpl.getDeviceRecorderCapabilities();
 }
 
 function concludeDeviceCapabilityTest() {
-  setDialogHtml(specRecorderManualApi);
-  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+
+  if ($('#audioSource').val() != null && $('#audioSource').val() != undefined) {
+    recorderImpl.initializeMediaRecorder($('#audioSource').val());
+    setDialogHtml(specRecorderManualApi);
+    loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+  }
+
 }
 
 function startRecordingAudio() {
@@ -1507,7 +1514,7 @@ function stopRecordingAudio() {
 }
 
 function setRecorderInput(label, value, index) {
-  $('#concludeCapability').button('enable');
+  // $('#concludeCapability').button('enable');
   recorderImpl.setRecorderInputDevice(label, value, index);
 }
 

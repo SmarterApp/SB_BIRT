@@ -94,8 +94,8 @@ function Recorder_WebAudioService() {
     }
   };
   
-  this.setRecorderInputDevice = function(label, value, index){
-    
+  
+  this.initializeMediaRecorder = function(value){
     
     this.constraints = {
         audio: {deviceId: value ? {exact: value} : undefined}
@@ -108,6 +108,11 @@ function Recorder_WebAudioService() {
       mediaRecorder = new MediaRecorder(stream); 
       window.stream = stream;
      }).catch(this.handleError);
+  };
+  
+  this.setRecorderInputDevice = function(label, value, index){
+    
+    this.initializeMediaRecorder(value);
       
   };
   
