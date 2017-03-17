@@ -372,7 +372,7 @@
     }
 
     var percent = 0;
-    if (irtTestSectionObj.rTotalTest > 0) {
+    if ((irtTestSectionObj.rTotalTest + irtTestSectionObj.oTotalTest) > 0) {
 
       var optionalScoringFlag = $.cookie("optionalScoring");
 

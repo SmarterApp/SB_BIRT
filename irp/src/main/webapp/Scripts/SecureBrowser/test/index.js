@@ -281,8 +281,8 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
   sectionObj.oTotalTest = oTestPass + oTestFail;
 
   var percent = 0;
-  if (sectionObj.rTotalTest > 0) {
 
+  if ((sectionObj.rTotalTest + sectionObj.oTotalTest) > 0) {
     var optionalScoringFlag = $.cookie("optionalScoring");
 
     var totalPassedTest = 0;
