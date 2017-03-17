@@ -1,6 +1,6 @@
 Secure Browser API Specification
 ------------------
-v.2.0.0-RC-16-Mar-2017
+v.2.0.0-RC-17-Mar-2017
 
 The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system. The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global `browser` object.
 
@@ -326,19 +326,21 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
     `captureDevice` – the device id to use for data capture (int)
 
-    `sample rate` – the line rate to capture the raw audio in (8 kHz, 11 kHz etc.) (specified as int in Hz)
+    `sampleRate` – the line rate to capture the raw audio in (8 kHz, 11 kHz etc.) (specified as int in Hz)
 
-    `channel count` – 1 (mono), 2 (stereo) … (specified as int)
+    `channelCount` – 1 (mono), 2 (stereo) … (specified as int)
     
-    `sample size` – 8-bit, 16-bit, etc.	(specified as int)
+    `sampleSize` – 8-bit, 16-bit, etc.	(specified as int)
 
-    `encoding format` – SPX, HE-AAC, Opus, etc. (specified as string)
+    `encodingFormat` – SPX, HE-AAC, Opus, etc. (specified as string)
 
-    `quality indicator desired` – whether to perform and report a recording quality check or not (Boolean)
+    `qualityIndicatorDesired` – whether to perform and report a recording quality check or not (Boolean)
 
     `progressEventFrequency` – how frequently the event listener should be called back to report progress events either based on time or on units of data collected. For example, we could ask for periodic progress events every 2 seconds to keep us notified as recording is happening, or every 30KB of new data collected.
 
-    `captureLimit `– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). The event listener is passed in to receive capture events. The events include:
+    `captureLimit `– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). 
+    
+    The event listener is passed in to receive capture events. The events include:
 
     `START` – Capture started
 

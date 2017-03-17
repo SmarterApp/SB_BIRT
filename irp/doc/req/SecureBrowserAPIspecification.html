@@ -217,7 +217,7 @@ kbd {
 
 <h2 id="toc_0">Secure Browser API Specification</h2>
 
-<p>v.2.0.0-RC-16-Mar-2017</p>
+<p>v.2.0.0-RC-17-Mar-2017</p>
 
 <p>The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system. The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global <code>browser</code> object.</p>
 
@@ -527,19 +527,21 @@ kbd {
 
 <p><code>captureDevice</code> – the device id to use for data capture (int)</p>
 
-<p><code>sample rate</code> – the line rate to capture the raw audio in (8 kHz, 11 kHz etc.) (specified as int in Hz)</p>
+<p><code>sampleRate</code> – the line rate to capture the raw audio in (8 kHz, 11 kHz etc.) (specified as int in Hz)</p>
 
-<p><code>channel count</code> – 1 (mono), 2 (stereo) … (specified as int)</p>
+<p><code>channelCount</code> – 1 (mono), 2 (stereo) … (specified as int)</p>
 
-<p><code>sample size</code> – 8-bit, 16-bit, etc. (specified as int)</p>
+<p><code>sampleSize</code> – 8-bit, 16-bit, etc.  (specified as int)</p>
 
-<p><code>encoding format</code> – SPX, HE-AAC, Opus, etc. (specified as string)</p>
+<p><code>encodingFormat</code> – SPX, HE-AAC, Opus, etc. (specified as string)</p>
 
-<p><code>quality indicator desired</code> – whether to perform and report a recording quality check or not (Boolean)</p>
+<p><code>qualityIndicatorDesired</code> – whether to perform and report a recording quality check or not (Boolean)</p>
 
 <p><code>progressEventFrequency</code> – how frequently the event listener should be called back to report progress events either based on time or on units of data collected. For example, we could ask for periodic progress events every 2 seconds to keep us notified as recording is happening, or every 30KB of new data collected.</p>
 
-<p><code>captureLimit</code>– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). The event listener is passed in to receive capture events. The events include:</p>
+<p><code>captureLimit</code>– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). </p>
+
+<p>The event listener is passed in to receive capture events. The events include:</p>
 
 <p><code>START</code> – Capture started</p>
 

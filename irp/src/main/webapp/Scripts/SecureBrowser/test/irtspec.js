@@ -1489,7 +1489,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the Recording Status changed to <b>Recording</b>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>If the Recording Status changed to <i>Running</i>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "Audio Recorder Status Test",
       "buttonSliderId" : "getRecordingStatus",
       "disableSection" : [ "initiateRecording", "getRecordingCapabilities",
@@ -1541,7 +1541,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the Status changed to <b>recording</b>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>If the Status changed to <i>Recording</i>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "Audio Recorder Start Recording Test",
       "buttonSliderId" : "startRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
@@ -1568,7 +1568,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If the Status changed to <b>inactive</b>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
+      "dialogHtml" : "<p>If the Status changed to <i>inactive</i>, choose <b>Yes</b>. If not, choose <b>No</b>.</p>",
       "dialogTitle" : "Audio Recorder Stop Recording Test",
       "buttonSliderId" : "stopRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
