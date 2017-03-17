@@ -1188,7 +1188,8 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
       recorderImpl.audioRecorderClosed();
       setTimeout(function() {
         var recorderState = recorderImpl.getAudioRecorderStatus();
-        $('#recorderStatusText').html(recorderState);
+        $('#recorderStatusText').html(
+            '<span class="red-background">' + recorderState + '</span>');
       }, 2000);
 
     }
@@ -1465,7 +1466,12 @@ function initiateRecorder() {
 
 function getRecorderStatus() {
 
-  $('#recorderStatusText').html(recorderImpl.getAudioRecorderStatus());
+  $('#recorderStatusText').html(
+
+      '<span class="green-background">' + recorderImpl.getAudioRecorderStatus()
+          + '</span>'
+
+  );
 
   setDialogHtml(specRecorderManualApi);
   loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
@@ -1497,7 +1503,8 @@ function concludeDeviceCapabilityTest() {
 function startRecordingAudio() {
 
   var mediaRecorderStatusText = recorderImpl.startAudioRecording();
-  $('#mediaRecorderStatusText').html(mediaRecorderStatusText);
+  $('#mediaRecorderStatusText').html(
+      '<span class="green-background">' + mediaRecorderStatusText + '</span>');
 
   setDialogHtml(specRecorderManualApi);
   loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
@@ -1506,7 +1513,11 @@ function startRecordingAudio() {
 
 function stopRecordingAudio() {
   var mediaRecorderStatusText = recorderImpl.stopAudioRecording();
-  $('#mediaRecorderStatusText').html(mediaRecorderStatusText);
+  $('#mediaRecorderStatusText').html(
+
+  '<span class="red-background">' + mediaRecorderStatusText + '</span>'
+
+  );
 
   setDialogHtml(specRecorderManualApi);
   loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);

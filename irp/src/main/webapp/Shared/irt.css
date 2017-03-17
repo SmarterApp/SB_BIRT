@@ -238,7 +238,7 @@
 	border-image: initial;
 	float: left;
 	width: 45%;
-	padding: 0 0 2% 2%;
+	padding: 0 1% 2% 2%;
 }
 
 #right-intro-section {
@@ -256,7 +256,7 @@
 	border-image: initial;
 	float: right;
 	width: 45%;
-	padding: 0 0 2% 2%;
+	padding: 0 1% 2% 2%;
 }
 
 #instruction {
@@ -330,11 +330,11 @@
 }
 
 .irt-optional-failure-ui-icon {
-    background-image: url('images/button-cross_yellow.png');
-    width: 60px;
-    height: 60px;
-    background-repeat: no-repeat;
-    float: left;
+	background-image: url('images/button-cross_yellow.png');
+	width: 60px;
+	height: 60px;
+	background-repeat: no-repeat;
+	float: left;
 }
 
 .report-id-details {
@@ -345,22 +345,22 @@
 	font-style: normal;
 	color: #008AB1;
 	width: 40%;
-    display: table;
-    margin-right: auto;
-    margin-left: auto;
+	display: table;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .ui-widget-content a {
-    font-weight: bold;
-    font-size: 1.5em;
-    font-family: 'PT Sans Caption', sans-serif;
-    letter-spacing: -.05em;
-    font-style: normal;
-    color: #008AB1;
+	font-weight: bold;
+	font-size: 1.5em;
+	font-family: 'PT Sans Caption', sans-serif;
+	letter-spacing: -.05em;
+	font-style: normal;
+	color: #008AB1;
 }
 
 .header-result {
-	   display: table;
+	display: table;
 	position: relative;
 	padding: 0px 10px;
 	height: 30px;
@@ -380,55 +380,70 @@
 
 .liketext {
 	display: table-cell;
-    vertical-align: top;
+	vertical-align: top;
 }
 
-.header-text{
-    display : table;
-    text-align: center;
-    position: relative;
-}
-
-
-#irtScore{
-	display : table;
+.header-text {
+	display: table;
 	text-align: center;
 	position: relative;
 }
 
-
-
+#irtScore {
+	display: table;
+	text-align: center;
+	position: relative;
+}
 
 .divTable-header {
-    display: table;
-    width: 100%;
+	display: table;
+	width: 100%;
 }
 
 .divTableCellText, .divTableHead {
-    vertical-align: middle;
-    display: table-cell;
-    float: left;
-    width: 40%;
+	vertical-align: middle;
+	display: table-cell;
+	float: left;
+	width: 40%;
 }
 
 .divTableCellScore, .divTableHead {
-    vertical-align: middle;
-    display: table-cell;
-    float: left;
-    width: 25%;
+	vertical-align: middle;
+	display: table-cell;
+	float: left;
+	width: 25%;
 }
 
 .divTableCellScoreIcon {
-    vertical-align: middle;
-    display: table-cell;
-    float: right;
-    width: 35%;
+	vertical-align: middle;
+	display: table-cell;
+	float: right;
+	width: 35%;
 }
 
-#sectionScore{
+#sectionScore {
 	display: none;
 }
 
-#extScore{
+#extScore {
 	display: none;
+}
+
+.red-background {
+	background-color: #ff0000;
+	font-size: 1.5em;
+	color: #f6f6f6;
+	padding: 1% 1% 1% 1%;
+}
+
+.green-background {
+    background-color: #00ff00;
+    font-size: 1.5em;
+    padding: 1% 1% 1% 1%;
+}
+
+.yellow-background {
+    background-color: #FFFF00;
+    font-size: 1.5em;
+    padding: 1% 1% 1% 1%;
 }
