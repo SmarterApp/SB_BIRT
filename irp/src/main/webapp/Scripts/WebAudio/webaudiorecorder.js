@@ -1,3 +1,12 @@
+// *******************************************************************************
+// Educational Online Test Delivery System
+// Copyright (c) 2017 American Institutes for Research
+//
+// Distributed under the AIR Open Source License, Version 1.0
+// See accompanying file AIR-License-1_0.txt or at
+// http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
+// *******************************************************************************
+
 function Recorder_WebAudioService() {
 
   this.audioContext = null;
@@ -5,6 +14,8 @@ function Recorder_WebAudioService() {
   var constraints = {
     audio : true
   };
+  
+  var soundTrack = null;
   
   var mediaRecorder ;
   
@@ -14,11 +25,14 @@ function Recorder_WebAudioService() {
 
   var audioURL = '';
   
-  var source = null,
-  startedAt = 0,
-  pausedAt = 0,
-  playing = false,
-  offset;
+  var source = null;
+  
+  var startedAt = 0;
+  
+  var pausedAt = 0;
+  
+  var playing = false;
+  var offset;
   
   var recordedData;
   
@@ -30,30 +44,25 @@ function Recorder_WebAudioService() {
   this.getAudioContextObject = function() {
 
     try {
-      if (!this.isSupported())
+      if (!this.isSupported()){
         return '';
+      }
       else{
         if(this.audioContext == null){
           audioContext  = new (window.AudioContext || webkitAudioContext)();
-          return audioContext;
         }
-          
+        return audioContext;
       }
-      
-
     } catch (e) {
       alert('Web Audio API initialization failed ' + e);
       return false;
     }
-
   };
 
   this.audioRecorderInitialize = function() {
-
     try {
-
       audioContext = this.getAudioContextObject();
-      
+     
       navigator.mediaDevices.getUserMedia = (navigator.mediaDevices.getUserMedia
           || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
       
@@ -99,7 +108,7 @@ function Recorder_WebAudioService() {
     
     this.constraints = {
         audio: {deviceId: value ? {exact: value} : undefined}
-     };
+    };
     
     navigator.mediaDevices.getUserMedia(constraints).then(function(stream){
       if(mediaRecorder!=null){
@@ -144,11 +153,11 @@ function Recorder_WebAudioService() {
      
       reader.readAsBinaryString(blob);  
       
-    }
+    };
 
     mediaRecorder.ondataavailable = function(e) {
       chunks.push(e.data);
-    }
+    };
     
     return mediaRecorder.state;
     } catch (e) {
@@ -190,7 +199,10 @@ function Recorder_WebAudioService() {
        source.start(0); 
        startedAt = audioContext.currentTime - offset;
        playing = true;
-      }).catch(this.handleError);
+      }).catch(function(){
+        soundTrack = new Audio(audioURL);
+        soundTrack.play();
+      });
     }
     request.send();
     } catch (e) {
@@ -201,7 +213,13 @@ function Recorder_WebAudioService() {
   };
   
     this.stopAudioPlayback = function() {
-      try{
+      try{ 
+      
+        if(soundTrack!=null){
+          soundTrack.pause(); 
+        }
+        else{
+        
       if (source) {          
         source.disconnect();
         source.stop(0);
@@ -210,6 +228,8 @@ function Recorder_WebAudioService() {
       pausedAt = 0;
       startedAt = 0;
       playing = false;
+      
+        }
       } catch (e) {
         alert('Error while stopping recorded audio ' + e );
         return false;
@@ -217,11 +237,16 @@ function Recorder_WebAudioService() {
 
    };
  
+   
    this.pauseAudioPlayback = function(){
      try{
+       if(soundTrack!=null){
+         soundTrack.pause();
+       }else{
      var elapsed = audioContext.currentTime - startedAt;
      this.stopAudioPlayback();
      pausedAt = elapsed;
+       }
      } catch (e) {
        alert('Error while pausing recorded audio ' + e );
        return false;
@@ -230,6 +255,9 @@ function Recorder_WebAudioService() {
  
   this.resumeAudioPlayback = function () {
 try{
+  if(soundTrack!=null){
+    soundTrack.play();
+  }else{
     source = audioCtx.createBufferSource();
     source.buffer = recordedData; 
     source.connect(audioCtx.destination); 
@@ -238,6 +266,7 @@ try{
     startedAt = audioCtx.currentTime - offset;
     pausedAt = 0;
     playing = true;
+  }
 } catch (e) {
   alert('Error while resuming recorded audio ' + e );
   return false;

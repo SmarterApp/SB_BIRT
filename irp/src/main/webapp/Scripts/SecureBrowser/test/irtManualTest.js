@@ -499,7 +499,7 @@ function createSelectMenu(id, testName) {
         setSelectedCapability(ui.item.label, ui.item.value, ui.item.index);
       }
       if (testName = 'RECORDER_INPUT') {
-        setRecorderInput(ui.item.label, ui.item.value, ui.item.index);
+        // setRecorderInput(ui.item.label, ui.item.value, ui.item.index);
       }
     }
   });
