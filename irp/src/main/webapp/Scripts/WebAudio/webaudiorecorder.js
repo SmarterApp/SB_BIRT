@@ -9,7 +9,7 @@
 
 function Recorder_WebAudioService() {
 
-  this.audioContext = null;
+  var audioContext = null;
 
   var constraints = {
     audio : true
