@@ -792,7 +792,7 @@ IRT.ApiSpecs = {
       // Play R11, R12 SEC-11, SEC-39
       "id" : "11",
       "testName" : "Manual test: TTS Speak",
-      "instruction" : "Click <b>Play</b> to test TTS Speech",
+      "instruction" : "Click <b>Play</b> to test TTS Speech.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -816,7 +816,7 @@ IRT.ApiSpecs = {
       // Pause R11, R12 SEC-11, SEC-39
       "id" : "12",
       "testName" : "Manual test: TTS Pause",
-      "instruction" : "Click <b>Play</b> and then <b>Pause</b> to test TTS Pause",
+      "instruction" : "Click <b>Play</b> and then <b>Pause</b> to test TTS Pause.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -840,7 +840,7 @@ IRT.ApiSpecs = {
       // Resume R11, R12 SEC-11, SEC-39
       "id" : "13",
       "testName" : "Manual test: TTS Resume",
-      "instruction" : "Click <b>Play</b>, <b>Pause</b>, and then <b>Resume</b> to test TTS Resume",
+      "instruction" : "Click <b>Play</b>, <b>Pause</b>, and then <b>Resume</b> to test TTS Resume.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -864,7 +864,7 @@ IRT.ApiSpecs = {
       // Stop R09 SEC-37
       "id" : "14",
       "testName" : "Manual test: TTS Stop",
-      "instruction" : "Click <b>Play</b> and then <b>Stop</b> to test TTS Stop",
+      "instruction" : "Click <b>Play</b> and then <b>Stop</b> to test TTS Stop.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -888,7 +888,7 @@ IRT.ApiSpecs = {
       // Volume R11, R12 SEC-11, SEC-39
       "id" : "15",
       "testName" : "Manual test: TTS Volume",
-      "instruction" : "Change Volume and Click <b>Play</b> to test",
+      "instruction" : "Change Volume and Click <b>Play</b> to test.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -912,7 +912,7 @@ IRT.ApiSpecs = {
       // Pitch R11, R12 SEC-11, SEC-39
       "id" : "16",
       "testName" : "Manual test: TTS Pitch",
-      "instruction" : "Change Pitch and Click <b>Play</b> to test",
+      "instruction" : "Change Pitch and Click <b>Play</b> to test.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -936,7 +936,7 @@ IRT.ApiSpecs = {
       // Rate R11, R12 SEC-11, SEC-39
       "id" : "17",
       "testName" : "Manual test: TTS Rate",
-      "instruction" : "Change Rate and Click <b>Play</b> to test",
+      "instruction" : "Change Rate and Click <b>Play</b> to test.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -960,7 +960,7 @@ IRT.ApiSpecs = {
       // System Volume R16 SEC-57, SEC-58
       "id" : "18",
       "testName" : "Manual test: System Volume",
-      "instruction" : "Change System Volume and Click <b>Play</b> to test",
+      "instruction" : "Change System Volume and Click <b>Play</b> to test.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -984,7 +984,7 @@ IRT.ApiSpecs = {
       // Mute/Unmute R19, R20, R21 SEC-56, SEC-58
       "id" : "19",
       "testName" : "Manual test: System Mute",
-      "instruction" : "Click <b>Mute</b> and click <b>Play</b> to test",
+      "instruction" : "Click <b>Mute</b> and click <b>Play</b> to test.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1008,7 +1008,7 @@ IRT.ApiSpecs = {
       // Mute/Unmute R19, R20, R21 SEC-56, SEC-58
       "id" : "20",
       "testName" : "Manual test: System Unmute",
-      "instruction" : "Click <b>Unmute</b> and click <b>Play</b> to test",
+      "instruction" : "Click <b>Unmute</b> and click <b>Play</b> to test.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1032,7 +1032,7 @@ IRT.ApiSpecs = {
       // Voice Selection R11, R12 SEC-11, SEC-39
       "id" : "21",
       "testName" : "Manual test: TTS Voice Selection",
-      "instruction" : "Change Voice Selection and Click <b>Play</b> to test",
+      "instruction" : "Change Voice Selection and Click <b>Play</b> to test.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1079,7 +1079,7 @@ IRT.ApiSpecs = {
     "SET" : {
       "id" : "1",
       "testName" : "Manual test: Set Capability",
-      "instruction" : "Select Capability, Functionality and Click <b>Set</b> button",
+      "instruction" : "Select Capability, Functionality and Click <b>Set</b> button.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1102,7 +1102,7 @@ IRT.ApiSpecs = {
     "GET" : {
       "id" : "1",
       "testName" : "Manual test: Get Capability",
-      "instruction" : "Select Capability and Click <b>Get</b> button",
+      "instruction" : "Select Capability and Click <b>Get</b> button.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1476,7 +1476,7 @@ IRT.ApiSpecs = {
       // Get audio recorder status: SEC-20, R26, F41
       "id" : "13",
       "testName" : "Manual Test: Status",
-      "instruction" : "Click <b>Status</b> to get audio recorder status",
+      "instruction" : "Click <b>Status</b> to get audio recorder status.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1528,7 +1528,7 @@ IRT.ApiSpecs = {
       // Initiate audio capture: SEC-22, R28, F25
       "id" : "13",
       "testName" : "Manual Test: Start Recording",
-      "instruction" : "Click <b>Start Recording</b> to start audio recording",
+      "instruction" : "Click <b>Start Recording</b> to start audio recording.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1555,7 +1555,7 @@ IRT.ApiSpecs = {
       // Stop recording: SEC-23, R29, F26
       "id" : "14",
       "testName" : "Manual Test: Stop Recording",
-      "instruction" : "Click <b>Stop Recording</b> to stop audio recording",
+      "instruction" : "Click <b>Stop Recording</b> to stop audio recording.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1609,7 +1609,7 @@ IRT.ApiSpecs = {
       // Pause playback: SEC-69, R33, F44
       "id" : "16",
       "testName" : "Manual Test: Pause Playback",
-      "instruction" : "Click <b>Play</b> and then <b>Pause</b> to test pausing the playback",
+      "instruction" : "Click <b>Play</b> and then <b>Pause</b> to test pausing the playback.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1635,7 +1635,7 @@ IRT.ApiSpecs = {
       // Resume playback: SEC-70, R34, F45
       "id" : "17",
       "testName" : "Manual Test: Resume Playback",
-      "instruction" : "Click <b>Play</b>, <b>Pause</b>, and then <b>Resume</b> to test resuming the playback",
+      "instruction" : "Click <b>Play</b>, <b>Pause</b>, and then <b>Resume</b> to test resuming the playback.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1662,7 +1662,7 @@ IRT.ApiSpecs = {
       // Stop playback: SEC-68, R32, F43
       "id" : "18",
       "testName" : "Manual Test:Stop Playback",
-      "instruction" : "Click <b>Play</b> and then <b>Stop</b> to test Stop Playback",
+      "instruction" : "Click <b>Play</b> and then <b>Stop</b> to test Stop Playback.",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
