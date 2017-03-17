@@ -1489,10 +1489,9 @@ function concludeDeviceCapabilityTest() {
 
   if ($('#audioSource').val() != null && $('#audioSource').val() != undefined) {
     recorderImpl.initializeMediaRecorder($('#audioSource').val());
-    setDialogHtml(specRecorderManualApi);
-    loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
   }
-
+  setDialogHtml(specRecorderManualApi);
+  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
 }
 
 function startRecordingAudio() {

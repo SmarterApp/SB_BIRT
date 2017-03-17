@@ -90,7 +90,7 @@ function Recorder_WebAudioService() {
     }
     } catch (e) {
       alert('Web Audio getCapabilities API  failed ' + e);
-      return Unknown;
+      return 'Unknown';
     }
   };
   
@@ -159,10 +159,15 @@ function Recorder_WebAudioService() {
   
   this.startAudioPlayback = function(){
     
-    fetch(audioURL)
-    .then(function(response) { return response.arrayBuffer(); })
-    .then(function(mybuffer) {
-      audioContext.decodeAudioData( mybuffer ).then(function(decodedData){
+    
+    var request = new XMLHttpRequest();
+    request.open('GET', audioURL, true);
+    request.responseType = 'arraybuffer'; // This asks the browser to populate
+                                          // the retrieved binary data in a
+                                          // array buffer
+    request.onload = function(){
+     
+      audioContext.decodeAudioData( request.response ).then(function(decodedData){
         if (source != null) {
           source.disconnect(audioContext.destination);
           source = null; 
@@ -186,7 +191,27 @@ function Recorder_WebAudioService() {
        startedAt = audioContext.currentTime - offset;
        playing = true;
       }).catch(this.handleError);
-    });
+    }
+    request.send();
+    
+  /*
+   * fetch(audioURL) .then(function(response) { return response.arrayBuffer(); })
+   * .then(function(mybuffer) { audioContext.decodeAudioData( mybuffer
+   * ).then(function(decodedData){ if (source != null) {
+   * source.disconnect(audioContext.destination); source = null; }
+   * 
+   * if(decodedData !=null){ console.log("File read properly");
+   * console.log("Channels: " + decodedData.numberOfChannels);
+   * console.log("Length: " + decodedData.length); console.log("Sample Rate: " +
+   * decodedData.sampleRate); console.log("Duration: " + decodedData.duration);
+   * recordedData = decodedData; }
+   * 
+   * 
+   * source = audioContext.createBufferSource(); source.buffer = recordedData;
+   * source.connect(audioContext.destination); offset = pausedAt;
+   * source.start(0); startedAt = audioContext.currentTime - offset; playing =
+   * true; }).catch(this.handleError); });
+   */
   };
   
     this.stopAudioPlayback = function() {
