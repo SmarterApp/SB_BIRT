@@ -387,7 +387,9 @@
         totalTest = irtTestSectionObj.rTotalTest;
       }
 
-      percent = Math.round(100 * totalPassedTest / totalTest);
+      if (totalTest > 0) {
+        percent = Math.round(100 * totalPassedTest / totalTest);
+      }
     }
 
     $('#' + irtTestSectionObj.headerId + ' #sectionScore').html(

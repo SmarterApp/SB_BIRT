@@ -1340,7 +1340,9 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
           + iframeObj.contentWindow.rTestFail;
     }
 
-    percent = Math.round(100 * totalPassedTest / totalTest);
+    if (totalTest > 0) {
+      percent = Math.round(100 * totalPassedTest / totalTest);
+    }
   }
 
   $('#' + headerId[0].id + ' #sectionScore').append(

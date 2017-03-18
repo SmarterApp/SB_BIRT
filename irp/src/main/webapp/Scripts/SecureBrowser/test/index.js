@@ -295,7 +295,9 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
       totalTest = sectionObj.rTotalTest;
     }
 
-    percent = Math.round(100 * totalPassedTest / totalTest);
+    if (totalTest > 0) {
+      percent = Math.round(100 * totalPassedTest / totalTest);
+    }
   }
 
   $('#' + sectionObj.headerId + ' #sectionScore').html(
