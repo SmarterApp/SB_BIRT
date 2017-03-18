@@ -1457,24 +1457,40 @@ function recorderComponentInitialize() {
 
 }
 
-function initiateRecorder() {
-
-  recorderImpl.audioRecorderInitialize();
+function loadManualTextConfirmBox() {
   setDialogHtml(specRecorderManualApi);
   loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
 }
 
+function initiateRecorder() {
+
+  try {
+    recorderImpl.audioRecorderInitialize();
+    loadManualTextConfirmBox();
+  } catch (ex) {
+    $("#dialog-recorder-error")
+        .html(
+            '<p><span class="irt-failure-ui-icon"></span> Web Audio Recorder Initialization Error: <b>'
+                + ex + '</b></p>');
+    loadErrorDialogBox(true);
+  }
+
+}
+
 function getRecorderStatus() {
 
-  $('#recorderStatusText').html(
-
-      '<span class="green-background">' + recorderImpl.getAudioRecorderStatus()
-          + '</span>'
-
-  );
-
-  setDialogHtml(specRecorderManualApi);
-  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+  try {
+    var recorderStatus = recorderImpl.getAudioRecorderStatus();
+    $('#recorderStatusText').html(
+        '<span class="green-background">' + recorderStatus + '</span>');
+    loadManualTextConfirmBox();
+  } catch (ex) {
+    $("#dialog-recorder-error")
+        .html(
+            '<p><span class="irt-failure-ui-icon"></span> Error while getting Web Audio Recorder Status: <b>'
+                + ex + '</b></p>');
+    loadErrorDialogBox(true);
+  }
 }
 
 function getDeviceCapabilities() {
@@ -1486,80 +1502,153 @@ function getDeviceCapabilities() {
 
   createButton($("#concludeCapability"), 'Conclude Capability', 'Use');
 
-  /* $('#concludeCapability').button('disable'); */
-
-  recorderImpl.getDeviceRecorderCapabilities();
+  try {
+    recorderImpl.getDeviceRecorderCapabilities(loadErrorDialogBox);
+  } catch (ex) {
+    $("#dialog-recorder-error")
+        .html(
+            '<p><span class="irt-failure-ui-icon"></span> Web Audio getCapabilities API Error: <b>'
+                + ex + '</b></p>');
+    loadErrorDialogBox(null);
+  }
 }
 
 function concludeDeviceCapabilityTest() {
 
-  if ($('#audioSource').val() != null && $('#audioSource').val() != undefined) {
+  try {
     recorderImpl.initializeMediaRecorder($('#audioSource').val());
+    loadManualTextConfirmBox();
+  } catch (ex) {
+    $("#dialog-recorder-error")
+        .html(
+            '<p><span class="irt-failure-ui-icon"></span> Failed to initialize MediaRecorder: <b>'
+                + ex + '</b></p>');
+    loadErrorDialogBox(true);
   }
-  setDialogHtml(specRecorderManualApi);
-  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+
 }
 
 function startRecordingAudio() {
 
-  var mediaRecorderStatusText = recorderImpl.startAudioRecording();
-  $('#mediaRecorderStatusText').html(
-      '<span class="green-background">' + mediaRecorderStatusText + '</span>');
+  try {
+    var mediaRecorderStatusText = recorderImpl.startAudioRecording();
+    $('#mediaRecorderStatusText')
+        .html(
+            '<span class="green-background">' + mediaRecorderStatusText
+                + '</span>');
 
-  setDialogHtml(specRecorderManualApi);
-  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
-
+    loadManualTextConfirmBox();
+  } catch (ex) {
+    $("#dialog-recorder-error").html(
+        '<p><span class="irt-failure-ui-icon"></span> Failed to Start Recording: <b>'
+            + ex + '</b></p>');
+    loadErrorDialogBox(true);
+  }
 }
 
 function stopRecordingAudio() {
-  var mediaRecorderStatusText = recorderImpl.stopAudioRecording();
-  $('#mediaRecorderStatusText').html(
-
-  '<span class="red-background">' + mediaRecorderStatusText + '</span>'
-
-  );
-
-  setDialogHtml(specRecorderManualApi);
-  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+  try {
+    var mediaRecorderStatusText = recorderImpl.stopAudioRecording();
+    $('#mediaRecorderStatusText').html(
+        '<span class="red-background">' + mediaRecorderStatusText + '</span>');
+    loadManualTextConfirmBox();
+  } catch (ex) {
+    $("#dialog-recorder-error").html(
+        '<p><span class="irt-failure-ui-icon"></span> Failed to Stop Recording: <b>'
+            + ex + '</b></p>');
+    loadErrorDialogBox(true);
+  }
 }
 
 function setRecorderInput(label, value, index) {
-  // $('#concludeCapability').button('enable');
   recorderImpl.setRecorderInputDevice(label, value, index);
 }
 
 function startPlaybackRecording() {
 
-  recorderImpl.startAudioPlayback();
-
-  if (currentTestSetting == IRT.RecorderTest.PLAY) {
-
-    setDialogHtml(specRecorderManualApi);
-    loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+  try {
+    recorderImpl.startAudioPlayback();
+    if (currentTestSetting == IRT.RecorderTest.PLAY) {
+      loadManualTextConfirmBox();
+    }
+  } catch (ex) {
+    $("#dialog-recorder-error").html(
+        '<p><span class="irt-failure-ui-icon"></span> Failed to Start Playback: <b>'
+            + ex + '</b></p>');
+    if (currentTestSetting == IRT.RecorderTest.PLAY) {
+      loadErrorDialogBox(true);
+    } else {
+      loadErrorDialogBox(null);
+    }
   }
 }
 
 function pausePlaybackRecording() {
 
-  recorderImpl.pauseAudioPlayback();
-  if (currentTestSetting == IRT.RecorderTest.PAUSE) {
-    setDialogHtml(specRecorderManualApi);
-    loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+  try {
+    recorderImpl.pauseAudioPlayback();
+    if (currentTestSetting == IRT.RecorderTest.PAUSE) {
+      loadManualTextConfirmBox();
+    }
+  } catch (ex) {
+    $("#dialog-recorder-error").html(
+        '<p><span class="irt-failure-ui-icon"></span> Failed to Pause Playback: <b>'
+            + ex + '</b></p>');
+    if (currentTestSetting == IRT.RecorderTest.PAUSE) {
+      loadErrorDialogBox(true);
+    } else {
+      loadErrorDialogBox(null);
+    }
   }
 }
 
 function resumePlaybackRecording() {
-
-  recorderImpl.resumeAudioPlayback();
-  if (currentTestSetting == IRT.RecorderTest.RESUME) {
-    setDialogHtml(specRecorderManualApi);
-    loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+  try {
+    recorderImpl.resumeAudioPlayback();
+    if (currentTestSetting == IRT.RecorderTest.RESUME) {
+      loadManualTextConfirmBox();
+    }
+  } catch (ex) {
+    $("#dialog-recorder-error").html(
+        '<p><span class="irt-failure-ui-icon"></span> Failed to Resume Playback: <b>'
+            + ex + '</b></p>');
+    if (currentTestSetting == IRT.RecorderTest.RESUME) {
+      loadErrorDialogBox(true);
+    } else {
+      loadErrorDialogBox(null);
+    }
   }
 }
 
 function stopPlaybackRecording() {
-  currentTestSetting = IRT.RecorderTest.STOP;
-  recorderImpl.stopAudioPlayback();
-  setDialogHtml(specRecorderManualApi);
-  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+
+  try {
+    recorderImpl.stopAudioPlayback();
+    loadManualTextConfirmBox();
+  } catch (ex) {
+    $("#dialog-recorder-error").html(
+        '<p><span class="irt-failure-ui-icon"></span> Failed to Stop Playback: <b>'
+            + ex + '</b></p>');
+    loadErrorDialogBox(true);
+  }
 }
+
+function loadErrorDialogBox(loadConfirmBox) {
+
+  $("#dialog-recorder-error").dialog({
+    resizable : false,
+    height : "auto",
+    title : 'Audio Recorder Manual Test Error',
+    width : 400,
+    modal : true,
+    buttons : [ {
+      text : "OK",
+      click : function() {
+        $(this).dialog("close");
+        if (loadConfirmBox == true) {
+          loadManualTextConfirmBox();
+        }
+      }
+    } ]
+  });
+};

@@ -44,16 +44,15 @@ function Recorder_WebAudioService() {
 
     try {
       if (!this.isSupported()) {
-        return '';
+        return null;
       } else {
         if (this.audioContext == null) {
           audioContext = new (window.AudioContext || webkitAudioContext)();
         }
         return audioContext;
       }
-    } catch (e) {
-      alert('Web Audio API initialization failed ' + e);
-      return false;
+    } catch (error) {
+      throw error;      
     }
   };
 
@@ -65,23 +64,21 @@ function Recorder_WebAudioService() {
           || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
       
       return true;
-    } catch (e) {
-      alert('Web Audio API initialization failed ' + e);
-      return false;
+    } catch (error) {
+      throw error;
     }
 
   };
 
   this.getAudioRecorderStatus = function() {
     try {
-      if (audioContext != null) {
+      if (audioContext != null && audioContext!=undefined) {
         return audioContext.state;
       } else {
-        return 'Unknown';
+        throw 'Unable to get Web Audio Recorder Status';
       }
-    } catch (e) {
-      alert('Recorder Status API Failed ' + e);
-      return 'Unknown';
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -91,17 +88,16 @@ function Recorder_WebAudioService() {
       navigator.mediaDevices.enumerateDevices().then(this.gotDevices).catch(this.handleError);
     }
     else{
-      alert('Web Audio getCapabilities API  failed');
-      return false;
+      throw 'Unable to get Web Audio Capabilities';
     }
-    } catch (e) {
-      alert('Web Audio getCapabilities API  failed ' + e);
-      return 'Unknown';
+    } catch (error) {
+      throw error;
     }
   };
 
   this.initializeMediaRecorder = function(value) {
 
+    try{
     this.constraints = {
       audio : {
         deviceId : value ? {
@@ -116,7 +112,14 @@ function Recorder_WebAudioService() {
       }
       mediaRecorder = new MediaRecorder(stream); 
       window.stream = stream;
-     }).catch(this.handleError);
+     }).catch(function(error){
+       throw error;
+     });
+    }
+   catch (exception) {
+    throw exception;
+   }
+    
   };
 
   this.setRecorderInputDevice = function(label, value, index) {
@@ -131,9 +134,8 @@ function Recorder_WebAudioService() {
       mediaRecorder.start();
       console.log(mediaRecorder.state);
       return mediaRecorder.state;
-    } catch (e) {
-      alert('Web Audio failed to start recording API  ' + e);
-      return 'Unknown';
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -162,9 +164,8 @@ function Recorder_WebAudioService() {
       };
 
       return mediaRecorder.state;
-    } catch (e) {
-      alert('Web Audio failed to start recording API ' + e);
-      return 'Unknown';
+    } catch (error) {
+      throw error;
     }
   };
   
@@ -207,9 +208,8 @@ function Recorder_WebAudioService() {
       });
     }
     request.send();
-    } catch (e) {
-      alert('Error while playing recorded audio ' + e);
-      return false;
+    } catch (error) {
+      throw error;
     }
 
   };
@@ -231,9 +231,8 @@ function Recorder_WebAudioService() {
         playing = false;
 
       }
-    } catch (e) {
-      alert('Error while stopping recorded audio ' + e);
-      return false;
+    } catch (error) {
+      throw error;
     }
 
   };
@@ -247,9 +246,8 @@ function Recorder_WebAudioService() {
         this.stopAudioPlayback();
         pausedAt = elapsed;
       }
-    } catch (e) {
-      alert('Error while pausing recorded audio ' + e);
-      return false;
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -267,15 +265,13 @@ function Recorder_WebAudioService() {
         pausedAt = 0;
         playing = true;
       }
-    } catch (e) {
-      alert('Error while resuming recorded audio ' + e);
-      return false;
+    } catch (error) {
+      throw error;
     }
   };
 
   this.handleError = function(error) {
-    alert('Recorder API Error ' + error);
-    return false;
+    throw error;
   };
 
   this.gotDevices = function(deviceInfos) {
@@ -307,11 +303,9 @@ function Recorder_WebAudioService() {
   this.audioRecorderClosed = function() {
 
     try {
-
       audioContext.close();
-
-    } catch (e) {
-      alert('Recorder Close failed ' + e);
+    } catch (error) {
+     throw error;
     }
 
   };
