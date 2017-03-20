@@ -1463,7 +1463,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>If you saw an error dialog box, choose <b>No</b>. If not, choose <b>Yes</b>.</p>",
+      "dialogHtml" : "<p>Did this complete without an error?</p>",
       "dialogTitle" : "Audio Recorder Initialization",
       "buttonSliderId" : "initiateRecording",
       "disableSection" : [ "getRecordingStatus", "getRecordingCapabilities",
@@ -1489,7 +1489,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did the Status change to <i>running</i>?</p>",
+      "dialogHtml" : "<p>Did the Recoder Status change to <i>IDLE</i>?</p>",
       "dialogTitle" : "Audio Recorder Status Test",
       "buttonSliderId" : "getRecordingStatus",
       "disableSection" : [ "initiateRecording", "getRecordingCapabilities",
@@ -1568,7 +1568,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did the Recording Status change to <i>inactive</i>?</p>",
+      "dialogHtml" : "<p>Did the Recording Status change to <i>IDLE</i>?</p>",
       "dialogTitle" : "Audio Recorder Stop Recording Test",
       "buttonSliderId" : "stopRecording",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",
