@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<title>Secure Browser Implementation Readiness Test (IRT) Landing Page</title>
 <%
   String contextPath = request.getContextPath();
 			String version = System.getProperty("irt.app.version");
@@ -214,14 +215,14 @@ var impl = TDS.SecureBrowser.getImplementation();
             </div>
 
             <div class="divTableRow">
-              <div class="divTableCell">Name:</div>
+              <div class="divTableCell"><label for="name">Name:</label></div>
               <div class="divTableCellRight">
                 <input type="text" name="name" id="name">
               </div>
             </div>
             <div class="divTableRow">&nbsp;</div>
             <div class="divTableRow">
-              <div class="divTableCell">Organization:</div>
+              <div class="divTableCell"><label for="organization">Organization:</label></div>
               <div class="divTableCellRight">
                 <input type="text" name="organization" id="organization">
               </div>
@@ -236,7 +237,7 @@ var impl = TDS.SecureBrowser.getImplementation();
             </div>
             <div class="divTableRow">&nbsp;</div>
             <div class="divTableRow">
-              <div class="divTableCell">Browser Info:</div>
+              <div class="divTableCell"><label for="browserDetails">Browser Info:</label></div>
               <div class="divTableCellRight">
                 <textarea id="browserDetails" name="browserDetails"
                   title="Descriptive text about the browser you are testing"
@@ -247,8 +248,9 @@ var impl = TDS.SecureBrowser.getImplementation();
 
             <div class="divTableRow">&nbsp;</div>
             <div class="divTableRow" id="functionalityRow">
-              <div class="divTableCell">Score optional tests?</div>
+              <div class="divTableCell"><label for="optionalScoring">Score optional tests?</label></div>
               <div class="divTableCellRight">
+              <fieldset style="border: none !important;">
                 <label for="enableOptionScoring">Yes</label> <input
                   type="radio" id="enableOptionScoring" value="Yes"
                   name="optionalScoring"
@@ -259,6 +261,7 @@ var impl = TDS.SecureBrowser.getImplementation();
                   name="optionalScoring" checked="checked"
                   title="Exclude optional tests from score"
                   alt="Exclude optional tests from score">
+                </fieldset>
               </div>
             </div>
 

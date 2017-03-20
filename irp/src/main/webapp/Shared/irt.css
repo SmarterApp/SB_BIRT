@@ -22,8 +22,10 @@
 
 .divTable-report {
 	display: table;
-	padding: 5px 0px 5px 5px;
+	padding: .5% 1% 1% 1%;
 	width: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
 }
 
 .divTableRow {
@@ -96,7 +98,7 @@
 }
 
 .header-irt {
-	background: #008ab1;
+	background: #696969;
 	position: relative;
 	padding: 5px 10px;
 	height: 30px;
@@ -109,7 +111,7 @@
 }
 
 .header-ext {
-	background: #358c21;
+	background: #696969;
 	position: relative;
 	padding: 5px 10px;
 	height: 30px;
@@ -257,7 +259,8 @@
 
 #instruction {
 	display: table-header-group;
-	font-family: "PT Sans Caption", sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
 }
 
 .version-details {
@@ -285,9 +288,9 @@
 .header-irt-report {
 	background: #000000;
 	position: relative;
-	padding: 0px 10px;
+	padding: 5px 10px 5px 20px;
 	height: 30px;
-	font-family: "PT Sans Caption", sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 1.5em;
@@ -446,4 +449,9 @@
 
 .intro-tab-detail {
 	font-size: 1em !important;
+}
+
+.jsgrid {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
 }

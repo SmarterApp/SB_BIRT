@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+<title>Secure Browser Implementation Readiness Test (IRT) Report Page</title>
 
 <%
   String contextPath = request.getContextPath();
