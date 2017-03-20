@@ -1534,7 +1534,7 @@ function startRecordingAudio() {
 
   try {
     var mediaRecorderStatusText = recorderImpl.startAudioRecording();
-    $('#mediaRecorderStatusText')
+    $('#recorderStatusText')
         .html(
             '<span class="green-background">' + mediaRecorderStatusText
                 + '</span>');
@@ -1551,8 +1551,10 @@ function startRecordingAudio() {
 function stopRecordingAudio() {
   try {
     var mediaRecorderStatusText = recorderImpl.stopAudioRecording();
-    $('#mediaRecorderStatusText').html(
-        '<span class="red-background">' + mediaRecorderStatusText + '</span>');
+    $('#recorderStatusText')
+        .html(
+            '<span class="green-background">' + mediaRecorderStatusText
+                + '</span>');
     loadManualTextConfirmBox();
   } catch (ex) {
     $("#dialog-recorder-error").html(

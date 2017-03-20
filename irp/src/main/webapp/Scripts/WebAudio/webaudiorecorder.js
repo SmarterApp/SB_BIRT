@@ -73,7 +73,7 @@ function Recorder_WebAudioService() {
   this.getAudioRecorderStatus = function() {
     try {
       if (audioContext != null && audioContext!=undefined) {
-        return audioContext.state;
+        return audioContext.state == "running" ? "IDLE" : audioContext.state;
       } else {
         throw 'Unable to get Web Audio Recorder Status';
       }
@@ -163,7 +163,7 @@ function Recorder_WebAudioService() {
         chunks.push(e.data);
       };
 
-      return mediaRecorder.state;
+      return mediaRecorder.state == "inactive" ? "IDLE": mediaRecorder.state;
     } catch (error) {
       throw error;
     }
