@@ -161,11 +161,15 @@ function Recorder_MobileAudioService() {
 
       var saveAs = "";
       if (results.filename != null) {
+        // console.log("file name is: " + results.filename);
         saveAs = results.filename.replace(/^.*[\\\/]/, '');
+        // console.log("save as: " + saveAs);
       }
 
       var data = results.base64;
       var quality = results.qualityIndicator;
+
+      // $("#audio_data_output_textfield").html(data);
 
       AIRAudioData.filename = saveAs;
       AIRAudioData.filedata = data;
