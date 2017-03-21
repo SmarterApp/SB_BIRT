@@ -118,73 +118,100 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   }
 
   if (isManualTestSupported) {
-    id.dialog({
-      autoOpen : false,
-      width : dialogWidth,
-      height : dialogHeight,
-      modal : true,
-      title : testTitle,
-      position : {
-        my : "center",
-        at : "center",
-        of : window
-      },
-      close : function(event, ui) {
-        currentTestSetting = 'UNKNOWN';
-        currentTestIndex = 0;
-        if (testName != 'HTML5' && testName != 'CSS3') {
-          id.dialog("destroy");
-        }
-      },
-      create : function(event, ui) {
-        if (testName == 'TTS') {
-          ttsComponentInitialize();
-        }
-        if (testName == 'CAPABILITY') {
-          capabilityComponentInitialize();
-        }
-        if (testName == 'PROCESS') {
+    id
+        .dialog({
+          autoOpen : false,
+          width : dialogWidth,
+          height : dialogHeight,
+          modal : true,
+          title : testTitle,
+          position : {
+            my : "center",
+            at : "center",
+            of : window
+          },
+          close : function(event, ui) {
+            currentTestSetting = 'UNKNOWN';
+            currentTestIndex = 0;
+            if (testName != 'HTML5' && testName != 'CSS3') {
+              id.dialog("destroy");
+            }
+          },
+          create : function(event, ui) {
+            if (testName == 'TTS') {
+              ttsComponentInitialize();
+            }
+            if (testName == 'CAPABILITY') {
+              capabilityComponentInitialize();
+            }
+            if (testName == 'PROCESS') {
 
-          processComponentInitialize();
-        }
-        if (testName == 'RECORDER') {
-          recorderComponentInitialize();
-        }
-      },
-      buttons : [ {
-        id : "dialogButton",
-        disabled : buttonDisable,
-        text : buttonText,
-        click : function() {
-          if (testName == 'TTS') {
-            populateManualResultIntoResultGrid(testName, $("#jsTTSGrid"),
-                $("#ttsManualTest"), id);
-          }
-          if (testName == 'HTML5') {
-            populateReportGridForExternalTest($("#jsHTML5TestGrid"),
-                $("#html5TestHeader"), $("#html5ManualTest"), testName, id);
+              processComponentInitialize();
+            }
+            if (testName == 'RECORDER') {
+              recorderComponentInitialize();
+            }
+          },
+          buttons : [
+              {
+                id : "dialogButton",
+                disabled : buttonDisable,
+                text : buttonText,
+                click : function() {
+                  if (testName == 'TTS') {
+                    populateManualResultIntoResultGrid(testName,
+                        $("#jsTTSGrid"), $("#ttsManualTest"), id);
+                  }
+                  if (testName == 'HTML5') {
+                    populateReportGridForExternalTest($("#jsHTML5TestGrid"),
+                        $("#html5TestHeader"), $("#html5ManualTest"), testName,
+                        id);
 
-          }
-          if (testName == 'CSS3') {
-            populateReportGridForExternalTest($("#jsCSS3TestGrid"),
-                $("#css3TestHeader"), $("#css3ManualTest"), testName, id);
+                  }
+                  if (testName == 'CSS3') {
+                    populateReportGridForExternalTest($("#jsCSS3TestGrid"),
+                        $("#css3TestHeader"), $("#css3ManualTest"), testName,
+                        id);
 
-          }
-          if (testName == 'CAPABILITY') {
-            populateManualResultIntoResultGrid(testName, $("#jsGrid"),
-                $("#capabilityApiManualTest"), id);
-          }
-          if (testName == 'PROCESS') {
-            populateManualResultIntoResultGrid(testName, $("#jsGrid"),
-                $("#processApiManualTest"), id);
-          }
-          if (testName == 'RECORDER') {
-            populateManualResultIntoResultGrid(testName,
-                $("#jsAudioRecorderGrid"), $("#recorderManualTest"), id);
-          }
-        }
-      } ]
-    });
+                  }
+                  if (testName == 'CAPABILITY') {
+                    populateManualResultIntoResultGrid(testName, $("#jsGrid"),
+                        $("#capabilityApiManualTest"), id);
+                  }
+                  if (testName == 'PROCESS') {
+                    populateManualResultIntoResultGrid(testName, $("#jsGrid"),
+                        $("#processApiManualTest"), id);
+                  }
+                  if (testName == 'RECORDER') {
+                    populateManualResultIntoResultGrid(testName,
+                        $("#jsAudioRecorderGrid"), $("#recorderManualTest"), id);
+                  }
+                }
+              },
+              {
+                id : "doneButton" + testName,
+                disabled : true,
+                text : 'Done',
+                click : function() {
+                  if (testName == 'TTS') {
+                    populateManualResultIntoResultGrid(testName,
+                        $("#jsTTSGrid"), $("#ttsManualTest"), id);
+                  }
+                  if (testName == 'CAPABILITY') {
+                    populateManualResultIntoResultGrid(testName, $("#jsGrid"),
+                        $("#capabilityApiManualTest"), id);
+                  }
+                  if (testName == 'PROCESS') {
+                    populateManualResultIntoResultGrid(testName, $("#jsGrid"),
+                        $("#processApiManualTest"), id);
+                  }
+                  if (testName == 'RECORDER') {
+                    populateManualResultIntoResultGrid(testName,
+                        $("#jsAudioRecorderGrid"), $("#recorderManualTest"), id);
+                  }
+                }
+              } ]
+        });
   } else {
     id.dialog({
       resizable : false,
@@ -257,6 +284,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
       id.dialog("open");
 
+      $("#doneButton" + testName).button("option", "classes.ui-button",
+          "irt-grid-column-hide");
     }
   }
 
@@ -270,6 +299,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       });
 
       id.dialog("open");
+
+      $("#doneButton" + testName).button("option", "classes.ui-button",
+          "irt-grid-column-hide");
 
     }
   }
@@ -328,6 +360,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         buttons[0].text = 'Save Results';
         buttons[0].disabled = false;
         id.dialog("option", "buttons", buttons);
+
+        $("#doneButton" + testName).button("option", "classes.ui-button",
+            "irt-grid-column-hide");
         clearInterval(saveButtonVar);
       }
     }, 1000);
@@ -1156,7 +1191,8 @@ function loadNextManualTest(manualGridId, testName, currentManualApi,
 
 function changeDialogBoxButtonText(id, buttonText) {
   var buttons = id.dialog("option", "buttons");
-  buttons[0].text = buttonText;
+  buttons[0].disabled = true;
+  buttons[1].disabled = false;
   id.dialog("option", "buttons", buttons);
 }
 
@@ -1349,8 +1385,10 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
   populateSectionCount(headerId, iframeObj.contentWindow.rTestPass,
       iframeObj.contentWindow.rTestFail, iframeObj.contentWindow.oTestPass,
       iframeObj.contentWindow.oTestFail, iframeObj.contentWindow.totalTest);
+
   dialogId.dialog("close");
   testId.css("display", "none");
+
   /*
    * $('html, body').animate({ 'scrollTop' : headerId.position().top });
    */
