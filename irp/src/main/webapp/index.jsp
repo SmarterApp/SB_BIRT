@@ -248,7 +248,7 @@ var impl = TDS.SecureBrowser.getImplementation();
 
             <div class="divTableRow">&nbsp;</div>
             <div class="divTableRow" id="functionalityRow">
-              <div class="divTableCell"><label for="optionalScoring">Score optional tests?</label></div>
+              <div class="divTableCell"><label for="optionalScoring">Score optional API tests?</label></div>
               <div class="divTableCellRight">
               <fieldset style="border: none !important;">
                 <label for="enableOptionScoring">Yes</label> <input
