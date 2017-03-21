@@ -122,6 +122,7 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       autoOpen : false,
       width : dialogWidth,
       height : dialogHeight,
+      modal : true,
       title : testTitle,
       position : {
         my : "center",
@@ -614,7 +615,7 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
       title : "Click to view final report",
       click : function() {
         $(this).dialog("close");
-        window.loction.href = getContextPath() + "/report/" + reportId;
+        window.location.href = getContextPath() + "/report/" + reportId;
       }
     }, {
       id : "retry",
