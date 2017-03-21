@@ -1502,7 +1502,7 @@ IRT.ApiSpecs = {
       // Get audio recorder capabilities: SEC-21, R27, F41
       "id" : "12",
       "testName" : "Manual Test: Input / Output Device selection",
-      "instruction" : "<ol><li>Click <b>Capabilities</b> to get input and output audio selection.</li><li>System will show Input Source and Output Destination. Select an Input Source to use as the recording device.</li><li>Click <b>Use</b> to conclude this test.</li></ol>",
+      "instruction" : "<ol><li>Click <b>Capabilities</b> to get input and output audio selection.</li><li>Select an Input Source to use as the recording device.</li><li>Click <b>Use</b> to conclude this test.</li></ol>",
       "testApi" : "",
       "testResult" : false,
       "details" : "",
@@ -1515,7 +1515,7 @@ IRT.ApiSpecs = {
         "all" : false
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Were the audio input and output select boxes populated?</p>",
+      "dialogHtml" : "<p>Was the audio input select box populated??</p>",
       "dialogTitle" : "Audio Recorder Device Capabilities Test",
       "buttonSliderId" : "getRecordingCapabilities",
       "disableSection" : [ "initiateRecording", "getRecordingStatus",

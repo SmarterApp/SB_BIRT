@@ -181,10 +181,8 @@ function Recorder_MobileAudioService() {
 
   this.gotDevices = function(deviceInfos) {
     var audioInputSelect = $('#audioSource');
-    var audioOutputSelect = $('#audioOutput');
 
     audioInputSelect.empty();
-    audioOutputSelect.empty();
 
     for (var i = 0; i !== deviceInfos.length; ++i) {
       var deviceInfo = deviceInfos[i];
@@ -202,10 +200,6 @@ function Recorder_MobileAudioService() {
         option.text = deviceInfo.description || 'microphone '
             + (audioInputSelect.length + 1);
         audioInputSelect.append(option);
-      } else if (deviceInfo.kind === 'audiooutput') {
-        option.text = deviceInfo.description || 'speaker '
-            + (audioOutputSelect.length + 1);
-        audioOutputSelect.append(option);
       } else {
         console.log('Some other kind of source/device: ', deviceInfo);
       }
