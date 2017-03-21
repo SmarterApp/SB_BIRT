@@ -1199,7 +1199,7 @@ var tests = [
             id : 'components',
             status : 'stable',
             name : 'Web Components',
-            required : true,
+            required : false,
             items : [
                 {
                   id : 'custom',
@@ -1249,7 +1249,7 @@ var tests = [
           {
             id : 'location',
             name : 'Location and Orientation',
-            required : true,
+            required : false,
             status : 'stable',
             items : [
                 {
@@ -1282,7 +1282,7 @@ var tests = [
           {
             id : 'output',
             name : 'Output',
-            required : true,
+            required : false,
             status : 'proposal',
             items : [
                 {
@@ -1579,7 +1579,7 @@ var tests = [
           {
             id : 'streaming',
             name : 'Streaming',
-            required : true,
+            required : false,
             status : 'stable',
             items : [
                 {
@@ -1865,7 +1865,7 @@ var tests = [
             id : '3d',
             status : 'stable',
             name : '3D and VR',
-            required : true,
+            required : false,
             items : [
                 '<strong>3D Graphics</strong>',
 
@@ -1911,7 +1911,7 @@ var tests = [
             id : 'animation',
             status : 'stable',
             name : 'Animation',
-            required : true,
+            required : false,
             items : [
                 {
                   id : 'webanimation',
@@ -1947,7 +1947,7 @@ var tests = [
             id : 'communication',
             status : 'stable',
             name : 'Communication',
-            required : true,
+            required : false,
             items : [
                 {
                   id : 'eventSource',
@@ -2045,7 +2045,7 @@ var tests = [
             id : 'streams',
             status : 'experimental',
             name : 'Streams',
-            required : true,
+            required : false,
             items : [ {
               id : 'readable',
               name : 'Readable streams',
@@ -2061,7 +2061,7 @@ var tests = [
           {
             id : 'rtc',
             name : 'Peer To Peer',
-            required : true,
+            required : false,
             status : 'stable',
             items : [
                 '<strong>Connectivity</strong>',
@@ -2336,7 +2336,7 @@ var tests = [
             id : 'performance',
             status : 'stable',
             name : 'Performance',
-            required : true,
+            required : false,
             items : [
                 '<strong>Workers</strong>',
 
@@ -2485,7 +2485,7 @@ var tests = [
           {
             id : 'offline',
             name : 'Web applications',
-            required : true,
+            required : false,
             status : 'stable',
             items : [
                 '<strong>Offline resources</strong>',
@@ -2693,7 +2693,7 @@ var tests = [
           {
             id : 'scripting',
             name : 'Scripting',
-            required : false,
+            required : true,
             status : 'stable',
             items : [
                 '<strong>Script execution</strong>',
