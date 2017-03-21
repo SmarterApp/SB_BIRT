@@ -318,7 +318,8 @@
         "organization" : $.cookie("organization"),
         "email" : $.cookie("emailId"),
         "browserInfo" : $.cookie("browserDetails"),
-        "optionalScoring" : $.cookie("optionalScoring")
+        "optionalScoring" : $.cookie("optionalScoring"),
+        "specInfo" : "legacy"
       },
       "version" : $.cookie("version")
     });

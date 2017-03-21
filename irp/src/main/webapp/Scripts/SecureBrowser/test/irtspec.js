@@ -77,6 +77,12 @@ IRT.RecorderTest = {
   UNKNOWN : 'UNKNOWN' // unknown status
 };
 
+IRT.BrowserSpecPath = {
+
+  "legacy" : "/spec/SecureBrowserRequirementsSpecifications_Legacy.pdf",
+  "new" : "/spec/SecureBrowserAPIspecification_V2.0.0.pdf"
+};
+
 /**
  * Manual test's to run for get/set capability
  */

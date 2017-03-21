@@ -124,7 +124,7 @@ var impl = TDS.SecureBrowser.getImplementation();
         }
 
       });
-
+  
   function populateReportData(data) {
 
     var extReport = false;
@@ -151,10 +151,26 @@ var impl = TDS.SecureBrowser.getImplementation();
     var userInfoJsonObj = data.reportData.reportInfo;
     Object.keys(userInfoJsonObj).forEach(
         function(userItem, userItemIndex, userArray) {
+          
+          if(userItem == 'specInfo'){
+          
+            
+      
+            var apiSpecLink = eval('IRT.BrowserSpecPath.'+eval('userInfoJsonObj.' + userItem));
+            var finalSpecLink = '<%=contextPath%>' + apiSpecLink;
+            
+            
+            var specLink =  "<a href='"+finalSpecLink+"' id='specLinkId'>View</a>";
+            
+            $("#" + userItem).html(
+                $("#" + userItem).html() + ' '
+                    + specLink);
+          }
+          else{
           $("#" + userItem).html(
               $("#" + userItem).html() + ' '
                   + eval('userInfoJsonObj.' + userItem));
-          
+          }
         });
 
     var reportGridDataObj = data.reportData.reportGridData;
@@ -252,6 +268,10 @@ var impl = TDS.SecureBrowser.getImplementation();
           </div>
           <div class="divTableRow" id="browserInfo">
             <b>Browser Info:</b>
+              
+          </div>
+            <div class="divTableRow" id="specInfo">
+            <b>Browser API Specification: </b>
               
           </div>
 
