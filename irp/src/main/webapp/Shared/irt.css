@@ -463,3 +463,11 @@
 background: #358c21;
 color: #f6f6f6;
 }
+
+.ui-widget-overlay
+{
+  opacity: .50 !important; /* Make sure to change both of these, as IE only sees the second one */
+  filter: Alpha(Opacity=50) !important;
+
+  background-color: rgb(50, 50, 50) !important; /* This will make it darker */
+}
