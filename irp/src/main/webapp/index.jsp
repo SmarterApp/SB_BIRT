@@ -190,7 +190,7 @@ var impl = TDS.SecureBrowser.getImplementation();
       </p>
     </div>
 
-    <div id="tabs">
+    <div id="tabs" class="loginTab">
       <ul>
         <li><a href="#left-intro-section" class="intro-tab-detail">New IRT Test</a></li>
         <li><a href="#right-intro-section" class="intro-tab-detail">IRT Report</a></li>
@@ -203,15 +203,13 @@ var impl = TDS.SecureBrowser.getImplementation();
           <div class="divTableBody">
 
 
-            <div class="divTableRow">
-              <div id="instruction">
-                <p style="padding: 4px;">
+            <div class="divTableRow" id="instruction">
+              <p style="padding-right : 4%">
                   To test your current browser against the IRT, please
                   enter any of the optional information below (which
                   will be included in the final report), then press <strong>Begin
                     IRT Test</strong>.
-                </p>
-              </div>
+           </p>
             </div>
 
             <div class="divTableRow">
@@ -282,27 +280,22 @@ var impl = TDS.SecureBrowser.getImplementation();
         <form>
           <div class="divTableBody">
 
-            <div class="divTableRow">
-              <div id="instruction">
-                <p style="padding: 4px;">
+            <div class="divTableRow" id="instruction">
+
+                <p style="padding-right : 4%">
                   To view a previously saved IRT report, please enter
                   its ID and press <strong>Get IRT Test Result</strong>.
                 </p>
-              </div>
+              
             </div>
-            <div class="divTableRow">
-              <div class="divTableCell">Report Id:</div>
-              <div class="divTableCellRight">
+            <div class="divTableRow" align="center">
+              <label for="reportId">Report Id:&nbsp;&nbsp;</label>              
                 <input type="number" name="reportId" id="reportId">
-              </div>
             </div>
             <div class="divTableRow">&nbsp;</div>
 
             <div class="divTableRow" align="center">
-
-
               <button id="getIRTResult" disabled="disabled"></button>
-
             </div>
 
           </div>

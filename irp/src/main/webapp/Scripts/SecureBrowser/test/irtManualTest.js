@@ -620,21 +620,17 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
     }, {
       id : "retry",
       text : "Retry",
+      title : 'Attempt to generate a report again',
       click : function() {
         $(this).dialog("close");
       }
     }, {
       id : "homeButton",
       text : "Home",
+      title : 'Return to home page',
       click : function() {
         $(this).dialog("close");
         window.location.href = getContextPath();
-      }
-    }, {
-      text : "OK",
-      click : function() {
-        $(this).dialog("close");
-
       }
     } ]
   });

@@ -182,7 +182,7 @@ IRT.ApiSpecs = {
     "errorDialog_TTS" : "Your browser does not support TTS, so manual testing will be skipped.",
     "errorDialog_CAPABILITY" : "Your browser does not support GET/SET Capability, so manual testing will be skipped.",
     "errorDialog_PROCESS" : "Your browser does not support Examine Process List, so manual testing will be skipped.",
-    "errorDialog_saveSuccess" : "Your test results have been saved successfully. Your report ID is:",
+    "errorDialog_saveSuccess" : "Your test results have been saved successfully. Please record your report ID shown below, for future access:",
     "errorDialog_saveFailure" : "System was unable to save test results.",
     "errorDialog_report_not_found" : "No report found for the requested report ID:",
     "errorDialog_RECORDER" : "Your browser does not support Audio Recorder, so manual testing will be skipped"
