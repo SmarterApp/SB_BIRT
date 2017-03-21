@@ -8,7 +8,7 @@ function Recorder_MobileAudioService() {
 
   var options = {};
 
-  var AIRAudioData = {
+  var RecorderAudioData = {
     filename : null,
     filedata : null
   };
@@ -116,12 +116,13 @@ function Recorder_MobileAudioService() {
       if (recorderStatus == null) {
         throw "Cannot play back an audio. Recorder is not initialized";
       }
-      if ((AIRAudioData.filedata != null) && (AIRAudioData.filedata != '')) {
+      if ((RecorderAudioData.filedata != null)
+          && (RecorderAudioData.filedata != '')) {
         window.setTimeout(function() {
           AIRMobile.recorder.play({
             type : 'filedata',
-            data : AIRAudioData.filedata,
-            filename : AIRAudioData.filename
+            data : RecorderAudioData.filedata,
+            filename : RecorderAudioData.filename
           });
         }, 500);
       } else {
@@ -152,7 +153,6 @@ function Recorder_MobileAudioService() {
 
     if (event.type == "END") {
 
-      // console.log("recording was just stopped");
       recorderStatus = 'idle';
 
       var results = {};
@@ -161,18 +161,14 @@ function Recorder_MobileAudioService() {
 
       var saveAs = "";
       if (results.filename != null) {
-        // console.log("file name is: " + results.filename);
         saveAs = results.filename.replace(/^.*[\\\/]/, '');
-        // console.log("save as: " + saveAs);
       }
 
       var data = results.base64;
       var quality = results.qualityIndicator;
 
-      // $("#audio_data_output_textfield").html(data);
-
-      AIRAudioData.filename = saveAs;
-      AIRAudioData.filedata = data;
+      RecorderAudioData.filename = saveAs;
+      RecorderAudioData.filedata = data;
 
     } else if (event.type == "ERROR") {
       alert("An error occured recording, please reinitialize and try again.");
