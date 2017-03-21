@@ -589,23 +589,18 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
 
     $("#retry").removeClass("irt-grid-column-hide");
     $("#home").addClass("irt-grid-column-hide");
+    $("#viewReport").addClass("irt-grid-column-hide");
+
     reportId = "";
     iconClass = 'irt-failure-ui-icon';
   }
 
+  var cntxPath = getContextPath();
   var reportIdLink = '';
-  if (textInfo == 'saveSuccess') {
-    var cntxPath = getContextPath();
-    reportIdLink = "<a href='"
-        + cntxPath
-        + "/report/"
-        + reportId
-        + "' class='report-id-link' title='Click to view final report' id='reportIdLink'>"
-        + reportId + "</a>";
-  }
+
   id.html('<p><span class="' + iconClass + '"></span>' + textMessage
-      + '<div class="report-id-details">' + reportIdLink + '</div>'
-      + errorMessage + '</p>');
+      + '<div class="report-id-details">' + reportId + '</div>' + errorMessage
+      + '</p>');
 
   id.dialog({
     resizable : false,
@@ -614,6 +609,14 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
     width : 500,
     modal : true,
     buttons : [ {
+      id : "viewReport",
+      text : "View Report",
+      title : "Click to view final report",
+      click : function() {
+        $(this).dialog("close");
+        window.loction.href = getContextPath() + "/report/" + reportId;
+      }
+    }, {
       id : "retry",
       text : "Retry",
       click : function() {
@@ -637,16 +640,14 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
 
   if (reportId != null && success) {
     $("#retry").addClass("irt-grid-column-hide");
-    $('#reportIdLink').blur();
-    $('#reportIdLink').tooltip({
-      position : {
-        my : "left+15 center",
-        at : "right center"
-      }
-    });
+
+    $('#viewReport').blur();
+    $('#viewReport').tooltip({});
+
   }
   if ((reportId == null && !success) || !success) {
     $("#homeButton").addClass("irt-grid-column-hide");
+    $("#viewReport").addClass("irt-grid-column-hide");
   }
 }
 
