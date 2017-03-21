@@ -458,3 +458,8 @@
     margin-right: auto;
     margin-left: auto;	
 }
+
+.done-button{
+background: #358c21;
+color: #f6f6f6;
+}
