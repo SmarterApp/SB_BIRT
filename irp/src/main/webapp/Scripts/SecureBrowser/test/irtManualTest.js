@@ -534,9 +534,6 @@ function createSelectMenu(id, testName) {
       if (testName == 'CAPABILITY') {
         setSelectedCapability(ui.item.label, ui.item.value, ui.item.index);
       }
-      if (testName = 'RECORDER_INPUT') {
-        // setRecorderInput(ui.item.label, ui.item.value, ui.item.index);
-      }
     }
   });
 }
@@ -863,7 +860,6 @@ function loadVoices() {
 }
 
 function setVoice() {
-  // currentTestSetting = TTS.Test.VOICE;
   ttsImpl.setVoice($("#voices").val());
 }
 
@@ -900,8 +896,6 @@ function ttsPause() {
 
 function ttsResume() {
 
-  // currentTestSetting = TTS.Test.RESUME;
-
   setDialogHtml(specTTSManualApi);
 
   ttsImpl.resume();
@@ -912,8 +906,6 @@ function ttsResume() {
 
 function ttsStop() {
 
-  // currentTestSetting = TTS.Test.STOP;
-
   setDialogHtml(specTTSManualApi);
 
   ttsImpl.stop();
@@ -923,15 +915,12 @@ function ttsStop() {
 }
 
 function setTTSVolume(level) {
-  // currentTestSetting = TTS.Test.VOLUME;
-
   if (ttsImpl.supportsVolumeControl()) {
     ttsImpl.setVolume(level);
   }
 }
 
 function setTTSPitch(level) {
-  // currentTestSetting = TTS.Test.PITCH;
 
   if (ttsImpl.supportsPitchControl()) {
     ttsImpl.setPitch(level);
@@ -939,14 +928,12 @@ function setTTSPitch(level) {
 }
 
 function setTTSRate(level) {
-  // currentTestSetting = TTS.Test.RATE;
   if (ttsImpl.supportsRateControl()) {
     ttsImpl.setRate(level);
   }
 }
 
 function setSystemVolume(level) {
-  // currentTestSetting = TTS.Test.SYSTEM_VOLUME;
   if (!!ttsImpl.setSystemVolume) {
     ttsImpl.setSystemVolume(level);
   }
@@ -1229,8 +1216,6 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
     }
   }
 
-  /* var disableArray = disableIds.split(","); */
-
   disableIds.forEach(function(item, index, array) {
 
     var buttonSliderId = null;
@@ -1259,8 +1244,6 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
 function enableUIOptions(testName, currentManualApi, testingArray) {
   var enableIds = eval(irtApiSpecConstant + specSeparator + currentManualApi
       + specSeparator + currentTestSetting + specSeparator + "enableSection");
-
-  /* var enableArray = enableIds.split(","); */
 
   enableIds.forEach(function(item, index, array) {
 
@@ -1389,9 +1372,10 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
   dialogId.dialog("close");
   testId.css("display", "none");
 
-  /*
-   * $('html, body').animate({ 'scrollTop' : headerId.position().top });
-   */
+  $('html, body').animate({
+    'scrollTop' : headerId.position().top
+  });
+
 }
 
 function enableDisableSaveResultButton(testName, id) {

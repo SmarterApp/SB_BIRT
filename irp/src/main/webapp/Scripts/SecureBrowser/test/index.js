@@ -73,6 +73,11 @@ function closeBrowser() {
   impl.close(false);
 }
 
+function clearBrowserCache() {
+
+  impl.clearCache();
+}
+
 /**
  * 
  * @param irtSpecApiObj :
