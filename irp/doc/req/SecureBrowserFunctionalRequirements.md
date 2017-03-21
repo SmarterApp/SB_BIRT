@@ -1,5 +1,6 @@
 Secure Browser Functional Requirements
 ------------------
+v.2.0.0 - Last modified 20-Mar-2017
 
 ### A. Security Related Requirements
 1. F01. The Secure browser shall NOT provide a means to clear browser cache.
