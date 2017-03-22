@@ -97,12 +97,11 @@ Below are the two important object required to be created in mongo DB
 * jQuery UI Plugin used [jQuery Real Person Captcha](http://keith-wood.name/realPerson.html)
 * index.html is modified to include Captcha with options
  
-`
-   Javascript : $(selector).realperson({chars : $.realperson.alphanumeric,length : 8});
-   
-   chars : The list of characters to generate the challenge from, $.realperson.alphabetic or  $.realperson.alphanumeric for the standard character sequences.
-   length : The number of characters to be entered.
-`
+```
+   * Javascript : $(selector).realperson({chars : $.realperson.alphanumeric,length : 8});
+   * chars : The list of characters to generate the challenge from, $.realperson.alphabetic or  $.realperson.alphanumeric for the standard character sequences.
+   * length : The number of characters to be entered.
+```
 
 * Once user enter valid challenge character, UI enables `Finish and Generate Report` button. 
 * If system sends JSON directly via URL with incorrect CAPTCHA information system throws exception and will not save report in DB 
