@@ -95,7 +95,7 @@ Below are the two important object required to be created in mongo DB
 
 * As a hosting provider, we want to be able to ensure preventive measures are in place against DDOS attacks.
 * jQuery UI Plugin used [jQuery Real Person Captcha](http://keith-wood.name/realPerson.html)
-* index.html is modified to include Captcha with options
+* index.html is modified to include Captcha configuration as below
  
 ```
    * Javascript : $(selector).realperson({chars : $.realperson.alphanumeric,length : 8});
@@ -104,4 +104,4 @@ Below are the two important object required to be created in mongo DB
 ```
 
 * Once user enter valid challenge character, UI enables `Finish and Generate Report` button. 
-* If system sends JSON directly via URL with incorrect CAPTCHA information system throws exception and will not save report in DB 
+* If system sends JSON directly via URL with incorrect CAPTCHA information system throws exception and will not save data in Database
