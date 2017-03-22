@@ -160,7 +160,7 @@ var impl = TDS.SecureBrowser.getImplementation();
             var finalSpecLink = '<%=contextPath%>' + apiSpecLink;
             
             
-            var specLink =  "<a href='"+finalSpecLink+"' id='specLinkId'>View</a>";
+            var specLink =  "<a href='"+finalSpecLink+"' id='specLinkId' target='_blank'>"+eval('userInfoJsonObj.' + userItem)+"</a>";
             
             $("#" + userItem).html(
                 $("#" + userItem).html() + ' '
@@ -271,7 +271,7 @@ var impl = TDS.SecureBrowser.getImplementation();
               
           </div>
             <div class="divTableRow" id="specInfo">
-            <b>Browser API Specification: </b>
+            <b>Browser API Specification Used for Manual Testing: </b>
               
           </div>
 

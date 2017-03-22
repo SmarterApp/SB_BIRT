@@ -79,8 +79,8 @@ IRT.RecorderTest = {
 
 IRT.BrowserSpecPath = {
 
-  "legacy" : "/spec/SecureBrowserRequirementsSpecifications_Legacy.pdf",
-  "new" : "/spec/SecureBrowserAPIspecification_V2.0.0.pdf"
+  "Legacy" : "/spec/SecureBrowserRequirementsSpecifications_Legacy.pdf",
+  "New" : "/spec/SecureBrowserAPIspecification_V2.0.html"
 };
 
 /**

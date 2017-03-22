@@ -319,7 +319,7 @@
         "email" : $.cookie("emailId"),
         "browserInfo" : $.cookie("browserDetails"),
         "optionalScoring" : $.cookie("optionalScoring"),
-        "specInfo" : "legacy"
+        "specInfo" : "Legacy"
       },
       "version" : $.cookie("version")
     });

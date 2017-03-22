@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>SecureBrowserAPIspecification</title>
+
+
+<style type="text/css">
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+ol,
+ul,
+li,
+img {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+html * {
+  font-family: "ff-din-web-pro-1", "ff-din-web-pro-2", sans-serif;
+  font-size: 16px;
+  line-height: 19.2px;
+  color-profile: sRGB;
+}
+body {
+  margin: 40px 70px;
+}
+p {
+  font-weight: lighter;
+  margin-bottom: 20px;
+}
+strong {
+  font-weight: bold;
+}
+ol,
+ul {
+  margin-left: 2em;
+  margin-bottom: 20px;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-top: 10px;
+}
+li {
+  margin-bottom: 10px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: lighter;
+  text-transform: capitalize;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h2 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h3 {
+  font-size: 23.44px;
+  line-height: 28.128px;
+}
+h4 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h5 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h6 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+img {
+  margin-bottom: 20px;
+}
+h1 img,
+h2 img,
+h3 img,
+h4 img,
+h5 img,
+h6 img,
+p img {
+  margin-bottom: 0;
+}
+pre {
+  margin-bottom: 20px;
+}
+pre,
+code {
+  font-family: monospace;
+}
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 15px;
+}
+blockquote {
+  border-left: 4px solid;
+  padding: 0 15px;
+}
+blockquote > :first-child {
+  margin-top: 0;
+}
+blockquote > :last-child {
+  margin-bottom: 15px;
+}
+h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+h2 {
+  border-bottom: 1px solid;
+}
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: none;
+}
+html * {
+  color: #657b83;
+}
+html body {
+  background-color: #fdf6e3;
+}
+html h1,
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #586e75;
+  border-color: #657b83;
+}
+html a,
+html a:active,
+html a:visited {
+  color: #586e75;
+}
+html a:hover {
+  background-color: #eee8d5;
+}
+html pre {
+  color: #586e75;
+  background-color: #eee8d5;
+}
+html a,
+html a:active,
+html a:visited,
+html code.url {
+  color: #b58900;
+}
+html h1 {
+  color: #b58900;
+}
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #b58900;
+}
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+
+@media print {
+  body {
+    margin: 0;
+  }
+  * {
+    color: #000 !important;
+  }
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h2 id="toc_0">Secure Browser API Specification</h2>
+
+<p>v.2.0.0 - Last modified 17-Mar-2017</p>
+
+<p>The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system. The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global <code>browser</code> object.</p>
+
+<h2 id="toc_1">Required Methods</h2>
+
+<ol>
+<li><p>R01. <strong>Expose a window global object called <code>browser</code></strong>. All vendors are required to expose a window global object called <code>browser</code>. The APIs discussed below are exposed through this global object. Some APIs are supported as part of existing W3C specifications, and are identified as such.</p></li>
+<li><p>R02. <strong>Lock down environment to begin an assessment</strong>. The testing web application will invoke this call prior to allowing students to start testing. The implementer is required to take any actions necessary to secure the testing environment. The steps taken to secure the environment are device specific and for example, include aspects such as disabling the ability to do screen captures, disabling the ability to voice chat when in secure mode, clearing the system clipboard, entering into a kiosk mode, disabling Spaces in OS X 10.7+ etc. The testing application will enable lockdown before an assessment commences and will disable the lockdown when the student has completed the assessment and is out of the secure test.</p>
+
+<p><code>void browser.security.lockDown (boolean enable, function onSuccess, function onError)</code></p>
+
+<p><code>onSuccess</code> and <code>onError</code> are optional parameters. These functions are invoked after the lockdown has either been sucessfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:</p>
+
+<p><code>function(currentlockdownstate) {...}</code></p>
+
+<p>where <code>currentstate</code> indicates whether the lockdown is in effect or not. undefined or null indicates that we don&#39;t know what the current state is (likely only the case for onError callbacks)</p></li>
+<li><p>R03. <strong>Check if environment is secure</strong>. Check if the environment is secure. The testing web application will invoke this prior to allowing students to start testing and periodically when inside the test. </p>
+
+<p><code>void browser.security.isEnvironmentSecure(function callback)</code>  </p>
+
+<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
+
+<p><code>function(state){...}</code></p>
+
+<p>The state is a JSON string containing two fields. The first is the <code>secure</code> field, which must return <code>true</code> only if all necessary locks have been enabled (or features disabled) to enable a secure testing environment, and none of these have been compromised since we entered the lockdown mode. The other field (<code>messageKey</code>) includes other details or information that is vendor specific. The intent here is to allow vendors to put additional information that augments the boolean <code>secure</code> flag:</p>
+
+<p><code>{
+   &#39;secure&#39; : &quot;true/false&quot;,
+   &#39;messageKey&#39; : &quot;some message&quot;
+}</code></p></li>
+<li><p>R41. <strong>Retrieve the status of a particular browser capability</strong>.     <code>object browser.security.getCapability(&quot;feature&quot;)</code></p>
+
+<p>returns either a Javascript object or literal with the following structure</p>
+
+<p><code>{&lt;feature&gt;:true|false}</code></p></li>
+<li><p>R42. <strong>Set the status of a particular browser capability</strong>. This allows us to explicitly enable or disable a specific feature on the browser. The feature must be one that is recognized by the vendor.</p>
+
+<p><code>void browser.security.setCapability(feature, value, function onSuccess, function onError)</code></p>
+
+<p><code>onSuccess</code> and <code>onError</code> are optional parameters. These functions are invoked after the feature has either been sucessfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:</p>
+
+<p><code>function(jsonliteral) {...}</code></p>
+
+<p>where jsonliteral indicates the current value of the feature and it&#39;s state. <code>{&lt;feature&gt;:true|false|undefined}</code>. If the feature is unknown to the browser, the value for the key will be undefined</p></li>
+<li><p>R05. <strong>Retrieve information on the environment (device)</strong>. The testing web application will invoke this to gather details about the platform on which it is running. This is used to augment any information that was discernible from the user agent.</p>
+
+<p><code>void browser.security.getDeviceInfo(function callback)</code></p>
+
+<p><code>callback</code> should be a function that looks like this:</p>
+
+<p><code>function(infoObj){...}</code></p>
+
+<p>The infoObj is a JSON literal that includes a set of key value pairs. The complete list of data returned is vendor specific. At a minimum, we expect the following keys to be supported: <code>manufacturer</code>,<code>HWVer</code>, <code>SWVer</code></p></li>
+<li><p>R06. <strong>Examine current list of running processes</strong>. The testing application will invoke this to examine the list of all processes running on the client machine owned by the user, and compare it with a list of processes that we have deemed blacklisted during testing cycle. This call will be invoked both at the start of an assessment and periodically which the student is taking the assessment and at any point, if a blacklisted app is detected, the assessment will be stopped to preserve test integrity. It will return a list of running processes that match one or more of the blacklisted processes, if any.</p>
+
+<p><code>void browser.security.examineProcessList(string[] blacklistedProcessList, function callback)</code></p>
+
+<p><code>callback</code> should be a function that looks like this:</p>
+
+<p><code>function(array of process names found){...}</code></p>
+
+<p>Example response:
+<code>&quot;[&#39;taskmgr.exe&#39;,&#39;chrome.exe&#39;,&#39;ccSvcHst.exe&#39;,&#39;Dropbox.exe&#39;,&#39;EXCEL.EXE&#39;,&#39;svchost.exe&#39;,&#39;System&#39;]&quot;</code></p>
+
+<p>An empty array indicates no forbidden apps were found. Undefined or null return value to the callback indicates that some error occurred and we were unable to perform the match.</p></li>
+<li><p>R07. <strong>Close the browser</strong>. The testing application will invoke this to shut down the browser when the user elects to exit the browser. The boolean parameter will determine if the browser should restart on exit or simply exit.</p>
+
+<p><code>void browser.security.close(boolean restart)</code></p></li>
+<li><p>R15. <strong>Is macOS Spaces Enabled</strong>. Applicable to macOS only. This runtime browser property can be read by the testing application and returns true if Spaces is enabled, false otherwise. </p>
+
+<p><code>browser.settings.isSpacesEnabled</code>: boolean property specifying if Spaces is enabled or not. It is undefined on all platforms other than those that implement &#39;Spaces&#39;. </p></li>
+<li><p>R16. <strong>Get System Volume</strong>. Get system volume: This runtime browser property can be queried by the testing application to get the System Volume. This is only available in desktop secure browsers.</p>
+
+<p><code>browser.settings.systemVolume</code> : integer property that contains the scaled value of the current system volume (0-10).</p></li>
+<li><p>R17. <strong>Set System Volume</strong>. Set system volume: This runtime browser property can be written to by the testing application to set the System Volume. This is only available in desktop secure browsers.</p>
+
+<p><code>browser.settings.systemVolume</code> accepts a value for the system volume (0-10)</p></li>
+<li><p>R18. <strong>Mute System Volume</strong>. Mute system volume: This runtime browser property can be written to by the testing application to mute the System Volume. This is only available in desktop secure browsers.</p>
+
+<p><code>browser.settings.systemMute</code>: boolean property that reports whether speaker is muted or not. </p></li>
+<li><p>R19. <strong>Unmute System Volume</strong>. Unmute system volume: This runtime browser property can be written to by the testing application to unmute the System Volume. This is only available in desktop secure browsers.</p>
+
+<p><code>browser.settings.systemMute</code> set to true to mute, false to unmute. </p></li>
+<li><p>R20. <strong>Get System Mute Status</strong>. Get the current status of the system volume. This is only available in desktop secure browsers.</p>
+
+<p><code>browser.settings.systemMute</code> true if muted, false if unmuted. </p></li>
+<li><p>R44. <strong>Get permissive mode</strong>. The testing web application will invoke this to determine if permissive mode is on or off. In permissive mode, a browser is expected to relax some of its stringent security hooks to allow assistive technology to work with the secure browser. For example, browsers that aggressively prevent other application UIs from presenting on top of them might want to relax this when in permissive mode. </p>
+
+<p><code>void browser.security.getPermissiveMode(function callback)</code></p>
+
+<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
+
+<p><code>function(permissivemode){...}</code></p>
+
+<p>The passed-in value is a boolean indicating if the browser is permissive or not. If undefined or null is passed in, that implies an error occurred with the get operation.</p></li>
+<li><p>R21. <strong>Set permissive mode</strong>. The testing web application will invoke this to toggle permissive mode on or off. In permissive mode, a browser is expected to relax some of its stringent security hooks to allow assistive technology to work with the secure browser. For example, browsers that aggressively prevent other application UIs from presenting on top of them might want to relax this when in permissive mode. </p>
+
+<p><code>void browser.security.setPermissiveMode(enable, function callback)</code></p>
+
+<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
+
+<p><code>function(permissivemode){...}</code></p>
+
+<p>The passed-in value is a boolean indicating if the browser is permissive or not. If undefined or null is passed in, that implies an error occurred with the set operation.</p></li>
+<li><p>R22. <strong>Eliminate Security-Exposing APIs</strong>. The following APIs are deprecated and shall NOT be exposed:</p>
+
+<ul>
+<li><p><em>Clear browser cache</em> (<code>void browser.security.clearCache()</code>)</p></li>
+<li><p><em>Clear cookies</em> (<code>void browser.security.clearCookies()</code>)</p></li>
+<li><p><em>Retrieve client IP address(es)</em>  (<code>string[] browser.security.getIPAddressList()</code>)</p></li>
+<li><p><em>Retrieve current list of running processes</em> (<code>string[] browser.security.getProcessList()</code>)</p></li>
+</ul></li>
+</ol>
+
+<h3 id="toc_2">Text to Speech Synthesis (TTS)</h3>
+
+<p><em>NOTE: Browsers supporting W3C&#39;s <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Web Speech API</a> do not need to implement these functions.</em></p>
+
+<ol>
+<li><p>R08. <strong>Speak Text (TTS)</strong>. The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup (the param is required, the markup is optional), an options object to control the speech (required param) and a callback for TTS events (optional). The vendor must support plaintext and optionally support one of the following markup standards; SSML, Microsoft speech markup (for Windows) or Apple speech markup (for macOS). The ability to set the pitch, rate, voice, and volume is provided by this API call through the options object, which includes:</p>
+
+<p><code>voicename</code> (required) - The voice to use from the getVoices call.</p>
+
+<p><code>rate</code> (optional) - Speech playback rate, ranging from 1 to 20, where 10 is the default, 20 is twice as fast as 10, and 5 is half as fast as 10. 1 is the slowest available playback rate.</p>
+
+<p><code>pitch</code> (optional) - Speech pitch, ranging from 1 to 20, where 10 is the default, but the actual pitch is voicepack dependent.</p>
+
+<p><code>volume</code> (optional) - Speech volume, ranging from 0 to 10: where 5 is the default and 10 is twice as loud as 5. 0 will mute TTS. The speech volume is dependent on the system volume.</p>
+
+<p><code>language</code> (optional) - Speech language, following the xml:lang attribute specification. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</p>
+
+<p><code>gender</code> (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: &quot;male&quot;, &quot;female&quot;, &quot;neutral&quot;. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</p>
+
+<p>The callback, if provided, is invoked for TTS events which include <code>start</code>, <code>end</code>, <code>word boundary</code>, <code>sentence boundary</code>, <code>synchronization/marker encountered</code>, <code>paused</code>, <code>resumed</code>, and <code>error</code>. </p>
+
+<p><code>void browser.tts.speak(string text, object options, function callback)</code></p>
+
+<p>The callback function&#39;s parameters are as follows:</p>
+
+<p><code>callback(reason, parms)</code> </p>
+
+<p>where <code>reason</code> is a string which includes one of the following values:  &#39;start&#39;, &#39;end&#39;, &#39;pause&#39;, &#39;resume&#39;, &#39;word&#39;, &#39;sentence&#39;, &#39;mark&#39;, and &#39;error&#39;, indicating a word, sentence, or mark boundary, or an error. For each of these <code>reason</code> strings, the <code>parms</code> would be an object</p>
+
+<p><code>parms = { start, end, length, type };</code></p></li>
+<li><p>R09. <strong>Stop speech (TTS)</strong>. This is called by the testing application to stop any speech that may be in progress. </p>
+
+<p><code>void browser.tts.stop(function callback)</code></p>
+
+<p>&#39;callback&#39; is an optional function that if present, will be invoked with a string status when TTS has stopped speaking, or an error has occurred while trying to make speaking stop (e.g., it was not speaking at the time). The state string will contain a code sych as  &#39;stop&#39; (if speech was stopped) or &#39;error&#39; (if an error occurred).</p>
+
+<p><code>callback(state)</code> </p></li>
+<li><p>R10. <strong>Get speech status (TTS)</strong>. This is called by the testing application to inspect the current status of speech. The valid values are listed below.</p>
+
+<p><code>void browser.tts.getStatus(function callback)</code></p>
+
+<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
+
+<p><code>function(status){...}</code></p>
+
+<p>Where <code>status</code> is one of:</p>
+
+<p><code>NotSupported</code>  : TTS initialization failed.</p>
+
+<p><code>Uninitialized</code> : TTS is not initialized</p>
+
+<p><code>Initializing</code>  : TTS initialization in progress</p>
+
+<p><code>Stopped</code>       : TTS is initialized and there is nothing playing</p>
+
+<p><code>Playing</code>       : playing is in progress</p>
+
+<p><code>Paused</code>        : playing was paused</p>
+
+<p><code>Unknown</code>       : unknown status</p></li>
+<li><p>R11. <strong>Get available voices (TTS)</strong>. This is called by the testing application to get a listing of the available voice packs in the current system. </p>
+
+<p><code>void browser.tts.getVoices(function callback)</code></p>
+
+<p><code>callback</code> should be a function that looks like this:</p>
+
+<p><code>function(array of voice objects found){...}</code></p>
+
+<p>Each voice object is a JSON literal with the following properties: </p>
+
+<ul>
+<li>name (required)</li>
+<li>language (optional)</li>
+<li>gender (optional).</li>
+</ul>
+
+<p>Example value passed to the callback function:</p>
+
+<p><code>[{name:&#39;US English Female TTS&#39;, gender:&#39;female&#39;, language:&#39;en-US&#39;},{name:&#39;US Spanish Male TTS&#39;, gender&#39;:male&#39;, language:&#39;es-es&#39;}]</code></p>
+
+<p>Empty array indicates no voice packs are available. Undefined or null indicates that an error occurred attempting to get the voices and no information is available.</p></li>
+<li><p>R13. <strong>Pause speech (TTS)</strong>. This is called by the web application to temporarily pause speech. Corresponding events are fired to notify the callback provided in the <code>speak</code> function of this.</p>
+
+<p><code>void browser.tts.pause(function callback)</code></p>
+
+<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
+
+<p><code>function(string state){...}</code></p>
+
+<p>Callback is invoked when pause has occurred. If state is null or undefined, then an error occurred during pause. Otherwise &#39;pause&#39; or &#39;error&#39; are the expected states in the callback with error meaning something like there was nothing being spoken to pause.</p></li>
+<li><p>R14. <strong>Resume speech (TTS)</strong>. This is called by the web application to resume speech if it was previously paused. </p>
+
+<p><code>void browser.tts.resume(function callback)</code></p>
+
+<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
+
+<p><code>function(string state){...}</code></p>
+
+<p>Callback is invoked when resume has occurred. If state is null or undefined, then an error occurred during resume. Otherwise &#39;resume&#39; or &#39;error&#39; are the expected states in the callback, with error meaning something like the speech engine was not in a paused state.</p></li>
+</ol>
+
+<h3 id="toc_3">Optional APIs</h3>
+
+<ol>
+<li><p>R23. <strong>Empty system clipboard</strong>. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the <code>browser.security.lockDown</code> to perform the same operation. </p>
+
+<p><code>void browser.security.emptyClipBoard()</code></p></li>
+<li><p>R24. <strong>Get Application Start Time</strong>. The testing application will invoke this to determine the time that the application was launched in UTC. This is mainly used to track application uptime. If this is not provided, the web application can track it using local/session storage but it is desirable to have this information natively supported:</p>
+
+<p><code>DateTime browser.settings.appStartTime</code></p>
+
+<p>Example response:</p>
+
+<p><code>&quot;2017-01-15T18:15:30Z &quot;</code></p></li>
+<li><p>R40. <strong>Retrieve system MAC address(es)</strong>. The testing application will invoke this to assist in diagnostics. It is difficult to rely on source IP addresses to distinguish between end user machines within our testing servers as firewalls/NATs/Proxies are commonly in use at the schools. The MAC addresses allow us to distinguish end client machines behind a common firewall for diagnostics purposes.</p>
+
+<p><code>void browser.security.getMACAddress(function callback)</code></p>
+
+<p><code>callback</code> should be a function that looks like this:</p>
+
+<p><code>function(array of mac addresses){...}</code></p>
+
+<p>If the array passed into the callback is undefined or null, we were unable to retrieve the MAC addresses. </p>
+
+<p>Example response:</p>
+
+<p><code>&quot;[&#39;00:55:65:C0:00:EA&#39;]&quot;</code></p></li>
+</ol>
+
+<h4 id="toc_4">Audio Recorder (W3C)</h4>
+
+<p><em>NOTE: Browsers supporting W3C&#39;s <a href="https://www.w3.org/TR/webaudio/">Web Audio API</a> for playback, <a href="https://www.w3.org/TR/mediastream-recording/">MediaStream Recording</a> for recording, and Mozilla&#39;s <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia">MediaDevices.getUserMedia()</a> do not need to implement these functions.</em></p>
+
+<h4 id="toc_5">Audio Recorder (non-W3C)</h4>
+
+<ol>
+<li><p>R25. <strong>Initialize audio recorder</strong>. This method is called by the testing application once to initialize the audio API after a page loads. The event listener passed in as argument is used to notify events to caller about progress.  Any attempts to call this method when it has already been called should be treated as a reset and reinit.</p>
+
+<p><code>void browser.recorder.initialize (function eventListener)</code></p>
+
+<p>Events expected:</p>
+
+<p><code>INITIALIZING</code> – indicates that initialization is in progress</p>
+
+<p><code>READY</code> – Initialization is done and internal data structures are loaded</p>
+
+<p><code>ERROR</code> – Initialization failed with information on failure cause</p></li>
+<li><p>R26. <strong>Get audio recorder status</strong>. This method is called to enquire about the status of the recorder. Return values are </p>
+
+<p><code>void browser.recorder.getStatus(function callback)</code></p>
+
+<p><code>callback</code> is optional. If you specify this parameter, it should be a function that looks like this:</p>
+
+<p><code>function(status){...}</code></p>
+
+<p>values expected are</p>
+
+<p><code>IDLE</code> – no recording in progress</p>
+
+<p><code>ACTIVE</code>- recording in progress</p>
+
+<p><code>INITIALIZING</code> – initialization in progress</p>
+
+<p><code>ERROR</code> – terminal error state and reinit is required </p>
+
+<p><code>STOPPING</code> – recording is done and final book keeping and generation of encoded audio is in progress</p>
+
+<p><code>PLAYING</code> - recorder is playing back some audio</p>
+
+<p><code>PAUSED</code> - recorder is paused playing back some audio</p></li>
+<li><p>R27. <strong>Get audio recorder capabilities</strong>. This method is called to enquire about the capabilities of the platform. Throws error if called before initialize is completed successfully.</p>
+
+<p><code>void browser.recorder.getCapabilities(function callback)</code></p>
+
+<p><code>callback</code> should be a function that looks like this:</p>
+
+<p><code>function(capability object literal){...}</code></p>
+
+<p>The object literal returned will have the following values:</p>
+
+<p><code>isAvailable</code> – recording is supported (Boolean)</p>
+
+<p><code>supportedInputDevices</code> – a list of audio input devices detected. Each of these device definitions includes device id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported, default input device.</p>
+
+<p><code>supportedOutputDevices</code> – a list of audio output devices detected. Each of these device definitions includes device id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported, default output device.</p>
+
+<p>If the object literal returned is null or undefined, we encountered an error.</p></li>
+<li><p>R28. <strong>Initiate audio capture</strong>. This method is called to initiate capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE.</p>
+
+<p><code>void browser.recorder.startCapture(options, eventListener)</code></p>
+
+<p>The <code>options</code> object includes:</p>
+
+<p><code>captureDevice</code> – the device id to use for data capture (int)</p>
+
+<p><code>sampleRate</code> – the line rate to capture the raw audio in (8 kHz, 11 kHz etc.) (specified as int in Hz)</p>
+
+<p><code>channelCount</code> – 1 (mono), 2 (stereo) … (specified as int)</p>
+
+<p><code>sampleSize</code> – 8-bit, 16-bit, etc.  (specified as int)</p>
+
+<p><code>encodingFormat</code> – SPX, HE-AAC, Opus, etc. (specified as string)</p>
+
+<p><code>qualityIndicatorDesired</code> – whether to perform and report a recording quality check or not (Boolean)</p>
+
+<p><code>progressEventFrequency</code> – how frequently the event listener should be called back to report progress events either based on time or on units of data collected. For example, we could ask for periodic progress events every 2 seconds to keep us notified as recording is happening, or every 30KB of new data collected.</p>
+
+<p><code>captureLimit</code>– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). </p>
+
+<p>The event listener is passed in to receive capture events. The events include:</p>
+
+<p><code>START</code> – Capture started</p>
+
+<p><code>INPROGRESS</code> – Progress event with progress data (34 seconds of audio captured, 36 seconds of audio captured etc or 10KB of audio captured, 30 KB of audio captured etc.) </p>
+
+<p><code>END</code> – Capture complete. The <code>END</code> event is special. This event gives us the pointer to the  data collection for the encoded audio. In addition, a quality check is performed on the captured audio stream to evaluate whether it is good or not. </p></li>
+<li><p>R29. <strong>Stop recording</strong>. This method is called to stop audio capture. Throws error if status is currently not “RECORDING”.</p>
+
+<p><code>void browser.recorder.stopCapture()</code></p></li>
+<li><p>R30. <strong>Retrieve recording</strong>. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the <code>END</code> event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this API directly in the callback for the <code>END</code> event.</p>
+
+<p><code>void  browser.recorder.retrieveAudio(function callback)</code></p>
+
+<p><code>callback</code> should be a function that looks like this:</p>
+
+<p><code>function(recordedAudio){...}</code></p>
+
+<p>null or undefined implies there was an error retrieving audio.</p></li>
+<li><p>R31. <strong>Playback a recording</strong>. This method is called to play back a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 webaudio to play back encoded audio (encoded using the format specified in the <code>startcapture</code> call) obtained by a call to <code>retrieveAudio()</code>. The playback function is passed in the base64 audio string and a callback function.  </p>
+
+<p><code>void browser.recorder.play(b64audio, function callback)</code></p>
+
+<p>The callback function is expecting the following events:</p>
+
+<p><code>PLAYBACK_START</code> - Playback has started. The event includes the id of the audio passed in </p>
+
+<p><code>PLAYBACK_STOPPED</code> - Playback has stopped (either because the audio stream is done, <code>pausePlayback()</code> or <code>stopPlayback()</code> has been invoked). The event includes the id of the audio passed in.</p></li>
+<li><p>R32. <strong>Stop playback</strong>. This method is invoked to stop an ongoing audio playback. Throws error if status is currently not &quot;PLAYING&quot;.</p>
+
+<p><code>void browser.recorder.stopPlay()</code></p></li>
+<li><p>R33. <strong>Pause playback</strong>. This method is invoked to pause an ongoing audio playback. Throws error if status is currently not &quot;PLAYING&quot;.</p>
+
+<p><code>void browser.recorder.pausePlay()</code></p></li>
+<li><p>R34. <strong>Resume playback</strong>. This method is invoked to resume an already paused audio playback. Throws error if status is currently not &quot;PAUSED&quot;.</p>
+
+<p><code>void browser.recorder.resumePlay()</code></p></li>
+<li><p>R43. <strong>Retrieve list of audio recordings</strong>. Retrieve a list of all audio recordings.</p>
+
+<p><code>void browser.recorder.retrieveAudioFileList(function callback)</code></p>
+
+<p><code>callback</code> should be a function that looks like this:</p>
+
+<p><code>function(filenames){...}</code></p>
+
+<p>Where <code>filenames</code> is an object with the property <code>files</code>, containing an array of file names.</p>
+
+<p><code>{&#39;files&#39; : [file1, file2, ...]}</code></p></li>
+<li><p>R45. <strong>Retrieve audio file from filename</strong>. Retrieve audio data based on filename obtained from <code>retrieveAudioFileList()</code>.</p>
+
+<p><code>void retrieveAudioFile(filename, function callback)</code></p>
+
+<p><code>callback</code> should be a function that looks like this:</p>
+
+<p><code>function(b64audio){...}</code>    </p></li>
+</ol>
+
+<h2 id="toc_6">Secure Browser Standards Compliance</h2>
+
+<h3 id="toc_7">Required</h3>
+
+<ol>
+<li><p>R35. <strong>HTML5 compliant</strong>. The secure browser must be HTML5 compliant: https://www.w3.org/TR/html5/ and http://html5test.com</p></li>
+<li><p>R37. <strong>CSS3 compliant</strong>. The secure browser must be CSS3 compliant: https://www.w3.org/TR/2014/REC-css-namespaces-3-20140320 and http://css3test.com</p></li>
+</ol>
+
+<h3 id="toc_8">Optional</h3>
+
+<ol>
+<li><p>R38. <strong>W3C Web Audio compliant</strong>. W3C Web Audio API:
+https://www.w3.org/TR/webaudio</p></li>
+<li><p>R39. <strong>W3C Web Speech compliant</strong>. W3C Web Speech API:
+https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html</p>
+
+<p><em>Note: As of Firefox v.51, SSML support via Web Speech lacks the features necessary for optimal TDS TTS delivery. Thererfore, support for TTS APIs as described in this document is still necessary.</em></p></li>
+</ol>
+
+
+
+
+</body>
+
+</html>
