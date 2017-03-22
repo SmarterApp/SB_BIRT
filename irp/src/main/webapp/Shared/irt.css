@@ -145,7 +145,7 @@
 }
 
 #main {
-	padding: 0px 10% 2% 10%;
+	padding: 0px 10% 5% 10%;
 }
 
 #report-main {
@@ -233,7 +233,7 @@
 	-webkit-padding-end: 0.75em;
 	-webkit-padding-after: 0.625em;
 	min-width: -webkit-min-content;
-	width : 100%;
+	width: 100%;
 	padding: 0 1% 2% 2%;
 }
 
@@ -245,14 +245,14 @@
 	-webkit-padding-end: 0.75em;
 	-webkit-padding-after: 0.625em;
 	min-width: -webkit-min-content;
-	width : 100%;
+	width: 100%;
 	padding: 0 1% 2% 2%;
 }
 
 #instruction {
 	display: table-header-group;
 	font-family: Arial, Helvetica, sans-serif;
-    font-size: 1em;
+	font-size: 1em;
 }
 
 .version-details {
@@ -448,26 +448,31 @@
 	font-size: 1em;
 }
 
-.hide-header{
+.hide-header {
 	display: none;
 }
 
-.loginTab{
+.loginTab {
 	width: 50%;
-    display: table;
-    margin-right: auto;
-    margin-left: auto;	
+	display: table;
+	margin-right: auto;
+	margin-left: auto;
 }
 
-.done-button{
-background: #358c21;
-color: #f6f6f6;
+.done-button {
+	background: #358c21;
+	color: #f6f6f6;
 }
 
-.ui-widget-overlay
-{
-  opacity: .50 !important; /* Make sure to change both of these, as IE only sees the second one */
-  filter: Alpha(Opacity=50) !important;
+.ui-widget-overlay {
+	opacity: .50 !important;
+	/* Make sure to change both of these, as IE only sees the second one */
+	filter: Alpha(Opacity = 50) !important;
+	background-color: rgb(50, 50, 50) !important;
+	/* This will make it darker */
+}
 
-  background-color: rgb(50, 50, 50) !important; /* This will make it darker */
+#completeTest {
+	float: right;
+	width: 65%;
 }

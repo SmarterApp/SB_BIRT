@@ -41,6 +41,17 @@ public class ReportDAOImpl implements ReportDAO
 
     if (reportJsonObj != null) {
 
+      if (reportJsonObj.containsKey ("captchaInfo") && reportJsonObj.containsKey ("captchaInfoHash")) {
+
+        String captchaInfo = reportJsonObj.get ("captchaInfo").toString ();
+        String captchaInfoHash = String.valueOf (reportJsonObj.get ("captchaInfoHash"));
+        if (!captchaHashCalculation (captchaInfo).equals (captchaInfoHash)) {
+          throw new Exception ("Invalid Captcha info found");
+        }
+      } else {
+        throw new Exception ("Captcha info not found");
+      }
+
       /**
        * Setting default value for reportid to 100
        */
@@ -82,6 +93,22 @@ public class ReportDAOImpl implements ReportDAO
 
     return (JSONObject) mongoTemplate.findOne (query, JSONObject.class, RESULT_COLLECTION);
 
+  }
+
+  /**
+   * Compute the hash value to check for "real person captcha" submission.
+   * 
+   * @param value
+   *          the entered value
+   * @return its hash value
+   */
+  private String captchaHashCalculation (String value) {
+    int hash = 5381;
+    value = value.toUpperCase ();
+    for (int i = 0; i < value.length (); i++) {
+      hash = ((hash << 5) + hash) + value.charAt (i);
+    }
+    return String.valueOf (hash);
   }
 
 }

@@ -321,7 +321,9 @@
         "optionalScoring" : $.cookie("optionalScoring"),
         "specInfo" : "Legacy"
       },
-      "version" : $.cookie("version")
+      "version" : $.cookie("version"),
+      "captchaInfo" : $.cookie("captchaInfo"),
+      "captchaInfoHash" : $.cookie("captchaInfoHash")
     });
 
     return itemDetail;

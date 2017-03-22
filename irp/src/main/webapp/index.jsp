@@ -88,6 +88,7 @@ var impl = TDS.SecureBrowser.getImplementation();
         $.removeCookie("organization");
         $.removeCookie("optionalScoring");
         $.cookie("version",  '<%=version%>');
+        $.removeCookie("captchaInfo");
 
         var cntxPath = '<%=contextPath%>';
         $('#beginIRTTest').button({
@@ -101,10 +102,13 @@ var impl = TDS.SecureBrowser.getImplementation();
         $('#beginIRTTest').click(
             function(event) {
               event.preventDefault();
+              
+            
               $.cookie("name", $('#name').val());
               $.cookie("emailId", $('#emailId').val());
               $.cookie("browserDetails", $('#browserDetails').val());
               $.cookie("organization", $('#organization').val());
+              
 
               var optionalScoringFlag = $(
                   'input[name="optionalScoring"]:checked').val();
@@ -130,6 +134,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           enableGetIRTResultButton(event);
 
         });
+        
 
         $("#versionInfo").html('v.' + $.cookie("version"));
 
@@ -154,6 +159,8 @@ var impl = TDS.SecureBrowser.getImplementation();
             impl.clearCache();
           });
         }
+        
+       
 
       });
 
@@ -236,7 +243,7 @@ var impl = TDS.SecureBrowser.getImplementation();
               <div class="divTableCell">Email:</div>
               <div class="divTableCellRight">
                 <input type="text" name="emailId" id="emailId"
-                  title="For identification purposes only. No email will be sent">
+                  title="For identification purposes only. No email will be sent" alt="For identification purposes only. No email will be sent">
               </div>
             </div>
             <div class="divTableRow">&nbsp;</div>
@@ -268,9 +275,6 @@ var impl = TDS.SecureBrowser.getImplementation();
                 </fieldset>
               </div>
             </div>
-
-
-
 
             <div class="divTableRow">&nbsp;</div>
             <div class="divTableRow" align="center">

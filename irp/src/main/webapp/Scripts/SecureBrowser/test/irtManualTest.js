@@ -682,6 +682,9 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
 
 function saveIRTResult() {
 
+  $.cookie("captchaInfo", $('#captchaInfo').val());
+  $.cookie("captchaInfoHash", $('#captchaInfo').realperson('getHash'));
+
   $.ajax({
     type : "POST",
     url : getContextPath() + '/report/saveReport',
@@ -1675,4 +1678,19 @@ function loadErrorDialogBox(loadConfirmBox) {
       }
     } ]
   });
-};
+}
+
+function enableFinishAndGenerateButton(event) {
+
+  if ($.realperson.displayCaptchaText == $('#captchaInfo').val()) {
+    $('#endBrowserTest').button("enable");
+  } else {
+    $('#endBrowserTest').button("disable");
+    // When user hit enter/return, system will not call the form URL if the
+    // report id is not Valid
+    if (event.which == 13) {
+      event.preventDefault();
+    }
+  }
+
+}
