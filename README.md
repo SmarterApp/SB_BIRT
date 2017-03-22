@@ -15,6 +15,7 @@ report.
 * This project includes source code from [HTML5Test](http://html5test.com/) [Source](https://github.com/NielsLeenheer/html5test).
 * This project includes source code from [CSS3Test](http://css3test.com/) [Source](https://github.com/LeaVerou/css3test).
 * This project includes unmodified images from  [Double-J designs](http://www.doublejdesign.co.uk/), distributed under the [Creative Commons Attribution 3.0 Unported](https://creativecommons.org/licenses/by/3.0/) license.
+* This project includes modified code for [jQuery RealPerson](http://keith-wood.name/realPerson.html), distributed under the [MIT](http://keith-wood.name/licence.html) licence.
 
 
 
@@ -73,11 +74,12 @@ Below are the two important object required to be created in mongo DB
 
 
 ### UI Framework
-* jQuery v3.1.1 [Reference](http://jquery.com/)
-* jQueryUI v1.12 [Reference](https://jqueryui.com/)
-* jQuery Multiselect Plugin [Reference](http://crlcu.github.io/multiselect/)
-* jQuery Cookie Plugin [Reference](http://plugins.jquery.com/cookie/)
-* jsGrid v1.5.3 [Reference](http://js-grid.com/)
+* [jQuery v3.1.1](http://jquery.com/)
+* [jQueryUI v1.12](https://jqueryui.com/)
+* [jQuery Multiselect Plugin](http://crlcu.github.io/multiselect/)
+* [jQuery Cookie Plugin](http://plugins.jquery.com/cookie/)
+* [jsGrid v1.5.3](http://js-grid.com/)
+* [jQuery Real Person Captcha](http://keith-wood.name/realPerson.html)
 
 ### Pre-Dependencies
 * Tomcat 6 or higher
