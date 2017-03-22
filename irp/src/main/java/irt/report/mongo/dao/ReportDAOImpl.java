@@ -46,10 +46,31 @@ public class ReportDAOImpl implements ReportDAO
         String captchaInfo = reportJsonObj.get ("captchaInfo").toString ();
         String captchaInfoHash = String.valueOf (reportJsonObj.get ("captchaInfoHash"));
         if (!captchaHashCalculation (captchaInfo).equals (captchaInfoHash)) {
+
           throw new Exception ("Invalid Captcha info found");
         }
       } else {
+
         throw new Exception ("Captcha info not found");
+
+      }
+
+      if (reportJsonObj.containsKey ("reportGridData")) {
+        JSONObject reportGridDataJsonObj = (JSONObject) parser.parse (reportJsonObj.get ("reportGridData").toString ());
+
+        if (reportGridDataJsonObj.containsKey ("jsGrid")
+            && reportGridDataJsonObj.containsKey ("jsTTSGrid")
+            && reportGridDataJsonObj.containsKey ("jsAudioRecorderGrid")
+            && reportGridDataJsonObj.containsKey ("jsHTML5TestGrid")
+            && reportGridDataJsonObj.containsKey ("jsCSS3TestGrid")) {
+
+        } else {
+
+          throw new Exception ("Report Grid Data not found");
+        }
+
+      } else {
+        throw new Exception ("Report Data not found");
       }
 
       /**
