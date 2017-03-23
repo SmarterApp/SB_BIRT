@@ -31,6 +31,7 @@
 
 <link type="text/css" rel="stylesheet" href="../../../Shared/irt.css" />
 
+
 <!-- JSGrid -->
 <link type="text/css" rel="stylesheet"
   href="../../Libraries/jQuery/jsgrid/jsgrid.min.css" />
@@ -98,7 +99,6 @@
 
 
 <script type="text/javascript">
-  document.title = 'SecureBrowser Specification Test Suite';
 
   $(document)
       .ready(
@@ -122,10 +122,6 @@
 
               $("#closeBrowser").click(function() {
                 closeBrowser();
-              });
-
-              $("#clearBrowserCache").click(function() {
-                clearBrowserCache();
               });
 
             }
@@ -203,9 +199,7 @@
         <a href="#" id="irtHome">Home</a> <span>|</span> <a
           href="javascript:location.reload(true);">Reload</a> <span
           id="seperatorPrint">|</span> <a href="#" id="printReport"
-          onclick="javascript:window.print()">Print</a> <span
-          id="separatorClearCache">|</span> <a href="#"
-          id="clearBrowserCache">Clear Cache</a> <span id="separator"
+          onclick="javascript:window.print()">Print</a> <span id="separator"
           style="display: none;">|</span> <a href="#" id="closeBrowser"
           style="display: none;">Close</a>
       </p>

@@ -116,9 +116,6 @@ var impl = TDS.SecureBrowser.getImplementation();
             impl.close(false);
           });
           
-          $("#clearBrowserCache").click(function() {
-            impl.clearCache();
-          });
           
           
         }
@@ -230,8 +227,7 @@ var impl = TDS.SecureBrowser.getImplementation();
         <a href="#" id="irtHome">Home</a> <span>|</span> <a
           href="javascript:location.reload(true);">Reload</a>  <span
           id="seperatorPrint">|</span> <a href="#"
-          id="printReport"  onclick="javascript:window.print()">Print</a>  <span id="separatorClearCache">|</span>  
-              <a href="#" id="clearBrowserCache">Clear Cache</a> <span
+          id="printReport"  onclick="javascript:window.print()">Print</a>  <span
           id="separator" style="display: none;">|</span> <a href="#"
           id="closeBrowser" style="display: none;">Close</a>
       </p>

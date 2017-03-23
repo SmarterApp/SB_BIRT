@@ -155,9 +155,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           $("#closeBrowser").click(function() {
             impl.close(false);
           });
-          $("#clearBrowserCache").click(function() {
-            impl.clearCache();
-          });
+          
         }
         
        
@@ -197,8 +195,6 @@ var impl = TDS.SecureBrowser.getImplementation();
       </h1>
       <p align="right">
 
-        <a href="#" id="clearBrowserCache">Clear Cache</a>
-        <span id="separator" style="display: none;">|</span>
         <a href="#" id="closeBrowser" style="display: none;">Close</a>
       </p>
     </div>
