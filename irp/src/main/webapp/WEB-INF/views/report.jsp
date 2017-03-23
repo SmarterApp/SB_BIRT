@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-<title>Secure Browser Implementation Readiness Test (IRT) Report Page</title>
+<title>Browser Implementation Readiness (BIR) Report Page</title>
 
 <%
   String contextPath = request.getContextPath();
@@ -197,7 +197,7 @@ var impl = TDS.SecureBrowser.getImplementation();
     id.dialog({
       resizable : false,
       height : "auto",
-      title : 'IRT Result Error',
+      title : 'BIRT Report Error',
       width : 400,
       modal : true,
       buttons : [ {
@@ -221,7 +221,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           style="width: 183px !important;"
           title="Smarter Balanced Assessment Consortium"
           src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png" /> <span>
-          &nbsp;&nbsp;Secure Browser Implementation Readiness Test (IRT)
+          &nbsp;&nbsp;Browser Implementation Readiness Test (BIRT)
           Report </span> <span id="versionInfo" class="version-details"></span>
       </h1>
       <p align="right">
@@ -260,7 +260,7 @@ var impl = TDS.SecureBrowser.getImplementation();
             <b>Organization:</b>
             </div>
             <div class="divTableCell" id="irtVersion">
-              <b>IRT Version:</b>
+              <b>BIRT Version:</b>
             </div>
              <div class="divTableCellReport" id="optionalScoring">
               <b>Scores include optional tests?</b>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Secure Browser Implementation Readiness Test (IRT) Landing Page</title>
+<title>Browser Implementation Readiness (BIR) Landing Page</title>
 <%
   String contextPath = request.getContextPath();
 			String version = System.getProperty("irt.app.version");
@@ -92,11 +92,11 @@ var impl = TDS.SecureBrowser.getImplementation();
 
         var cntxPath = '<%=contextPath%>';
         $('#beginIRTTest').button({
-          label : 'Begin IRT Test'
+          label : 'Begin BIR Test'
         });
 
         $('#getIRTResult').button({
-          label : 'Get IRT Test Result'
+          label : 'Get BIRT Report'
         });
 
         $('#beginIRTTest').click(
@@ -192,7 +192,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           style="width: 183px !important;"
           src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"
           title="Smarter Balanced Assessment Consortium" /> <span>
-          &nbsp;&nbsp;Secure Browser Implementation Readiness Test (IRT)
+          &nbsp;&nbsp;Browser Implementation Readiness Test (BIRT)
         </span> <br /> <span id="versionInfo" class="version-details"></span>
       </h1>
       <p align="right">
@@ -205,8 +205,8 @@ var impl = TDS.SecureBrowser.getImplementation();
 
     <div id="tabs" class="loginTab">
       <ul>
-        <li><a href="#left-intro-section" class="intro-tab-detail">New IRT Test</a></li>
-        <li><a href="#right-intro-section" class="intro-tab-detail">IRT Report</a></li>
+        <li><a href="#left-intro-section" class="intro-tab-detail">New BIR Test</a></li>
+        <li><a href="#right-intro-section" class="intro-tab-detail">BIRT Report</a></li>
       </ul>
 
 
@@ -218,10 +218,10 @@ var impl = TDS.SecureBrowser.getImplementation();
 
             <div class="divTableRow" id="instruction">
               <p style="padding-right : 4%">
-                  To test your current browser against the IRT, please
+                  To test your current browser against the BIRT, please
                   enter any of the optional information below (which
                   will be included in the final report), then press <strong>Begin
-                    IRT Test</strong>.
+                    BIR Test</strong>.
            </p>
             </div>
 
@@ -293,8 +293,8 @@ var impl = TDS.SecureBrowser.getImplementation();
             <div class="divTableRow" id="instruction">
 
                 <p style="padding-right : 4%">
-                  To view a previously saved IRT report, please enter
-                  its ID and press <strong>Get IRT Test Result</strong>.
+                  To view a previously saved BIRT report, please enter
+                  its ID and press <strong>Get BIRT Report</strong>.
                 </p>
               
             </div>

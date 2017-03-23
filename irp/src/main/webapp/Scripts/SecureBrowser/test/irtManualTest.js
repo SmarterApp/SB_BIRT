@@ -638,7 +638,7 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
   id.dialog({
     resizable : false,
     height : "auto",
-    title : 'IRT Result Info',
+    title : 'BIRT Result Info',
     width : 500,
     modal : true,
     buttons : [ {
@@ -1366,7 +1366,7 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
   }
 
   $('#' + headerId[0].id + ' #sectionScore').append(
-      '[IRT Score: <strong>' + percent + '%</strong>]</span>');
+      '[BIRT Score: <strong>' + percent + '%</strong>]</span>');
 
   populateSectionCount(headerId, iframeObj.contentWindow.rTestPass,
       iframeObj.contentWindow.rTestFail, iframeObj.contentWindow.oTestPass,
