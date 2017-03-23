@@ -1,6 +1,6 @@
-# Welcome to the Secure Browser Implementation Readiness Test (IRT) Application
+# Welcome to the Browser Implementation Readiness Test (BIRT) Application
 
-The Implementation Readiness Test is much like a certification program in that it includes services, sample
+The Browser Implementation Readiness Test(BIRT) is much like a certification program in that it includes services, sample
 content, and test scripts necessary to determine that a secure browser meets the requirements. It differs
 from certification in that the emphasis is on self-testing by developers and the generation of a compliance
 report.
@@ -25,12 +25,12 @@ We would be happy to receive feedback on its capabilities, problems, or future e
 * Use the **Issues** link to file bugs or enhancement requests.
 * Feel free to **Fork** this project and develop your changes!
 
-# IRT UI Framework
+# BIRT UI Framework
 
 ## Module Overview
 
 ### Webapp
-The Webapp module contains the IRP UI and REST APIs.
+The Webapp module contains the BIRT UI and REST APIs.
 
 ### irp/src/main/webapp/Scripts/SecureBrowser folder
 * This folder contains factory.js which will work as an entry point for setting up test APIs for given browser.
@@ -54,6 +54,7 @@ IRT must be setup with following properties under JVM
 * Password : `mongo.db.password`
 * DB Name: `mongo.db.name`
 * IRT Version : `irt.app.version` 
+* DEBUG Mode : `birt.app.debug.mode` (Y/N)
 
 ```
 Example:
@@ -66,7 +67,7 @@ Example:
 ```
 
 ### Mongo DB Configuration
-IRT Application connect to mongo DB to store report information.
+BIRT Application connect to mongo DB to store report information.
 
 Below are the two important object required to be created in mongo DB
 * Database : `irt_report` [ Database name to be used in JVM configuration for property `mongo.db.name`.]
@@ -91,7 +92,7 @@ Below are the two important object required to be created in mongo DB
 * Persistence API
 
 
-# CAPTCHA
+# Captcha
 
 * As a hosting provider, we want to be able to ensure preventive measures are in place against DDOS attacks.
 * jQuery UI Plugin used [jQuery Real Person Captcha](http://keith-wood.name/realPerson.html)
