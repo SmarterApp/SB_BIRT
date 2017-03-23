@@ -5,6 +5,7 @@
 <%
   String contextPath = request.getContextPath();
 			String version = System.getProperty("irt.app.version");
+      String debugMode = System.getProperty("birt.app.debug.mode");
 			//response.sendRedirect(contextPath + "/Scripts/SecureBrowser/test/index.html");
 %>
 <!-- JQuery -->
@@ -154,9 +155,18 @@ var impl = TDS.SecureBrowser.getImplementation();
           $("#closeBrowser").show();
           $("#closeBrowser").click(function() {
             impl.close(false);
-          });
-          
+          });          
         }
+        
+        <% if("Y".equalsIgnoreCase (debugMode)){ %>
+        
+     
+        $("#clearBrowserCache").show();
+        $("#clearBrowserCache").click(function() {
+          impl.clearCache();
+        });
+        
+        <% } %>
         
        
 
@@ -195,6 +205,13 @@ var impl = TDS.SecureBrowser.getImplementation();
       </h1>
       <p align="right">
 
+        
+        
+        <a href="#" id="clearBrowserCache" style="display: none;">Clear Cache</a>
+        <span id="separator" style="display: none;">|</span>
+    
+        
+        
         <a href="#" id="closeBrowser" style="display: none;">Close</a>
       </p>
     </div>

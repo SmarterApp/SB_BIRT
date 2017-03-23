@@ -115,9 +115,6 @@ var impl = TDS.SecureBrowser.getImplementation();
           $("#closeBrowser").click(function() {
             impl.close(false);
           });
-          
-          
-          
         }
 
       });
