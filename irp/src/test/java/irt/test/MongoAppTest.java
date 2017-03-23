@@ -8,7 +8,9 @@
  *************************************************************************/
 package irt.test;
 
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -39,6 +41,12 @@ public class MongoAppTest
     Date date = new Date ();
     String sDate = sdf.format (date);
     System.out.println (sDate);
+
+    byte[] decodedValue = Base64.getDecoder ().decode ("WlpEQ1hE"); // Basic
+                                                                    // Base64
+                                                                    // decoding
+                                                                    // ZZDCXD
+    System.out.println (new String (decodedValue, StandardCharsets.UTF_8));
   }
 
 }
