@@ -219,15 +219,15 @@ var impl = TDS.SecureBrowser.getImplementation();
     <div>
       <h1 class="entry-title">
         <img alt="Smarter Balanced Assessment Consortium"
-          style="width: 183px !important;"
+          class="smarter-logo"
           title="Smarter Balanced Assessment Consortium"
-          src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png" hspace="30"> <span>Browser Implementation Readiness Test (BIRT) Report</span> 
+          src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"> <span>Browser Implementation Readiness Test (BIRT) Report</span> 
           <span id="versionInfo" class="version-details"></span>
       </h1>
-      <p align="right">
-        <img alt="Home" title="Home" src="<%=contextPath%>/Shared/images/home.png" id="irtHome"  class="header-ui-icon" hspace="5">
-        <img alt="Reload" title="Reload" src="<%=contextPath%>/Shared/images/refresh.png" id="refreshPage"  class="header-ui-icon" hspace="5">
-        <img alt="Print" title="Print" src="<%=contextPath%>/Shared/images/print.png" id="printReport"  class="header-ui-icon" hspace="5">
+      <p class="header-paragraph" align="right">
+        <img alt="Home" title="Home" src="<%=contextPath%>/Shared/images/home.png" id="irtHome"  class="header-ui-icon">
+        <img alt="Reload" title="Reload" src="<%=contextPath%>/Shared/images/refresh.png" id="refreshPage"  class="header-ui-icon">
+        <img alt="Print" title="Print" src="<%=contextPath%>/Shared/images/print.png" id="printReport"  class="header-ui-icon">
         <img alt="Close" title="Close" src="<%=contextPath%>/Shared/images/close.png" id="closeBrowser"  class="header-ui-icon" style="display: none;">
       </p>
 

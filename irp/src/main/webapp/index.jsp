@@ -197,13 +197,13 @@ var impl = TDS.SecureBrowser.getImplementation();
 
       <h1 class="entry-title">
         <img alt="Smarter Balanced Assessment Consortium"
-          style="width: 183px !important;"
+          class="smarter-logo"
           src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"
-          title="Smarter Balanced Assessment Consortium" hspace="30"> <span>Browser Implementation Readiness Test (BIRT)</span> 
+          title="Smarter Balanced Assessment Consortium" > <span>Browser Implementation Readiness Test (BIRT)</span> 
           <span id="versionInfo" class="version-details"></span>
       </h1>
-      <p align="right">
-        <img alt="Clear Cache" title="Clear Cache" src="<%=contextPath%>/Shared/images/clear.png" id="clearBrowserCache"  class="header-ui-icon" style="display: none;" hspace="5">
+      <p class="header-paragraph" align="right">
+        <img alt="Clear Cache" title="Clear Cache" src="<%=contextPath%>/Shared/images/clear.png" id="clearBrowserCache"  class="header-ui-icon" style="display: none;">
         <img alt="Close" title="Close" src="<%=contextPath%>/Shared/images/close.png" id="closeBrowser"  class="header-ui-icon" style="display: none;">
       </p>
     </div>
