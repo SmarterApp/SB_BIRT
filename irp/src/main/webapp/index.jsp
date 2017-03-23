@@ -204,15 +204,8 @@ var impl = TDS.SecureBrowser.getImplementation();
         </span> <br /> <span id="versionInfo" class="version-details"></span>
       </h1>
       <p align="right">
-
-        
-        
-        <a href="#" id="clearBrowserCache" style="display: none;">Clear Cache</a>
-        <span id="separator" style="display: none;">|</span>
-    
-        
-        
-        <a href="#" id="closeBrowser" style="display: none;">Close</a>
+        <img alt="Clear Cache" title="Clear Cache" src="<%=contextPath%>/Shared/images/clear.png" id="clearBrowserCache"  class="header-ui-icon" style="display: none;">
+        <img alt="Close" title="Close" src="<%=contextPath%>/Shared/images/close.png" id="closeBrowser"  class="header-ui-icon" style="display: none;">
       </p>
     </div>
 

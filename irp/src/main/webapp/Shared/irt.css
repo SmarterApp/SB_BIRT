@@ -278,32 +278,31 @@
 }
 
 .header-irt-report {
-    background: rgb(0, 133, 173);
-    position: relative;
-    padding: 5px 10px;
-    height: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.5em;
-    text-align: left;
-    color: #f6f6f6;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+	background: rgb(0, 133, 173);
+	position: relative;
+	padding: 5px 10px;
+	height: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.5em;
+	text-align: left;
+	color: #f6f6f6;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
 }
 
 .border-details {
-    border-width: 2px;
-    border-radius: 5px;
-    border-style: groove;
-    border-color: #008ab1;
-   border-image: initial;
-    width: 100%;
-    display: table;
-    margin-right: auto;
-    margin-left: auto;
+	border-width: 2px;
+	border-radius: 5px;
+	border-style: groove;
+	border-color: #008ab1;
+	border-image: initial;
+	width: 100%;
+	display: table;
+	margin-right: auto;
+	margin-left: auto;
 }
-
 
 .irt-success-ui-icon {
 	background-image: url('images/button-check_green.png');
@@ -476,4 +475,10 @@
 #completeTest {
 	float: right;
 	width: 65%;
+}
+
+.header-ui-icon {
+	height: 30px;
+	width: 30px;
+	cursor: pointer;
 }

@@ -104,13 +104,20 @@ var impl = TDS.SecureBrowser.getImplementation();
         $("#irtHome").click(function() {
           window.location.href = '<%=contextPath%>';
         });
+        
+        $('#refreshPage').click(function(){
+          window.location.reload(true);
+        });
+
+        $('#printReport').click(function(){
+          window.print();
+        });
 
         $("#versionInfo").html('v.' + irtVersion);
 
         $(document).tooltip();
         
         if (Util.Browser.isSecure() && !Util.Browser.isMobile()) {
-          $("#separator").show();
           $("#closeBrowser").show();
           $("#closeBrowser").click(function() {
             impl.close(false);
@@ -219,14 +226,10 @@ var impl = TDS.SecureBrowser.getImplementation();
           Report </span> <span id="versionInfo" class="version-details"></span>
       </h1>
       <p align="right">
-
-
-        <a href="#" id="irtHome">Home</a> <span>|</span> <a
-          href="javascript:location.reload(true);">Reload</a>  <span
-          id="seperatorPrint">|</span> <a href="#"
-          id="printReport"  onclick="javascript:window.print()">Print</a>  <span
-          id="separator" style="display: none;">|</span> <a href="#"
-          id="closeBrowser" style="display: none;">Close</a>
+        <img alt="Home" title="Home" src="<%=contextPath%>/Shared/images/home.png" id="irtHome"  class="header-ui-icon" >
+        <img alt="Reload" title="Reload" src="<%=contextPath%>/Shared/images/refresh.png" id="refreshPage"  class="header-ui-icon" >
+        <img alt="Print" title="Print" src="<%=contextPath%>/Shared/images/print.png" id="printReport"  class="header-ui-icon" >
+        <img alt="Close" title="Close" src="<%=contextPath%>/Shared/images/close.png" id="closeBrowser"  class="header-ui-icon" style="display: none;">
       </p>
 
 
