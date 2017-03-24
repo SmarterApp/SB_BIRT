@@ -304,5 +304,19 @@ function Recorder_WebAudioService() {
     }
 
   };
+  
+  this.setRecordedData = function(){
+    
+    var getReaderObjectInterval = setInterval(function() {
+      
+      if(reader.readyState==2){
+        $('#audio_data_output_textfield').show();
+        $('#recordedData').val(btoa(reader.result));
+        clearInterval(getReaderObjectInterval);
+      }
+      
+    },1000);
+    
+  };
 
 }

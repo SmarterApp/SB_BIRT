@@ -213,4 +213,19 @@ function Recorder_MobileAudioService() {
 
   };
 
+  this.setRecordedData = function() {
+
+    var getReaderObjectInterval = setInterval(function() {
+
+      if ((RecorderAudioData.filedata != null)
+          && (RecorderAudioData.filedata != '')) {
+        $('#audio_data_output_textfield').show();
+        $('#recordedData').val(RecorderAudioData.filedata);
+        clearInterval(getReaderObjectInterval);
+      }
+
+    }, 1000);
+
+  };
+
 }

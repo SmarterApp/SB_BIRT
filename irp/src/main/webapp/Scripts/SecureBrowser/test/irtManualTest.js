@@ -1571,6 +1571,8 @@ function stopRecordingAudio() {
             '<span class="green-background">' + mediaRecorderStatusText
                 + '</span>');
     loadManualTextConfirmBox();
+    recorderImpl.setRecordedData();
+
   } catch (ex) {
     $("#dialog-recorder-error").html(
         '<p><span class="irt-failure-ui-icon"></span> Failed to Stop Recording: <b>'
