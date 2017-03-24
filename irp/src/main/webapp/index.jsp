@@ -82,7 +82,7 @@ var impl = TDS.SecureBrowser.getImplementation();
       function() {
         
    
-        
+        $.removeCookie("contextPath");
         $.removeCookie("name");
         $.removeCookie("emailId");
         $.removeCookie("browserDetails");
@@ -90,6 +90,8 @@ var impl = TDS.SecureBrowser.getImplementation();
         $.removeCookie("optionalScoring");
         $.cookie("version",  '<%=version%>');
         $.removeCookie("captchaInfo");
+        
+        $.cookie("contextPath",'<%=contextPath%>');
 
         var cntxPath = '<%=contextPath%>';
         $('#beginIRTTest').button({
@@ -145,6 +147,9 @@ var impl = TDS.SecureBrowser.getImplementation();
             at : "right center"
           }
         });
+        
+        $('#newBirtTest').tooltip();
+        $('#birtReport').tooltip();
 
         $('#enableOptionScoring').checkboxradio();
         $('#disableOptionScoring').checkboxradio();
@@ -208,10 +213,11 @@ var impl = TDS.SecureBrowser.getImplementation();
       </p>
     </div>
 
+
     <div id="tabs" class="loginTab">
       <ul>
-        <li><a href="#left-intro-section" class="intro-tab-detail">New BIR Test</a></li>
-        <li><a href="#right-intro-section" class="intro-tab-detail">BIRT Report</a></li>
+        <li><a href="#left-intro-section" class="intro-tab-detail" title="New BIR Test" id="newBirtTest" >New BIR Test</a></li>
+        <li><a href="#right-intro-section" class="intro-tab-detail" title="View BIRT Report" id="birtReport">BIRT Report</a></li>
       </ul>
 
 

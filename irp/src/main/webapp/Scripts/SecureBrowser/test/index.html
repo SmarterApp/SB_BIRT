@@ -157,13 +157,6 @@
 
             $(document).tooltip();
 
-            $('#captchaInfo').tooltip({
-              position : {
-                my : "left+15 center",
-                at : "right center"
-              }
-            })
-
             $('#captchaInfo').realperson({
               chars : $.realperson.alphanumeric,
               length : 6
@@ -369,8 +362,7 @@
                 on the right to submit the report:</label>
             </div>
             <div class="divTableCell">
-              <input type="text" name="captchaInfo" id="captchaInfo"
-                title="Please enter characters shown above to submit the report" alt="Please enter characters shown above to submit the report">
+              <input type="text" name="captchaInfo" id="captchaInfo">
             </div>
             <div class="divTableCellReport">
               <button id="endBrowserTest" class="done-button"></button>

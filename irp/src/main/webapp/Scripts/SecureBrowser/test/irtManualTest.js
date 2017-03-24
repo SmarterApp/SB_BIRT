@@ -605,11 +605,6 @@ function createButton(id, text, displaylabel) {
 
 }
 
-function getContextPath() {
-  return window.location.pathname.substring(0, window.location.pathname
-      .indexOf("/", 2));
-}
-
 function showReportIdDialog(textInfo, reportId, success, errorMessage) {
 
   var id = $('#reportInfoDialog');

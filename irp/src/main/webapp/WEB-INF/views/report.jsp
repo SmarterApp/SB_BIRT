@@ -102,7 +102,7 @@ var impl = TDS.SecureBrowser.getImplementation();
         });
 
         $("#irtHome").click(function() {
-          window.location.href = '<%=contextPath%>';
+          window.location.href = '<%=contextPath%>/#right-intro-section';
         });
         
         $('#refreshPage').click(function(){
