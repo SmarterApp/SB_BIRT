@@ -54,13 +54,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         dialogWidth = '70%';
         dialogHeight = 600;
         isManualTestSupported = true;
-
       }
     } else {
-      dialogWidth = '70%';
-      dialogHeight = 600;
       isManualTestSupported = false;
-
     }
   } else if (testName == 'PROCESS') {
     if (impl != null) {

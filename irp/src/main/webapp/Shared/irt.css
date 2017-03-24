@@ -101,8 +101,8 @@
 	background: #696969;
 	position: relative;
 	padding: 5px 10px;
-	height: 30px;
-	font-family: "PT Sans Caption", sans-serif;
+	height: 25px;
+	font-family: Arial, Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 1.3em;
@@ -114,8 +114,8 @@
 	background: #696969;
 	position: relative;
 	padding: 5px 10px;
-	height: 30px;
-	font-family: "PT Sans Caption", sans-serif;
+	height: 25px;
+	font-family: Arial, Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 1.3em;
@@ -126,9 +126,9 @@
 .header-forbidden {
 	background: #FF0000;
 	position: relative;
-	padding: 0px 10px;
-	height: 30px;
-	font-family: "PT Sans Caption", sans-serif;
+	padding: 5px 10px;
+	height: 25px;
+	font-family: Arial, Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 1.3em;
@@ -169,7 +169,7 @@
 	color: #008AB1;
 	border-bottom: 1px solid #D3DFE1;
 	padding-bottom: .25em;
-	font-family: "PT Sans Caption", sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	letter-spacing: -.05em;
 	font-style: normal;
 	font-weight: 400;
@@ -257,7 +257,7 @@
 
 .version-details {
 	font-size: 0.5em;
-	font-family: 'PT Sans Caption', sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	letter-spacing: -.05em;
 	font-style: normal;
 	text-align: center;
@@ -272,7 +272,7 @@
 	color: #008AB1;
 	font-size: 0.8em;
 	font-weight: bold;
-	font-family: 'PT Sans Caption', sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	letter-spacing: -.05em;
 	font-style: normal;
 }
@@ -281,7 +281,7 @@
 	background: rgb(0, 133, 173);
 	position: relative;
 	padding: 5px 10px;
-	height: 30px;
+	height: 25px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
@@ -331,7 +331,7 @@
 .report-id-details {
 	font-weight: bold;
 	font-size: 2.5em;
-	font-family: 'PT Sans Caption', sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	letter-spacing: -.05em;
 	font-style: normal;
 	color: #008AB1;
@@ -344,7 +344,7 @@
 .ui-widget-content a {
 	font-weight: bold;
 	font-size: 1.5em;
-	font-family: 'PT Sans Caption', sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	letter-spacing: -.05em;
 	font-style: normal;
 	color: #008AB1;
@@ -355,7 +355,7 @@
 	position: relative;
 	padding: 0px 10px;
 	height: 30px;
-	font-family: "PT Sans Caption", sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 0.8em;

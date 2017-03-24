@@ -103,5 +103,5 @@ Below are the two important object required to be created in mongo DB
    * length : The number of characters to be entered.
 ```
 
-* Once user enter valid challenge character, UI enables `Finish and Generate Report` button. 
+* Once the user enters the correct challenge characters, the UI enables the `Finish and Generate Report` button. 
 * If system sends JSON directly via URL with incorrect CAPTCHA information system throws exception and will not save data in Database
