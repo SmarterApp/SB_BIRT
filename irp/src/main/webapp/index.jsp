@@ -5,7 +5,7 @@
 <%
   String contextPath = request.getContextPath();
 			String version = System.getProperty("irt.app.version");
-      String debugMode = System.getProperty("birt.app.debug.mode");
+			String debugMode = System.getProperty("birt.app.debug.mode");
 			//response.sendRedirect(contextPath + "/Scripts/SecureBrowser/test/index.html");
 %>
 <!-- JQuery -->
@@ -105,13 +105,11 @@ var impl = TDS.SecureBrowser.getImplementation();
         $('#beginIRTTest').click(
             function(event) {
               event.preventDefault();
-              
-            
+
               $.cookie("name", $('#name').val());
               $.cookie("emailId", $('#emailId').val());
               $.cookie("browserDetails", $('#browserDetails').val());
               $.cookie("organization", $('#organization').val());
-              
 
               var optionalScoringFlag = $(
                   'input[name="optionalScoring"]:checked').val();
@@ -137,7 +135,6 @@ var impl = TDS.SecureBrowser.getImplementation();
           enableGetIRTResultButton(event);
 
         });
-        
 
         $("#versionInfo").html('v.' + $.cookie("version"));
 
@@ -147,9 +144,20 @@ var impl = TDS.SecureBrowser.getImplementation();
             at : "right center"
           }
         });
+
+        $('#newBirtTest').tooltip({
+          position : {
+            my : "center bottom-10",
+            at : "center top"
+          }
+        });
         
-        $('#newBirtTest').tooltip();
-        $('#birtReport').tooltip();
+        $('#birtReport').tooltip({
+          position : {
+            my : "center bottom-10",
+            at : "center top"
+          }
+        });
 
         $('#enableOptionScoring').checkboxradio();
         $('#disableOptionScoring').checkboxradio();
@@ -160,22 +168,15 @@ var impl = TDS.SecureBrowser.getImplementation();
           $("#closeBrowser").show();
           $("#closeBrowser").click(function() {
             impl.close(false);
-          });          
+          });
         }
-        
-        <% if("Y".equalsIgnoreCase (debugMode)){ %>
-        
-     
+        <%if ("Y".equalsIgnoreCase(debugMode)) {%>
         $("#clearBrowserCache").show();
         $("#clearBrowserCache").click(function() {
           impl.clearCache();
         });
-        
-        <% } %>
-        
-       
-
-      });
+    <%}%>
+  });
 
   function enableGetIRTResultButton(event) {
 
@@ -204,20 +205,28 @@ var impl = TDS.SecureBrowser.getImplementation();
         <img alt="Smarter Balanced Assessment Consortium"
           class="smarter-logo"
           src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"
-          title="Smarter Balanced Assessment Consortium" > <span>Browser Implementation Readiness Test (BIRT)</span> 
-          <span id="versionInfo" class="version-details"></span>
+          title="Smarter Balanced Assessment Consortium"> <span>Browser
+          Implementation Readiness Test (BIRT)</span> <span id="versionInfo"
+          class="version-details"></span>
       </h1>
       <p class="header-paragraph" align="right">
-        <img alt="Clear Cache" title="Clear Cache" src="<%=contextPath%>/Shared/images/clear.png" id="clearBrowserCache"  class="header-ui-icon" style="display: none;">
-        <img alt="Close" title="Close" src="<%=contextPath%>/Shared/images/close.png" id="closeBrowser"  class="header-ui-icon" style="display: none;">
+        <img alt="Clear Cache" title="Clear Cache"
+          src="<%=contextPath%>/Shared/images/clear.png"
+          id="clearBrowserCache" class="header-ui-icon"
+          style="display: none;"> <img alt="Close" title="Close"
+          src="<%=contextPath%>/Shared/images/close.png"
+          id="closeBrowser" class="header-ui-icon"
+          style="display: none;">
       </p>
     </div>
 
 
     <div id="tabs" class="loginTab">
       <ul>
-        <li><a href="#left-intro-section" class="intro-tab-detail" title="New BIR Test" id="newBirtTest" >New BIR Test</a></li>
-        <li><a href="#right-intro-section" class="intro-tab-detail" title="View BIRT Report" id="birtReport">BIRT Report</a></li>
+        <li><a href="#left-intro-section" class="intro-tab-detail"
+          title="New BIR Test" id="newBirtTest">New BIR Test</a></li>
+        <li><a href="#right-intro-section" class="intro-tab-detail"
+          title="View BIRT Report" id="birtReport">BIRT Report</a></li>
       </ul>
 
 
@@ -228,23 +237,27 @@ var impl = TDS.SecureBrowser.getImplementation();
 
 
             <div class="divTableRow" id="instruction">
-              <p style="padding-right : 4%">
-                  To test your current browser against the BIRT, please
-                  enter any of the optional information below (which
-                  will be included in the final report), then press <strong>Begin
-                    BIR Test</strong>.
-           </p>
+              <p style="padding-right: 4%">
+                To test your current browser against the BIRT, please
+                enter any of the optional information below (which will
+                be included in the final report), then press <strong>Begin
+                  BIR Test</strong>.
+              </p>
             </div>
 
             <div class="divTableRow">
-              <div class="divTableCell"><label for="name">Name:</label></div>
+              <div class="divTableCell">
+                <label for="name">Name:</label>
+              </div>
               <div class="divTableCellRight">
                 <input type="text" name="name" id="name">
               </div>
             </div>
             <div class="divTableRow">&nbsp;</div>
             <div class="divTableRow">
-              <div class="divTableCell"><label for="organization">Organization:</label></div>
+              <div class="divTableCell">
+                <label for="organization">Organization:</label>
+              </div>
               <div class="divTableCellRight">
                 <input type="text" name="organization" id="organization">
               </div>
@@ -254,12 +267,15 @@ var impl = TDS.SecureBrowser.getImplementation();
               <div class="divTableCell">Email:</div>
               <div class="divTableCellRight">
                 <input type="text" name="emailId" id="emailId"
-                  title="For identification purposes only. No email will be sent" alt="For identification purposes only. No email will be sent">
+                  title="For identification purposes only. No email will be sent"
+                  alt="For identification purposes only. No email will be sent">
               </div>
             </div>
             <div class="divTableRow">&nbsp;</div>
             <div class="divTableRow">
-              <div class="divTableCell"><label for="browserDetails">Browser Info:</label></div>
+              <div class="divTableCell">
+                <label for="browserDetails">Browser Info:</label>
+              </div>
               <div class="divTableCellRight">
                 <textarea id="browserDetails" name="browserDetails"
                   title="Descriptive text about the browser you are testing"
@@ -270,19 +286,22 @@ var impl = TDS.SecureBrowser.getImplementation();
 
             <div class="divTableRow">&nbsp;</div>
             <div class="divTableRow" id="functionalityRow">
-              <div class="divTableCell"><label for="optionalScoring">Score optional API tests?</label></div>
+              <div class="divTableCell">
+                <label for="optionalScoring">Score optional API
+                  tests?</label>
+              </div>
               <div class="divTableCellRight">
-              <fieldset style="border: none !important;">
-                <label for="enableOptionScoring">Yes</label> <input
-                  type="radio" id="enableOptionScoring" value="Yes"
-                  name="optionalScoring"
-                  title="Include optional tests in score"
-                  alt="Include optional tests in score"> <label
-                  for="disableOptionScoring">No</label> <input
-                  type="radio" id="disableOptionScoring" value="No"
-                  name="optionalScoring" checked="checked"
-                  title="Exclude optional tests from score"
-                  alt="Exclude optional tests from score">
+                <fieldset style="border: none !important;">
+                  <label for="enableOptionScoring">Yes</label> <input
+                    type="radio" id="enableOptionScoring" value="Yes"
+                    name="optionalScoring"
+                    title="Include optional tests in score"
+                    alt="Include optional tests in score"> <label
+                    for="disableOptionScoring">No</label> <input
+                    type="radio" id="disableOptionScoring" value="No"
+                    name="optionalScoring" checked="checked"
+                    title="Exclude optional tests from score"
+                    alt="Exclude optional tests from score">
                 </fieldset>
               </div>
             </div>
@@ -303,15 +322,15 @@ var impl = TDS.SecureBrowser.getImplementation();
 
             <div class="divTableRow" id="instruction">
 
-                <p style="padding-right : 4%">
-                  To view a previously saved BIRT report, please enter
-                  its ID and press <strong>Get BIRT Report</strong>.
-                </p>
-              
+              <p style="padding-right: 4%">
+                To view a previously saved BIRT report, please enter its
+                ID and press <strong>Get BIRT Report</strong>.
+              </p>
+
             </div>
             <div class="divTableRow" align="center">
-              <label for="reportId">Report Id:&nbsp;&nbsp;</label>              
-                <input type="number" name="reportId" id="reportId">
+              <label for="reportId">Report Id:&nbsp;&nbsp;</label> <input
+                type="number" name="reportId" id="reportId">
             </div>
             <div class="divTableRow">&nbsp;</div>
 
