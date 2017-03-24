@@ -24,6 +24,8 @@ var propertyArray = Object.keys(IRT.CAPABILITY_PROPERTY);
  */
 var currentTestIndex = 0;
 
+var updateRecordTimeInterval = null;
+
 var ttsOptionsEnabled = false;
 
 var selectedCapability = {};
@@ -1569,6 +1571,7 @@ function startRecordingAudio() {
 function stopRecordingAudio() {
   try {
     var mediaRecorderStatusText = recorderImpl.stopAudioRecording();
+    clearInterval(updateRecordTimeInterval);
     $('#recorderStatusText')
         .html(
             '<span class="green-background">' + mediaRecorderStatusText
@@ -1694,7 +1697,7 @@ function enableFinishAndGenerateButton(event) {
 
 function updateRecordingTime() {
 
-  var updateRecordTime = setInterval(function() {
+  updateRecordTimeInterval = setInterval(function() {
 
     var defaultTime = $('#timer').html();
     var timerArray = defaultTime.split(":");
@@ -1710,7 +1713,7 @@ function updateRecordingTime() {
     $('#timer').html(timerArray[1] + ":" + timerArray[2]);
     recorderSeconds++;
     if (recorderSeconds == IRT.ALLOWED_RECORDER_SECONDS) {
-      clearInterval(updateRecordTime);
+      clearInterval(updateRecordTimeInterval);
       stopRecordingAudio();
     }
 
