@@ -115,7 +115,12 @@ var impl = TDS.SecureBrowser.getImplementation();
 
         $("#versionInfo").html('v.' + irtVersion);
 
-        $(document).tooltip();
+        $(document).tooltip({
+          position : {
+            my : "center bottom-10",
+            at : "center top"
+          }
+        });
         
         if (Util.Browser.isSecure() && !Util.Browser.isMobile()) {
           $("#closeBrowser").show();
