@@ -1550,8 +1550,8 @@ function concludeDeviceCapabilityTest() {
 function startRecordingAudio() {
 
   try {
-    updateRecordingTime();
     var mediaRecorderStatusText = recorderImpl.startAudioRecording();
+    updateRecordingTime();
     $('#recorderStatusText')
         .html(
             '<span class="green-background">' + mediaRecorderStatusText
