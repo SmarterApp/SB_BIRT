@@ -1695,20 +1695,20 @@ function enableFinishAndGenerateButton(event) {
 function updateRecordingTime() {
 
   var updateRecordTime = setInterval(function() {
+
+    var defaultTime = $('#timer').html();
+    var timerArray = defaultTime.split(":");
+    var defaultDate = new Date();
+    defaultDate.setHours(0);
+    defaultDate.setMinutes(timerArray[0]);
+    defaultDate.setSeconds(timerArray[1]);
+
+    var newDateTime = new Date(defaultDate.valueOf() + 1000);
+    var newDateTimeArray = newDateTime.toTimeString().split(" ");
+    var timerArray = newDateTimeArray[0].split(":");
+
+    $('#timer').html(timerArray[1] + ":" + timerArray[2]);
     recorderSeconds++;
-    var myTime = $('#timer').html();
-    var ss = myTime.split(":");
-    var dt = new Date();
-    dt.setHours(0);
-    dt.setMinutes(ss[0]);
-    dt.setSeconds(ss[1]);
-
-    var dt2 = new Date(dt.valueOf() + 1000);
-    var temp = dt2.toTimeString().split(" ");
-    var ts = temp[0].split(":");
-
-    $('#timer').html(ts[1] + ":" + ts[2]);
-
     if (recorderSeconds == IRT.ALLOWED_RECORDER_SECONDS) {
       clearInterval(updateRecordTime);
       stopRecordingAudio();
