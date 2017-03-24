@@ -1,6 +1,6 @@
 # Welcome to the Browser Implementation Readiness Test (BIRT) Application
 
-The Browser Implementation Readiness Test(BIRT) is much like a certification program in that it includes services, sample
+The Browser Implementation Readiness Test (BIRT) is much like a certification program in that it includes services, sample
 content, and test scripts necessary to determine that a secure browser meets the requirements. It differs
 from certification in that the emphasis is on self-testing by developers and the generation of a compliance
 report.
@@ -94,8 +94,7 @@ Below are the two important object required to be created in mongo DB
 
 # Captcha
 
-* As a hosting provider, we want to be able to ensure preventive measures are in place against DDOS attacks.
-* jQuery UI Plugin used [jQuery Real Person Captcha](http://keith-wood.name/realPerson.html)
+* In order to prevent attacks in the form of false or repeated, automated submissions, the jQuery UI Plugin [jQuery Real Person Captcha](http://keith-wood.name/realPerson.html) was integrated
 * index.html is modified to include Captcha configuration as below
  
 ```
