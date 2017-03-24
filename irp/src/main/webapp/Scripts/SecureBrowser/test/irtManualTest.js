@@ -657,7 +657,8 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
       title : 'Return to home page',
       click : function() {
         $(this).dialog("close");
-        window.location.href = getContextPath();
+        var cntxPath = getContextPath();
+        window.location.href = cntxPath.length > 0 ? cntxPath : "/";
       }
     } ]
   });

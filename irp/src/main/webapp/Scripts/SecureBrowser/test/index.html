@@ -150,7 +150,8 @@
             $("#tabs").tabs();
 
             $("#irtHome").click(function() {
-              window.location.href = getContextPath();
+              var cntxPath = getContextPath() ;
+              window.location.href = cntxPath.length>0?cntxPath:"/";
             });
 
             $("#versionInfo").html('v.' + $.cookie("version"));

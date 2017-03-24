@@ -102,7 +102,11 @@ var impl = TDS.SecureBrowser.getImplementation();
         });
 
         $("#irtHome").click(function() {
-          window.location.href = '<%=contextPath%>/#right-intro-section';
+          
+          
+          var cntxPath = '<%=contextPath%>';
+        
+          window.location.href = cntxPath.length>0?cntxPath + "/#right-intro-section":"/#right-intro-section";
         });
         
         $('#refreshPage').click(function(){
@@ -209,7 +213,8 @@ var impl = TDS.SecureBrowser.getImplementation();
       buttons : [ {
         text : "OK",
         click : function() {
-          window.location.href = '<%=contextPath%>';
+          var cntxPath = '<%=contextPath%>';
+          window.location.href = cntxPath.length>0?cntxPath:"/";
           $(this).dialog("close");
         }
       } ]
