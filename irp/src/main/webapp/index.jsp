@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Browser Implementation Readiness (BIR) Landing Page</title>
+<title>Browser Implementation Readiness Test (BIRT)</title>
 <%
-  String contextPath = request.getContextPath();
-			String version = System.getProperty("irt.app.version");
-			String debugMode = System.getProperty("birt.app.debug.mode");
-			//response.sendRedirect(contextPath + "/Scripts/SecureBrowser/test/index.html");
+      String contextPath = request.getContextPath();
+      String version = System.getProperty("irt.app.version");
+      String debugMode = System.getProperty("birt.app.debug.mode");
 %>
 <!-- JQuery -->
 <script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>
@@ -224,9 +223,9 @@ var impl = TDS.SecureBrowser.getImplementation();
     <div id="tabs" class="loginTab">
       <ul>
         <li><a href="#left-intro-section" class="intro-tab-detail"
-          title="New BIR Test" id="newBirtTest">New BIR Test</a></li>
+           id="newBirtTest">New BIR Test</a></li>
         <li><a href="#right-intro-section" class="intro-tab-detail"
-          title="View BIRT Report" id="birtReport">BIRT Report</a></li>
+           id="birtReport">BIRT Report</a></li>
       </ul>
 
 
