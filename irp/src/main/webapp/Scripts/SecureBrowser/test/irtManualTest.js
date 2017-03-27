@@ -1701,18 +1701,29 @@ function updateRecordingTime() {
 
     var defaultTime = $('#timer').html();
     var timerArray = defaultTime.split(":");
+    /**
+     * Setting default date minute & seconds to 00:00
+     */
     var defaultDate = new Date();
     defaultDate.setHours(0);
     defaultDate.setMinutes(timerArray[0]);
     defaultDate.setSeconds(timerArray[1]);
 
+    /**
+     * Adding 1 sec or 1000 milliseconds to default date for every second
+     * passed.
+     */
     var newDateTime = new Date(defaultDate.valueOf() + 1000);
     var newDateTimeArray = newDateTime.toTimeString().split(" ");
     var timerArray = newDateTimeArray[0].split(":");
 
     $('#timer').html(timerArray[1] + ":" + timerArray[2]);
     recorderSeconds++;
-    if (recorderSeconds == IRT.ALLOWED_RECORDER_SECONDS) {
+    /**
+     * If timer is equal to MAX Recorder Seconds, system will automatically call
+     * Stop Recording event
+     */
+    if (recorderSeconds == IRT.MAX_RECORDER_SECONDS) {
       clearInterval(updateRecordTimeInterval);
       stopRecordingAudio();
     }

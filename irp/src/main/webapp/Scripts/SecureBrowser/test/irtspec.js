@@ -61,7 +61,7 @@ var process_section = 'PROCESS_MANUAL';
 var recorder_section = 'RECORDER';
 var recordermanual_section = 'RECORDER_MANUAL';
 
-IRT.ALLOWED_RECORDER_SECONDS = 120;
+IRT.MAX_RECORDER_SECONDS = 120;
 
 /**
  * Manual test's to run for get/set capability
