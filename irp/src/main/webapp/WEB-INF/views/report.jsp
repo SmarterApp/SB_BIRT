@@ -214,7 +214,7 @@ var impl = TDS.SecureBrowser.getImplementation();
         text : "OK",
         click : function() {
           var cntxPath = '<%=contextPath%>';
-          window.location.href = cntxPath.length>0?cntxPath:"/";
+          window.location.href = cntxPath.length>0?cntxPath + "/#right-intro-section":"/#right-intro-section";
           $(this).dialog("close");
         }
       } ]
