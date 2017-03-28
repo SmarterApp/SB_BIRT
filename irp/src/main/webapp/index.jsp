@@ -114,8 +114,11 @@ var impl = TDS.SecureBrowser.getImplementation();
                   'input[name="optionalScoring"]:checked').val();
               $.cookie("optionalScoring", optionalScoringFlag);
 
+              
+              if(validateForm()){
               window.location.href = cntxPath
                   + "/Scripts/SecureBrowser/test/index.html";
+              }
             });
 
         $('#getIRTResult').click(function(event) {
@@ -192,6 +195,69 @@ var impl = TDS.SecureBrowser.getImplementation();
     }
 
   }
+  
+  
+  function validateForm(){
+    
+    
+    var validData = true;
+    var errorMessage = 'HTML Tags are not allowed in below field(s):<br/><ul>'
+    
+    if(!validateData($('#name').val())){
+      validData = false;
+      errorMessage = errorMessage + '<li>Name</li>';
+    }
+    if(!validateData($('#organization').val())){
+      validData = false;
+      errorMessage = errorMessage + '<li>Organization</li>';
+    }
+    if(!validateData($('#emailId').val())){
+      validData = false;
+      errorMessage = errorMessage + '<li>Email</li>';
+    }
+    if(!validateData($('#browserDetails').val())){
+      validData = false;
+      errorMessage = errorMessage + '<li>Browser Info</li>';
+    }
+    
+    if(!validData){
+      errorMessage = errorMessage + '</ul>';
+      loadErrorDialogBox(errorMessage);
+      return false;
+    }
+    else{
+      return true;
+    }
+    
+  }
+  function validateData(value){
+    var regex = /<(.|\n)*?>/g; 
+    if (regex.test(value) == true) {
+       return false;
+    }
+    return true;
+   }
+  
+
+  function loadErrorDialogBox(htmlData) {
+
+    $('#dialog-error').html(htmlData);
+    
+    $("#dialog-error").dialog({
+      resizable : false,
+      height : "auto",
+      title : 'Form Validation Error',
+      width : 400,
+      modal : true,
+      buttons : [ {
+        text : "OK",
+        click : function() {
+          $(this).dialog("close");
+        }
+      } ]
+    });
+  }
+  
 </script>
 </head>
 <body>
@@ -344,6 +410,6 @@ var impl = TDS.SecureBrowser.getImplementation();
 
     </div>
   </div>
-
+   <div id="dialog-error"></div>
 </body>
 </html>
