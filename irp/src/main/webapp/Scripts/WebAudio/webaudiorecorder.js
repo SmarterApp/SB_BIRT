@@ -279,14 +279,15 @@ function Recorder_WebAudioService() {
 
     audioInputSelect.empty();
     
+    var audioComboCount = 1;
 
     for (var i = 0; i !== deviceInfos.length; ++i) {
       var deviceInfo = deviceInfos[i];
       var option = document.createElement('option');
       option.value = deviceInfo.deviceId;
       if (deviceInfo.kind === 'audioinput') {
-        option.text = deviceInfo.label || 'microphone '
-            + (audioInputSelect.length + 1);
+        option.text = deviceInfo.label || 'Microphone '
+            + (audioComboCount++);
         audioInputSelect.append(option);
       }  else {
         console.log('Some other kind of source/device: ', deviceInfo);
