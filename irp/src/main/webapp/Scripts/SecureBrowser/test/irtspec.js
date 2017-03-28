@@ -236,7 +236,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.getDeviceInfo",
-
       "testApi_SB" : "runtime.getDeviceInfo",
       "testApi_mobile" : "runtime.security.getDeviceInfo",
       "points" : "1",
@@ -257,7 +256,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "browser.security.getMACAddress",
-
       "testApi_SB" : "runtime.getMACAddress",
       "testApi_mobile" : "runtime.security.getMACAddress",
       "points" : "1",
@@ -439,7 +437,7 @@ IRT.ApiSpecs = {
       "testApi" : "",
       "testResult" : null,
       "details" : "",
-      "testApi_certified" : "browser.security.enableLockDown",
+      "testApi_certified" : "browser.security.lockDown",
       "testApi_SB" : "runtime.enableLockDown",
       "testApi_mobile" : "runtime.security.enableLockdown",
       "points" : "1",
