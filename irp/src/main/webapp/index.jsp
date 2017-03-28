@@ -201,7 +201,7 @@ var impl = TDS.SecureBrowser.getImplementation();
     
     
     var validData = true;
-    var errorMessage = 'HTML Tags are not allowed in below field(s):<br/><ul>'
+    var errorMessage = 'HTML and Script Tags are not allowed in below field(s):<br/><ul>'
     
     if(!validateData($('#name').val())){
       validData = false;
