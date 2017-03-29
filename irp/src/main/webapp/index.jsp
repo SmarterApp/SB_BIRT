@@ -337,9 +337,8 @@ var impl = TDS.SecureBrowser.getImplementation();
                 <label for="browserDetails">Browser Info:</label>
               </div>
               <div class="divTableCellRight">
-                <textarea id="browserDetails" name="browserDetails"
-                  title="Descriptive text about the browser you are testing"
-                  cols="30" rows="3" style="resize: none;"></textarea>
+                  
+                  <textarea name="browserDetails" id="browserDetails" style="width: 100%;resize: none;height: 60px;" title="Descriptive text about the browser you are testing"></textarea>
               </div>
             </div>
 
