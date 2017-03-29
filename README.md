@@ -57,6 +57,7 @@ IRT must be setup with following properties under JVM
 * DEBUG Mode : `birt.app.debug.mode` (Y/N)
 * Random ReportID Length : `birt.app.reportid.length` (Integer)
 * BIRT Report Retention period in Days : `birt.app.report.retention`
+* BIRT Report Retention Cron Job Expression : `birt.app.cron.expression`
 
 ```
 Example:
@@ -69,6 +70,7 @@ Example:
  -Dbirt.app.debug.mode=Y 
  -Dbirt.app.reportid.length=8 
  -Dbirt.app.report.retention=30
+ -Dbirt.app.cron.expression="*/5 * * * * *"
 ```
 
 ### Mongo DB Configuration
