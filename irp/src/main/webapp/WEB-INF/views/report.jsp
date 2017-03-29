@@ -80,7 +80,7 @@ var impl = TDS.SecureBrowser.getImplementation();
   $(document).ready(
       function() {
 
-        var reportId = ${reportId};
+        var reportId = '${reportId}';
         var irtVersion = '${version}';
         
         

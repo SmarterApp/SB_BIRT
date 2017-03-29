@@ -171,10 +171,6 @@
             $("#captchaInfo").keyup(function(event) {
               enableFinishAndGenerateButton(event);
             });
-
-            $("#captchaInfo").change(function(event) {
-              enableFinishAndGenerateButton(event);
-            });
             
             $('#refreshPage').click(function(){
               window.location.reload(true);
@@ -182,6 +178,12 @@
 
             $('#printReport').click(function(){
               window.print();
+            });
+            
+            
+            $.ajax({
+              type : "POST",
+              url : getContextPath() + '/report/captureStatistics'
             });
             
           });

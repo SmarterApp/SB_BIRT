@@ -38,7 +38,7 @@ public class ReportController
   @RequestMapping (value = "/getReport/{reportId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public Object getReport (HttpServletRequest request,
-      HttpServletResponse response, @PathVariable ("reportId") Long reportId) {
+      HttpServletResponse response, @PathVariable ("reportId") String reportId) {
     Map<String, Object> returnMap = new LinkedHashMap<String, Object> ();
     try {
 
@@ -71,7 +71,7 @@ public class ReportController
 
     Map<String, Object> returnMap = new LinkedHashMap<String, Object> ();
 
-    Long reportId = null;
+    String reportId = null;
     try {
       reportId = reportDAO.insertResult (reportJsonData);
 
@@ -90,13 +90,19 @@ public class ReportController
   }
 
   @RequestMapping (value = "/{reportId}", method = RequestMethod.GET)
-  public String printHello (HttpServletRequest request,
+  public String getReportPage (HttpServletRequest request,
       HttpServletResponse response, ModelMap model, @PathVariable ("reportId") String reportId) {
 
     model.addAttribute ("reportId", reportId);
     model.addAttribute ("version", System.getProperty ("irt.app.version"));
 
     return "report";
+  }
+
+  @RequestMapping (value = "/captureStatistics", method = RequestMethod.POST)
+  public void captureBirtStatistics (HttpServletRequest request,
+      HttpServletResponse response) {
+    reportDAO.captureBIRTStatistics (null);
   }
 
 }

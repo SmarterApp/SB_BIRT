@@ -6,6 +6,7 @@
       String contextPath = request.getContextPath();
       String version = System.getProperty("irt.app.version");
       String debugMode = System.getProperty("birt.app.debug.mode");
+      String reportIdLength = System.getProperty ("birt.app.reportid.length");
 %>
 <!-- JQuery -->
 <script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>
@@ -132,12 +133,6 @@ var impl = TDS.SecureBrowser.getImplementation();
 
         });
 
-        $("#reportId").change(function(event) {
-
-          enableGetIRTResultButton(event);
-
-        });
-
         $("#versionInfo").html('v.' + $.cookie("version"));
 
         $(document).tooltip({
@@ -184,7 +179,7 @@ var impl = TDS.SecureBrowser.getImplementation();
 
     var reportId = $("#reportId").val();
 
-    if (reportId > 0 && $.isNumeric(reportId)) {
+    if (reportId.length >= <%=reportIdLength%>) {
       $('#getIRTResult').button("enable");
     } else {
       $('#getIRTResult').button("disable");
@@ -395,7 +390,7 @@ var impl = TDS.SecureBrowser.getImplementation();
             </div>
             <div class="divTableRow" align="center">
               <label for="reportId">Report Id:&nbsp;&nbsp;</label> <input
-                type="number" name="reportId" id="reportId">
+                type="text" name="reportId" id="reportId">
             </div>
             <div class="divTableRow">&nbsp;</div>
 
