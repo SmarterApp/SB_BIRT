@@ -955,7 +955,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "dialogHtml" : "<p>Did you hear the voice clearly with applied settings></p>",
+      "dialogHtml" : "<p>Did you hear the voice clearly with applied settings?</p>",
       "dialogTitle" : "TTS Rate Test",
       "buttonSliderId" : "ttsRate",
       "disableSection" : [ "PAUSE", "RESUME", "STOP", "VOLUME", "PITCH",
