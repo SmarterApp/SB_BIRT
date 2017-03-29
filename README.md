@@ -55,15 +55,22 @@ IRT must be setup with following properties under JVM
 * DB Name: `mongo.db.name`
 * IRT Version : `irt.app.version` 
 * DEBUG Mode : `birt.app.debug.mode` (Y/N)
+* Random ReportID Length : `birt.app.reportid.length` (Integer)
+* BIRT Report Retention period in Days : `birt.app.report.retention`
+* BIRT Report Retention Cron Job Expression : `birt.app.cron.expression`
 
 ```
 Example:
- -Dmongo.db.host=<DB_HOST> 
- -Dmongo.db.port=<DB_PORT> 
- -Dmongo.db.name=<DB_NAME> 
- -Dmongo.db.username=<USER_NAME>
- -Dmongo.db.password=<DB_PASSWORD>
- -Dirt.app.version=<IRT_APP_VERSION>
+ -Dmongo.db.host=test.db.org 
+ -Dmongo.db.port=27017
+ -Dmongo.db.name=testName
+ -Dmongo.db.username=testUser
+ -Dmongo.db.password=testPassword
+ -Dirt.app.version=testVersion
+ -Dbirt.app.debug.mode=Y 
+ -Dbirt.app.reportid.length=8 
+ -Dbirt.app.report.retention=30
+ -Dbirt.app.cron.expression="*/5 * * * * *"
 ```
 
 ### Mongo DB Configuration
