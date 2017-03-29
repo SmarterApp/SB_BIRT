@@ -102,7 +102,7 @@ public class ReportController
   @RequestMapping (value = "/captureStatistics", method = RequestMethod.POST)
   public void captureBirtStatistics (HttpServletRequest request,
       HttpServletResponse response) {
-    reportDAO.captureBIRTStatistics (null);
+    reportDAO.captureBIRTStatistics (false);
   }
 
 }

@@ -11,7 +11,9 @@ package irt.test;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 import org.json.simple.JSONObject;
@@ -32,7 +34,7 @@ public class MongoAppTest
     MongoOperations mongoDBOperation = (MongoOperations) ctx.getBean ("mongoTemplate");
 
     System.out.println (mongoDBOperation.collectionExists (RESULT_COLLECTION));
-    Query query = new Query (Criteria.where ("reportId").is (101));
+    Query query = new Query (Criteria.where ("reportId").is ("9WQE7KC5"));
 
     JSONObject returnMap = (JSONObject) mongoDBOperation.findOne (query, JSONObject.class, RESULT_COLLECTION);
     System.out.println (returnMap.toJSONString ());
@@ -53,6 +55,16 @@ public class MongoAppTest
       auditMap.put ("reportCount", Integer.valueOf (auditMap.get ("reportCount").toString ()) + 1);
       mongoDBOperation.save (auditMap, BIRT_STATISTICS);
     }
+
+    Calendar cal = Calendar.getInstance ();
+    cal.add (Calendar.DATE, -0);
+    System.out.println ("Date = " + cal.getTime ());
+
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("dd-MMM-yyyy");
+
+    Query q = new Query ().addCriteria (Criteria.where ("dateAdded").lte (simpleDateFormat.format (cal.getTime ())));
+
+    List<JSONObject> findObj = (List) mongoDBOperation.find (q, JSONObject.class, RESULT_COLLECTION);
 
     System.out.println (new Date ().toString ());
 

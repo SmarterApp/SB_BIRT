@@ -12,14 +12,9 @@ public class BirtScheduler
   @Autowired
   private ReportDAO reportDAO;
 
-  public void run () {
+  public void reportRetentionCheck () {
 
-    // System.out.println ("Getting # of Records in DB " +
-    // reportDAO.getTotalRecords ());
+    reportDAO.deleteReportAfterRetentionPeriod ();
 
-    /*
-     * System.out.println (RandomStringUtils.randomAlphanumeric (20).toUpperCase
-     * ());
-     */
   }
 }

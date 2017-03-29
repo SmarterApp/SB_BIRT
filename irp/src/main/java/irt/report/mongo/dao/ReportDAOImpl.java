@@ -10,7 +10,9 @@
 package irt.report.mongo.dao;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.json.simple.JSONObject;
@@ -74,9 +76,10 @@ public class ReportDAOImpl implements ReportDAO
       }
 
       String reportId = this.getValidReportId ();
-      String creationDate = this.getCurrentDate ();
+      String creationDate = this.getCurrentDate (true);
       reportJsonObj.put ("reportId", reportId);
       reportJsonObj.put ("creationdate", creationDate);
+      reportJsonObj.put ("dateAdded", this.getCurrentDate (false));
 
       mongoTemplate.insert (reportJsonObj, RESULT_COLLECTION);
 
@@ -88,8 +91,14 @@ public class ReportDAOImpl implements ReportDAO
     return null;
   }
 
-  private String getCurrentDate () {
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("dd-MMM-yyyy 'at' HH:mm z");
+  private String getCurrentDate (Boolean timeStampRequired) {
+
+    SimpleDateFormat simpleDateFormat = null;
+    if (timeStampRequired)
+      simpleDateFormat = new SimpleDateFormat ("dd-MMM-yyyy 'at' HH:mm z");
+    else
+      simpleDateFormat = new SimpleDateFormat ("dd-MMM-yyyy");
+
     Date date = new Date ();
     return simpleDateFormat.format (date);
   }
@@ -144,22 +153,41 @@ public class ReportDAOImpl implements ReportDAO
 
     JSONObject auditMap = (JSONObject) mongoTemplate.findOne (queryAudit, JSONObject.class, BIRT_STATISTICS);
 
-    String lastUpdateDate = this.getCurrentDate ();
+    String lastUpdateDate = this.getCurrentDate (true);
 
     if (auditMap == null) {
       auditMap = new JSONObject ();
-      auditMap.put ("testCount", report == null ? 1 : 0);
-      auditMap.put ("reportCount", report != null ? 1 : 0);
+      auditMap.put ("testCount", !report ? 1 : 0);
+      auditMap.put ("reportCount", report ? 1 : 0);
       auditMap.put ("lastUpdateDate", lastUpdateDate);
       mongoTemplate.save (auditMap, BIRT_STATISTICS);
     } else {
-      if (report == null)
+      if (!report)
         auditMap.put ("testCount", Integer.valueOf (auditMap.get ("testCount").toString ()) + 1);
       else
         auditMap.put ("reportCount", Integer.valueOf (auditMap.get ("reportCount").toString ()) + 1);
 
       auditMap.put ("lastUpdateDate", lastUpdateDate);
       mongoTemplate.save (auditMap, BIRT_STATISTICS);
+    }
+
+  }
+
+  @Override
+  public void deleteReportAfterRetentionPeriod () {
+    Integer reportRetentionDays = Integer.parseInt (System.getProperty ("birt.app.report.retention"));
+    Calendar cal = Calendar.getInstance ();
+    cal.add (Calendar.DATE, -reportRetentionDays);
+
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("dd-MMM-yyyy");
+
+    Query reportDeleteQuery = new Query ().addCriteria (Criteria.where ("dateAdded").lte (simpleDateFormat.format (cal.getTime ())));
+
+    List<JSONObject> reportsToDelete = (List) mongoTemplate.find (reportDeleteQuery, JSONObject.class, RESULT_COLLECTION);
+
+    for (JSONObject reportObj : reportsToDelete) {
+      Query deleteQuery = new Query ().addCriteria (Criteria.where ("reportId").is (reportObj.get ("reportId").toString ()));
+      mongoTemplate.remove (deleteQuery, JSONObject.class, RESULT_COLLECTION);
     }
 
   }

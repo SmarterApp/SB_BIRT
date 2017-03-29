@@ -21,4 +21,6 @@ public interface ReportDAO
 
   public void captureBIRTStatistics (Boolean report);
 
+  public void deleteReportAfterRetentionPeriod ();
+
 }
