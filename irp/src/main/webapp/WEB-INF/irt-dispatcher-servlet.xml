@@ -40,7 +40,7 @@
 
   <!-- Run report retention deletion every midnight-->
     <task:scheduled-tasks>
-        <task:scheduled ref="birtScheduler" method="reportRetentionCheck" cron="0 0 0 * * ?" />
+        <task:scheduled ref="birtScheduler" method="reportRetentionCheck" cron="${birt.app.cron.expression}" />
     </task:scheduled-tasks> 
 
     
