@@ -286,6 +286,8 @@ var impl = TDS.SecureBrowser.getImplementation();
            id="newBirtTest">New BIR Test</a></li>
         <li><a href="#right-intro-section" class="intro-tab-detail"
            id="birtReport">BIRT Report</a></li>
+         <li><a href="#aboutus-section" class="intro-tab-detail"
+           id="aboutus">About</a></li>
       </ul>
 
 
@@ -399,8 +401,9 @@ var impl = TDS.SecureBrowser.getImplementation();
           </div>
         </form>
       </div>
-
-
+<div class="divTable" id="aboutus-section">
+Info for About Us
+</div>
     </div>
   </div>
    <div id="dialog-error"></div>
