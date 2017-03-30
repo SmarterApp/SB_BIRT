@@ -678,6 +678,9 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
 
 function saveIRTResult() {
 
+  $.removeCookie("captchaInfo");
+  $.removeCookie("captchaInfoHash");
+
   $.cookie("captchaInfo", $('#captchaInfo').val());
   $.cookie("captchaInfoHash", $('#captchaInfo').realperson('getHash'));
 

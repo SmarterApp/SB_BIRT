@@ -196,7 +196,7 @@ var impl = TDS.SecureBrowser.getImplementation();
     
     
     var validData = true;
-    var errorMessage = 'HTML and Script Tags are not allowed in below field(s):<br/><ul>'
+    var errorMessage = 'HTML and Script Tags are not allowed in below field(s): <ul>'
     
     if(!validateData($('#name').val())){
       validData = false;
@@ -235,8 +235,8 @@ var impl = TDS.SecureBrowser.getImplementation();
   
 
   function loadErrorDialogBox(htmlData) {
-
-    $('#dialog-error').html(htmlData);
+    $('#dialog-error').html('<p><span class="irt-failure-ui-icon"></span>' + htmlData
+        + '</p>');
     
     $("#dialog-error").dialog({
       resizable : false,

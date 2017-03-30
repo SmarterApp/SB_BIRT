@@ -111,4 +111,4 @@ Below are the two important object required to be created in mongo DB
 ```
 
 * Once the user enters the correct challenge characters, the UI enables the `Finish and Generate Report` button. 
-* If system sends JSON directly via URL with incorrect CAPTCHA information system throws exception and will not save data in Database
+* If a JSON is sent directly via URL with incorrect Captcha information, the system will throw an exception and will not save the data in the database.
