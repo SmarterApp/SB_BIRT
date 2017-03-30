@@ -204,7 +204,7 @@ public class ReportDAOImpl implements ReportDAO
      * RetentionDays)
      **/
     Query reportDeleteQuery = new Query ().addCriteria (Criteria.where ("dateAdded").lte (simpleDateFormat.format (calendar.getTime ())));
-    List<JSONObject> reportsToDelete = (List) mongoTemplate.find (reportDeleteQuery, JSONObject.class, RESULT_COLLECTION);
+    List<JSONObject> reportsToDelete = (List<JSONObject>) mongoTemplate.find (reportDeleteQuery, JSONObject.class, RESULT_COLLECTION);
 
     for (JSONObject reportObj : reportsToDelete) {
       Query deleteQuery = new Query ().addCriteria (Criteria.where ("reportId").is (reportObj.get ("reportId").toString ()));
