@@ -403,21 +403,15 @@ var impl = TDS.SecureBrowser.getImplementation();
       </div>
     <div class="divTable" id="aboutus-section" style="width: 90%;">
         <h1>ABOUT BIRT</h1>
-       <div id="lipsum">
+  <div id="lipsum" style="font-size: 14px;line-height: 20px;">
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum accumsan turpis tempor tempor. Donec in aliquam orci. Cras pulvinar lacus suscipit, accumsan nulla vitae, laoreet sapien. Sed id felis non purus eleifend efficitur nec eget lacus. Sed quis ex rhoncus, scelerisque lorem vehicula, pellentesque nunc. Phasellus ornare eros ac nisl malesuada ultrices. Proin sollicitudin augue quam, quis luctus velit lobortis sed. Nullam lacinia, sapien vel lacinia placerat, est enim interdum neque, rutrum viverra orci libero eget enim. Nam ullamcorper, massa at posuere viverra, dui tellus faucibus felis, vitae efficitur sem velit eget lorem. Pellentesque et ipsum eget velit luctus tempus a eget nisl.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra elit sit amet risus accumsan dapibus. Aenean cursus lectus elit, ut facilisis justo vehicula ac. Aenean id feugiat arcu, in pharetra eros. Vestibulum lacinia ut odio vulputate ornare. Aenean dapibus vehicula mi vel commodo. Proin gravida hendrerit egestas. Cras mollis tellus ac orci porttitor, eget sodales dolor scelerisque. Proin volutpat, arcu ac blandit fringilla, ante nisl tempor augue, non luctus leo mi et ante. Aliquam nisi nisl, gravida a ex a, pharetra dapibus mauris. Phasellus sit amet nibh vitae neque eleifend vestibulum. Morbi tempus metus ut felis bibendum tristique. Sed sodales iaculis sem eu tincidunt.
 </p>
 <p>
-Morbi vel placerat ipsum. Morbi posuere mi arcu, in consequat erat varius nec. Pellentesque blandit sapien a feugiat elementum. Cras tempus non neque vitae hendrerit. Nulla enim ante, molestie et viverra eget, aliquet a eros. Sed ut massa at est accumsan porta non in tortor. Ut gravida vehicula nunc, eu sodales dui tristique a. Ut volutpat interdum orci eget sollicitudin. Aenean commodo tortor purus, sed semper eros semper in.
+Nullam dictum lacinia ipsum, ac semper libero vehicula vel. Mauris lectus sapien, faucibus quis malesuada iaculis, interdum nec purus. Nullam ac faucibus neque, id commodo nulla. Mauris nec tincidunt tellus. Proin sit amet lacus mauris. Curabitur sapien lectus, fermentum tristique sem nec, rhoncus congue enim. Nunc vulputate ut magna sit amet viverra. Quisque sit amet orci dictum, vehicula lectus in, accumsan urna. Pellentesque eu scelerisque nisi. In quis varius neque. Aliquam posuere lectus id velit finibus porta.
 </p>
 <p>
-Ut a ex varius, volutpat est eu, luctus nisi. Mauris ut eleifend elit. Nam lobortis interdum lorem, nec tristique elit cursus non. Ut tempus est a odio rhoncus, vitae suscipit felis tristique. Pellentesque vel magna orci. Phasellus ipsum nisl, condimentum porttitor pretium nec, dictum non arcu. Praesent mollis justo feugiat blandit viverra.
-</p>
-<p>
-Ut nunc neque, porta non metus eu, tempor faucibus lectus. Integer eu quam ut justo euismod fermentum ac eget neque. Phasellus porta interdum suscipit. Vivamus imperdiet bibendum leo sed tincidunt. Donec fermentum venenatis velit vel tristique. Aliquam erat volutpat. Donec finibus nibh vitae est scelerisque tincidunt. Pellentesque interdum quam ut magna euismod laoreet. Praesent nisi lorem, convallis et massa sed, blandit tempor ex.
-</p>
-<p>
-Pellentesque malesuada ultricies nisl, nec consectetur urna convallis nec. Proin euismod auctor sem, a accumsan libero laoreet sit amet. Suspendisse vulputate mollis metus pretium venenatis. Nam luctus sapien id ullamcorper elementum. Maecenas ut condimentum urna. Ut elementum dolor ut quam varius, vitae scelerisque odio porttitor. Sed ultrices hendrerit mauris, a lacinia lacus congue quis. Vestibulum facilisis ultrices risus, eget fermentum augue porta eu. Integer lacus risus, bibendum id massa vitae, vestibulum scelerisque erat.
+Vestibulum eget fringilla nulla. Maecenas vel sem elit. Donec consequat ante mauris, a lacinia odio luctus ac. Praesent eros nunc, rhoncus sit amet elit nec, vulputate rhoncus mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer elit ex, mattis sed malesuada eu, varius sed libero. Mauris vitae sem enim.
 </p></div>
 </div>
     </div>
