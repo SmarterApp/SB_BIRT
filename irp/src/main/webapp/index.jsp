@@ -193,10 +193,9 @@ var impl = TDS.SecureBrowser.getImplementation();
   
   
   function validateForm(){
-    
-    
+       
     var validData = true;
-    var errorMessage = 'HTML and Script Tags are not allowed in below field(s): <ul style="-webkit-margin-start: 3em;">'
+    var errorMessage = 'HTML and script tags are not allowed in below field(s): <ul style="-webkit-margin-start: 3em;">'
     
     if(!validateData($('#name').val())){
       validData = false;

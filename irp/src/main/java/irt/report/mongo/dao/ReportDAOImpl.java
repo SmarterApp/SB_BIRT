@@ -155,11 +155,26 @@ public class ReportDAOImpl implements ReportDAO
 
     String lastUpdateDate = this.getCurrentDate (true);
 
+    /**
+     * System will first check in BIRT_STATISTICS collection if any record is
+     * available, if record is not available then it will insert object with
+     * 
+     * @testCount (# of times test is run using BIRT)
+     * @reportCount (# of times report is submitted in BIRT)
+     * @lastUpdateDate (This is timestamp which will indicate when above two
+     *                 counts are updated)
+     * @reportStatisticsStartDate (Timestamp when BIRT actually started
+     *                            collecting BIRT Statistics)
+     * 
+     * @report : boolean if false then @testCount will be incremented
+     *         otherwise @reportCount
+     */
     if (auditMap == null) {
       auditMap = new JSONObject ();
       auditMap.put ("testCount", !report ? 1 : 0);
       auditMap.put ("reportCount", report ? 1 : 0);
       auditMap.put ("lastUpdateDate", lastUpdateDate);
+      auditMap.put ("reportStatisticsStartDate", lastUpdateDate);
       mongoTemplate.save (auditMap, BIRT_STATISTICS);
     } else {
       if (!report)
@@ -175,14 +190,20 @@ public class ReportDAOImpl implements ReportDAO
 
   @Override
   public void deleteReportAfterRetentionPeriod () {
+    /** Getting Retention Policy # of Days from JVM Param **/
     Integer reportRetentionDays = Integer.parseInt (System.getProperty ("birt.app.report.retention"));
-    Calendar cal = Calendar.getInstance ();
-    cal.add (Calendar.DATE, -reportRetentionDays);
+
+    Calendar calendar = Calendar.getInstance ();
+    /** Subtracting # of retention days from Current Date **/
+    calendar.add (Calendar.DATE, -reportRetentionDays);
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("dd-MMM-yyyy");
 
-    Query reportDeleteQuery = new Query ().addCriteria (Criteria.where ("dateAdded").lte (simpleDateFormat.format (cal.getTime ())));
-
+    /**
+     * Getting reports where dateAdded is less then or equal to ( Current Date -
+     * RetentionDays)
+     **/
+    Query reportDeleteQuery = new Query ().addCriteria (Criteria.where ("dateAdded").lte (simpleDateFormat.format (calendar.getTime ())));
     List<JSONObject> reportsToDelete = (List) mongoTemplate.find (reportDeleteQuery, JSONObject.class, RESULT_COLLECTION);
 
     for (JSONObject reportObj : reportsToDelete) {
