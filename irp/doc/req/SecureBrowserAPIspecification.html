@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h2 id="toc_0">Secure Browser API Specification</h2>
 
-<p>v.2.0.2 - Last modified 27-Mar-2017</p>
+<p>v.2.0.3 - Last modified 28-Mar-2017</p>
 
 <p>The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system. The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global <code>browser</code> object.</p>
 
@@ -736,7 +736,7 @@ The testing application will invoke this to perform client side text to speech s
 <p><code>{&#39;files&#39; : [file1, file2, ...]}</code></p></li>
 <li><p>R45. <strong>Retrieve audio file from filename</strong>. Retrieve audio data based on filename obtained from <code>retrieveAudioFileList()</code>.</p>
 
-<p><code>void retrieveAudioFile(filename, function callback)</code></p>
+<p><code>void browser.recorder.retrieveAudioFile(filename, function callback)</code></p>
 
 <p><code>callback</code> should be a function of the form:</p>
 
