@@ -401,8 +401,24 @@ var impl = TDS.SecureBrowser.getImplementation();
           </div>
         </form>
       </div>
-<div class="divTable" id="aboutus-section">
-Info for About Us
+    <div class="divTable" id="aboutus-section" style="width: 90%;">
+        <h1>ABOUT BIRT</h1>
+       <div id="lipsum">
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum accumsan turpis tempor tempor. Donec in aliquam orci. Cras pulvinar lacus suscipit, accumsan nulla vitae, laoreet sapien. Sed id felis non purus eleifend efficitur nec eget lacus. Sed quis ex rhoncus, scelerisque lorem vehicula, pellentesque nunc. Phasellus ornare eros ac nisl malesuada ultrices. Proin sollicitudin augue quam, quis luctus velit lobortis sed. Nullam lacinia, sapien vel lacinia placerat, est enim interdum neque, rutrum viverra orci libero eget enim. Nam ullamcorper, massa at posuere viverra, dui tellus faucibus felis, vitae efficitur sem velit eget lorem. Pellentesque et ipsum eget velit luctus tempus a eget nisl.
+</p>
+<p>
+Morbi vel placerat ipsum. Morbi posuere mi arcu, in consequat erat varius nec. Pellentesque blandit sapien a feugiat elementum. Cras tempus non neque vitae hendrerit. Nulla enim ante, molestie et viverra eget, aliquet a eros. Sed ut massa at est accumsan porta non in tortor. Ut gravida vehicula nunc, eu sodales dui tristique a. Ut volutpat interdum orci eget sollicitudin. Aenean commodo tortor purus, sed semper eros semper in.
+</p>
+<p>
+Ut a ex varius, volutpat est eu, luctus nisi. Mauris ut eleifend elit. Nam lobortis interdum lorem, nec tristique elit cursus non. Ut tempus est a odio rhoncus, vitae suscipit felis tristique. Pellentesque vel magna orci. Phasellus ipsum nisl, condimentum porttitor pretium nec, dictum non arcu. Praesent mollis justo feugiat blandit viverra.
+</p>
+<p>
+Ut nunc neque, porta non metus eu, tempor faucibus lectus. Integer eu quam ut justo euismod fermentum ac eget neque. Phasellus porta interdum suscipit. Vivamus imperdiet bibendum leo sed tincidunt. Donec fermentum venenatis velit vel tristique. Aliquam erat volutpat. Donec finibus nibh vitae est scelerisque tincidunt. Pellentesque interdum quam ut magna euismod laoreet. Praesent nisi lorem, convallis et massa sed, blandit tempor ex.
+</p>
+<p>
+Pellentesque malesuada ultricies nisl, nec consectetur urna convallis nec. Proin euismod auctor sem, a accumsan libero laoreet sit amet. Suspendisse vulputate mollis metus pretium venenatis. Nam luctus sapien id ullamcorper elementum. Maecenas ut condimentum urna. Ut elementum dolor ut quam varius, vitae scelerisque odio porttitor. Sed ultrices hendrerit mauris, a lacinia lacus congue quis. Vestibulum facilisis ultrices risus, eget fermentum augue porta eu. Integer lacus risus, bibendum id massa vitae, vestibulum scelerisque erat.
+</p></div>
 </div>
     </div>
   </div>

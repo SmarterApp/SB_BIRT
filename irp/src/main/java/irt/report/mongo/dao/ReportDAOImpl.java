@@ -27,9 +27,11 @@ import org.springframework.stereotype.Component;
 public class ReportDAOImpl implements ReportDAO
 {
 
-  private static final String RESULT_COLLECTION = "test_results";
+  private static final String RESULT_COLLECTION        = "test_results";
 
-  private static final String BIRT_STATISTICS   = "birt_statistics";
+  private static final String BIRT_STATISTICS          = "birt_statistics";
+
+  private static final String REPORT_DELETE_STATISTICS = "report_delete_statistics";
 
   @Autowired
   private MongoOperations     mongoTemplate;
@@ -205,10 +207,18 @@ public class ReportDAOImpl implements ReportDAO
      **/
     Query reportDeleteQuery = new Query ().addCriteria (Criteria.where ("dateAdded").lte (simpleDateFormat.format (calendar.getTime ())));
     List<JSONObject> reportsToDelete = (List<JSONObject>) mongoTemplate.find (reportDeleteQuery, JSONObject.class, RESULT_COLLECTION);
-
+    JSONObject reportDeleteObj;
     for (JSONObject reportObj : reportsToDelete) {
-      Query deleteQuery = new Query ().addCriteria (Criteria.where ("reportId").is (reportObj.get ("reportId").toString ()));
+      String reportId = reportObj.get ("reportId").toString ();
+      Query deleteQuery = new Query ().addCriteria (Criteria.where ("reportId").is (reportId));
       mongoTemplate.remove (deleteQuery, JSONObject.class, RESULT_COLLECTION);
+
+      reportDeleteObj = new JSONObject ();
+      reportDeleteObj.put ("reportId", reportId);
+      reportDeleteObj.put ("deletedDate", getCurrentDate (true));
+
+      mongoTemplate.insert (reportDeleteObj, REPORT_DELETE_STATISTICS);
+
     }
 
   }
