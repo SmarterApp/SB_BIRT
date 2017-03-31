@@ -36,7 +36,7 @@ The Webapp module contains the BIRT UI and REST APIs.
 * This folder contains factory.js which will work as an entry point for setting up test APIs for given browser.
 * Based on browser and device it will initialize respective js file for testing respective API for browser readiness.
 * index.js will call implementation method and other API test calls.
-* For each test , test API will populate a json array with test info like test name, test api signature, result and details (Info about failure or other require details). Check below sample json
+* For each test, test API will populate a JSON array with test info such as test name, test API signature, results, and details (for example, failure reason). See the following sample JSON:
 
 ```
 {details: "window.browser is not defined",
@@ -46,20 +46,20 @@ testResult : false .....}
 ```
 
 ### Tomcat (JVM Configuration)
-IRT must be setup with following properties under JVM
+BIRT must be setup with the following JVM properties:
 
 * Host : `mongo.db.host`
 * Port : `mongo.db.port`
 * Username : `mongo.db.username`
 * Password : `mongo.db.password`
-* DB Name: `mongo.db.name`
-* IRT Version : `birt.app.version` 
+* DB Name  : `mongo.db.name`
+* BIRT Version : `birt.app.version` 
 * Debug Mode (Y/N) : `birt.app.debug.mode`
-* ReportID Length (Integer) : `birt.app.reportid.length` 
-* BIRT Report Retention period in days : `birt.app.report.retention`
+* ReportID Length (integer) : `birt.app.reportid.length` 
+* BIRT Report Retention period (days) : `birt.app.report.retention`
 
 ```
-Example:
+Examples:
  -Dmongo.db.host=test.db.org 
  -Dmongo.db.port=27017
  -Dmongo.db.name=testName
@@ -76,10 +76,10 @@ The BIRT application connects to a Mongo DB instance to store report information
 
 Below are the four important elements that must be created in mongo DB:
 
-* A database named `irt_report` (defined in the JVM configuration property mongo.db.name)
+* A database named `irt_report` (defined in the JVM configuration property `mongo.db.name`)
 * A collection named `test_results` which will store the report documents.
 * A collection named `birt_statistics` which will store BIRT usage statistics.
-* A collection named `report_delete_statistics` which will store deleted ReportID by `BirtScheduler` after retention days
+* A collection named `report_delete_statistics` which will store ReportIDs which have been deleted by `BirtScheduler` after the retention period has expired.
 
 
 ### UI Framework
@@ -112,4 +112,4 @@ Below are the four important elements that must be created in mongo DB:
 ```
 
 * Once the user enters the correct challenge characters, the UI enables the `Finish and Generate Report` button. 
-* If a JSON is sent directly via URL with incorrect Captcha information, the system will throw an exception and will not save the data in the database.
+* If a JSON is sent directly via HTTP with incorrect Captcha information, the system will throw an exception and will not save the data in the database.
