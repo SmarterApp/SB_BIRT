@@ -1685,7 +1685,7 @@ function loadErrorDialogBox(loadConfirmBox) {
 
 function enableFinishAndGenerateButton(event) {
 
-  if ($.realperson.displayCaptchaText == $('#captchaInfo').val()) {
+  if ($.realperson.displayCaptchaText == $('#captchaInfo').val().toUpperCase()) {
     $('#endBrowserTest').button("enable");
   } else {
     $('#endBrowserTest').button("disable");

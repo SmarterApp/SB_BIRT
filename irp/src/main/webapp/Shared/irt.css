@@ -493,3 +493,5 @@
 	-webkit-margin-before: 0px;
 	-webkit-margin-after: 0.1em;
 }
+
+input.uppercase { text-transform: uppercase; }
