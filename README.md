@@ -76,7 +76,7 @@ The BIRT application connects to a Mongo DB instance to store report information
 
 Below are the two important objects that must be created in mongo DB:
 * Database Name : `irt_report` [ To be used in JVM configuration for property `mongo.db.name`.]
-* Collection Name : `test_results` and `birt_statistics`
+* Collection Name : `test_results`, `report_delete_statistics` and `birt_statistics`
 
 
 ### UI Framework
