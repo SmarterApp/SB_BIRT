@@ -1,6 +1,6 @@
 Secure Browser API Specification
 ------------------
-v.2.0.2 - Last modified 27-Mar-2017
+v.2.0.3 - Last modified 28-Mar-2017
 
 The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system. The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global `browser` object.
 
@@ -375,7 +375,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 1. R45. **Retrieve audio file from filename**. Retrieve audio data based on filename obtained from `retrieveAudioFileList()`.
 
-    `void retrieveAudioFile(filename, function callback)`
+    `void browser.recorder.retrieveAudioFile(filename, function callback)`
     
 	`callback` should be a function of the form:
 
