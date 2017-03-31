@@ -4,7 +4,7 @@
 <title>Browser Implementation Readiness Test (BIRT)</title>
 <%
       String contextPath = request.getContextPath();
-      String version = System.getProperty("irt.app.version");
+      String version = System.getProperty("birt.app.version");
       String debugMode = System.getProperty("birt.app.debug.mode");
       String reportIdLength = System.getProperty ("birt.app.reportid.length");
 %>

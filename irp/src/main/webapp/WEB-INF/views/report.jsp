@@ -6,7 +6,7 @@
 
 <%
   String contextPath = request.getContextPath();
-  String version = System.getProperty ("irt.app.version");
+  String version = System.getProperty ("birt.app.version");
 %>
 <!-- JQuery -->
 <script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>

@@ -94,7 +94,7 @@ public class ReportController
       HttpServletResponse response, ModelMap model, @PathVariable ("reportId") String reportId) {
 
     model.addAttribute ("reportId", reportId);
-    model.addAttribute ("version", System.getProperty ("irt.app.version"));
+    model.addAttribute ("version", System.getProperty ("birt.app.version"));
 
     return "report";
   }
