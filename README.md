@@ -7,7 +7,7 @@ report.
 
 * Match the updated Secure Browser Requirements including the Secure Browser Launch Protocol.
 * Exercise and validate all required and optional Secure Browser APIs.
-* Incorporate appropriate HTML support tests as recommended by supplier and approved by UCLASmarter Balanced to evaluate support of the HTML features required by the specification. Options include CSS3 and, HTML5 Test. Tests must include support for certain Web Components features to be determined in partnership with Smarter Balanced. Web Component support may be achieved through polyfills.
+* Incorporate appropriate HTML support tests as recommended by supplier and approved by Smarter Balanced to evaluate support of the HTML features required by the specification. Options include CSS3 and, HTML5 Test. Tests must include support for certain Web Components features to be determined in partnership with Smarter Balanced. Web Component support may be achieved through polyfills.
 * Produce an Implementation Readiness Report for any tested browser.
 
 ## License ##
@@ -74,9 +74,12 @@ Example:
 ### Mongo DB Configuration
 The BIRT application connects to a Mongo DB instance to store report information.
 
-Below are the two important objects that must be created in mongo DB:
-* Database Name : `irt_report` [ To be used in JVM configuration for property `mongo.db.name`.]
-* Collection Name : `test_results`, `report_delete_statistics` and `birt_statistics`
+Below are the four important elements that must be created in mongo DB:
+
+* A database named `irt_report` (defined in the JVM configuration property mongo.db.name)
+* A collection named `test_results` which will store the report documents.
+* A collection named `birt_statistics` which will store BIRT usage statistics.
+* A collection named `report_delete_statistics` which will store deleted ReportID by `BirtScheduler` after retention days
 
 
 ### UI Framework
