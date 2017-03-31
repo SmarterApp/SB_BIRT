@@ -7,7 +7,7 @@ report.
 
 * Match the updated Secure Browser Requirements including the Secure Browser Launch Protocol.
 * Exercise and validate all required and optional Secure Browser APIs.
-* Incorporate appropriate HTML support tests as recommended by supplier and approved by UCLASmarter Balanced to evaluate support of the HTML features required by the specification. Options include Acid3 and, HTML5Test. Tests must include support for certain Web Components features to be determined in partnership with Smarter Balanced. Web Component support may be achieved through polyfills.
+* Incorporate appropriate HTML support tests as recommended by supplier and approved by UCLASmarter Balanced to evaluate support of the HTML features required by the specification. Options include CSS3 and, HTML5 Test. Tests must include support for certain Web Components features to be determined in partnership with Smarter Balanced. Web Component support may be achieved through polyfills.
 * Produce an Implementation Readiness Report for any tested browser.
 
 ## License ##
@@ -53,11 +53,10 @@ IRT must be setup with following properties under JVM
 * Username : `mongo.db.username`
 * Password : `mongo.db.password`
 * DB Name: `mongo.db.name`
-* IRT Version : `irt.app.version` 
-* DEBUG Mode : `birt.app.debug.mode` (Y/N)
-* Random ReportID Length : `birt.app.reportid.length` (Integer)
-* BIRT Report Retention period in Days : `birt.app.report.retention`
-* BIRT Report Retention Cron Job Expression : `birt.app.cron.expression`
+* IRT Version : `birt.app.version` 
+* Debug Mode (Y/N) : `birt.app.debug.mode`
+* ReportID Length (Integer) : `birt.app.reportid.length` 
+* BIRT Report Retention period in days : `birt.app.report.retention`
 
 ```
 Example:
@@ -70,15 +69,14 @@ Example:
  -Dbirt.app.debug.mode=Y 
  -Dbirt.app.reportid.length=8 
  -Dbirt.app.report.retention=30
- -Dbirt.app.cron.expression="*/5 * * * * *"
 ```
 
 ### Mongo DB Configuration
-BIRT Application connect to mongo DB to store report information.
+The BIRT application connects to a Mongo DB instance to store report information.
 
-Below are the two important object required to be created in mongo DB
-* Database : `irt_report` [ Database name to be used in JVM configuration for property `mongo.db.name`.]
-* Collection Name : `test_results`
+Below are the two important objects that must be created in mongo DB:
+* Database Name : `irt_report` [ To be used in JVM configuration for property `mongo.db.name`.]
+* Collection Name : `test_results` and `birt_statistics`
 
 
 ### UI Framework
