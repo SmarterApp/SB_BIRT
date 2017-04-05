@@ -73,6 +73,11 @@ function closeBrowser() {
   impl.close(false);
 }
 
+function clearBrowserCache() {
+
+  impl.clearCache();
+}
+
 /**
  * 
  * @param irtSpecApiObj :
@@ -281,8 +286,8 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
   sectionObj.oTotalTest = oTestPass + oTestFail;
 
   var percent = 0;
-  if (sectionObj.rTotalTest > 0) {
 
+  if ((sectionObj.rTotalTest + sectionObj.oTotalTest) > 0) {
     var optionalScoringFlag = $.cookie("optionalScoring");
 
     var totalPassedTest = 0;
@@ -295,7 +300,9 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
       totalTest = sectionObj.rTotalTest;
     }
 
-    percent = Math.round(100 * totalPassedTest / totalTest);
+    if (totalTest > 0) {
+      percent = Math.round(100 * totalPassedTest / totalTest);
+    }
   }
 
   $('#' + sectionObj.headerId + ' #sectionScore').html(

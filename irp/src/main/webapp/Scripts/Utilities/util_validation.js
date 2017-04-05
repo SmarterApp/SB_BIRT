@@ -24,6 +24,8 @@
 
   var audioTestArray = [];
 
+  var audioTestManualArray = [];
+
   var MACREGEX = new RegExp(
       "^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$");
 
@@ -101,9 +103,10 @@
     apiSpecObject.testResult = result;
     apiSpecObject.details = details;
     apiSpecObject.testApi = testApi;
-
-    if (section == recorder_section || section == recordermanual_section) {
-      audioTestArray.push(apiSpecObject)
+    if (section == recordermanual_section) {
+      audioTestManualArray.push(apiSpecObject);
+    } else if (section == recorder_section) {
+      audioTestArray.push(apiSpecObject);
     } else if (section == tts_section) {
       ttsTestArray.push(apiSpecObject);
     } else if (section == ttsmanual_section) {
@@ -217,6 +220,35 @@
 
   };
 
+  Validation.mergeAudioRecorderManualTestIntoResult = function() {
+
+    var rTestPass = 0, rTestFail = 0, notperformed = 0;
+    audioTestManualArray.forEach(function(element) {
+      audioTestArray.push(element);
+
+      if (element.testResult != null || element.testResult != undefined) {
+        if (element.testResult === true) {
+          rTestPass++;
+        } else {
+          rTestFail++;
+        }
+      } else {
+        notperformed++;
+      }
+
+    });
+
+    var itemDetail = {};
+    $.extend(itemDetail, {
+      "oTestPass" : rTestPass,
+      "oTestFail" : rTestFail,
+      "notperformed" : notperformed
+    });
+
+    return itemDetail;
+
+  };
+
   Validation.formulateJsonForReport = function() {
 
     if (processTestArray.length == 0) {
@@ -250,6 +282,14 @@
           null));
     }
 
+    if (audioTestManualArray.length == 0) {
+      populateReportGrid(Object.keys(IRT.RecorderTest), recordermanual_section);
+      var manualApiDetails = Validation
+          .mergeAudioRecorderManualTestIntoResult();
+      Validation.updateManualResultHeaderCount(manualApiDetails,
+          IRT.AUTOMATED_TEST_SECTION.audiorecordapi);
+    }
+
     var itemDetail = {};
     $.extend(itemDetail, {
       "externalReportConfig" : {
@@ -278,9 +318,12 @@
         "organization" : $.cookie("organization"),
         "email" : $.cookie("emailId"),
         "browserInfo" : $.cookie("browserDetails"),
-        "optionalScoring" : $.cookie("optionalScoring")
+        "optionalScoring" : $.cookie("optionalScoring"),
+        "specInfo" : "Legacy"
       },
-      "version" : $.cookie("version")
+      "version" : $.cookie("version"),
+      "captchaInfo" : $.cookie("captchaInfo"),
+      "captchaInfoHash" : $.cookie("captchaInfoHash")
     });
 
     return itemDetail;
@@ -289,29 +332,50 @@
   Validation.updateManualResultHeaderCount = function(manualApiDetails,
       irtTestSectionObj) {
 
-    irtTestSectionObj.rTotalTest = irtTestSectionObj.rTotalTest
-        + manualApiDetails.rTestPass + manualApiDetails.rTestFail
-        + manualApiDetails.notperformed;
-
-    irtTestSectionObj.rTestPass = irtTestSectionObj.rTestPass
-        + manualApiDetails.rTestPass;
-
-    irtTestSectionObj.rTestFail = irtTestSectionObj.rTestFail
-        + manualApiDetails.rTestFail;
-
     irtTestSectionObj.notperformed = irtTestSectionObj.notperformed
         + manualApiDetails.notperformed;
 
-    $('#' + irtTestSectionObj.headerId + ' #rPassCount').html(
-        irtTestSectionObj.rTestPass + '/' + irtTestSectionObj.rTotalTest);
-    $('#' + irtTestSectionObj.headerId + ' #rFailCount').html(
-        irtTestSectionObj.rTestFail + '/' + irtTestSectionObj.rTotalTest);
+    if (manualApiDetails.rTestPass != undefined
+        && manualApiDetails.rTestFail != undefined) {
+      irtTestSectionObj.rTotalTest = irtTestSectionObj.rTotalTest
+          + manualApiDetails.rTestPass + manualApiDetails.rTestFail
+          + manualApiDetails.notperformed;
 
-    $('#' + irtTestSectionObj.headerId + ' #tNotPerformed').html(
-        irtTestSectionObj.notperformed + '/' + irtTestSectionObj.rTotalTest);
+      irtTestSectionObj.rTestPass = irtTestSectionObj.rTestPass
+          + manualApiDetails.rTestPass;
+
+      irtTestSectionObj.rTestFail = irtTestSectionObj.rTestFail
+          + manualApiDetails.rTestFail;
+      $('#' + irtTestSectionObj.headerId + ' #rPassCount').html(
+          irtTestSectionObj.rTestPass + '/' + irtTestSectionObj.rTotalTest);
+      $('#' + irtTestSectionObj.headerId + ' #rFailCount').html(
+          irtTestSectionObj.rTestFail + '/' + irtTestSectionObj.rTotalTest);
+      $('#' + irtTestSectionObj.headerId + ' #tNotPerformed').html(
+          irtTestSectionObj.notperformed + '/' + irtTestSectionObj.rTotalTest);
+
+    } else if (manualApiDetails.oTestPass != undefined
+        && manualApiDetails.oTestFail != undefined) {
+      irtTestSectionObj.oTotalTest = irtTestSectionObj.oTotalTest
+          + manualApiDetails.oTestPass + manualApiDetails.oTestFail
+          + manualApiDetails.notperformed;
+
+      irtTestSectionObj.oTestPass = irtTestSectionObj.oTestPass
+          + manualApiDetails.oTestPass;
+
+      irtTestSectionObj.oTestFail = irtTestSectionObj.oTestFail
+          + manualApiDetails.oTestFail;
+
+      $('#' + irtTestSectionObj.headerId + ' #oPassCount').html(
+          irtTestSectionObj.oTestPass + '/' + irtTestSectionObj.oTotalTest);
+      $('#' + irtTestSectionObj.headerId + ' #oFailCount').html(
+          irtTestSectionObj.oTestFail + '/' + irtTestSectionObj.oTotalTest);
+      $('#' + irtTestSectionObj.headerId + ' #tNotPerformed').html(
+          irtTestSectionObj.notperformed + '/' + irtTestSectionObj.oTotalTest);
+
+    }
 
     var percent = 0;
-    if (irtTestSectionObj.rTotalTest > 0) {
+    if ((irtTestSectionObj.rTotalTest + irtTestSectionObj.oTotalTest) > 0) {
 
       var optionalScoringFlag = $.cookie("optionalScoring");
 
@@ -326,7 +390,9 @@
         totalTest = irtTestSectionObj.rTotalTest;
       }
 
-      percent = Math.round(100 * totalPassedTest / totalTest);
+      if (totalTest > 0) {
+        percent = Math.round(100 * totalPassedTest / totalTest);
+      }
     }
 
     $('#' + irtTestSectionObj.headerId + ' #sectionScore').html(
@@ -383,6 +449,11 @@
   Validation.getAudioTestArray = function() {
     return audioTestArray;
   };
+
+  Validation.getAudioTestManualArray = function() {
+    return audioTestManualArray;
+  };
+
   Util.Validation = Validation;
 
 })(Util);

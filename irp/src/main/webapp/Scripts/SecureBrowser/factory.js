@@ -39,6 +39,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         sbImpl = new TDS.SecureBrowser.Mobile.iOS();
         browserType = mobile;
         webAudioBrowserType = mobile;
+        recorderImpl = new Recorder_MobileAudioService();
       } else if (Util.Browser.isAndroid()) {
         sbImpl = new TDS.SecureBrowser.Mobile.Android();
         browserType = mobile;

@@ -1,5 +1,6 @@
 Secure Browser Functional Requirements
 ------------------
+v.2.0.0 - Last modified 20-Mar-2017
 
 ### A. Security Related Requirements
 1. F01. The Secure browser shall NOT provide a means to clear browser cache.
@@ -42,6 +43,7 @@ Secure Browser Functional Requirements
 ### D. Audio Recording Related Requirements
 These requirements are optional.
 
+1. F50. The secure browser may provide a means to initialize the audio recording system.
 1. F25. The secure browser may provide a means to start an audio recording.
 1. F26. The secure browser may provide a means to stop an audio recording.
 1. F27. The secure browser may provide a means to playback an audio recording.
@@ -52,6 +54,7 @@ These requirements are optional.
 1. F44. The secure browser may provide a means to pause playback.
 1. F45. The secure browser may provide a means to resume playback of a paused audio recording.
 1. F48. The secure browser may provide a means to list all available audio recordings.
+1. F51. The secure browser may provide a means to retrieve an audio file from a filename.
 
 ### E. Standards Compliance Requirements
 1. F32. The secure browser shall be HTML5 compliant.

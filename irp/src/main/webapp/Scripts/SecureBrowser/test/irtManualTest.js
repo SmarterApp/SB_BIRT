@@ -24,9 +24,15 @@ var propertyArray = Object.keys(IRT.CAPABILITY_PROPERTY);
  */
 var currentTestIndex = 0;
 
+var updateRecordTimeInterval = null;
+
 var ttsOptionsEnabled = false;
 
 var selectedCapability = {};
+
+var recorderPlayDone = false;
+
+var recorderSeconds = 0;
 
 function loadDialogBox(id, testName, testTitle, isNew) {
 
@@ -52,13 +58,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         dialogWidth = '70%';
         dialogHeight = 600;
         isManualTestSupported = true;
-
       }
     } else {
-      dialogWidth = '70%';
-      dialogHeight = 600;
       isManualTestSupported = false;
-
     }
   } else if (testName == 'PROCESS') {
     if (impl != null) {
@@ -116,72 +118,100 @@ function loadDialogBox(id, testName, testTitle, isNew) {
   }
 
   if (isManualTestSupported) {
-    id.dialog({
-      autoOpen : false,
-      width : dialogWidth,
-      height : dialogHeight,
-      title : testTitle,
-      position : {
-        my : "center",
-        at : "center",
-        of : window
-      },
-      close : function(event, ui) {
-        currentTestSetting = 'UNKNOWN';
-        currentTestIndex = 0;
-        if (testName != 'HTML5' && testName != 'CSS3') {
-          id.dialog("destroy");
-        }
-      },
-      create : function(event, ui) {
-        if (testName == 'TTS') {
-          ttsComponentInitialize();
-        }
-        if (testName == 'CAPABILITY') {
-          capabilityComponentInitialize();
-        }
-        if (testName == 'PROCESS') {
+    id
+        .dialog({
+          autoOpen : false,
+          width : dialogWidth,
+          height : dialogHeight,
+          modal : true,
+          title : testTitle,
+          position : {
+            my : "center",
+            at : "center",
+            of : window
+          },
+          close : function(event, ui) {
+            currentTestSetting = 'UNKNOWN';
+            currentTestIndex = 0;
+            if (testName != 'HTML5' && testName != 'CSS3') {
+              id.dialog("destroy");
+            }
+          },
+          create : function(event, ui) {
+            if (testName == 'TTS') {
+              ttsComponentInitialize();
+            }
+            if (testName == 'CAPABILITY') {
+              capabilityComponentInitialize();
+            }
+            if (testName == 'PROCESS') {
 
-          processComponentInitialize();
-        }
-        if (testName == 'RECORDER') {
-          recorderComponentInitialize();
-        }
-      },
-      buttons : [ {
-        id : "dialogButton",
-        disabled : buttonDisable,
-        text : buttonText,
-        click : function() {
-          if (testName == 'TTS') {
-            populateManualResultIntoResultGrid(testName, $("#jsTTSGrid"),
-                $("#ttsManualTest"), id);
-          }
-          if (testName == 'HTML5') {
-            populateReportGridForExternalTest($("#jsHTML5TestGrid"),
-                $("#html5TestHeader"), $("#html5ManualTest"), testName, id);
+              processComponentInitialize();
+            }
+            if (testName == 'RECORDER') {
+              recorderComponentInitialize();
+            }
+          },
+          buttons : [
+              {
+                id : "dialogButton",
+                disabled : buttonDisable,
+                text : buttonText,
+                click : function() {
+                  if (testName == 'TTS') {
+                    populateManualResultIntoResultGrid(testName,
+                        $("#jsTTSGrid"), $("#ttsManualTest"), id);
+                  }
+                  if (testName == 'HTML5') {
+                    populateReportGridForExternalTest($("#jsHTML5TestGrid"),
+                        $("#html5TestHeader"), $("#html5ManualTest"), testName,
+                        id);
 
-          }
-          if (testName == 'CSS3') {
-            populateReportGridForExternalTest($("#jsCSS3TestGrid"),
-                $("#css3TestHeader"), $("#css3ManualTest"), testName, id);
+                  }
+                  if (testName == 'CSS3') {
+                    populateReportGridForExternalTest($("#jsCSS3TestGrid"),
+                        $("#css3TestHeader"), $("#css3ManualTest"), testName,
+                        id);
 
-          }
-          if (testName == 'CAPABILITY') {
-            populateManualResultIntoResultGrid(testName, $("#jsGrid"),
-                $("#capabilityApiManualTest"), id);
-          }
-          if (testName == 'PROCESS') {
-            populateManualResultIntoResultGrid(testName, $("#jsGrid"),
-                $("#processApiManualTest"), id);
-          }
-          if (testName == 'RECORDER') {
-            populateManualResultIntoResultGrid(testName,
-                $("#jsAudioRecorderGrid"), $("#recorderManualTest"), id);
-          }
-        }
-      } ]
-    });
+                  }
+                  if (testName == 'CAPABILITY') {
+                    populateManualResultIntoResultGrid(testName, $("#jsGrid"),
+                        $("#capabilityApiManualTest"), id);
+                  }
+                  if (testName == 'PROCESS') {
+                    populateManualResultIntoResultGrid(testName, $("#jsGrid"),
+                        $("#processApiManualTest"), id);
+                  }
+                  if (testName == 'RECORDER') {
+                    populateManualResultIntoResultGrid(testName,
+                        $("#jsAudioRecorderGrid"), $("#recorderManualTest"), id);
+                  }
+                }
+              },
+              {
+                id : "doneButton" + testName,
+                disabled : true,
+                text : 'Done',
+                click : function() {
+                  if (testName == 'TTS') {
+                    populateManualResultIntoResultGrid(testName,
+                        $("#jsTTSGrid"), $("#ttsManualTest"), id);
+                  }
+                  if (testName == 'CAPABILITY') {
+                    populateManualResultIntoResultGrid(testName, $("#jsGrid"),
+                        $("#capabilityApiManualTest"), id);
+                  }
+                  if (testName == 'PROCESS') {
+                    populateManualResultIntoResultGrid(testName, $("#jsGrid"),
+                        $("#processApiManualTest"), id);
+                  }
+                  if (testName == 'RECORDER') {
+                    populateManualResultIntoResultGrid(testName,
+                        $("#jsAudioRecorderGrid"), $("#recorderManualTest"), id);
+                  }
+                }
+              } ]
+        });
   } else {
     id.dialog({
       resizable : false,
@@ -254,6 +284,8 @@ function loadDialogBox(id, testName, testTitle, isNew) {
 
       id.dialog("open");
 
+      $("#doneButton" + testName).button("option", "classes.ui-button",
+          "irt-grid-column-hide");
     }
   }
 
@@ -267,6 +299,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
       });
 
       id.dialog("open");
+
+      $("#doneButton" + testName).button("option", "classes.ui-button",
+          "irt-grid-column-hide");
 
     }
   }
@@ -325,6 +360,9 @@ function loadDialogBox(id, testName, testTitle, isNew) {
         buttons[0].text = 'Save Results';
         buttons[0].disabled = false;
         id.dialog("option", "buttons", buttons);
+
+        $("#doneButton" + testName).button("option", "classes.ui-button",
+            "irt-grid-column-hide");
         clearInterval(saveButtonVar);
       }
     }, 1000);
@@ -394,7 +432,7 @@ function ttsComponentInitialize() {
   createButton($("#stop"), 'Stop', 'Stop');
   createButton($("#systemMute"), 'Mute', 'Mute');
   createButton($("#systemUnMute"), 'Ummute', 'Ummute');
-  createSelectMenu($("#voices"), 'TTS', 'TTS');
+  createSelectMenu($("#voices"), 'TTS');
   loadVoices();
   disableUIOptions('TTS', specTTSManualApi, ttsSettingArray);
   enableUIOptions('TTS', specTTSManualApi, ttsSettingArray);
@@ -426,6 +464,13 @@ function populateManualResultIntoResultGrid(testName, gridId, linkId, dialogId) 
   if (testName == 'TTS') {
     Util.Validation.updateManualResultHeaderCount(manualApiDetails,
         IRT.AUTOMATED_TEST_SECTION.ttsapi);
+  }
+
+  if (testName == 'RECORDER') {
+
+    manualApiDetails = Util.Validation.mergeAudioRecorderManualTestIntoResult();
+    Util.Validation.updateManualResultHeaderCount(manualApiDetails,
+        IRT.AUTOMATED_TEST_SECTION.audiorecordapi);
   }
 
   gridId.jsGrid("refresh");
@@ -531,16 +576,33 @@ function createButton(id, text, displaylabel) {
       concludeExamineProcess();
     } else if (text == 'Done') {
       saveIRTResult();
+    } else if (text == 'Initiate') {
+      initiateRecorder();
+    } else if (text == 'Status') {
+      getRecorderStatus();
+    } else if (text == 'Capabilities') {
+      getDeviceCapabilities();
+    } else if (text == 'Conclude Capability') {
+
+      concludeDeviceCapabilityTest();
+
+    } else if (text == 'Record') {
+      startRecordingAudio();
+    } else if (text == 'Stop Recording') {
+      stopRecordingAudio();
+    } else if (text == 'Play Recording') {
+      startPlaybackRecording();
+    } else if (text == 'Pause Playback') {
+      pausePlaybackRecording();
+    } else if (text == 'Resume Playback') {
+      resumePlaybackRecording();
+    } else if (text == 'Stop Playback') {
+      stopPlaybackRecording();
     }
 
     event.preventDefault();
   });
 
-}
-
-function getContextPath() {
-  return window.location.pathname.substring(0, window.location.pathname
-      .indexOf("/", 2));
 }
 
 function showReportIdDialog(textInfo, reportId, success, errorMessage) {
@@ -555,68 +617,72 @@ function showReportIdDialog(textInfo, reportId, success, errorMessage) {
 
     $("#retry").removeClass("irt-grid-column-hide");
     $("#home").addClass("irt-grid-column-hide");
+    $("#viewReport").addClass("irt-grid-column-hide");
+
     reportId = "";
     iconClass = 'irt-failure-ui-icon';
   }
 
+  var cntxPath = getContextPath();
   var reportIdLink = '';
-  if (textInfo == 'saveSuccess') {
-    var cntxPath = getContextPath();
-    reportIdLink = "<a href='"
-        + cntxPath
-        + "/report/"
-        + reportId
-        + "' class='report-id-link' title='Click to view final report' id='reportIdLink'>"
-        + reportId + "</a>";
-  }
+
   id.html('<p><span class="' + iconClass + '"></span>' + textMessage
-      + '<div class="report-id-details">' + reportIdLink + '</div>'
-      + errorMessage + '</p>');
+      + '<div class="report-id-details">' + reportId + '</div>' + errorMessage
+      + '</p>');
 
   id.dialog({
     resizable : false,
     height : "auto",
-    title : 'IRT Result Info',
+    title : 'BIRT Result Info',
     width : 500,
     modal : true,
     buttons : [ {
+      id : "viewReport",
+      text : "View Report",
+      title : "Click to view final report",
+      click : function() {
+        $(this).dialog("close");
+        window.location.href = getContextPath() + "/report/" + reportId;
+      }
+    }, {
       id : "retry",
       text : "Retry",
+      title : 'Attempt to generate a report again',
       click : function() {
         $(this).dialog("close");
       }
     }, {
       id : "homeButton",
       text : "Home",
+      title : 'Return to home page',
       click : function() {
         $(this).dialog("close");
-        window.location.href = getContextPath();
-      }
-    }, {
-      text : "OK",
-      click : function() {
-        $(this).dialog("close");
-
+        var cntxPath = getContextPath();
+        window.location.href = cntxPath.length > 0 ? cntxPath : "/";
       }
     } ]
   });
 
   if (reportId != null && success) {
     $("#retry").addClass("irt-grid-column-hide");
-    $('#reportIdLink').blur();
-    $('#reportIdLink').tooltip({
-      position : {
-        my : "left+15 center",
-        at : "right center"
-      }
-    });
+
+    $('#viewReport').blur();
+    $('#viewReport').tooltip({});
+
   }
   if ((reportId == null && !success) || !success) {
     $("#homeButton").addClass("irt-grid-column-hide");
+    $("#viewReport").addClass("irt-grid-column-hide");
   }
 }
 
 function saveIRTResult() {
+
+  $.removeCookie("captchaInfo");
+  $.removeCookie("captchaInfoHash");
+
+  $.cookie("captchaInfo", $('#captchaInfo').val());
+  $.cookie("captchaInfoHash", $('#captchaInfo').realperson('getHash'));
 
   $.ajax({
     type : "POST",
@@ -796,7 +862,6 @@ function loadVoices() {
 }
 
 function setVoice() {
-  // currentTestSetting = TTS.Test.VOICE;
   ttsImpl.setVoice($("#voices").val());
 }
 
@@ -833,8 +898,6 @@ function ttsPause() {
 
 function ttsResume() {
 
-  // currentTestSetting = TTS.Test.RESUME;
-
   setDialogHtml(specTTSManualApi);
 
   ttsImpl.resume();
@@ -845,8 +908,6 @@ function ttsResume() {
 
 function ttsStop() {
 
-  // currentTestSetting = TTS.Test.STOP;
-
   setDialogHtml(specTTSManualApi);
 
   ttsImpl.stop();
@@ -856,15 +917,12 @@ function ttsStop() {
 }
 
 function setTTSVolume(level) {
-  // currentTestSetting = TTS.Test.VOLUME;
-
   if (ttsImpl.supportsVolumeControl()) {
     ttsImpl.setVolume(level);
   }
 }
 
 function setTTSPitch(level) {
-  // currentTestSetting = TTS.Test.PITCH;
 
   if (ttsImpl.supportsPitchControl()) {
     ttsImpl.setPitch(level);
@@ -872,14 +930,12 @@ function setTTSPitch(level) {
 }
 
 function setTTSRate(level) {
-  // currentTestSetting = TTS.Test.RATE;
   if (ttsImpl.supportsRateControl()) {
     ttsImpl.setRate(level);
   }
 }
 
 function setSystemVolume(level) {
-  // currentTestSetting = TTS.Test.SYSTEM_VOLUME;
   if (!!ttsImpl.setSystemVolume) {
     ttsImpl.setSystemVolume(level);
   }
@@ -1080,7 +1136,11 @@ function closeConfirmBox(manualGridId, testName, currentManualApi, result) {
     manualResultArray = Util.Validation.getProcessManualResult();
     testingArray = processTestArray.slice();
 
+  } else if (testName == 'RECORDER') {
+    manualResultArray = Util.Validation.getAudioTestManualArray();
+    testingArray = recorderTestArray.slice();
   }
+
   if (currentTestSetting == testingArray[currentTestIndex]) {
     manualGridId.jsGrid("updateItem", getTTSTestGridItem(manualGridId,
         currentTestIndex), Util.Validation.setTTSItemDetail(currentTestSetting,
@@ -1120,7 +1180,8 @@ function loadNextManualTest(manualGridId, testName, currentManualApi,
 
 function changeDialogBoxButtonText(id, buttonText) {
   var buttons = id.dialog("option", "buttons");
-  buttons[0].text = buttonText;
+  buttons[0].disabled = true;
+  buttons[1].disabled = false;
   id.dialog("option", "buttons", buttons);
 }
 
@@ -1144,9 +1205,18 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
   if (currentTestIndex == testingArray.length - 1) {
     disableIds = eval(irtApiSpecConstant + specSeparator + specDisableUI
         + specSeparator + testName + "_disable_all");
-  }
 
-  /* var disableArray = disableIds.split(","); */
+    if (testName == 'RECORDER') {
+
+      recorderImpl.audioRecorderClosed();
+      setTimeout(function() {
+        var recorderState = recorderImpl.getAudioRecorderStatus();
+        $('#recorderStatusText').html(
+            '<span class="red-background">' + recorderState + '</span>');
+      }, 2000);
+
+    }
+  }
 
   disableIds.forEach(function(item, index, array) {
 
@@ -1176,8 +1246,6 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
 function enableUIOptions(testName, currentManualApi, testingArray) {
   var enableIds = eval(irtApiSpecConstant + specSeparator + currentManualApi
       + specSeparator + currentTestSetting + specSeparator + "enableSection");
-
-  /* var enableArray = enableIds.split(","); */
 
   enableIds.forEach(function(item, index, array) {
 
@@ -1291,20 +1359,25 @@ function populateReportGridForExternalTest(gridId, headerId, testId, testName,
           + iframeObj.contentWindow.rTestFail;
     }
 
-    percent = Math.round(100 * totalPassedTest / totalTest);
+    if (totalTest > 0) {
+      percent = Math.round(100 * totalPassedTest / totalTest);
+    }
   }
 
   $('#' + headerId[0].id + ' #sectionScore').append(
-      '[IRT Score: <strong>' + percent + '%</strong>]</span>');
+      '[BIRT Score: <strong>' + percent + '%</strong>]</span>');
 
   populateSectionCount(headerId, iframeObj.contentWindow.rTestPass,
       iframeObj.contentWindow.rTestFail, iframeObj.contentWindow.oTestPass,
       iframeObj.contentWindow.oTestFail, iframeObj.contentWindow.totalTest);
+
   dialogId.dialog("close");
   testId.css("display", "none");
-  /*
-   * $('html, body').animate({ 'scrollTop' : headerId.position().top });
-   */
+
+  $('html, body').animate({
+    'scrollTop' : headerId.position().top
+  });
+
 }
 
 function enableDisableSaveResultButton(testName, id) {
@@ -1399,8 +1472,265 @@ function recorderComponentInitialize() {
 
   populateJsonGrid($("#recorderGrid"), 'RECORDER', false);
 
-  if (Util.Validation.getProcessManualResult().length == 0) {
+  disableUIOptions('RECORDER', specRecorderManualApi, recorderTestArray);
+  enableUIOptions('RECORDER', specRecorderManualApi, recorderTestArray);
+
+  if (Util.Validation.getAudioTestManualArray().length == 0) {
     populateReportGrid(recorderTestArray, recordermanual_section);
   }
+
+}
+
+function loadManualTextConfirmBox() {
+  setDialogHtml(specRecorderManualApi);
+  loadTestDialogConfirm($('#recorderGrid'), 'RECORDER', specRecorderManualApi);
+}
+
+function initiateRecorder() {
+
+  try {
+    recorderImpl.audioRecorderInitialize();
+    loadManualTextConfirmBox();
+  } catch (ex) {
+    $("#dialog-recorder-error")
+        .html(
+            '<p><span class="irt-failure-ui-icon"></span> Web Audio Recorder Initialization Error: <b>'
+                + ex + '</b></p>');
+    loadErrorDialogBox(true);
+  }
+
+}
+
+function getRecorderStatus() {
+
+  try {
+    var recorderStatus = recorderImpl.getAudioRecorderStatus();
+    $('#recorderStatusText').html(
+        '<span class="green-background">' + recorderStatus + '</span>');
+    loadManualTextConfirmBox();
+  } catch (ex) {
+    $("#dialog-recorder-error")
+        .html(
+            '<p><span class="irt-failure-ui-icon"></span> Error while getting Web Audio Recorder Status: <b>'
+                + ex + '</b></p>');
+    loadErrorDialogBox(true);
+  }
+}
+
+function getDeviceCapabilities() {
+  $('#recorderInputOutputSelection').show();
+  $('#concludeCapability').show();
+
+  createSelectMenu($("#audioSource"), 'RECORDER_INPUT');
+  createSelectMenu($("#audioOutput"), 'RECORDER_OUTPUT');
+
+  createButton($("#concludeCapability"), 'Conclude Capability', 'Use');
+
+  try {
+    recorderImpl.getDeviceRecorderCapabilities(loadErrorDialogBox);
+  } catch (ex) {
+    $("#dialog-recorder-error")
+        .html(
+            '<p><span class="irt-failure-ui-icon"></span> Web Audio getCapabilities API Error: <b>'
+                + ex + '</b></p>');
+    loadErrorDialogBox(null);
+  }
+}
+
+function concludeDeviceCapabilityTest() {
+
+  try {
+    recorderImpl.initializeMediaRecorder($('#audioSource').val());
+    loadManualTextConfirmBox();
+  } catch (ex) {
+    $("#dialog-recorder-error")
+        .html(
+            '<p><span class="irt-failure-ui-icon"></span> Failed to initialize MediaRecorder: <b>'
+                + ex + '</b></p>');
+    loadErrorDialogBox(true);
+  }
+
+}
+
+function startRecordingAudio() {
+
+  try {
+    var mediaRecorderStatusText = recorderImpl.startAudioRecording();
+    updateRecordingTime();
+    $('#recorderStatusText')
+        .html(
+            '<span class="green-background">' + mediaRecorderStatusText
+                + '</span>');
+
+    loadManualTextConfirmBox();
+  } catch (ex) {
+    $("#dialog-recorder-error").html(
+        '<p><span class="irt-failure-ui-icon"></span> Failed to Start Recording: <b>'
+            + ex + '</b></p>');
+    loadErrorDialogBox(true);
+  }
+}
+
+function stopRecordingAudio() {
+  try {
+    var mediaRecorderStatusText = recorderImpl.stopAudioRecording();
+    clearInterval(updateRecordTimeInterval);
+    $('#recorderStatusText')
+        .html(
+            '<span class="green-background">' + mediaRecorderStatusText
+                + '</span>');
+    loadManualTextConfirmBox();
+    recorderImpl.setRecordedData();
+
+  } catch (ex) {
+    $("#dialog-recorder-error").html(
+        '<p><span class="irt-failure-ui-icon"></span> Failed to Stop Recording: <b>'
+            + ex + '</b></p>');
+    loadErrorDialogBox(true);
+  }
+}
+
+function setRecorderInput(label, value, index) {
+  recorderImpl.setRecorderInputDevice(label, value, index);
+}
+
+function startPlaybackRecording() {
+
+  try {
+    recorderImpl.startAudioPlayback();
+    if (currentTestSetting == IRT.RecorderTest.PLAY) {
+      loadManualTextConfirmBox();
+    }
+  } catch (ex) {
+    $("#dialog-recorder-error").html(
+        '<p><span class="irt-failure-ui-icon"></span> Failed to Start Playback: <b>'
+            + ex + '</b></p>');
+    if (currentTestSetting == IRT.RecorderTest.PLAY) {
+      loadErrorDialogBox(true);
+    } else {
+      loadErrorDialogBox(null);
+    }
+  }
+}
+
+function pausePlaybackRecording() {
+
+  try {
+    recorderImpl.pauseAudioPlayback();
+    if (currentTestSetting == IRT.RecorderTest.PAUSE) {
+      loadManualTextConfirmBox();
+    }
+  } catch (ex) {
+    $("#dialog-recorder-error").html(
+        '<p><span class="irt-failure-ui-icon"></span> Failed to Pause Playback: <b>'
+            + ex + '</b></p>');
+    if (currentTestSetting == IRT.RecorderTest.PAUSE) {
+      loadErrorDialogBox(true);
+    } else {
+      loadErrorDialogBox(null);
+    }
+  }
+}
+
+function resumePlaybackRecording() {
+  try {
+    recorderImpl.resumeAudioPlayback();
+    if (currentTestSetting == IRT.RecorderTest.RESUME) {
+      loadManualTextConfirmBox();
+    }
+  } catch (ex) {
+    $("#dialog-recorder-error").html(
+        '<p><span class="irt-failure-ui-icon"></span> Failed to Resume Playback: <b>'
+            + ex + '</b></p>');
+    if (currentTestSetting == IRT.RecorderTest.RESUME) {
+      loadErrorDialogBox(true);
+    } else {
+      loadErrorDialogBox(null);
+    }
+  }
+}
+
+function stopPlaybackRecording() {
+
+  try {
+    recorderImpl.stopAudioPlayback();
+    loadManualTextConfirmBox();
+  } catch (ex) {
+    $("#dialog-recorder-error").html(
+        '<p><span class="irt-failure-ui-icon"></span> Failed to Stop Playback: <b>'
+            + ex + '</b></p>');
+    loadErrorDialogBox(true);
+  }
+}
+
+function loadErrorDialogBox(loadConfirmBox) {
+
+  $("#dialog-recorder-error").dialog({
+    resizable : false,
+    height : "auto",
+    title : 'Audio Recorder Manual Test Error',
+    width : 400,
+    modal : true,
+    buttons : [ {
+      text : "OK",
+      click : function() {
+        $(this).dialog("close");
+        if (loadConfirmBox == true) {
+          loadManualTextConfirmBox();
+        }
+      }
+    } ]
+  });
+}
+
+function enableFinishAndGenerateButton(event) {
+
+  if ($.realperson.displayCaptchaText == $('#captchaInfo').val().toUpperCase()) {
+    $('#endBrowserTest').button("enable");
+  } else {
+    $('#endBrowserTest').button("disable");
+    // When user hit enter/return, system will not call the form URL if the
+    // report id is not Valid
+    if (event.which == 13) {
+      event.preventDefault();
+    }
+  }
+
+}
+
+function updateRecordingTime() {
+
+  updateRecordTimeInterval = setInterval(function() {
+
+    var defaultTime = $('#timer').html();
+    var timerArray = defaultTime.split(":");
+    /**
+     * Setting default date minute & seconds to 00:00
+     */
+    var defaultDate = new Date();
+    defaultDate.setHours(0);
+    defaultDate.setMinutes(timerArray[0]);
+    defaultDate.setSeconds(timerArray[1]);
+
+    /**
+     * Adding 1 sec or 1000 milliseconds to default date for every second
+     * passed.
+     */
+    var newDateTime = new Date(defaultDate.valueOf() + 1000);
+    var newDateTimeArray = newDateTime.toTimeString().split(" ");
+    var timerArray = newDateTimeArray[0].split(":");
+
+    $('#timer').html(timerArray[1] + ":" + timerArray[2]);
+    recorderSeconds++;
+    /**
+     * If timer is equal to MAX Recorder Seconds, system will automatically call
+     * Stop Recording event
+     */
+    if (recorderSeconds == IRT.MAX_RECORDER_SECONDS) {
+      clearInterval(updateRecordTimeInterval);
+      stopRecordingAudio();
+    }
+
+  }, 1000);
 
 }

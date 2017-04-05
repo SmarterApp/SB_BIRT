@@ -350,3 +350,12 @@ TDS.SecureBrowser.Mobile.iOS.prototype.getCapability = function(property) {
   }
   return false;
 };
+
+TDS.SecureBrowser.Mobile.iOS.prototype.clearCache = function() {
+  try {
+    this._airMobile.security.clearCache();
+  } catch (ex) {
+  }
+
+  return false;
+};

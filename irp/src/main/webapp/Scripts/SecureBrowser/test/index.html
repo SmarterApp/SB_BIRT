@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
+<title>Browser Implementation Readiness (BIR) Test Page</title>
 <!-- JQuery -->
 <script src="../../Libraries/jQuery/jquery-3.1.1.js"></script>
 <script src="../../Libraries/jQuery/jquery-ui-1.12.js"></script>
@@ -16,11 +16,21 @@
 <link type="text/css" rel="stylesheet"
   href="../../Libraries/jQuery/jquery-ui.theme.css" />
 
+
+<script src="../../Libraries/jQuery/captcha-realperson/jquery.plugin.js"></script>
+<script
+  src="../../Libraries/jQuery/captcha-realperson/jquery.realperson.js"></script>
+
+
+<link type="text/css" rel="stylesheet"
+  href="../../Libraries/jQuery/captcha-realperson/jquery.realperson.css" />
+
 <!-- JQuery MultiSelect Plugin -->
 
 <script src="../../Libraries/jQuery/multiselect/multiselect.js"></script>
 
 <link type="text/css" rel="stylesheet" href="../../../Shared/irt.css" />
+
 
 <!-- JSGrid -->
 <link type="text/css" rel="stylesheet"
@@ -89,7 +99,6 @@
 
 
 <script type="text/javascript">
-  document.title = 'SecureBrowser Specification Test Suite';
 
   $(document)
       .ready(
@@ -98,46 +107,85 @@
             $("#ttsTestLoad").load("ttsManualTest.html");
 
             $('#recorderTestLoad').load("recordermanualtest.html");
-            
+
             $("#capabilityTestLoad").load("capabilityManualTest.html");
 
             $("#processTestLoad").load("processManualTest.html");
             beginBrowserAPITest();
 
-            if (isAIRSecureBrowser && impl != null && impl.getRunTime() != null) {
+            if (isAIRSecureBrowser && impl != null && impl.getRunTime() != null
+                && !isMobile) {
 
-              $("#separator").show();
+              
 
               $("#closeBrowser").show();
 
               $("#closeBrowser").click(function() {
                 closeBrowser();
               });
+
             }
 
             createButton($("#capabilityApiManualTest"),
-                'Perform Get/Set Capabilities Manual Test','Perform Get/Set Capabilities Manual Test');
+                'Perform Get/Set Capabilities Manual Test',
+                'Perform Get/Set Capabilities Manual Test');
             createButton($("#processApiManualTest"),
-                'Perform Examine Process List Manual Test','Perform Examine Process List Manual Test');
+                'Perform Examine Process List Manual Test',
+                'Perform Examine Process List Manual Test');
             createButton($("#ttsManualTest"),
-                'Perform Text-to-speech Manual test','Perform Text-to-speech Manual test');
-            createButton($("#html5ManualTest"), 'Perform HTML5 Test', 'Perform HTML5 Test');
-            createButton($("#css3ManualTest"), 'Perform CSS3 Test','Perform CSS3 Test');
-            
-            createButton($("#recorderManualTest"), 'Perform Audio Recorder Test', 'Perform Audio Recorder Test');
-            
-            
+                'Perform Text-to-speech Manual test',
+                'Perform Text-to-speech Manual test');
+            createButton($("#html5ManualTest"), 'Perform HTML5 Test',
+                'Perform HTML5 Test');
+            createButton($("#css3ManualTest"), 'Perform CSS3 Test',
+                'Perform CSS3 Test');
 
-            createButton($("#endBrowserTest"), 'Done', 'Done');
+            createButton($("#recorderManualTest"),
+                'Perform Audio Recorder Manual Test',
+                'Perform Audio Recorder Manual Test');
+
+            createButton($("#endBrowserTest"), 'Done',
+                'Finish and Generate Report');
+
+            $("#tabs").tabs();
 
             $("#irtHome").click(function() {
-              window.location.href = getContextPath();
+              var cntxPath = getContextPath() ;
+              window.location.href = cntxPath.length>0?cntxPath:"/";
             });
 
             $("#versionInfo").html('v.' + $.cookie("version"));
 
-            $(document).tooltip();
+            $(document).tooltip({
+              position : {
+                my : "center bottom-10",
+                at : "center top"
+              }
+            });
 
+            $('#captchaInfo').realperson({
+              chars : $.realperson.alphanumeric,
+              length : 6
+            });
+            
+            $("#captchaInfo").keyup(function(event) {
+              enableFinishAndGenerateButton(event);
+            });
+            
+            $('#refreshPage').click(function(){
+              window.location.reload(true);
+            });
+
+            $('#printReport').click(function(){
+              window.print();
+            });
+            
+            
+            $.ajax({
+              type : "POST",
+              url : getContextPath() + '/report/captureStatistics'
+            });
+            
           });
 </script>
 
@@ -149,150 +197,190 @@
 
       <h1 class="entry-title">
         <img alt="Smarter Balanced Assessment Consortium"
-          style="width: 183px !important;"
+          class="smarter-logo"
           title="Smarter Balanced Assessment Consortium"
-          src="../../../Shared/images/SmarterBalanced_logo.png" /> <span>
-          &nbsp;&nbsp;Secure Browser Implementation Readiness Test (IRT)
+          src="../../../Shared/images/SmarterBalanced_logo.png"> <span>
+          Browser Implementation Readiness Test (BIRT)
         </span> <span id="versionInfo" class="version-details"> </span>
       </h1>
-      <p align="right">
-
-        <a href="#" id="irtHome">Home</a> <span>|</span> <a
-          href="javascript:location.reload(true);">Reload</a> <span
-          id="seperatorPrint">|</span> <a href="#" id="printReport"
-          onclick="javascript:window.print()">Print</a> <span
-          id="separator" style="display: none;">|</span> <a href="#"
-          id="closeBrowser" style="display: none;">Close</a>
+      <p class="header-paragraph" align="right">
+        <img alt="Home" title="Home" src="../../../Shared/images/home.png" id="irtHome"  class="header-ui-icon">
+        <img alt="Reload" title="Reload" src="../../../Shared/images/refresh.png" id="refreshPage"  class="header-ui-icon">
+        <img alt="Print" title="Print" src="../../../Shared/images/print.png" id="printReport"  class="header-ui-icon">
+        <img alt="Close" title="Close" src="../../../Shared/images/close.png" id="closeBrowser"  class="header-ui-icon" style="display: none;">          
       </p>
     </div>
 
-    <div class="header-irt" id="browserAPI">
+    <div id="tabs">
+      <ul>
+        <li><a href="#browserApiTab" class="intro-tab-detail" >Browser
+            API</a></li>
+        <li><a href="#ttsApiTab" class="intro-tab-detail">Text-to-speech
+            (TTS)</a></li>
+        <li><a href="#audioApiTab" class="intro-tab-detail">Audio
+            Recorder</a></li>
+        <li><a href="#html5Tab" class="intro-tab-detail" >HTML5
+            Test</a></li>
+        <li><a href="#css3Tab" class="intro-tab-detail">CSS3
+            Test</a></li>
+      </ul>
 
-      <div class="divTable-header">
-        <div class="divTableBody">
-          <div class="divTableRow">
-            <div class="divTableCellText">Browser API</div>
-            <div class="divTableCellScore" id="sectionScore"></div>
-            <div class="divTableCellScoreIcon" id="scoreHTML"></div>
+      <div id="browserApiTab">
+        <div class="header-irt hide-header" id="browserAPI">
+
+          <div class="divTable-header">
+            <div class="divTableBody">
+              <div class="divTableRow">
+                <div class="divTableCellText">Browser API</div>
+                <div class="divTableCellScore" id="sectionScore"></div>
+                <div class="divTableCellScoreIcon" id="scoreHTML"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="jsGrid"></div>
+
+        <div>&nbsp;</div>
+        <div>
+          <button id="capabilityApiManualTest"
+            onclick="javascript:loadDialogBox($('#dialogCAPABILITY'), 'CAPABILITY', 'Getting and Setting Capabilities Test',true)"></button>
+          <button id="processApiManualTest"
+            onclick="javascript:loadDialogBox($('#dialogPROCESS'), 'PROCESS', 'Examine Process List Test',true)"></button>
+        </div>
+      </div>
+
+
+
+      <div id="ttsApiTab">
+        <div class="header-irt hide-header" id="textToSpeechAPI">
+          <div class="divTable-header">
+            <div class="divTableBody">
+              <div class="divTableRow">
+                <div class="divTableCellText">Text-to-speech (TTS)
+                </div>
+                <div class="divTableCellScore" id="sectionScore"></div>
+                <div class="divTableCellScoreIcon" id="scoreHTML"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="jsTTSGrid"></div>
+
+        <div>&nbsp;</div>
+        <div>
+
+          <button id="ttsManualTest"
+            onclick="javascript:loadDialogBox($('#dialogTTS'), 'TTS', 'TTS API Manual Test',true)"></button>
+
+        </div>
+      </div>
+
+
+      <div id="audioApiTab">
+        <div class="header-irt hide-header" id="audioAPI">
+          <div class="divTable-header">
+            <div class="divTableBody">
+              <div class="divTableRow">
+                <div class="divTableCellText">Audio Recorder</div>
+                <div class="divTableCellScore" id="sectionScore"></div>
+                <div class="divTableCellScoreIcon" id="scoreHTML"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="jsAudioRecorderGrid"></div>
+        <div>&nbsp;</div>
+        <div>
+
+          <button id="recorderManualTest"
+            onclick="javascript:loadDialogBox($('#dialogRECORDER'), 'RECORDER', 'Audio Recorder API Manual Test',true)"></button>
+
+        </div>
+      </div>
+
+      <div id="html5Tab">
+        <div id="html5TestMain ">
+          <div class="header-ext hide-header" id="html5TestHeader">
+            <div class="divTable-header">
+              <div class="divTableBody">
+                <div class="divTableRow">
+                  <div class="divTableCellText" id="externalTestScore">HTML5
+                    Test</div>
+                  <div class="divTableCellScore" id="sectionScore"></div>
+                  <div class="divTableCellScoreIcon" id="scoreHTML"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="jsHTML5TestGrid"></div>
+          <div>&nbsp;</div>
+          <div>
+
+            <button id="html5ManualTest"
+              onclick="javascript:loadDialogBox('', 'HTML5', 'HTML5 Specification TEST',true)"></button>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="css3Tab">
+        <div id="css3TestMain">
+          <div class="header-ext hide-header" id="css3TestHeader">
+            <div class="divTable-header">
+              <div class="divTableBody">
+                <div class="divTableRow">
+                  <div class="divTableCellText" id="externalTestScore">CSS3
+                    Test</div>
+                  <div class="divTableCellScore" id="sectionScore"></div>
+                  <div class="divTableCellScoreIcon" id="scoreHTML"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="jsCSS3TestGrid"></div>
+
+
+          <div>&nbsp;</div>
+          <div>
+
+            <button id="css3ManualTest"
+              onclick="javascript:loadDialogBox('', 'CSS3', 'CSS3 Specification TEST',true)"></button>
+
           </div>
         </div>
       </div>
     </div>
-    <div id="jsGrid"></div>
-
-    <div>&nbsp;</div>
-    <div>
-      <button id="capabilityApiManualTest"
-        onclick="javascript:loadDialogBox($('#dialogCAPABILITY'), 'CAPABILITY', 'Getting and Setting Capabilities Test',true)"></button>
-      <button id="processApiManualTest"
-        onclick="javascript:loadDialogBox($('#dialogPROCESS'), 'PROCESS', 'Examine Process List Test',true)"></button>
-    </div>
-
-
-
     <div>&nbsp;</div>
     <div>&nbsp;</div>
-    <div class="header-irt" id="textToSpeechAPI">
-        <div class="divTable-header">
+
+
+<form>
+    <div id="completeTest">
+
+      <div class="divTable-report">
+
         <div class="divTableBody">
+
+
           <div class="divTableRow">
-            <div class="divTableCellText">Text-to-speech (TTS) </div>
-            <div class="divTableCellScore" id="sectionScore"></div>
-            <div class="divTableCellScoreIcon" id="scoreHTML"></div>
+            <div class="divTableCell">
+              <label for="captchaInfo">Enter the characters exactly as shown on the right to submit the report:</label>
+            </div>
+            <div class="divTableCell">
+              <input type="text" name="captchaInfo" id="captchaInfo" class="uppercase">
+            </div>
+            <div class="divTableCellReport">
+              <button id="endBrowserTest" class="done-button"></button>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
-    <div id="jsTTSGrid"></div>
-
-    <div>&nbsp;</div>
-    <div>
-
-      <button id="ttsManualTest"
-        onclick="javascript:loadDialogBox($('#dialogTTS'), 'TTS', 'TTS API Manual Test',true)"></button>
-
-    </div>
-
-     <div>&nbsp;</div>
-    <div>&nbsp;</div>
-    <div class="header-irt" id="audioAPI">
-        <div class="divTable-header">
-        <div class="divTableBody">
-          <div class="divTableRow">
-            <div class="divTableCellText">Audio Recorder </div>
-            <div class="divTableCellScore" id="sectionScore"></div>
-            <div class="divTableCellScoreIcon" id="scoreHTML"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="jsAudioRecorderGrid"></div>
-  <div>&nbsp;</div>
-    <div>
-
-      <button id="recorderManualTest"
-        onclick="javascript:loadDialogBox($('#dialogRecorder'), 'RECORDER', 'Audio Recorder API Manual Test',true)"></button>
-
-    </div>
-    
-    <div>&nbsp;</div>
-    <div>&nbsp;</div>
-    <div id="html5TestMain">
-      <div class="header-ext" id="html5TestHeader">
-       <div class="divTable-header">
-        <div class="divTableBody">
-          <div class="divTableRow">
-            <div class="divTableCellText" id="externalTestScore">HTML5 Test </div>
-            <div class="divTableCellScore" id="sectionScore"></div>
-            <div class="divTableCellScoreIcon" id="scoreHTML"></div>
-          </div>
-        </div>
-      </div>
-      </div>
-      <div id="jsHTML5TestGrid"></div>
-      <div>&nbsp;</div>
-      <div>
-
-        <button id="html5ManualTest"
-          onclick="javascript:loadDialogBox('', 'HTML5', 'HTML5 Specification TEST',true)"></button>
-
-      </div>
-    </div>
-
-
-    <div>&nbsp;</div>
-    <div>&nbsp;</div>
-    <div id="css3TestMain">
-      <div class="header-ext" id="css3TestHeader"><div class="divTable-header">
-        <div class="divTableBody">
-          <div class="divTableRow">
-           <div class="divTableCellText" id="externalTestScore">CSS3 Test </div>
-            <div class="divTableCellScore" id="sectionScore"></div>
-            <div class="divTableCellScoreIcon" id="scoreHTML"></div>
-          </div>
-        </div>
-      </div></div>
-      <div id="jsCSS3TestGrid"></div>
-
-
-      <div>&nbsp;</div>
-      <div>
-
-        <button id="css3ManualTest"
-          onclick="javascript:loadDialogBox('', 'CSS3', 'CSS3 Specification TEST',true)"></button>
-
-      </div>
-    </div>
-
-    <div>&nbsp;</div>
-    <div>&nbsp;</div>
-    <div id="completeTest" style="float: right;">
-      <button id="endBrowserTest"></button>
-    </div>
-
+</form>
 
     <div id="ttsTestLoad"></div>
-    
+
     <div id="recorderTestLoad"></div>
 
     <div id="capabilityTestLoad"></div>

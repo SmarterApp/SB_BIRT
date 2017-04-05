@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+<title>Browser Implementation Readiness (BIR) Report Page</title>
 
 <%
   String contextPath = request.getContextPath();
-  String version = System.getProperty ("irt.app.version");
+  String version = System.getProperty ("birt.app.version");
 %>
 <!-- JQuery -->
 <script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>
@@ -31,6 +33,14 @@
   src="<%=contextPath%>/Scripts/Libraries/jQuery/jsgrid/jsgrid.min.js"></script>
 
 
+  <!-- WebAudio -->
+
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/WebAudio/mobilerecorder.js"></script>
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/WebAudio/webaudiorecorder.js"></script>
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/WebAudio/certifiedrecorder.js"></script>
 
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/test/irtspec.js"></script>
 
@@ -70,7 +80,7 @@ var impl = TDS.SecureBrowser.getImplementation();
   $(document).ready(
       function() {
 
-        var reportId = ${reportId};
+        var reportId = '${reportId}';
         var irtVersion = '${version}';
         
         
@@ -92,15 +102,31 @@ var impl = TDS.SecureBrowser.getImplementation();
         });
 
         $("#irtHome").click(function() {
-          window.location.href = '<%=contextPath%>';
+          
+          
+          var cntxPath = '<%=contextPath%>';
+        
+          window.location.href = cntxPath.length>0?cntxPath + "/#right-intro-section":"/#right-intro-section";
+        });
+        
+        $('#refreshPage').click(function(){
+          window.location.reload(true);
+        });
+
+        $('#printReport').click(function(){
+          window.print();
         });
 
         $("#versionInfo").html('v.' + irtVersion);
 
-        $(document).tooltip();
+        $(document).tooltip({
+          position : {
+            my : "center bottom-10",
+            at : "center top"
+          }
+        });
         
-        if (Util.Browser.isSecure()) {
-          $("#separator").show();
+        if (Util.Browser.isSecure() && !Util.Browser.isMobile()) {
           $("#closeBrowser").show();
           $("#closeBrowser").click(function() {
             impl.close(false);
@@ -108,7 +134,7 @@ var impl = TDS.SecureBrowser.getImplementation();
         }
 
       });
-
+  
   function populateReportData(data) {
 
     var extReport = false;
@@ -135,10 +161,26 @@ var impl = TDS.SecureBrowser.getImplementation();
     var userInfoJsonObj = data.reportData.reportInfo;
     Object.keys(userInfoJsonObj).forEach(
         function(userItem, userItemIndex, userArray) {
+          
+          if(userItem == 'specInfo'){
+          
+            
+      
+            var apiSpecLink = eval('IRT.BrowserSpecPath.'+eval('userInfoJsonObj.' + userItem));
+            var finalSpecLink = '<%=contextPath%>' + apiSpecLink;
+            
+            
+            var specLink =  "<a href='"+finalSpecLink+"' id='specLinkId' target='_blank'>"+eval('userInfoJsonObj.' + userItem)+"</a>";
+            
+            $("#" + userItem).html(
+                $("#" + userItem).html() + ' '
+                    + specLink);
+          }
+          else{
           $("#" + userItem).html(
               $("#" + userItem).html() + ' '
                   + eval('userInfoJsonObj.' + userItem));
-          
+          }
         });
 
     var reportGridDataObj = data.reportData.reportGridData;
@@ -165,13 +207,14 @@ var impl = TDS.SecureBrowser.getImplementation();
     id.dialog({
       resizable : false,
       height : "auto",
-      title : 'IRT Result Error',
+      title : 'BIRT Report Error',
       width : 400,
       modal : true,
       buttons : [ {
         text : "OK",
         click : function() {
-          window.location.href = '<%=contextPath%>';
+          var cntxPath = '<%=contextPath%>';
+          window.location.href = cntxPath.length>0?cntxPath + "/#right-intro-section":"/#right-intro-section";
           $(this).dialog("close");
         }
       } ]
@@ -186,21 +229,16 @@ var impl = TDS.SecureBrowser.getImplementation();
     <div>
       <h1 class="entry-title">
         <img alt="Smarter Balanced Assessment Consortium"
-          style="width: 183px !important;"
+          class="smarter-logo"
           title="Smarter Balanced Assessment Consortium"
-          src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png" /> <span>
-          &nbsp;&nbsp;Secure Browser Implementation Readiness Test (IRT)
-          Report </span> <span id="versionInfo" class="version-details"></span>
+          src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"> <span>Browser Implementation Readiness Test (BIRT) Report</span> 
+          <span id="versionInfo" class="version-details"></span>
       </h1>
-      <p align="right">
-
-
-        <a href="#" id="irtHome">Home</a> <span>|</span> <a
-          href="javascript:location.reload(true);">Reload</a>  <span
-          id="seperatorPrint">|</span> <a href="#"
-          id="printReport"  onclick="javascript:window.print()">Print</a> <span
-          id="separator" style="display: none;">|</span> <a href="#"
-          id="closeBrowser" style="display: none;">Close</a>
+      <p class="header-paragraph" align="right">
+        <img alt="Home" title="Home" src="<%=contextPath%>/Shared/images/home.png" id="irtHome"  class="header-ui-icon">
+        <img alt="Reload" title="Reload" src="<%=contextPath%>/Shared/images/refresh.png" id="refreshPage"  class="header-ui-icon">
+        <img alt="Print" title="Print" src="<%=contextPath%>/Shared/images/print.png" id="printReport"  class="header-ui-icon">
+        <img alt="Close" title="Close" src="<%=contextPath%>/Shared/images/close.png" id="closeBrowser"  class="header-ui-icon" style="display: none;">
       </p>
 
 
@@ -227,7 +265,7 @@ var impl = TDS.SecureBrowser.getImplementation();
             <b>Organization:</b>
             </div>
             <div class="divTableCell" id="irtVersion">
-              <b>IRT Version:</b>
+              <b>BIRT Version:</b>
             </div>
              <div class="divTableCellReport" id="optionalScoring">
               <b>Scores include optional tests?</b>
@@ -235,6 +273,10 @@ var impl = TDS.SecureBrowser.getImplementation();
           </div>
           <div class="divTableRow" id="browserInfo">
             <b>Browser Info:</b>
+              
+          </div>
+            <div class="divTableRow" id="specInfo">
+            <b>Browser API Specification Used for Manual Testing: </b>
               
           </div>
 

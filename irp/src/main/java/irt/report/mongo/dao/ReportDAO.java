@@ -13,8 +13,14 @@ import org.json.simple.JSONObject;
 public interface ReportDAO
 {
 
-  public Long insertResult (String reportJsonData) throws Exception;
+  public String insertResult (String reportJsonData) throws Exception;
 
-  public JSONObject getResultByReportId (Long reportId);
+  public JSONObject getResultByReportId (String reportId);
+
+  public Long getTotalRecords ();
+
+  public void captureBIRTStatistics (Boolean report);
+
+  public void deleteReportAfterRetentionPeriod ();
 
 }
