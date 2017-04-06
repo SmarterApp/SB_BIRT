@@ -81,8 +81,8 @@ IRT.RecorderTest = {
 
 IRT.BrowserSpecPath = {
 
-  "Legacy" : "/spec/SecureBrowserRequirementsSpecifications_Legacy.pdf",
-  "New" : "/spec/SecureBrowserAPIspecification_V2.0.html"
+  "Legacy" : "http://www.smarterapp.org/documents/SecureBrowserRequirementsSpecifications_0-3.pdf",
+  "New" : "https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserAPIspecification.md"
 };
 
 /**
