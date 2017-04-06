@@ -3,12 +3,14 @@
 The Browser Implementation Readiness Test (BIRT) is much like a certification program in that it includes services, sample
 content, and test scripts necessary to determine that a secure browser meets the requirements. It differs
 from certification in that the emphasis is on self-testing by developers and the generation of a compliance
-report.
+report. The BIRT:
 
-* Match the updated Secure Browser Requirements including the Secure Browser Launch Protocol.
-* Exercise and validate all required and optional Secure Browser APIs.
-* Incorporate appropriate HTML support tests as recommended by supplier and approved by Smarter Balanced to evaluate support of the HTML features required by the specification. Options include CSS3 and, HTML5 Test. Tests must include support for certain Web Components features to be determined in partnership with Smarter Balanced. Web Component support may be achieved through polyfills.
-* Produce an Implementation Readiness Report for any tested browser.
+* Implements the new [Secure Browser Requirements](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserAPIspecification.md).<sup>*</sup> 
+* Exercises and validates all required and optional Secure Browser APIs.
+* Incorporates appropriate HTML support tests as recommended by supplier and approved by Smarter Balanced to evaluate support of the HTML features required by the specification. Currently, these include CSS3 and HTML5.
+* Produces an Implementation Readiness Report for any tested browser.
+
+<sup>*</sup> Note that as of 06-Apr-2017, BIRT only tests for the legacy APIs. Support for the Secure Browser 10 APIs in this document will be added over the coming months.
 
 ## License ##
 * This project is licensed under the [AIR Open Source License v1.0](http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf).
@@ -16,7 +18,6 @@ report.
 * This project includes source code from [CSS3Test](http://css3test.com/) [Source](https://github.com/LeaVerou/css3test).
 * This project includes unmodified images from  [Double-J designs](http://www.doublejdesign.co.uk/), distributed under the [Creative Commons Attribution 3.0 Unported](https://creativecommons.org/licenses/by/3.0/) license.
 * This project includes modified code for [jQuery RealPerson](http://keith-wood.name/realPerson.html), distributed under the [MIT](http://keith-wood.name/licence.html) licence.
-
 
 
 ## Getting Involved ##
@@ -99,6 +100,8 @@ Below are the four important elements that must be created in mongo DB:
 * Servlet API
 * Persistence API
 
+### Documentation
+* Additional documentation is available [here](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc).
 
 # Captcha
 
