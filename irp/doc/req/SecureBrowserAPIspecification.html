@@ -357,17 +357,17 @@ pre[class*="language-"] {
 
 <h2 id="toc_0">Secure Browser API Specification</h2>
 
-<p>v.2.0.3 - Last modified 28-Mar-2017</p>
+<p>v.2.0.4 - Last modified 10-Apr-2017</p>
 
-<p>The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system. The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global <code>browser</code> object.</p>
+<p>The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system. The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global <code>SecureBrowser</code> object.</p>
 
 <h2 id="toc_1">Required Methods</h2>
 
 <ol>
-<li><p>R01. <strong>Expose a window global object called <code>browser</code></strong>. All vendors are required to expose a window global object called <code>browser</code>. The APIs discussed below are exposed through this global object. Some APIs are supported as part of existing W3C specifications, and are identified as such.</p></li>
+<li><p>R01. <strong>Expose a window global object called <code>SecureBrowser</code></strong>. All vendors are required to expose a window global object called <code>SecureBrowser</code>. The APIs discussed below are exposed through this global object. Some APIs are supported as part of existing W3C specifications, and are identified as such.</p></li>
 <li><p>R02. <strong>Lock down environment to begin an assessment</strong>. The testing web application will invoke this call prior to allowing students to start testing. The implementer is required to take any actions necessary to secure the testing environment. The steps taken to secure the environment are device specific and for example, include aspects such as disabling the ability to do screen captures, disabling the ability to voice chat when in secure mode, clearing the system clipboard, entering into a kiosk mode, disabling Spaces in OS X 10.7+, etc. The testing application will enable lockdown before an assessment commences and will disable the lockdown when the student has completed the assessment and is out of the secure test.</p>
 
-<p><code>void browser.security.lockDown (boolean enable, function onSuccess, function onError)</code></p>
+<p><code>void SecureBrowser.security.lockDown (boolean enable, function onSuccess, function onError)</code></p>
 
 <p><code>onSuccess</code> and <code>onError</code> are optional parameters. These functions are invoked after the lockdown has either been sucessfully enabled or disabled or if the operation failed. If you specify these callback parameters, they should be functions of this form:</p>
 
@@ -376,7 +376,7 @@ pre[class*="language-"] {
 <p>where <code>currentlockdownstate</code> indicates whether the lockdown is in effect or not. undefined or null indicates that we don&#39;t know what the current state is (likely only the case for onError callbacks).</p></li>
 <li><p>R03. <strong>Check if environment is secure</strong>. Check if the environment is secure. The testing web application will invoke this prior to allowing students to start testing and periodically when inside the test. </p>
 
-<p><code>void browser.security.isEnvironmentSecure(function callback)</code>  </p>
+<p><code>void SecureBrowser.security.isEnvironmentSecure(function callback)</code>  </p>
 
 <p><code>callback</code> is optional. If specified, this parameter should be a function of this form:</p>
 
@@ -390,14 +390,14 @@ pre[class*="language-"] {
 }</code></p></li>
 <li><p>R41. <strong>Retrieve the status of a particular browser capability</strong>. </p>
 
-<p><code>object browser.security.getCapability(&quot;feature&quot;)</code></p>
+<p><code>object SecureBrowser.security.getCapability(&quot;feature&quot;)</code></p>
 
 <p>returns either a Javascript object or literal with the following structure</p>
 
 <p><code>{&lt;feature&gt;:true|false}</code></p></li>
 <li><p>R42. <strong>Set the status of a particular browser capability</strong>. This allows us to explicitly enable or disable a specific feature on the browser. The feature must be one that is recognized by the vendor.</p>
 
-<p><code>void browser.security.setCapability(feature, value, function onSuccess, function onError)</code></p>
+<p><code>void SecureBrowser.security.setCapability(feature, value, function onSuccess, function onError)</code></p>
 
 <p><code>onSuccess</code> and <code>onError</code> are optional parameters. These functions are invoked after the feature has either been sucessfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:</p>
 
@@ -406,7 +406,7 @@ pre[class*="language-"] {
 <p>where jsonliteral indicates the current value of the feature and it&#39;s state. <code>{&lt;feature&gt;:true|false|undefined}</code>. If the feature is unknown to the browser, the value for the key will be undefined</p></li>
 <li><p>R05. <strong>Retrieve information on the environment (device)</strong>. The testing web application will invoke this to gather details about the platform on which it is running. This is used to augment any information that was discernible from the user agent.</p>
 
-<p><code>void browser.security.getDeviceInfo(function callback)</code></p>
+<p><code>void SecureBrowser.security.getDeviceInfo(function callback)</code></p>
 
 <p><code>callback</code> should be a function that looks like this:</p>
 
@@ -415,7 +415,7 @@ pre[class*="language-"] {
 <p>The infoObj is a JSON literal that includes a set of key value pairs. The complete list of data returned is vendor specific. At a minimum, we expect the following keys to be supported: <code>manufacturer</code>,<code>HWVer</code>, <code>SWVer</code></p></li>
 <li><p>R06. <strong>Examine current list of running processes</strong>. The testing application will invoke this to examine the list of all processes running on the client machine owned by the user, and compare it with a list of processes that we have deemed blacklisted during testing cycle. This call will be invoked both at the start of an assessment and periodically which the student is taking the assessment and at any point, if a blacklisted app is detected, the assessment will be stopped to preserve test integrity. It will return a list of running processes that match one or more of the blacklisted processes, if any.</p>
 
-<p><code>void browser.security.examineProcessList(string[] blacklistedProcessList, function callback)</code></p>
+<p><code>void SecureBrowser.security.examineProcessList(string[] blacklistedProcessList, function callback)</code></p>
 
 <p><code>callback</code> should be a function that looks like this:</p>
 
@@ -428,30 +428,30 @@ pre[class*="language-"] {
 <p>An empty array indicates no forbidden apps were found. Undefined or null return value to the callback indicates that some error occurred and we were unable to perform the match.</p></li>
 <li><p>R07. <strong>Close the browser</strong>. The testing application will invoke this to shut down the browser when the user elects to exit the browser. The boolean <code>restart</code> parameter will determine if the browser should restart on exit or simply exit.</p>
 
-<p><code>void browser.security.close(boolean restart)</code></p></li>
+<p><code>void SecureBrowser.security.close(boolean restart)</code></p></li>
 <li><p>R15. <strong>Is macOS Spaces Enabled</strong>. Applicable to macOS only. This runtime browser property can be read by the testing application and returns true if Spaces is enabled, false otherwise. </p>
 
-<p><code>browser.settings.isSpacesEnabled</code>: boolean property specifying if Spaces is enabled or not. </p>
+<p><code>SecureBrowser.settings.isSpacesEnabled</code>: boolean property specifying if Spaces is enabled or not. </p>
 
 <p>It is undefined on all platforms other than those that implement &#39;Spaces&#39;. </p></li>
 <li><p>R16. <strong>Get System Volume</strong>. Get system volume: This runtime browser property can be queried by the testing application to get the System Volume. This is only available in desktop secure browsers.</p>
 
-<p><code>browser.settings.systemVolume</code> : integer property that contains the scaled value of the current system volume (0-10).</p></li>
+<p><code>SecureBrowser.settings.systemVolume</code> : integer property that contains the scaled value of the current system volume (0-10).</p></li>
 <li><p>R17. <strong>Set System Volume</strong>. Set system volume: This runtime browser property can be written to by the testing application to set the System Volume. This is only available in desktop secure browsers.</p>
 
-<p><code>browser.settings.systemVolume</code> accepts a value for the system volume (0-10)</p></li>
+<p><code>SecureBrowser.settings.systemVolume</code> accepts a value for the system volume (0-10)</p></li>
 <li><p>R18. <strong>Mute System Volume</strong>. Mute system volume: This runtime browser property can be written to by the testing application to mute the System Volume. This is only available in desktop secure browsers.</p>
 
-<p><code>browser.settings.systemMute</code>: boolean property that reports whether speaker is muted or not. </p></li>
+<p><code>SecureBrowser.settings.systemMute</code>: boolean property that reports whether speaker is muted or not. </p></li>
 <li><p>R19. <strong>Unmute System Volume</strong>. Unmute system volume: This runtime browser property can be written to by the testing application to unmute the System Volume. This is only available in desktop secure browsers.</p>
 
-<p><code>browser.settings.systemMute</code> set to true to mute, false to unmute. </p></li>
+<p><code>SecureBrowser.settings.systemMute</code> set to true to mute, false to unmute. </p></li>
 <li><p>R20. <strong>Get System Mute Status</strong>. Get the current status of the system volume. This is only available in desktop secure browsers.</p>
 
-<p><code>browser.settings.systemMute</code> true if muted, false if unmuted. </p></li>
+<p><code>SecureBrowser.settings.systemMute</code> true if muted, false if unmuted. </p></li>
 <li><p>R44. <strong>Get permissive mode</strong>. The testing web application will invoke this to determine if permissive mode is on or off. In permissive mode, a browser is expected to relax some of its stringent security hooks to allow assistive technology to work with the secure browser. For example, browsers that aggressively prevent other application UIs from presenting on top of them might want to relax this when in permissive mode. </p>
 
-<p><code>void browser.security.getPermissiveMode(function callback)</code></p>
+<p><code>void SecureBrowser.security.getPermissiveMode(function callback)</code></p>
 
 <p><code>callback</code> is optional. If specified, this parameter should be a function of this form:</p>
 
@@ -460,7 +460,7 @@ pre[class*="language-"] {
 <p>The passed-in value is a boolean indicating if the browser is permissive or not. If undefined or null is passed in, that implies an error occurred with the get operation.</p></li>
 <li><p>R21. <strong>Set permissive mode</strong>. The testing web application will invoke this to toggle permissive mode on or off. In permissive mode, a browser is expected to relax some of its stringent security hooks to allow assistive technology to work with the secure browser. For example, browsers that aggressively prevent other application UIs from presenting on top of them might want to relax this when in permissive mode. </p>
 
-<p><code>void browser.security.setPermissiveMode(enable, function callback)</code></p>
+<p><code>void SecureBrowser.security.setPermissiveMode(enable, function callback)</code></p>
 
 <p><code>callback</code> is optional. If specified, this parameter should be a function of this form:</p>
 
@@ -470,10 +470,10 @@ pre[class*="language-"] {
 <li><p>R22. <strong>Eliminate Security-Exposing APIs</strong>. The following APIs are deprecated and shall NOT be exposed:</p>
 
 <ul>
-<li><em>Clear browser cache</em> (<code>void browser.security.clearCache()</code>)</li>
-<li><em>Clear cookies</em> (<code>void browser.security.clearCookies()</code>)</li>
-<li><em>Retrieve client IP address(es)</em>  (<code>string[] browser.security.getIPAddressList()</code>)</li>
-<li><em>Retrieve current list of running processes</em> (<code>string[] browser.security.getProcessList()</code>)</li>
+<li><em>Clear browser cache</em> (<code>void SecureBrowser.security.clearCache()</code>)</li>
+<li><em>Clear cookies</em> (<code>void SecureBrowser.security.clearCookies()</code>)</li>
+<li><em>Retrieve client IP address(es)</em>  (<code>string[] SecureBrowser.security.getIPAddressList()</code>)</li>
+<li><em>Retrieve current list of running processes</em> (<code>string[] SecureBrowser.security.getProcessList()</code>)</li>
 </ul></li>
 </ol>
 
@@ -485,7 +485,7 @@ pre[class*="language-"] {
 <li><p>R08. <strong>Speak Text (TTS)</strong>.
 The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup (the <code>text</code> string is required, the markup is optional), an <code>options</code> object to control the speech (required param) and a callback for TTS events (optional). The vendor must support plaintext and optionally support one of the following markup standards; SSML, Microsoft speech markup (for Windows) or Apple speech markup (for macOS). </p>
 
-<p><code>void browser.tts.speak(string text, object options, function callback)</code></p>
+<p><code>void SecureBrowser.tts.speak(string text, object options, function callback)</code></p>
 
 <p>If <code>speak(...)</code> is called while speech is already ongoing, the old utterance will stop and the new one will begin immediately.</p>
 
@@ -521,14 +521,14 @@ The testing application will invoke this to perform client side text to speech s
 </ul></li>
 <li><p>R09. <strong>Stop speech (TTS)</strong>. This is called by the testing application to stop any speech that may be in progress. </p>
 
-<p><code>void browser.tts.stop(function callback)</code></p>
+<p><code>void SecureBrowser.tts.stop(function callback)</code></p>
 
 <p><code>callback</code> is an optional function that if present, will be invoked with a string state when TTS has stopped speaking, or an error has occurred while trying to make speaking stop (e.g., it was not speaking at the time). The state string will contain a code such as &#39;stop&#39; (if speech was stopped) or &#39;error&#39; (if an error occurred).</p>
 
 <p><code>callback(state)</code> </p></li>
 <li><p>R10. <strong>Get speech status (TTS)</strong>. This is called by the testing application to inspect the current status of speech. The valid values are listed below.</p>
 
-<p><code>void browser.tts.getStatus(function callback)</code></p>
+<p><code>void SecureBrowser.tts.getStatus(function callback)</code></p>
 
 <p><code>callback</code> is optional. If specified, this parameter should be a function of this form:</p>
 
@@ -547,7 +547,7 @@ The testing application will invoke this to perform client side text to speech s
 </ul></li>
 <li><p>R11. <strong>Get available voices (TTS)</strong>. This is called by the testing application to get a listing of the available voice packs in the current system. </p>
 
-<p><code>void browser.tts.getVoices(function callback)</code></p>
+<p><code>void SecureBrowser.tts.getVoices(function callback)</code></p>
 
 <p><code>callback</code> should be a function that looks like this:</p>
 
@@ -568,7 +568,7 @@ The testing application will invoke this to perform client side text to speech s
 <p>Empty array indicates no voice packs are available. Undefined or null indicates that an error occurred attempting to get the voices and no information is available.</p></li>
 <li><p>R13. <strong>Pause speech (TTS)</strong>. This is called by the web application to temporarily pause speech. Corresponding events are fired to notify the callback provided in the <code>speak</code> function of this.</p>
 
-<p><code>void browser.tts.pause(function callback)</code></p>
+<p><code>void SecureBrowser.tts.pause(function callback)</code></p>
 
 <p><code>callback</code> is optional. If specified, this parameter should be a function of this form:</p>
 
@@ -577,7 +577,7 @@ The testing application will invoke this to perform client side text to speech s
 <p>Callback is invoked when pause has occurred. If state is null or undefined, then an error occurred during pause. Otherwise &#39;pause&#39; or &#39;error&#39; are the expected states in the callback with error meaning something like there was nothing being spoken to pause.</p></li>
 <li><p>R14. <strong>Resume speech (TTS)</strong>. This is called by the web application to resume speech if it was previously paused. </p>
 
-<p><code>void browser.tts.resume(function callback)</code></p>
+<p><code>void SecureBrowser.tts.resume(function callback)</code></p>
 
 <p><code>callback</code> is optional. If specified, this parameter should be a function of this form:</p>
 
@@ -589,19 +589,19 @@ The testing application will invoke this to perform client side text to speech s
 <h3 id="toc_3">Optional APIs</h3>
 
 <ol>
-<li><p>R23. <strong>Empty system clipboard</strong>. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the <code>browser.security.lockDown</code> to perform the same operation. </p>
+<li><p>R23. <strong>Empty system clipboard</strong>. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the <code>SecureBrowser.security.lockDown</code> to perform the same operation. </p>
 
-<p><code>void browser.security.emptyClipBoard()</code></p></li>
+<p><code>void SecureBrowser.security.emptyClipBoard()</code></p></li>
 <li><p>R24. <strong>Get Application Start Time</strong>. The testing application will invoke this to determine the time that the application was launched in UTC. This is mainly used to track application uptime. If this is not provided, the web application can track it using local/session storage but it is desirable to have this information natively supported:</p>
 
-<p><code>DateTime browser.settings.appStartTime</code></p>
+<p><code>DateTime SecureBrowser.settings.appStartTime</code></p>
 
 <p>Example response:</p>
 
 <p><code>&quot;2017-01-15T18:15:30Z &quot;</code></p></li>
 <li><p>R40. <strong>Retrieve system MAC address(es)</strong>. The testing application will invoke this to assist in diagnostics. It is difficult to rely on source IP addresses to distinguish between end user machines within our testing servers as firewalls/NATs/Proxies are commonly in use at the schools. The MAC addresses allow us to distinguish end client machines behind a common firewall for diagnostics purposes.</p>
 
-<p><code>void browser.security.getMACAddress(function callback)</code></p>
+<p><code>void SecureBrowser.security.getMACAddress(function callback)</code></p>
 
 <p><code>callback</code> should be a function that looks like this:</p>
 
@@ -623,7 +623,7 @@ The testing application will invoke this to perform client side text to speech s
 <ol>
 <li><p>R25. <strong>Initialize audio recorder</strong>. This method is called by the testing application once to initialize the audio API after a page loads. The event listener passed in as argument is used to notify events to caller about progress.  Any attempts to call this method when it has already been called should be treated as a reset and reinit.</p>
 
-<p><code>void browser.recorder.initialize (function eventListener)</code></p>
+<p><code>void SecureBrowser.recorder.initialize (function eventListener)</code></p>
 
 <p>Events expected:</p>
 
@@ -634,7 +634,7 @@ The testing application will invoke this to perform client side text to speech s
 </ul></li>
 <li><p>R26. <strong>Get audio recorder status</strong>. This method is called to enquire about the status of the recorder. Return values are </p>
 
-<p><code>void browser.recorder.getStatus(function callback)</code></p>
+<p><code>void SecureBrowser.recorder.getStatus(function callback)</code></p>
 
 <p><code>callback</code> is optional. If specified, this parameter should be a function of this form:</p>
 
@@ -653,7 +653,7 @@ The testing application will invoke this to perform client side text to speech s
 </ul></li>
 <li><p>R27. <strong>Get audio recorder capabilities</strong>. This method is called to enquire about the capabilities of the platform. Throws error if called before initialize is completed successfully.</p>
 
-<p><code>void browser.recorder.getCapabilities(function callback)</code></p>
+<p><code>void SecureBrowser.recorder.getCapabilities(function callback)</code></p>
 
 <p><code>callback</code> should be a function that looks like this:</p>
 
@@ -670,7 +670,7 @@ The testing application will invoke this to perform client side text to speech s
 <p>If the object literal returned is null or undefined, we encountered an error.</p></li>
 <li><p>R28. <strong>Initiate audio capture</strong>. This method is called to initiate capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE.</p>
 
-<p><code>void browser.recorder.startCapture(options, eventListener)</code></p>
+<p><code>void SecureBrowser.recorder.startCapture(options, eventListener)</code></p>
 
 <p>The <code>options</code> object includes:</p>
 
@@ -694,10 +694,10 @@ The testing application will invoke this to perform client side text to speech s
 </ul></li>
 <li><p>R29. <strong>Stop recording</strong>. This method is called to stop audio capture. Throws error if status is currently not “RECORDING”.</p>
 
-<p><code>void browser.recorder.stopCapture()</code></p></li>
+<p><code>void SecureBrowser.recorder.stopCapture()</code></p></li>
 <li><p>R30. <strong>Retrieve recording</strong>. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the <code>END</code> event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this API directly in the callback for the <code>END</code> event.</p>
 
-<p><code>void  browser.recorder.retrieveAudio(function callback)</code></p>
+<p><code>void  SecureBrowser.recorder.retrieveAudio(function callback)</code></p>
 
 <p><code>callback</code> should be a function that looks like this:</p>
 
@@ -706,7 +706,7 @@ The testing application will invoke this to perform client side text to speech s
 <p>null or undefined implies there was an error retrieving audio.</p></li>
 <li><p>R31. <strong>Playback a recording</strong>. This method is called to play back a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 webaudio to play back encoded audio (encoded using the format specified in the <code>startcapture</code> call) obtained by a call to <code>retrieveAudio()</code>. The playback function is passed in the base64 audio string and a callback function.  </p>
 
-<p><code>void browser.recorder.play(b64audio, function callback)</code></p>
+<p><code>void SecureBrowser.recorder.play(b64audio, function callback)</code></p>
 
 <p>The callback function is expecting the following events:</p>
 
@@ -716,16 +716,16 @@ The testing application will invoke this to perform client side text to speech s
 </ul></li>
 <li><p>R32. <strong>Stop playback</strong>. This method is invoked to stop an ongoing audio playback. Throws error if status is currently not &quot;PLAYING&quot;.</p>
 
-<p><code>void browser.recorder.stopPlay()</code></p></li>
+<p><code>void SecureBrowser.recorder.stopPlay()</code></p></li>
 <li><p>R33. <strong>Pause playback</strong>. This method is invoked to pause an ongoing audio playback. Throws error if status is currently not &quot;PLAYING&quot;.</p>
 
-<p><code>void browser.recorder.pausePlay()</code></p></li>
+<p><code>void SecureBrowser.recorder.pausePlay()</code></p></li>
 <li><p>R34. <strong>Resume playback</strong>. This method is invoked to resume an already paused audio playback. Throws error if status is currently not &quot;PAUSED&quot;.</p>
 
-<p><code>void browser.recorder.resumePlay()</code></p></li>
+<p><code>void SecureBrowser.recorder.resumePlay()</code></p></li>
 <li><p>R43. <strong>Retrieve list of audio recordings</strong>. Retrieve a list of all audio recordings.</p>
 
-<p><code>void browser.recorder.retrieveAudioFileList(function callback)</code></p>
+<p><code>void SecureBrowser.recorder.retrieveAudioFileList(function callback)</code></p>
 
 <p><code>callback</code> should be a function of the form:</p>
 
@@ -736,7 +736,7 @@ The testing application will invoke this to perform client side text to speech s
 <p><code>{&#39;files&#39; : [file1, file2, ...]}</code></p></li>
 <li><p>R45. <strong>Retrieve audio file from filename</strong>. Retrieve audio data based on filename obtained from <code>retrieveAudioFileList()</code>.</p>
 
-<p><code>void browser.recorder.retrieveAudioFile(filename, function callback)</code></p>
+<p><code>void SecureBrowser.recorder.retrieveAudioFile(filename, function callback)</code></p>
 
 <p><code>callback</code> should be a function of the form:</p>
 
