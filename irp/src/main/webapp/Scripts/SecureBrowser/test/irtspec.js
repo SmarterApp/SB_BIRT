@@ -568,7 +568,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "apiType" : [ "boolean" ],
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkSetPermissiveModeAPI" : {
@@ -587,7 +587,7 @@ IRT.ApiSpecs = {
         "all" : true
       },
       "testPoints" : "0",
-      "apiType" : [ "boolean" ],
+      "apiType" : [ "function" ],
       "isDeprecated" : false
     },
     "checkspacesenabled" : {
