@@ -691,7 +691,7 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
-    },
+    }/**,
     "checkTTSVolumeAPI" : {
       // F30. The secure browser shall provide a means to get/set TTS volume.
       // R08 SEC-36, SEC-50, SEC-51, SEC-52, SEC-53
@@ -751,7 +751,7 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
-    },
+    }*/,
     "checkTTSStatusAPI" : {
       // F22. The secure browser shall provide a means events to notify the web
       // application of status and progress of TTS. R10 SEC-11, SEC-38
