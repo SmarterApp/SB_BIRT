@@ -62,25 +62,25 @@ function beginBrowserAPITest() {
 
       });
 
-  populateResults($("#jsGrid"), Util.Validation.getResult(), false);  
+  populateResults($("#jsGrid"), Util.Validation.getResult(), false);
   populateManualMacAddressColumn();
   populateResults($("#jsTTSGrid"), Util.Validation.getTTSResult(), false);
   populateResults($("#jsAudioRecorderGrid"), Util.Validation
       .getAudioTestArray(), false);
 }
 
-function populateManualMacAddressColumn(){
-	  var rowData = $('#jsGrid').data('JSGrid').data[2];
-	  var newData = $('#jsGrid').data('JSGrid').data[2];
-	  if(Util.Browser.isSecureBrowser()){
-	  var getMacAddressInterval = setInterval(function() {
-		    if (IRT.ApiSpecs.browserapi.checkMACAddressAPI.details!=undefined) {
-		      newData.details = IRT.ApiSpecs.browserapi.checkMACAddressAPI.details;
-		      $('#jsGrid').jsGrid("updateItem", rowData, newData);
-		      clearInterval(getMacAddressInterval);
-		    }
-		  }, 1000);
-	  }
+function populateManualMacAddressColumn() {
+  var rowData = $('#jsGrid').data('JSGrid').data[2];
+  var newData = $('#jsGrid').data('JSGrid').data[2];
+  if (Util.Browser.isSecureBrowser()) {
+    var getMacAddressInterval = setInterval(function() {
+      if (IRT.ApiSpecs.browserapi.checkMACAddressAPI.details != undefined) {
+        newData.details = IRT.ApiSpecs.browserapi.checkMACAddressAPI.details;
+        $('#jsGrid').jsGrid("updateItem", rowData, newData);
+        clearInterval(getMacAddressInterval);
+      }
+    }, 1000);
+  }
 }
 
 function closeBrowser() {
@@ -230,9 +230,19 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
 
             var apiManualData = "";
             if (element == "checkMACAddressAPI") {
-            	
-              actualTestApiMethod = actualTestApiMethod + '(macAddressCallBack)';
-              eval(actualTestApiMethod);
+              if (Util.Browser.isSecureBrowser()) {
+                actualTestApiMethod = actualTestApiMethod
+                    + '(macAddressCallBack)';
+                eval(actualTestApiMethod);
+              } else {
+                actualTestApiMethod = actualTestApiMethod + '()';
+                apiManualData = eval(actualTestApiMethod);
+                if (!Util.Validation.isMacAddressValid(apiManualData)) {
+                  details = 'Invalid MAC Address : ' + apiManualData;
+                } else {
+                  details = 'MAC Address : ' + apiManualData;
+                }
+              }
             }
             if (element == "checkspacesenabled") {
 
@@ -283,8 +293,8 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
 
           totalTest++;
 
-          setTimeout(Util.Validation.setIRTTestResults(element, testBrowserType, result,
-              details, section),2000);
+          setTimeout(Util.Validation.setIRTTestResults(element,
+              testBrowserType, result, details, section), 2000);
         }
 
       });

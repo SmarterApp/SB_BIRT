@@ -27,7 +27,6 @@
     return (typeof (SecureBrowser) != 'undefined');
   };
 
-
   SB.Unified = Unified;
 
 })(TDS.SecureBrowser);
