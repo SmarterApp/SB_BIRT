@@ -1734,3 +1734,17 @@ function updateRecordingTime() {
   }, 1000);
 
 }
+
+
+function macAddressCallBack(data){
+	   
+		var details = '';
+	    if (!Util.Validation.isMacAddressValid(data)) {
+	        details = 'Invalid MAC Address : ' + data;
+	      } else {
+	        details = 'MAC Address : ' + data;
+	      }
+	    
+	    IRT.ApiSpecs.browserapi.checkMACAddressAPI.details = details;
+	   
+}

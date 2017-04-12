@@ -10,7 +10,7 @@
 TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
 var implBrowserType = TDS.SecureBrowser.getBrowserType();
-var runtime = impl != null ? impl.getRunTime() : null;
+var runtime = null;
 TTS.Manager.init(true);
 var ttsImpl = TTS.Manager._service;
 
@@ -62,10 +62,25 @@ function beginBrowserAPITest() {
 
       });
 
-  populateResults($("#jsGrid"), Util.Validation.getResult(), false);
+  populateResults($("#jsGrid"), Util.Validation.getResult(), false);  
+  populateManualMacAddressColumn();
   populateResults($("#jsTTSGrid"), Util.Validation.getTTSResult(), false);
   populateResults($("#jsAudioRecorderGrid"), Util.Validation
       .getAudioTestArray(), false);
+}
+
+function populateManualMacAddressColumn(){
+	  var rowData = $('#jsGrid').data('JSGrid').data[2];
+	  var newData = $('#jsGrid').data('JSGrid').data[2];
+	  if(Util.Browser.isSecureBrowser()){
+	  var getMacAddressInterval = setInterval(function() {
+		    if (IRT.ApiSpecs.browserapi.checkMACAddressAPI.details!=undefined) {
+		      newData.details = IRT.ApiSpecs.browserapi.checkMACAddressAPI.details;
+		      $('#jsGrid').jsGrid("updateItem", rowData, newData);
+		      clearInterval(getMacAddressInterval);
+		    }
+		  }, 1000);
+	  }
 }
 
 function closeBrowser() {
@@ -215,13 +230,9 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
 
             var apiManualData = "";
             if (element == "checkMACAddressAPI") {
-              actualTestApiMethod = actualTestApiMethod + '()';
-              apiManualData = eval(actualTestApiMethod);
-              if (!Util.Validation.isMacAddressValid(apiManualData)) {
-                details = 'Invalid MAC Address : ' + apiManualData;
-              } else {
-                details = 'MAC Address : ' + apiManualData;
-              }
+            	
+              actualTestApiMethod = actualTestApiMethod + '(macAddressCallBack)';
+              eval(actualTestApiMethod);
             }
             if (element == "checkspacesenabled") {
 
@@ -272,8 +283,8 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
 
           totalTest++;
 
-          Util.Validation.setIRTTestResults(element, testBrowserType, result,
-              details, section);
+          setTimeout(Util.Validation.setIRTTestResults(element, testBrowserType, result,
+              details, section),2000);
         }
 
       });

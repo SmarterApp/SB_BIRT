@@ -68,6 +68,8 @@
 <script type="text/javascript" src="../mobile.android.js"></script>
 <script type="text/javascript" src="../mobile.ios.js"></script>
 
+<script type="text/javascript" src="../securebrowser.js"></script>
+
 
 <!-- Utilities -->
 <script type="text/javascript" src="../../Utilities/util.js"></script>
@@ -97,7 +99,6 @@
 <script type="text/javascript" src="irtManualTest.js"></script>
 <script type="text/javascript" src="forbiddenapplist.js"></script>
 
-
 <script type="text/javascript">
 
   $(document)
@@ -113,15 +114,10 @@
             $("#processTestLoad").load("processManualTest.html");
             beginBrowserAPITest();
 
-            if (isAIRSecureBrowser && impl != null && impl.getRunTime() != null
-                && !isMobile) {
-
-              
-
+            if (Util.Browser.isSecureBrowser() && !!SecureBrowser.security.close) {
               $("#closeBrowser").show();
-
               $("#closeBrowser").click(function() {
-                closeBrowser();
+            	  SecureBrowser.security.close(false);
               });
 
             }

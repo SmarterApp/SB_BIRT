@@ -56,7 +56,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     }
 
     // Defaulting AUTO API Check to Certified
-    sbImpl = new TDS.SecureBrowser.Certified();
+    sbImpl = new TDS.SecureBrowser.Unified();
     browserType = certified;
 
     if (sbImpl != null)

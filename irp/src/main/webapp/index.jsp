@@ -42,6 +42,7 @@
   src="<%=contextPath%>/Scripts/WebAudio/certifiedrecorder.js"></script>
 
 
+
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/SecureBrowser/test/irtspec.js"></script>
 
@@ -55,11 +56,12 @@
   src="<%=contextPath%>/Scripts/SecureBrowser/certified.js"></script>
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/SecureBrowser/firefox.js"></script>
+ <script type="text/javascript"
+  src="<%=contextPath%>/Scripts/SecureBrowser/securebrowser.js"></script>
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/SecureBrowser/mobile.android.js"></script>
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/SecureBrowser/mobile.ios.js"></script>
-
 
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/Utilities/util.js"></script>
@@ -132,6 +134,12 @@ var impl = TDS.SecureBrowser.getImplementation();
           enableGetIRTResultButton(event);
 
         });
+        
+        $("#reportId").change(function(event) {
+
+            enableGetIRTResultButton(event);
+
+          });
 
         $("#versionInfo").html('v.' + $.cookie("version"));
 
@@ -160,12 +168,11 @@ var impl = TDS.SecureBrowser.getImplementation();
         $('#disableOptionScoring').checkboxradio();
         $("#tabs").tabs();
 
-        if (Util.Browser.isSecure() && !Util.Browser.isMobile()) {
-          $("#separator").show();
+        if (Util.Browser.isSecureBrowser() && !!SecureBrowser.security.close) {
+          
           $("#closeBrowser").show();
           $("#closeBrowser").click(function() {
             SecureBrowser.security.close(false);
-            //impl.close(false);
           });
         }
         <%if ("Y".equalsIgnoreCase(debugMode)) {%>

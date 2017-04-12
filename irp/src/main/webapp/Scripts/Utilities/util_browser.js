@@ -405,6 +405,13 @@
     }
   };
 
+  // check if browser has "SecureBrowser" as Global Object
+  Browser.isSecureBrowser = function() {
+    var hasAPI = (typeof (window.SecureBrowser) == 'object');
+
+    return hasAPI;
+  };
+
   Util.Browser = Browser;
 
 })(Util);

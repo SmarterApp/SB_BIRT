@@ -61,6 +61,8 @@
 
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/certified.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/firefox.js"></script>
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/SecureBrowser/securebrowser.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/mobile.android.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/mobile.ios.js"></script>
 
@@ -80,6 +82,7 @@ var impl = TDS.SecureBrowser.getImplementation();
   $(document).ready(
       function() {
 
+    	$.cookie("contextPath",'<%=contextPath%>');
         var reportId = '${reportId}';
         var irtVersion = '${version}';
         
@@ -126,10 +129,10 @@ var impl = TDS.SecureBrowser.getImplementation();
           }
         });
         
-        if (Util.Browser.isSecure() && !Util.Browser.isMobile()) {
+        if (Util.Browser.isSecureBrowser() && !!SecureBrowser.security.close) {
           $("#closeBrowser").show();
           $("#closeBrowser").click(function() {
-            impl.close(false);
+        	  SecureBrowser.security.close(false);
           });
         }
 
