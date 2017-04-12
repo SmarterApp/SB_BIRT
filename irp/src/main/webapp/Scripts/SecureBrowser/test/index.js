@@ -137,11 +137,6 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
            */
           isDeprecated = eval(elementKey + "isDeprecated");
 
-          if (isDeprecated) {
-            result = true;
-            details = 'testApi_removed';
-          }
-
           /**
            * apiType to test for Object, function or boolean
            */
@@ -244,6 +239,12 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
             result = false;
             details = 'testApi_exists';
           }
+
+          if (isDeprecated && !result) {
+            result = true;
+            details = 'testApi_removed';
+          }
+
         } catch (ex) {
           if (isDeprecated) {
             result = true;

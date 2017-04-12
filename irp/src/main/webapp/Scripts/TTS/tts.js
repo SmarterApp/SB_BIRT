@@ -228,7 +228,8 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
     else if (Util.Browser.isSecure() && Util.Browser.getSecureVersion() > 0
         && YAHOO.lang.isFunction(TTSService_SB) && !Util.Browser.isMobile()) {
       service = new TTSService_SB();
-      TTS.Manager.browserType = securebrowser;
+      /* TTS.Manager.browserType = securebrowser; */
+      TTS.Manager.browserType = certified;
     }
     // check for mobile secure browser
     else if (Util.Browser.isSecure()
@@ -244,9 +245,9 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
     }
 
     // set default?
-   /* if (service == null) {
-      service = new TTSService_Base();
-    }*/
+    /*
+     * if (service == null) { service = new TTSService_Base(); }
+     */
 
     // check if TTS is supported and load it
     if (!service || !service.isSupported()) {

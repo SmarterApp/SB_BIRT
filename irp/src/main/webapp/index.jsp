@@ -164,7 +164,8 @@ var impl = TDS.SecureBrowser.getImplementation();
           $("#separator").show();
           $("#closeBrowser").show();
           $("#closeBrowser").click(function() {
-            impl.close(false);
+            SecureBrowser.security.close(false);
+            //impl.close(false);
           });
         }
         <%if ("Y".equalsIgnoreCase(debugMode)) {%>

@@ -55,6 +55,10 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       recorderImpl = new Recorder_CertifiedService();
     }
 
+    // Defaulting AUTO API Check to Certified
+    sbImpl = new TDS.SecureBrowser.Certified();
+    browserType = certified;
+
     if (sbImpl != null)
       sbImpl.initialize();
   }

@@ -167,7 +167,7 @@ var impl = TDS.SecureBrowser.getImplementation();
             
       
             var apiSpecLink = eval('IRT.BrowserSpecPath.'+eval('userInfoJsonObj.' + userItem));
-            var finalSpecLink = '<%=contextPath%>' + apiSpecLink;
+            var finalSpecLink = apiSpecLink;
             
             
             var specLink =  "<a href='"+finalSpecLink+"' id='specLinkId' target='_blank'>"+eval('userInfoJsonObj.' + userItem)+"</a>";

@@ -194,22 +194,25 @@ public class ReportDAOImpl implements ReportDAO
   public void deleteReportAfterRetentionPeriod () {
     /** Getting Retention Policy # of Days from JVM Param **/
     Integer reportRetentionDays = Integer.parseInt (System.getProperty ("birt.app.report.retention"));
-
+    System.out.println ("No of Retention Days from JVM Param " + reportRetentionDays);
     Calendar calendar = Calendar.getInstance ();
     /** Subtracting # of retention days from Current Date **/
     calendar.add (Calendar.DATE, -reportRetentionDays);
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("dd-MMM-yyyy");
 
+    System.out.println ("Calendar Date " + simpleDateFormat.format (calendar.getTime ()));
     /**
      * Getting reports where dateAdded is less then or equal to ( Current Date -
      * RetentionDays)
      **/
     Query reportDeleteQuery = new Query ().addCriteria (Criteria.where ("dateAdded").lte (simpleDateFormat.format (calendar.getTime ())));
     List<JSONObject> reportsToDelete = (List<JSONObject>) mongoTemplate.find (reportDeleteQuery, JSONObject.class, RESULT_COLLECTION);
+    System.out.println ("reportsToDelete Object length " + reportsToDelete.size ());
     JSONObject reportDeleteObj;
     for (JSONObject reportObj : reportsToDelete) {
       String reportId = reportObj.get ("reportId").toString ();
+      System.out.println ("Report Id to Delete " + reportId);
       Query deleteQuery = new Query ().addCriteria (Criteria.where ("reportId").is (reportId));
       mongoTemplate.remove (deleteQuery, JSONObject.class, RESULT_COLLECTION);
 
