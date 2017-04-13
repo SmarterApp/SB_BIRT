@@ -74,6 +74,41 @@
     });
   };
   
+  Unified.prototype.capabilityManualTestSupported = function() {
+    try {
+      if (this._hasAPI()
+          && typeof SecureBrowser.security.getCapability === 'function'
+          && typeof SecureBrowser.security.setCapability === 'function') {
+        return true;
+      }
+    } catch (ex) {
+      alert('Exception occurred ' + ex.message);
+    }
+    return false;
+  };
+  
+  Unified.prototype.setCapability = function(property, enable) {
+    try {
+      if (this._hasAPI()
+          && typeof SecureBrowser.security.setCapability === 'function') {
+        SecureBrowser.security.setCapability(property, enable);
+      }
+    } catch (ex) {
+      alert('Exception occurred ' + ex.message);
+    }
+  };
+  
+  Unified.prototype.getCapability = function(property) {
+    try {
+      if (this._hasAPI() && typeof SecureBrowser.security.getCapability === 'function') {
+        return SecureBrowser.security.getCapability(property);
+      }
+    } catch (ex) {
+      alert('Exception occurred ' + ex.message);
+    }
+    return false;
+  };
+  
   SB.Unified = Unified;
 
 })(TDS.SecureBrowser);

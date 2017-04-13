@@ -411,6 +411,19 @@
 
     return hasAPI;
   };
+  
+  // check if browser has "SecureBrowser" as Global Object
+  Browser.hasSecureBrowserTTSSupport = function() {
+    try {
+      if (Browser.isSecureBrowser && typeof SecureBrowser.tts === 'object') {
+        return true
+      }
+    } catch (ex) {
+      console.log('Exception occurred ' + ex.message);
+      return false;
+    }
+    return false;
+  };
 
   Util.Browser = Browser;
 

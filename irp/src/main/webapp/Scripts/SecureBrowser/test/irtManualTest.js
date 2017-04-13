@@ -752,7 +752,7 @@ function udpateCapabilityStatusGrid() {
   $.extend(itemDetail, {
     "instruction" : selectedCapability.label + " [ " + selectedCapability.value
         + " ] ",
-    "testResult" : testResult.toString()
+    "testResult" : (testResult!=undefined && testResult!=null) ? testResult.toString() : "Not Available"
   });
 
   $("#capabilityPropertyGrid")
@@ -844,15 +844,7 @@ function loadVoices() {
     }
   } else {
     if (!!ttsImpl.getVoices) {
-      // alert(r.voices);
-      var voicelist = ttsImpl.getVoices();
-      var selectList = document.getElementById("voices");
-      for (var i = 0; i < voicelist.length; i++) {
-        var opt = document.createElement("option");
-        opt.text = voicelist[i];
-        opt.value = voicelist[i];
-        selectList.options.add(opt);
-      }
+      ttsImpl.getVoices();
     } else {
       alert("Cannot retrieve system voice list");
     }
@@ -944,20 +936,8 @@ function getTTSStatus() {
 }
 
 function muteUnmuteSystem(enable) {
-  if (!!ttsImpl.setsystemMute) {
+  if (!!ttsImpl.setTTSsystemMute) {
     ttsImpl.setTTSsystemMute(enable);
-  }
-}
-
-function setMuteUnMuteButtonText() {
-  if (!!ttsImpl.getsystemMute) {
-    if (ttsImpl.getsystemMute()) {
-      $('button#systemMute').text('Unmute');
-    } else {
-      $('button#systemMute').text('Mute');
-    }
-  } else {
-    $('button#systemMute').text('Mute/UnMute');
   }
 }
 
@@ -1300,7 +1280,7 @@ function populatePropertyGrid() {
 
     propertyGridArray.push({
       "instruction" : item + " [ " + capabilityType + " ] ",
-      "testResult" : testResult.toString()
+      "testResult" : (testResult!=undefined && testResult!=null)? testResult.toString() :"Not Available"
     });
 
   });

@@ -241,10 +241,14 @@ function TTSService_WebSpeech()
 
   this.getVoices = function()
   {
-    return this.voices.map(function (voice) { return voice.name; }); 
-    /*
-     * Setup and assigned by listening for the init call.
-     */
+    var voicelist = this.voices.map(function (voice) { return voice.name; }); 
+    var selectList = document.getElementById("voices");
+    for (var i = 0; i < voicelist.length; i++) {
+      var opt = document.createElement("option");
+      opt.text = voicelist[i];
+      opt.value = voicelist[i];
+      selectList.options.add(opt);
+    }
   };
 
   // get the current system voice

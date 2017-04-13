@@ -215,39 +215,13 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
     // Otherwise, rely on the applet based TTS
     var service = null;
 
-    // check for certified SB
-    if (Util.Browser.isCertified()) {
-
-      if (TTS.Util.supportsWebSpeech()) {
-        service = new TTSService_WebSpeech();
-        TTS.Manager.browserType = webspeech;
-      } else {
-        service = new TTSService_Certified();
-      }
-    } // check for native SB and SB service exists
-    else if (Util.Browser.isSecure() && Util.Browser.getSecureVersion() > 0
-        && YAHOO.lang.isFunction(TTSService_SB) && !Util.Browser.isMobile()) {
-      service = new TTSService_SB();
-      /* TTS.Manager.browserType = securebrowser; */
-      TTS.Manager.browserType = certified;
-    }
-    // check for mobile secure browser
-    else if (Util.Browser.isSecure()
-        && (Util.Browser.isAndroid() || (Util.Browser.isIOS() && (Util.Browser
-            .getSecureVersion() >= 2)))) {
-      service = new TTSService_MobileSB();
-      TTS.Manager.browserType = mobile;
-    }
-    // Check for Web Speech support
-    else if (TTS.Util.supportsWebSpeech()) {
+    // check for certified SB    
+    if(Util.Browser.hasSecureBrowserTTSSupport()){
+      service = new TTSService_Unified();
+    } else if (TTS.Util.supportsWebSpeech()) {
       service = new TTSService_WebSpeech();
       TTS.Manager.browserType = webspeech;
     }
-
-    // set default?
-    /*
-     * if (service == null) { service = new TTSService_Base(); }
-     */
 
     // check if TTS is supported and load it
     if (!service || !service.isSupported()) {
