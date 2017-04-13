@@ -86,7 +86,8 @@
         return true;
       }
     } catch (ex) {
-      alert('Exception occurred ' + ex.message);
+      console.log('Exception occurred ' + ex.message);
+      return false;
     }
     return false;
   };
@@ -98,7 +99,7 @@
         SecureBrowser.security.setCapability(property, enable);
       }
     } catch (ex) {
-      alert('Exception occurred ' + ex.message);
+      console.log('Exception occurred ' + ex.message);
     }
   };
   
@@ -108,7 +109,8 @@
         return SecureBrowser.security.getCapability(property);
       }
     } catch (ex) {
-      alert('Exception occurred ' + ex.message);
+      console.log('Exception occurred ' + ex.message);
+      return false;
     }
     return false;
   };
