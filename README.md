@@ -58,6 +58,7 @@ BIRT must be setup with the following JVM properties:
 * Debug Mode (Y/N) : `birt.app.debug.mode`
 * ReportID Length (integer) : `birt.app.reportid.length` 
 * BIRT Report Retention period (days) : `birt.app.report.retention`
+* BIRT GitHub Branch name : `-Dbirt.git.branch`
 
 ```
 Examples:
@@ -70,6 +71,7 @@ Examples:
  -Dbirt.app.debug.mode=Y 
  -Dbirt.app.reportid.length=8 
  -Dbirt.app.report.retention=30
+ -Dbirt.git.branch = R01.02.01-20170412
 ```
 
 ### Mongo DB Configuration
