@@ -725,9 +725,7 @@ function examineProcessList() {
   $("#concludeButton").show();
 
   createButton($("#conclude"), "OK", "OK");
-  var forbiddenRunningApps = impl != null ? impl
-      .examineProcessList(selectedProcess) : selectedProcess;
-  populateRunningForbiddenApplist(forbiddenRunningApps);
+  impl.examineProcessList(selectedProcess);
 
 }
 
@@ -754,7 +752,7 @@ function udpateCapabilityStatusGrid() {
   $.extend(itemDetail, {
     "instruction" : selectedCapability.label + " [ " + selectedCapability.value
         + " ] ",
-    "testResult" : testResult.toString()
+    "testResult" : (testResult!=undefined && testResult!=null) ? testResult.toString() : "Not Available"
   });
 
   $("#capabilityPropertyGrid")
@@ -846,15 +844,7 @@ function loadVoices() {
     }
   } else {
     if (!!ttsImpl.getVoices) {
-      // alert(r.voices);
-      var voicelist = ttsImpl.getVoices();
-      var selectList = document.getElementById("voices");
-      for (var i = 0; i < voicelist.length; i++) {
-        var opt = document.createElement("option");
-        opt.text = voicelist[i];
-        opt.value = voicelist[i];
-        selectList.options.add(opt);
-      }
+      ttsImpl.getVoices();
     } else {
       alert("Cannot retrieve system voice list");
     }
@@ -946,20 +936,8 @@ function getTTSStatus() {
 }
 
 function muteUnmuteSystem(enable) {
-  if (!!ttsImpl.setsystemMute) {
+  if (!!ttsImpl.setTTSsystemMute) {
     ttsImpl.setTTSsystemMute(enable);
-  }
-}
-
-function setMuteUnMuteButtonText() {
-  if (!!ttsImpl.getsystemMute) {
-    if (ttsImpl.getsystemMute()) {
-      $('button#systemMute').text('Unmute');
-    } else {
-      $('button#systemMute').text('Mute');
-    }
-  } else {
-    $('button#systemMute').text('Mute/UnMute');
   }
 }
 
@@ -1302,7 +1280,7 @@ function populatePropertyGrid() {
 
     propertyGridArray.push({
       "instruction" : item + " [ " + capabilityType + " ] ",
-      "testResult" : testResult.toString()
+      "testResult" : (testResult!=undefined && testResult!=null)? testResult.toString() :"Not Available"
     });
 
   });
@@ -1428,29 +1406,7 @@ function loadRunningForbiddenApps(forbiddenArrayFromApi) {
 
 }
 
-function populateRunningForbiddenApplist(forbiddenArrayFromApi) {
 
-  $("#forbiddenAppListGrid").jsGrid({
-    width : "100%",
-    height : 250,
-    data : loadRunningForbiddenApps(forbiddenArrayFromApi),
-    selecting : false,
-
-    fields : [ {
-      title : 'Description',
-      name : "processdescription",
-      type : "text",
-      width : 200
-    }, {
-      title : 'Name',
-      name : "processname",
-      type : "text",
-      width : 100
-    }
-
-    ]
-  });
-}
 
 function recorderComponentInitialize() {
 
@@ -1732,5 +1688,18 @@ function updateRecordingTime() {
     }
 
   }, 1000);
+
+}
+
+function macAddressCallBack(data) {
+
+  var details = '';
+  if (!Util.Validation.isMacAddressValid(data)) {
+    details = 'Invalid MAC Address : ' + data;
+  } else {
+    details = 'MAC Address : ' + data;
+  }
+
+  IRT.ApiSpecs.browserapi.checkMACAddressAPI.details = details;
 
 }

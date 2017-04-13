@@ -7,6 +7,7 @@
       String version = System.getProperty("birt.app.version");
       String debugMode = System.getProperty("birt.app.debug.mode");
       String reportIdLength = System.getProperty ("birt.app.reportid.length");
+      String gitBranch = System.getProperty("birt.git.branch");
 %>
 <!-- JQuery -->
 <script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>
@@ -42,6 +43,7 @@
   src="<%=contextPath%>/Scripts/WebAudio/certifiedrecorder.js"></script>
 
 
+
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/SecureBrowser/test/irtspec.js"></script>
 
@@ -55,11 +57,12 @@
   src="<%=contextPath%>/Scripts/SecureBrowser/certified.js"></script>
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/SecureBrowser/firefox.js"></script>
+ <script type="text/javascript"
+  src="<%=contextPath%>/Scripts/SecureBrowser/securebrowser.js"></script>
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/SecureBrowser/mobile.android.js"></script>
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/SecureBrowser/mobile.ios.js"></script>
-
 
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/Utilities/util.js"></script>
@@ -86,9 +89,11 @@ var impl = TDS.SecureBrowser.getImplementation();
         $.removeCookie("name");
         $.removeCookie("emailId");
         $.removeCookie("browserDetails");
+        $.removeCookie("gitBranch");
         $.removeCookie("organization");
         $.removeCookie("optionalScoring");
         $.cookie("version",  '<%=version%>');
+        $.cookie("gitBranch" ,'<%=gitBranch%>');
         $.removeCookie("captchaInfo");
         
         $.cookie("contextPath",'<%=contextPath%>');
@@ -132,8 +137,16 @@ var impl = TDS.SecureBrowser.getImplementation();
           enableGetIRTResultButton(event);
 
         });
+        
+        $("#reportId").change(function(event) {
 
-        $("#versionInfo").html('v.' + $.cookie("version"));
+            enableGetIRTResultButton(event);
+
+          });
+
+        var versionInfoLink =  "<a href='https://github.com/SmarterApp/SB_BIRT/commits/"+$.cookie("gitBranch")+"' id='versionLinkId' target='_blank' class='version-details'>v."+$.cookie("version")+"</a>";
+        $("#versionInfo").html(versionInfoLink);
+       
 
         $(document).tooltip({
           position : {
@@ -160,12 +173,11 @@ var impl = TDS.SecureBrowser.getImplementation();
         $('#disableOptionScoring').checkboxradio();
         $("#tabs").tabs();
 
-        if (Util.Browser.isSecure() && !Util.Browser.isMobile()) {
-          $("#separator").show();
+        if (Util.Browser.isSecureBrowser() && !!SecureBrowser.security.close) {
+          
           $("#closeBrowser").show();
           $("#closeBrowser").click(function() {
             SecureBrowser.security.close(false);
-            //impl.close(false);
           });
         }
         <%if ("Y".equalsIgnoreCase(debugMode)) {%>
@@ -254,6 +266,18 @@ var impl = TDS.SecureBrowser.getImplementation();
   }
   
 </script>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function()
+{ (i[r].q=i[r].q||[]).push(arguments)}
+,i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-27429193-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+
 </head>
 <body>
 
@@ -267,7 +291,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"
           title="Smarter Balanced Assessment Consortium"> <span>Browser
           Implementation Readiness Test (BIRT)</span> <span id="versionInfo"
-          class="version-details"></span>
+          ></span>
       </h1>
       <p class="header-paragraph" align="right">
         <img alt="Clear Cache" title="Clear Cache"

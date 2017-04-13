@@ -265,6 +265,8 @@
 	display: table;
 	margin-right: auto;
 	margin-left: auto;
+	text-decoration: none;
+    color: #008AB1;
 }
 
 .generated-version-details {

@@ -7,6 +7,7 @@
 <%
   String contextPath = request.getContextPath();
   String version = System.getProperty ("birt.app.version");
+  String gitBranch = System.getProperty("birt.git.branch");
 %>
 <!-- JQuery -->
 <script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>
@@ -61,6 +62,8 @@
 
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/certified.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/firefox.js"></script>
+<script type="text/javascript"
+  src="<%=contextPath%>/Scripts/SecureBrowser/securebrowser.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/mobile.android.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/mobile.ios.js"></script>
 
@@ -80,8 +83,10 @@ var impl = TDS.SecureBrowser.getImplementation();
   $(document).ready(
       function() {
 
+    	$.cookie("contextPath",'<%=contextPath%>');
         var reportId = '${reportId}';
         var irtVersion = '${version}';
+        var gitBranch = '<%=gitBranch %>'
         
         
         $("#reportInfo").html($("#reportInfo").html() + ' for Report Id: ' + reportId);
@@ -117,7 +122,8 @@ var impl = TDS.SecureBrowser.getImplementation();
           window.print();
         });
 
-        $("#versionInfo").html('v.' + irtVersion);
+        var versionInfoLink =  "<a href='https://github.com/SmarterApp/SB_BIRT/commits/"+gitBranch+"' id='versionLinkId' target='_blank' class='version-details'>v."+irtVersion+"</a>";
+        $("#versionInfo").html(versionInfoLink);
 
         $(document).tooltip({
           position : {
@@ -126,10 +132,10 @@ var impl = TDS.SecureBrowser.getImplementation();
           }
         });
         
-        if (Util.Browser.isSecure() && !Util.Browser.isMobile()) {
+        if (Util.Browser.isSecureBrowser() && !!SecureBrowser.security.close) {
           $("#closeBrowser").show();
           $("#closeBrowser").click(function() {
-            impl.close(false);
+        	  SecureBrowser.security.close(false);
           });
         }
 
@@ -222,6 +228,17 @@ var impl = TDS.SecureBrowser.getImplementation();
   }
 </script>
 
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function()
+{ (i[r].q=i[r].q||[]).push(arguments)}
+,i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-27429193-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+
 </head>
 
 <body>
@@ -232,7 +249,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           class="smarter-logo"
           title="Smarter Balanced Assessment Consortium"
           src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"> <span>Browser Implementation Readiness Test (BIRT) Report</span> 
-          <span id="versionInfo" class="version-details"></span>
+          <span id="versionInfo"></span>
       </h1>
       <p class="header-paragraph" align="right">
         <img alt="Home" title="Home" src="<%=contextPath%>/Shared/images/home.png" id="irtHome"  class="header-ui-icon">
