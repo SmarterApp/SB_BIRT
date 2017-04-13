@@ -725,9 +725,7 @@ function examineProcessList() {
   $("#concludeButton").show();
 
   createButton($("#conclude"), "OK", "OK");
-  var forbiddenRunningApps = impl != null ? impl
-      .examineProcessList(selectedProcess) : selectedProcess;
-  populateRunningForbiddenApplist(forbiddenRunningApps);
+  impl.examineProcessList(selectedProcess);
 
 }
 
@@ -1428,29 +1426,7 @@ function loadRunningForbiddenApps(forbiddenArrayFromApi) {
 
 }
 
-function populateRunningForbiddenApplist(forbiddenArrayFromApi) {
 
-  $("#forbiddenAppListGrid").jsGrid({
-    width : "100%",
-    height : 250,
-    data : loadRunningForbiddenApps(forbiddenArrayFromApi),
-    selecting : false,
-
-    fields : [ {
-      title : 'Description',
-      name : "processdescription",
-      type : "text",
-      width : 200
-    }, {
-      title : 'Name',
-      name : "processname",
-      type : "text",
-      width : 100
-    }
-
-    ]
-  });
-}
 
 function recorderComponentInitialize() {
 

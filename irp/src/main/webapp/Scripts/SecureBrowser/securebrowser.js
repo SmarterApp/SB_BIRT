@@ -26,7 +26,54 @@
   Unified.prototype._hasAPI = function() {
     return (typeof (SecureBrowser) != 'undefined');
   };
+  
+  Unified.prototype.examineProcessManualTestSupported = function() {
+    try {
+      if (this._hasAPI()
+          && typeof SecureBrowser.security.examineProcessList  === 'function') {
+        return true;
+      }
+    } catch (ex) {
+      alert('Exception occurred ' + ex.message);
+    }
+    return false;
+  };
+  
+  Unified.prototype.examineProcessList = function(blacklistedProcessList) {
+    try {
+      if (this._hasAPI()
+          && typeof SecureBrowser.security.examineProcessList === 'function') {
+        SecureBrowser.security.examineProcessList(blacklistedProcessList,this.populateRunningForbiddenApplist);
+      }
+    } catch (ex) {
+      alert('Exception occurred ' + ex.message);
+    }
+  };
 
+  Unified.prototype.populateRunningForbiddenApplist = function(forbiddenArrayFromApi) {
+
+    $("#forbiddenAppListGrid").jsGrid({
+      width : "100%",
+      height : 250,
+      data : loadRunningForbiddenApps(forbiddenArrayFromApi),
+      selecting : false,
+
+      fields : [ {
+        title : 'Description',
+        name : "processdescription",
+        type : "text",
+        width : 200
+      }, {
+        title : 'Name',
+        name : "processname",
+        type : "text",
+        width : 100
+      }
+
+      ]
+    });
+  };
+  
   SB.Unified = Unified;
 
 })(TDS.SecureBrowser);
