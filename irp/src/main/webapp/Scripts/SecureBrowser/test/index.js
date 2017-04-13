@@ -285,8 +285,8 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
 
           totalTest++;
 
-          setTimeout(Util.Validation.setIRTTestResults(element,
-              testBrowserType, result, details, section), 2000);
+          Util.Validation.setIRTTestResults(element, testBrowserType, result,
+              details, section);
         }
 
       });
