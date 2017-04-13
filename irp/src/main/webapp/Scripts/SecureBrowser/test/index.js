@@ -234,14 +234,6 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
                 actualTestApiMethod = actualTestApiMethod
                     + '(macAddressCallBack)';
                 eval(actualTestApiMethod);
-              } else {
-                actualTestApiMethod = actualTestApiMethod + '()';
-                apiManualData = eval(actualTestApiMethod);
-                if (!Util.Validation.isMacAddressValid(apiManualData)) {
-                  details = 'Invalid MAC Address : ' + apiManualData;
-                } else {
-                  details = 'MAC Address : ' + apiManualData;
-                }
               }
             }
             if (element == "checkspacesenabled") {
