@@ -141,7 +141,9 @@ var impl = TDS.SecureBrowser.getImplementation();
 
           });
 
-        $("#versionInfo").html('v.' + $.cookie("version"));
+        var versionInfoLink =  "<a href='https://github.com/SmarterApp/SB_BIRT/commits/"+$.cookie("version")+"' id='versionLinkId' target='_blank' class='version-details'>v."+$.cookie("version")+"</a>";
+        $("#versionInfo").html(versionInfoLink);
+       
 
         $(document).tooltip({
           position : {
@@ -261,6 +263,18 @@ var impl = TDS.SecureBrowser.getImplementation();
   }
   
 </script>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function()
+{ (i[r].q=i[r].q||[]).push(arguments)}
+,i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-27429193-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+
 </head>
 <body>
 
@@ -274,7 +288,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"
           title="Smarter Balanced Assessment Consortium"> <span>Browser
           Implementation Readiness Test (BIRT)</span> <span id="versionInfo"
-          class="version-details"></span>
+          ></span>
       </h1>
       <p class="header-paragraph" align="right">
         <img alt="Clear Cache" title="Clear Cache"

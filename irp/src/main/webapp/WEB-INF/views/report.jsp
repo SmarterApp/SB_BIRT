@@ -120,7 +120,8 @@ var impl = TDS.SecureBrowser.getImplementation();
           window.print();
         });
 
-        $("#versionInfo").html('v.' + irtVersion);
+        var versionInfoLink =  "<a href='https://github.com/SmarterApp/SB_BIRT/commits/"+irtVersion+"' id='versionLinkId' target='_blank' class='version-details'>v."+irtVersion+"</a>";
+        $("#versionInfo").html(versionInfoLink);
 
         $(document).tooltip({
           position : {
@@ -225,6 +226,17 @@ var impl = TDS.SecureBrowser.getImplementation();
   }
 </script>
 
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function()
+{ (i[r].q=i[r].q||[]).push(arguments)}
+,i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-27429193-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+
 </head>
 
 <body>
@@ -235,7 +247,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           class="smarter-logo"
           title="Smarter Balanced Assessment Consortium"
           src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"> <span>Browser Implementation Readiness Test (BIRT) Report</span> 
-          <span id="versionInfo" class="version-details"></span>
+          <span id="versionInfo"></span>
       </h1>
       <p class="header-paragraph" align="right">
         <img alt="Home" title="Home" src="<%=contextPath%>/Shared/images/home.png" id="irtHome"  class="header-ui-icon">
