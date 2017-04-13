@@ -10,7 +10,7 @@ report. The BIRT:
 * Incorporates appropriate HTML support tests as recommended by supplier and approved by Smarter Balanced to evaluate support of the HTML features required by the specification. Currently, these include CSS3 and HTML5.
 * Produces an Implementation Readiness Report for any tested browser.
 
-<sup>*</sup> Note that as of 06-Apr-2017, BIRT only tests for the legacy APIs. Support for the Secure Browser 10 APIs in this document will be added over the coming months.
+<sup>*</sup> Note that as of 13-Apr-2017, BIRT tests for the legacy APIs for mobile secure browsers. All other tests are geared towards the new APIs. Mobile support for the new APIs will be added in the coming weeks.
 
 ## License ##
 * This project is licensed under the [AIR Open Source License v1.0](http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf).
