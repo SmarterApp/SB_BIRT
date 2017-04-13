@@ -22,6 +22,10 @@
   Unified.prototype.initialize = function() {
 
   };
+ 
+  Unified.prototype.getRunTime = function() {
+    return null;
+  };
 
   Unified.prototype._hasAPI = function() {
     return (typeof (SecureBrowser) != 'undefined');

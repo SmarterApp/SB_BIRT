@@ -30,7 +30,9 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       recorderImpl = new Recorder_WebAudioService();
     }
 
-    if (Util.Browser.isCertified()) {
+    if (Util.Browser.isSecureBrowser()) {
+      sbImpl = new TDS.SecureBrowser.Unified();
+    } else if (Util.Browser.isCertified()) {
       sbImpl = new TDS.SecureBrowser.Certified();
     } else if (Util.Browser.isSecure()) {
       if (Util.Browser.isCertified()) {
@@ -54,10 +56,6 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     if (recorderImpl == null) {
       recorderImpl = new Recorder_CertifiedService();
     }
-
-    // Defaulting AUTO API Check to Certified
-    sbImpl = new TDS.SecureBrowser.Unified();
-    browserType = certified;
 
     if (sbImpl != null)
       sbImpl.initialize();

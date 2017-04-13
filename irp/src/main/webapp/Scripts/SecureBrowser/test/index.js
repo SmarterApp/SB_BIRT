@@ -10,7 +10,7 @@
 TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
 var implBrowserType = TDS.SecureBrowser.getBrowserType();
-var runtime = (impl != null && !!impl.getRuntime()) ? impl.getRunTime() : null;
+var runtime = (impl != null && !!impl.getRuntime) ? impl.getRunTime() : null;
 TTS.Manager.init(true);
 var ttsImpl = TTS.Manager._service;
 
