@@ -7,6 +7,7 @@
       String version = System.getProperty("birt.app.version");
       String debugMode = System.getProperty("birt.app.debug.mode");
       String reportIdLength = System.getProperty ("birt.app.reportid.length");
+      String gitBranch = System.getProperty("birt.git.branch");
 %>
 <!-- JQuery -->
 <script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>
@@ -88,9 +89,11 @@ var impl = TDS.SecureBrowser.getImplementation();
         $.removeCookie("name");
         $.removeCookie("emailId");
         $.removeCookie("browserDetails");
+        $.removeCookie("gitBranch");
         $.removeCookie("organization");
         $.removeCookie("optionalScoring");
         $.cookie("version",  '<%=version%>');
+        $.cookie("gitBranch" ,'<%=gitBranch%>');
         $.removeCookie("captchaInfo");
         
         $.cookie("contextPath",'<%=contextPath%>');
@@ -141,7 +144,7 @@ var impl = TDS.SecureBrowser.getImplementation();
 
           });
 
-        var versionInfoLink =  "<a href='https://github.com/SmarterApp/SB_BIRT/commits/"+$.cookie("version")+"' id='versionLinkId' target='_blank' class='version-details'>v."+$.cookie("version")+"</a>";
+        var versionInfoLink =  "<a href='https://github.com/SmarterApp/SB_BIRT/commits/"+$.cookie("gitBranch")+"' id='versionLinkId' target='_blank' class='version-details'>v."+$.cookie("version")+"</a>";
         $("#versionInfo").html(versionInfoLink);
        
 

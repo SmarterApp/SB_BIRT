@@ -151,7 +151,7 @@
             });
 
             
-            var versionInfoLink =  "<a href='https://github.com/SmarterApp/SB_BIRT/commits/"+$.cookie("version")+"' id='versionLinkId' target='_blank' class='version-details'>v."+$.cookie("version")+"</a>";
+            var versionInfoLink =  "<a href='https://github.com/SmarterApp/SB_BIRT/commits/"+$.cookie("gitBranch")+"' id='versionLinkId' target='_blank' class='version-details'>v."+$.cookie("version")+"</a>";
             $("#versionInfo").html(versionInfoLink);
 
             $(document).tooltip({

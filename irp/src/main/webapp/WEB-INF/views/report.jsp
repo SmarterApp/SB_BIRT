@@ -7,6 +7,7 @@
 <%
   String contextPath = request.getContextPath();
   String version = System.getProperty ("birt.app.version");
+  String gitBranch = System.getProperty("birt.git.branch");
 %>
 <!-- JQuery -->
 <script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>
@@ -85,6 +86,7 @@ var impl = TDS.SecureBrowser.getImplementation();
     	$.cookie("contextPath",'<%=contextPath%>');
         var reportId = '${reportId}';
         var irtVersion = '${version}';
+        var gitBranch = '<%=gitBranch %>'
         
         
         $("#reportInfo").html($("#reportInfo").html() + ' for Report Id: ' + reportId);
@@ -120,7 +122,7 @@ var impl = TDS.SecureBrowser.getImplementation();
           window.print();
         });
 
-        var versionInfoLink =  "<a href='https://github.com/SmarterApp/SB_BIRT/commits/"+irtVersion+"' id='versionLinkId' target='_blank' class='version-details'>v."+irtVersion+"</a>";
+        var versionInfoLink =  "<a href='https://github.com/SmarterApp/SB_BIRT/commits/"+gitBranch+"' id='versionLinkId' target='_blank' class='version-details'>v."+irtVersion+"</a>";
         $("#versionInfo").html(versionInfoLink);
 
         $(document).tooltip({
