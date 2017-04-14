@@ -25,6 +25,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
 
   function initialize() {
 
+    $.cookie("browserspec", "New");
     if (Util.Browser.isWebAudioApiSupported()) {
       webAudioBrowserType = webaudio;
       recorderImpl = new Recorder_WebAudioService();
@@ -41,11 +42,13 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         sbImpl = new TDS.SecureBrowser.Mobile.iOS();
         browserType = mobile;
         webAudioBrowserType = mobile;
+        $.cookie("browserspec", "Legacy");
         recorderImpl = new Recorder_MobileAudioService();
       } else if (Util.Browser.isAndroid()) {
         sbImpl = new TDS.SecureBrowser.Mobile.Android();
         browserType = mobile;
         webAudioBrowserType = mobile;
+        $.cookie("browserspec", "Legacy");
         recorderImpl = new Recorder_MobileAudioService();
       } else {
         sbImpl = new TDS.SecureBrowser.Firefox();
