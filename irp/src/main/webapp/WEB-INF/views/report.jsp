@@ -338,6 +338,23 @@ ga('send', 'pageview');
 
     <div id="reportInfoDialog"></div>
 
+    <div>&nbsp;</div>
+
+    
   </div>
+  
+  
+  <div>&nbsp;</div>
+  <div class="report-main">
+    <div class="birt-footer">
+      <ul class="x-nav">
+        <li><a
+          href="http://www.smarterbalanced.org/privacy-policy/"
+          class="version-details" target="_blank">Website Privacy
+            Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
 </body>
 </html>

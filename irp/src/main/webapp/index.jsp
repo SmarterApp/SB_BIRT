@@ -155,20 +155,6 @@ var impl = TDS.SecureBrowser.getImplementation();
           }
         });
 
-        $('#newBirtTest').tooltip({
-          position : {
-            my : "center bottom-10",
-            at : "center top"
-          }
-        });
-        
-        $('#birtReport').tooltip({
-          position : {
-            my : "center bottom-10",
-            at : "center top"
-          }
-        });
-
         $('#enableOptionScoring').checkboxradio();
         $('#disableOptionScoring').checkboxradio();
         $("#tabs").tabs();
@@ -180,12 +166,6 @@ var impl = TDS.SecureBrowser.getImplementation();
             SecureBrowser.security.close(false);
           });
         }
-        <%if ("Y".equalsIgnoreCase(debugMode)) {%>
-        $("#clearBrowserCache").show();
-        $("#clearBrowserCache").click(function() {
-          impl.clearCache();
-        });
-    <%}%>
   });
 
   function enableGetIRTResultButton(event) {
@@ -294,10 +274,7 @@ ga('send', 'pageview');
           ></span>
       </h1>
       <p class="header-paragraph" align="right">
-        <img alt="Clear Cache" title="Clear Cache"
-          src="<%=contextPath%>/Shared/images/clear.png"
-          id="clearBrowserCache" class="header-ui-icon"
-          style="display: none;"> <img alt="Close" title="Close"
+          <img alt="Close" title="Close"
           src="<%=contextPath%>/Shared/images/close.png"
           id="closeBrowser" class="header-ui-icon"
           style="display: none;">
@@ -428,19 +405,47 @@ ga('send', 'pageview');
       </div>
     <div class="divTable" id="aboutus-section" style="width: 90%;">
         <h1>ABOUT BIRT</h1>
-  <div id="lipsum" style="font-size: 14px;line-height: 20px;">
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra elit sit amet risus accumsan dapibus. Aenean cursus lectus elit, ut facilisis justo vehicula ac. Aenean id feugiat arcu, in pharetra eros. Vestibulum lacinia ut odio vulputate ornare. Aenean dapibus vehicula mi vel commodo. Proin gravida hendrerit egestas. Cras mollis tellus ac orci porttitor, eget sodales dolor scelerisque. Proin volutpat, arcu ac blandit fringilla, ante nisl tempor augue, non luctus leo mi et ante. Aliquam nisi nisl, gravida a ex a, pharetra dapibus mauris. Phasellus sit amet nibh vitae neque eleifend vestibulum. Morbi tempus metus ut felis bibendum tristique. Sed sodales iaculis sem eu tincidunt.
-</p>
-<p>
-Nullam dictum lacinia ipsum, ac semper libero vehicula vel. Mauris lectus sapien, faucibus quis malesuada iaculis, interdum nec purus. Nullam ac faucibus neque, id commodo nulla. Mauris nec tincidunt tellus. Proin sit amet lacus mauris. Curabitur sapien lectus, fermentum tristique sem nec, rhoncus congue enim. Nunc vulputate ut magna sit amet viverra. Quisque sit amet orci dictum, vehicula lectus in, accumsan urna. Pellentesque eu scelerisque nisi. In quis varius neque. Aliquam posuere lectus id velit finibus porta.
-</p>
-<p>
-Vestibulum eget fringilla nulla. Maecenas vel sem elit. Donec consequat ante mauris, a lacinia odio luctus ac. Praesent eros nunc, rhoncus sit amet elit nec, vulputate rhoncus mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer elit ex, mattis sed malesuada eu, varius sed libero. Mauris vitae sem enim.
-</p></div>
-</div>
+        <div id="lipsum" style="font-size: 14px; line-height: 20px;">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Nunc viverra elit sit amet risus accumsan dapibus.
+            Aenean cursus lectus elit, ut facilisis justo vehicula ac.
+            Aenean id feugiat arcu, in pharetra eros. Vestibulum lacinia
+            ut odio vulputate ornare. Aenean dapibus vehicula mi vel
+            commodo. Proin gravida hendrerit egestas. Cras mollis tellus
+            ac orci porttitor, eget sodales dolor scelerisque. Proin
+            volutpat, arcu ac blandit fringilla, ante nisl tempor augue,
+            non luctus leo mi et ante. Aliquam nisi nisl, gravida a ex
+            a, pharetra dapibus mauris. Phasellus sit amet nibh vitae
+            neque eleifend vestibulum. Morbi tempus metus ut felis
+            bibendum tristique. Sed sodales iaculis sem eu tincidunt.</p>
+          <p>Nullam dictum lacinia ipsum, ac semper libero vehicula
+            vel. Mauris lectus sapien, faucibus quis malesuada iaculis,
+            interdum nec purus. Nullam ac faucibus neque, id commodo
+            nulla. Mauris nec tincidunt tellus. Proin sit amet lacus
+            mauris. Curabitur sapien lectus, fermentum tristique sem
+            nec, rhoncus congue enim. Nunc vulputate ut magna sit amet
+            viverra. Quisque sit amet orci dictum, vehicula lectus in,
+            accumsan urna. Pellentesque eu scelerisque nisi. In quis
+            varius neque. Aliquam posuere lectus id velit finibus porta.
+          </p>
+        </div>
+      </div>
     </div>
+       <div id="dialog-error"></div>
+     
+
   </div>
-   <div id="dialog-error"></div>
+  
+  <div>&nbsp;</div>
+  <div class="main">
+  <div class="birt-footer">
+    <ul class="x-nav">
+      <li><a href="http://www.smarterbalanced.org/privacy-policy/"
+        class="version-details" target="_blank">Website Privacy
+          Policy</a></li>
+    </ul>
+  </div>
+</div>
+
 </body>
 </html>
