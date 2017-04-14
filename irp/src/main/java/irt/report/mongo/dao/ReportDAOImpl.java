@@ -48,7 +48,7 @@ public class ReportDAOImpl implements ReportDAO
       if (reportJsonObj.containsKey ("captchaInfo") && reportJsonObj.containsKey ("captchaInfoHash")) {
 
         String captchaInfo = reportJsonObj.get ("captchaInfo").toString ().toUpperCase ();
-        Integer captchaInfoHash = Integer.valueOf (reportJsonObj.get ("captchaInfoHash").toString ());
+        Long captchaInfoHash = Long.valueOf (reportJsonObj.get ("captchaInfoHash").toString ());
         if (captchaInfoHash.compareTo (captchaHashCalculation (captchaInfo)) != 0) {
 
           throw new Exception ("Invalid Captcha info found");
@@ -129,13 +129,13 @@ public class ReportDAOImpl implements ReportDAO
    *          the entered value
    * @return its hash value
    */
-  private Integer captchaHashCalculation (String value) {
+  private Long captchaHashCalculation (String value) {
     int hash = 5381;
     value = value.toUpperCase ();
     for (int i = 0; i < value.length (); i++) {
       hash = ((hash << 5) + hash) + value.charAt (i);
     }
-    return Integer.valueOf (hash);
+    return Long.valueOf (hash);
   }
 
   @Override
