@@ -14,7 +14,7 @@ public class BirtScheduler
 
   public void reportRetentionCheck () {
 
-    reportDAO.deleteReportAfterRetentionPeriod ();
+    // reportDAO.deleteReportAfterRetentionPeriod ();
 
   }
 }
