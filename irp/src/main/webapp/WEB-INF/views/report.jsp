@@ -8,6 +8,7 @@
   String contextPath = request.getContextPath();
   String version = System.getProperty ("birt.app.version");
   String gitBranch = System.getProperty("birt.git.branch");
+  String birtEnv = System.getProperty("birt.env");
 %>
 <!-- JQuery -->
 <script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>
@@ -228,6 +229,7 @@ var impl = TDS.SecureBrowser.getImplementation();
   }
 </script>
 
+<%if("prod".equalsIgnoreCase (birtEnv)){ %>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function()
 { (i[r].q=i[r].q||[]).push(arguments)}
@@ -237,7 +239,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-27429193-5', 'auto');
 ga('send', 'pageview');
 </script>
-
+<%} %>
 
 </head>
 
