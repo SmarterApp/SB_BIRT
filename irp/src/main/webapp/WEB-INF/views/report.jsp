@@ -139,6 +139,8 @@ var impl = TDS.SecureBrowser.getImplementation();
         	  SecureBrowser.security.close(false);
           });
         }
+        
+        $("#footerInfo").load(getContextPath() + "/Scripts/SecureBrowser/test/footer.html");
 
       });
   
@@ -247,10 +249,12 @@ ga('send', 'pageview');
   <div id="report-main">
     <div>
       <h1 class="entry-title">
+            <span onclick="javascript:openSmarterLinkDialog('smarterhome', 'Smarter Balanced Home Page','http://www.smarterbalanced.org/')"
+      class="logo-link">
         <img alt="Smarter Balanced Assessment Consortium"
           class="smarter-logo"
           title="Smarter Balanced Assessment Consortium"
-          src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"> <span>Browser Implementation Readiness Test (BIRT) Report</span> 
+          src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"></span> <span>Browser Implementation Readiness Test (BIRT) Report</span> 
           <span id="versionInfo"></span>
       </h1>
       <p class="header-paragraph" align="right">
@@ -347,15 +351,8 @@ ga('send', 'pageview');
   
   
   <div>&nbsp;</div>
-  <div class="report-main">
-    <div class="birt-footer">
-      <ul class="x-nav">
-        <li><a
-          href="http://www.smarterbalanced.org/privacy-policy/"
-          class="version-details" target="_blank">Website Privacy
-            Policy</a></li>
-      </ul>
-    </div>
+  <div class="report-main" id="footerInfo">
+
   </div>
 
 </body>

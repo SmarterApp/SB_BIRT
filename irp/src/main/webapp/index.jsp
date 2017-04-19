@@ -74,7 +74,7 @@
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/Utilities/util_securebrowser.js"></script>
 
-
+<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/test/populateGrid.js"></script>
 
 
 <link type="text/css" rel="stylesheet"
@@ -171,6 +171,8 @@ var impl = TDS.SecureBrowser.getImplementation();
             SecureBrowser.security.close(false);
           });
         }
+        
+        $("#footerInfo").load(cntxPath + "/Scripts/SecureBrowser/test/footer.html");
   });
 
   function enableGetIRTResultButton(event) {
@@ -272,10 +274,12 @@ ga('send', 'pageview');
     <div>
 
       <h1 class="entry-title">
+      <span onclick="javascript:openSmarterLinkDialog('smarterhome', 'Smarter Balanced Home Page','http://www.smarterbalanced.org/')"
+      class="logo-link">
         <img alt="Smarter Balanced Assessment Consortium"
           class="smarter-logo"
           src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"
-          title="Smarter Balanced Assessment Consortium"> <span>Browser
+          title="Smarter Balanced Assessment Consortium"> </span><span>Browser
           Implementation Readiness Test (BIRT)</span> <span id="versionInfo"
           ></span>
       </h1>
@@ -443,14 +447,8 @@ ga('send', 'pageview');
   </div>
   
   <div>&nbsp;</div>
-  <div class="main">
-  <div class="birt-footer">
-    <ul class="x-nav">
-      <li><a href="http://www.smarterbalanced.org/privacy-policy/"
-        class="version-details" target="_blank">Website Privacy
-          Policy</a></li>
-    </ul>
-  </div>
+  <div class="main" id="footerInfo">
+
 </div>
 
 </body>

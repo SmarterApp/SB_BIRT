@@ -135,3 +135,45 @@ function populateSectionCount(currHeaderId, rTestPass, rTestFail, oTestPass,
     }
   });
 }
+
+function openSmarterLinkDialog(id, testTitle, url) {
+
+  var iframe = $('<iframe id="'
+      + id
+      + '" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>');
+
+  isManualTestSupported = true;
+
+  id = $("<div id='" + id + "'></div>").append(iframe).appendTo("body");
+
+  var dialogWidth = '90%';
+  var dialogHeight = 800;
+
+  id.dialog({
+    autoOpen : false,
+    width : dialogWidth,
+    height : dialogHeight,
+    modal : true,
+    title : testTitle,
+    position : {
+      my : "center",
+      at : "center",
+      of : window
+    },
+    buttons : [ {
+      text : "OK",
+      click : function() {
+        $(this).dialog("close");
+      }
+
+    } ]
+  });
+
+  iframe.attr({
+    src : url,
+    width : '100%',
+    height : '100%'
+  });
+
+  id.dialog("open");
+}
