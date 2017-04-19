@@ -274,7 +274,7 @@ ga('send', 'pageview');
     <div>
 
       <h1 class="entry-title">
-      <span onclick="javascript:openSmarterLinkDialog('smarterhome', 'Smarter Balanced Home Page','http://www.smarterbalanced.org/')"
+      <span onclick="javascript:openSmarterLinkDialog('smarterhome', 'Smarter Balanced Home Page','https://www.smarterbalanced.org/')"
       class="logo-link">
         <img alt="Smarter Balanced Assessment Consortium"
           class="smarter-logo"
