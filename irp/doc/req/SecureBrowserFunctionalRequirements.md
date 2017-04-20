@@ -1,7 +1,14 @@
-Secure Browser Functional Requirements
-------------------
-v.2.0.0 - Last modified 20-Mar-2017
+#Secure Browser Functional Requirements
 
+v.2.0.1 - Last modified 20-Apr-2017
+
+## IP Notice
+This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+
+## Overview
+Most of these high level functional requirements are implemented by the Secure Browser API Specification [1].
+
+## Requirements
 ### A. Security Related Requirements
 1. F01. The Secure browser shall NOT provide a means to clear browser cache.
 1. F02. The secure browser shall NOT provide a means to clear browser cookies.
@@ -62,3 +69,8 @@ These requirements are optional.
 
 ### F. Miscellaneous Requirements
 1. F35. The secure browser shall check for an appropriate Global Object for API use.
+2. F52. The Secure Browser shall support the Secure Browser Launch Protocol as defined in [2].
+
+## References
+1. [Secure Browser API Specification](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserAPIspecification.md)
+2. [Secure Browser Launch Protocol](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserLaunchProtocol.md)

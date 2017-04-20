@@ -5,7 +5,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>SecureBrowserFunctionalRequirements</title>
+<title>SecureBrowserLaunchProtocol</title>
 
 
 <style type="text/css">
@@ -355,106 +355,35 @@ pre[class*="language-"] {
 
 <body>
 
-<h1 id="toc_0">Secure Browser Functional Requirements</h1>
+<h1 id="toc_0">Secure Browser Launch Protocol</h1>
 
-<p>v.2.0.1 - Last modified 20-Apr-2017</p>
+<p>v.1.0 - Last modified 20-Apr-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
-<p>This specification is &copy;2017 by American Institutes for Research and is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+<p>This specification is &copy;2017 by The Regents of the University of California, Smarter Balanced Assessment Consortium and is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
 <h2 id="toc_2">Overview</h2>
 
-<p>Most of these high level functional requirements are implemented by the Secure Browser API Specification [1].</p>
+<h3 id="toc_3">Features</h3>
 
-<h2 id="toc_3">Requirements</h2>
+<ul>
+<li>Hardcode only one landing page URL</li>
+<li>Student makes site selection on landing page and gets redirected</li>
+<li>Initial selection will save and reuse the value for next time</li>
+</ul>
 
-<h3 id="toc_4">A. Security Related Requirements</h3>
+<h3 id="toc_4">Benefits</h3>
 
-<ol>
-<li>F01. The Secure browser shall NOT provide a means to clear browser cache.</li>
-<li>F02. The secure browser shall NOT provide a means to clear browser cookies.</li>
-<li>F03. The secure browser shall provide a means to clear system clipboard.</li>
-<li>F04. The secure browser shall provide a means to retrieve system MAC address.</li>
-<li>F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).</li>
-<li>F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.</li>
-<li>F07. The secure browser shall provide a means to obtain the application start time.</li>
-<li>F08. The secure browser shall provide a means to query if <code>Spaces</code> is enabled or not, for macOS.</li>
-<li>F15. The secure browser shall provide a means to set permissive mode.</li>
-<li>F49. The secure browser shall provide a means to query the status of permissive mode.</li>
-<li>F31. The secure browser shall be able to determine whether blacklisted processes are running on the client machine.</li>
-<li>F36. The secure browser may be able to get device info (optional).</li>
-<li>F37. The secure browser shall be able to lock down the environment.</li>
-<li>F38. The secure browser shall be able to check if environment is secure for testing.</li>
-<li>F46. The secure browser shall be able to get the status of a particular browser capability.</li>
-<li>F47. The secure browser shall be able to set the status of a particular browser capability.</li>
-</ol>
+<ul>
+<li>URLs can be updated in real time</li>
+<li>Landing site can be scaled to handle necessary load when needed</li>
+<li>Login process only executed once per student</li>
+</ul>
 
-<h3 id="toc_5">B. Device Related Requirements</h3>
+<h3 id="toc_5">Design</h3>
 
-<ol>
-<li>F09. The secure browser shall provide a means to get system volume.</li>
-<li>F10. The secure browser shall provide a means to set system volume.</li>
-<li>F11. The secure browser shall provide a means to mute system volume.</li>
-<li>F12. The secure browser shall provide a means to unmute system volume.</li>
-<li>F13. The secure browser shall provide a means to check if system volume is Muted.</li>
-<li>F14. The secure browser shall provide a means to close the browser.</li>
-</ol>
-
-<h3 id="toc_6">C. Text-to-Speech (TTS) Related Requirements</h3>
-
-<ol>
-<li>F16. The secure browser shall provide shall provide a means to play arbitrary text.</li>
-<li>F17. The secure browser shall provide a means to stop TTS speech in progress.</li>
-<li>F18. The secure browser shall provide a means to pause TTS speech in progress.</li>
-<li>F19. The secure browser shall provide a means to retrieve list of TTS voice packs available on the machine.</li>
-<li>F21. The secure browser shall provide a means to resume previously paused TTS speech.</li>
-<li>F22. The secure browser shall provide a means events to notify the web application of status and progress of TTS.</li>
-<li>F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.</li>
-<li>F28. The secure browser shall provide a means to get/set TTS pitch.</li>
-<li>F29. The secure browser shall provide a means to get/set TTS rate.</li>
-<li>F30. The secure browser shall provide a means to get/set TTS volume.</li>
-</ol>
-
-<h3 id="toc_7">D. Audio Recording Related Requirements</h3>
-
-<p>These requirements are optional.</p>
-
-<ol>
-<li>F50. The secure browser may provide a means to initialize the audio recording system.</li>
-<li>F25. The secure browser may provide a means to start an audio recording.</li>
-<li>F26. The secure browser may provide a means to stop an audio recording.</li>
-<li>F27. The secure browser may provide a means to playback an audio recording.</li>
-<li>F40. The secure browser may provide a means to set audio recorder status.</li>
-<li>F41. The secure browser may provide a means to get audio recorder capabilities.</li>
-<li>F42. The secure browser may provide a means to retrieve a recording for playback.</li>
-<li>F43. The secure browser may provide a means to stop playback.</li>
-<li>F44. The secure browser may provide a means to pause playback.</li>
-<li>F45. The secure browser may provide a means to resume playback of a paused audio recording.</li>
-<li>F48. The secure browser may provide a means to list all available audio recordings.</li>
-<li>F51. The secure browser may provide a means to retrieve an audio file from a filename.</li>
-</ol>
-
-<h3 id="toc_8">E. Standards Compliance Requirements</h3>
-
-<ol>
-<li>F32. The secure browser shall be HTML5 compliant.</li>
-<li>F34. The secure browser shall be CSS3 compliant.</li>
-</ol>
-
-<h3 id="toc_9">F. Miscellaneous Requirements</h3>
-
-<ol>
-<li>F35. The secure browser shall check for an appropriate Global Object for API use.</li>
-<li>F52. The Secure Browser shall support the Secure Browser Launch Protocol as defined in [2].</li>
-</ol>
-
-<h2 id="toc_10">References</h2>
-
-<ol>
-<li><a href="https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserAPIspecification.md">Secure Browser API Specification</a></li>
-<li><a href="https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserLaunchProtocol.md">Secure Browser Launch Protocol</a></li>
-</ol>
+<p><img src="/Users/rlevy/Dropbox/air-shared/Secure%20Browser%20Contract/SecureBrowserLaunchProtocol.png" alt="SBLP"></p>
 
 
 

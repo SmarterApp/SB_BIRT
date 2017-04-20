@@ -1,8 +1,11 @@
-Secure Browser API Specification
-------------------
-v.2.0.4 - Last modified 10-Apr-2017
+# Secure Browser API Specification
+v.2.0.5 - Last modified 20-Apr-2017
 
-The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system. The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global `SecureBrowser` object.
+## IP Notice
+This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+
+## Introduction
+The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system (TDS). The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global `SecureBrowser` object. See also the high-level functional requirements [1].
 
 ## Required Methods
 
@@ -12,7 +15,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
     `void SecureBrowser.security.lockDown (boolean enable, function onSuccess, function onError)`
 
-    `onSuccess` and `onError` are optional parameters. These functions are invoked after the lockdown has either been sucessfully enabled or disabled or if the operation failed. If you specify these callback parameters, they should be functions of this form:
+    `onSuccess` and `onError` are optional parameters. These functions are invoked after the lockdown has either been successfully enabled or disabled or if the operation failed. If you specify these callback parameters, they should be functions of this form:
 
 	` function(currentlockdownstate) {...}`
 	
@@ -45,11 +48,13 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`void SecureBrowser.security.setCapability(feature, value, function onSuccess, function onError)`
 
-	`onSuccess` and `onError` are optional parameters. These functions are invoked after the feature has either been sucessfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:
+    `feature` and `value` are strings, for example "printing" and "false".
+    
+	`onSuccess` and `onError` are optional parameters. These functions are invoked after the feature has either been successfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:
 
 	` function(jsonliteral) {...}`
 	
-	where jsonliteral indicates the current value of the feature and it's state. `{<feature>:true|false|undefined}`. If the feature is unknown to the browser, the value for the key will be undefined
+	where jsonliteral indicates the current value of the feature and its state. `{<feature>:true|false|undefined}`. If the feature is unknown to the browser, the value for the key will be undefined
 
 1. R05. **Retrieve information on the environment (device)**. The testing web application will invoke this to gather details about the platform on which it is running. This is used to augment any information that was discernible from the user agent.
 
@@ -395,4 +400,8 @@ https://www.w3.org/TR/webaudio
 1. R39. **W3C Web Speech compliant**. W3C Web Speech API:
 https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html
 
-    *Note: As of Firefox v.51, SSML support via Web Speech lacks the features necessary for optimal TDS TTS delivery. Thererfore, support for TTS APIs as described in this document is still necessary.*
+    *Note: As of Firefox v.51, SSML support via Web Speech lacks the features necessary for optimal TDS TTS delivery. Therefore, support for TTS APIs as described in this document is still necessary.*
+
+## References
+1. [Secure Browser Functional Requirements](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserFunctionalRequirements.md)
+2. [Secure Browser Launch Protocol](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserFunctionalRequirements.md)

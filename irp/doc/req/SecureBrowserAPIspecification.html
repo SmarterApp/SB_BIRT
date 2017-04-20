@@ -355,13 +355,19 @@ pre[class*="language-"] {
 
 <body>
 
-<h2 id="toc_0">Secure Browser API Specification</h2>
+<h1 id="toc_0">Secure Browser API Specification</h1>
 
-<p>v.2.0.4 - Last modified 10-Apr-2017</p>
+<p>v.2.0.5 - Last modified 20-Apr-2017</p>
 
-<p>The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system. The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global <code>SecureBrowser</code> object.</p>
+<h2 id="toc_1">IP Notice</h2>
 
-<h2 id="toc_1">Required Methods</h2>
+<p>This specification is &copy;2017 by American Institutes for Research and is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+
+<h2 id="toc_2">Introduction</h2>
+
+<p>The following Secure Browser Application Programming Interface (API) endpoints define interfaces between the secure browser and the test delivery system (TDS). The interfaces consist of required and optional methods, as shown below. All APIs depend on the first requirement, the global <code>SecureBrowser</code> object. See also the high-level functional requirements [1].</p>
+
+<h2 id="toc_3">Required Methods</h2>
 
 <ol>
 <li><p>R01. <strong>Expose a window global object called <code>SecureBrowser</code></strong>. All vendors are required to expose a window global object called <code>SecureBrowser</code>. The APIs discussed below are exposed through this global object. Some APIs are supported as part of existing W3C specifications, and are identified as such.</p></li>
@@ -369,7 +375,7 @@ pre[class*="language-"] {
 
 <p><code>void SecureBrowser.security.lockDown (boolean enable, function onSuccess, function onError)</code></p>
 
-<p><code>onSuccess</code> and <code>onError</code> are optional parameters. These functions are invoked after the lockdown has either been sucessfully enabled or disabled or if the operation failed. If you specify these callback parameters, they should be functions of this form:</p>
+<p><code>onSuccess</code> and <code>onError</code> are optional parameters. These functions are invoked after the lockdown has either been successfully enabled or disabled or if the operation failed. If you specify these callback parameters, they should be functions of this form:</p>
 
 <p><code>function(currentlockdownstate) {...}</code></p>
 
@@ -399,11 +405,13 @@ pre[class*="language-"] {
 
 <p><code>void SecureBrowser.security.setCapability(feature, value, function onSuccess, function onError)</code></p>
 
-<p><code>onSuccess</code> and <code>onError</code> are optional parameters. These functions are invoked after the feature has either been sucessfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:</p>
+<p><code>feature</code> and <code>value</code> are strings, for example &quot;printing&quot; and &quot;false&quot;.</p>
+
+<p><code>onSuccess</code> and <code>onError</code> are optional parameters. These functions are invoked after the feature has either been successfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:</p>
 
 <p><code>function(jsonliteral) {...}</code></p>
 
-<p>where jsonliteral indicates the current value of the feature and it&#39;s state. <code>{&lt;feature&gt;:true|false|undefined}</code>. If the feature is unknown to the browser, the value for the key will be undefined</p></li>
+<p>where jsonliteral indicates the current value of the feature and its state. <code>{&lt;feature&gt;:true|false|undefined}</code>. If the feature is unknown to the browser, the value for the key will be undefined</p></li>
 <li><p>R05. <strong>Retrieve information on the environment (device)</strong>. The testing web application will invoke this to gather details about the platform on which it is running. This is used to augment any information that was discernible from the user agent.</p>
 
 <p><code>void SecureBrowser.security.getDeviceInfo(function callback)</code></p>
@@ -477,7 +485,7 @@ pre[class*="language-"] {
 </ul></li>
 </ol>
 
-<h3 id="toc_2">Text to Speech Synthesis (TTS)</h3>
+<h3 id="toc_4">Text to Speech Synthesis (TTS)</h3>
 
 <p><em>NOTE: Browsers supporting W3C&#39;s <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Web Speech API</a> do not need to implement these functions.</em></p>
 
@@ -586,7 +594,7 @@ The testing application will invoke this to perform client side text to speech s
 <p>Callback is invoked when resume has occurred. If state is null or undefined, then an error occurred during resume. Otherwise &#39;resume&#39; or &#39;error&#39; are the expected states in the callback, with error meaning something like the speech engine was not in a paused state.</p></li>
 </ol>
 
-<h3 id="toc_3">Optional APIs</h3>
+<h3 id="toc_5">Optional APIs</h3>
 
 <ol>
 <li><p>R23. <strong>Empty system clipboard</strong>. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the <code>SecureBrowser.security.lockDown</code> to perform the same operation. </p>
@@ -614,11 +622,11 @@ The testing application will invoke this to perform client side text to speech s
 <p><code>&quot;[&#39;00:55:65:C0:00:EA&#39;]&quot;</code></p></li>
 </ol>
 
-<h4 id="toc_4">Audio Recorder (W3C)</h4>
+<h4 id="toc_6">Audio Recorder (W3C)</h4>
 
 <p><em>NOTE: Browsers supporting W3C&#39;s <a href="https://www.w3.org/TR/webaudio/">Web Audio API</a> for playback, <a href="https://www.w3.org/TR/mediastream-recording/">MediaStream Recording</a> for recording, and Mozilla&#39;s <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia">MediaDevices.getUserMedia()</a> do not need to implement these functions.</em></p>
 
-<h4 id="toc_5">Audio Recorder (non-W3C)</h4>
+<h4 id="toc_7">Audio Recorder (non-W3C)</h4>
 
 <ol>
 <li><p>R25. <strong>Initialize audio recorder</strong>. This method is called by the testing application once to initialize the audio API after a page loads. The event listener passed in as argument is used to notify events to caller about progress.  Any attempts to call this method when it has already been called should be treated as a reset and reinit.</p>
@@ -743,16 +751,16 @@ The testing application will invoke this to perform client side text to speech s
 <p><code>function(b64audio){...}</code></p></li>
 </ol>
 
-<h2 id="toc_6">Secure Browser Standards Compliance</h2>
+<h2 id="toc_8">Secure Browser Standards Compliance</h2>
 
-<h3 id="toc_7">Required</h3>
+<h3 id="toc_9">Required</h3>
 
 <ol>
 <li><p>R35. <strong>HTML5 compliant</strong>. The secure browser must be HTML5 compliant: https://www.w3.org/TR/html5/ and http://html5test.com</p></li>
 <li><p>R37. <strong>CSS3 compliant</strong>. The secure browser must be CSS3 compliant: https://www.w3.org/TR/2014/REC-css-namespaces-3-20140320 and http://css3test.com</p></li>
 </ol>
 
-<h3 id="toc_8">Optional</h3>
+<h3 id="toc_10">Optional</h3>
 
 <ol>
 <li><p>R38. <strong>W3C Web Audio compliant</strong>. W3C Web Audio API:
@@ -760,7 +768,14 @@ https://www.w3.org/TR/webaudio</p></li>
 <li><p>R39. <strong>W3C Web Speech compliant</strong>. W3C Web Speech API:
 https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html</p>
 
-<p><em>Note: As of Firefox v.51, SSML support via Web Speech lacks the features necessary for optimal TDS TTS delivery. Thererfore, support for TTS APIs as described in this document is still necessary.</em></p></li>
+<p><em>Note: As of Firefox v.51, SSML support via Web Speech lacks the features necessary for optimal TDS TTS delivery. Therefore, support for TTS APIs as described in this document is still necessary.</em></p></li>
+</ol>
+
+<h2 id="toc_11">References</h2>
+
+<ol>
+<li><a href="https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserFunctionalRequirements.md">Secure Browser Functional Requirements</a></li>
+<li><a href="https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserFunctionalRequirements.md">Secure Browser Launch Protocol</a></li>
 </ol>
 
 
