@@ -14,7 +14,11 @@ public class BirtScheduler
 
   public void reportRetentionCheck () {
 
-    reportDAO.deleteReportAfterRetentionPeriod ();
+    try {
+      reportDAO.deleteReportAfterRetentionPeriod ();
+    } catch (Exception e) {
+      e.printStackTrace ();
+    }
 
   }
 }

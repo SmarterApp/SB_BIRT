@@ -8,6 +8,7 @@
   String contextPath = request.getContextPath();
   String version = System.getProperty ("birt.app.version");
   String gitBranch = System.getProperty("birt.git.branch");
+  String birtEnv = System.getProperty("birt.env");
 %>
 <!-- JQuery -->
 <script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>
@@ -138,6 +139,8 @@ var impl = TDS.SecureBrowser.getImplementation();
         	  SecureBrowser.security.close(false);
           });
         }
+        
+        $("#footerInfo").load(getContextPath() + "/Scripts/SecureBrowser/test/footer.html");
 
       });
   
@@ -228,6 +231,7 @@ var impl = TDS.SecureBrowser.getImplementation();
   }
 </script>
 
+<%if("prod".equalsIgnoreCase (birtEnv)){ %>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function()
 { (i[r].q=i[r].q||[]).push(arguments)}
@@ -237,7 +241,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-27429193-5', 'auto');
 ga('send', 'pageview');
 </script>
-
+<%} %>
 
 </head>
 
@@ -245,10 +249,12 @@ ga('send', 'pageview');
   <div id="report-main">
     <div>
       <h1 class="entry-title">
+            <span onclick="javascript:openSmarterLinkDialog('smarterhome', 'Smarter Balanced Home Page','https://www.smarterbalanced.org/')"
+      class="logo-link">
         <img alt="Smarter Balanced Assessment Consortium"
           class="smarter-logo"
           title="Smarter Balanced Assessment Consortium"
-          src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"> <span>Browser Implementation Readiness Test (BIRT) Report</span> 
+          src="<%=contextPath%>/Shared/images/SmarterBalanced_logo.png"></span> <span>Browser Implementation Readiness Test (BIRT) Report</span> 
           <span id="versionInfo"></span>
       </h1>
       <p class="header-paragraph" align="right">
@@ -338,6 +344,16 @@ ga('send', 'pageview');
 
     <div id="reportInfoDialog"></div>
 
+    <div>&nbsp;</div>
+
+    
   </div>
+  
+  
+  <div>&nbsp;</div>
+  <div class="report-main" id="footerInfo">
+
+  </div>
+
 </body>
 </html>

@@ -752,7 +752,8 @@ function udpateCapabilityStatusGrid() {
   $.extend(itemDetail, {
     "instruction" : selectedCapability.label + " [ " + selectedCapability.value
         + " ] ",
-    "testResult" : (testResult!=undefined && testResult!=null) ? testResult.toString() : "Not Available"
+    "testResult" : (testResult != undefined && testResult != null) ? testResult
+        .toString() : "Not Available"
   });
 
   $("#capabilityPropertyGrid")
@@ -771,7 +772,7 @@ function setSystemCapability() {
   if (capabilityType != null && capabilityType != undefined
       && functionality != null && functionality != undefined) {
     if (impl != null) {
-      impl.setCapability(capabilityType, (functionality == 'true'));
+      impl.setCapability(capabilityType, functionality);
     }
     udpateCapabilityStatusGrid();
     setDialogHtml(specCapabilityManualApi);
@@ -1273,17 +1274,22 @@ function populatePropertyGrid() {
 
   var propertyGridArray = [];
 
-  propertyArray.forEach(function(item, index, array) {
+  propertyArray
+      .forEach(function(item, index, array) {
 
-    var capabilityType = eval('IRT.CAPABILITY_PROPERTY.' + item);
-    var testResult = impl != null ? impl.getCapability(capabilityType) : false;
+        var capabilityType = eval('IRT.CAPABILITY_PROPERTY.' + item);
+        var testResult = impl != null ? impl.getCapability(capabilityType)
+            : false;
 
-    propertyGridArray.push({
-      "instruction" : item + " [ " + capabilityType + " ] ",
-      "testResult" : (testResult!=undefined && testResult!=null)? testResult.toString() :"Not Available"
-    });
+        propertyGridArray
+            .push({
+              "instruction" : item + " [ " + capabilityType + " ] ",
+              "testResult" : (testResult != undefined && testResult != null) ? testResult
+                  .toString()
+                  : "Not Available"
+            });
 
-  });
+      });
 
   return propertyGridArray;
 
@@ -1405,8 +1411,6 @@ function loadRunningForbiddenApps(forbiddenArrayFromApi) {
   return runningForbiddenArray;
 
 }
-
-
 
 function recorderComponentInitialize() {
 

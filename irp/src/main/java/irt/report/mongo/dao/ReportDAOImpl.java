@@ -47,16 +47,14 @@ public class ReportDAOImpl implements ReportDAO
 
       if (reportJsonObj.containsKey ("captchaInfo") && reportJsonObj.containsKey ("captchaInfoHash")) {
 
-        String captchaInfo = reportJsonObj.get ("captchaInfo").toString ();
-        String captchaInfoHash = String.valueOf (reportJsonObj.get ("captchaInfoHash"));
-        if (!captchaHashCalculation (captchaInfo).equals (captchaInfoHash)) {
+        String captchaInfo = reportJsonObj.get ("captchaInfo").toString ().toUpperCase ();
+        Long captchaInfoHash = Long.valueOf (reportJsonObj.get ("captchaInfoHash").toString ());
+        if (captchaInfoHash.compareTo (captchaHashCalculation (captchaInfo)) != 0) {
 
           throw new Exception ("Invalid Captcha info found");
         }
       } else {
-
         throw new Exception ("Captcha info not found");
-
       }
 
       if (reportJsonObj.containsKey ("reportGridData")) {
@@ -81,7 +79,7 @@ public class ReportDAOImpl implements ReportDAO
       String creationDate = this.getCurrentDate (true);
       reportJsonObj.put ("reportId", reportId);
       reportJsonObj.put ("creationdate", creationDate);
-      reportJsonObj.put ("dateAdded", this.getCurrentDate (false));
+      reportJsonObj.put ("dateAdded", new Date ());
 
       mongoTemplate.insert (reportJsonObj, RESULT_COLLECTION);
 
@@ -131,13 +129,13 @@ public class ReportDAOImpl implements ReportDAO
    *          the entered value
    * @return its hash value
    */
-  private String captchaHashCalculation (String value) {
+  private Long captchaHashCalculation (String value) {
     int hash = 5381;
     value = value.toUpperCase ();
     for (int i = 0; i < value.length (); i++) {
       hash = ((hash << 5) + hash) + value.charAt (i);
     }
-    return String.valueOf (hash);
+    return Long.valueOf (hash);
   }
 
   @Override
@@ -191,7 +189,7 @@ public class ReportDAOImpl implements ReportDAO
   }
 
   @Override
-  public void deleteReportAfterRetentionPeriod () {
+  public void deleteReportAfterRetentionPeriod () throws Exception {
     /** Getting Retention Policy # of Days from JVM Param **/
     Integer reportRetentionDays = Integer.parseInt (System.getProperty ("birt.app.report.retention"));
     System.out.println ("No of Retention Days from JVM Param " + reportRetentionDays);
@@ -199,14 +197,12 @@ public class ReportDAOImpl implements ReportDAO
     /** Subtracting # of retention days from Current Date **/
     calendar.add (Calendar.DATE, -reportRetentionDays);
 
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("dd-MMM-yyyy");
-
-    System.out.println ("Calendar Date " + simpleDateFormat.format (calendar.getTime ()));
     /**
      * Getting reports where dateAdded is less then or equal to ( Current Date -
      * RetentionDays)
      **/
-    Query reportDeleteQuery = new Query ().addCriteria (Criteria.where ("dateAdded").lte (simpleDateFormat.format (calendar.getTime ())));
+
+    Query reportDeleteQuery = new Query ().addCriteria (Criteria.where ("dateAdded").lte (calendar.getTime ()));
     List<JSONObject> reportsToDelete = (List<JSONObject>) mongoTemplate.find (reportDeleteQuery, JSONObject.class, RESULT_COLLECTION);
     System.out.println ("reportsToDelete Object length " + reportsToDelete.size ());
     JSONObject reportDeleteObj;

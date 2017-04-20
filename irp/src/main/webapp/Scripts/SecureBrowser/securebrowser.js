@@ -22,7 +22,7 @@
   Unified.prototype.initialize = function() {
 
   };
- 
+
   Unified.prototype.getRunTime = function() {
     return null;
   };
@@ -30,11 +30,11 @@
   Unified.prototype._hasAPI = function() {
     return (typeof (SecureBrowser) != 'undefined');
   };
-  
+
   Unified.prototype.examineProcessManualTestSupported = function() {
     try {
       if (this._hasAPI()
-          && typeof SecureBrowser.security.examineProcessList  === 'function') {
+          && typeof SecureBrowser.security.examineProcessList === 'function') {
         return true;
       }
     } catch (ex) {
@@ -42,19 +42,21 @@
     }
     return false;
   };
-  
+
   Unified.prototype.examineProcessList = function(blacklistedProcessList) {
     try {
       if (this._hasAPI()
           && typeof SecureBrowser.security.examineProcessList === 'function') {
-        SecureBrowser.security.examineProcessList(blacklistedProcessList,this.populateRunningForbiddenApplist);
+        SecureBrowser.security.examineProcessList(blacklistedProcessList,
+            this.populateRunningForbiddenApplist);
       }
     } catch (ex) {
       alert('Exception occurred ' + ex.message);
     }
   };
 
-  Unified.prototype.populateRunningForbiddenApplist = function(forbiddenArrayFromApi) {
+  Unified.prototype.populateRunningForbiddenApplist = function(
+      forbiddenArrayFromApi) {
 
     $("#forbiddenAppListGrid").jsGrid({
       width : "100%",
@@ -77,7 +79,7 @@
       ]
     });
   };
-  
+
   Unified.prototype.capabilityManualTestSupported = function() {
     try {
       if (this._hasAPI()
@@ -91,21 +93,26 @@
     }
     return false;
   };
-  
+
   Unified.prototype.setCapability = function(property, enable) {
     try {
       if (this._hasAPI()
           && typeof SecureBrowser.security.setCapability === 'function') {
-        SecureBrowser.security.setCapability(property, enable);
+
+        function callback(jsonliteral) {
+        }
+        SecureBrowser.security.setCapability(property, enable, callback,
+            callback);
       }
     } catch (ex) {
       console.log('Exception occurred ' + ex.message);
     }
   };
-  
+
   Unified.prototype.getCapability = function(property) {
     try {
-      if (this._hasAPI() && typeof SecureBrowser.security.getCapability === 'function') {
+      if (this._hasAPI()
+          && typeof SecureBrowser.security.getCapability === 'function') {
         return SecureBrowser.security.getCapability(property);
       }
     } catch (ex) {
@@ -114,7 +121,7 @@
     }
     return false;
   };
-  
+
   SB.Unified = Unified;
 
 })(TDS.SecureBrowser);
