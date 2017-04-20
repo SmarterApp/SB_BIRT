@@ -1,5 +1,5 @@
-#Secure Browser Launch Protocol Specification
-v.1.0 - Last modified 20-Apr-2017
+# Secure Browser Launch Protocol Specification
+v.1.1 - Last modified 20-Apr-2017
 
 ## IP Notice
 This specification is &copy;2017 by The Regents of the University of California, Smarter Balanced Assessment Consortium and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -11,16 +11,21 @@ The launch protocol is implemented using a hosted webpage with a hard-coded list
  
 Once the student selects a test site, the browser is redirected to that site and stores the selections in the browser's cache. Future launches of the browser will apply the cached selections (if any) and immediately direct to the selected testing site.
 
-Optionally, a mechanism to clear the cache or return back to the launch page may be provided.
 ### Features
-* Secure Browser hardcodes only one landing page URL, which is the hosted URL containing all available testing hosts.* Student makes site selection(s) on landing page and gets redirected* Initial selection(s) will be cached and reused for next launch### Benefits* URLs can be updated in real time in a single location* Landing site can be scaled to handle necessary load when needed* Login process only executed once per student
+* Secure Browser hardcodes only one landing page URL, which is the hosted URL containing all available testing hosts.* Student makes site selection on landing page and gets redirected* Initial selection (target URL) will be cached by the browser and reused for next launch* A mechanism to clear the cache or return back to the launch page may be provided.### Benefits* URLs can be updated in real time in a single location* Landing site can be scaled to handle necessary load when needed* Login process only executed once per student
 
-### Design
+## Specification
+The sequence diagram below should be used as a guideline for the launch interactions among the secure browser, landing site, and the test delivery system (TDS).
 
-![SBLP](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserLaunchProtocol.png)
+1. Upon launch, the Secure Browser opens the hard-coded Landing Site URL.
+1. The student student selects an appropriate testing site (e.g. California Summative).
+1. The browser is redirected to the selected state site and caches the URL.
+1. The student enters authentication information into the TDS login page.
+1. The student begins the test after being authenticated and authorized.
+1. Future connection attempts will have the Secure Browser immediately redirect to the previously selected (cached) testing site.
+1. TDS provides a mechanism for the student to browse back to the landing site in case the selection needs to be changed.
 
-#### Cache Structure
-A cache file will be generated 
+<img alt="Secure Browser Launch Protocol Design Guidelines" src="https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/design/Secure_Browser_Launch_Protocol.png" width="800">
 
 ## References
 1. [Secure Browser Functional Requirements](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserFunctionalRequirements.md)

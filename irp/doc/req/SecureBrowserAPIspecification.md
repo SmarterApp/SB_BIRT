@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.0.5 - Last modified 20-Apr-2017
+v.2.0.6 - Last modified 20-Apr-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -404,4 +404,4 @@ https://dvcs.w3.org/hg/speech-api/raw-file/9a0075d25326/speechapi.html
 
 ## References
 1. [Secure Browser Functional Requirements](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserFunctionalRequirements.md)
-2. [Secure Browser Launch Protocol](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserFunctionalRequirements.md)
+2. [Secure Browser Launch Protocol](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserLaunchProtocol.md)
