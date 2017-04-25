@@ -1,5 +1,5 @@
 # Secure Browser Launch Protocol Specification
-v.1.2 - Last modified 25-Apr-2017
+v.1.3 - Last modified 25-Apr-2017
 
 ## IP Notice
 This specification is &copy;2017 by The Regents of the University of California, Smarter Balanced Assessment Consortium and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -31,7 +31,7 @@ Figure 1: Secure Browser Launch Protocol Sequence Diagram
 ### Flow Chart
 The flow chart (Figure 2) and design description below (Figure 3) include details of all possible launch protocol conditions and options.
 
-<img alt="Secure Browser Launch Protocol Design Guidelines" src="https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SBLP.png" width="800">
+<img alt="Secure Browser Launch Protocol Flow Chart" src="https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SBLP.png" width="800">
 
 Figure 2: Launch Protocol flow chart
 
