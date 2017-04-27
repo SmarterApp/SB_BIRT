@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser Launch Protocol Specification</h1>
 
-<p>v.1.4 - Last modified 27-Apr-2017</p>
+<p>v.1.6 - Last modified 27-Apr-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -425,28 +425,7 @@ ENDIF</code></pre></div>
 
 <p>Figure 3: Launch Protocol design description</p>
 
-<h3 id="toc_7">API</h3>
-
-<ol>
-<li><p>A1. <strong>Store URL</strong></p>
-
-<p>This API will set a given URL as a default URL which will be used by the Secure Browser to redirect upon its next launch.</p>
-
-<p><code>void SecureBrowser.security.setDefaultURL(String urlString, String identifier, String callback)</code></p>
-
-<p><code>urlString</code> : URL to set as a storeURL to be used as default URL (required)</p>
-
-<p><code>identifier</code> : optional string</p>
-
-<p><code>callback</code> : optional function</p></li>
-<li><p>A2. <strong>Reset URL</strong></p>
-
-<p>This API will reset the default URL back to the default landing page.</p>
-
-<p><code>void SecureBrowser.security.resetURL()</code></p></li>
-</ol>
-
-<h2 id="toc_8">References</h2>
+<h2 id="toc_7">References</h2>
 
 <ol>
 <li><a href="https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserFunctionalRequirements.md">Secure Browser Functional Requirements</a></li>

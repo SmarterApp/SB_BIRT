@@ -1,5 +1,5 @@
 # Secure Browser Launch Protocol Specification
-v.1.5 - Last modified 27-Apr-2017
+v.1.6 - Last modified 27-Apr-2017
 
 ## IP Notice
 This specification is &copy;2017 by The Regents of the University of California, Smarter Balanced Assessment Consortium and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -52,29 +52,6 @@ ELSE
 ENDIF
 ```
 Figure 3: Launch Protocol design description
-
-### API
-
-1. A1. **Store URL**
-
-    This API will set a given URL as a default URL which will be used by the Secure Browser to redirect upon its next launch.
-
-    `void SecureBrowser.security.setDefaultURL(String urlString, String identifier, String callback)`
-
-    `urlString` : URL to set as a storeURL to be used as default URL (required)
-
-    `identifier` : optional string
-    
-    `callback` : optional function
-    
-
-1. A2. **Reset URL**
-
-    This API will reset the default URL back to the default landing page.
-
-    `void SecureBrowser.security.resetURL()`
-
-
 
 ## References
 1. [Secure Browser Functional Requirements](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserFunctionalRequirements.md)
