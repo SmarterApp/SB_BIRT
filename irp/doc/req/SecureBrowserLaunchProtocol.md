@@ -1,5 +1,5 @@
 # Secure Browser Launch Protocol Specification
-v.1.7 - Last modified 28-Apr-2017
+v.1.8 - Last modified 28-Apr-2017
 
 ## IP Notice
 This specification is &copy;2017 by The Regents of the University of California, Smarter Balanced Assessment Consortium and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -53,7 +53,7 @@ ENDIF
 ```
 Figure 3: Launch Protocol design description
 
-### Implementation and API
+### Recommended Implementation
 
 The recommended implementation of this protocol is as follows:
 
@@ -63,7 +63,9 @@ The recommended implementation of this protocol is as follows:
 4. The browser receives this API call and implements the request.
 5. The browser is then redirected by TDS to the final student login page using the TDS' built-in URL mapping mechanism (for example, https://aa.tds.airast.org/student will map to a more instance-specific URL such as https://login4.cloud9.tds.airast.org/student/V941/?c=Statename 
 
- 1. A1. **Store URL**
+### API
+
+1. A1. **Store URL**
  
      This API will set a given URL as a default URL which will be used by the Secure Browser to redirect upon its next launch.
  
@@ -76,7 +78,7 @@ The recommended implementation of this protocol is as follows:
      `callback` : optional function
      
  
- 1. A2. **Reset URL**
+1. A2. **Reset URL**
  
      This API will reset the default URL back to the default landing page.
  

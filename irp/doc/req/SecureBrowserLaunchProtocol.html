@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser Launch Protocol Specification</h1>
 
-<p>v.1.7 - Last modified 28-Apr-2017</p>
+<p>v.1.8 - Last modified 28-Apr-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -425,7 +425,7 @@ ENDIF</code></pre></div>
 
 <p>Figure 3: Launch Protocol design description</p>
 
-<h3 id="toc_7">Implementation and API</h3>
+<h3 id="toc_7">Recommended Implementation</h3>
 
 <p>The recommended implementation of this protocol is as follows:</p>
 
@@ -434,7 +434,10 @@ ENDIF</code></pre></div>
 <li>Upon selection of a target state/URL, or after pressing a confirmation button, the browser is redirected to the requested URL.</li>
 <li>At the target URL (which sits on the test delivery system), the TDS inspects the URL string for options, and calls an appropriate API where necessary.</li>
 <li>The browser receives this API call and implements the request.</li>
-<li><p>The browser is then redirected by TDS to the final student login page using the TDS&#39; built-in URL mapping mechanism (for example, https://aa.tds.airast.org/student will map to a more instance-specific URL such as https://login4.cloud9.tds.airast.org/student/V941/?c=Statename </p>
+<li>The browser is then redirected by TDS to the final student login page using the TDS&#39; built-in URL mapping mechanism (for example, https://aa.tds.airast.org/student will map to a more instance-specific URL such as https://login4.cloud9.tds.airast.org/student/V941/?c=Statename </li>
+</ol>
+
+<h3 id="toc_8">API</h3>
 
 <ol>
 <li><p>A1. <strong>Store URL</strong></p>
@@ -453,10 +456,9 @@ ENDIF</code></pre></div>
 <p>This API will reset the default URL back to the default landing page.</p>
 
 <p><code>void SecureBrowser.security.resetURL()</code></p></li>
-</ol></li>
 </ol>
 
-<h2 id="toc_8">References</h2>
+<h2 id="toc_9">References</h2>
 
 <ol>
 <li><a href="https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserFunctionalRequirements.md">Secure Browser Functional Requirements</a></li>
