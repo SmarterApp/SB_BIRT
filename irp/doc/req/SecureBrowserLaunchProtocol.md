@@ -1,5 +1,5 @@
 # Secure Browser Launch Protocol Specification
-v.1.6 - Last modified 27-Apr-2017
+v.1.7 - Last modified 28-Apr-2017
 
 ## IP Notice
 This specification is &copy;2017 by The Regents of the University of California, Smarter Balanced Assessment Consortium and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -17,8 +17,8 @@ Once the student selects a test site, the browser is redirected to that site and
 The sequence diagram below (Figure 1) should be used as a guideline for the normal launch interactions among the secure browser, landing site, and the test delivery system (TDS).
 
 1. The Secure Browser shall open the hard-coded landing site URL upon launch.
-1. The student selects an appropriate testing site (e.g. California Summative).
-1. The browser is redirected to the selected state site and stores the URL for future use if a URL option is provided (StoreURL).
+1. The user/student selects an appropriate testing site (e.g. California Summative).
+1. The browser is redirected to the selected state site and stores the URL for future use if a URL option is provided for that URL (StoreURL).
 1. The student enters authentication information into the TDS login page.
 1. The student begins the test after being authenticated and authorized.
 1. Future connection attempts will have the Secure Browser immediately redirect to the previously selected testing site, if that option was selected.
@@ -31,8 +31,8 @@ Figure 1: Secure Browser Launch Protocol Sequence Diagram
 * Default (landing page) URL: http://browser.smarterbalanced.org/landing
 * https://aa.tds.airast.org/student  (will redirect and not store)
 * https://aa.tds.airast.org/student?StoreURL=true   (will redirect and store)
-* https://aa.tds.airast.org/student?ResetURL=true   (will reset to default landing page but redirect to requested URL)
-* https://aa.tds.airast.org/student?StoreURL=true&ResetURL=true   (will reset to default landing page, but redirect to requested URL. The StoreURL option is ignored.)
+* https://aa.tds.airast.org/student?ResetURL=true   (will reset default URL to original default landing page but redirect to requested URL)
+* https://aa.tds.airast.org/student?StoreURL=true&ResetURL=true   (will default URL to original default landing page, but redirect to requested URL. The StoreURL option is ignored.)
 
 ### Flow Chart
 The flow chart (Figure 2) and design description below (Figure 3) include details of all possible launch protocol conditions and options. 
@@ -53,6 +53,36 @@ ENDIF
 ```
 Figure 3: Launch Protocol design description
 
+### Implementation and API
+
+The recommended implementation of this protocol is as follows:
+
+1. The landing page (portal) provides URLs from which the user/student can choose. The URLs optionally contain the StoreURL or ResetURL options.
+2. Upon selection of a target state/URL, or after pressing a confirmation button, the browser is redirected to the requested URL.
+3. At the target URL (which sits on the test delivery system), the TDS inspects the URL string for options, and calls an appropriate API where necessary.
+4. The browser receives this API call and implements the request.
+5. The browser is then redirected by TDS to the final student login page using the TDS' built-in URL mapping mechanism (for example, https://aa.tds.airast.org/student will map to a more instance-specific URL such as https://login4.cloud9.tds.airast.org/student/V941/?c=Statename 
+
+ 1. A1. **Store URL**
+ 
+     This API will set a given URL as a default URL which will be used by the Secure Browser to redirect upon its next launch.
+ 
+     `void SecureBrowser.security.setDefaultURL(String urlString, String identifier, String callback)`
+ 
+     `urlString` : URL to set as default URL (required)
+ 
+     `identifier` : optional string
+     
+     `callback` : optional function
+     
+ 
+ 1. A2. **Reset URL**
+ 
+     This API will reset the default URL back to the default landing page.
+ 
+     `void SecureBrowser.security.resetURL()`
+ 
+ 
 ## References
 1. [Secure Browser Functional Requirements](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserFunctionalRequirements.md)
 1. [Secure Browser API Specification](https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserAPIspecification.md)
