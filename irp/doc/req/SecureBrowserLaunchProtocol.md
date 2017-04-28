@@ -1,5 +1,5 @@
 # Secure Browser Launch Protocol Specification
-v.1.8 - Last modified 28-Apr-2017
+v.1.9 - Last modified 28-Apr-2017
 
 ## IP Notice
 This specification is &copy;2017 by The Regents of the University of California, Smarter Balanced Assessment Consortium and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -16,14 +16,13 @@ Once the student selects a test site, the browser is redirected to that site and
 ## Specification
 The sequence diagram below (Figure 1) should be used as a guideline for the normal launch interactions among the secure browser, landing site, and the test delivery system (TDS).
 
-1. The Secure Browser shall open the hard-coded landing site URL upon launch.
+1. The Secure Browser arrives at the (preconfigured) landing site URL upon initial launch (or, arrives at the landing site as a result of a redirect from the student login page).
+1. The landing ste issues an API command to reset the browser's default URL to the original default landing site's.
 1. The user/student selects an appropriate testing site (e.g. California Summative).
-1. The browser is redirected to the selected state site and stores the URL for future use if a URL option is provided for that URL (StoreURL).
-1. The student enters authentication information into the TDS login page.
-1. The student begins the test after being authenticated and authorized.
+1. The browser is redirected to the selected state site (and stores the URL as the new default if a URL option is provided for that URL (StoreURL).
 1. Future connection attempts will have the Secure Browser immediately redirect to the previously selected testing site, if that option was selected.
 1. TDS provides a mechanism for the student to browse back to the landing site in case the selection needs to be changed.
-1. A mechanism to reset the browser's default URL back to the launch page may be provided.<img alt="Secure Browser Launch Protocol Design Guidelines" src="Secure_Browser_Launch_Protocol.png" width="800">
+<img alt="Secure Browser Launch Protocol Sequence Diagram" src="Secure_Browser_Launch_Protocol_seq.png" width="800">
 Figure 1: Secure Browser Launch Protocol Sequence Diagram
 
 ### Example URLs
@@ -58,10 +57,10 @@ Figure 3: Launch Protocol design description
 The recommended implementation of this protocol is as follows:
 
 1. The landing page (portal) provides URLs from which the user/student can choose. The URLs optionally contain the StoreURL or ResetURL options.
-2. Upon selection of a target state/URL, or after pressing a confirmation button, the browser is redirected to the requested URL.
-3. At the target URL (which sits on the test delivery system), the TDS inspects the URL string for options, and calls an appropriate API where necessary.
-4. The browser receives this API call and implements the request.
-5. The browser is then redirected by TDS to the final student login page using the TDS' built-in URL mapping mechanism (for example, https://aa.tds.airast.org/student will map to a more instance-specific URL such as https://login4.cloud9.tds.airast.org/student/V941/?c=Statename 
+1. The landing page resets the browser's default to the original default page.
+1. Upon selection of a target state/URL, or after pressing a confirmation button, the landing page calls appropriate API to set the URL as the new browser default (if URL option exists in URL query string). 
+1. If necessary, the browser receives this API call and implements the request.
+1. Browser is redirected to the requested URL.
 
 ### API
 
@@ -69,20 +68,20 @@ The recommended implementation of this protocol is as follows:
  
      This API will set a given URL as a default URL which will be used by the Secure Browser to redirect upon its next launch.
  
-     `void SecureBrowser.security.setDefaultURL(String urlString, String identifier, String callback)`
- 
-     `urlString` : URL to set as default URL (required)
- 
-     `identifier` : optional string
-     
-     `callback` : optional function
+     `void SecureBrowser.security.setAltStartPage(String urlString, String identifier, function callback)`
+
+    * `urlString` : URL to set as default URL (required)
+    * `identifier` : optional string
+    * `callback` : optional . If used, it should be of the form 
+        * `function(success){ }`
+        * `success : true/false`
      
  
 1. A2. **Reset URL**
  
      This API will reset the default URL back to the default landing page.
  
-     `void SecureBrowser.security.resetURL()`
+     `void SecureBrowser.security.restoreDefaultStartPage()`
  
  
 ## References

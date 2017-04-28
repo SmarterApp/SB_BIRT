@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser Launch Protocol Specification</h1>
 
-<p>v.1.8 - Last modified 28-Apr-2017</p>
+<p>v.1.9 - Last modified 28-Apr-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -384,17 +384,15 @@ pre[class*="language-"] {
 <p>The sequence diagram below (Figure 1) should be used as a guideline for the normal launch interactions among the secure browser, landing site, and the test delivery system (TDS).</p>
 
 <ol>
-<li>The Secure Browser shall open the hard-coded landing site URL upon launch.</li>
+<li>The Secure Browser arrives at the (preconfigured) landing site URL upon initial launch (or, arrives at the landing site as a result of a redirect from the student login page).</li>
+<li>The landing ste issues an API command to reset the browser&#39;s default URL to the original default landing site&#39;s.</li>
 <li>The user/student selects an appropriate testing site (e.g. California Summative).</li>
-<li>The browser is redirected to the selected state site and stores the URL for future use if a URL option is provided for that URL (StoreURL).</li>
-<li>The student enters authentication information into the TDS login page.</li>
-<li>The student begins the test after being authenticated and authorized.</li>
+<li>The browser is redirected to the selected state site (and stores the URL as the new default if a URL option is provided for that URL (StoreURL).</li>
 <li>Future connection attempts will have the Secure Browser immediately redirect to the previously selected testing site, if that option was selected.</li>
 <li>TDS provides a mechanism for the student to browse back to the landing site in case the selection needs to be changed.</li>
-<li>A mechanism to reset the browser&#39;s default URL back to the launch page may be provided.</li>
 </ol>
 
-<p><img alt="Secure Browser Launch Protocol Design Guidelines" src="Secure_Browser_Launch_Protocol.png" width="800">
+<p><img alt="Secure Browser Launch Protocol Sequence Diagram" src="Secure_Browser_Launch_Protocol_seq.png" width="800">
 Figure 1: Secure Browser Launch Protocol Sequence Diagram</p>
 
 <h3 id="toc_5">Example URLs</h3>
@@ -431,10 +429,10 @@ ENDIF</code></pre></div>
 
 <ol>
 <li>The landing page (portal) provides URLs from which the user/student can choose. The URLs optionally contain the StoreURL or ResetURL options.</li>
-<li>Upon selection of a target state/URL, or after pressing a confirmation button, the browser is redirected to the requested URL.</li>
-<li>At the target URL (which sits on the test delivery system), the TDS inspects the URL string for options, and calls an appropriate API where necessary.</li>
-<li>The browser receives this API call and implements the request.</li>
-<li>The browser is then redirected by TDS to the final student login page using the TDS&#39; built-in URL mapping mechanism (for example, https://aa.tds.airast.org/student will map to a more instance-specific URL such as https://login4.cloud9.tds.airast.org/student/V941/?c=Statename </li>
+<li>The landing page resets the browser&#39;s default to the original default page.</li>
+<li>Upon selection of a target state/URL, or after pressing a confirmation button, the landing page calls appropriate API to set the URL as the new browser default (if URL option exists in URL query string). </li>
+<li>If necessary, the browser receives this API call and implements the request.</li>
+<li>Browser is redirected to the requested URL.</li>
 </ol>
 
 <h3 id="toc_8">API</h3>
@@ -444,18 +442,23 @@ ENDIF</code></pre></div>
 
 <p>This API will set a given URL as a default URL which will be used by the Secure Browser to redirect upon its next launch.</p>
 
-<p><code>void SecureBrowser.security.setDefaultURL(String urlString, String identifier, String callback)</code></p>
+<p><code>void SecureBrowser.security.setAltStartPage(String urlString, String identifier, function callback)</code></p>
 
-<p><code>urlString</code> : URL to set as default URL (required)</p>
+<ul>
+<li><code>urlString</code> : URL to set as default URL (required)</li>
+<li><code>identifier</code> : optional string</li>
+<li><code>callback</code> : optional . If used, it should be of the form 
 
-<p><code>identifier</code> : optional string</p>
-
-<p><code>callback</code> : optional function</p></li>
+<ul>
+<li><code>function(success){ }</code></li>
+<li><code>success : true/false</code></li>
+</ul></li>
+</ul></li>
 <li><p>A2. <strong>Reset URL</strong></p>
 
 <p>This API will reset the default URL back to the default landing page.</p>
 
-<p><code>void SecureBrowser.security.resetURL()</code></p></li>
+<p><code>void SecureBrowser.security.restoreDefaultStartPage()</code></p></li>
 </ol>
 
 <h2 id="toc_9">References</h2>
