@@ -385,9 +385,9 @@ pre[class*="language-"] {
 
 <ol>
 <li>The Secure Browser arrives at the (preconfigured) landing site URL upon initial launch (or, arrives at the landing site as a result of a redirect from the student login page).</li>
-<li>The landing ste issues an API command to reset the browser&#39;s default URL to the original default landing site&#39;s.</li>
+<li>The landing site issues an API command to reset the browser&#39;s default URL to the original default landing site&#39;s, essentially clearing the previously-stored URL (if any).</li>
 <li>The user/student selects an appropriate testing site (e.g. California Summative).</li>
-<li>The browser is redirected to the selected state site (and stores the URL as the new default if a URL option is provided for that URL (StoreURL).</li>
+<li>The browser is redirected to the selected state site (and stores the URL as the new default if the StoreURL option is provided for that URL).</li>
 <li>Future connection attempts will have the Secure Browser immediately redirect to the previously selected testing site, if that option was selected.</li>
 <li>TDS provides a mechanism for the student to browse back to the landing site in case the selection needs to be changed.</li>
 </ol>

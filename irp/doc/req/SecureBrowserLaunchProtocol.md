@@ -17,9 +17,9 @@ Once the student selects a test site, the browser is redirected to that site and
 The sequence diagram below (Figure 1) should be used as a guideline for the normal launch interactions among the secure browser, landing site, and the test delivery system (TDS).
 
 1. The Secure Browser arrives at the (preconfigured) landing site URL upon initial launch (or, arrives at the landing site as a result of a redirect from the student login page).
-1. The landing ste issues an API command to reset the browser's default URL to the original default landing site's.
+1. The landing site issues an API command to reset the browser's default URL to the original default landing site's, essentially clearing the previously-stored URL (if any).
 1. The user/student selects an appropriate testing site (e.g. California Summative).
-1. The browser is redirected to the selected state site (and stores the URL as the new default if a URL option is provided for that URL (StoreURL).
+1. The browser is redirected to the selected state site (and stores the URL as the new default if the StoreURL option is provided for that URL).
 1. Future connection attempts will have the Secure Browser immediately redirect to the previously selected testing site, if that option was selected.
 1. TDS provides a mechanism for the student to browse back to the landing site in case the selection needs to be changed.
 <img alt="Secure Browser Launch Protocol Sequence Diagram" src="Secure_Browser_Launch_Protocol_seq.png" width="800">
