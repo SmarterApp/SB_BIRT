@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser Launch Protocol Specification</h1>
 
-<p>v.1.1 - Last modified 20-Apr-2017</p>
+<p>v.1.10 - Last modified 30-Apr-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -365,22 +365,13 @@ pre[class*="language-"] {
 
 <h2 id="toc_2">Overview</h2>
 
-<p>In order to provide a seamless launch experience for the student, as well as centrally-managed experience for states, the Secure Browser follows a simple caching protocol described herein.</p>
+<p>In order to provide a seamless launch experience for the student, as well as centrally-managed experience for states, the Secure Browser follows a simple launch protocol described herein.</p>
 
-<p>The launch protocol is implemented using a hosted webpage with a hard-coded list of testing hosts. The host of the launch page would be the gatekeeper to other uses of the browser, and be responsible for managing link updates, load, and user experience for that page. </p>
+<p>The launch protocol is implemented using a hosted webpage (&quot;portal&quot; or &quot;landing&quot; page) with a prescribed list of testing hosts. The host of the landing page would be the gatekeeper to other uses of the browser, and be responsible for managing link updates, load, and user experience for that page. </p>
 
-<p>Once the student selects a test site, the browser is redirected to that site and stores the selections in the browser&#39;s cache. Future launches of the browser will apply the cached selections (if any) and immediately direct to the selected testing site.</p>
+<p>Once the student selects a test site, the browser is redirected to that site and optionally stores that selection. If stored, future launches of the browser will apply the selection (if any) and immediately direct to the selected testing site.</p>
 
-<h3 id="toc_3">Features</h3>
-
-<ul>
-<li>Secure Browser hardcodes only one landing page URL, which is the hosted URL containing all available testing hosts.</li>
-<li>Student makes site selection on landing page and gets redirected</li>
-<li>Initial selection (target URL) will be cached by the browser and reused for next launch</li>
-<li>A mechanism to clear the cache or return back to the launch page may be provided.</li>
-</ul>
-
-<h3 id="toc_4">Benefits</h3>
+<h3 id="toc_3">Benefits</h3>
 
 <ul>
 <li>URLs can be updated in real time in a single location</li>
@@ -388,23 +379,89 @@ pre[class*="language-"] {
 <li>Login process only executed once per student</li>
 </ul>
 
-<h2 id="toc_5">Specification</h2>
+<h2 id="toc_4">Specification</h2>
 
-<p>The sequence diagram below should be used as a guideline for the launch interactions among the secure browser, landing site, and the test delivery system (TDS).</p>
+<p>The sequence diagram below (Figure 1) should be used as a guideline for the normal launch interactions among the secure browser, landing site, and the test delivery system (TDS).</p>
 
 <ol>
-<li>Upon launch, the Secure Browser opens the hard-coded Landing Site URL.</li>
-<li>The student student selects an appropriate testing site (e.g. California Summative).</li>
-<li>The browser is redirected to the selected state site and caches the URL.</li>
-<li>The student enters authentication information into the TDS login page.</li>
-<li>The student begins the test after being authenticated and authorized.</li>
-<li>Future connection attempts will have the Secure Browser immediately redirect to the previously selected (cached) testing site.</li>
+<li>The Secure Browser arrives at the (preconfigured) landing site URL upon initial launch (or, arrives at the landing site as a result of a redirect from the student login page).</li>
+<li>The landing site issues an API command to reset the browser&#39;s default URL to the original default landing site&#39;s, essentially clearing the previously-stored URL (if any).</li>
+<li>The user/student selects an appropriate testing site (e.g. California Summative).</li>
+<li>The browser is redirected to the selected state site (and stores the URL as the new default if the StoreURL option is provided for that URL).</li>
+<li>Future connection attempts will have the Secure Browser immediately redirect to the previously selected testing site, if that option was selected.</li>
 <li>TDS provides a mechanism for the student to browse back to the landing site in case the selection needs to be changed.</li>
 </ol>
 
-<p><img alt="Secure Browser Launch Protocol Design Guidelines" src="https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/design/Secure_Browser_Launch_Protocol.png" width="800"></p>
+<p><img alt="Secure Browser Launch Protocol Sequence Diagram" src="Secure_Browser_Launch_Protocol_seq.png" width="800">
+Figure 1: Secure Browser Launch Protocol Sequence Diagram</p>
 
-<h2 id="toc_6">References</h2>
+<h3 id="toc_5">Example URLs</h3>
+
+<ul>
+<li>Default (landing page) URL: http://browser.smarterbalanced.org/landing</li>
+<li>https://aa.tds.airast.org/student  (will redirect and not store)</li>
+<li>https://aa.tds.airast.org/student?StoreURL=true   (will redirect and store)</li>
+<li>https://aa.tds.airast.org/student?ResetURL=true   (will reset default URL to original default landing page but redirect to requested URL)</li>
+<li>https://aa.tds.airast.org/student?StoreURL=true&amp;ResetURL=true   (will default URL to original default landing page, but redirect to requested URL. The StoreURL option is ignored.)</li>
+</ul>
+
+<h3 id="toc_6">Flow Chart</h3>
+
+<p>The flow chart (Figure 2) and design description below (Figure 3) include details of all possible launch protocol conditions and options. </p>
+
+<p><img alt="Secure Browser Launch Protocol Flow Chart" src="SBLP.png" width="800"></p>
+
+<p>Figure 2: Launch Protocol flow chart</p>
+
+<div><pre><code class="language-none">IF the ResetURL option is set
+   set the URL to the original (hardcoded) default URL
+ELSE
+   IF the storeURL option is set
+      make this URL the new default URL
+   ENDIF
+ENDIF</code></pre></div>
+
+<p>Figure 3: Launch Protocol design description</p>
+
+<h3 id="toc_7">Recommended Implementation</h3>
+
+<p>The recommended implementation of this protocol is as follows:</p>
+
+<ol>
+<li>The landing page (portal) provides URLs from which the user/student can choose. The URLs optionally contain the StoreURL or ResetURL options.</li>
+<li>The landing page resets the browser&#39;s default to the original default page.</li>
+<li>Upon selection of a target state/URL, or after pressing a confirmation button, the landing page calls appropriate API to set the URL as the new browser default (if URL option exists in URL query string). </li>
+<li>If necessary, the browser receives this API call and implements the request.</li>
+<li>Browser is redirected to the requested URL.</li>
+</ol>
+
+<h3 id="toc_8">API</h3>
+
+<ol>
+<li><p>A1. <strong>Store URL</strong></p>
+
+<p>This API will set a given URL as a default URL which will be used by the Secure Browser to redirect upon its next launch.</p>
+
+<p><code>void SecureBrowser.security.setAltStartPage(String urlString, String identifier, function callback)</code></p>
+
+<ul>
+<li><code>urlString</code> : URL to set as default URL (required)</li>
+<li><code>identifier</code> : optional string</li>
+<li><code>callback</code> : optional . If used, it should be of the form 
+
+<ul>
+<li><code>function(success){ }</code></li>
+<li><code>success : true/false</code></li>
+</ul></li>
+</ul></li>
+<li><p>A2. <strong>Reset URL</strong></p>
+
+<p>This API will reset the default URL back to the default landing page.</p>
+
+<p><code>void SecureBrowser.security.restoreDefaultStartPage()</code></p></li>
+</ol>
+
+<h2 id="toc_9">References</h2>
 
 <ol>
 <li><a href="https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserFunctionalRequirements.md">Secure Browser Functional Requirements</a></li>
