@@ -1,3 +1,11 @@
+// *******************************************************************************
+// Educational Online Test Delivery System
+// Copyright (c) 2017 American Institutes for Research
+//
+// Distributed under the AIR Open Source License, Version 1.0
+// See accompanying file AIR-License-1_0.txt or at
+// http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
+// *******************************************************************************
 /**
  * Javascript file to test TTS Manual Check for respective API, all the test are
  * given a constant number starting 1 for Play and so on.
@@ -1424,7 +1432,7 @@ function recorderComponentInitialize() {
   createButton($("#resumePlaybackRecording"), 'Resume Playback', 'Resume');
   createButton($("#stopPlaybackRecording"), 'Stop Playback', 'Stop');
 
-  if (currentTestSetting == IRT.ProcessTest.UNKNOWN) {
+  if (currentTestSetting == IRT.RecorderTest.UNKNOWN) {
 
     currentTestSetting = IRT.RecorderTest.INITIATE;
 
