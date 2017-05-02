@@ -1,5 +1,5 @@
 # Secure Browser Launch Protocol Specification
-v.1.11 - Last modified 02-May-2017
+v.1.12 - Last modified 02-May-2017
 
 ## IP Notice
 This specification is &copy;2017 by The Regents of the University of California, Smarter Balanced Assessment Consortium and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -68,14 +68,9 @@ The recommended implementation of this protocol is as follows:
  
      This API will set a given URL as a default URL which will be used by the Secure Browser to redirect upon its next launch.
  
-     `void SecureBrowser.security.setAltStartPage(String urlString, String identifier, function callback)`
+     `void SecureBrowser.security.setAltStartPage(String urlString)`
 
-    * `urlString` : URL to set as default URL (required)
-    * `identifier` : optional string
-    * `callback` : optional . If used, it should be of the form 
-        * `function(success){ }`
-        * `success : true/false`
-     
+    * `urlString` : URL to set as default URL (required)   
  
 1. A2. **Reset URL**
  

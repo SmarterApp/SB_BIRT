@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser Launch Protocol Specification</h1>
 
-<p>v.1.11 - Last modified 02-May-2017</p>
+<p>v.1.12 - Last modified 02-May-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -442,17 +442,10 @@ ENDIF</code></pre></div>
 
 <p>This API will set a given URL as a default URL which will be used by the Secure Browser to redirect upon its next launch.</p>
 
-<p><code>void SecureBrowser.security.setAltStartPage(String urlString, String identifier, function callback)</code></p>
+<p><code>void SecureBrowser.security.setAltStartPage(String urlString)</code></p>
 
 <ul>
-<li><code>urlString</code> : URL to set as default URL (required)</li>
-<li><code>identifier</code> : optional string</li>
-<li><code>callback</code> : optional . If used, it should be of the form 
-
-<ul>
-<li><code>function(success){ }</code></li>
-<li><code>success : true/false</code></li>
-</ul></li>
+<li><code>urlString</code> : URL to set as default URL (required)<br></li>
 </ul></li>
 <li><p>A2. <strong>Reset URL</strong></p>
 
