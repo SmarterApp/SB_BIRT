@@ -1,5 +1,5 @@
 # Secure Browser Launch Protocol Specification
-v.1.10 - Last modified 30-Apr-2017
+v.1.11 - Last modified 02-May-2017
 
 ## IP Notice
 This specification is &copy;2017 by The Regents of the University of California, Smarter Balanced Assessment Consortium and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
