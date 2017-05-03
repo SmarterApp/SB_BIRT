@@ -1,3 +1,11 @@
+// *******************************************************************************
+// Educational Online Test Delivery System
+// Copyright (c) 2017 American Institutes for Research
+//
+// Distributed under the AIR Open Source License, Version 1.0
+// See accompanying file AIR-License-1_0.txt or at
+// http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
+// *******************************************************************************
 function TTSService_Unified() {
 
   this.volume = 10; // 0-10
@@ -31,7 +39,7 @@ function TTSService_Unified() {
 
     try {
       function getVoicesCallBack(aVoices) {
-    
+
         let selectList = document.getElementById("voices");
         let selectedIndex = 0;
         for (let i = 0; i < aVoices.length; i++) {
@@ -148,7 +156,7 @@ function TTSService_Unified() {
     }
     SecureBrowser.tts.resume(callback);
   };
-  
+
   this.setTTSsystemMute = function(enable) {
     try {
       if (!Util.Browser.isSecureBrowser()) {
