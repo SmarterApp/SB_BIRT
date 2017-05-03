@@ -1,5 +1,5 @@
 # Secure Browser Launch Protocol Specification
-v.1.12 - Last modified 02-May-2017
+v.1.13 - Last modified 03-May-2017
 
 ## IP Notice
 This specification is &copy;2017 by The Regents of the University of California, Smarter Balanced Assessment Consortium and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -30,8 +30,6 @@ Figure 1: Secure Browser Launch Protocol Sequence Diagram
 * Default (landing page) URL: http://browser.smarterbalanced.org/landing
 * https://aa.tds.airast.org/student  (will redirect and not store)
 * https://aa.tds.airast.org/student?StoreURL=true   (will redirect and store)
-* https://aa.tds.airast.org/student?ResetURL=true   (will reset default URL to original default landing page but redirect to requested URL)
-* https://aa.tds.airast.org/student?StoreURL=true&ResetURL=true   (will default URL to original default landing page, but redirect to requested URL. The StoreURL option is ignored.)
 
 ### Flow Chart
 The flow chart (Figure 2) and design description below (Figure 3) include details of all possible launch protocol conditions and options. 
@@ -42,12 +40,8 @@ Figure 2: Launch Protocol flow chart
 
 
 ```
-IF the ResetURL option is set
-   set the URL to the original (hardcoded) default URL
-ELSE
-   IF the storeURL option is set
-      make this URL the new default URL
-   ENDIF
+IF the storeURL option is set
+   make this URL the new default URL by calling the setAltStartPage API
 ENDIF
 ```
 Figure 3: Launch Protocol design description
@@ -56,9 +50,9 @@ Figure 3: Launch Protocol design description
 
 The recommended implementation of this protocol is as follows:
 
-1. The landing page (portal) provides URLs from which the user/student can choose. The URLs optionally contain the StoreURL or ResetURL options.
-1. The landing page resets the browser's default to the original default page.
-1. Upon selection of a target state/URL, or after pressing a confirmation button, the landing page calls appropriate API to set the URL as the new browser default (if URL option exists in URL query string). 
+1. The landing page (portal) provides URLs from which the user/student can choose. The URLs optionally contain the StoreURL option.
+1. The landing page resets the browser's default to the original default page by calling the Reset URL API (`SecureBrowser.security.restoreDefaultStartPage`).
+1. Upon selection of a target state/URL, or after pressing a confirmation button, the landing page calls the Store URL API (`SecureBrowser.security.setAltStartPage`) to set the URL as the new browser default (if URL option exists in URL query string). 
 1. If necessary, the browser receives this API call and implements the request.
 1. Browser is redirected to the requested URL.
 
