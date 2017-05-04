@@ -590,10 +590,53 @@ IRT.ApiSpecs = {
       "apiType" : [ "function" ],
       "isDeprecated" : false
     },
+
+    "checkSetAltStartPageAPI" : {
+      // A1. This API will set a given URL as a default URL which will be used
+      // by the Secure Browser to redirect upon its next launch.
+      // SEC-132
+      "id" : "20",
+      "testName" : "SBLP Store URL",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "SecureBrowser.security.setAltStartPage",
+      "testApi_SB" : "runtime.permissive",
+      "testApi_mobile" : "runtime.security.setPermissiveMode",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+
+    "checkRestoreDefaultStartPageAPI" : {
+      // A1. This API will reset the default URL back to the default landing
+      // page.
+      // SEC-132
+      "id" : "21",
+      "testName" : "SBLP Reset URL",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "SecureBrowser.security.restoreDefaultStartPage",
+      "testApi_SB" : "runtime.permissive",
+      "testApi_mobile" : "runtime.security.setPermissiveMode",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+
     "checkspacesenabled" : {
       // F15. The secure browser shall provide a means to set permissive mode.
       // R21 SEC-71
-      "id" : "20",
+      "id" : "22",
       "testName" : "Check spaces in macOS",
       "testApi" : "",
       "testResult" : null,
@@ -691,67 +734,35 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
-    }/**,
-    "checkTTSVolumeAPI" : {
-      // F30. The secure browser shall provide a means to get/set TTS volume.
-      // R08 SEC-36, SEC-50, SEC-51, SEC-52, SEC-53
-      "id" : "5",
-      "testName" : "Get/Set TTS volume API (text-to-speech synthesis)",
-      "testApi" : "",
-      "testResult" : true,
-      "details" : "",
-      "testApi_certified" : "SecureBrowser.tts.getVolume",
-      "testApi_webspeech" : "new SpeechSynthesisUtterance().volume",
-      "testApi_SB" : "runtime.volume",
-      "testApi_mobile" : "runtime.device.ttsVolume",
-      "points" : "1",
-      "required" : {
-        "all" : true
-      },
-      "testPoints" : "0",
-      "apiType" : [ "function" ],
-      "isDeprecated" : false
-    },
-    "checkTTSPitchAPI" : {
-      // F28. The secure browser shall provide a means to get/set TTS pitch.
-      // R11, R12 SEC-11, SEC-39
-      "id" : "6",
-      "testName" : "Get/Set TTS pitch API (text-to-speech synthesis)",
-      "testApi" : "",
-      "testResult" : true,
-      "details" : "",
-      "testApi_certified" : "SecureBrowser.tts.getPitch",
-      "testApi_webspeech" : "new SpeechSynthesisUtterance().pitch",
-      "testApi_SB" : "runtime.pitch",
-      "testApi_mobile" : "runtime.device.ttsPitch",
-      "points" : "1",
-      "required" : {
-        "all" : true
-      },
-      "testPoints" : "0",
-      "apiType" : [ "function" ],
-      "isDeprecated" : false
-    },
-    "checkTTSRateAPI" : {
-      // F29. The secure browser shall provide a means to get/set TTS rate. R11,
-      // R12 SEC-11, SEC-39
-      "id" : "7",
-      "testName" : "Get/Set TTS rate API (text-to-speech synthesis)",
-      "testApi" : "",
-      "testResult" : true,
-      "details" : "",
-      "testApi_certified" : "SecureBrowser.tts.getRate",
-      "testApi_webspeech" : "new SpeechSynthesisUtterance().rate",
-      "testApi_SB" : "runtime.rate",
-      "testApi_mobile" : "runtime.device.ttsRate",
-      "points" : "1",
-      "required" : {
-        "all" : true
-      },
-      "testPoints" : "0",
-      "apiType" : [ "function" ],
-      "isDeprecated" : false
-    }*/,
+    }/**
+       * , "checkTTSVolumeAPI" : { // F30. The secure browser shall provide a
+       * means to get/set TTS volume. // R08 SEC-36, SEC-50, SEC-51, SEC-52,
+       * SEC-53 "id" : "5", "testName" : "Get/Set TTS volume API (text-to-speech
+       * synthesis)", "testApi" : "", "testResult" : true, "details" : "",
+       * "testApi_certified" : "SecureBrowser.tts.getVolume",
+       * "testApi_webspeech" : "new SpeechSynthesisUtterance().volume",
+       * "testApi_SB" : "runtime.volume", "testApi_mobile" :
+       * "runtime.device.ttsVolume", "points" : "1", "required" : { "all" : true },
+       * "testPoints" : "0", "apiType" : [ "function" ], "isDeprecated" : false },
+       * "checkTTSPitchAPI" : { // F28. The secure browser shall provide a means
+       * to get/set TTS pitch. // R11, R12 SEC-11, SEC-39 "id" : "6", "testName" :
+       * "Get/Set TTS pitch API (text-to-speech synthesis)", "testApi" : "",
+       * "testResult" : true, "details" : "", "testApi_certified" :
+       * "SecureBrowser.tts.getPitch", "testApi_webspeech" : "new
+       * SpeechSynthesisUtterance().pitch", "testApi_SB" : "runtime.pitch",
+       * "testApi_mobile" : "runtime.device.ttsPitch", "points" : "1",
+       * "required" : { "all" : true }, "testPoints" : "0", "apiType" : [
+       * "function" ], "isDeprecated" : false }, "checkTTSRateAPI" : { // F29.
+       * The secure browser shall provide a means to get/set TTS rate. R11, //
+       * R12 SEC-11, SEC-39 "id" : "7", "testName" : "Get/Set TTS rate API
+       * (text-to-speech synthesis)", "testApi" : "", "testResult" : true,
+       * "details" : "", "testApi_certified" : "SecureBrowser.tts.getRate",
+       * "testApi_webspeech" : "new SpeechSynthesisUtterance().rate",
+       * "testApi_SB" : "runtime.rate", "testApi_mobile" :
+       * "runtime.device.ttsRate", "points" : "1", "required" : { "all" : true },
+       * "testPoints" : "0", "apiType" : [ "function" ], "isDeprecated" : false }
+       */
+    ,
     "checkTTSStatusAPI" : {
       // F22. The secure browser shall provide a means events to notify the web
       // application of status and progress of TTS. R10 SEC-11, SEC-38
@@ -1095,7 +1106,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : isMSTatBrowser() ? true : false
       },
       "testPoints" : "0",
       "dialogHtml" : "<p>Did the capabilities listed in the Capability table match the selection(s) you made?</p>",
@@ -1118,7 +1129,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : isMSTatBrowser() ? true : false
       },
       "testPoints" : "0",
       "dialogHtml" : "<p>Did the capabilities listed in the Capability table match the selection(s) you made?</p>",
@@ -1715,3 +1726,8 @@ IRT.ApiSpecs = {
 
   }
 };
+
+function isMSTatBrowser() {
+  return !!navigator.userAgent.match(/Edge\/[\d.]+/)
+      && (navigator.userAgent.indexOf(' WebView/') > -1);
+}
