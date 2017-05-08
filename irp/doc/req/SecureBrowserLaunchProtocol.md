@@ -1,5 +1,5 @@
 # Secure Browser Launch Protocol Specification
-v.1.13 - Last modified 03-May-2017
+v.1.14 - Last modified 04-May-2017
 
 ## IP Notice
 This specification is &copy;2017 by The Regents of the University of California, Smarter Balanced Assessment Consortium and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -32,19 +32,11 @@ Figure 1: Secure Browser Launch Protocol Sequence Diagram
 * https://aa.tds.airast.org/student?StoreURL=true   (will redirect and store)
 
 ### Flow Chart
-The flow chart (Figure 2) and design description below (Figure 3) include details of all possible launch protocol conditions and options. 
+The flow chart (Figure 2) contains the details of the launch protocol process. 
 
 <img alt="Secure Browser Launch Protocol Flow Chart" src="SBLP.png" width="800">
 
 Figure 2: Launch Protocol flow chart
-
-
-```
-IF the storeURL option is set
-   make this URL the new default URL by calling the setAltStartPage API
-ENDIF
-```
-Figure 3: Launch Protocol design description
 
 ### Recommended Implementation
 
