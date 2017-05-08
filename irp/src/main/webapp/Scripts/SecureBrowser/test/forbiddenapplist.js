@@ -592,5 +592,9 @@ var IRT_FORBIDDEN = {
   }, {
     "processname" : "yahoomessenger.exe",
     "processdescription" : "Yahoo Instant Messenger"
+  }, {
+    "processname" : "MicrosoftEdgeCP.exe",
+    "processdescription" : "Microsoft Edge Browser"
+
   } ]
 };
