@@ -605,7 +605,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.security.setPermissiveMode",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -626,7 +626,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "runtime.security.setPermissiveMode",
       "points" : "1",
       "required" : {
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -1106,7 +1106,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : isMSTatBrowser() ? true : false
+        "all" : false
       },
       "testPoints" : "0",
       "dialogHtml" : "<p>Did the capabilities listed in the Capability table match the selection(s) you made?</p>",
@@ -1129,7 +1129,7 @@ IRT.ApiSpecs = {
       "testApi_mobile" : "",
       "points" : "1",
       "required" : {
-        "all" : isMSTatBrowser() ? true : false
+        "all" : false
       },
       "testPoints" : "0",
       "dialogHtml" : "<p>Did the capabilities listed in the Capability table match the selection(s) you made?</p>",
