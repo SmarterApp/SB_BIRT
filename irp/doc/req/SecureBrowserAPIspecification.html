@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser API Specification</h1>
 
-<p>v.2.0.6 - Last modified 20-Apr-2017</p>
+<p>v.2.0.7 - Last modified 10-May-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -394,24 +394,6 @@ pre[class*="language-"] {
    &#39;secure&#39; : &quot;true/false&quot;,
    &#39;messageKey&#39; : &quot;some message&quot;
 }</code></p></li>
-<li><p>R41. <strong>Retrieve the status of a particular browser capability</strong>. </p>
-
-<p><code>object SecureBrowser.security.getCapability(&quot;feature&quot;)</code></p>
-
-<p>returns either a Javascript object or literal with the following structure</p>
-
-<p><code>{&lt;feature&gt;:true|false}</code></p></li>
-<li><p>R42. <strong>Set the status of a particular browser capability</strong>. This allows us to explicitly enable or disable a specific feature on the browser. The feature must be one that is recognized by the vendor.</p>
-
-<p><code>void SecureBrowser.security.setCapability(feature, value, function onSuccess, function onError)</code></p>
-
-<p><code>feature</code> and <code>value</code> are strings, for example &quot;printing&quot; and &quot;false&quot;.</p>
-
-<p><code>onSuccess</code> and <code>onError</code> are optional parameters. These functions are invoked after the feature has either been successfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:</p>
-
-<p><code>function(jsonliteral) {...}</code></p>
-
-<p>where jsonliteral indicates the current value of the feature and its state. <code>{&lt;feature&gt;:true|false|undefined}</code>. If the feature is unknown to the browser, the value for the key will be undefined</p></li>
 <li><p>R05. <strong>Retrieve information on the environment (device)</strong>. The testing web application will invoke this to gather details about the platform on which it is running. This is used to augment any information that was discernible from the user agent.</p>
 
 <p><code>void SecureBrowser.security.getDeviceInfo(function callback)</code></p>
@@ -620,6 +602,24 @@ The testing application will invoke this to perform client side text to speech s
 <p>Example response:</p>
 
 <p><code>&quot;[&#39;00:55:65:C0:00:EA&#39;]&quot;</code></p></li>
+<li><p>R41. <strong>Retrieve the status of a particular browser capability</strong>.</p>
+
+<p><code>object SecureBrowser.security.getCapability(&quot;feature&quot;)</code></p>
+
+<p>returns either a Javascript object or literal with the following structure</p>
+
+<p><code>{&lt;feature&gt;:true|false}</code></p></li>
+<li><p>R42. <strong>Set the status of a particular browser capability</strong>. This allows us to explicitly enable or disable a specific feature on the browser. The feature must be one that is recognized by the vendor.</p>
+
+<p><code>void SecureBrowser.security.setCapability(feature, value, function onSuccess, function onError)</code></p>
+
+<p><code>feature</code> and <code>value</code> are strings, for example &quot;printing&quot; and &quot;false&quot;.</p>
+
+<p><code>onSuccess</code> and <code>onError</code> are optional parameters. These functions are invoked after the feature has either been successfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:</p>
+
+<p><code>function(jsonliteral) {...}</code></p>
+
+<p>where jsonliteral indicates the current value of the feature and its state. <code>{&lt;feature&gt;:true|false|undefined}</code>. If the feature is unknown to the browser, the value for the key will be undefined</p></li>
 </ol>
 
 <h4 id="toc_6">Audio Recorder (W3C)</h4>
