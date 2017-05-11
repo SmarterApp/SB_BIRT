@@ -526,7 +526,7 @@ IRT.ApiSpecs = {
       "points" : "1",
       "required" : {
 
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
@@ -546,7 +546,7 @@ IRT.ApiSpecs = {
       "points" : "1",
       "required" : {
 
-        "all" : true
+        "all" : false
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
