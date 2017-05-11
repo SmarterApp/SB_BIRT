@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.0.8 - Last modified 11-May-2017
+v.2.0.9 - Last modified 11-May-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -124,7 +124,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 1. R08. **Speak Text (TTS)**.
     The testing application will invoke this to perform client side text to speech synthesis. The API call will be passed in a string with embedded speech markup (the `text` string is required, the markup is optional), an `options` object to control the speech (required param) and a callback for TTS events (optional). The vendor must support plaintext and optionally support one of the following markup standards; SSML, Microsoft speech markup (for Windows) or Apple speech markup (for macOS). 
 
- `void SecureBrowser.tts.speak(string text, object options, function callback)`
+   `void SecureBrowser.tts.speak(string text, object options, function callback)`
    
    If `speak(...)` is called while speech is already ongoing, the old utterance will stop and the new one will begin immediately.
 
