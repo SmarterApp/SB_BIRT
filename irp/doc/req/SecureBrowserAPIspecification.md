@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.0.6 - Last modified 20-Apr-2017
+v.2.0.7 - Last modified 10-May-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -36,26 +36,6 @@ The following Secure Browser Application Programming Interface (API) endpoints d
        'messageKey' : "some message"
     }`
     
-1. R41. **Retrieve the status of a particular browser capability**. 
-
-	`object SecureBrowser.security.getCapability("feature")`
-	
-    returns either a Javascript object or literal with the following structure
-
-	`{<feature>:true|false}`
-
-1. R42. **Set the status of a particular browser capability**. This allows us to explicitly enable or disable a specific feature on the browser. The feature must be one that is recognized by the vendor.
-
-	`void SecureBrowser.security.setCapability(feature, value, function onSuccess, function onError)`
-
-    `feature` and `value` are strings, for example "printing" and "false".
-    
-	`onSuccess` and `onError` are optional parameters. These functions are invoked after the feature has either been successfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:
-
-	` function(jsonliteral) {...}`
-	
-	where jsonliteral indicates the current value of the feature and its state. `{<feature>:true|false|undefined}`. If the feature is unknown to the browser, the value for the key will be undefined
-
 1. R05. **Retrieve information on the environment (device)**. The testing web application will invoke this to gather details about the platform on which it is running. This is used to augment any information that was discernible from the user agent.
 
 	`void SecureBrowser.security.getDeviceInfo(function callback)`
@@ -236,6 +216,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
     Callback is invoked when resume has occurred. If state is null or undefined, then an error occurred during resume. Otherwise 'resume' or 'error' are the expected states in the callback, with error meaning something like the speech engine was not in a paused state.
 
 ### Optional APIs
+The APIs in this section are optional. As such, it is good programming practice to check for the existence of an API before calling it, or catch the Javascript exception in case the browser does not support it. It is recommend to do this for required APIs as well.
 
 1. R23. **Empty system clipboard**. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the `SecureBrowser.security.lockDown` to perform the same operation. 
 
@@ -262,6 +243,27 @@ The following Secure Browser Application Programming Interface (API) endpoints d
      Example response:
 	 
      `"['00:55:65:C0:00:EA']"`
+
+1. R41. **Retrieve the status of a particular browser capability**.
+
+	`object SecureBrowser.security.getCapability("feature")`
+	
+    returns either a Javascript object or literal with the following structure
+
+	`{<feature>:true|false}`
+
+1. R42. **Set the status of a particular browser capability**. This allows us to explicitly enable or disable a specific feature on the browser. The feature must be one that is recognized by the vendor.
+
+	`void SecureBrowser.security.setCapability(feature, value, function onSuccess, function onError)`
+
+    `feature` and `value` are strings, for example "printing" and "false".
+    
+	`onSuccess` and `onError` are optional parameters. These functions are invoked after the feature has either been successfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:
+
+	` function(jsonliteral) {...}`
+	
+	where jsonliteral indicates the current value of the feature and its state. `{<feature>:true|false|undefined}`. If the feature is unknown to the browser, the value for the key will be undefined
+
     
 #### Audio Recorder (W3C)
 *NOTE: Browsers supporting W3C's [Web Audio API](https://www.w3.org/TR/webaudio/) for playback, [MediaStream Recording](https://www.w3.org/TR/mediastream-recording/) for recording, and Mozilla's [MediaDevices.getUserMedia()](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia) do not need to implement these functions.*

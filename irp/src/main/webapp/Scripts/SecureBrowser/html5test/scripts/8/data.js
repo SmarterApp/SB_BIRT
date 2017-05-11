@@ -1316,7 +1316,7 @@ var tests = [
           {
             id : 'input',
             name : 'Input',
-            required : true,
+            required : false,
             status : 'proposal',
             items : [
                 {

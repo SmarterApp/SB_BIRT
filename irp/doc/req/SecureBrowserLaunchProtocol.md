@@ -1,5 +1,5 @@
 # Secure Browser Launch Protocol Specification
-v.1.14 - Last modified 04-May-2017
+v.1.15 - Last modified 10-May-2017
 
 ## IP Notice
 This specification is &copy;2017 by The Regents of the University of California, Smarter Balanced Assessment Consortium and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -49,6 +49,7 @@ The recommended implementation of this protocol is as follows:
 1. Browser is redirected to the requested URL.
 
 ### API
+The APIs in this section are optional. As such, it is good programming practice to check for the existence of an API before calling it, or catch the Javascript exception in case the browser does not support it. It is recommend to do this for required APIs as well.
 
 1. A1. **Store URL**
  
