@@ -407,8 +407,14 @@
 
   // check if browser has "SecureBrowser" as Global Object
   Browser.isSecureBrowser = function() {
-    var hasAPI = (typeof (window.SecureBrowser) == 'object');
-
+	  
+	var hasAPI = false;
+	try {
+       hasAPI = (typeof (window.SecureBrowser) == 'object');
+    } catch (ex) {
+      console.log('Exception occurred ' + ex.message);
+      hasAPI= false;
+    }
     return hasAPI;
   };
   
