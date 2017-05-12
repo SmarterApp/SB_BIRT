@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser API Specification</h1>
 
-<p>v.2.0.7 - Last modified 10-May-2017</p>
+<p>v.2.0.9 - Last modified 11-May-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -577,6 +577,8 @@ The testing application will invoke this to perform client side text to speech s
 </ol>
 
 <h3 id="toc_5">Optional APIs</h3>
+
+<p>The APIs in this section are optional. As such, it is good programming practice to check for the existence of an API before calling it, or catch the Javascript exception in case the browser does not support it. It is recommend to do this for required APIs as well.</p>
 
 <ol>
 <li><p>R23. <strong>Empty system clipboard</strong>. The testing application will invoke this to force clear any data that may be in the system clipboard. This is a optional method. The implementer can choose to use the <code>SecureBrowser.security.lockDown</code> to perform the same operation. </p>
