@@ -872,7 +872,7 @@ window.Specs = {
   },
 
   "css-snappoints" : {
-    "required" : true,
+    "required" : false,
     "title" : "Scroll Snap Points",
     "properties" : {
       "scroll-snap-type" : [ "none", "mandatory", "proximity" ],
@@ -967,7 +967,7 @@ window.Specs = {
   },
 
   "css-overflow-3" : {
-    "required" : true,
+    "required" : false,
     "title" : "Overflow",
     "properties" : {
       "max-lines" : [ "none", "1" ],

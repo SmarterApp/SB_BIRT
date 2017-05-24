@@ -37,13 +37,24 @@ The Webapp module contains the BIRT UI and REST APIs.
 * This folder contains factory.js which will work as an entry point for setting up test APIs for given browser.
 * Based on browser and device it will initialize respective js file for testing respective API for browser readiness.
 * index.js will call implementation method and other API test calls.
-* For each test, test API will populate a JSON array with test info such as test name, test API signature, results, and details (for example, failure reason). See the following sample JSON:
+* For each test, test API will populate a JSON array with test info such as test name, test API signature, results, details and other info Please refer [BIRT_Test_Configuration](https://github.com/SmarterApp/SB_BIRT/blob/vk/irp/doc/design/IRT_Automated_Testing_Configuration.docx). See sample JSON:
 
 ```
-{details: "window.browser is not defined",
-testApi : "!!window.browser"
-testName : "[window.browser] global object check"
-testResult : false .....}
+{
+      "id" : "21",
+      "testName" : "TEST NAME",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "API_SIGNATURE_TO_BE_TESTED",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+}
 ```
 
 ### Tomcat (JVM Configuration)
