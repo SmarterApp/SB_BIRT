@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.0.9 - Last modified 11-May-2017
+v.2.0.10 - Last modified 31-May-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -311,6 +311,29 @@ The APIs in this section are optional. As such, it is good programming practice 
     * 	`supportedInputDevices` – a list of audio input devices detected. Each of these device definitions includes device id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported, default input device.
     * 	`supportedOutputDevices` – a list of audio output devices detected. Each of these device definitions includes device id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported, default output device.
 	
+	For example: 
+
+	```
+	{ isAvailable: true,
+supportedInputDevices: [{
+  id: 0
+  description: 'Sample Input Desc',
+  sampleSizes: [8, 16], // in bits
+  sampleRates: [8, 11], // in kHz
+  channels: [1, 2],
+  encodingFormats: ['SPX'],
+  default: true // One entry should be flagged as the default devices
+}],
+supportedOutputDevices: [{
+  id: 1,
+  description: 'Sample Output Desc',
+  sampleSizes: [8, 16],
+  sampleRates: [22050, 44100],
+  channels: [1, 2],
+  encodingFormats: ['SPX'],
+  default: true
+}]}
+	```
 	If the object literal returned is null or undefined, we encountered an error.
 
 1. R28. **Initiate audio capture**. This method is called to initiate capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE.
@@ -324,14 +347,24 @@ The APIs in this section are optional. As such, it is good programming practice 
     * `sampleSize` – 8-bit, 16-bit, etc.	(specified as int)
     * `encodingFormat` – SPX, HE-AAC, Opus, etc. (specified as string)
     * `qualityIndicatorDesired` – whether to perform and report a recording quality check or not (Boolean)
-    * `progressEventFrequency` – how frequently the event listener should be called back to report progress events either based on time or on units of data collected. For example, we could ask for periodic progress events every 2 seconds to keep us notified as recording is happening, or every 30KB of new data collected.
-    * `captureLimit `– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). 
+    * `progressEventFrequency` – how frequently the event listener should be called back to report progress events either based on time or on units of data collected. This will be an object like:
+
+    ```
+        { 
+            type: time | size, 
+            interval: an integer in seconds if the type is `time`, or in KB if the type is `size`
+        }
+    ```
+
+    For example, to request periodic progress events every 2 seconds to keep us notified a recording is happening, this format is used: `{ type: time, interval: 2}`. Alternatively, to receive notification every 30KB of new data collected, this format is used: `{ type: size, interval: 30}`
+    
+    * `captureLimit `– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as `{duration: 40}` or `{size: 250}`, where the unit for duration is in seconds and for size, in KB). 
     
     The event listener is passed in to receive capture events. The events include:
 
     * `START` – Capture started
-    * `INPROGRESS` – Progress event with progress data (34 seconds of audio captured, 36 seconds of audio captured etc or 10KB of audio captured, 30 KB of audio captured etc.) 
-    * `END` – Capture complete. The `END` event is special. This event gives us the pointer to the  data collection for the encoded audio. In addition, a quality check is performed on the captured audio stream to evaluate whether it is good or not. 
+    * `INPROGRESS` – Progress event with progress data (34 seconds of audio captured, 36 seconds of audio captured, etc. Or, 10KB of audio captured, 30 KB of audio captured, etc.) 
+    * `END` – Capture complete. The `END` event is special, as it provides the pointer to the data collection for the encoded audio. In addition, a quality check is performed on the captured audio stream to evaluate whether it is good or not. 
 
 1. R29. **Stop recording**. This method is called to stop audio capture. Throws error if status is currently not “RECORDING”.
 
