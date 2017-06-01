@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.0.10 - Last modified 31-May-2017
+v.2.0.11 - Last modified 2-Jun-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -370,17 +370,7 @@ supportedOutputDevices: [{
 
 	`void SecureBrowser.recorder.stopCapture()`
 
-1. R30. **Retrieve recording**. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the `END` event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this API directly in the callback for the `END` event.
-
-	`void  SecureBrowser.recorder.retrieveAudio(function callback)`
-	
-	`callback` should be a function that looks like this:
-
-	` function(recordedAudio){...}`
-	
-	null or undefined implies there was an error retrieving audio.
-
-1. R31. **Playback a recording**. This method is called to play back a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 webaudio to play back encoded audio (encoded using the format specified in the `startcapture` call) obtained by a call to `retrieveAudio()`. The playback function is passed in the base64 audio string and a callback function.  
+1. R31. **Playback a recording**. This method is called to play back a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 WebAudio to play back encoded audio (encoded using the format specified in the `startcapture` call) obtained by a call to `retrieveAudio()`. The playback function is passed in the base64 audio string and a callback function.  
 
 	`void SecureBrowser.recorder.play(b64audio, function callback)`
     

@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser API Specification</h1>
 
-<p>v.2.0.10 - Last modified 31-May-2017</p>
+<p>v.2.0.11 - Last modified 2-Jun-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -737,16 +737,7 @@ default: true
 <li><p>R29. <strong>Stop recording</strong>. This method is called to stop audio capture. Throws error if status is currently not “RECORDING”.</p>
 
 <p><code>void SecureBrowser.recorder.stopCapture()</code></p></li>
-<li><p>R30. <strong>Retrieve recording</strong>. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the <code>END</code> event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this API directly in the callback for the <code>END</code> event.</p>
-
-<p><code>void  SecureBrowser.recorder.retrieveAudio(function callback)</code></p>
-
-<p><code>callback</code> should be a function that looks like this:</p>
-
-<p><code>function(recordedAudio){...}</code></p>
-
-<p>null or undefined implies there was an error retrieving audio.</p></li>
-<li><p>R31. <strong>Playback a recording</strong>. This method is called to play back a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 webaudio to play back encoded audio (encoded using the format specified in the <code>startcapture</code> call) obtained by a call to <code>retrieveAudio()</code>. The playback function is passed in the base64 audio string and a callback function.  </p>
+<li><p>R31. <strong>Playback a recording</strong>. This method is called to play back a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 WebAudio to play back encoded audio (encoded using the format specified in the <code>startcapture</code> call) obtained by a call to <code>retrieveAudio()</code>. The playback function is passed in the base64 audio string and a callback function.  </p>
 
 <p><code>void SecureBrowser.recorder.play(b64audio, function callback)</code></p>
 
