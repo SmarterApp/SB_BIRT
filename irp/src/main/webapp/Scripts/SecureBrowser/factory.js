@@ -50,6 +50,8 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
         webAudioBrowserType = mobile;
         $.cookie("browserspec", "Legacy");
         recorderImpl = new Recorder_MobileAudioService();
+      } else if (Util.Browser.isChrome()) {
+        sbImpl = new TDS.SecureBrowser.Unified();
       } else {
         sbImpl = new TDS.SecureBrowser.Firefox();
         browserType = securebrowser;
