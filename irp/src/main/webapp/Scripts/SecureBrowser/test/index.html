@@ -2,6 +2,17 @@
 <html lang="en">
 <head>
 <title>Browser Implementation Readiness (BIR) Test Page</title>
+
+<script>
+var impl = null;
+var implBrowserType = null;
+var ttsImpl =null;
+var ttsBrowserType =null; 
+var recorderImpl = null;
+var webAudioBrowserType = null;
+var runtime =null;
+var audioCtx = null;
+</script>
 <!-- JQuery -->
 <script src="../../Libraries/jQuery/jquery-3.1.1.js"></script>
 <script src="../../Libraries/jQuery/jquery-ui-1.12.js"></script>
@@ -105,6 +116,28 @@
       .ready(
           function() {
 
+            TDS.SecureBrowser.initialize();
+            impl = TDS.SecureBrowser.getImplementation();
+            implBrowserType = TDS.SecureBrowser.getBrowserType();
+            runtime = (impl != null && !!impl.getRuntime) ? impl.getRunTime() : null;
+            TTS.Manager.init(true);
+            ttsImpl = TTS.Manager._service;
+
+            ttsBrowserType = TTS.Manager.browserType;
+
+            var isIOSDevice = Util.Browser.isIOS();
+            var isAndroidDevice = Util.Browser.isAndroid();
+            var isFireFox = Util.Browser.isFirefox();
+            var isChrome = Util.Browser.isChrome();
+            var isMobile = Util.Browser.isMobile();
+            var isCertified = Util.Browser.isCertified();
+            var isAIRSecureBrowser = Util.Browser.isSecure();
+
+            webAudioBrowserType = TDS.SecureBrowser.getWebAudioBrowserType();
+
+            recorderImpl = TDS.SecureBrowser.getRecorderImplementation();
+
+          
             $("#ttsTestLoad").load("ttsManualTest.html");
             
             $("#footerInfo").load("footer.html");
@@ -114,7 +147,7 @@
             $("#capabilityTestLoad").load("capabilityManualTest.html");
 
             $("#processTestLoad").load("processManualTest.html");
-            beginBrowserAPITest();
+         
 
             if (Util.Browser.isSecureBrowser() && !!SecureBrowser.security.close) {
               $("#closeBrowser").show();
@@ -184,7 +217,22 @@
             $.ajax({
               type : "POST",
               url : getContextPath() + '/report/captureStatistics'
-            });
+            });            
+            
+            if(typeof chrome == 'object' && !!chrome && !!chrome.extension){
+              var getSBObjectInterVal = setInterval(function() {
+               
+                if ((typeof (window.SecureBrowser) == 'object') == true) {
+                  beginBrowserAPITest();
+                  clearInterval(getSBObjectInterVal);
+                }
+              }, 1000);
+            }else{
+              beginBrowserAPITest();
+            }
+          
+            
+          
             
           });
 </script>

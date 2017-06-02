@@ -7,32 +7,11 @@
 // http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
 // *******************************************************************************
 
-TDS.SecureBrowser.initialize();
-var impl = TDS.SecureBrowser.getImplementation();
-var implBrowserType = TDS.SecureBrowser.getBrowserType();
-var runtime = (impl != null && !!impl.getRuntime) ? impl.getRunTime() : null;
-TTS.Manager.init(true);
-var ttsImpl = TTS.Manager._service;
-
-var ttsBrowserType = TTS.Manager.browserType;
-
-var isIOSDevice = Util.Browser.isIOS();
-var isAndroidDevice = Util.Browser.isAndroid();
-var isFireFox = Util.Browser.isFirefox();
-var isChrome = Util.Browser.isChrome();
-var isMobile = Util.Browser.isMobile();
-var isCertified = Util.Browser.isCertified();
-var isAIRSecureBrowser = Util.Browser.isSecure();
-
-var webAudioBrowserType = TDS.SecureBrowser.getWebAudioBrowserType();
-
-var recorderImpl = TDS.SecureBrowser.getRecorderImplementation();
-
-if (Util.Browser.isWebAudioApiSupported()) {
-  var audioCtx = recorderImpl.getAudioContextObject();
-}
-
 function beginBrowserAPITest() {
+
+  if (Util.Browser.isWebAudioApiSupported()) {
+    audioCtx = recorderImpl.getAudioContextObject();
+  }
 
   Object.keys(IRT.AUTOMATED_TEST_SECTION).forEach(
       function(element) {

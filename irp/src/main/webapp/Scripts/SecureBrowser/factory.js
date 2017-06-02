@@ -53,9 +53,10 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       } else if (Util.Browser.isChrome()) {
         sbImpl = new TDS.SecureBrowser.Unified();
       } else {
-        sbImpl = new TDS.SecureBrowser.Firefox();
-        browserType = securebrowser;
+        sbImpl = new TDS.SecureBrowser.Unified();
       }
+    } else {
+      sbImpl = new TDS.SecureBrowser.Unified();
     }
 
     if (recorderImpl == null) {
