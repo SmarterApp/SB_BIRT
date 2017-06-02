@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser API Specification</h1>
 
-<p>v.2.0.9 - Last modified 11-May-2017</p>
+<p>v.2.0.11 - Last modified 2-Jun-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -677,6 +677,28 @@ The testing application will invoke this to perform client side text to speech s
 <li>  <code>supportedOutputDevices</code> – a list of audio output devices detected. Each of these device definitions includes device id, device description/label, supported sample size(s), supported sample rate(s), supported channel count(s), encoding format(s) supported, default output device.</li>
 </ul>
 
+<p>For example: </p>
+
+<div><pre><code class="language-none">{ isAvailable: true,
+supportedInputDevices: [{
+id: 0
+description: &#39;Sample Input Desc&#39;,
+sampleSizes: [8, 16], // in bits
+sampleRates: [8, 11], // in kHz
+channels: [1, 2],
+encodingFormats: [&#39;SPX&#39;],
+default: true // One entry should be flagged as the default devices
+}],
+supportedOutputDevices: [{
+id: 1,
+description: &#39;Sample Output Desc&#39;,
+sampleSizes: [8, 16],
+sampleRates: [22050, 44100],
+channels: [1, 2],
+encodingFormats: [&#39;SPX&#39;],
+default: true
+}]}</code></pre></div>
+
 <p>If the object literal returned is null or undefined, we encountered an error.</p></li>
 <li><p>R28. <strong>Initiate audio capture</strong>. This method is called to initiate capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE.</p>
 
@@ -691,30 +713,31 @@ The testing application will invoke this to perform client side text to speech s
 <li><code>sampleSize</code> – 8-bit, 16-bit, etc.    (specified as int)</li>
 <li><code>encodingFormat</code> – SPX, HE-AAC, Opus, etc. (specified as string)</li>
 <li><code>qualityIndicatorDesired</code> – whether to perform and report a recording quality check or not (Boolean)</li>
-<li><code>progressEventFrequency</code> – how frequently the event listener should be called back to report progress events either based on time or on units of data collected. For example, we could ask for periodic progress events every 2 seconds to keep us notified as recording is happening, or every 30KB of new data collected.</li>
-<li><code>captureLimit</code>– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as {duration: 40} or {size:250}, unit for duration is in seconds and for size, is in KB). </li>
+<li><code>progressEventFrequency</code> – how frequently the event listener should be called back to report progress events either based on time or on units of data collected. This will be an object like:</li>
+</ul>
+
+<div><pre><code class="language-none">    { 
+        type: time | size, 
+        interval: an integer in seconds if the type is `time`, or in KB if the type is `size`
+    }</code></pre></div>
+
+<p>For example, to request periodic progress events every 2 seconds to keep us notified a recording is happening, this format is used: <code>{ type: time, interval: 2}</code>. Alternatively, to receive notification every 30KB of new data collected, this format is used: <code>{ type: size, interval: 30}</code></p>
+
+<ul>
+<li><code>captureLimit</code>– object literal that specifies time or size for the data capture after which the recorder should automatically stop capturing and fire an end event (specified as <code>{duration: 40}</code> or <code>{size: 250}</code>, where the unit for duration is in seconds and for size, in KB). </li>
 </ul>
 
 <p>The event listener is passed in to receive capture events. The events include:</p>
 
 <ul>
 <li><code>START</code> – Capture started</li>
-<li><code>INPROGRESS</code> – Progress event with progress data (34 seconds of audio captured, 36 seconds of audio captured etc or 10KB of audio captured, 30 KB of audio captured etc.) </li>
-<li><code>END</code> – Capture complete. The <code>END</code> event is special. This event gives us the pointer to the  data collection for the encoded audio. In addition, a quality check is performed on the captured audio stream to evaluate whether it is good or not. </li>
+<li><code>INPROGRESS</code> – Progress event with progress data (34 seconds of audio captured, 36 seconds of audio captured, etc. Or, 10KB of audio captured, 30 KB of audio captured, etc.) </li>
+<li><code>END</code> – Capture complete. The <code>END</code> event is special, as it provides the pointer to the data collection for the encoded audio. In addition, a quality check is performed on the captured audio stream to evaluate whether it is good or not. </li>
 </ul></li>
 <li><p>R29. <strong>Stop recording</strong>. This method is called to stop audio capture. Throws error if status is currently not “RECORDING”.</p>
 
 <p><code>void SecureBrowser.recorder.stopCapture()</code></p></li>
-<li><p>R30. <strong>Retrieve recording</strong>. This method is called to retrieve base64 encoded audio data that was previously captured (or played back by the recorder). If the <code>END</code> event for audio capture includes the base64 encoded audio, then this call is optional. Note: If the event does not include the data, the testing application will be invoking this API directly in the callback for the <code>END</code> event.</p>
-
-<p><code>void  SecureBrowser.recorder.retrieveAudio(function callback)</code></p>
-
-<p><code>callback</code> should be a function that looks like this:</p>
-
-<p><code>function(recordedAudio){...}</code></p>
-
-<p>null or undefined implies there was an error retrieving audio.</p></li>
-<li><p>R31. <strong>Playback a recording</strong>. This method is called to play back a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 webaudio to play back encoded audio (encoded using the format specified in the <code>startcapture</code> call) obtained by a call to <code>retrieveAudio()</code>. The playback function is passed in the base64 audio string and a callback function.  </p>
+<li><p>R31. <strong>Playback a recording</strong>. This method is called to play back a recording made through the recorder at some prior time (even in a previous session of the browser) in an asynchronous manner. This API is optional if the browser supports HTML5 WebAudio to play back encoded audio (encoded using the format specified in the <code>startcapture</code> call) obtained by a call to <code>retrieveAudio()</code>. The playback function is passed in the base64 audio string and a callback function.  </p>
 
 <p><code>void SecureBrowser.recorder.play(b64audio, function callback)</code></p>
 

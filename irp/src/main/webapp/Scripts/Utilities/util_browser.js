@@ -287,8 +287,8 @@
 
     var extensionCheck = window.AIRSecureBrowserExtension ? true : false;
 
-    var chromeAppCheck = YUD
-        .hasClass(document.body, 'browser_airsecurebrowser');
+    var chromeAppCheck = YUD.hasClass(document.body,
+        ' browser_airsecurebrowser');
 
     return clientSideCheck || extensionCheck || chromeAppCheck
   };
@@ -407,17 +407,17 @@
 
   // check if browser has "SecureBrowser" as Global Object
   Browser.isSecureBrowser = function() {
-	  
-	var hasAPI = false;
-	try {
-       hasAPI = (typeof (window.SecureBrowser) == 'object');
+
+    var hasAPI = false;
+    try {
+      hasAPI = (typeof (window.SecureBrowser) == 'object');
     } catch (ex) {
       console.log('Exception occurred ' + ex.message);
-      hasAPI= false;
+      hasAPI = false;
     }
     return hasAPI;
   };
-  
+
   // check if browser has "SecureBrowser" as Global Object
   Browser.hasSecureBrowserTTSSupport = function() {
     try {
