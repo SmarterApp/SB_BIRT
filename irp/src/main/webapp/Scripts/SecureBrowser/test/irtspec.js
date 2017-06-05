@@ -1342,15 +1342,6 @@ IRT.ApiSpecs = {
       "apiType" : [ "function" ],
       "isDeprecated" : false
     },
-    /*
-     * "checkAudioRetrieveRecording" : { "id" : "6", "testName" : "Retrieve
-     * recording", "testApi" : "", "testResult" : null, "details" : "",
-     * "testApi_certified" : "SecureBrowser.recorder.retrieveAudio",
-     * "testApi_webaudio" : "new MediaRecorder(new MediaStream()).requestData",
-     * "testApi_mobile" : "runtime.recorder.retrieveAudioFile", "points" : "1",
-     * "required" : { "all" : false }, "testPoints" : "0", "apiType" : [
-     * "function" ], "isDeprecated" : false },
-     */
     "checkStartPlayback" : {
       "id" : "7",
       "testName" : "Playback recording",
@@ -1425,8 +1416,8 @@ IRT.ApiSpecs = {
       "testApi" : "",
       "testResult" : null,
       "details" : "",
-      "testApi_certified" : "SecureBrowser.recorder.retrieveAudioFileList",
-      "testApi_webaudio" : "audioCtx.retrieveAudioFileList",
+      "testApi_certified" : "SecureBrowser.recorder.retrieveAudioRecordingList",
+      "testApi_webaudio" : "audioCtx.retrieveAudioRecordingList",
       "testApi_mobile" : "runtime.recorder.retrieveAudioFileList",
       "points" : "1",
       "required" : {
@@ -1442,8 +1433,25 @@ IRT.ApiSpecs = {
       "testApi" : "",
       "testResult" : null,
       "details" : "",
-      "testApi_certified" : "SecureBrowser.recorder.retrieveAudioFile",
-      "testApi_webaudio" : "audioCtx.retrieveAudioFile",
+      "testApi_certified" : "SecureBrowser.recorder.retrieveAudioRecording",
+      "testApi_webaudio" : "audioCtx.retrieveAudioRecording",
+      "testApi_mobile" : "runtime.recorder.retrieveAudioFile",
+      "points" : "1",
+      "required" : {
+        "all" : false
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+    "checkRemoveAudioRecording" : {
+      "id" : "13",
+      "testName" : "Remove Audio Recordings",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "SecureBrowser.recorder.removeAudioRecordings",
+      "testApi_webaudio" : "audioCtx.removeAudioRecordings",
       "testApi_mobile" : "runtime.recorder.retrieveAudioFile",
       "points" : "1",
       "required" : {
