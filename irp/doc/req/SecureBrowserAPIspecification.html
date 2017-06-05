@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser API Specification</h1>
 
-<p>v.2.0.11 - Last modified 2-Jun-2017</p>
+<p>v.2.0.12 - Last modified 5-Jun-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -758,22 +758,31 @@ default: true
 <p><code>void SecureBrowser.recorder.resumePlay()</code></p></li>
 <li><p>R43. <strong>Retrieve list of audio recordings</strong>. Retrieve a list of all audio recordings.</p>
 
-<p><code>void SecureBrowser.recorder.retrieveAudioFileList(function callback)</code></p>
+<p><code>void SecureBrowser.recorder.retrieveAudioRecordingList(function callback)</code></p>
 
 <p><code>callback</code> should be a function of the form:</p>
 
-<p><code>function(filenames){...}</code></p>
+<p><code>function(recordingnames){...}</code></p>
 
-<p>Where <code>filenames</code> is an object with the property <code>files</code>, containing an array of file names.</p>
+<p>Where <code>recordingnames</code> is an object with the property <code>recordings</code>, containing an array of recording names.</p>
 
-<p><code>{&#39;files&#39; : [file1, file2, ...]}</code></p></li>
-<li><p>R45. <strong>Retrieve audio file from filename</strong>. Retrieve audio data based on filename obtained from <code>retrieveAudioFileList()</code>.</p>
+<p><code>{&#39;recordings&#39; : [recording1, recording2, ...]}</code></p></li>
+<li><p>R45. <strong>Retrieve audio recording from identifier</strong>. Retrieve audio data based on identifier  obtained from <code>retrieveAudioRecordingList()</code>.</p>
 
-<p><code>void SecureBrowser.recorder.retrieveAudioFile(filename, function callback)</code></p>
+<p><code>void SecureBrowser.recorder.retrieveAudioRecording(recordingId, function callback)</code></p>
 
-<p><code>callback</code> should be a function of the form:</p>
+<p>Where <code>recordingId</code> is a unique identifier for a recording, and <code>callback</code> should be a function of the form:</p>
 
 <p><code>function(b64audio){...}</code></p></li>
+<li><p>R46. <strong>Remove audio recordings</strong>. Remove all audio recordings on the device. This applies to mobile secure browsers only (iOS and Android). </p>
+
+<p><code>void SecureBrowser.recorder.removeAudioRecordings(function callback)</code></p>
+
+<p><code>callback</code> should be a function of the form:</p>
+
+<p><code>function(recordingnames){...}</code></p>
+
+<p>Where <code>recordingnames</code> is an array of audio recording names. A successful operation should return an empty array.</p></li>
 </ol>
 
 <h2 id="toc_8">Secure Browser Standards Compliance</h2>
