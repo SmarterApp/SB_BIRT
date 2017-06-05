@@ -12,6 +12,14 @@ var recorderImpl = null;
 var webAudioBrowserType = null;
 var runtime =null;
 var audioCtx = null;
+var isIOSDevice = null;
+var isAndroidDevice = null;
+var isFireFox= null;
+var isChrome = null;
+var isMobile = null;
+var isCertified = null;
+var isAIRSecureBrowser = null;
+
 </script>
 <!-- JQuery -->
 <script src="../../Libraries/jQuery/jquery-3.1.1.js"></script>
@@ -125,13 +133,13 @@ var audioCtx = null;
 
             ttsBrowserType = TTS.Manager.browserType;
 
-            var isIOSDevice = Util.Browser.isIOS();
-            var isAndroidDevice = Util.Browser.isAndroid();
-            var isFireFox = Util.Browser.isFirefox();
-            var isChrome = Util.Browser.isChrome();
-            var isMobile = Util.Browser.isMobile();
-            var isCertified = Util.Browser.isCertified();
-            var isAIRSecureBrowser = Util.Browser.isSecure();
+            isIOSDevice = Util.Browser.isIOS();
+            isAndroidDevice = Util.Browser.isAndroid();
+            isFireFox = Util.Browser.isFirefox();
+            isChrome = Util.Browser.isChrome();
+            isMobile = Util.Browser.isMobile();
+            isCertified = Util.Browser.isCertified();
+            isAIRSecureBrowser = Util.Browser.isSecure();
 
             webAudioBrowserType = TDS.SecureBrowser.getWebAudioBrowserType();
 
