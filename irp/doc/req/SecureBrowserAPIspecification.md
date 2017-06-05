@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.0.11 - Last modified 2-Jun-2017
+v.2.0.12 - Last modified 5-Jun-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -393,23 +393,33 @@ supportedOutputDevices: [{
 
 1. R43. **Retrieve list of audio recordings**. Retrieve a list of all audio recordings.
 
-	`void SecureBrowser.recorder.retrieveAudioFileList(function callback)`
+	`void SecureBrowser.recorder.retrieveAudioRecordingList(function callback)`
 
 	`callback` should be a function of the form:
 
-	`function(filenames){...}`
+	`function(recordingnames){...}`
     
-    Where `filenames` is an object with the property `files`, containing an array of file names.
+    Where `recordingnames` is an object with the property `recordings`, containing an array of recording names.
     
-    `{'files' : [file1, file2, ...]}`
+    `{'recordings' : [recording1, recording2, ...]}`
 
-1. R45. **Retrieve audio file from filename**. Retrieve audio data based on filename obtained from `retrieveAudioFileList()`.
+1. R45. **Retrieve audio recording from identifier**. Retrieve audio data based on identifier  obtained from `retrieveAudioRecordingList()`.
 
-    `void SecureBrowser.recorder.retrieveAudioFile(filename, function callback)`
+    `void SecureBrowser.recorder.retrieveAudioRecording(recordingId, function callback)`
     
-	`callback` should be a function of the form:
+    Where `recordingId` is a unique identifier for a recording, and `callback` should be a function of the form:
 
 	` function(b64audio){...}`
+	
+1. R46. **Remove audio recordings**. Remove all audio recordings on the device. This applies to mobile secure browsers only (iOS and Android). 
+
+    `void SecureBrowser.recorder.removeAudioRecordings(function callback)`
+
+    `callback` should be a function of the form:
+
+    `function(recordingnames){...}`
+    
+    Where `recordingnames` is an array of audio recording names. A successful operation should return an empty array.
 
 ## Secure Browser Standards Compliance
 ### Required
