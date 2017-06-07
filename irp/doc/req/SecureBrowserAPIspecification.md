@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.0.12 - Last modified 5-Jun-2017
+v.2.0.13 - Last modified 7-Jun-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -130,14 +130,18 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
    The ability to set the pitch, rate, voice, and volume is provided by this API call through the `options` object, which includes:
 
-   * `voicename` (required) - The voice to use from the getVoices call.
+   * `id` (required) - The unique fully qualified name (FQN) for this voice pack. This is used to uniquely specify the voice to use for rendering speech. For some platforms, `id` will be equal to name.
+   * `name` (required) - The human readable name for this voice.
+   * `lang` (required) - Language associated with this voice, following the xml:lang attribute specification. This attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
+   * `default` (optional) - boolean value indicating whether this is the default voice for that language or not.
+   * `remote` (optional) - boolean value indicating whether the speech synthesis is remote or local.
+   * `voiceURI` (optional) - Returns the type of URI and location of the speech synthesis service for this voice.
    * `rate` (optional) - Speech playback rate, ranging from 1 to 20, where 10 is the default, 20 is twice as fast as 10, and 5 is half as fast as 10. 1 is the slowest available playback rate.
    * `pitch` (optional) - Speech pitch, ranging from 1 to 20, where 10 is the default, but the actual pitch is voicepack dependent.
    * `volume` (optional) - Speech volume, ranging from 0 to 10: where 5 is the default and 10 is twice as loud as 5. 0 will mute TTS. The speech volume is dependent on the system volume.
-   * `language` (optional) - Speech language, following the xml:lang attribute specification. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
    * `gender` (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: "male", "female", "neutral". This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
 
-   The callback, if provided, is invoked for TTS events which include `start`, `end`, `word boundary`, `sentence boundary`, `synchronization/marker encountered`, `paused`, `resumed`, and `error`.    The callback function's parameters are as follows:
+   The callback, if provided, is invoked for TTS events which include `start`, `end`, `word boundary`, `sentence boundary`, `synchronization/marker encountered`, `paused`, `resumed`, and `error`. The callback function's parameters are as follows:
     
    * `callback(event)`, where `event` has the following properties:
         * `type` (required) - The valid types are: start, end, word, sentence, sync, paused, resumed, and error.
