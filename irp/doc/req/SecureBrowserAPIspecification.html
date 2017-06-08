@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser API Specification</h1>
 
-<p>v.2.0.13 - Last modified 7-Jun-2017</p>
+<p>v.2.0.14 - Last modified 8-Jun-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -457,6 +457,15 @@ pre[class*="language-"] {
 <p><code>function(permissivemode){...}</code></p>
 
 <p>The passed-in value is a boolean indicating if the browser is permissive or not. If undefined or null is passed in, that implies an error occurred with the set operation.</p></li>
+<li><p>R47. <strong>Hash</strong>. The testing application invokes this function to generate a SHA-256 hash of a string. The hash is implemented using a secret salt baked into the browser.</p>
+
+<p><code>void SecureBrowser.security.hash(string input, function callback)</code></p>
+
+<ul>
+<li><code>input</code> is combined with a secret salt and the SHA-256 hash for that result is returned.</li>
+<li><code>callback</code> is required and should be a function of this form:
+<code>function(hashedString){...}</code></li>
+</ul></li>
 <li><p>R22. <strong>Eliminate Security-Exposing APIs</strong>. The following APIs are deprecated and shall NOT be exposed:</p>
 
 <ul>
@@ -464,6 +473,23 @@ pre[class*="language-"] {
 <li><em>Clear cookies</em> (<code>void SecureBrowser.security.clearCookies()</code>)</li>
 <li><em>Retrieve client IP address(es)</em>  (<code>string[] SecureBrowser.security.getIPAddressList()</code>)</li>
 <li><em>Retrieve current list of running processes</em> (<code>string[] SecureBrowser.security.getProcessList()</code>)</li>
+</ul></li>
+<li><p>R48. <strong>Add Event Listener</strong>. Adds an event listener.</p>
+
+<p><code>void SecureBrowser.events.addEventListener(string event, function callback)</code>  </p>
+
+<ul>
+<li><code>event</code> is a string representing the event name being listened to, for example <code>sb-security-breach</code><br></li>
+<li><code>callback</code> is required and should be a function of this form:</li>
+</ul>
+
+<p><code>function(eventinfo){...}</code></p>
+
+<p>Not all events are applicable to all browsers. Supported events include (but are not limited to):</p>
+
+<ul>
+<li>sb-security-breach (security breach detector)</li>
+<li>closing (premature browser exit)</li>
 </ul></li>
 </ol>
 
