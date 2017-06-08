@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.0.13 - Last modified 7-Jun-2017
+v.2.0.14 - Last modified 8-Jun-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -110,12 +110,35 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	The passed-in value is a boolean indicating if the browser is permissive or not. If undefined or null is passed in, that implies an error occurred with the set operation.
 
+1. R47. **Hash**. The testing application invokes this function to generate a SHA-256 hash of a string. The hash is implemented using a secret salt baked into the browser.
+
+    `void SecureBrowser.security.hash(string input, function callback)`
+
+    * `input` is combined with a secret salt and the SHA-256 hash for that result is returned.
+    * `callback` is required and should be a function of this form:
+	` function(hashedString){...}`
+
 1. R22. **Eliminate Security-Exposing APIs**. The following APIs are deprecated and shall NOT be exposed:
 
     * *Clear browser cache* (`void SecureBrowser.security.clearCache()`)
     * *Clear cookies* (`void SecureBrowser.security.clearCookies()`)
     * *Retrieve client IP address(es)*  (`string[] SecureBrowser.security.getIPAddressList()`)
     * *Retrieve current list of running processes* (`string[] SecureBrowser.security.getProcessList()`)
+
+1. R48. **Add Event Listener**. Adds an event listener.
+
+    `void SecureBrowser.events.addEventListener(string event, function callback)`  
+    
+   * `event` is a string representing the event name being listened to, for example `sb-security-breach`  
+   * `callback` is required and should be a function of this form:
+
+	` function(eventinfo){...}`
+	
+	Not all events are applicable to all browsers. Supported events include (but are not limited to):
+
+	* sb-security-breach (security breach detector)
+	* closing (premature browser exit)
+
 
 ### Text to Speech Synthesis (TTS)
 
