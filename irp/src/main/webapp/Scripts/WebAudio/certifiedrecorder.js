@@ -10,8 +10,8 @@ function Recorder_CertifiedService() {
 
   this.isSupported = function() {
 
-    if (Util.Browser.isCertified() && browser.recorder
-        && (typeof browser.recorder.initialize == 'function'))
+    if (Browser.isSecureBrowser() && SecureBrowser.recorder
+        && (typeof SecureBrowser.recorder.initialize == 'function'))
       return true;
     else
       return false;

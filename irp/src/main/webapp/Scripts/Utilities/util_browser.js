@@ -287,8 +287,8 @@
 
     var extensionCheck = window.AIRSecureBrowserExtension ? true : false;
 
-    var chromeAppCheck = YUD.hasClass(document.body,
-        ' browser_airsecurebrowser');
+    var chromeAppCheck = YUD
+        .hasClass(document.body, 'browser_airsecurebrowser');
 
     return clientSideCheck || extensionCheck || chromeAppCheck
   };
@@ -410,7 +410,7 @@
 
     var hasAPI = false;
     try {
-      hasAPI = (typeof (window.SecureBrowser) == 'object');
+      hasAPI = (typeof (SecureBrowser) == 'object');
     } catch (ex) {
       console.log('Exception occurred ' + ex.message);
       hasAPI = false;
