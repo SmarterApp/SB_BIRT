@@ -835,29 +835,19 @@ function loadCapabilities() {
 }
 
 function loadVoices() {
-  if (isMobile) {
-    var voices = ttsImpl.getVoices();
-    if (voices) {
-      var selectList = document.getElementById("voices");
-      var voiceArray = new Array();
-      for (var i = 0; i < voices.length; i++) {
-        var opt = document.createElement("option");
-        var voice = voices[i];
-        voiceArray[i] = voice.language + " " + (voice.voice ? voice.voice : "");
-        opt.value = JSON.stringify(voice);
-        opt.text = voice.language;
-        selectList.options.add(opt);
-      }
-    } else {
-      alert("cannot retrieve voice packs");
-    }
-  } else {
-    if (!!ttsImpl.getVoices) {
-      ttsImpl.getVoices();
-    } else {
-      alert("Cannot retrieve system voice list");
-    }
-  }
+  /*
+   * if (isMobile) { var voices = ttsImpl.getVoices(); if (voices) { var
+   * selectList = document.getElementById("voices"); var voiceArray = new
+   * Array(); for (var i = 0; i < voices.length; i++) { var opt =
+   * document.createElement("option"); var voice = voices[i]; voiceArray[i] =
+   * voice.language + " " + (voice.voice ? voice.voice : ""); opt.value =
+   * JSON.stringify(voice); opt.text = voice.language;
+   * selectList.options.add(opt); } } else { alert("cannot retrieve voice
+   * packs"); } } else { if (!!ttsImpl.getVoices) { ttsImpl.getVoices(); } else {
+   * alert("Cannot retrieve system voice list"); } }
+   */
+
+  ttsImpl.getVoices();
 }
 
 function setVoice() {
@@ -867,7 +857,7 @@ function setVoice() {
 function ttsPlay() {
 
   var text = $("textarea#ttsText").val();
-  ttsImpl.stop();
+  // ttsImpl.stop();
   ttsImpl.play(text);
 
   if (currentTestSetting == TTS.Test.PLAY) {
@@ -907,11 +897,16 @@ function ttsResume() {
 
 function ttsStop() {
 
-  setDialogHtml(specTTSManualApi);
+  try {
+    setDialogHtml(specTTSManualApi);
 
-  ttsImpl.stop();
+    ttsImpl.stop();
 
-  loadTestDialogConfirm($("#ttsGrid"), 'TTS', specTTSManualApi);
+    loadTestDialogConfirm($("#ttsGrid"), 'TTS', specTTSManualApi);
+  } catch (error) {
+    setDialogHtml(specTTSManualApi);
+    loadTestDialogConfirm($("#ttsGrid"), 'TTS', specTTSManualApi);
+  }
 
 }
 
@@ -1473,8 +1468,10 @@ function getRecorderStatus() {
 
   try {
     var recorderStatus = recorderImpl.getAudioRecorderStatus();
-    $('#recorderStatusText').html(
-        '<span class="green-background">' + recorderStatus + '</span>');
+    if (recorderStatus != null && recorderStatus.length > 1) {
+      $('#recorderStatusText').html(
+          '<span class="green-background">' + recorderStatus + '</span>');
+    }
     loadManualTextConfirmBox();
   } catch (ex) {
     $("#dialog-recorder-error")

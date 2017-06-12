@@ -124,7 +124,7 @@ function TTSService_Unified() {
 
   this.play = function(text) {
 
-    this.stop();
+    // this.stop();
 
     let rate = this.rate;
     let pitch = this.pitch;

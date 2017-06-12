@@ -10,10 +10,70 @@ function Recorder_CertifiedService() {
 
   this.isSupported = function() {
 
-    if (Browser.isSecureBrowser() && SecureBrowser.recorder
+    if (Util.Browser.isSecureBrowser() && !!SecureBrowser.recorder
         && (typeof SecureBrowser.recorder.initialize == 'function'))
       return true;
     else
       return false;
+  };
+
+  this.audioRecorderInitialize = function() {
+    try {
+      SecureBrowser.recorder.initialize(function(status) {
+      });
+
+      return true;
+    } catch (error) {
+      throw error;
+    }
+
+  };
+
+  this.getAudioRecorderStatus = function() {
+    try {
+      SecureBrowser.recorder.getStatus(function(status) {
+        if (status != null && status !== '') {
+          $('#recorderStatusText').html(
+              '<span class="green-background">' + status + '</span>');
+        }
+      });
+
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  this.getDeviceRecorderCapabilities = function() {
+    try {
+      SecureBrowser.recorder.getCapabilities(this.gotDevices);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  this.gotDevices = function(capabilities) {
+    deviceInfos
+    if (capabilities != null && capabilities.isAvailable) {
+
+      var audioInputSelect = $('#audioSource');
+
+      audioInputSelect.empty();
+
+      var audioComboCount = 1;
+
+      for (var i = 0; i !== deviceInfos.length; ++i) {
+        var deviceInfo = deviceInfos[i];
+        var option = document.createElement('option');
+        option.value = deviceInfo.deviceId;
+        if (deviceInfo.kind === 'audioinput') {
+          option.text = deviceInfo.label || 'Microphone ' + (audioComboCount++);
+          audioInputSelect.append(option);
+        } else {
+          console.log('Some other kind of source/device: ', deviceInfo);
+        }
+      }
+
+    }
+
   };
 }
