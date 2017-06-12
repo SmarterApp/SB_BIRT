@@ -31,7 +31,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       recorderImpl = new Recorder_WebAudioService();
     }
 
-    if (Util.Browser.isSecureBrowser()) {
+/*    if (Util.Browser.isSecureBrowser()) {
       sbImpl = new TDS.SecureBrowser.Unified();
     } else if (Util.Browser.isCertified()) {
       sbImpl = new TDS.SecureBrowser.Certified();
@@ -57,7 +57,9 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
       }
     } else {
       sbImpl = new TDS.SecureBrowser.Unified();
-    }
+    }*/
+    
+    sbImpl = new TDS.SecureBrowser.Unified();
 
     if (recorderImpl == null) {
       recorderImpl = new Recorder_CertifiedService();

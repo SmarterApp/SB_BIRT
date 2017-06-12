@@ -633,10 +633,42 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
 
+    "checkHashAPI" : {
+      "id" : "22",
+      "testName" : "Hash",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "SecureBrowser.security.hash",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+
+    "checkEventAPI" : {
+      "id" : "23",
+      "testName" : "Add Event Listener",
+      "testApi" : "",
+      "testResult" : null,
+      "details" : "",
+      "testApi_certified" : "SecureBrowser.events.addEventListener",
+      "points" : "1",
+      "required" : {
+        "all" : true
+      },
+      "testPoints" : "0",
+      "apiType" : [ "function" ],
+      "isDeprecated" : false
+    },
+
     "checkspacesenabled" : {
       // F15. The secure browser shall provide a means to set permissive mode.
       // R21 SEC-71
-      "id" : "22",
+      "id" : "23",
       "testName" : "Check spaces in macOS",
       "testApi" : "",
       "testResult" : null,
