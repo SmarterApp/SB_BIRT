@@ -33,9 +33,7 @@ TDS.SecureBrowser = TDS.SecureBrowser || {};
     }
 
     if (Util.Browser.isSecure()) {
-      alert('Comes Here');
       if (Util.Browser.isIOS() || Util.Browser.isAndroid()) {
-        alert('Comes Here 1');
         webAudioBrowserType = certified;
         recorderImpl = new Recorder_CertifiedService();
       }
