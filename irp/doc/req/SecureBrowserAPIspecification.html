@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser API Specification</h1>
 
-<p>v.2.0.12 - Last modified 5-Jun-2017</p>
+<p>v.2.0.14 - Last modified 8-Jun-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -457,6 +457,15 @@ pre[class*="language-"] {
 <p><code>function(permissivemode){...}</code></p>
 
 <p>The passed-in value is a boolean indicating if the browser is permissive or not. If undefined or null is passed in, that implies an error occurred with the set operation.</p></li>
+<li><p>R47. <strong>Hash</strong>. The testing application invokes this function to generate a SHA-256 hash of a string. The hash is implemented using a secret salt baked into the browser.</p>
+
+<p><code>void SecureBrowser.security.hash(string input, function callback)</code></p>
+
+<ul>
+<li><code>input</code> is combined with a secret salt and the SHA-256 hash for that result is returned.</li>
+<li><code>callback</code> is required and should be a function of this form:
+<code>function(hashedString){...}</code></li>
+</ul></li>
 <li><p>R22. <strong>Eliminate Security-Exposing APIs</strong>. The following APIs are deprecated and shall NOT be exposed:</p>
 
 <ul>
@@ -464,6 +473,23 @@ pre[class*="language-"] {
 <li><em>Clear cookies</em> (<code>void SecureBrowser.security.clearCookies()</code>)</li>
 <li><em>Retrieve client IP address(es)</em>  (<code>string[] SecureBrowser.security.getIPAddressList()</code>)</li>
 <li><em>Retrieve current list of running processes</em> (<code>string[] SecureBrowser.security.getProcessList()</code>)</li>
+</ul></li>
+<li><p>R48. <strong>Add Event Listener</strong>. Adds an event listener.</p>
+
+<p><code>void SecureBrowser.events.addEventListener(string event, function callback)</code>  </p>
+
+<ul>
+<li><code>event</code> is a string representing the event name being listened to, for example <code>sb-security-breach</code><br></li>
+<li><code>callback</code> is required and should be a function of this form:</li>
+</ul>
+
+<p><code>function(eventinfo){...}</code></p>
+
+<p>Not all events are applicable to all browsers. Supported events include (but are not limited to):</p>
+
+<ul>
+<li>sb-security-breach (security breach detector)</li>
+<li>closing (premature browser exit)</li>
 </ul></li>
 </ol>
 
@@ -482,15 +508,19 @@ The testing application will invoke this to perform client side text to speech s
 <p>The ability to set the pitch, rate, voice, and volume is provided by this API call through the <code>options</code> object, which includes:</p>
 
 <ul>
-<li><code>voicename</code> (required) - The voice to use from the getVoices call.</li>
+<li><code>id</code> (required) - The unique fully qualified name (FQN) for this voice pack. This is used to uniquely specify the voice to use for rendering speech. For some platforms, <code>id</code> will be equal to name.</li>
+<li><code>name</code> (required) - The human readable name for this voice.</li>
+<li><code>lang</code> (required) - Language associated with this voice, following the xml:lang attribute specification. This attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</li>
+<li><code>default</code> (optional) - boolean value indicating whether this is the default voice for that language or not.</li>
+<li><code>remote</code> (optional) - boolean value indicating whether the speech synthesis is remote or local.</li>
+<li><code>voiceURI</code> (optional) - Returns the type of URI and location of the speech synthesis service for this voice.</li>
 <li><code>rate</code> (optional) - Speech playback rate, ranging from 1 to 20, where 10 is the default, 20 is twice as fast as 10, and 5 is half as fast as 10. 1 is the slowest available playback rate.</li>
 <li><code>pitch</code> (optional) - Speech pitch, ranging from 1 to 20, where 10 is the default, but the actual pitch is voicepack dependent.</li>
 <li><code>volume</code> (optional) - Speech volume, ranging from 0 to 10: where 5 is the default and 10 is twice as loud as 5. 0 will mute TTS. The speech volume is dependent on the system volume.</li>
-<li><code>language</code> (optional) - Speech language, following the xml:lang attribute specification. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</li>
 <li><code>gender</code> (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: &quot;male&quot;, &quot;female&quot;, &quot;neutral&quot;. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</li>
 </ul>
 
-<p>The callback, if provided, is invoked for TTS events which include <code>start</code>, <code>end</code>, <code>word boundary</code>, <code>sentence boundary</code>, <code>synchronization/marker encountered</code>, <code>paused</code>, <code>resumed</code>, and <code>error</code>.    The callback function&#39;s parameters are as follows:</p>
+<p>The callback, if provided, is invoked for TTS events which include <code>start</code>, <code>end</code>, <code>word boundary</code>, <code>sentence boundary</code>, <code>synchronization/marker encountered</code>, <code>paused</code>, <code>resumed</code>, and <code>error</code>. The callback function&#39;s parameters are as follows:</p>
 
 <ul>
 <li><code>callback(event)</code>, where <code>event</code> has the following properties:

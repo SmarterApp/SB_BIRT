@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.0.12 - Last modified 5-Jun-2017
+v.2.0.14 - Last modified 8-Jun-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -110,12 +110,35 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	The passed-in value is a boolean indicating if the browser is permissive or not. If undefined or null is passed in, that implies an error occurred with the set operation.
 
+1. R47. **Hash**. The testing application invokes this function to generate a SHA-256 hash of a string. The hash is implemented using a secret salt baked into the browser.
+
+    `void SecureBrowser.security.hash(string input, function callback)`
+
+    * `input` is combined with a secret salt and the SHA-256 hash for that result is returned.
+    * `callback` is required and should be a function of this form:
+	` function(hashedString){...}`
+
 1. R22. **Eliminate Security-Exposing APIs**. The following APIs are deprecated and shall NOT be exposed:
 
     * *Clear browser cache* (`void SecureBrowser.security.clearCache()`)
     * *Clear cookies* (`void SecureBrowser.security.clearCookies()`)
     * *Retrieve client IP address(es)*  (`string[] SecureBrowser.security.getIPAddressList()`)
     * *Retrieve current list of running processes* (`string[] SecureBrowser.security.getProcessList()`)
+
+1. R48. **Add Event Listener**. Adds an event listener.
+
+    `void SecureBrowser.events.addEventListener(string event, function callback)`  
+    
+   * `event` is a string representing the event name being listened to, for example `sb-security-breach`  
+   * `callback` is required and should be a function of this form:
+
+	` function(eventinfo){...}`
+	
+	Not all events are applicable to all browsers. Supported events include (but are not limited to):
+
+	* sb-security-breach (security breach detector)
+	* closing (premature browser exit)
+
 
 ### Text to Speech Synthesis (TTS)
 
@@ -130,14 +153,18 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
    The ability to set the pitch, rate, voice, and volume is provided by this API call through the `options` object, which includes:
 
-   * `voicename` (required) - The voice to use from the getVoices call.
+   * `id` (required) - The unique fully qualified name (FQN) for this voice pack. This is used to uniquely specify the voice to use for rendering speech. For some platforms, `id` will be equal to name.
+   * `name` (required) - The human readable name for this voice.
+   * `lang` (required) - Language associated with this voice, following the xml:lang attribute specification. This attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
+   * `default` (optional) - boolean value indicating whether this is the default voice for that language or not.
+   * `remote` (optional) - boolean value indicating whether the speech synthesis is remote or local.
+   * `voiceURI` (optional) - Returns the type of URI and location of the speech synthesis service for this voice.
    * `rate` (optional) - Speech playback rate, ranging from 1 to 20, where 10 is the default, 20 is twice as fast as 10, and 5 is half as fast as 10. 1 is the slowest available playback rate.
    * `pitch` (optional) - Speech pitch, ranging from 1 to 20, where 10 is the default, but the actual pitch is voicepack dependent.
    * `volume` (optional) - Speech volume, ranging from 0 to 10: where 5 is the default and 10 is twice as loud as 5. 0 will mute TTS. The speech volume is dependent on the system volume.
-   * `language` (optional) - Speech language, following the xml:lang attribute specification. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
    * `gender` (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: "male", "female", "neutral". This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
 
-   The callback, if provided, is invoked for TTS events which include `start`, `end`, `word boundary`, `sentence boundary`, `synchronization/marker encountered`, `paused`, `resumed`, and `error`.    The callback function's parameters are as follows:
+   The callback, if provided, is invoked for TTS events which include `start`, `end`, `word boundary`, `sentence boundary`, `synchronization/marker encountered`, `paused`, `resumed`, and `error`. The callback function's parameters are as follows:
     
    * `callback(event)`, where `event` has the following properties:
         * `type` (required) - The valid types are: start, end, word, sentence, sync, paused, resumed, and error.
