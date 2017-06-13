@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.0.14 - Last modified 8-Jun-2017
+v.2.0.15 - Last modified 13-Jun-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -154,8 +154,8 @@ The following Secure Browser Application Programming Interface (API) endpoints d
    The ability to set the pitch, rate, voice, and volume is provided by this API call through the `options` object, which includes:
 
    * `id` (required) - The unique fully qualified name (FQN) for this voice pack. This is used to uniquely specify the voice to use for rendering speech. For some platforms, `id` will be equal to name.
-   * `name` (required) - The human readable name for this voice.
-   * `lang` (required) - Language associated with this voice, following the xml:lang attribute specification. This attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
+   * `name` (optional) - The human readable name for this voice.
+   * `lang` (optional) - Language associated with this voice, following the xml:lang attribute specification. This attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
    * `default` (optional) - boolean value indicating whether this is the default voice for that language or not.
    * `remote` (optional) - boolean value indicating whether the speech synthesis is remote or local.
    * `voiceURI` (optional) - Returns the type of URI and location of the speech synthesis service for this voice.
@@ -168,9 +168,9 @@ The following Secure Browser Application Programming Interface (API) endpoints d
     
    * `callback(event)`, where `event` has the following properties:
         * `type` (required) - The valid types are: start, end, word, sentence, sync, paused, resumed, and error.
-        * `charindex` (optional) - will be filled in for `word` events.
+        * `charindex` (optional) - a numeric value representing the position of the first character of the word being spoken will be filled in for `word` events.
         * `mark` (optional) - will be filled in for `sync` events.
-        * `length` (optional) - will be filled in for `word` events.
+        * `length` (optional) - a numeric value representing the length of the word being spoken will be filled in for `word` events.
         * `message` (optional) - will be filled in for `error` events.
     
    For example:
@@ -212,13 +212,14 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	 Each voice object is a JSON literal with the following properties: 
 	 
-	 * name (required)
-	 * language (optional)
-	 * gender (optional).
+    * `id` (required) - The unique fully qualified name (FQN) for this voice pack. This is used to uniquely specify the voice to use for rendering speech. For some platforms, `id` will be equal to name.
+    * `name` (required) - The human readable name for this voice.
+    * `lang` (required) - Language associated with this voice, following the xml:lang attribute specification. This attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
+    * `gender` (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: "male", "female", "neutral". This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
 	
     Example value passed to the callback function:
 
-     `[{name:'US English Female TTS', gender:'female', language:'en-US'},{name:'US Spanish Male TTS', gender':male', language:'es-es'}]`
+     `[{id:'com.apple.speech.synthesis.voice.Agnes', name:'Agnes', lang:'en-US', gender:'female'}, {id:'com.apple.speech.synthesis.voice.Alex', name:'Alex', lang:'en-US', gender:'male'}]`
 
 	Empty array indicates no voice packs are available. Undefined or null indicates that an error occurred attempting to get the voices and no information is available.
 
