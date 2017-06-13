@@ -44,9 +44,9 @@ function TTSService_Unified() {
         let selectedIndex = 0;
         for (let i = 0; i < aVoices.length; i++) {
           let opt = document.createElement("option");
-          opt.text = aVoices[i].substring(aVoices[i].lastIndexOf(".") + 1,
-              aVoices[i].length);
-          opt.value = aVoices[i];
+
+          opt.text = aVoices[i].name;
+          opt.value = aVoices[i].id;
 
           selectList.options.add(opt);
         }

@@ -1193,8 +1193,10 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
       recorderImpl.audioRecorderClosed();
       setTimeout(function() {
         var recorderState = recorderImpl.getAudioRecorderStatus();
+
         $('#recorderStatusText').html(
-            '<span class="red-background">' + recorderState + '</span>');
+            '<span class="red-background">closed</span>');
+
       }, 2000);
 
     }
@@ -1468,7 +1470,7 @@ function getRecorderStatus() {
 
   try {
     var recorderStatus = recorderImpl.getAudioRecorderStatus();
-    if (recorderStatus != null && recorderStatus.length > 1) {
+    if (recorderStatus != null) {
       $('#recorderStatusText').html(
           '<span class="green-background">' + recorderStatus + '</span>');
     }
@@ -1522,10 +1524,11 @@ function startRecordingAudio() {
   try {
     var mediaRecorderStatusText = recorderImpl.startAudioRecording();
     updateRecordingTime();
-    $('#recorderStatusText')
-        .html(
-            '<span class="green-background">' + mediaRecorderStatusText
-                + '</span>');
+    if (mediaRecorderStatusText != null) {
+      $('#recorderStatusText').html(
+          '<span class="green-background">' + mediaRecorderStatusText
+              + '</span>');
+    }
 
     loadManualTextConfirmBox();
   } catch (ex) {
@@ -1540,10 +1543,11 @@ function stopRecordingAudio() {
   try {
     var mediaRecorderStatusText = recorderImpl.stopAudioRecording();
     clearInterval(updateRecordTimeInterval);
-    $('#recorderStatusText')
-        .html(
-            '<span class="green-background">' + mediaRecorderStatusText
-                + '</span>');
+    if (mediaRecorderStatusText != null) {
+      $('#recorderStatusText').html(
+          '<span class="green-background">' + mediaRecorderStatusText
+              + '</span>');
+    }
     loadManualTextConfirmBox();
     recorderImpl.setRecordedData();
 
