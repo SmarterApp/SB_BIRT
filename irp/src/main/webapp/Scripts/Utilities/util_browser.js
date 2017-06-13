@@ -431,6 +431,18 @@
     return false;
   };
 
+  Browser.hasSecureBrowserRecorderSupport = function() {
+    try {
+      if (Browser.isSecureBrowser && typeof SecureBrowser.recorder === 'object') {
+        return true
+      }
+    } catch (ex) {
+      console.log('Exception occurred ' + ex.message);
+      return false;
+    }
+    return false;
+  };
+
   Util.Browser = Browser;
 
 })(Util);
