@@ -9,7 +9,8 @@
 
 function beginBrowserAPITest() {
 
-  if (Util.Browser.isWebAudioApiSupported()) {
+  if (!!recorderImpl.getAudioContextObject
+      && Util.Browser.isWebAudioApiSupported()) {
     audioCtx = recorderImpl.getAudioContextObject();
   }
 

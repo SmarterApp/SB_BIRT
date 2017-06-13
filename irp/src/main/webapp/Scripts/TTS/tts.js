@@ -215,17 +215,16 @@ TTS.Manager.init = function(forceInit) { // set forceInit to true if this is a
     // Otherwise, rely on the applet based TTS
     var service = null;
 
-    // check for certified SB With Unified API   
-    if(Util.Browser.hasSecureBrowserTTSSupport()){
+    // check for certified SB With Unified API
+    if (Util.Browser.hasSecureBrowserTTSSupport()) {
       service = new TTSService_Unified();
-    }     
-    // check for mobile secure browser
-    else if (Util.Browser.isSecure()
-        && (Util.Browser.isAndroid() || (Util.Browser.isIOS() && (Util.Browser
-            .getSecureVersion() >= 2)))) {
-      service = new TTSService_MobileSB();
-      TTS.Manager.browserType = mobile;
     }
+    /*
+     * // check for mobile secure browser else if (Util.Browser.isSecure() &&
+     * (Util.Browser.isAndroid() || (Util.Browser.isIOS() && (Util.Browser
+     * .getSecureVersion() >= 2)))) { service = new TTSService_MobileSB();
+     * TTS.Manager.browserType = mobile; }
+     */
     // Check for Web Speech support
     else if (TTS.Util.supportsWebSpeech()) {
       service = new TTSService_WebSpeech();
