@@ -633,22 +633,6 @@ IRT.ApiSpecs = {
       "isDeprecated" : false
     },
 
-    "checkHashAPI" : {
-      "id" : "22",
-      "testName" : "Hash",
-      "testApi" : "",
-      "testResult" : null,
-      "details" : "",
-      "testApi_certified" : "SecureBrowser.security.hash",
-      "points" : "1",
-      "required" : {
-        "all" : true
-      },
-      "testPoints" : "0",
-      "apiType" : [ "function" ],
-      "isDeprecated" : false
-    },
-
     "checkEventAPI" : {
       "id" : "23",
       "testName" : "Add Event Listener",
