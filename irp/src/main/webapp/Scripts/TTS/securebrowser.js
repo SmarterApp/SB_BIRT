@@ -132,7 +132,7 @@ function TTSService_Unified() {
     let currentVoice = this.currentVoice;
 
     let options = {
-      voicename : currentVoice,
+      /* voicename */id : currentVoice,
       pitch : pitch,
       rate : rate,
       volume : volume

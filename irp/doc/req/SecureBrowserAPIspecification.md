@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.0.15 - Last modified 13-Jun-2017
+v.2.0.16 - Last modified 20-Jun-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -109,14 +109,6 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 	` function(permissivemode){...}`
 
 	The passed-in value is a boolean indicating if the browser is permissive or not. If undefined or null is passed in, that implies an error occurred with the set operation.
-
-1. R47. **Hash**. The testing application invokes this function to generate a SHA-256 hash of a string. The hash is implemented using a secret salt baked into the browser.
-
-    `void SecureBrowser.security.hash(string input, function callback)`
-
-    * `input` is combined with a secret salt and the SHA-256 hash for that result is returned.
-    * `callback` is required and should be a function of this form:
-	` function(hashedString){...}`
 
 1. R22. **Eliminate Security-Exposing APIs**. The following APIs are deprecated and shall NOT be exposed:
 
