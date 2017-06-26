@@ -1192,7 +1192,7 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
 
       recorderImpl.audioRecorderClosed();
       setTimeout(function() {
-        var recorderState = recorderImpl.getAudioRecorderStatus();
+        // var recorderState = recorderImpl.getAudioRecorderStatus();
 
         $('#recorderStatusText').html(
             '<span class="red-background">closed</span>');
