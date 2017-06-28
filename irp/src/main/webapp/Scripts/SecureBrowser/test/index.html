@@ -19,6 +19,8 @@ var isChrome = null;
 var isMobile = null;
 var isCertified = null;
 var isAIRSecureBrowser = null;
+var appWindow = null;
+var appOrigin = null;
 
 </script>
 <!-- JQuery -->
@@ -163,6 +165,11 @@ var isAIRSecureBrowser = null;
             	  SecureBrowser.security.close(false);
               });
 
+            }else{
+              $("#closeBrowser").show();
+              $("#closeBrowser").click(function() {
+                closeChromeExtension();
+              });
             }
 
             createButton($("#capabilityApiManualTest"),
@@ -239,6 +246,14 @@ var isAIRSecureBrowser = null;
               beginBrowserAPITest();
             }
           
+            
+            function onMessage(e) {
+              appWindow = e.source;
+              appOrigin = e.origin;
+              console.log(e);
+            }
+            
+            window.addEventListener('message', onMessage);
             
           
             

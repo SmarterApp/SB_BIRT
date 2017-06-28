@@ -138,9 +138,23 @@ var impl = TDS.SecureBrowser.getImplementation();
           $("#closeBrowser").click(function() {
         	  SecureBrowser.security.close(false);
           });
+        }else{
+          $("#closeBrowser").show();
+          $("#closeBrowser").click(function() {
+            closeChromeExtension();
+          });
+          
         }
         
         $("#footerInfo").load(getContextPath() + "/Scripts/SecureBrowser/test/footer.html");
+        
+        function onMessage(e) {
+          appWindow = e.source;
+          appOrigin = e.origin;
+          console.log(e);
+        }
+        
+        window.addEventListener('message', onMessage);
 
       });
   
