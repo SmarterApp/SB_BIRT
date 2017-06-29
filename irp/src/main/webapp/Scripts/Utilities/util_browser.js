@@ -380,8 +380,9 @@
 
   Browser.getOperatingSystem = function() {
     var operatingSystem = "";
-
-    if (Browser.isWindows())
+    if ($('body').hasClass("browser_airsecurebrowser"))
+      operatingSystem = "CHROMEOS";
+    else if (Browser.isWindows())
       operatingSystem = "WINDOWS";
     else if (Browser.isLinux())
       operatingSystem = "LINUX";
@@ -389,6 +390,8 @@
       operatingSystem = "OSX";
     else if (Browser.isIOS())
       operatingSystem = "IOS";
+    else if (Browser.isAndroid())
+      operatingSystem = "ANDROID";
 
     return operatingSystem;
   };

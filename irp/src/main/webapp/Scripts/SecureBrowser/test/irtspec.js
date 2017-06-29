@@ -217,8 +217,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser",
-      "testApi_SB" : "SecureBrowser",
-      "testApi_mobile" : "(new Summit.SecureBrowser.Mobile()).getNativeBrowser()",
       "points" : "1",
       "required" : {
         "all" : true
@@ -236,8 +234,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.getDeviceInfo",
-      "testApi_SB" : "runtime.getDeviceInfo",
-      "testApi_mobile" : "runtime.security.getDeviceInfo",
       "points" : "1",
       "required" : {
 
@@ -256,8 +252,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.getMACAddress",
-      "testApi_SB" : "runtime.getMACAddress",
-      "testApi_mobile" : "runtime.security.getMACAddress",
       "points" : "1",
       "required" : {
 
@@ -277,9 +271,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.getIPAddressList",
-
-      "testApi_SB" : "runtime.getIPAddressList",
-      "testApi_mobile" : "runtime.security.getIPAddressList",
       "points" : "1",
       "required" : {
 
@@ -298,8 +289,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.settings.appStartTime",
-      "testApi_SB" : "Mozilla.getPreference('bmakiosk.startup.timestamp')",
-      "testApi_mobile" : "runtime.security.getStartTime",
       "points" : "1",
       "required" : {
         "all" : false
@@ -318,8 +307,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.clearCache",
-      "testApi_SB" : "SecureBrowser.clearCache",
-      "testApi_mobile" : "runtime.security.clearCache",
       "points" : "1",
       "required" : {
         "all" : true
@@ -337,8 +324,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.emptyClipBoard",
-      "testApi_SB" : "SecureBrowser.emptyClipBoard",
-      "testApi_mobile" : "",
       "points" : "1",
       "required" : {
         "all" : false
@@ -356,8 +341,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.clearCookies",
-      "testApi_SB" : "SecureBrowser.clearCookies",
-      "testApi_mobile" : "runtime.security.clearCookies",
       "points" : "1",
       "required" : {
 
@@ -377,8 +360,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.getProcessList",
-      "testApi_SB" : "runtime.getRunningProcessList",
-      "testApi_mobile" : "runtime.security.getProcessList",
       "points" : "1",
       "required" : {
 
@@ -397,9 +378,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.close",
-      "testApi_certified_edge" : "SecureBrowser.security.close",
-      "testApi_SB" : "SecureBrowser.CloseWindow",
-      "testApi_mobile" : "runtime.security.close",
       "points" : "1",
       "required" : {
 
@@ -418,8 +396,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.isEnvironmentSecure",
-      "testApi_SB" : "runtime.isEnvironmentSecure",
-      "testApi_mobile" : "runtime.security.isEnvironmentSecure",
       "points" : "1",
       "required" : {
 
@@ -438,8 +414,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.lockDown",
-      "testApi_SB" : "runtime.enableLockDown",
-      "testApi_mobile" : "runtime.security.enableLockdown",
       "points" : "1",
       "required" : {
 
@@ -459,8 +433,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.settings.systemVolume",
-      "testApi_SB" : "runtime.systemVolume",
-      "testApi_mobile" : "runtime.systemVolume",
       "points" : "1",
       "required" : {
 
@@ -481,8 +453,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.settings.systemMute",
-      "testApi_SB" : "runtime.systemMute",
-      "testApi_mobile" : "runtime.systemMute",
       "points" : "1",
       "required" : {
 
@@ -501,8 +471,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.examineProcessList",
-      "testApi_SB" : "runtime.examineProcessList",
-      "testApi_mobile" : "runtime.security.examineProcessList",
       "points" : "1",
       "required" : {
 
@@ -521,8 +489,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.getCapability",
-      "testApi_SB" : "runtime.getCapability",
-      "testApi_mobile" : "runtime.security.getCapability",
       "points" : "1",
       "required" : {
 
@@ -541,8 +507,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.setCapability",
-      "testApi_SB" : "runtime.setCapability",
-      "testApi_mobile" : "runtime.security.setCapability",
       "points" : "1",
       "required" : {
 
@@ -561,8 +525,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.getPermissiveMode",
-      "testApi_SB" : "runtime.permissive",
-      "testApi_mobile" : "runtime.security.getPermissiveMode",
       "points" : "1",
       "required" : {
         "all" : true
@@ -580,8 +542,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.setPermissiveMode",
-      "testApi_SB" : "runtime.permissive",
-      "testApi_mobile" : "runtime.security.setPermissiveMode",
       "points" : "1",
       "required" : {
         "all" : true
@@ -601,8 +561,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.setAltStartPage",
-      "testApi_SB" : "runtime.permissive",
-      "testApi_mobile" : "runtime.security.setPermissiveMode",
       "points" : "1",
       "required" : {
         "all" : false
@@ -622,8 +580,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.security.restoreDefaultStartPage",
-      "testApi_SB" : "runtime.permissive",
-      "testApi_mobile" : "runtime.security.setPermissiveMode",
       "points" : "1",
       "required" : {
         "all" : false
@@ -658,8 +614,6 @@ IRT.ApiSpecs = {
       "testResult" : null,
       "details" : "",
       "testApi_certified" : "SecureBrowser.settings.isSpacesEnabled",
-      "testApi_SB" : "Mozilla.getPreference('bmakiosk.spaces.enabled')",
-      "testApi_mobile" : "runtime.settings.isSpacesEnabled",
       "points" : "1",
       "required" : {
         "macOS" : true
@@ -681,8 +635,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.tts.speak",
       "testApi_webspeech" : "window.speechSynthesis.speak",
-      "testApi_SB" : "runtime.play",
-      "testApi_mobile" : "runtime.tts.speak",
       "points" : "1",
       "required" : {
         "all" : true
@@ -701,8 +653,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.tts.pause",
       "testApi_webspeech" : "window.speechSynthesis.pause",
-      "testApi_SB" : "runtime.pause",
-      "testApi_mobile" : "runtime.tts.pause",
       "points" : "1",
       "required" : {
         "all" : true
@@ -721,8 +671,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.tts.resume",
       "testApi_webspeech" : "window.speechSynthesis.resume",
-      "testApi_SB" : "runtime.resume",
-      "testApi_mobile" : "runtime.tts.resume",
       "points" : "1",
       "required" : {
         "all" : true
@@ -741,8 +689,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.tts.stop",
       "testApi_webspeech" : "window.speechSynthesis.cancel",
-      "testApi_SB" : "runtime.stop",
-      "testApi_mobile" : "runtime.tts.stop",
       "points" : "1",
       "required" : {
         "all" : true
@@ -750,35 +696,7 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false
-    }/**
-       * , "checkTTSVolumeAPI" : { // F30. The secure browser shall provide a
-       * means to get/set TTS volume. // R08 SEC-36, SEC-50, SEC-51, SEC-52,
-       * SEC-53 "id" : "5", "testName" : "Get/Set TTS volume API (text-to-speech
-       * synthesis)", "testApi" : "", "testResult" : true, "details" : "",
-       * "testApi_certified" : "SecureBrowser.tts.getVolume",
-       * "testApi_webspeech" : "new SpeechSynthesisUtterance().volume",
-       * "testApi_SB" : "runtime.volume", "testApi_mobile" :
-       * "runtime.device.ttsVolume", "points" : "1", "required" : { "all" : true },
-       * "testPoints" : "0", "apiType" : [ "function" ], "isDeprecated" : false },
-       * "checkTTSPitchAPI" : { // F28. The secure browser shall provide a means
-       * to get/set TTS pitch. // R11, R12 SEC-11, SEC-39 "id" : "6", "testName" :
-       * "Get/Set TTS pitch API (text-to-speech synthesis)", "testApi" : "",
-       * "testResult" : true, "details" : "", "testApi_certified" :
-       * "SecureBrowser.tts.getPitch", "testApi_webspeech" : "new
-       * SpeechSynthesisUtterance().pitch", "testApi_SB" : "runtime.pitch",
-       * "testApi_mobile" : "runtime.device.ttsPitch", "points" : "1",
-       * "required" : { "all" : true }, "testPoints" : "0", "apiType" : [
-       * "function" ], "isDeprecated" : false }, "checkTTSRateAPI" : { // F29.
-       * The secure browser shall provide a means to get/set TTS rate. R11, //
-       * R12 SEC-11, SEC-39 "id" : "7", "testName" : "Get/Set TTS rate API
-       * (text-to-speech synthesis)", "testApi" : "", "testResult" : true,
-       * "details" : "", "testApi_certified" : "SecureBrowser.tts.getRate",
-       * "testApi_webspeech" : "new SpeechSynthesisUtterance().rate",
-       * "testApi_SB" : "runtime.rate", "testApi_mobile" :
-       * "runtime.device.ttsRate", "points" : "1", "required" : { "all" : true },
-       * "testPoints" : "0", "apiType" : [ "function" ], "isDeprecated" : false }
-       */
-    ,
+    },
     "checkTTSStatusAPI" : {
       // F22. The secure browser shall provide a means events to notify the web
       // application of status and progress of TTS. R10 SEC-11, SEC-38
@@ -789,8 +707,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.tts.getStatus",
       "testApi_webspeech" : "(window.speechSynthesis.paused || window.speechSynthesis.pending || window.speechSynthesis.speaking)",
-      "testApi_SB" : "runtime.status",
-      "testApi_mobile" : "runtime.tts.getStatus",
       "points" : "1",
       "required" : {
         "all" : true
@@ -809,8 +725,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.tts.getVoices",
       "testApi_webspeech" : "window.speechSynthesis.getVoices",
-      "testApi_SB" : "runtime.voices",
-      "testApi_mobile" : "runtime.tts.getVoices",
       "points" : "1",
       "required" : {
         "all" : true
@@ -831,8 +745,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -855,8 +768,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -879,8 +791,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -903,8 +814,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -927,8 +837,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -951,8 +860,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -975,8 +883,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -999,8 +906,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -1023,8 +929,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -1047,8 +952,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -1071,8 +975,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -1094,8 +997,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -1118,8 +1020,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : false
@@ -1141,8 +1042,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : false
@@ -1164,8 +1064,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -1188,8 +1087,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -1210,8 +1108,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -1235,8 +1132,7 @@ IRT.ApiSpecs = {
       "details" : "Test not performed by user",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -1257,8 +1153,7 @@ IRT.ApiSpecs = {
       "details" : "Test not performed by user",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : true
@@ -1281,7 +1176,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.recorder.initialize",
       "testApi_webaudio" : "(window.AudioContext || window.webkitAudioContext)",
-      "testApi_mobile" : "runtime.recorder.initialize",
       "points" : "1",
       "required" : {
         "all" : false
@@ -1298,7 +1192,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.recorder.getStatus",
       "testApi_webaudio" : "audioCtx.state",
-      "testApi_mobile" : "runtime.recorder.getStatus",
       "points" : "1",
       "required" : {
         "all" : false
@@ -1315,7 +1208,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.recorder.getCapabilities",
       "testApi_webaudio" : "(navigator.mediaDevices.getSupportedConstraints && navigator.mediaDevices.enumerateDevices)",
-      "testApi_mobile" : "runtime.recorder.getCapabilities",
       "points" : "1",
       "required" : {
         "all" : false
@@ -1332,7 +1224,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.recorder.startCapture",
       "testApi_webaudio" : "new MediaRecorder(new MediaStream()).start",
-      "testApi_mobile" : "runtime.recorder.startCapture",
       "points" : "1",
       "required" : {
         "all" : false
@@ -1349,7 +1240,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.recorder.stopCapture",
       "testApi_webaudio" : "new MediaRecorder(new MediaStream()).stop",
-      "testApi_mobile" : "runtime.recorder.stopCapture",
       "points" : "1",
       "required" : {
         "all" : false
@@ -1366,7 +1256,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.recorder.play",
       "testApi_webaudio" : "audioCtx.createBufferSource().start",
-      "testApi_mobile" : "runtime.recorder.play",
       "points" : "1",
       "required" : {
         "all" : false
@@ -1383,7 +1272,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.recorder.stopPlay",
       "testApi_webaudio" : "audioCtx.createBufferSource().stop",
-      "testApi_mobile" : "runtime.recorder.stopPlay",
       "points" : "1",
       "required" : {
         "all" : false
@@ -1400,7 +1288,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.recorder.pausePlay",
       "testApi_webaudio" : "audioCtx.createBufferSource().stop",
-      "testApi_mobile" : "runtime.recorder.pausePlay",
       "points" : "1",
       "required" : {
         "all" : false
@@ -1417,7 +1304,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.recorder.resumePlay",
       "testApi_webaudio" : "audioCtx.createBufferSource().start",
-      "testApi_mobile" : "runtime.recorder.resumePlay",
       "points" : "1",
       "required" : {
         "all" : false
@@ -1434,7 +1320,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.recorder.retrieveAudioRecordingList",
       "testApi_webaudio" : "audioCtx.retrieveAudioRecordingList",
-      "testApi_mobile" : "runtime.recorder.retrieveAudioFileList",
       "points" : "1",
       "required" : {
         "all" : false
@@ -1451,7 +1336,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.recorder.retrieveAudioRecording",
       "testApi_webaudio" : "audioCtx.retrieveAudioRecording",
-      "testApi_mobile" : "runtime.recorder.retrieveAudioFile",
       "points" : "1",
       "required" : {
         "all" : false
@@ -1468,7 +1352,6 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "SecureBrowser.recorder.removeAudioRecordings",
       "testApi_webaudio" : "audioCtx.removeAudioRecordings",
-      "testApi_mobile" : "runtime.recorder.retrieveAudioFile",
       "points" : "1",
       "required" : {
         "all" : false
@@ -1489,8 +1372,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : false
@@ -1515,8 +1397,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : false
@@ -1541,8 +1422,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : false
@@ -1567,8 +1447,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : false
@@ -1594,8 +1473,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : false
@@ -1621,8 +1499,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : false
@@ -1648,8 +1525,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : false
@@ -1674,8 +1550,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : false
@@ -1701,8 +1576,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : false
@@ -1726,8 +1600,7 @@ IRT.ApiSpecs = {
       "details" : "",
       "testApi_certified" : "",
       "testApi_webspeech" : "",
-      "testApi_SB" : "",
-      "testApi_mobile" : "",
+
       "points" : "1",
       "required" : {
         "all" : false

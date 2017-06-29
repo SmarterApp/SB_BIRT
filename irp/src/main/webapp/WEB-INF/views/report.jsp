@@ -38,8 +38,6 @@
   <!-- WebAudio -->
 
 <script type="text/javascript"
-  src="<%=contextPath%>/Scripts/WebAudio/mobilerecorder.js"></script>
-<script type="text/javascript"
   src="<%=contextPath%>/Scripts/WebAudio/webaudiorecorder.js"></script>
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/WebAudio/certifiedrecorder.js"></script>
@@ -57,7 +55,7 @@
   src="<%=contextPath%>/Scripts/Libraries/YUI/storage/storage-min.js"></script>
   
  
-<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/Summit/air_mobile.js"></script> 
+
 
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/factory.js"></script>
 
@@ -79,6 +77,8 @@
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/test/populateGrid.js"></script>
 
 <script type="text/javascript">
+var appWindow = null;
+var appOrigin = null;
 TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
   $(document).ready(
@@ -147,7 +147,7 @@ var impl = TDS.SecureBrowser.getImplementation();
         }
         
         $("#footerInfo").load(getContextPath() + "/Scripts/SecureBrowser/test/footer.html");
-        
+
         function onMessage(e) {
           appWindow = e.source;
           appOrigin = e.origin;
@@ -155,7 +155,7 @@ var impl = TDS.SecureBrowser.getImplementation();
         }
         
         window.addEventListener('message', onMessage);
-
+        
       });
   
   function populateReportData(data) {
