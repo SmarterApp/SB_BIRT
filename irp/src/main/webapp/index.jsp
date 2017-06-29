@@ -37,8 +37,6 @@
 <!-- WebAudio -->
 
 <script type="text/javascript"
-  src="<%=contextPath%>/Scripts/WebAudio/mobilerecorder.js"></script>
-<script type="text/javascript"
   src="<%=contextPath%>/Scripts/WebAudio/webaudiorecorder.js"></script>
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/WebAudio/certifiedrecorder.js"></script>
@@ -48,22 +46,14 @@
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/SecureBrowser/test/irtspec.js"></script>
 
-<script type="text/javascript"
-  src="<%=contextPath%>/Scripts/SecureBrowser/Summit/air_mobile.js"></script>
 
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/SecureBrowser/factory.js"></script>
 
-<script type="text/javascript"
-  src="<%=contextPath%>/Scripts/SecureBrowser/certified.js"></script>
-<script type="text/javascript"
-  src="<%=contextPath%>/Scripts/SecureBrowser/firefox.js"></script>
+
+
  <script type="text/javascript"
   src="<%=contextPath%>/Scripts/SecureBrowser/securebrowser.js"></script>
-<script type="text/javascript"
-  src="<%=contextPath%>/Scripts/SecureBrowser/mobile.android.js"></script>
-<script type="text/javascript"
-  src="<%=contextPath%>/Scripts/SecureBrowser/mobile.ios.js"></script>
 
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/Utilities/util.js"></script>
@@ -80,11 +70,14 @@
 <link type="text/css" rel="stylesheet"
   href="<%=contextPath%>/Shared/irt.css" />
 <script type="text/javascript">
+
 TDS.SecureBrowser.initialize();
 var impl = TDS.SecureBrowser.getImplementation();
+var appWindow = null;
+var appOrigin = null;
+
   $(document).ready(
       function() {
-        
    
         $.removeCookie("contextPath");
         $.removeCookie("name");
@@ -170,9 +163,22 @@ var impl = TDS.SecureBrowser.getImplementation();
           $("#closeBrowser").click(function() {
             SecureBrowser.security.close(false);
           });
+        }else{
+          $("#closeBrowser").show();
+          $("#closeBrowser").click(function() {
+            closeChromeExtension();
+          });
         }
         
         $("#footerInfo").load(cntxPath + "/Scripts/SecureBrowser/test/footer.html");
+        
+        function onMessage(e) {
+          appWindow = e.source;
+          appOrigin = e.origin;
+          console.log(e);
+        }
+        
+        window.addEventListener('message', onMessage);
   });
 
   function enableGetIRTResultButton(event) {

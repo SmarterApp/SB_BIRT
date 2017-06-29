@@ -185,3 +185,17 @@ function openSmarterLinkDialog(id, testTitle, url) {
 
   id.dialog("open");
 }
+
+function closeChromeExtension() {
+  if ($('body').hasClass("browser_airsecurebrowser")) {
+    if (appWindow && appOrigin) {
+      appWindow.postMessage({
+        type : "CHROME COMMAND",
+        command : "APP CLOSE"
+      }, appOrigin);
+      console.log("Message Sent to close chrome extension browser");
+    } else {
+      console.log("ERROR: don't have app info - no initial message received");
+    }
+  }
+}
