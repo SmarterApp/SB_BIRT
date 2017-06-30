@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.0.16 - Last modified 20-Jun-2017
+v.2.1.1 - Last modified 30-Jun-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -25,7 +25,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
     `void SecureBrowser.security.isEnvironmentSecure(function callback)`  
 
-	`callback` is optional. If specified, this parameter should be a function of this form:
+	`callback` is required and should be a function of this form:
 
 	` function(state){...}`
 
@@ -94,7 +94,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`void SecureBrowser.security.getPermissiveMode(function callback)`
 	
-	`callback` is optional. If specified, this parameter should be a function of this form:
+	`callback` is required and should be a function of this form:
 
 	` function(permissivemode){...}`
 
