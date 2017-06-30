@@ -187,7 +187,8 @@ function openSmarterLinkDialog(id, testTitle, url) {
 }
 
 function closeChromeExtension() {
-  if ($('body').hasClass("browser_airsecurebrowser")) {
+  if ($('body').hasClass("browser_airsecurebrowser")
+      || $('body').hasClass("browser_smartersecurebrowser")) {
     if (appWindow && appOrigin) {
       appWindow.postMessage({
         type : "CHROME COMMAND",
