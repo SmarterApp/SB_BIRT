@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser API Specification</h1>
 
-<p>v.2.1.1 - Last modified 30-Jun-2017</p>
+<p>v.2.1.2 - Last modified 3-Jul-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -402,7 +402,7 @@ pre[class*="language-"] {
 
 <p><code>function(infoObj){...}</code></p>
 
-<p>The infoObj is a JSON literal that includes a set of key value pairs. The complete list of data returned is vendor specific. At a minimum, we expect the following keys to be supported: <code>manufacturer</code>,<code>HWVer</code>, <code>SWVer</code></p></li>
+<p>The infoObj is a JSON literal that includes a set of key value pairs. The complete list of data returned is vendor specific. At a minimum, the following keys must be supported: <code>os</code>, <code>name</code>, <code>version</code>, <code>brand</code>.</p></li>
 <li><p>R06. <strong>Examine current list of running processes</strong>. The testing application will invoke this to examine the list of all processes running on the client machine owned by the user, and compare it with a list of processes that we have deemed blacklisted during testing cycle. This call will be invoked both at the start of an assessment and periodically which the student is taking the assessment and at any point, if a blacklisted app is detected, the assessment will be stopped to preserve test integrity. It will return a list of running processes that match one or more of the blacklisted processes, if any.</p>
 
 <p><code>void SecureBrowser.security.examineProcessList(string[] blacklistedProcessList, function callback)</code></p>

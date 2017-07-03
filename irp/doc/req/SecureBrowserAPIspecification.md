@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.1.1 - Last modified 30-Jun-2017
+v.2.1.2 - Last modified 3-Jul-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -44,7 +44,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	` function(infoObj){...}`
 
-	The infoObj is a JSON literal that includes a set of key value pairs. The complete list of data returned is vendor specific. At a minimum, we expect the following keys to be supported: `manufacturer`,`HWVer`, `SWVer`
+	The infoObj is a JSON literal that includes a set of key value pairs. The complete list of data returned is vendor specific. At a minimum, the following keys must be supported: `os`, `name`, `version`, `brand`.
 
 1. R06. **Examine current list of running processes**. The testing application will invoke this to examine the list of all processes running on the client machine owned by the user, and compare it with a list of processes that we have deemed blacklisted during testing cycle. This call will be invoked both at the start of an assessment and periodically which the student is taking the assessment and at any point, if a blacklisted app is detected, the assessment will be stopped to preserve test integrity. It will return a list of running processes that match one or more of the blacklisted processes, if any.
 
