@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser API Specification</h1>
 
-<p>v.2.1.2 - Last modified 3-Jul-2017</p>
+<p>v.2.1.3 - Last modified 5-Jul-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -398,7 +398,7 @@ pre[class*="language-"] {
 
 <p><code>void SecureBrowser.security.getDeviceInfo(function callback)</code></p>
 
-<p><code>callback</code> should be a function that looks like this:</p>
+<p><code>callback</code> is required and should be a function of this form:</p>
 
 <p><code>function(infoObj){...}</code></p>
 
@@ -407,7 +407,7 @@ pre[class*="language-"] {
 
 <p><code>void SecureBrowser.security.examineProcessList(string[] blacklistedProcessList, function callback)</code></p>
 
-<p><code>callback</code> should be a function that looks like this:</p>
+<p><code>callback</code> is required and should be a function of this form:</p>
 
 <p><code>function(array of process names found){...}</code></p>
 
@@ -541,7 +541,7 @@ The testing application will invoke this to perform client side text to speech s
 
 <p><code>void SecureBrowser.tts.getStatus(function callback)</code></p>
 
-<p><code>callback</code> is optional. If specified, this parameter should be a function of this form:</p>
+<p><code>callback</code> is required and should be a function of this form:</p>
 
 <p><code>function(status){...}</code></p>
 
@@ -560,7 +560,7 @@ The testing application will invoke this to perform client side text to speech s
 
 <p><code>void SecureBrowser.tts.getVoices(function callback)</code></p>
 
-<p><code>callback</code> should be a function that looks like this:</p>
+<p><code>callback</code> is required and should be a function of this form:</p>
 
 <p><code>function(array of voice objects found){...}</code></p>
 
@@ -617,7 +617,7 @@ The testing application will invoke this to perform client side text to speech s
 
 <p><code>void SecureBrowser.security.getMACAddress(function callback)</code></p>
 
-<p><code>callback</code> should be a function that looks like this:</p>
+<p><code>callback</code> is required and should be a function of this form:</p>
 
 <p><code>function(array of mac addresses){...}</code></p>
 
@@ -639,7 +639,7 @@ The testing application will invoke this to perform client side text to speech s
 
 <p><code>feature</code> and <code>value</code> are strings, for example &quot;printing&quot; and &quot;false&quot;.</p>
 
-<p><code>onSuccess</code> and <code>onError</code> are optional parameters. These functions are invoked after the feature has either been successfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:</p>
+<p><code>onSuccess</code> and <code>onError</code> are optional parameters. These functions are invoked after the feature has either been successfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function of this form:</p>
 
 <p><code>function(jsonliteral) {...}</code></p>
 
@@ -668,7 +668,7 @@ The testing application will invoke this to perform client side text to speech s
 
 <p><code>void SecureBrowser.recorder.getStatus(function callback)</code></p>
 
-<p><code>callback</code> is optional. If specified, this parameter should be a function of this form:</p>
+<p><code>callback</code> is required and should be a function of this form:</p>
 
 <p><code>function(status){...}</code></p>
 
@@ -687,7 +687,7 @@ The testing application will invoke this to perform client side text to speech s
 
 <p><code>void SecureBrowser.recorder.getCapabilities(function callback)</code></p>
 
-<p><code>callback</code> should be a function that looks like this:</p>
+<p><code>callback</code> is required and should be a function of this form:</p>
 
 <p><code>function(capability object literal){...}</code></p>
 
@@ -782,7 +782,7 @@ default: true
 
 <p><code>void SecureBrowser.recorder.retrieveAudioRecordingList(function callback)</code></p>
 
-<p><code>callback</code> should be a function of the form:</p>
+<p><code>callback</code> is required and should be a function of the form:</p>
 
 <p><code>function(recordingnames){...}</code></p>
 
@@ -793,14 +793,14 @@ default: true
 
 <p><code>void SecureBrowser.recorder.retrieveAudioRecording(recordingId, function callback)</code></p>
 
-<p>Where <code>recordingId</code> is a unique identifier for a recording, and <code>callback</code> should be a function of the form:</p>
+<p>Where <code>recordingId</code> is a unique identifier for a recording, and <code>callback</code> is required and should be a function of the form:</p>
 
 <p><code>function(b64audio){...}</code></p></li>
 <li><p>R46. <strong>Remove audio recordings</strong>. Remove all audio recordings on the device. This applies to mobile secure browsers only (iOS and Android). </p>
 
 <p><code>void SecureBrowser.recorder.removeAudioRecordings(function callback)</code></p>
 
-<p><code>callback</code> should be a function of the form:</p>
+<p><code>callback</code> is required and should be a function of the form:</p>
 
 <p><code>function(recordingnames){...}</code></p>
 
