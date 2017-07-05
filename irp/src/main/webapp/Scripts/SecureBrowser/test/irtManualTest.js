@@ -1191,14 +1191,8 @@ function disableUIOptions(testName, currentManualApi, testingArray) {
     if (testName == 'RECORDER') {
 
       recorderImpl.audioRecorderClosed();
-      setTimeout(function() {
-        // var recorderState = recorderImpl.getAudioRecorderStatus();
-
-        $('#recorderStatusText').html(
-            '<span class="red-background">closed</span>');
-
-      }, 2000);
-
+      $('#recorderStatusText').html(
+          '<span class="red-background">closed</span>');
     }
   }
 
@@ -1713,6 +1707,8 @@ function macAddressCallBack(data) {
     details = 'MAC Address : ' + data;
   }
 
-  IRT.ApiSpecs.browserapi.checkMACAddressAPI.details = details;
+  if (IRT.ApiSpecs.browserapi.checkMACAddressAPI.testResult != null
+      && IRT.ApiSpecs.browserapi.checkMACAddressAPI.testResult != false)
+    IRT.ApiSpecs.browserapi.checkMACAddressAPI.details = details;
 
 }

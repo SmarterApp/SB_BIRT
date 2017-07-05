@@ -37,8 +37,8 @@ function beginBrowserAPITest() {
          * apisection
          */
 
-        runIRTAutomateTest(apiJSONObj, apiJSONKey, runtime, apiSupportType,
-            apiSection, sectionJSONObj, populateSectionCount);
+        runIRTAutomateTest(apiJSONObj, apiJSONKey, apiSupportType, apiSection,
+            sectionJSONObj, populateSectionCount);
 
       });
 
@@ -79,8 +79,6 @@ function clearBrowserCache() {
  *          JSON Object from irtspec like browserapi or ttsapi
  * @param irtSpecApiJsonKey :
  *          JSON Key from irtspec related to irtSpecApiObj
- * @param runtime :
- *          runtime object in case of securebrowser or AIR mobile browser
  * @param testBrowserType :
  *          Browser Type to identified whether it is certified/securebrowser or
  *          mobile securebrowser
@@ -88,8 +86,8 @@ function clearBrowserCache() {
  *          Grid section for report like browser api or tts api
  * 
  */
-function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
-    testBrowserType, section, sectionObj, callback) {
+function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, testBrowserType,
+    section, sectionObj, callback) {
 
   // Required test passed initial count/
   var rTestPass = 0;
@@ -238,13 +236,54 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, runtime,
             details = 'testApi_removed';
           }
 
+          /**
+           * Object to identify validtest and invalidtest for regression API
+           * check
+           */
+
+          var regTestObj = eval(elementKey + "regTest");
+          if (regTestObj != undefined && regTestObj != null
+              && testBrowserType == certified) {
+
+            var validTestArray = eval('regTestObj' + specSeparator
+                + 'validTest');
+            var inValidTestArray = eval('regTestObj' + specSeparator
+                + 'inValidTest');
+
+            if (validTestArray != null && Array.isArray(validTestArray)) {
+              validTestArray.forEach(function(validTest) {
+                try {
+                  eval(validTest);
+                } catch (ex) {
+                  result = false;
+                  details = 'Valid API call failed: <b>' + validTest + '</b>';
+                  console.log(ex);
+                }
+              });
+            }
+
+            if (inValidTestArray != null && Array.isArray(inValidTestArray)) {
+              inValidTestArray.forEach(function(inValidTest) {
+                try {
+                  eval(inValidTest);
+                  result = false;
+                  details = 'Invalid API call passed: <b>' + inValidTest
+                      + '</b>';
+                } catch (ex) {
+                  console.log(ex);
+                }
+              });
+            }
+
+          }
+
         } catch (ex) {
           if (isDeprecated) {
             result = true;
             details = 'testApi_removed';
           } else {
             result = false;
-            details = ex.message;
+            details = ex.message != "" ? ex.message : ex.name;
           }
         }
 

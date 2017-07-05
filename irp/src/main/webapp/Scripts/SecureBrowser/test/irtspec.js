@@ -241,7 +241,14 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.security.getDeviceInfo(function callback(response){console.log(response);})" ],
+        "inValidTest" : [ "SecureBrowser.security.getDeviceInfo()",
+            "SecureBrowser.security.getDeviceInfo(false)",
+            "SecureBrowser.security.getDeviceInfo('somestring')",
+            "SecureBrowser.security.getDeviceInfo(null)" ]
+      }
     },
     "checkMACAddressAPI" : {
       // F04. The secure browser shall provide a means to retrieve system MAC
@@ -260,7 +267,14 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false,
-      "manualData" : true
+      "manualData" : true,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.security.getMACAddress(function callback(response){console.log(response);})" ],
+        "inValidTest" : [ /* "SecureBrowser.security.getMACAddress()", */
+        "SecureBrowser.security.getMACAddress(false)",
+            "SecureBrowser.security.getMACAddress('somestring')",
+            "SecureBrowser.security.getMACAddress(null)" ]
+      }
     },
     "checkIPAddressAPI" : {
       // F05. The secure browser shall NOT provide a means to retrieve the
@@ -296,7 +310,15 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "apiType" : [ "function" ],
       "isDeprecated" : false,
-      "manualData" : true
+      "manualData" : true,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.settings.appStartTime" ],
+        "inValidTest" : [
+            "SecureBrowser.settings.appStartTime(function callback(response){console.log(response);})",
+            "SecureBrowser.settings.appStartTime(false)",
+            "SecureBrowser.settings.appStartTime('somestring')",
+            "SecureBrowser.settings.appStartTime(null)" ]
+      }
     },
     "checkClearCacheAPI" : {
       // F01. The Secure browser shall NOT provide a means to clear browser
@@ -330,7 +352,17 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.security.emptyClipBoard()" ],
+        "inValidTest" : [
+        // "SecureBrowser.security.emptyClipBoard(function
+        // callback(response){console.log(response);})",
+        // "SecureBrowser.security.emptyClipBoard(false)",
+        // "SecureBrowser.security.emptyClipBoard('somestring')",
+        // "SecureBrowser.security.emptyClipBoard(null)"
+        ]
+      }
     },
     "checkClearCookiesAPI" : {
       // F02. The secure browser shall NOT provide a means to clear browser
@@ -403,7 +435,13 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.security.isEnvironmentSecure(function callback(response){console.log(response);})" ],
+        "inValidTest" : [ "SecureBrowser.security.isEnvironmentSecure(false)",
+            "SecureBrowser.security.isEnvironmentSecure('somestring')",
+            "SecureBrowser.security.isEnvironmentSecure(null)" ]
+      }
     },
     "checkEnableLockDownAPI" : {
       // F37. The secure browser shall be able to lock down the environment. R02
@@ -421,7 +459,19 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [
+            "SecureBrowser.security.lockDown(false,function callbackSuccess(response){console.log(response);},function callback(response){console.log(response);})",
+            "SecureBrowser.security.lockDown(true,function callbackSuccess(response){console.log(response);},function callback(response){console.log(response);})"
+        /* ,"SecureBrowser.security.lockDown(true)" */],
+        "inValidTest" : [
+            "SecureBrowser.security.lockDown()",
+            "SecureBrowser.security.lockDown('somestring',false,'somestring')",
+            "SecureBrowser.security.lockDown(null,'somestring','somestring','somestring')",
+            "SecureBrowser.security.lockDown(true,null,null)",
+            "SecureBrowser.security.lockDown(null,null,null)" ]
+      }
     },
     "checkSystemVolumeAPI" : {
       // F09. The secure browser shall provide a means to get system volume.
@@ -440,7 +490,15 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.settings.systemVolume" ],
+        "inValidTest" : [
+            "SecureBrowser.settings.systemVolume(function callback(response){console.log(response);})",
+            "SecureBrowser.settings.systemVolume(false)",
+            "SecureBrowser.settings.systemVolume('somestring')",
+            "SecureBrowser.settings.systemVolume(null)" ]
+      }
     },
     "checkSystemMuteAPI" : {
       // F11. The secure browser shall provide a means to mute system volume.
@@ -460,7 +518,15 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "boolean" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.settings.systemMute" ],
+        "inValidTest" : [
+            "SecureBrowser.settings.systemMute(function callback(response){console.log(response);})",
+            "SecureBrowser.settings.systemMute(false)",
+            "SecureBrowser.settings.systemMute('somestring')",
+            "SecureBrowser.settings.systemMute(null)" ]
+      }
     },
     "checkExamineProcessList" : {
       // F31. The secure browser shall be able to determine whether blacklisted
@@ -478,7 +544,15 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.security.examineProcessList( ['a','b','c'] , function callback(response){console.log(response);})" ],
+        "inValidTest" : [ "SecureBrowser.security.examineProcessList()",
+            "SecureBrowser.security.examineProcessList(false,null)",
+            "SecureBrowser.security.examineProcessList('somestring',null)",
+            "SecureBrowser.security.examineProcessList(null,null)",
+            "SecureBrowser.security.examineProcessList(null,null,null)" ]
+      }
     },
     "checkGetCapabilityAPI" : {
       // F46. The secure browser shall be able to get the status of a particular
@@ -496,7 +570,13 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.security.getCapability('someString')",
+            "SecureBrowser.security.getCapability(null)",
+            "SecureBrowser.security.getCapability(false)" ],
+        "inValidTest" : [ "SecureBrowser.security.getCapability()" ]
+      }
     },
     "checkSetCapabilityAPI" : {
       // F47. The secure browser shall be able to set the status of a particular
@@ -514,7 +594,20 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [
+            "SecureBrowser.security.setCapability('somestring','somestring',function callbackSuccess(response){console.log(response);},function callback(response){console.log(response);})",
+            "SecureBrowser.security.setCapability('somestring',null,function callbackSuccess(response){console.log(response);},function callback(response){console.log(response);})",
+            "SecureBrowser.security.setCapability('somestring',true,function callbackSuccess(response){console.log(response);},function callback(response){console.log(response);})",
+            "SecureBrowser.security.setCapability('somestringbiggerstringvalueisreallylargetestingforenhancementtesting','somestringbiggerstringvalueisreallylargetestingforenhancementtesting',function callbackSuccess(response){console.log(response);},function callback(response){console.log(response);})" ],
+        "inValidTest" : [
+            "SecureBrowser.security.setCapability()",
+            "SecureBrowser.security.setCapability('somestring',false,'somestring',false)",
+            "SecureBrowser.security.setCapability(null,'somestring','somestring','somestring')",
+            "SecureBrowser.security.setCapability(true,true,null,null)",
+            "SecureBrowser.security.setCapability(null,null,null,null)" ]
+      }
     },
     "checkGetPermissiveModeAPI" : {
       // F49. The secure browser shall provide a means to query the status of
@@ -531,7 +624,14 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.security.getPermissiveMode(function callback(response){console.log(response);})" ],
+        "inValidTest" : [ "SecureBrowser.security.getPermissiveMode()", ,
+            "SecureBrowser.security.getPermissiveMode('somestring')",
+            "SecureBrowser.security.getPermissiveMode(null)",
+            "SecureBrowser.security.getPermissiveMode(false)" ]
+      }
     },
     "checkSetPermissiveModeAPI" : {
       // F15. The secure browser shall provide a means to set permissive mode.
@@ -548,7 +648,15 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [
+            "SecureBrowser.security.setPermissiveMode(false,function callback(response){console.log(response);})",
+            "SecureBrowser.security.setPermissiveMode(false)" ],
+        "inValidTest" : [ "SecureBrowser.security.setPermissiveMode()", ,
+            "SecureBrowser.security.setPermissiveMode(false,null)",
+            "SecureBrowser.security.setPermissiveMode(null,null)" ]
+      }
     },
 
     "checkSetAltStartPageAPI" : {
@@ -567,7 +675,13 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [
+            "SecureBrowser.security.setAltStartPage('someurlstring')",
+            "SecureBrowser.security.setAltStartPage(null)" ],
+        "inValidTest" : [ "SecureBrowser.security.setAltStartPage()" ]
+      }
     },
 
     "checkRestoreDefaultStartPageAPI" : {
@@ -586,7 +700,16 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.security.restoreDefaultStartPage()" ],
+        "inValidTest" : [
+        /*
+         * "SecureBrowser.security.restoreDefaultStartPage('somestring')",
+         * "SecureBrowser.security.restoreDefaultStartPage(null)",
+         * "SecureBrowser.security.restoreDefaultStartPage(false)"
+         */]
+      }
     },
 
     "checkEventAPI" : {
@@ -602,7 +725,14 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.events.addEventListener('eventstring',function callback(response){console.log(response);})" ],
+        "inValidTest" : [ "SecureBrowser.events.addEventListener()",
+            "SecureBrowser.events.addEventListener('eventstring')",
+            "SecureBrowser.events.addEventListener(null)",
+            "SecureBrowser.events.addEventListener(false)" ]
+      }
     },
 
     "checkspacesenabled" : {
@@ -621,7 +751,14 @@ IRT.ApiSpecs = {
       "testPoints" : "0",
       "apiType" : [ "boolean", "function" ],
       "isDeprecated" : false,
-      "manualData" : true
+      "manualData" : true,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.settings.isSpacesEnabled" ],
+        "inValidTest" : [ "SecureBrowser.settings.isSpacesEnabled()",
+            "SecureBrowser.settings.isSpacesEnabled('eventstring')",
+            "SecureBrowser.settings.isSpacesEnabled(null)",
+            "SecureBrowser.settings.isSpacesEnabled(false)" ]
+      }
     }
   },
   "ttsapi" : {
@@ -641,7 +778,13 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.tts.speak('',{},function callback(response){console.log(response);})" ],
+        "inValidTest" : [ "SecureBrowser.tts.speak(null,null,null)",
+            "SecureBrowser.tts.speak()", "SecureBrowser.tts.speak('',{},null)",
+            "SecureBrowser.tts.speak(false,null,true)" ]
+      }
     },
     "checkTTSPauseAPI" : {
       // F18. The secure browser shall provide a means to pause TTS speech in
@@ -659,7 +802,14 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [
+            "SecureBrowser.tts.pause(function callback(response){console.log(response);})",
+            "SecureBrowser.tts.pause()" ],
+        "inValidTest" : [ "SecureBrowser.tts.pause(null)",
+            "SecureBrowser.tts.pause('')", "SecureBrowser.tts.pause(false)" ]
+      }
     },
     "checkTTSResumeAPI" : {
       // F21. The secure browser shall provide a means to resume previously
@@ -677,7 +827,14 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [
+            "SecureBrowser.tts.resume(function callback(response){console.log(response);})",
+            "SecureBrowser.tts.resume()" ],
+        "inValidTest" : [ "SecureBrowser.tts.resume(null)",
+            "SecureBrowser.tts.resume('')", "SecureBrowser.tts.resume(false)" ]
+      }
     },
     "checkTTSStopAPI" : {
       // F17. The secure browser shall provide a means to stop TTS speech in
@@ -695,7 +852,14 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [
+            "SecureBrowser.tts.stop(function callback(response){console.log(response);})",
+            "SecureBrowser.tts.stop()" ],
+        "inValidTest" : [ "SecureBrowser.tts.stop(null)",
+            "SecureBrowser.tts.stop('')", "SecureBrowser.tts.stop(false)" ]
+      }
     },
     "checkTTSStatusAPI" : {
       // F22. The secure browser shall provide a means events to notify the web
@@ -713,7 +877,15 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "boolean", "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [
+            "SecureBrowser.tts.getStatus(function callback(response){console.log(response);})",
+            "SecureBrowser.tts.getStatus()" ],
+        "inValidTest" : [ "SecureBrowser.tts.getStatus(null)",
+            "SecureBrowser.tts.getStatus('')",
+            "SecureBrowser.tts.getStatus(false)" ]
+      }
     },
     "checkTTSVoicesAPI" : {
       // F19. The secure browser shall provide a means to retrieve list of TTS
@@ -731,7 +903,15 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [
+            "SecureBrowser.tts.getVoices(function callback(response){console.log(response);})",
+            "SecureBrowser.tts.getVoices()" ],
+        "inValidTest" : [ "SecureBrowser.tts.getVoices(null)",
+            "SecureBrowser.tts.getVoices('')",
+            "SecureBrowser.tts.getVoices(false)" ]
+      }
     }
   },
   "ttsmanualapi" : {
@@ -1182,7 +1362,14 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.recorder.initialize(function callback(response){console.log(response);})" ],
+        "inValidTest" : [ "SecureBrowser.recorder.initialize()",
+            "SecureBrowser.recorder.initialize(null)",
+            "SecureBrowser.recorder.initialize('somestring')",
+            "SecureBrowser.recorder.initialize(false)" ]
+      }
     },
     "checkAudioRecorderStatus" : {
       "id" : "2",
@@ -1198,7 +1385,14 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.recorder.getStatus(function callback(response){console.log(response);})" ],
+        "inValidTest" : [ "SecureBrowser.recorder.getStatus()",
+            "SecureBrowser.recorder.getStatus(null)",
+            "SecureBrowser.recorder.getStatus('somestring')",
+            "SecureBrowser.recorder.getStatus(false)" ]
+      }
     },
     "checkAudioRecorderCapabilities" : {
       "id" : "3",
@@ -1214,7 +1408,14 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.recorder.getCapabilities(function callback(response){console.log(response);})" ],
+        "inValidTest" : [ "SecureBrowser.recorder.getCapabilities()",
+            "SecureBrowser.recorder.getCapabilities(null)",
+            "SecureBrowser.recorder.getCapabilities('somestring')",
+            "SecureBrowser.recorder.getCapabilities(false)" ]
+      }
     },
     "checkAudioCapture" : {
       "id" : "4",
@@ -1230,7 +1431,14 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.recorder.startCapture({},function eventListener(response){console.log(response);})" ],
+        "inValidTest" : [ "SecureBrowser.recorder.startCapture()",
+            "SecureBrowser.recorder.startCapture(null,null)",
+            "SecureBrowser.recorder.startCapture('somestring',null)",
+            "SecureBrowser.recorder.startCapture(false,false)" ]
+      }
     },
     "checkAudioStopRecording" : {
       "id" : "5",
@@ -1246,7 +1454,13 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.recorder.stopCapture()" ],
+        "inValidTest" : [ "SecureBrowser.recorder.stopCapture(null)",
+            "SecureBrowser.recorder.stopCapture('somestring')",
+            "SecureBrowser.recorder.stopCapture(false)" ]
+      }
     },
     "checkStartPlayback" : {
       "id" : "7",
@@ -1262,7 +1476,13 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.recorder.play('',function eventListener(response){console.log(response);})" ],
+        "inValidTest" : [ "SecureBrowser.recorder.play(null,null)",
+            "SecureBrowser.recorder.play('',null)",
+            "SecureBrowser.recorder.play(false,null)" ]
+      }
     },
     "checkStopPlayback" : {
       "id" : "8",
@@ -1278,7 +1498,13 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.recorder.stopPlay()" ],
+        "inValidTest" : [ "SecureBrowser.recorder.stopPlay(null)",
+            "SecureBrowser.recorder.stopPlay('')",
+            "SecureBrowser.recorder.stopPlay(false)" ]
+      }
     },
     "checkPausePlayback" : {
       "id" : "9",
@@ -1294,7 +1520,13 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.recorder.pausePlay()" ],
+        "inValidTest" : [ "SecureBrowser.recorder.pausePlay(null)",
+            "SecureBrowser.recorder.pausePlay('')",
+            "SecureBrowser.recorder.pausePlay(false)" ]
+      }
     },
     "checkResumePlayback" : {
       "id" : "10",
@@ -1310,7 +1542,13 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.recorder.resumePlay()" ],
+        "inValidTest" : [ "SecureBrowser.recorder.resumePlay(null)",
+            "SecureBrowser.recorder.resumePlay('')",
+            "SecureBrowser.recorder.resumePlay(false)" ]
+      }
     },
     "checkRetieveAudioList" : {
       "id" : "11",
@@ -1326,7 +1564,14 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.recorder.retrieveAudioRecordingList(function callback(response){console.log(response);})" ],
+        "inValidTest" : [
+            "SecureBrowser.recorder.retrieveAudioRecordingList(null)",
+            "SecureBrowser.recorder.retrieveAudioRecordingList(false)",
+            "SecureBrowser.recorder.retrieveAudioRecordingList('')" ]
+      }
     },
     "checkRetrieveAudioDatafromList" : {
       "id" : "12",
@@ -1342,7 +1587,14 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.recorder.retrieveAudioRecording('',function callback(response){console.log(response);})" ],
+        "inValidTest" : [
+            "SecureBrowser.recorder.retrieveAudioRecording(null,null)",
+            "SecureBrowser.recorder.retrieveAudioRecording('','',false)",
+            "SecureBrowser.recorder.retrieveAudioRecording(false,false,null)" ]
+      }
     },
     "checkRemoveAudioRecording" : {
       "id" : "13",
@@ -1358,7 +1610,13 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false
+      "isDeprecated" : false,
+      "regTest" : {
+        "validTest" : [ "SecureBrowser.recorder.removeAudioRecordings(function callback(response){console.log(response);})" ],
+        "inValidTest" : [ "SecureBrowser.recorder.removeAudioRecordings(null)",
+            "SecureBrowser.recorder.removeAudioRecordings(false)",
+            "SecureBrowser.recorder.removeAudioRecordings('somestring')" ]
+      }
     }
   },
   "recordermanualapi" : {

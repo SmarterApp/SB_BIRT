@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.1.2 - Last modified 3-Jul-2017
+v.2.1.3 - Last modified 5-Jul-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -40,7 +40,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`void SecureBrowser.security.getDeviceInfo(function callback)`
 	
-	`callback` should be a function that looks like this:
+	`callback` is required and should be a function of this form:
 
 	` function(infoObj){...}`
 
@@ -50,7 +50,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`void SecureBrowser.security.examineProcessList(string[] blacklistedProcessList, function callback)`
 
-	`callback` should be a function that looks like this:
+	`callback` is required and should be a function of this form:
 
 	` function(array of process names found){...}`
 
@@ -181,7 +181,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 
 	`void SecureBrowser.tts.getStatus(function callback)`
 
-	`callback` is optional. If specified, this parameter should be a function of this form:
+	`callback` is required and should be a function of this form:
 
 	` function(status){...}`
 
@@ -198,7 +198,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
 	
 	`void SecureBrowser.tts.getVoices(function callback)`
 
-	`callback` should be a function that looks like this:
+	`callback` is required and should be a function of this form:
 
 	` function(array of voice objects found){...}`
 
@@ -254,7 +254,7 @@ The APIs in this section are optional. As such, it is good programming practice 
 
 	`void SecureBrowser.security.getMACAddress(function callback)`
 
-	`callback` should be a function that looks like this:
+	`callback` is required and should be a function of this form:
 
 	` function(array of mac addresses){...}`
 	
@@ -278,7 +278,7 @@ The APIs in this section are optional. As such, it is good programming practice 
 
     `feature` and `value` are strings, for example "printing" and "false".
     
-	`onSuccess` and `onError` are optional parameters. These functions are invoked after the feature has either been successfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function that looks like this:
+	`onSuccess` and `onError` are optional parameters. These functions are invoked after the feature has either been successfully enabled or disabled or if the operation failed. If you specify these callback parameters, it should be a function of this form:
 
 	` function(jsonliteral) {...}`
 	
@@ -303,7 +303,7 @@ The APIs in this section are optional. As such, it is good programming practice 
  
 	`void SecureBrowser.recorder.getStatus(function callback)`
 
-	`callback` is optional. If specified, this parameter should be a function of this form:
+	`callback` is required and should be a function of this form:
 
 	` function(status){...}`
 	
@@ -321,7 +321,7 @@ The APIs in this section are optional. As such, it is good programming practice 
  
 	`void SecureBrowser.recorder.getCapabilities(function callback)`
 	
-	`callback` should be a function that looks like this:
+	`callback` is required and should be a function of this form:
 
 	` function(capability object literal){...}`
 	
@@ -415,7 +415,7 @@ supportedOutputDevices: [{
 
 	`void SecureBrowser.recorder.retrieveAudioRecordingList(function callback)`
 
-	`callback` should be a function of the form:
+	`callback` is required and should be a function of the form:
 
 	`function(recordingnames){...}`
     
@@ -427,7 +427,7 @@ supportedOutputDevices: [{
 
     `void SecureBrowser.recorder.retrieveAudioRecording(recordingId, function callback)`
     
-    Where `recordingId` is a unique identifier for a recording, and `callback` should be a function of the form:
+    Where `recordingId` is a unique identifier for a recording, and `callback` is required and should be a function of the form:
 
 	` function(b64audio){...}`
 	
@@ -435,7 +435,7 @@ supportedOutputDevices: [{
 
     `void SecureBrowser.recorder.removeAudioRecordings(function callback)`
 
-    `callback` should be a function of the form:
+    `callback` is required and should be a function of the form:
 
     `function(recordingnames){...}`
     
