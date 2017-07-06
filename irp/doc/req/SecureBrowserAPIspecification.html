@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser API Specification</h1>
 
-<p>v.2.1.3 - Last modified 5-Jul-2017</p>
+<p>v.2.1.4 - Last modified 6-Jul-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -402,7 +402,15 @@ pre[class*="language-"] {
 
 <p><code>function(infoObj){...}</code></p>
 
-<p>The infoObj is a JSON literal that includes a set of key value pairs. The complete list of data returned is vendor specific. At a minimum, the following keys must be supported: <code>os</code>, <code>name</code>, <code>version</code>, <code>brand</code>.</p></li>
+<p>The infoObj is a JSON literal that includes a set of key value pairs. The complete list of data returned is vendor specific. At a minimum, the following keys must be supported: <code>os</code>, <code>name</code>, <code>version</code>, <code>brand</code>, <code>model</code>, as follows:</p>
+
+<ul>
+<li><code>os</code> represents the OS type (e.g. Windows, macOS, Linux, iOS, Android, etc.)</li>
+<li><code>name</code> represents the OS release name, if any (e.g. Sierra, Ubuntu).</li>
+<li><code>version</code> represents the OS version (e.g. 10.1, 10 Pro, etc.)</li>
+<li><code>brand</code> represents the secure browser branding (e.g. OAKS, CA, SmarterApp, etc.)</li>
+<li><code>model</code> represents the device model for mobile devices only; null/unused for desktop browsers.</li>
+</ul></li>
 <li><p>R06. <strong>Examine current list of running processes</strong>. The testing application will invoke this to examine the list of all processes running on the client machine owned by the user, and compare it with a list of processes that we have deemed blacklisted during testing cycle. This call will be invoked both at the start of an assessment and periodically which the student is taking the assessment and at any point, if a blacklisted app is detected, the assessment will be stopped to preserve test integrity. It will return a list of running processes that match one or more of the blacklisted processes, if any.</p>
 
 <p><code>void SecureBrowser.security.examineProcessList(string[] blacklistedProcessList, function callback)</code></p>
