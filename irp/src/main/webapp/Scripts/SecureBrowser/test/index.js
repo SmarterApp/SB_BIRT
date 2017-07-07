@@ -243,7 +243,7 @@ function runIRTAutomateTest(irtSpecApiObj, irtSpecApiJsonKey, testBrowserType,
 
           var regTestObj = eval(elementKey + "regTest");
           if (regTestObj != undefined && regTestObj != null
-              && testBrowserType == certified && !Util.Browser.isMobile()) {
+              && testBrowserType == certified) {
 
             var validTestArray = eval('regTestObj' + specSeparator
                 + 'validTest');
