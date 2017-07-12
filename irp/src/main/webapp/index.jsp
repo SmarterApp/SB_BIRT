@@ -427,7 +427,8 @@ ga('send', 'pageview');
             (OSSB) communication with educational software. BIRT not
             only tests browser compatibility with the OSSB but also
             tests browsers for a number of other protocols and
-            specifications such as <span onclick="javascript:openSmarterLinkDialog('html5test', 'HTML5 Test','https://html5test.com/')" class="about_link">HTML5</span>, 
+            specifications such as 
+            <span onclick="javascript:openSmarterLinkDialog('w3cHtml5Spec', 'W3C HTML5 Specification','https://www.w3.org/TR/html5/')" class="about_link">HTML5</span>, 
             <span onclick="javascript:openSmarterLinkDialog('cssSpec', 'W3C CSS specifications','https://www.w3.org/Style/CSS/specs.en.html')" class="about_link">CSS3</span>, 
             <span onclick="javascript:openSmarterLinkDialog('w3cWebSpeech', 'W3C WebSpeech API','https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html')" class="about_link">Text-to-Speech</span>, 
             <span onclick="javascript:openSmarterLinkDialog('w3cWebAudio', 'Web Audio API','https://www.w3.org/TR/webaudio/')" class="about_link">Web Audio API</span> for playback and
