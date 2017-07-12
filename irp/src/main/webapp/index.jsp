@@ -420,30 +420,32 @@ ga('send', 'pageview');
         </form>
       </div>
     <div class="divTable" id="aboutus-section" style="width: 90%;">
-        <h1>ABOUT BIRT</h1>
+        <h2>Browser Implementation Readiness Test - BIRT 1.0 ABOUT</h2>
         <div id="lipsum" style="font-size: 14px; line-height: 20px;">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Nunc viverra elit sit amet risus accumsan dapibus.
-            Aenean cursus lectus elit, ut facilisis justo vehicula ac.
-            Aenean id feugiat arcu, in pharetra eros. Vestibulum lacinia
-            ut odio vulputate ornare. Aenean dapibus vehicula mi vel
-            commodo. Proin gravida hendrerit egestas. Cras mollis tellus
-            ac orci porttitor, eget sodales dolor scelerisque. Proin
-            volutpat, arcu ac blandit fringilla, ante nisl tempor augue,
-            non luctus leo mi et ante. Aliquam nisi nisl, gravida a ex
-            a, pharetra dapibus mauris. Phasellus sit amet nibh vitae
-            neque eleifend vestibulum. Morbi tempus metus ut felis
-            bibendum tristique. Sed sodales iaculis sem eu tincidunt.</p>
-          <p>Nullam dictum lacinia ipsum, ac semper libero vehicula
-            vel. Mauris lectus sapien, faucibus quis malesuada iaculis,
-            interdum nec purus. Nullam ac faucibus neque, id commodo
-            nulla. Mauris nec tincidunt tellus. Proin sit amet lacus
-            mauris. Curabitur sapien lectus, fermentum tristique sem
-            nec, rhoncus congue enim. Nunc vulputate ut magna sit amet
-            viverra. Quisque sit amet orci dictum, vehicula lectus in,
-            accumsan urna. Pellentesque eu scelerisque nisi. In quis
-            varius neque. Aliquam posuere lectus id velit finibus porta.
-          </p>
+          <p>The Browser Implementation Readiness Test (BIRT) is an
+            Open Source tool for testing browser compatibility to the
+            Smarter Balanced Open Specification for Secure Browsers
+            (OSSB) communication with educational software. BIRT not
+            only tests browser compatibility with the OSSB but also
+            tests browsers for a number of other protocols and
+            specifications such as <span onclick="javascript:openSmarterLinkDialog('html5test', 'HTML5 Test','https://html5test.com/')" class="about_link">HTML5</span>, 
+            <span onclick="javascript:openSmarterLinkDialog('css3test', 'CSS3 Test','http://css3test.com/')" class="about_link">CSS3</span>, 
+            <span onclick="javascript:openSmarterLinkDialog('w3cWebSpeech', 'W3C WebSpeech API','https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html')" class="about_link">Text-to-Speech</span>, 
+            <span onclick="javascript:openSmarterLinkDialog('w3cWebAudio', 'Web Audio API','https://www.w3.org/TR/webaudio/')" class="about_link">Web Audio API</span> for playback and
+            <span onclick="javascript:openSmarterLinkDialog('mediaStreamRecording', 'MediaStream Recording','https://www.w3.org/TR/mediastream-recording/')" class="about_link">MediaStream Recording</span> for recording.</p>
+          <p>To optimize the implementation process, Smarter
+            Balanced not only defined the OSSB but is also releasing a
+            set of Secure Browsers under an Open Specification and as
+            Open Source software.</p>
+          <p>Smarter Balanced is releasing the BIRT as a tool for
+            Implementation Readiness to be used by any browser
+            manufacturer to verify that their browser works properly and
+            is compatible with the OSSB. Smarter Balanced hopes that by
+            leading the way with an Open Specification, and by making it
+            available for other browser manufactures, the end result
+            will be such that schools will have a set of choices for
+            secure browsers to be used with all of the available Test
+            Delivery Systems employed for accessing student performance.</p>
         </div>
       </div>
     </div>
