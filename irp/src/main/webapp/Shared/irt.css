@@ -529,7 +529,7 @@ input.uppercase {
 	letter-spacing: 0;
 	font-size: 15px;
 	text-decoration: none;
-	cursor : pointer;
+	cursor: pointer;
 	width: 100%;
 }
 
@@ -549,10 +549,28 @@ input.uppercase {
 	float: right;
 }
 
-.logo-link{
-	    display: block;
-    float: left;
-    line-height: 1;
-    text-decoration: none;
-    cursor: pointer;
+.logo-link {
+	display: block;
+	float: left;
+	line-height: 1;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.about_link {
+	font-family: Arial, Helvetica, sans-serif;
+	letter-spacing: -.05em;
+	font-style: normal;
+	/*     text-align: center;
+    width: 45%;
+    display: table;
+    margin-right: auto;
+    margin-left: 25%;
+    
+ */
+	font-size: 14px;
+	line-height: 20px;
+	text-decoration: none;
+	color: #008AB1;
+	cursor: pointer;
 }

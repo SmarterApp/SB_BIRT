@@ -459,19 +459,21 @@ IRT.ApiSpecs = {
       },
       "testPoints" : "0",
       "apiType" : [ "function" ],
-      "isDeprecated" : false,
-      "regTest" : {
-        "validTest" : [
-            "SecureBrowser.security.lockDown(false,function callbackSuccess(response){console.log(response);},function callback(response){console.log(response);})",
-            "SecureBrowser.security.lockDown(true,function callbackSuccess(response){console.log(response);},function callback(response){console.log(response);})"
-        /* ,"SecureBrowser.security.lockDown(true)" */],
-        "inValidTest" : [
-            "SecureBrowser.security.lockDown()",
-            "SecureBrowser.security.lockDown('somestring',false,'somestring')",
-            "SecureBrowser.security.lockDown(null,'somestring','somestring','somestring')",
-            "SecureBrowser.security.lockDown(true,null,null)",
-            "SecureBrowser.security.lockDown(null,null,null)" ]
-      }
+      "isDeprecated" : false
+    /*
+     * , "regTest" : { "validTest" : [
+     * "SecureBrowser.security.lockDown(false,function
+     * callbackSuccess(response){console.log(response);},function
+     * callback(response){console.log(response);})",
+     * "SecureBrowser.security.lockDown(true,function
+     * callbackSuccess(response){console.log(response);},function
+     * callback(response){console.log(response);})" ], "inValidTest" : [
+     * "SecureBrowser.security.lockDown()",
+     * "SecureBrowser.security.lockDown('somestring',false,'somestring')",
+     * "SecureBrowser.security.lockDown(null,'somestring','somestring','somestring')",
+     * "SecureBrowser.security.lockDown(true,null,null)",
+     * "SecureBrowser.security.lockDown(null,null,null)" ] }
+     */
     },
     "checkSystemVolumeAPI" : {
       // F09. The secure browser shall provide a means to get system volume.
@@ -650,9 +652,8 @@ IRT.ApiSpecs = {
       "apiType" : [ "function" ],
       "isDeprecated" : false,
       "regTest" : {
-        "validTest" : [
-            "SecureBrowser.security.setPermissiveMode(false,function callback(response){console.log(response);})",
-            "SecureBrowser.security.setPermissiveMode(false)" ],
+        "validTest" : [ "SecureBrowser.security.setPermissiveMode(false,function callback(response){console.log(response);})"
+        /* ,"SecureBrowser.security.setPermissiveMode(false)" */],
         "inValidTest" : [ "SecureBrowser.security.setPermissiveMode()", ,
             "SecureBrowser.security.setPermissiveMode(false,null)",
             "SecureBrowser.security.setPermissiveMode(null,null)" ]
