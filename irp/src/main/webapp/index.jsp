@@ -420,7 +420,6 @@ ga('send', 'pageview');
         </form>
       </div>
     <div class="divTable" id="aboutus-section" style="width: 90%;">
-        <h2>Browser Implementation Readiness Test - BIRT 1.0 ABOUT</h2>
         <div id="lipsum" style="font-size: 14px; line-height: 20px;">
           <p>The Browser Implementation Readiness Test (BIRT) is an
             Open Source tool for testing browser compatibility to the
