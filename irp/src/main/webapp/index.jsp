@@ -441,10 +441,10 @@ ga('send', 'pageview');
             manufacturer to verify that their browser works properly and
             is compatible with the OSSB. Smarter Balanced hopes that by
             leading the way with an Open Specification, and by making it
-            available for other browser manufactures, the end result
+            available for other browser manufacturers, the end result
             will be such that schools will have a set of choices for
             secure browsers to be used with all of the available Test
-            Delivery Systems employed for accessing student performance.</p>
+            Delivery Systems employed for assessing student performance.</p>
         </div>
       </div>
     </div>
