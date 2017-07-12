@@ -428,7 +428,7 @@ ga('send', 'pageview');
             only tests browser compatibility with the OSSB but also
             tests browsers for a number of other protocols and
             specifications such as <span onclick="javascript:openSmarterLinkDialog('html5test', 'HTML5 Test','https://html5test.com/')" class="about_link">HTML5</span>, 
-            <span onclick="javascript:openSmarterLinkDialog('css3test', 'CSS3 Test','http://css3test.com/')" class="about_link">CSS3</span>, 
+            <span onclick="javascript:openSmarterLinkDialog('css3test', 'CSS3 Test','https://css3test.com/')" class="about_link">CSS3</span>, 
             <span onclick="javascript:openSmarterLinkDialog('w3cWebSpeech', 'W3C WebSpeech API','https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html')" class="about_link">Text-to-Speech</span>, 
             <span onclick="javascript:openSmarterLinkDialog('w3cWebAudio', 'Web Audio API','https://www.w3.org/TR/webaudio/')" class="about_link">Web Audio API</span> for playback and
             <span onclick="javascript:openSmarterLinkDialog('mediaStreamRecording', 'MediaStream Recording','https://www.w3.org/TR/mediastream-recording/')" class="about_link">MediaStream Recording</span> for recording.</p>
