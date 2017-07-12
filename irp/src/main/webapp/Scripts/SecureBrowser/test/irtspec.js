@@ -652,9 +652,8 @@ IRT.ApiSpecs = {
       "apiType" : [ "function" ],
       "isDeprecated" : false,
       "regTest" : {
-        "validTest" : [
-            "SecureBrowser.security.setPermissiveMode(false,function callback(response){console.log(response);})",
-            "SecureBrowser.security.setPermissiveMode(false)" ],
+        "validTest" : [ "SecureBrowser.security.setPermissiveMode(false,function callback(response){console.log(response);})"
+        /* ,"SecureBrowser.security.setPermissiveMode(false)" */],
         "inValidTest" : [ "SecureBrowser.security.setPermissiveMode()", ,
             "SecureBrowser.security.setPermissiveMode(false,null)",
             "SecureBrowser.security.setPermissiveMode(null,null)" ]
