@@ -59,12 +59,10 @@
 
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/factory.js"></script>
 
-<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/certified.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/firefox.js"></script>
+
+
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/SecureBrowser/securebrowser.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/mobile.android.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/mobile.ios.js"></script>
 
 
   <script type="text/javascript" src="<%=contextPath%>/Scripts/Utilities/util.js"></script>
