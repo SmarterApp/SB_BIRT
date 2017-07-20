@@ -153,7 +153,7 @@ var appOrigin = null;
             $("#processTestLoad").load("processManualTest.html");
          
 
-            if (Util.Browser.isSecureBrowser() && !!SecureBrowser.security.close) {
+            if (Util.Browser.isSecureBrowser() && SecureBrowser.security !=undefined && !!SecureBrowser.security.close) {
               $("#closeBrowser").show();
               $("#closeBrowser").click(function() {
             	  SecureBrowser.security.close(false);
