@@ -3,7 +3,13 @@
     <li><span onclick="javascript:openSmarterLinkDialog('privacyPolicy', 'Website Privacy Policy','https://www.smarterbalanced.org/privacy-policy/')"
       class="version-details">Website Privacy Policy</span></li>
   </ul>
-  
 </div>
-<p class="copyright">&copy; The Regents of the University of
-    California . Smarter Balanced Assessment Consortium</p>
+<div class="copyright">
+<p>&copy; The Regents of the University of
+    California . Smarter Balanced Assessment Consortium</p> 
+<p id="userAgentFooterInfo">User Agent: </p>
+</div>
+
+<script>
+$('#userAgentFooterInfo').append(navigator.userAgent);
+</script>

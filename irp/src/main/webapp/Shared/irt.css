@@ -547,6 +547,7 @@ input.uppercase {
 	font-size: 12px;
 	color: #7a7a7a;
 	float: right;
+	text-align: right;
 }
 
 .logo-link {
