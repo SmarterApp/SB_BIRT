@@ -282,13 +282,13 @@
   };
 
   Browser.isSecure = function() {
-    var clientSideCheck = (navigator.userAgent.indexOf('AIRSecureBrowser') != -1 || navigator.userAgent
-        .indexOf('AIRMobile') != -1);
+    var clientSideCheck = (navigator.userAgent.indexOf('SecureBrowser') != -1 || navigator.userAgent
+        .indexOf('MobileSecureBrowser') != -1);
 
     var extensionCheck = window.AIRSecureBrowserExtension ? true : false;
 
-    var chromeAppCheck = YUD
-        .hasClass(document.body, 'browser_airsecurebrowser');
+    var chromeAppCheck = $('body').hasClass("browser_airsecurebrowser")
+        || $('body').hasClass("browser_smartersecurebrowser");
 
     return clientSideCheck || extensionCheck || chromeAppCheck
   };

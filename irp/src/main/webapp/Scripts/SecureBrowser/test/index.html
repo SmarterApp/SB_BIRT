@@ -14,8 +14,6 @@ var runtime =null;
 var audioCtx = null;
 var isIOSDevice = null;
 var isAndroidDevice = null;
-var isFireFox= null;
-var isChrome = null;
 var isMobile = null;
 var isCertified = null;
 var isAIRSecureBrowser = null;
@@ -68,11 +66,6 @@ var appOrigin = null;
   src="../../Libraries/yahoo/yahoo-dom-event.js"></script>
 <script type="text/javascript" src="../../Libraries/yahoo/env.js"></script>
 
-<!-- YUI -->
-<script type="text/javascript"
-  src="../../Libraries/YUI/storage/storage-min.js"></script>
-
-
 <!-- WebAudio -->
 
 
@@ -89,15 +82,8 @@ var appOrigin = null;
 
 <!-- Utilities -->
 <script type="text/javascript" src="../../Utilities/util.js"></script>
-<script type="text/javascript" src="../../Utilities/util_mozilla.js"></script>
 <script type="text/javascript" src="../../Utilities/util_browser.js"></script>
-<script type="text/javascript" src="../../Utilities/util_frame.js"></script>
 <script type="text/javascript" src="../../Utilities/util_validation.js"></script>
-<script type="text/javascript" src="../../Utilities/util_array.js"></script>
-<script type="text/javascript" src="../../Utilities/util_string.js"></script>
-<script type="text/javascript" src="../../Utilities/util_event.js"></script>
-<script type="text/javascript"
-  src="../../Utilities/util_securebrowser.js"></script>
 
 
 
@@ -131,8 +117,6 @@ var appOrigin = null;
 
             isIOSDevice = Util.Browser.isIOS();
             isAndroidDevice = Util.Browser.isAndroid();
-            isFireFox = Util.Browser.isFirefox();
-            isChrome = Util.Browser.isChrome();
             isMobile = Util.Browser.isMobile();
             isCertified = Util.Browser.isCertified();
             isAIRSecureBrowser = Util.Browser.isSecure();
