@@ -30,9 +30,6 @@
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/Libraries/yahoo/env.js"></script>
 
-<!-- YUI -->
-<script type="text/javascript"
-  src="<%=contextPath%>/Scripts/Libraries/YUI/storage/storage-min.js"></script>
 
 <!-- WebAudio -->
 
@@ -59,11 +56,7 @@
   src="<%=contextPath%>/Scripts/Utilities/util.js"></script>
 <script type="text/javascript"
   src="<%=contextPath%>/Scripts/Utilities/util_browser.js"></script>
-<script type="text/javascript"
-  src="<%=contextPath%>/Scripts/Utilities/util_mozilla.js"></script>
-<script type="text/javascript"
-  src="<%=contextPath%>/Scripts/Utilities/util_securebrowser.js"></script>
-
+  
 <script type="text/javascript" src="<%=contextPath%>/Scripts/SecureBrowser/test/populateGrid.js"></script>
 
 
