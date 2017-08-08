@@ -9,6 +9,7 @@
       String reportIdLength = System.getProperty ("birt.app.reportid.length");
       String gitBranch = System.getProperty("birt.git.branch");
       String birtEnv = System.getProperty("birt.env");
+      String regTest = System.getProperty("birt.regTest");
 %>
 <!-- JQuery -->
 <script src="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-3.1.1.js"></script>
@@ -82,7 +83,9 @@ var appOrigin = null;
         $.cookie("version",  '<%=version%>');
         $.cookie("gitBranch" ,'<%=gitBranch%>');
         $.removeCookie("captchaInfo");
+        $.removeCookie("regTest");
         
+        $.cookie("regTest",  '<%=regTest%>');        
         $.cookie("contextPath",'<%=contextPath%>');
         
         $.removeCookie("birtEnv");
