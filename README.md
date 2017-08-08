@@ -70,6 +70,7 @@ BIRT must be setup with the following JVM properties:
 * ReportID Length (integer) : `birt.app.reportid.length` 
 * BIRT Report Retention period (days) : `birt.app.report.retention`
 * BIRT GitHub Branch name : `-Dbirt.git.branch`
+* BIRT SB API Regression Testing Flag : `-Dbirt.regTest`
 
 ```
 Examples:
@@ -83,6 +84,7 @@ Examples:
  -Dbirt.app.reportid.length=8 
  -Dbirt.app.report.retention=30
  -Dbirt.git.branch = R01.02.01-20170412
+ -Dbirt.regTest=Y
 ```
 
 ### Mongo DB Configuration
