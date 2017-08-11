@@ -1,6 +1,6 @@
 # Secure Browser Functional Requirements
 
-v.2.1.0 - Last modified 10-Aug-2017
+v.2.1.1 - Last modified 11-Aug-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -9,20 +9,20 @@ This specification is &copy;2017 by American Institutes for Research and is lice
 At a high level, the Secure Browser must do the following:
 
 1. Browse to the designated test-taking URL (and no other) and act as the web browser user agent for the test delivery servers.
-  * _Rationale_: It's crucial for the browser to prevent the user from browsing to an unauthorized site, since test-related information may be obtained and/or shared with others at that site. Furthermore, the browser needs to be "trusted" by the test delivery systems and be capable of delivering and faithfully rendering assessments according to modern web standards.
-  * _User Stories_:
-        * The student starts the browser by pointing it at an unauthorized site. The browser recognizes this and instead directs the user to the default testing site. After state selection by the student, the browser authenticates with the TDS servers.
-        * The student starts the browser without an explicit URL. The browser opens the default testing site and after state selection by the student, the browser authenticates with the TDS servers.2. Exclude the student from accessing any unauthorized service or application on the device. Generally speaking this includes all applications and tools except for assistive technology applications.
+   * _Rationale_: It's crucial for the browser to prevent the user from browsing to an unauthorized site, since test-related information may be obtained and/or shared with others at that site. Furthermore, the browser needs to be "trusted" by the test delivery systems and be capable of delivering and faithfully rendering assessments according to modern web standards.
+   * _User Stories_:
+      * The student starts the browser by pointing it at an unauthorized site. The browser recognizes this and instead directs the user to the default testing site. After state selection by the student, the browser authenticates with the TDS servers.
+      * The student starts the browser without an explicit URL. The browser opens the default testing site and after state selection by the student, the browser authenticates with the TDS servers.2. Exclude the student from accessing any unauthorized service or application on the device. Generally speaking this includes all applications and tools except for assistive technology applications.
    * _Rationale_: The browser must prevent the user from accessing tools or applications that could provide them with an advantage in answering test questions (and thereby violating the construct of the assessment). Examples of such applications would be another web browser, a calculator, a spell checker, a dictionary, email, VoIP, or IM.
    * _User Stories_: 
       * The student is taking a math assessment which requires long division. The student switches to the Calculator application, performs the division, and enters the response into the test.
       * The student is taking a science assessment which requires analysis of a chemical reaction. The student switches to another web browser, searches the internet for the response, and enters it into the test.3. Provide a security API, callable from JavaScript, which allows the testing server to assess the security status of the devices. (The API is defined in [1].)
-    * _Rationale_: The browser must be able to assess the security status of the device on which it is running, and pass that information securely to the testing server.
-    * _User Stories_: 
+   * _Rationale_: The browser must be able to assess the security status of the device on which it is running, and pass that information securely to the testing server.
+   * _User Stories_: 
       * The student starts the secure browser but other apps are open. The testing server requests the security status of the device from the browser. The browser detects if the appropriate conditions are in place to consider the device secure and reports back to the testing server.
 4. Provide a text-to-speech API, callable from JavaScript, which allows the testing application to make use of text-to-speech functionalities provided by the device operating system or by the browser.
-    * _Rationale_: The browser must be able to use available TTS systems (either custom or W3C standard) when requested by the testing server.
-    * _User Stories_: 
+   * _Rationale_: The browser must be able to use available TTS systems (either custom or W3C standard) when requested by the testing server.
+   * _User Stories_: 
       * The student starts a test on the secure browser. The testing server requests that certain assessment items be read out loud to the student. The server makes appropriate API calls to effect this.
  
 Most of the high level functional requirements listed below are implemented by the Secure Browser API Specification [1].
