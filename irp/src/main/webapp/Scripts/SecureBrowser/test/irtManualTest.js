@@ -430,8 +430,8 @@ function ttsComponentInitialize() {
   }
 
   createSlider($("#ttsVolume"), $("#ttsVolumeText"), 'Volume', 0, 10, 10);
-  createSlider($("#ttsPitch"), $("#ttsPitchText"), 'Pitch', 0, 20, 10);
-  createSlider($("#ttsRate"), $("#ttsRateText"), 'Rate', 0, 20, 10);
+  createSlider($("#ttsPitch"), $("#ttsPitchText"), 'Pitch', 1, 20, 10);
+  createSlider($("#ttsRate"), $("#ttsRateText"), 'Rate', 1, 20, 10);
   createSlider($("#systemVolume"), $("#systemVolumeText"), 'System Volume', 0,
       10, 10);
   createButton($("#play"), 'Play', 'Play');
@@ -506,10 +506,11 @@ function createSlider(id, textId, text, minValue, maxValue, sliderValue) {
       textId.text(text + ' (' + $(this).slider("value") + ')');
       var opt = $(this).data().uiSlider.options;
       // Get the number of possible values
-      var vals = opt.max - opt.min;
+      var calcMin = opt.min == 0 ? opt.min : 0;
+      var vals = opt.max - calcMin;
       if (vals != 0) {
         var elMin = $('<label>' + (opt.min) + '</label>').css('left',
-            (opt.min / vals * 100) + '%');
+            (calcMin / vals * 100) + '%');
         var elMax = $('<label>' + (opt.max) + '</label>').css('left',
             (opt.max / vals * 100) + '%');
         id.append(elMin);
