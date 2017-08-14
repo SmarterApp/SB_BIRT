@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser Functional Requirements</h1>
 
-<p>v.2.1.1 - Last modified 11-Aug-2017</p>
+<p>v.2.0.1 - Last modified 20-Apr-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -365,66 +365,14 @@ pre[class*="language-"] {
 
 <h2 id="toc_2">Overview</h2>
 
-<p>At a high level, the Secure Browser must do the following:</p>
-
-<ol>
-<li>Browse to the designated test-taking URL (and no other) and act as the web browser user agent for the test delivery servers.
-
-<ul>
-<li><em>Rationale</em>: It&#39;s crucial for the browser to prevent the user from browsing to an unauthorized site, since test-related information may be obtained and/or shared with others at that site. Furthermore, the browser needs to be &quot;trusted&quot; by the test delivery systems and be capable of delivering and faithfully rendering assessments according to modern web standards.</li>
-<li><em>User Stories</em>:
-
-<ul>
-<li>The student starts the browser by pointing it at an unauthorized site. The browser recognizes this and instead directs the user to the default testing site. After state selection by the student, the browser authenticates with the TDS servers.</li>
-<li>The student starts the browser without an explicit URL. The browser opens the default testing site and after state selection by the student, the browser authenticates with the TDS servers.</li>
-</ul></li>
-</ul></li>
-<li>Exclude the student from accessing any unauthorized service or application on the device. Generally speaking this includes all applications and tools except for assistive technology applications.
-
-<ul>
-<li><em>Rationale</em>: The browser must prevent the user from accessing tools or applications that could provide them with an advantage in answering test questions (and thereby violating the construct of the assessment). Examples of such applications would be another web browser, a calculator, a spell checker, a dictionary, email, VoIP, or IM.</li>
-<li><em>User Stories</em>: 
-
-<ul>
-<li>The student is taking a math assessment which requires long division. The student switches to the Calculator application, performs the division, and enters the response into the test.</li>
-<li>The student is taking a science assessment which requires analysis of a chemical reaction. The student switches to another web browser, searches the internet for the response, and enters it into the test.</li>
-</ul></li>
-</ul></li>
-<li>Provide a security API, callable from JavaScript, which allows the testing server to assess the security status of the devices. (The API is defined in [1].)
-
-<ul>
-<li><em>Rationale</em>: The browser must be able to assess the security status of the device on which it is running, and pass that information securely to the testing server.</li>
-<li><em>User Stories</em>: 
-
-<ul>
-<li>The student starts the secure browser but other apps are open. The testing server requests the security status of the device from the browser. The browser detects if the appropriate conditions are in place to consider the device secure and reports back to the testing server.</li>
-</ul></li>
-</ul></li>
-<li>Provide a text-to-speech API, callable from JavaScript, which allows the testing application to make use of text-to-speech functionalities provided by the device operating system or by the browser.
-
-<ul>
-<li><em>Rationale</em>: The browser must be able to use available TTS systems (either custom or W3C standard) when requested by the testing server.</li>
-<li><em>User Stories</em>: 
-
-<ul>
-<li>The student starts a test on the secure browser. The testing server requests that certain assessment items be read out loud to the student. The server makes appropriate API calls to effect this.</li>
-</ul></li>
-</ul></li>
-</ol>
-
-<p>Most of the high level functional requirements listed below are implemented by the Secure Browser API Specification [1].</p>
+<p>Most of these high level functional requirements are implemented by the Secure Browser API Specification [1].</p>
 
 <h2 id="toc_3">Requirements</h2>
 
 <h3 id="toc_4">A. Security Related Requirements</h3>
 
 <ol>
-<li>F01. The secure browser shall NOT provide a means to clear browser cache.
-
-<ul>
-<li>Rationale: </li>
-<li>References: Smarter Balanced Secure Browser Contract requirements.</li>
-</ul></li>
+<li>F01. The Secure browser shall NOT provide a means to clear browser cache.</li>
 <li>F02. The secure browser shall NOT provide a means to clear browser cookies.</li>
 <li>F03. The secure browser shall provide a means to clear system clipboard.</li>
 <li>F04. The secure browser shall provide a means to retrieve system MAC address.</li>
