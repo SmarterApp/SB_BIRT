@@ -1,6 +1,6 @@
 # Secure Browser Functional Requirements
 
-v.2.1.1 - Last modified 11-Aug-2017
+v.2.1.2 - Last modified 21-Aug-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -24,6 +24,10 @@ At a high level, the Secure Browser must do the following:
    * _Rationale_: The browser must be able to use available TTS systems (either custom or W3C standard) when requested by the testing server.
    * _User Stories_: 
       * The student starts a test on the secure browser. The testing server requests that certain assessment items be read out loud to the student. The server makes appropriate API calls to effect this.
+5. Optionally provide a recording API, allowing simple recording capabilities such as play/pause/resume/stop, as well as recording retrieval. This capability is browser-dependent.
+   * _Rationale_: In order to evaluate a student's verbal skills, the device should have the ability to record and playback audio via the browser.
+   * _User Stories_: 
+      * The student starts a test on the secure browser. The testing server displays a test item and requests that the student provide a verbal response. The server makes appropriate API calls to effect this.
  
 Most of the high level functional requirements listed below are implemented by the Secure Browser API Specification [1].
 
@@ -33,28 +37,28 @@ Most of the high level functional requirements listed below are implemented by t
    * Rationale: 
    * References: Smarter Balanced Secure Browser Contract requirements.
 1. F02. The secure browser shall NOT provide a means to clear browser cookies.
-1. F03. The secure browser shall provide a means to clear system clipboard.
-1. F04. The secure browser shall provide a means to retrieve system MAC address.
+1. F03. The secure browser may provide a means to clear system clipboard (optional).
+1. F04. The secure browser may provide a means to retrieve system MAC address (optional).
 1. F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).
 1. F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.
-1. F07. The secure browser shall provide a means to obtain the application start time.
+1. F07. The secure browser may provide a means to obtain the application start time (optional).
 1. F08. The secure browser shall provide a means to query if `Spaces` is enabled or not, for macOS.
 1. F15. The secure browser shall provide a means to set permissive mode.
 1. F49. The secure browser shall provide a means to query the status of permissive mode.
 1. F31. The secure browser shall be able to determine whether blacklisted processes are running on the client machine.
-1. F36. The secure browser may be able to get device info (optional).
+1. F36. The secure browser shall be able to get device info.
 1. F37. The secure browser shall be able to lock down the environment.
 1. F38. The secure browser shall be able to check if environment is secure for testing.
-1. F46. The secure browser shall be able to get the status of a particular browser capability.
-1. F47. The secure browser shall be able to set the status of a particular browser capability.
+1. F46. The secure browser may be able to get the status of a particular browser capability (optional).
+1. F47. The secure browser may be able to set the status of a particular browser capability (optional).
 
 ### B. Device Related Requirements
-1. F09. The secure browser shall provide a means to get system volume.
-1. F10. The secure browser shall provide a means to set system volume.
-1. F11. The secure browser shall provide a means to mute system volume.
-1. F12. The secure browser shall provide a means to unmute system volume.
-1. F13. The secure browser shall provide a means to check if system volume is Muted.
-1. F14. The secure browser shall provide a means to close the browser.
+1. F09. The desktop secure browser shall provide a means to get system volume.
+1. F10. The desktop secure browser shall provide a means to set system volume.
+1. F11. The desktop secure browser shall provide a means to mute system volume.
+1. F12. The desktop secure browser shall provide a means to unmute system volume.
+1. F13. The desktop secure browser shall provide a means to check if system volume is Muted.
+1. F14. The desktop secure browser shall provide a means to close the browser.
 
 ### C. Text-to-Speech (TTS) Related Requirements
 1. F16. The secure browser shall provide shall provide a means to play arbitrary text.
