@@ -40,6 +40,9 @@ Most of the high level functional requirements listed below are implemented by t
    * References: Smarter Balanced Secure Browser Contract requirements.
 1. F02. The secure browser shall NOT provide a means to clear browser cookies.
 1. F03. The secure browser may provide a means to clear system clipboard (optional).
+	* _Rationale_: The clipboard is a software facility used for short-term data storage and/or data transfer between documents or applications, via copy and paste operations. Clearing it can eliminate the possibility of the student using the clipboard to maintain assessment-related information.
+	* _User Stories_:
+		* The student copies assessment-related details for a particular test before starting a test and paste that information to answer assessment questions in secure browser . 
 1. F04. The secure browser may provide a means to retrieve system MAC address (optional).
 1. F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).
 1. F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.
