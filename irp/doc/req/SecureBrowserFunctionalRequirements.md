@@ -45,6 +45,9 @@ Most of the high level functional requirements listed below are implemented by t
 		* The student copies assessment-related details for a particular test before starting a test and paste that information to answer assessment questions in secure browser . 
 1. F04. The secure browser may provide a means to retrieve system MAC address (optional).
 1. F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).
+	* _Rationale_:  An Internet Protocol address (IP address) is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. Exposing IP addresses through a browser service can enable hackers to exploit a service on an open port.
+	* _User Stories_:
+		* Computer runs services like media sharing on what are called ports. A port is just an opening that a service uses as a communications endpoint. There are 65,535 total allocated ports in TCP/UDP. To exploit a service on a port, a hacker would banner grab for the software and version. After they learn that information, they would search sites like Packet Storm for known exploits to run against the service.
 1. F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.
 1. F07. The secure browser may provide a means to obtain the application start time (optional).
 1. F08. The secure browser shall provide a means to query if `Spaces` is enabled or not, for macOS.
