@@ -559,56 +559,78 @@ function createButton(id, text, displaylabel) {
 
   id.click(function(event) {
 
-    if (text == 'Play') {
+    switch (text) {
+    case 'Play':
       ttsPlay();
-    } else if (text == 'Pause') {
+      break;
+    case 'Pause':
       ttsPause();
-    } else if (text == 'Resume') {
+      break;
+    case 'Resume':
       ttsResume();
-    } else if (text == 'Stop') {
+      break;
+    case 'Stop':
       ttsStop();
-    } else if (text == 'Mute') {
+      break;
+    case 'Mute':
       id.addClass("irt-custom-button-click");
       $("#play").focus();
       muteUnmuteSystem(true);
-    } else if (text == 'Ummute') {
+      break;
+    case 'Ummute':
       id.addClass("irt-custom-button-click");
       $("#play").focus();
       muteUnmuteSystem(false);
-    } else if (text == 'Set') {
+      break;
+    case 'Set':
       setSystemCapability();
-    } else if (text == 'Get') {
+      break;
+    case 'Get':
       getSystemCapability();
-    } else if (text == 'Examine') {
+      break;
+    case 'Examine':
       examineProcessList();
-    } else if (text == 'OK') {
+      break;
+    case 'OK':
       concludeExamineProcess();
-    } else if (text == 'Done') {
+      break;
+    case 'Done':
       saveIRTResult();
-    } else if (text == 'Initiate') {
+      break;
+    case 'Initiate':
       initiateRecorder();
-    } else if (text == 'Status') {
+      break;
+    case 'Status':
       getRecorderStatus();
-    } else if (text == 'Capabilities') {
+      break;
+    case 'Capabilities':
       getDeviceCapabilities();
-    } else if (text == 'Conclude Capability') {
-
+      break;
+    case 'Conclude Capability':
       concludeDeviceCapabilityTest();
-
-    } else if (text == 'Record') {
+      break;
+    case 'Record':
       startRecordingAudio();
-    } else if (text == 'Stop Recording') {
+      break;
+    case 'Stop Recording':
       stopRecordingAudio();
-    } else if (text == 'Play Recording') {
+      break;
+    case 'Play Recording':
       startPlaybackRecording();
-    } else if (text == 'Pause Playback') {
+      break;
+    case 'Pause Playback':
       pausePlaybackRecording();
-    } else if (text == 'Resume Playback') {
+      break;
+    case 'Resume Playback':
       resumePlaybackRecording();
-    } else if (text == 'Stop Playback') {
+      break;
+    case 'Stop Playback':
       stopPlaybackRecording();
-    }
+      break;
+    default:
+      break;
 
+    }
     event.preventDefault();
   });
 
