@@ -44,6 +44,9 @@ Most of the high level functional requirements listed below are implemented by t
 	* _User Stories_:
 		* The student copies assessment-related details for a particular test before starting a test and paste that information to answer assessment questions in secure browser . 
 1. F04. The secure browser may provide a means to retrieve system MAC address (optional).
+	* _Rationale_: A Media Access Control address , better known as MAC address, is a unique identifier assigned to a network adapter or network interface card (NIC) by the manufacturer for identification.
+	* _User Stories_: 
+		* MAC address provides ability for Test Delivery System to gather operating system usage statistics.
 1. F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).
 	* _Rationale_:  An Internet Protocol address (IP address) is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. Exposing IP addresses through a browser service can enable hackers to exploit a service on an open port.
 	* _User Stories_:
