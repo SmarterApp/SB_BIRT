@@ -79,13 +79,23 @@ Examples:
  -Dmongo.db.name=testName
  -Dmongo.db.username=testUser
  -Dmongo.db.password=testPassword
- -Dirt.app.version=testVersion
+ -Dbirt.app.version=testVersion
  -Dbirt.app.debug.mode=Y 
  -Dbirt.app.reportid.length=8 
  -Dbirt.app.report.retention=30
  -Dbirt.git.branch = R01.02.01-20170412
  -Dbirt.regTest=Y
 ```
+
+### Tomcat Deployment
+Create a .war file for irp folder and deploy in Tomcat server
+
+### Mongo DB Installation
+Install Mongo DB v3.4 for BIRT reporting and usage statistics.
+
+* [Linux](https://docs.mongodb.com/v3.0/administration/install-on-linux/)
+* [Windows](https://docs.mongodb.com/v3.0/tutorial/install-mongodb-on-windows/)
+* [OS X](https://docs.mongodb.com/v3.0/tutorial/install-mongodb-on-os-x/)
 
 ### Mongo DB Configuration
 The BIRT application connects to a Mongo DB instance to store report information.
