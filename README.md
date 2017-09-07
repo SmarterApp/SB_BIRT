@@ -79,7 +79,7 @@ Examples:
  -Dmongo.db.name=testName
  -Dmongo.db.username=testUser
  -Dmongo.db.password=testPassword
- -Dirt.app.version=testVersion
+ -Dbirt.app.version=testVersion
  -Dbirt.app.debug.mode=Y 
  -Dbirt.app.reportid.length=8 
  -Dbirt.app.report.retention=30
