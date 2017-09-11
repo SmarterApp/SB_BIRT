@@ -56,14 +56,23 @@ Most of the high level functional requirements listed below are implemented by t
 1. F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.
 	* _Rationale_: The process identifier (normally referred to as the process ID or just PID) is a number used by most operating system kernels — such as that of UNIX, macOS or Microsoft Windows — to uniquely identify an active process. This number may be used as a parameter in various function calls, allowing processes to be manipulated, such as adjusting the process's priority or killing it altogether. Exposing PID or PPIDs could potentially be misused to compromise student privacy.
 	* _User Stories_:
-		* 
+		*
 1. F07. The secure browser may provide a means to obtain the application start time (optional).
 	* _Rationale_: Application start time provides clientside time of current launch. 
 	* _User Stories_:
 		* Ability to capture uptime and perhaps restart the browser periodically for improved performance.
 1. F08. The secure browser shall provide a means to query if `Spaces` is enabled or not, for macOS.
+	* _Rationale_ : Spaces enables users to create multiple virtual desktops suited to the unique needs or work habits of the user. A user could, for example, create and assign a "space" to office work, enabling him or her to leave a work-related application (such as a word processor or a spreadsheet) running full screen and then switch to a different space designated for browsing the Internet or navigating file structure in Finder windows.
+	* _User Stories_:
+		* This API provides ability for Test Delivery System to determine whether spaces are enabled or not for macOS and if enabled blocks user to take test in `Spaces` enabled macOS as user can switch between two spaces and search for answer on internet.
 1. F15. The secure browser shall provide a means to set permissive mode.
+	* _Rationale_ : Permissive mode provides user an ability to change configuration for Assistive technology like JAWS etc.
+	* _User Stories_:
+		* User wants to change rate/pitch of JAWS for the test.
 1. F49. The secure browser shall provide a means to query the status of permissive mode.
+	* _Rationale_ : Permissive mode provides user an ability to change configuration for Assistive technology like JAWS etc.
+	* _User Stories_:
+		* This API provides ability for Test Delivery System to determine whether machine is in permissive mode or not, if enabled Test Delivery System disable the permissive mode before starting any items to answer.
 1. F31. The secure browser shall be able to determine whether blacklisted processes are running on the client machine.
 1. F36. The secure browser shall be able to get device info.
 1. F37. The secure browser shall be able to lock down the environment.
