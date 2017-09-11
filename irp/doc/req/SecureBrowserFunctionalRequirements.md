@@ -1,6 +1,6 @@
 # Secure Browser Functional Requirements
 
-v.2.1.2 - Last modified 21-Aug-2017
+v.2.1.3 - Last modified 11-Sep-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -36,9 +36,11 @@ Most of the high level functional requirements listed below are implemented by t
 ## Requirements
 ### A. Security Related Requirements
 1. F01. The secure browser shall NOT provide a means to clear browser cache.
-   * Rationale: 
-   * References: Smarter Balanced Secure Browser Contract requirements.
+   * _Rationale_: Cache is controlled by cache-control headers set from the server side. Application attach query strings to js/CSS links which allows application to break caches by changing the query string parameter.
+   * _References_: Smarter Balanced Secure Browser Contract requirements.
 1. F02. The secure browser shall NOT provide a means to clear browser cookies.
+	* _Rationale_: Cookies like  authentication cookies can be cleared by the server side when application send over the login page. 
+	* _References_: Smarter Balanced Secure Browser Contract requirements.
 1. F03. The secure browser may provide a means to clear system clipboard (optional).
 	* _Rationale_: The clipboard is a software facility used for short-term data storage and/or data transfer between documents or applications, via copy and paste operations. Clearing it can eliminate the possibility of the student using the clipboard to maintain assessment-related information.
 	* _User Stories_:
@@ -52,7 +54,13 @@ Most of the high level functional requirements listed below are implemented by t
 	* _User Stories_:
 		* To exploit a service on a port, a hacker would banner grab for the software and version. After they learn that information, they would search sites like Packet Storm for known exploits to run against the service.
 1. F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.
+	* _Rationale_: The process identifier (normally referred to as the process ID or just PID) is a number used by most operating system kernels — such as that of UNIX, macOS or Microsoft Windows — to uniquely identify an active process. This number may be used as a parameter in various function calls, allowing processes to be manipulated, such as adjusting the process's priority or killing it altogether. Exposing PID or PPIDs could potentially be misused to compromise student privacy.
+	* _User Stories_:
+		* 
 1. F07. The secure browser may provide a means to obtain the application start time (optional).
+	* _Rationale_: Application start time provides clientside time of current launch. 
+	* _User Stories_:
+		* Ability to capture uptime and perhaps restart the browser periodically for improved performance.
 1. F08. The secure browser shall provide a means to query if `Spaces` is enabled or not, for macOS.
 1. F15. The secure browser shall provide a means to set permissive mode.
 1. F49. The secure browser shall provide a means to query the status of permissive mode.
