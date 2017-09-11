@@ -1,6 +1,6 @@
 # Secure Browser Functional Requirements
 
-v.2.1.3 - Last modified 11-Sep-2017
+v.2.1.4 - Last modified 11-Sep-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -74,6 +74,9 @@ Most of the high level functional requirements listed below are implemented by t
 	* _User Stories_:
 		* This API provides ability for Test Delivery System to determine whether machine is in permissive mode or not, if enabled Test Delivery System disable the permissive mode before starting any items to answer.
 1. F31. The secure browser shall be able to determine whether blacklisted processes are running on the client machine.
+	* _Rationale_ : Application like skype, facetime, outlook or internet browser allows student to get test answer or share test details from Test Delivery System to external user or application. Checking blacklisted process provides ability for Test Delivery System to block user to take test if such application are running.
+	* _User Stories_:
+		* The student starts the test and switched to unauthorized application to look for the answer.
 1. F36. The secure browser shall be able to get device info.
 1. F37. The secure browser shall be able to lock down the environment.
 1. F38. The secure browser shall be able to check if environment is secure for testing.
@@ -89,11 +92,21 @@ Most of the high level functional requirements listed below are implemented by t
 1. F14. The desktop secure browser shall provide a means to close the browser.
 
 ### C. Text-to-Speech (TTS) Related Requirements
+	* _Rationale_: Text to speech, abbreviated as TTS, is a form of speech synthesis that converts text into spoken voice output. Text to speech systems were first developed to aid the visually impaired by offering a computer-generated spoken voice that would "read" text to the user and theoretically capable of "reading" any string of text characters to form original sentences.
+	
 1. F16. The secure browser shall provide shall provide a means to play arbitrary text.
+	* _User Stories_: 
+		* User select arbitrary text to play into spoken voice output.
 1. F17. The secure browser shall provide a means to stop TTS speech in progress.
+	* _User Stories_:
+		* User stops voice output of arbitrary text playing through TTS. 
 1. F18. The secure browser shall provide a means to pause TTS speech in progress.
+	* _User Stories_:
+		* User pauses voice output of arbitrary text playing through TTS.
 1. F19. The secure browser shall provide a means to retrieve list of TTS voice packs available on the machine.
 1. F21. The secure browser shall provide a means to resume previously paused TTS speech.
+	* _User Stories_:
+		* User resumes voice output of arbitrary text playing through TTS.
 1. F22. The secure browser shall provide a means events to notify the web application of status and progress of TTS.
 1. F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.
 1. F28. The secure browser shall provide a means to get/set TTS pitch.
