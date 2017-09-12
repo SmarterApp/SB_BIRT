@@ -1,6 +1,6 @@
 # Secure Browser Functional Requirements
 
-v.2.1.6 - Last modified 12-Sep-2017
+v.2.1.7 - Last modified 12-Sep-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -46,37 +46,37 @@ Most of the high level functional requirements listed below are implemented by t
 	* _User Stories_:
 		* The student copies assessment-related details for a particular test before starting a test and paste that information to answer assessment questions in secure browser . 
 1. F04. The secure browser may provide a means to retrieve system MAC address (optional).
-	* _Rationale_: A Media Access Control address, better known as MAC address, is a unique identifier assigned to a network adapter or network interface card (NIC) by the manufacturer for identification. Keeping track of MAC addresses allows for troubleshooting machine-specific issues
+	* _Rationale_: A Media Access Control address, better known as MAC address, is a unique identifier assigned to a network adapter or network interface card (NIC) by the manufacturer for identification. Keeping track of MAC addresses allows for troubleshooting machine-specific issues.
 	* _User Stories_: 
 		* The student takes a test on a particular device and experiences random timeout problems not experienced by other students. The student's MAC address can be used to identify the specific device and troubleshoot the issue.
 1. F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).
 	* _Rationale_:  An Internet Protocol address (IP address) is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. Exposing IP addresses through a browser service can enable hackers to exploit a service on an open port.
 	* _User Stories_:
-		* To exploit a service on a port, a hacker would banner grab for the software and version. After they learn that information, they would search sites like Packet Storm for known exploits to run against the service.
+		* To exploit a service on a port, a hacker could banner grab for the software and version. With this information, they would search for known exploits to run against the service.
 1. F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.
-	* _Rationale_: The process identifier (normally referred to as the process ID or just PID) is a number used by most operating system kernels — such as that of UNIX, macOS or Microsoft Windows — to uniquely identify an active process. This number may be used as a parameter in various function calls, allowing processes to be manipulated, such as adjusting the process's priority or killing it altogether. Exposing PID or PPIDs could potentially be misused to compromise student privacy.
+	* _Rationale_: The process identifier (normally referred to as the process ID or just PID) is a number used by most multiprocessing operating system kernels to uniquely identify an active process. Exposing PID or PPIDs could potentially be misused to compromise student privacy.
 	* _User Stories_:
-		*
+		* A nefarious user obtains the PIDs of all processes running on a student machine, compromising the student's privacy and potentially the school's security.
 1. F07. The secure browser may provide a means to obtain the application start time (optional).
-	* _Rationale_: Application start time provides clientside time of current launch. 
+	* _Rationale_: Application start time provides client-side time of current launch. 
 	* _User Stories_:
-		* Ability to capture uptime and perhaps restart the browser periodically for improved performance.
+		* The ability to capture uptime provides useful statistics about the usage model of the secure browser. This information could possibly be used in the future to restart the browser periodically for improved performance.
 1. F08. The secure browser shall provide a means to query if `Spaces` is enabled or not, for macOS.
 	* _Rationale_ : Spaces enables users to create multiple virtual desktops suited to the unique needs or work habits of the user. A user could, for example, create and assign a "space" to office work, enabling him or her to leave a work-related application (such as a word processor or a spreadsheet) running full screen and then switch to a different space designated for browsing the Internet or navigating file structure in Finder windows.
 	* _User Stories_:
-		* This API provides ability for Test Delivery System to determine whether spaces are enabled or not for macOS and if enabled blocks user to take test in `Spaces` enabled macOS as user can switch between two spaces and search for answer on internet.
+		* The student uses one space for the Test Delivery System, while dedicating another space to searching the internet for answers. This API provides the capability to determine whether spaces are enabled, and if so blocks user from taking a test.
 1. F15. The secure browser shall provide a means to set permissive mode.
-	* _Rationale_ : Permissive mode provides user an ability to change configuration for Assistive technology like JAWS etc.
+	* _Rationale_: Permissive mode provides the user with the ability to change configurations for assistive technology tools such as JAWS, during a testing session.
 	* _User Stories_:
-		* User wants to change rate/pitch of JAWS for the test.
+		* Student wants to change rate/pitch of JAWS for the test. Without permissive mode, the student would not be able to switch window focus away from the test.
 1. F49. The secure browser shall provide a means to query the status of permissive mode.
-	* _Rationale_ : Permissive mode provides user an ability to change configuration for Assistive technology like JAWS etc.
+	* _Rationale_: Permissive mode provides the user with the ability to change configurations for assistive technology tools such as JAWS, during a testing session.
 	* _User Stories_:
-		* This API provides ability for Test Delivery System to determine whether machine is in permissive mode or not, if enabled Test Delivery System disable the permissive mode before starting any items to answer.
+		* This API provides the ability for the Test Delivery System to determine whether machine is in permissive mode or not if enabled Test Delivery System disable the permissive mode before starting any items to answer.
 1. F31. The secure browser shall be able to determine whether blacklisted processes are running on the client machine.
-	* _Rationale_ : Application like skype, facetime, outlook or internet browser allows student to get test answer or share test details from Test Delivery System to external user or application. Checking blacklisted process provides ability for Test Delivery System to block user to take test if such application are running.
+	* _Rationale_ : Applications such as Skype, FaceTime, Outlook or internet browsers could allow students to obtain test answers or share test details from with others. Checking blacklisted process provides ability for the calling application to block user from taking a test if such applications are running.
 	* _User Stories_:
-		* The student starts the test and switched to unauthorized application to look for the answer.
+		* The student begins a test and attempts to switch to an unauthorized application to look for the answer. This would violate test construct and security. This scenario should be blocked.
 1. F36. The secure browser shall be able to get device info.
 1. F37. The secure browser shall be able to lock down the environment.
 1. F38. The secure browser shall be able to check if environment is secure for testing.

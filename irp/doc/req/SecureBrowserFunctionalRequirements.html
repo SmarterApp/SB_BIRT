@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser Functional Requirements</h1>
 
-<p>v.2.1.2 - Last modified 21-Aug-2017</p>
+<p>v.2.1.7 - Last modified 12-Sep-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -432,19 +432,105 @@ pre[class*="language-"] {
 <li>F01. The secure browser shall NOT provide a means to clear browser cache.
 
 <ul>
-<li>Rationale: </li>
-<li>References: Smarter Balanced Secure Browser Contract requirements.</li>
+<li><em>Rationale</em>: Browser cache is controlled via <code>cache-control</code> headers set from the server side. The server attaches query strings to js/CSS links which allows it to break caches by changing the query string parameters.</li>
+<li><em>References</em>: Smarter Balanced Secure Browser Contract requirements.</li>
 </ul></li>
-<li>F02. The secure browser shall NOT provide a means to clear browser cookies.</li>
-<li>F03. The secure browser may provide a means to clear system clipboard (optional).</li>
-<li>F04. The secure browser may provide a means to retrieve system MAC address (optional).</li>
-<li>F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).</li>
-<li>F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.</li>
-<li>F07. The secure browser may provide a means to obtain the application start time (optional).</li>
-<li>F08. The secure browser shall provide a means to query if <code>Spaces</code> is enabled or not, for macOS.</li>
-<li>F15. The secure browser shall provide a means to set permissive mode.</li>
-<li>F49. The secure browser shall provide a means to query the status of permissive mode.</li>
-<li>F31. The secure browser shall be able to determine whether blacklisted processes are running on the client machine.</li>
+<li>F02. The secure browser shall NOT provide a means to clear browser cookies.
+
+<ul>
+<li><em>Rationale</em>: Browser cookies can be indirectly expired by the server (by setting the cookie&#39;s expiration date to a past date). The next time a user makes a request to a page within the domain or path that set the cookie, the browser will determine that the cookie has expired and remove it.</li>
+<li><em>References</em>: Smarter Balanced Secure Browser Contract requirements.</li>
+</ul></li>
+<li>F03. The secure browser may provide a means to clear system clipboard (optional).
+
+<ul>
+<li><em>Rationale</em>: The clipboard is a software facility used for short-term data storage and/or data transfer between documents or applications, via copy and paste operations. Clearing it can eliminate the possibility of the student using the clipboard to maintain assessment-related information.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>The student copies assessment-related details for a particular test before starting a test and paste that information to answer assessment questions in secure browser . </li>
+</ul></li>
+</ul></li>
+<li>F04. The secure browser may provide a means to retrieve system MAC address (optional).
+
+<ul>
+<li><em>Rationale</em>: A Media Access Control address, better known as MAC address, is a unique identifier assigned to a network adapter or network interface card (NIC) by the manufacturer for identification. Keeping track of MAC addresses allows for troubleshooting machine-specific issues.</li>
+<li><em>User Stories</em>: 
+
+<ul>
+<li>The student takes a test on a particular device and experiences random timeout problems not experienced by other students. The student&#39;s MAC address can be used to identify the specific device and troubleshoot the issue.</li>
+</ul></li>
+</ul></li>
+<li>F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).
+
+<ul>
+<li><em>Rationale</em>:  An Internet Protocol address (IP address) is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. Exposing IP addresses through a browser service can enable hackers to exploit a service on an open port.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>To exploit a service on a port, a hacker could banner grab for the software and version. With this information, they would search for known exploits to run against the service.</li>
+</ul></li>
+</ul></li>
+<li>F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.
+
+<ul>
+<li><em>Rationale</em>: The process identifier (normally referred to as the process ID or just PID) is a number used by most multiprocessing operating system kernels to uniquely identify an active process. Exposing PID or PPIDs could potentially be misused to compromise student privacy.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>A nefarious user obtains the PIDs of all processes running on a student machine, compromising the student&#39;s privacy and potentially the school&#39;s security.</li>
+</ul></li>
+</ul></li>
+<li>F07. The secure browser may provide a means to obtain the application start time (optional).
+
+<ul>
+<li><em>Rationale</em>: Application start time provides client-side time of current launch. </li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>The ability to capture uptime provides useful statistics about the usage model of the secure browser. This information could possibly be used in the future to restart the browser periodically for improved performance.</li>
+</ul></li>
+</ul></li>
+<li>F08. The secure browser shall provide a means to query if <code>Spaces</code> is enabled or not, for macOS.
+
+<ul>
+<li><em>Rationale</em> : Spaces enables users to create multiple virtual desktops suited to the unique needs or work habits of the user. A user could, for example, create and assign a &quot;space&quot; to office work, enabling him or her to leave a work-related application (such as a word processor or a spreadsheet) running full screen and then switch to a different space designated for browsing the Internet or navigating file structure in Finder windows.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>The student uses one space for the Test Delivery System, while dedicating another space to searching the internet for answers. This API provides the capability to determine whether spaces are enabled, and if so blocks user from taking a test.</li>
+</ul></li>
+</ul></li>
+<li>F15. The secure browser shall provide a means to set permissive mode.
+
+<ul>
+<li><em>Rationale</em>: Permissive mode provides the user with the ability to change configurations for assistive technology tools such as JAWS, during a testing session.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student wants to change rate/pitch of JAWS for the test. Without permissive mode, the student would not be able to switch window focus away from the test.</li>
+</ul></li>
+</ul></li>
+<li>F49. The secure browser shall provide a means to query the status of permissive mode.
+
+<ul>
+<li><em>Rationale</em>: Permissive mode provides the user with the ability to change configurations for assistive technology tools such as JAWS, during a testing session.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>This API provides the ability for the Test Delivery System to determine whether machine is in permissive mode or not if enabled Test Delivery System disable the permissive mode before starting any items to answer.</li>
+</ul></li>
+</ul></li>
+<li>F31. The secure browser shall be able to determine whether blacklisted processes are running on the client machine.
+
+<ul>
+<li><em>Rationale</em> : Applications such as Skype, FaceTime, Outlook or internet browsers could allow students to obtain test answers or share test details from with others. Checking blacklisted process provides ability for the calling application to block user from taking a test if such applications are running.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>The student begins a test and attempts to switch to an unauthorized application to look for the answer. This would violate test construct and security. This scenario should be blocked.</li>
+</ul></li>
+</ul></li>
 <li>F36. The secure browser shall be able to get device info.</li>
 <li>F37. The secure browser shall be able to lock down the environment.</li>
 <li>F38. The secure browser shall be able to check if environment is secure for testing.</li>
@@ -465,13 +551,69 @@ pre[class*="language-"] {
 
 <h3 id="toc_6">C. Text-to-Speech (TTS) Related Requirements</h3>
 
+<p><em>Rationale</em>: Text to speech, abbreviated as TTS, is a form of speech synthesis that converts text into spoken voice output. Text to speech systems were first developed to aid the visually impaired by offering a computer-generated spoken voice that would &quot;read&quot; text to the user and theoretically capable of &quot;reading&quot; any string of text characters to form original sentences.</p>
+
 <ol>
-<li>F16. The secure browser shall provide shall provide a means to play arbitrary text.</li>
-<li>F17. The secure browser shall provide a means to stop TTS speech in progress.</li>
-<li>F18. The secure browser shall provide a means to pause TTS speech in progress.</li>
-<li>F19. The secure browser shall provide a means to retrieve list of TTS voice packs available on the machine.</li>
-<li>F21. The secure browser shall provide a means to resume previously paused TTS speech.</li>
-<li>F22. The secure browser shall provide a means events to notify the web application of status and progress of TTS.</li>
+<li>F16. The secure browser shall provide shall provide a means to play arbitrary text.
+
+<ul>
+<li><em>User Stories</em>: 
+
+<ul>
+<li>User select arbitrary text to play into spoken voice output.</li>
+</ul></li>
+</ul></li>
+<li>F17. The secure browser shall provide a means to stop TTS speech in progress.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>User stops voice output of arbitrary text playing through TTS. </li>
+</ul></li>
+</ul></li>
+<li>F18. The secure browser shall provide a means to pause TTS speech in progress.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>User pauses voice output of arbitrary text playing through TTS.</li>
+</ul></li>
+</ul></li>
+<li>F19. The secure browser shall provide a means to retrieve list of TTS voice packs available on the machine.
+
+<ul>
+<li><em>Rationale</em>: Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the students. These voice packs provide different languages, regional accents, and gender variants.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>User select voice pack for Text-to-Speech API to get voice output based on voice pack profile.</li>
+</ul></li>
+</ul></li>
+<li>F21. The secure browser shall provide a means to resume previously paused TTS speech.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>User resumes voice output of arbitrary text playing through TTS.</li>
+</ul></li>
+</ul></li>
+<li>F22. The secure browser shall provide a means of notifying the web application of status and progress of TTS.
+
+<ul>
+<li><em>Rationale</em>: 
+
+<ul>
+<li>Text-to-Speech status events allow the application to monitor TTS speech progress and make adjustments for UI updates accordingly.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>The student is listening to TTS audio and can visually track which word is being spoken from the event updates of the current highlighted word.</li>
+</ul></li>
+</ul></li>
 <li>F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.</li>
 <li>F28. The secure browser shall provide a means to get/set TTS pitch.</li>
 <li>F29. The secure browser shall provide a means to get/set TTS rate.</li>
