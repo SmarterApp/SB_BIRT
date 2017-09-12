@@ -93,7 +93,7 @@ Most of the high level functional requirements listed below are implemented by t
 
 ### C. Text-to-Speech (TTS) Related Requirements
 
-	 * _Rationale_: Text to speech, abbreviated as TTS, is a form of speech synthesis that converts text into spoken voice output. Text to speech systems were first developed to aid the visually impaired by offering a computer-generated spoken voice that would "read" text to the user and theoretically capable of "reading" any string of text characters to form original sentences.
+_Rationale_: Text to speech, abbreviated as TTS, is a form of speech synthesis that converts text into spoken voice output. Text to speech systems were first developed to aid the visually impaired by offering a computer-generated spoken voice that would "read" text to the user and theoretically capable of "reading" any string of text characters to form original sentences.
 	
 1. F16. The secure browser shall provide shall provide a means to play arbitrary text.
 	* _User Stories_: 
