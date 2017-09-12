@@ -1,6 +1,6 @@
 # Secure Browser Functional Requirements
 
-v.2.1.4 - Last modified 11-Sep-2017
+v.2.1.5 - Last modified 12-Sep-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -36,10 +36,10 @@ Most of the high level functional requirements listed below are implemented by t
 ## Requirements
 ### A. Security Related Requirements
 1. F01. The secure browser shall NOT provide a means to clear browser cache.
-   * _Rationale_: Cache is controlled by cache-control headers set from the server side. Application attach query strings to js/CSS links which allows application to break caches by changing the query string parameter.
+   * _Rationale_: Browser cache is controlled via `cache-control` headers set from the server side. The server attaches query strings to js/CSS links which allows it to break caches by changing the query string parameters.
    * _References_: Smarter Balanced Secure Browser Contract requirements.
 1. F02. The secure browser shall NOT provide a means to clear browser cookies.
-	* _Rationale_: Cookies like  authentication cookies can be cleared by the server side when application send over the login page. 
+	* _Rationale_: Browser cookies can be indirectly expired by the server (by setting the cookie's expiration date to a past date). The next time a user makes a request to a page within the domain or path that set the cookie, the browser will determine that the cookie has expired and remove it.
 	* _References_: Smarter Balanced Secure Browser Contract requirements.
 1. F03. The secure browser may provide a means to clear system clipboard (optional).
 	* _Rationale_: The clipboard is a software facility used for short-term data storage and/or data transfer between documents or applications, via copy and paste operations. Clearing it can eliminate the possibility of the student using the clipboard to maintain assessment-related information.
@@ -92,7 +92,8 @@ Most of the high level functional requirements listed below are implemented by t
 1. F14. The desktop secure browser shall provide a means to close the browser.
 
 ### C. Text-to-Speech (TTS) Related Requirements
-	* _Rationale_: Text to speech, abbreviated as TTS, is a form of speech synthesis that converts text into spoken voice output. Text to speech systems were first developed to aid the visually impaired by offering a computer-generated spoken voice that would "read" text to the user and theoretically capable of "reading" any string of text characters to form original sentences.
+
+	 * _Rationale_: Text to speech, abbreviated as TTS, is a form of speech synthesis that converts text into spoken voice output. Text to speech systems were first developed to aid the visually impaired by offering a computer-generated spoken voice that would "read" text to the user and theoretically capable of "reading" any string of text characters to form original sentences.
 	
 1. F16. The secure browser shall provide shall provide a means to play arbitrary text.
 	* _User Stories_: 
@@ -104,6 +105,9 @@ Most of the high level functional requirements listed below are implemented by t
 	* _User Stories_:
 		* User pauses voice output of arbitrary text playing through TTS.
 1. F19. The secure browser shall provide a means to retrieve list of TTS voice packs available on the machine.
+	* _Rationale_: Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the students. These voice packs provide different languages, regional accents, and gender variants.
+	* _User Stories_:
+		* User select voice pack for Text-to-Speech API to get voice output based on voice pack profile.
 1. F21. The secure browser shall provide a means to resume previously paused TTS speech.
 	* _User Stories_:
 		* User resumes voice output of arbitrary text playing through TTS.
