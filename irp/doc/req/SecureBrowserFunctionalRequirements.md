@@ -1,6 +1,6 @@
 # Secure Browser Functional Requirements
 
-v.2.1.5 - Last modified 12-Sep-2017
+v.2.1.6 - Last modified 12-Sep-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -46,9 +46,9 @@ Most of the high level functional requirements listed below are implemented by t
 	* _User Stories_:
 		* The student copies assessment-related details for a particular test before starting a test and paste that information to answer assessment questions in secure browser . 
 1. F04. The secure browser may provide a means to retrieve system MAC address (optional).
-	* _Rationale_: A Media Access Control address , better known as MAC address, is a unique identifier assigned to a network adapter or network interface card (NIC) by the manufacturer for identification.
+	* _Rationale_: A Media Access Control address, better known as MAC address, is a unique identifier assigned to a network adapter or network interface card (NIC) by the manufacturer for identification. Keeping track of MAC addresses allows for troubleshooting machine-specific issues
 	* _User Stories_: 
-		* MAC address provides ability for Test Delivery System to gather operating system usage statistics.
+		* The student takes a test on a particular device and experiences random timeout problems not experienced by other students. The student's MAC address can be used to identify the specific device and troubleshoot the issue.
 1. F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).
 	* _Rationale_:  An Internet Protocol address (IP address) is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. Exposing IP addresses through a browser service can enable hackers to exploit a service on an open port.
 	* _User Stories_:
@@ -111,7 +111,11 @@ _Rationale_: Text to speech, abbreviated as TTS, is a form of speech synthesis t
 1. F21. The secure browser shall provide a means to resume previously paused TTS speech.
 	* _User Stories_:
 		* User resumes voice output of arbitrary text playing through TTS.
-1. F22. The secure browser shall provide a means events to notify the web application of status and progress of TTS.
+1. F22. The secure browser shall provide a means of notifying the web application of status and progress of TTS.
+	* _Rationale_: 
+		* Text-to-Speech status events allow the application to monitor TTS speech progress and make adjustments for UI updates accordingly.
+	* _User Stories_:
+		* The student is listening to TTS audio and can visually track which word is being spoken from the event updates of the current highlighted word.
 1. F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.
 1. F28. The secure browser shall provide a means to get/set TTS pitch.
 1. F29. The secure browser shall provide a means to get/set TTS rate.
