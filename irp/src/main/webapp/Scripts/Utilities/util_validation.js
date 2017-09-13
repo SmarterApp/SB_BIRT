@@ -183,8 +183,8 @@
 
     var itemDetail = {};
     $.extend(itemDetail, {
-      "rTestPass" : rTestPass,
-      "rTestFail" : rTestFail,
+      "oTestPass" : rTestPass,
+      "oTestFail" : rTestFail,
       "notperformed" : notperformed
     });
 
