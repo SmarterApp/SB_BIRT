@@ -109,7 +109,7 @@ Most of the high level functional requirements listed below are implemented by t
 
 ### C. Text-to-Speech (TTS) Related Requirements
 
-_Rationale_: Text to speech, abbreviated as TTS, is a form of speech synthesis that converts text into spoken voice output. Text to speech systems were first developed to aid the visually impaired by offering a computer-generated spoken voice that would "read" text to the user and theoretically capable of "reading" any string of text characters to form original sentences.
+_Rationale_: Text-to-Speech, abbreviated as TTS, is a form of speech synthesis that converts text into spoken voice output. Text-to-Speech API provides the ability for visually impaired student to listen computer-generated spoken voice that would "read" questionnaire during test session.
 	
 1. F16. The secure browser shall provide shall provide a means to play arbitrary text.
 	* _User Stories_: 
@@ -133,6 +133,9 @@ _Rationale_: Text to speech, abbreviated as TTS, is a form of speech synthesis t
 	* _User Stories_:
 		* The student is listening to TTS audio and can visually track which word is being spoken from the event updates of the current highlighted word.
 1. F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.
+	* _Rationale_: Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the students. These voice packs provide different languages, regional accents, and gender variants.
+	* _User Stories_:
+		* Student is listening to voice output but had difficulty understanding the voice output due to voice regional accents and wants to change voice pack for Text-to-Speech API to get desired voice output.
 1. F28. The secure browser shall provide a means to get/set TTS pitch.
 1. F29. The secure browser shall provide a means to get/set TTS rate.
 1. F30. The secure browser shall provide a means to get/set TTS volume.
