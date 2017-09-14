@@ -85,11 +85,27 @@ Most of the high level functional requirements listed below are implemented by t
 
 ### B. Device Related Requirements
 1. F09. The desktop secure browser shall provide a means to get system volume.
+	* _Rationale_: System volume provides the student with the ability to change system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.
+	* _User Stories_:
+		* Student is listening to voice output through JAWS and wants to change volume without going into permissive mode, student selects setting and changes system volume.
 1. F10. The desktop secure browser shall provide a means to set system volume.
+	* _Rationale_: System volume provides the user with the ability to change system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.
+	* _User Stories_:
+		* Student is listening to voice output through JAWS and wants to change volume without going into permissive mode, student selects setting and changes system volume.
 1. F11. The desktop secure browser shall provide a means to mute system volume.
+	* _Rationale_: System mute provides the user with the ability to mute system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.
+	* _User Stories_:
+		* Student is listening to voice output through JAWS and wants to mute system volume without going into permissive mode, student selects setting and mute system volume.
 1. F12. The desktop secure browser shall provide a means to unmute system volume.
+	* _Rationale_: System unmute provides the user with the ability to unmute system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.
+	* _User Stories_:
+		* Student is using JAWS and wants to unmute system volume without going into permissive mode, student selects setting and unmute system volume.
 1. F13. The desktop secure browser shall provide a means to check if system volume is Muted.
 1. F14. The desktop secure browser shall provide a means to close the browser.
+	* _Rationale_: Close Browser API provides student with the ability to close secure browser as it is open in kiosk/fullscreen mode where switching to different application is not allowed.
+	* _User Stories_:
+		* Student completed test and want to close the secure browser to continue his/her other assignment on device.
+		* School Administration team wants to update system or software on the device and want to close the secure browser.
 
 ### C. Text-to-Speech (TTS) Related Requirements
 
