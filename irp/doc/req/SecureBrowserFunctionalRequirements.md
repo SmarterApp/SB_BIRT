@@ -113,29 +113,29 @@ _Rationale_: Text-to-Speech, abbreviated as TTS, is a form of speech synthesis t
 	
 1. F16. The secure browser shall provide shall provide a means to play arbitrary text.
 	* _User Stories_: 
-		* User select arbitrary text to play into spoken voice output.
+		* Student selects arbitrary text to play into spoken voice output.
 1. F17. The secure browser shall provide a means to stop TTS speech in progress.
 	* _User Stories_:
-		* User stops voice output of arbitrary text playing through TTS. 
+		* Student stops voice output of arbitrary text playing through TTS.
 1. F18. The secure browser shall provide a means to pause TTS speech in progress.
 	* _User Stories_:
-		* User pauses voice output of arbitrary text playing through TTS.
+		* Student pauses voice output of arbitrary text playing through TTS.
 1. F19. The secure browser shall provide a means to retrieve list of TTS voice packs available on the machine.
 	* _Rationale_: Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the students. These voice packs provide different languages, regional accents, and gender variants.
 	* _User Stories_:
-		* User select voice pack for Text-to-Speech API to get voice output based on voice pack profile.
+		* Student is listening to TTS voice output but had difficulty understanding the voice output due to voice regional accents and wants to change voice pack for Text-to-Speech API to get desired voice output.
 1. F21. The secure browser shall provide a means to resume previously paused TTS speech.
 	* _User Stories_:
-		* User resumes voice output of arbitrary text playing through TTS.
+		* Student resumes voice output of arbitrary text playing through TTS.
 1. F22. The secure browser shall provide a means of notifying the web application of status and progress of TTS.
 	* _Rationale_: 
 		* Text-to-Speech status events allow the application to monitor TTS speech progress and make adjustments for UI updates accordingly.
 	* _User Stories_:
-		* The student is listening to TTS audio and can visually track which word is being spoken from the event updates of the current highlighted word.
+		* Student is listening to TTS voice output and can visually track which word is being spoken from the event updates of the current highlighted word.
 1. F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.
 	* _Rationale_: Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the students. These voice packs provide different languages, regional accents, and gender variants.
 	* _User Stories_:
-		* Student is listening to voice output but had difficulty understanding the voice output due to voice regional accents and wants to change voice pack for Text-to-Speech API to get desired voice output.
+		* Student is listening to TTS voice output but had difficulty understanding the voice output due to voice regional accents and wants to change voice pack for Text-to-Speech API to get desired voice output.
 1. F28. The secure browser shall provide a means to get/set TTS pitch.
 1. F29. The secure browser shall provide a means to get/set TTS rate.
 1. F30. The secure browser shall provide a means to get/set TTS volume.
