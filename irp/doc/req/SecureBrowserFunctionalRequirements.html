@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser Functional Requirements</h1>
 
-<p>v.2.1.7 - Last modified 12-Sep-2017</p>
+<p>v.2.1.8 - Last modified 14-Sep-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -541,17 +541,63 @@ pre[class*="language-"] {
 <h3 id="toc_5">B. Device Related Requirements</h3>
 
 <ol>
-<li>F09. The desktop secure browser shall provide a means to get system volume.</li>
-<li>F10. The desktop secure browser shall provide a means to set system volume.</li>
-<li>F11. The desktop secure browser shall provide a means to mute system volume.</li>
-<li>F12. The desktop secure browser shall provide a means to unmute system volume.</li>
+<li>F09. The desktop secure browser shall provide a means to get system volume.
+
+<ul>
+<li><em>Rationale</em>: System volume provides the student with the ability to change system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student is listening to voice output through JAWS and wants to change volume without going into permissive mode, student selects setting and changes system volume.</li>
+</ul></li>
+</ul></li>
+<li>F10. The desktop secure browser shall provide a means to set system volume.
+
+<ul>
+<li><em>Rationale</em>: System volume provides the user with the ability to change system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student is listening to voice output through JAWS and wants to change volume without going into permissive mode, student selects setting and changes system volume.</li>
+</ul></li>
+</ul></li>
+<li>F11. The desktop secure browser shall provide a means to mute system volume.
+
+<ul>
+<li><em>Rationale</em>: System mute provides the user with the ability to mute system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student is listening to voice output through JAWS and wants to mute system volume without going into permissive mode, student selects setting and mute system volume.</li>
+</ul></li>
+</ul></li>
+<li>F12. The desktop secure browser shall provide a means to unmute system volume.
+
+<ul>
+<li><em>Rationale</em>: System unmute provides the user with the ability to unmute system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student is using JAWS and wants to unmute system volume without going into permissive mode, student selects setting and unmute system volume.</li>
+</ul></li>
+</ul></li>
 <li>F13. The desktop secure browser shall provide a means to check if system volume is Muted.</li>
-<li>F14. The desktop secure browser shall provide a means to close the browser.</li>
+<li>F14. The desktop secure browser shall provide a means to close the browser.
+
+<ul>
+<li><em>Rationale</em>: Close Browser API provides student with the ability to close secure browser as it is open in kiosk/fullscreen mode where switching to different application is not allowed.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student completed test and want to close the secure browser to continue his/her other assignment on device.</li>
+<li>School Administration team wants to update system or software on the device and want to close the secure browser.</li>
+</ul></li>
+</ul></li>
 </ol>
 
 <h3 id="toc_6">C. Text-to-Speech (TTS) Related Requirements</h3>
 
-<p><em>Rationale</em>: Text to speech, abbreviated as TTS, is a form of speech synthesis that converts text into spoken voice output. Text to speech systems were first developed to aid the visually impaired by offering a computer-generated spoken voice that would &quot;read&quot; text to the user and theoretically capable of &quot;reading&quot; any string of text characters to form original sentences.</p>
+<p><em>Rationale</em>: Text-to-Speech, abbreviated as TTS, is a form of speech synthesis that converts text into spoken voice output. Text-to-Speech API provides the ability for visually impaired student to listen computer-generated spoken voice that would &quot;read&quot; questionnaire during test session. Users may need to interact with the TTS speech (stop, pause, play, etc.) for a variety of reasons. For example, the room may have become noisy, or the user needs to replay the selection for better comprehension, or the user doesn&#39;t want or need to hear the remainder of the selected text being spoken.</p>
 
 <ol>
 <li>F16. The secure browser shall provide shall provide a means to play arbitrary text.
@@ -560,7 +606,7 @@ pre[class*="language-"] {
 <li><em>User Stories</em>: 
 
 <ul>
-<li>User select arbitrary text to play into spoken voice output.</li>
+<li>Student selects an arbitrary amount of text and chooses to play it aloud. The browser outputs this text in a spoken voice.</li>
 </ul></li>
 </ul></li>
 <li>F17. The secure browser shall provide a means to stop TTS speech in progress.
@@ -569,7 +615,7 @@ pre[class*="language-"] {
 <li><em>User Stories</em>:
 
 <ul>
-<li>User stops voice output of arbitrary text playing through TTS. </li>
+<li>Student is finished listening to the spoken voice output of previously selected text, and directs the browser to stop playing it.</li>
 </ul></li>
 </ul></li>
 <li>F18. The secure browser shall provide a means to pause TTS speech in progress.
@@ -578,17 +624,17 @@ pre[class*="language-"] {
 <li><em>User Stories</em>:
 
 <ul>
-<li>User pauses voice output of arbitrary text playing through TTS.</li>
+<li>Student needs to pause the currently active TTS speech, and directs the browser to pause the speech.</li>
 </ul></li>
 </ul></li>
 <li>F19. The secure browser shall provide a means to retrieve list of TTS voice packs available on the machine.
 
 <ul>
-<li><em>Rationale</em>: Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the students. These voice packs provide different languages, regional accents, and gender variants.</li>
+<li><em>Rationale</em>: Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the users. These voice packs provide different languages, regional accents, and gender variants.</li>
 <li><em>User Stories</em>:
 
 <ul>
-<li>User select voice pack for Text-to-Speech API to get voice output based on voice pack profile.</li>
+<li>Student is listening to TTS voice output but has difficulty understanding it due to the voice&#39;s regional accents. Student can change the voice pack being used for Text-to-Speech.</li>
 </ul></li>
 </ul></li>
 <li>F21. The secure browser shall provide a means to resume previously paused TTS speech.
@@ -597,7 +643,7 @@ pre[class*="language-"] {
 <li><em>User Stories</em>:
 
 <ul>
-<li>User resumes voice output of arbitrary text playing through TTS.</li>
+<li>Student desires to continue the previously paused speech, and directs the browser to resume voice output of the previously selected text from where it was last paused.</li>
 </ul></li>
 </ul></li>
 <li>F22. The secure browser shall provide a means of notifying the web application of status and progress of TTS.
@@ -611,10 +657,19 @@ pre[class*="language-"] {
 <li><em>User Stories</em>:
 
 <ul>
-<li>The student is listening to TTS audio and can visually track which word is being spoken from the event updates of the current highlighted word.</li>
+<li>Student is listening to TTS voice output and can visually track which word is being spoken from the event updates of the currently highlighted word.</li>
 </ul></li>
 </ul></li>
-<li>F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.</li>
+<li>F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.
+
+<ul>
+<li><em>Rationale</em>: Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the students. These voice packs provide different languages, regional accents, and gender variants.</li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student is listening to TTS voice output but has difficulty understanding the voice output due to a voice&#39;s regional accent. The student is able to select a different voice pack for Text-to-Speech via the browser.</li>
+</ul></li>
+</ul></li>
 <li>F28. The secure browser shall provide a means to get/set TTS pitch.</li>
 <li>F29. The secure browser shall provide a means to get/set TTS rate.</li>
 <li>F30. The secure browser shall provide a means to get/set TTS volume.</li>
