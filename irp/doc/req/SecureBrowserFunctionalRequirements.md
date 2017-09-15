@@ -1,6 +1,6 @@
 # Secure Browser Functional Requirements
 
-v.2.1.8 - Last modified 14-Sep-2017
+v.2.1.9 - Last modified 15-Sep-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -121,7 +121,8 @@ _Rationale_: Text-to-Speech, abbreviated as TTS, is a form of speech synthesis t
 	* _User Stories_:
 		* Student needs to pause the currently active TTS speech, and directs the browser to pause the speech.
 1. F19. The secure browser shall provide a means to retrieve list of TTS voice packs available on the machine.
-	* _Rationale_: Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the users. These voice packs provide different languages, regional accents, and gender variants.
+	* _Rationale_: 
+		* Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the users. These voice packs provide different languages, regional accents, and gender variants.
 	* _User Stories_:
 		* Student is listening to TTS voice output but has difficulty understanding it due to the voice's regional accents. Student can change the voice pack being used for Text-to-Speech.
 1. F21. The secure browser shall provide a means to resume previously paused TTS speech.
@@ -133,7 +134,8 @@ _Rationale_: Text-to-Speech, abbreviated as TTS, is a form of speech synthesis t
 	* _User Stories_:
 		* Student is listening to TTS voice output and can visually track which word is being spoken from the event updates of the currently highlighted word.
 1. F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.
-	* _Rationale_: Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the students. These voice packs provide different languages, regional accents, and gender variants.
+	* _Rationale_: 
+		* Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the students. These voice packs provide different languages, regional accents, and gender variants.
 	* _User Stories_:
 		* Student is listening to TTS voice output but has difficulty understanding the voice output due to a voice's regional accent. The student is able to select a different voice pack for Text-to-Speech via the browser.
 1. F28. The secure browser shall provide a means to get/set TTS pitch.
@@ -143,16 +145,45 @@ _Rationale_: Text-to-Speech, abbreviated as TTS, is a form of speech synthesis t
 ### D. Audio Recording Related Requirements
 These requirements are optional.
 
+_Rationale_: English Language Proficiency Assessment for the 21st Century (ELPA21) assessment measures and reports on students’ English language proficiency(ELP) in reading, writing, speaking, listening, and comprehension. Audio recorder and playback will allow student listen to questionnaire and record an answer during ELP test session. Students may need to interact with Audio Recording(Start and Stop Recording) and Playback(stop,pause,play, etc.) for a variety of reasons. For example, student recorded an answer but the room was noise and audio quality was not good, so student can stop recording and record answer again. 
+
 1. F50. The secure browser may provide a means to initialize the audio recording system.
+	* _User Stories_:
+		* Student wants to answer ELP test and directs the browser to initialize audio recording system.
 1. F25. The secure browser may provide a means to start an audio recording.
+	* _User Stories_:
+		* Student wants to answer ELP test and directs the browser to start recording for selected question.
 1. F26. The secure browser may provide a means to stop an audio recording.
+	* _User Stories_:
+		* Student is finished with the recording and directs the browser to stop the recording.
 1. F27. The secure browser may provide a means to playback an audio recording.
+	* _User Stories_:
+		* Student is finished with recording and want to listen to the recorded answer, Audio API playback will provide means for student to listen to recorded output.
 1. F40. The secure browser may provide a means to set audio recorder status.
+	* _Rationale_:
+		* Audio recorder status event allow the application of recording progress and make adjustments for UI updates accordingly.
+	* _User Stories_:
+		* Student wants to record an answer, application will update UI to show audio recorder is ready for recording or any error occured and cannot continue with recording.
+		* Student is finished with recording and stops the recording, application will update UI to show audio recording is stopped.
 1. F41. The secure browser may provide a means to get audio recorder capabilities.
+	* _Rationale_:
+		* Audio recorder capabilities are necessary in order to provide a list of supporting media device (speaker, headphones, etc.) on given machine to the students.
+	* _User Stories_:
+		* Student wants to record an answer but realize that default microphone is set of the device, instead of microphone attached externally and want to select  microphone as desired input.
 1. F42. The secure browser may provide a means to retrieve a recording for playback.
+	* _Rationale_:
+		* Retrive recording provide ability to application to get recording which was recorded for a given question.
+	* _User Stories_:
+		* User is finished with the recording and wants to playback the recording for a question. User select the play recording. The browser outputs this recorded audio in a audio output playback.
 1. F43. The secure browser may provide a means to stop playback.
+	* _User Stories_:
+		* Student is finished listening to the audio playback of recorded voice, and directs the browser to stop playing it.
 1. F44. The secure browser may provide a means to pause playback.
+	* _User Stories_:
+		* Student needs to pause the currently active audio playback, and directs the browser to pause the playback.
 1. F45. The secure browser may provide a means to resume playback of a paused audio recording.
+	* _User Stories_:
+		* Student desires to continue the previously paused playback, and directs the browser to resume audio playback from where it was last paused.
 1. F48. The secure browser may provide a means to list all available audio recordings.
 1. F51. The secure browser may provide a means to retrieve an audio file from a filename.
 
