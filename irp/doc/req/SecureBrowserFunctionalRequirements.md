@@ -263,7 +263,7 @@ _Rationale_: English Language Proficiency Assessment for the 21st Century (ELPA2
 	* _Rationale_:
 		* The Global object will represents the secure browser specific API object namespace, Keeping all security, Text-to-Speech, Audio, settings etc. API under Global Object will allow unification of API across different operating system in secure browser and reduce amount of code maintained in Test Delivery System to access different function of secure browser.
 	* _User Stories_:
-		* Test delivery system wants verify that browser is secure browser and not mock version of secure browser using user agent override. It checks for browser global object to determine whether it is a secure browser.
+		* Global object helps application to verify that browser is secure browser and not mock version of secure browser using user agent override.
 2. F52. The Secure Browser shall support the Secure Browser Launch Protocol as defined in [2].
 
 ## References
