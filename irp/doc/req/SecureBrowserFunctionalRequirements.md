@@ -78,8 +78,17 @@ Most of the high level functional requirements listed below are implemented by t
 	* _User Stories_:
 		* The student begins a test and attempts to switch to an unauthorized application to look for the answer. This would violate test construct and security. This scenario should be blocked.
 1. F36. The secure browser shall be able to get device info.
+	* _Rationale_: Device info provides application with the ability to identify software/hardware version of the machine. Keeping track of device info allows for troubleshooting machine-specific/operating system specific issues.
+	* _User Stories_:
+		* The student takes a test on a particular device and experiences random timeout problems not experienced by other students. The student's device info can be used to identify and troubleshoot the issue.
 1. F37. The secure browser shall be able to lock down the environment.
+   * _Rationale_: It's crucial for the browser to prevent the user from browsing to an unauthorized site, since test-related information may be obtained and/or shared with others at that site. Locking down student environment will prevent student from accessing different application like internet browser or Skype to make calls during test session.
+   * _User Stories_:
+		* Student uses internet browser to look for an answer during test session running in secure browser. This would violate test construct and security. This scenario should be blocked.
 1. F38. The secure browser shall be able to check if environment is secure for testing.
+   * _Rationale_: It's crucial for the browser to prevent the user from browsing to an unauthorized site, since test-related information may be obtained and/or shared with others at that site. Locking down student environment will prevent student from accessing different application like internet browser or Skype to make calls during test session.
+	* _User Stories_:
+		* The student uses secure browser for the Test Delivery System, while running other applications searching the internet for answers. This API provides the capability to determine environment is secure, and if not blocks user from taking a test.
 1. F46. The secure browser may be able to get the status of a particular browser capability (optional).
 1. F47. The secure browser may be able to set the status of a particular browser capability (optional).
 
@@ -139,37 +148,43 @@ _Rationale_: Text-to-Speech, abbreviated as TTS, is a form of speech synthesis t
 	* _User Stories_:
 		* Student is listening to TTS voice output but has difficulty understanding the voice output due to a voice's regional accent. The student is able to select a different voice pack for Text-to-Speech via the browser.
 1. F28. The secure browser shall provide a means to get/set TTS pitch.
+	* _User Stories_:
+		* Student is listening to TTS voice output but has difficulty understanding the voice output due to a voice's pitch. The student is able to change pitch settings for Text-to-Speech via the browser.
 1. F29. The secure browser shall provide a means to get/set TTS rate.
+	* _User Stories_:
+		* Student is listening to TTS voice output but has difficulty understanding the voice output due to a voice's rate. The student is able to change rate settings for Text-to-Speech via the browser.
 1. F30. The secure browser shall provide a means to get/set TTS volume.
+	* _User Stories_:
+		* Student is listening to TTS voice output but has difficulty understanding the voice output due to a volume. The student is able to change volume settings for Text-to-Speech via the browser.
 
 ### D. Audio Recording Related Requirements
 These requirements are optional.
 
-_Rationale_: English Language Proficiency Assessment for the 21st Century (ELPA21) assessment measures and reports on students’ English language proficiency(ELP) in reading, writing, speaking, listening, and comprehension. Audio recorder and playback will allow student listen to questionnaire and record an answer during ELP test session. Students may need to interact with Audio Recording(Start and Stop Recording) and Playback(stop,pause,play, etc.) for a variety of reasons. For example, student recorded an answer but the room was noise and audio quality was not good, so student can stop recording and record answer again. 
+_Rationale_: English Language Proficiency Assessment for the 21st Century (ELPA21) assessment measures and reports on students’ English language proficiency(ELP) in reading, writing, speaking, listening, and comprehension. Audio recorder and playback will allow user to listen to audio based question and record a verbal answer during ELP test session. Users may need to interact with Audio Recording(Start and Stop Recording) and Playback(stop,pause,play, etc.) for a variety of reasons. For example, user recorded a verbal answer but the room was noisy and audio quality was not good, so user can stop recording and record answer again. 
 
 1. F50. The secure browser may provide a means to initialize the audio recording system.
 	* _User Stories_:
-		* Student wants to answer ELP test and directs the browser to initialize audio recording system.
+		* Student wants to answer a question verbally and directs the browser to initialize audio recording system.
 1. F25. The secure browser may provide a means to start an audio recording.
 	* _User Stories_:
-		* Student wants to answer ELP test and directs the browser to start recording for selected question.
+		* Student wants to answer a question verbally and directs the browser to start recording for selected question.
 1. F26. The secure browser may provide a means to stop an audio recording.
 	* _User Stories_:
-		* Student is finished with the recording and directs the browser to stop the recording.
+		* Student is finished with the recording verbal answer and directs the browser to stop the recording.
 1. F27. The secure browser may provide a means to playback an audio recording.
 	* _User Stories_:
-		* Student is finished with recording and want to listen to the recorded answer, Audio API playback will provide means for student to listen to recorded output.
+		* Student is finished with recording verbal anser and want to listen to the recorded answer, Audio API playback will provide means for student to listen to recorded output.
 1. F40. The secure browser may provide a means to set audio recorder status.
 	* _Rationale_:
 		* Audio recorder status event allow the application of recording progress and make adjustments for UI updates accordingly.
 	* _User Stories_:
-		* Student wants to record an answer, application will update UI to show audio recorder is ready for recording or any error occured and cannot continue with recording.
+		* Student wants to record a answer, application will update UI to show audio recorder is ready for recording or any error occured and cannot continue with recording.
 		* Student is finished with recording and stops the recording, application will update UI to show audio recording is stopped.
 1. F41. The secure browser may provide a means to get audio recorder capabilities.
 	* _Rationale_:
 		* Audio recorder capabilities are necessary in order to provide a list of supporting media device (speaker, headphones, etc.) on given machine to the students.
 	* _User Stories_:
-		* Student wants to record an answer but realize that default microphone is set of the device, instead of microphone attached externally and want to select  microphone as desired input.
+		* Student wants to record an answer but realize that default microphone is not the microphone attached externally and wants to select desired microphone to record verbal answer.
 1. F42. The secure browser may provide a means to retrieve a recording for playback.
 	* _Rationale_:
 		* Retrive recording provide ability to application to get recording which was recorded for a given question.
@@ -185,7 +200,15 @@ _Rationale_: English Language Proficiency Assessment for the 21st Century (ELPA2
 	* _User Stories_:
 		* Student desires to continue the previously paused playback, and directs the browser to resume audio playback from where it was last paused.
 1. F48. The secure browser may provide a means to list all available audio recordings.
+	* _Rationale_:
+		* Audio recordings list is necessary in order to get multiple recorded answer provided for a question or for an entire test.
+	* _User Stories_:
+		* Student provided multiple verbal answer for different section of a question and wants to review all recorded answer of a question. 
 1. F51. The secure browser may provide a means to retrieve an audio file from a filename.
+	* _Rationale_:
+		* Retriving audio file from filename provides an application with a capability to get selective recorded answer for a given test during review.
+	* _User Stories_:
+		* Student provided multiple verbal answer for different section of a question and wants to review particular recorded response.
 
 ### E. Standards Compliance Requirements
 1. F32. The secure browser shall be HTML5 compliant.
