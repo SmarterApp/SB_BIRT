@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser Functional Requirements</h1>
 
-<p>v.2.1.8 - Last modified 14-Sep-2017</p>
+<p>v.2.1.10 - Last modified 18-Sep-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -371,7 +371,11 @@ pre[class*="language-"] {
 <li>Browse to the designated test-taking URL (and no other) and act as the web browser user agent for the test delivery servers.
 
 <ul>
-<li><em>Rationale</em>: It&#39;s crucial for the browser to prevent the user from browsing to an unauthorized site, since test-related information may be obtained and/or shared with others at that site. Furthermore, the browser needs to be &quot;trusted&quot; by the test delivery systems and be capable of delivering and faithfully rendering assessments according to modern web standards.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>It&#39;s crucial for the browser to prevent the user from browsing to an unauthorized site, since test-related information may be obtained and/or shared with others at that site. Furthermore, the browser needs to be &quot;trusted&quot; by the test delivery systems and be capable of delivering and faithfully rendering assessments according to modern web standards.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
@@ -382,7 +386,11 @@ pre[class*="language-"] {
 <li>Exclude the student from accessing any unauthorized service or application on the device. Generally speaking this includes all applications and tools except for assistive technology applications.
 
 <ul>
-<li><em>Rationale</em>: The browser must prevent the user from accessing tools or applications that could provide them with an advantage in answering test questions (and thereby violating the construct of the assessment). Examples of such applications would be another web browser, a calculator, a spell checker, a dictionary, email, VoIP, or IM.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>The browser must prevent the user from accessing tools or applications that could provide them with an advantage in answering test questions (and thereby violating the construct of the assessment). Examples of such applications would be another web browser, a calculator, a spell checker, a dictionary, email, VoIP, or IM.</li>
+</ul></li>
 <li><em>User Stories</em>: 
 
 <ul>
@@ -393,7 +401,11 @@ pre[class*="language-"] {
 <li>Provide a security API, callable from JavaScript, which allows the testing server to assess the security status of the devices. (The API is defined in [1].)
 
 <ul>
-<li><em>Rationale</em>: The browser must be able to assess the security status of the device on which it is running, and pass that information securely to the testing server.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>The browser must be able to assess the security status of the device on which it is running, and pass that information securely to the testing server.</li>
+</ul></li>
 <li><em>User Stories</em>: 
 
 <ul>
@@ -403,7 +415,11 @@ pre[class*="language-"] {
 <li>Provide a text-to-speech API, callable from JavaScript, which allows the testing application to make use of text-to-speech functionalities provided by the device operating system or by the browser.
 
 <ul>
-<li><em>Rationale</em>: The browser must be able to use available TTS systems (either custom or W3C standard) when requested by the testing server.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>The browser must be able to use available TTS systems (either custom or W3C standard) when requested by the testing server.</li>
+</ul></li>
 <li><em>User Stories</em>: 
 
 <ul>
@@ -413,7 +429,11 @@ pre[class*="language-"] {
 <li>Optionally provide a recording API, allowing simple recording capabilities such as play/pause/resume/stop, as well as recording retrieval. This capability is browser-dependent.
 
 <ul>
-<li><em>Rationale</em>: In order to evaluate a student&#39;s verbal skills, the device should have the ability to record and playback audio via the browser.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>In order to evaluate a student&#39;s verbal skills, the device should have the ability to record and playback audio via the browser.</li>
+</ul></li>
 <li><em>User Stories</em>: 
 
 <ul>
@@ -432,19 +452,31 @@ pre[class*="language-"] {
 <li>F01. The secure browser shall NOT provide a means to clear browser cache.
 
 <ul>
-<li><em>Rationale</em>: Browser cache is controlled via <code>cache-control</code> headers set from the server side. The server attaches query strings to js/CSS links which allows it to break caches by changing the query string parameters.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Browser cache is controlled via <code>cache-control</code> headers set from the server side. The server attaches query strings to js/CSS links which allows it to break caches by changing the query string parameters.</li>
+</ul></li>
 <li><em>References</em>: Smarter Balanced Secure Browser Contract requirements.</li>
 </ul></li>
 <li>F02. The secure browser shall NOT provide a means to clear browser cookies.
 
 <ul>
-<li><em>Rationale</em>: Browser cookies can be indirectly expired by the server (by setting the cookie&#39;s expiration date to a past date). The next time a user makes a request to a page within the domain or path that set the cookie, the browser will determine that the cookie has expired and remove it.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Browser cookies can be indirectly expired by the server (by setting the cookie&#39;s expiration date to a past date). The next time a user makes a request to a page within the domain or path that set the cookie, the browser will determine that the cookie has expired and remove it.</li>
+</ul></li>
 <li><em>References</em>: Smarter Balanced Secure Browser Contract requirements.</li>
 </ul></li>
 <li>F03. The secure browser may provide a means to clear system clipboard (optional).
 
 <ul>
-<li><em>Rationale</em>: The clipboard is a software facility used for short-term data storage and/or data transfer between documents or applications, via copy and paste operations. Clearing it can eliminate the possibility of the student using the clipboard to maintain assessment-related information.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>The clipboard is a software facility used for short-term data storage and/or data transfer between documents or applications, via copy and paste operations. Clearing it can eliminate the possibility of the student using the clipboard to maintain assessment-related information.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
@@ -454,7 +486,11 @@ pre[class*="language-"] {
 <li>F04. The secure browser may provide a means to retrieve system MAC address (optional).
 
 <ul>
-<li><em>Rationale</em>: A Media Access Control address, better known as MAC address, is a unique identifier assigned to a network adapter or network interface card (NIC) by the manufacturer for identification. Keeping track of MAC addresses allows for troubleshooting machine-specific issues.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>A Media Access Control address, better known as MAC address, is a unique identifier assigned to a network adapter or network interface card (NIC) by the manufacturer for identification. Keeping track of MAC addresses allows for troubleshooting machine-specific issues.</li>
+</ul></li>
 <li><em>User Stories</em>: 
 
 <ul>
@@ -464,7 +500,11 @@ pre[class*="language-"] {
 <li>F05. The secure browser shall NOT provide a means to retrieve the system IP address(es).
 
 <ul>
-<li><em>Rationale</em>:  An Internet Protocol address (IP address) is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. Exposing IP addresses through a browser service can enable hackers to exploit a service on an open port.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>An Internet Protocol address (IP address) is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. Exposing IP addresses through a browser service can enable hackers to exploit a service on an open port.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
@@ -474,7 +514,11 @@ pre[class*="language-"] {
 <li>F06. The secure browser shall NOT provide a means to retrieve the current list of running processes, their PIDs and their PPIDs.
 
 <ul>
-<li><em>Rationale</em>: The process identifier (normally referred to as the process ID or just PID) is a number used by most multiprocessing operating system kernels to uniquely identify an active process. Exposing PID or PPIDs could potentially be misused to compromise student privacy.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>The process identifier (normally referred to as the process ID or just PID) is a number used by most multiprocessing operating system kernels to uniquely identify an active process. Exposing PID or PPIDs could potentially be misused to compromise student privacy.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
@@ -484,7 +528,11 @@ pre[class*="language-"] {
 <li>F07. The secure browser may provide a means to obtain the application start time (optional).
 
 <ul>
-<li><em>Rationale</em>: Application start time provides client-side time of current launch. </li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Application start time provides client-side time of current launch.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
@@ -494,7 +542,11 @@ pre[class*="language-"] {
 <li>F08. The secure browser shall provide a means to query if <code>Spaces</code> is enabled or not, for macOS.
 
 <ul>
-<li><em>Rationale</em> : Spaces enables users to create multiple virtual desktops suited to the unique needs or work habits of the user. A user could, for example, create and assign a &quot;space&quot; to office work, enabling him or her to leave a work-related application (such as a word processor or a spreadsheet) running full screen and then switch to a different space designated for browsing the Internet or navigating file structure in Finder windows.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Spaces enables users to create multiple virtual desktops suited to the unique needs or work habits of the user. A user could, for example, create and assign a &quot;space&quot; to office work, enabling him or her to leave a work-related application (such as a word processor or a spreadsheet) running full screen and then switch to a different space designated for browsing the Internet or navigating file structure in Finder windows.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
@@ -504,7 +556,11 @@ pre[class*="language-"] {
 <li>F15. The secure browser shall provide a means to set permissive mode.
 
 <ul>
-<li><em>Rationale</em>: Permissive mode provides the user with the ability to change configurations for assistive technology tools such as JAWS, during a testing session.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Permissive mode provides the user with the ability to change configurations for assistive technology tools such as JAWS, during a testing session.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
@@ -514,7 +570,11 @@ pre[class*="language-"] {
 <li>F49. The secure browser shall provide a means to query the status of permissive mode.
 
 <ul>
-<li><em>Rationale</em>: Permissive mode provides the user with the ability to change configurations for assistive technology tools such as JAWS, during a testing session.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Permissive mode provides the user with the ability to change configurations for assistive technology tools such as JAWS, during a testing session.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
@@ -524,18 +584,87 @@ pre[class*="language-"] {
 <li>F31. The secure browser shall be able to determine whether blacklisted processes are running on the client machine.
 
 <ul>
-<li><em>Rationale</em> : Applications such as Skype, FaceTime, Outlook or internet browsers could allow students to obtain test answers or share test details from with others. Checking blacklisted process provides ability for the calling application to block user from taking a test if such applications are running.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Applications such as Skype, FaceTime, Outlook or internet browsers could allow students to obtain test answers or share test details from with others. Checking blacklisted process provides ability for the calling application to block user from taking a test if such applications are running.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
 <li>The student begins a test and attempts to switch to an unauthorized application to look for the answer. This would violate test construct and security. This scenario should be blocked.</li>
 </ul></li>
 </ul></li>
-<li>F36. The secure browser shall be able to get device info.</li>
-<li>F37. The secure browser shall be able to lock down the environment.</li>
-<li>F38. The secure browser shall be able to check if environment is secure for testing.</li>
-<li>F46. The secure browser may be able to get the status of a particular browser capability (optional).</li>
-<li>F47. The secure browser may be able to set the status of a particular browser capability (optional).</li>
+<li>F36. The secure browser shall be able to get device info.
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Device info provides application with the ability to identify software/hardware version of the machine. Keeping track of device info allows for troubleshooting machine-specific/operating system specific issues.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>The student takes a test on a particular device and experiences random timeout problems not experienced by other students. The student&#39;s device info can be used to identify and troubleshoot the issue.</li>
+</ul></li>
+</ul></li>
+<li>F37. The secure browser shall be able to lock down the environment.
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>It&#39;s crucial for the browser to prevent the user from browsing to an unauthorized site, since test-related information may be obtained and/or shared with others at that site. Locking down student environment will prevent student from accessing different application like internet browser or Skype to make calls during test session.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student uses internet browser to look for an answer during test session running in secure browser. This would violate test construct and security. This scenario should be blocked.</li>
+</ul></li>
+</ul></li>
+<li>F38. The secure browser shall be able to check if environment is secure for testing.
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>It&#39;s crucial for the browser to prevent the user from browsing to an unauthorized site, since test-related information may be obtained and/or shared with others at that site. Locking down student environment will prevent student from accessing different application like internet browser or Skype to make calls during test session.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>The student uses secure browser for the Test Delivery System, while running other applications searching the internet for answers. This API provides the capability to determine environment is secure, and if not blocks user from taking a test.</li>
+</ul></li>
+</ul></li>
+<li>F46. The secure browser may be able to get the status of a particular browser capability (optional).
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>By requesting a list of secure browser capabilities, the test delivery system can decide which of these must be disabled if necessary. This is a specific requirement for the Microsoft Take-A-Test (TAT) browser, which has capabilities such as screen capture and print. These generally need to be disabled if enabled.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>This API provides the ability for the Test Delivery System to determine whether screen capture, print, etc. is enabled. If so, the Test Delivery System will issue commands to disable those capabilities before starting a test.</li>
+</ul></li>
+</ul></li>
+<li>F47. The secure browser may be able to set the status of a particular browser capability (optional).
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>This is a specific requirement for the Microsoft Take-A-Test (TAT) browser, which has capabilities such as screen capture and print. These generally need to be disabled if enabled.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>This API provides the ability for the Test Delivery System to determine whether screen capture, print, etc. is enabled. If so, the Test Delivery System will issue commands to disable those capabilities before starting a test.</li>
+</ul></li>
+</ul></li>
 </ol>
 
 <h3 id="toc_5">B. Device Related Requirements</h3>
@@ -544,53 +673,86 @@ pre[class*="language-"] {
 <li>F09. The desktop secure browser shall provide a means to get system volume.
 
 <ul>
-<li><em>Rationale</em>: System volume provides the student with the ability to change system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>System volume provides the student with the ability to change system volume settings in the secure browser, as it is open in kiosk/fullscreen mode (where minimization or application switching for the purpose of adjusting the volume) is not allowed.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
-<li>Student is listening to voice output through JAWS and wants to change volume without going into permissive mode, student selects setting and changes system volume.</li>
+<li>Student is listening to voice output through JAWS and wants to change volume without going into permissive mode; student selects setting and changes system volume.</li>
 </ul></li>
 </ul></li>
 <li>F10. The desktop secure browser shall provide a means to set system volume.
 
 <ul>
-<li><em>Rationale</em>: System volume provides the user with the ability to change system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>System volume provides the student with the ability to change system volume settings in the secure browser, as it is open in kiosk/fullscreen mode (where minimization or application switching for the purpose of adjusting the volume) is not allowed.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
-<li>Student is listening to voice output through JAWS and wants to change volume without going into permissive mode, student selects setting and changes system volume.</li>
+<li>Student is listening to voice output through JAWS and wants to change volume without going into permissive mode; student selects setting and changes system volume.</li>
 </ul></li>
 </ul></li>
 <li>F11. The desktop secure browser shall provide a means to mute system volume.
 
 <ul>
-<li><em>Rationale</em>: System mute provides the user with the ability to mute system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>System mute provides the student with the ability to mute system volume settings in the secure browser, as it is open in kiosk/fullscreen mode (where minimization or application switching for the purpose of adjusting the volume) is not allowed.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
-<li>Student is listening to voice output through JAWS and wants to mute system volume without going into permissive mode, student selects setting and mute system volume.</li>
+<li>Student is listening to voice output through JAWS and wants to mute system volume without going into permissive mode; student selects setting and mute system volume.</li>
 </ul></li>
 </ul></li>
 <li>F12. The desktop secure browser shall provide a means to unmute system volume.
 
 <ul>
-<li><em>Rationale</em>: System unmute provides the user with the ability to unmute system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>System unmute provides the student with the ability to unmute system volume settings in the secure browser, as it is open in kiosk/fullscreen mode (where minimization or application switching for the purpose of adjusting the volume) is not allowed.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
-<li>Student is using JAWS and wants to unmute system volume without going into permissive mode, student selects setting and unmute system volume.</li>
+<li>Student is using JAWS and wants to unmute system volume without going into permissive mode; student selects setting and unmute system volume.</li>
 </ul></li>
 </ul></li>
-<li>F13. The desktop secure browser shall provide a means to check if system volume is Muted.</li>
+<li>F13. The desktop secure browser shall provide a means to check if system volume is muted.
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>System Volume is muted status events allow the application to monitor volume settings and make adjustments for UI updates accordingly.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student wants to listen to audio output; application will update UI to show volume is muted or not, and prompt user to unmute the system volume.</li>
+</ul></li>
+</ul></li>
 <li>F14. The desktop secure browser shall provide a means to close the browser.
 
 <ul>
-<li><em>Rationale</em>: Close Browser API provides student with the ability to close secure browser as it is open in kiosk/fullscreen mode where switching to different application is not allowed.</li>
+<li><em>Rationale</em>:
+
+<ul>
+<li>This API provides users with the ability to close the secure browser (as it is open in kiosk/fullscreen mode where switching to different application is not allowed).</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
-<li>Student completed test and want to close the secure browser to continue his/her other assignment on device.</li>
-<li>School Administration team wants to update system or software on the device and want to close the secure browser.</li>
+<li>Student completed a test and wants to close the secure browser to continue his/her other assignment on the current device.</li>
+<li>School Administration team wants to update system or software on the device and wants to close the secure browser.</li>
 </ul></li>
 </ul></li>
 </ol>
@@ -630,7 +792,11 @@ pre[class*="language-"] {
 <li>F19. The secure browser shall provide a means to retrieve list of TTS voice packs available on the machine.
 
 <ul>
-<li><em>Rationale</em>: Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the users. These voice packs provide different languages, regional accents, and gender variants.</li>
+<li><em>Rationale</em>: 
+
+<ul>
+<li>Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the users. These voice packs provide different languages, regional accents, and gender variants.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
@@ -663,48 +829,239 @@ pre[class*="language-"] {
 <li>F23. The secure browser shall provide a means to set a TTS voice pack as the current voice.
 
 <ul>
-<li><em>Rationale</em>: Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the students. These voice packs provide different languages, regional accents, and gender variants.</li>
+<li><em>Rationale</em>: 
+
+<ul>
+<li>Text-to-Speech voice packs are necessary in order to provide a variety of speech languages to the students. These voice packs provide different languages, regional accents, and gender variants.</li>
+</ul></li>
 <li><em>User Stories</em>:
 
 <ul>
 <li>Student is listening to TTS voice output but has difficulty understanding the voice output due to a voice&#39;s regional accent. The student is able to select a different voice pack for Text-to-Speech via the browser.</li>
 </ul></li>
 </ul></li>
-<li>F28. The secure browser shall provide a means to get/set TTS pitch.</li>
-<li>F29. The secure browser shall provide a means to get/set TTS rate.</li>
-<li>F30. The secure browser shall provide a means to get/set TTS volume.</li>
+<li>F28. The secure browser shall provide a means to get/set TTS pitch.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student is listening to TTS voice output but has difficulty understanding the voice output due to a voice&#39;s pitch. The student is able to change pitch settings for Text-to-Speech via the browser.</li>
+</ul></li>
+</ul></li>
+<li>F29. The secure browser shall provide a means to get/set TTS rate.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student is listening to TTS voice output but has difficulty understanding the voice output due to a voice&#39;s rate. The student is able to change rate settings for Text-to-Speech via the browser.</li>
+</ul></li>
+</ul></li>
+<li>F30. The secure browser shall provide a means to get/set TTS volume.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student is listening to TTS voice output but has difficulty understanding the voice output due to a volume. The student is able to change volume settings for Text-to-Speech via the browser.</li>
+</ul></li>
+</ul></li>
 </ol>
 
 <h3 id="toc_7">D. Audio Recording Related Requirements</h3>
 
 <p>These requirements are optional.</p>
 
+<p><em>Rationale</em>: English Language Proficiency Assessment for the 21st Century (ELPA21) assessment measures and reports on students’ English language proficiency (ELP) in reading, writing, speaking, listening, and comprehension. Audio recorder and playback allows users to listen to audio-based questions and record a verbal answer during an ELP test session. Users may need to interact with Audio Recording (Start/Stop Recording) and Playback (stop, pause, play, etc.) for a variety of reasons. For example, a user recorded a verbal answer but the room was noisy and audio quality was not good; the user can stop recording and record the answer again. </p>
+
 <ol>
-<li>F50. The secure browser may provide a means to initialize the audio recording system.</li>
-<li>F25. The secure browser may provide a means to start an audio recording.</li>
-<li>F26. The secure browser may provide a means to stop an audio recording.</li>
-<li>F27. The secure browser may provide a means to playback an audio recording.</li>
-<li>F40. The secure browser may provide a means to set audio recorder status.</li>
-<li>F41. The secure browser may provide a means to get audio recorder capabilities.</li>
-<li>F42. The secure browser may provide a means to retrieve a recording for playback.</li>
-<li>F43. The secure browser may provide a means to stop playback.</li>
-<li>F44. The secure browser may provide a means to pause playback.</li>
-<li>F45. The secure browser may provide a means to resume playback of a paused audio recording.</li>
-<li>F48. The secure browser may provide a means to list all available audio recordings.</li>
-<li>F51. The secure browser may provide a means to retrieve an audio file from a filename.</li>
+<li>F50. The secure browser may provide a means to initialize the audio recording system.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student wants to answer a question verbally and directs the browser to initialize audio recording system.</li>
+</ul></li>
+</ul></li>
+<li>F25. The secure browser may provide a means to start an audio recording.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student wants to answer a question verbally and directs the browser to start recording for selected question.</li>
+</ul></li>
+</ul></li>
+<li>F26. The secure browser may provide a means to stop an audio recording.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student is finished with recording a verbal answer and directs the browser to stop the recording.</li>
+</ul></li>
+</ul></li>
+<li>F27. The secure browser may provide a means to playback an audio recording.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student is finished with recording a verbal answer and wants to listen to it. Audio API playback will provide a means for the student to listen to recorded the output.</li>
+</ul></li>
+</ul></li>
+<li>F40. The secure browser may provide a means to set audio recorder status.
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Audio recorder status event allows the application of recording progress and makes adjustments for UI updates accordingly.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student wants to record a answer. Application will update the UI to show audio recorder is ready for recording or any error occurred and cannot continue with recording.</li>
+<li>Student is finished with recording and stops the recording. Application will update the UI to show audio recording is stopped.</li>
+</ul></li>
+</ul></li>
+<li>F41. The secure browser may provide a means to get audio recorder capabilities.
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Audio recorder capabilities are necessary in order to provide a list of supported media output devices (speakers, headphones, etc.) on a given machine, to the user.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student wants to record an answer but realizes that the default microphone is not the microphone attached externally and wants to select desired microphone to record a verbal response.</li>
+</ul></li>
+</ul></li>
+<li>F42. The secure browser may provide a means to retrieve a recording for playback.
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Multiple recordings may have been made by a user during a particular test or question. This capability allows for retrieving one of those recordings.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student is finished with the recording and wants to review it. The student does so and the browser outputs this recorded audio through the selected output device.</li>
+</ul></li>
+</ul></li>
+<li>F43. The secure browser may provide a means to stop playback.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student is finished listening to the audio playback of recorded voice, and directs the browser to stop playing it.</li>
+</ul></li>
+</ul></li>
+<li>F44. The secure browser may provide a means to pause playback.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student needs to pause the currently active audio playback, and directs the browser to pause the playback.</li>
+</ul></li>
+</ul></li>
+<li>F45. The secure browser may provide a means to resume playback of a paused audio recording.
+
+<ul>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student desires to continue the previously paused playback, and directs the browser to resume audio playback from where it was last paused.</li>
+</ul></li>
+</ul></li>
+<li>F48. The secure browser may provide a means to list all available audio recordings.
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>An audio recording list is necessary in order to display available recorded answers provided for either a question or an entire test.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student provided multiple verbal answers for different section of a question and wants to review all recorded answers for that question. </li>
+</ul></li>
+</ul></li>
+<li>F51. The secure browser may provide a means to retrieve an audio file from a filename.
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>When a list of recordings is available, this API allows the selection and retrieval of a specific recorded answer for review.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Student provided multiple verbal answers for different sections of a question and wants to review a particular recorded response.</li>
+</ul></li>
+</ul></li>
 </ol>
 
 <h3 id="toc_8">E. Standards Compliance Requirements</h3>
 
 <ol>
-<li>F32. The secure browser shall be HTML5 compliant.</li>
-<li>F34. The secure browser shall be CSS3 compliant.</li>
+<li>F32. The secure browser shall be HTML5 compliant.
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>HTML5 compliance makes creating websites easier for a variety of reasons such as: semantics, ARIA support, video and audio support, smarter storage, mobile support, faithful content rendering, etc.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>A student needing to access a video/audio-based question with a non-HTML5-compliant browser could not rely on standard HTML5 support for video and audio tags. Instead, the application would have to rely on Flash Player or other third party media players to access audio and video. That content may not be available in all formats and the student would not be presented with the appropriate material for the question.</li>
+</ul></li>
+</ul></li>
+<li>F34. The secure browser shall be CSS3 compliant.
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>CSS3 compliance in a browser ensures that content is faithfully and properly rendered on all CSS3 compliant platforms.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>The test delivery system provides custom themes for different state clients. With CSS3 it will be easy to change backgrounds and images as it is simple and independent, unlike CSS2 which came as one big package.</li>
+</ul></li>
+</ul></li>
 </ol>
 
 <h3 id="toc_9">F. Miscellaneous Requirements</h3>
 
 <ol>
-<li>F35. The secure browser shall check for an appropriate Global Object for API use.</li>
+<li>F35. The secure browser shall check for an appropriate Global Object for API use.
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>The Global object will represents the secure browser specific API object namespace. Keeping all security, Text-to-Speech, audio, settings, and similar APIs under a global object encourages  unification of secure browser APIs across different operating system and reduces the amount of code maintained in Test Delivery Systems needed to access different functions of the secure browser.</li>
+</ul></li>
+<li><em>User Stories</em>:
+
+<ul>
+<li>Having a unique global object increases application security by allowing the test delivery systems to verify that the browser is indeed an API-compatible secure browser. It helps reduce the possibility that a student might override security by spoofing its user agent string.</li>
+</ul></li>
+</ul></li>
 <li>F52. The Secure Browser shall support the Secure Browser Launch Protocol as defined in [2].</li>
 </ol>
 

@@ -1,6 +1,6 @@
 # Secure Browser Functional Requirements
 
-v.2.1.9 - Last modified 15-Sep-2017
+v.2.1.10 - Last modified 18-Sep-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -110,47 +110,47 @@ Most of the high level functional requirements listed below are implemented by t
 		* The student uses secure browser for the Test Delivery System, while running other applications searching the internet for answers. This API provides the capability to determine environment is secure, and if not blocks user from taking a test.
 1. F46. The secure browser may be able to get the status of a particular browser capability (optional).
 	* _Rationale_:
-		* Browser capability will provide information on capabilities like screen capture, print, etc. on MS-TAT browser.
+		* By requesting a list of secure browser capabilities, the test delivery system can decide which of these must be disabled if necessary. This is a specific requirement for the Microsoft Take-A-Test (TAT) browser, which has capabilities such as screen capture and print. These generally need to be disabled if enabled.
 	* _User Stories_:
-		* This API provides the ability for the Test Delivery System to determine whether screen capture, print, etc. is enabled or not if enabled Test Delivery System disable those capabilities before starting any items to answer.
+		* This API provides the ability for the Test Delivery System to determine whether screen capture, print, etc. is enabled. If so, the Test Delivery System will issue commands to disable those capabilities before starting a test.
 1. F47. The secure browser may be able to set the status of a particular browser capability (optional).
 	* _Rationale_:
-		* Browser capability will provide information on capabilities like screen capture, print, etc. on MS-TAT browser.
+		* This is a specific requirement for the Microsoft Take-A-Test (TAT) browser, which has capabilities such as screen capture and print. These generally need to be disabled if enabled.
 	* _User Stories_:
-		* This API provides the ability for the Test Delivery System to determine whether screen capture, print, etc. is enabled or not if enabled Test Delivery System disable those capabilities before starting any items to answer.
+		* This API provides the ability for the Test Delivery System to determine whether screen capture, print, etc. is enabled. If so, the Test Delivery System will issue commands to disable those capabilities before starting a test.
 
 ### B. Device Related Requirements
 1. F09. The desktop secure browser shall provide a means to get system volume.
 	* _Rationale_:
-		* System volume provides the student with the ability to change system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.
+		* System volume provides the student with the ability to change system volume settings in the secure browser, as it is open in kiosk/fullscreen mode (where minimization or application switching for the purpose of adjusting the volume) is not allowed.
 	* _User Stories_:
-		* Student is listening to voice output through JAWS and wants to change volume without going into permissive mode, student selects setting and changes system volume.
+		* Student is listening to voice output through JAWS and wants to change volume without going into permissive mode; student selects setting and changes system volume.
 1. F10. The desktop secure browser shall provide a means to set system volume.
 	* _Rationale_:
-		* System volume provides the user with the ability to change system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.
+		* System volume provides the student with the ability to change system volume settings in the secure browser, as it is open in kiosk/fullscreen mode (where minimization or application switching for the purpose of adjusting the volume) is not allowed.
 	* _User Stories_:
-		* Student is listening to voice output through JAWS and wants to change volume without going into permissive mode, student selects setting and changes system volume.
+		* Student is listening to voice output through JAWS and wants to change volume without going into permissive mode; student selects setting and changes system volume.
 1. F11. The desktop secure browser shall provide a means to mute system volume.
 	* _Rationale_:
-		* System mute provides the user with the ability to mute system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.
+		* System mute provides the student with the ability to mute system volume settings in the secure browser, as it is open in kiosk/fullscreen mode (where minimization or application switching for the purpose of adjusting the volume) is not allowed.
 	* _User Stories_:
-		* Student is listening to voice output through JAWS and wants to mute system volume without going into permissive mode, student selects setting and mute system volume.
+		* Student is listening to voice output through JAWS and wants to mute system volume without going into permissive mode; student selects setting and mute system volume.
 1. F12. The desktop secure browser shall provide a means to unmute system volume.
 	* _Rationale_:
-		* System unmute provides the user with the ability to unmute system volume settings in secure browser as it is open in kiosk/fullscreen mode where minimization of secure browser is not allowed to access volume setting.
+		* System unmute provides the student with the ability to unmute system volume settings in the secure browser, as it is open in kiosk/fullscreen mode (where minimization or application switching for the purpose of adjusting the volume) is not allowed.
 	* _User Stories_:
-		* Student is using JAWS and wants to unmute system volume without going into permissive mode, student selects setting and unmute system volume.
-1. F13. The desktop secure browser shall provide a means to check if system volume is Muted.
+		* Student is using JAWS and wants to unmute system volume without going into permissive mode; student selects setting and unmute system volume.
+1. F13. The desktop secure browser shall provide a means to check if system volume is muted.
 	* _Rationale_:
 		* System Volume is muted status events allow the application to monitor volume settings and make adjustments for UI updates accordingly.
 	* _User Stories_:
-		* Student wants to listen to audio output, application will update UI to show volume is muted or not, and prompt user to unmute the system volume.
+		* Student wants to listen to audio output; application will update UI to show volume is muted or not, and prompt user to unmute the system volume.
 1. F14. The desktop secure browser shall provide a means to close the browser.
 	* _Rationale_:
-		* Close Browser API provides student with the ability to close secure browser as it is open in kiosk/fullscreen mode where switching to different application is not allowed.
+		* This API provides users with the ability to close the secure browser (as it is open in kiosk/fullscreen mode where switching to different application is not allowed).
 	* _User Stories_:
-		* Student completed test and want to close the secure browser to continue his/her other assignment on device.
-		* School Administration team wants to update system or software on the device and want to close the secure browser.
+		* Student completed a test and wants to close the secure browser to continue his/her other assignment on the current device.
+		* School Administration team wants to update system or software on the device and wants to close the secure browser.
 
 ### C. Text-to-Speech (TTS) Related Requirements
 
@@ -196,7 +196,7 @@ _Rationale_: Text-to-Speech, abbreviated as TTS, is a form of speech synthesis t
 ### D. Audio Recording Related Requirements
 These requirements are optional.
 
-_Rationale_: English Language Proficiency Assessment for the 21st Century (ELPA21) assessment measures and reports on students’ English language proficiency(ELP) in reading, writing, speaking, listening, and comprehension. Audio recorder and playback will allow user to listen to audio based question and record a verbal answer during ELP test session. Users may need to interact with Audio Recording(Start and Stop Recording) and Playback(stop,pause,play, etc.) for a variety of reasons. For example, user recorded a verbal answer but the room was noisy and audio quality was not good, so user can stop recording and record answer again. 
+_Rationale_: English Language Proficiency Assessment for the 21st Century (ELPA21) assessment measures and reports on students’ English language proficiency (ELP) in reading, writing, speaking, listening, and comprehension. Audio recorder and playback allows users to listen to audio-based questions and record a verbal answer during an ELP test session. Users may need to interact with Audio Recording (Start/Stop Recording) and Playback (stop, pause, play, etc.) for a variety of reasons. For example, a user recorded a verbal answer but the room was noisy and audio quality was not good; the user can stop recording and record the answer again. 
 
 1. F50. The secure browser may provide a means to initialize the audio recording system.
 	* _User Stories_:
@@ -206,26 +206,26 @@ _Rationale_: English Language Proficiency Assessment for the 21st Century (ELPA2
 		* Student wants to answer a question verbally and directs the browser to start recording for selected question.
 1. F26. The secure browser may provide a means to stop an audio recording.
 	* _User Stories_:
-		* Student is finished with the recording verbal answer and directs the browser to stop the recording.
+		* Student is finished with recording a verbal answer and directs the browser to stop the recording.
 1. F27. The secure browser may provide a means to playback an audio recording.
 	* _User Stories_:
-		* Student is finished with recording verbal anser and want to listen to the recorded answer, Audio API playback will provide means for student to listen to recorded output.
+		* Student is finished with recording a verbal answer and wants to listen to it. Audio API playback will provide a means for the student to listen to recorded the output.
 1. F40. The secure browser may provide a means to set audio recorder status.
 	* _Rationale_:
-		* Audio recorder status event allow the application of recording progress and make adjustments for UI updates accordingly.
+		* Audio recorder status event allows the application of recording progress and makes adjustments for UI updates accordingly.
 	* _User Stories_:
-		* Student wants to record a answer, application will update UI to show audio recorder is ready for recording or any error occured and cannot continue with recording.
-		* Student is finished with recording and stops the recording, application will update UI to show audio recording is stopped.
+		* Student wants to record a answer. Application will update the UI to show audio recorder is ready for recording or any error occurred and cannot continue with recording.
+		* Student is finished with recording and stops the recording. Application will update the UI to show audio recording is stopped.
 1. F41. The secure browser may provide a means to get audio recorder capabilities.
 	* _Rationale_:
-		* Audio recorder capabilities are necessary in order to provide a list of supporting media device (speaker, headphones, etc.) on given machine to the students.
+		* Audio recorder capabilities are necessary in order to provide a list of supported media output devices (speakers, headphones, etc.) on a given machine, to the user.
 	* _User Stories_:
-		* Student wants to record an answer but realize that default microphone is not the microphone attached externally and wants to select desired microphone to record verbal answer.
+		* Student wants to record an answer but realizes that the default microphone is not the microphone attached externally and wants to select desired microphone to record a verbal response.
 1. F42. The secure browser may provide a means to retrieve a recording for playback.
 	* _Rationale_:
-		* Retrive recording provide ability to application to get recording which was recorded for a given question.
+		* Multiple recordings may have been made by a user during a particular test or question. This capability allows for retrieving one of those recordings.
 	* _User Stories_:
-		* User is finished with the recording and wants to playback the recording for a question. User select the play recording. The browser outputs this recorded audio in a audio output playback.
+		* Student is finished with the recording and wants to review it. The student does so and the browser outputs this recorded audio through the selected output device.
 1. F43. The secure browser may provide a means to stop playback.
 	* _User Stories_:
 		* Student is finished listening to the audio playback of recorded voice, and directs the browser to stop playing it.
@@ -237,33 +237,33 @@ _Rationale_: English Language Proficiency Assessment for the 21st Century (ELPA2
 		* Student desires to continue the previously paused playback, and directs the browser to resume audio playback from where it was last paused.
 1. F48. The secure browser may provide a means to list all available audio recordings.
 	* _Rationale_:
-		* Audio recordings list is necessary in order to get multiple recorded answer provided for a question or for an entire test.
+		* An audio recording list is necessary in order to display available recorded answers provided for either a question or an entire test.
 	* _User Stories_:
-		* Student provided multiple verbal answer for different section of a question and wants to review all recorded answer of a question. 
+		* Student provided multiple verbal answers for different section of a question and wants to review all recorded answers for that question. 
 1. F51. The secure browser may provide a means to retrieve an audio file from a filename.
 	* _Rationale_:
-		* Retriving audio file from filename provides an application with a capability to get selective recorded answer for a given test during review.
+		* When a list of recordings is available, this API allows the selection and retrieval of a specific recorded answer for review.
 	* _User Stories_:
-		* Student provided multiple verbal answer for different section of a question and wants to review particular recorded response.
+		* Student provided multiple verbal answers for different sections of a question and wants to review a particular recorded response.
 
 ### E. Standards Compliance Requirements
 1. F32. The secure browser shall be HTML5 compliant.
 	* _Rationale_:
-		* HTML5 compliant browser makes creating websites easier for various reasons like: semantics, ARIA, video and audio support, smarter storage, mobile support, etc.
+		* HTML5 compliance makes creating websites easier for a variety of reasons such as: semantics, ARIA support, video and audio support, smarter storage, mobile support, faithful content rendering, etc.
 	* _User Stories_:
-		* Student wants to access video/audio based question, without HTML5 support for video and audio tag, application has to rely on Flash Player and other third party media players to access audio and video.
+		* A student needing to access a video/audio-based question with a non-HTML5-compliant browser could not rely on standard HTML5 support for video and audio tags. Instead, the application would have to rely on Flash Player or other third party media players to access audio and video. That content may not be available in all formats and the student would not be presented with the appropriate material for the question.
 1. F34. The secure browser shall be CSS3 compliant.
 	* _Rationale_:
-		* CSS3 compliant browser makes creating websites easier for various reasons like: platform independent and cross browser compatible, attractive backgrounds, images and animations, etc.
+		* CSS3 compliance in a browser ensures that content is faithfully and properly rendered on all CSS3 compliant platforms.
 	* _User Stories_:
-		* Test delivery system wants to provide different themes for different state clients, with CSS3 it will be easy to change backgrounds and images as it is simple and independent, unlike CSS2 which came as one big package.
+		* The test delivery system provides custom themes for different state clients. With CSS3 it will be easy to change backgrounds and images as it is simple and independent, unlike CSS2 which came as one big package.
 
 ### F. Miscellaneous Requirements
 1. F35. The secure browser shall check for an appropriate Global Object for API use.
 	* _Rationale_:
-		* The Global object will represents the secure browser specific API object namespace, Keeping all security, Text-to-Speech, Audio, settings etc. API under Global Object will allow unification of API across different operating system in secure browser and reduce amount of code maintained in Test Delivery System to access different function of secure browser.
+		* The Global object will represents the secure browser specific API object namespace. Keeping all security, Text-to-Speech, audio, settings, and similar APIs under a global object encourages  unification of secure browser APIs across different operating system and reduces the amount of code maintained in Test Delivery Systems needed to access different functions of the secure browser.
 	* _User Stories_:
-		* Global object helps application to verify that browser is secure browser and not mock version of secure browser using user agent override.
+		* Having a unique global object increases application security by allowing the test delivery systems to verify that the browser is indeed an API-compatible secure browser. It helps reduce the possibility that a student might override security by spoofing its user agent string.
 2. F52. The Secure Browser shall support the Secure Browser Launch Protocol as defined in [2].
 
 ## References

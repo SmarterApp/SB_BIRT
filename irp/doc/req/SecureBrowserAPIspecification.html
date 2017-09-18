@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser API Specification</h1>
 
-<p>v.2.1.4 - Last modified 6-Jul-2017</p>
+<p>v.2.1.6 - Last modified 18-Sep-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -514,7 +514,7 @@ The testing application will invoke this to perform client side text to speech s
 <li><code>remote</code> (optional) - boolean value indicating whether the speech synthesis is remote or local.</li>
 <li><code>voiceURI</code> (optional) - Returns the type of URI and location of the speech synthesis service for this voice.</li>
 <li><code>rate</code> (optional) - Speech playback rate, ranging from 1 to 20, where 10 is the default, 20 is twice as fast as 10, and 5 is half as fast as 10. 1 is the slowest available playback rate.</li>
-<li><code>pitch</code> (optional) - Speech pitch, ranging from 1 to 20, where 10 is the default, but the actual pitch is voicepack dependent.</li>
+<li><code>pitch</code> (optional) - Speech pitch, ranging from 1 to 20, where 10 is the default, but the actual pitch is voicepack dependent. A pitch value of 0 will be treated as 1.</li>
 <li><code>volume</code> (optional) - Speech volume, ranging from 0 to 10: where 5 is the default and 10 is twice as loud as 5. 0 will mute TTS. The speech volume is dependent on the system volume.</li>
 <li><code>gender</code> (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: &quot;male&quot;, &quot;female&quot;, &quot;neutral&quot;. This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.</li>
 </ul>
@@ -709,25 +709,27 @@ The testing application will invoke this to perform client side text to speech s
 
 <p>For example: </p>
 
-<div><pre><code class="language-none">{ isAvailable: true,
-supportedInputDevices: [{
-id: 0
-description: &#39;Sample Input Desc&#39;,
-sampleSizes: [8, 16], // in bits
-sampleRates: [8, 11], // in kHz
-channels: [1, 2],
-encodingFormats: [&#39;SPX&#39;],
-default: true // One entry should be flagged as the default devices
-}],
-supportedOutputDevices: [{
-id: 1,
-description: &#39;Sample Output Desc&#39;,
-sampleSizes: [8, 16],
-sampleRates: [22050, 44100],
-channels: [1, 2],
-encodingFormats: [&#39;SPX&#39;],
-default: true
-}]}</code></pre></div>
+<div><pre><code class="language-none">{
+    isAvailable: true,
+    supportedInputDevices: [{
+        id: 0
+        description: &#39;Sample Input Desc&#39;,
+        sampleSizes: [8, 16], // in bits
+        sampleRates: [8, 11], // in kHz
+        channels: [1, 2],
+        encodingFormats: [&#39;SPX&#39;],
+        default: true // One entry should be flagged as the default devices
+        }],
+    supportedOutputDevices: [{
+        id: 1,
+        description: &#39;Sample Output Desc&#39;,
+        sampleSizes: [8, 16],
+        sampleRates: [22050, 44100],
+        channels: [1, 2],
+        encodingFormats: [&#39;SPX&#39;],
+        default: true
+    }]
+}</code></pre></div>
 
 <p>If the object literal returned is null or undefined, we encountered an error.</p></li>
 <li><p>R28. <strong>Initiate audio capture</strong>. This method is called to initiate capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE.</p>
@@ -771,11 +773,26 @@ default: true
 
 <p><code>void SecureBrowser.recorder.play(b64audio, function callback)</code></p>
 
-<p>The callback function is expecting the following events:</p>
+<p>The callback function should be of the following form:</p>
+
+<p><code>function(jsonliteral) {...}</code></p>
+
+<p>With these values for jsonliteral:</p>
 
 <ul>
-<li><code>PLAYBACK_START</code> - Playback has started. The event includes the id of the audio passed in </li>
-<li><code>PLAYBACK_STOPPED</code> - Playback has stopped (either because the audio stream is done, <code>pausePlayback()</code> or <code>stopPlayback()</code> has been invoked). The event includes the id of the audio passed in.</li>
+<li><p>On Success : <code>{type : &#39;VALUE&#39;}</code> where possible values are: <code>PLAYBACK_STOPPED</code>, <code>PLAYBACK_START</code>, <code>PLAYBACK_RESUMED</code>, <code>PLAYBACK_PAUSED</code>, <code>PLAYBACK_STOPPED</code>, and <code>PLAYBACK_ERROR</code>.</p></li>
+<li><p>On Error : <code>{ state : &quot;error&quot;}</code></p></li>
+</ul>
+
+<p>and expects the following events:</p>
+
+<ul>
+<li><code>PLAYBACK_START</code> - Playback has started. The event includes the ID of the audio passed in. </li>
+<li><code>PLAYBACK_STOPPED</code> - Playback has stopped (either because the audio stream is done, or either <code>pausePlayback()</code> or <code>stopPlayback()</code> has been invoked).</li>
+<li><code>PLAYBACK_RESUMED</code> - Playback has been resumed from a previous <code>PLAYBACK_STOPPED</code> state. </li>
+<li><code>PLAYBACK_PAUSED</code> - Playback has been paused.</li>
+<li><code>PLAYBACK_ERROR</code> - This type of error is likely due to problems playing back the audio content.</li>
+<li><code>error</code> - The browser will return this value only when there is an issue retrieving data from the audio file.</li>
 </ul></li>
 <li><p>R32. <strong>Stop playback</strong>. This method is invoked to stop an ongoing audio playback. Throws error if status is currently not &quot;PLAYING&quot;.</p>
 
