@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.1.4 - Last modified 6-Jul-2017
+v.2.1.5 - Last modified 18-Sep-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -339,27 +339,30 @@ The APIs in this section are optional. As such, it is good programming practice 
 	
 	For example: 
 
-	```
-	{ isAvailable: true,
-supportedInputDevices: [{
-  id: 0
-  description: 'Sample Input Desc',
-  sampleSizes: [8, 16], // in bits
-  sampleRates: [8, 11], // in kHz
-  channels: [1, 2],
-  encodingFormats: ['SPX'],
-  default: true // One entry should be flagged as the default devices
-}],
-supportedOutputDevices: [{
-  id: 1,
-  description: 'Sample Output Desc',
-  sampleSizes: [8, 16],
-  sampleRates: [22050, 44100],
-  channels: [1, 2],
-  encodingFormats: ['SPX'],
-  default: true
-}]}
-	```
+  ```
+	{
+		isAvailable: true,
+		supportedInputDevices: [{
+  			id: 0
+  			description: 'Sample Input Desc',
+  			sampleSizes: [8, 16], // in bits
+  			sampleRates: [8, 11], // in kHz
+  			channels: [1, 2],
+  			encodingFormats: ['SPX'],
+  			default: true // One entry should be flagged as the default devices
+			}],
+		supportedOutputDevices: [{
+  			id: 1,
+  			description: 'Sample Output Desc',
+  			sampleSizes: [8, 16],
+  			sampleRates: [22050, 44100],
+  			channels: [1, 2],
+  			encodingFormats: ['SPX'],
+  			default: true
+		}]
+	}
+  ```
+
 	If the object literal returned is null or undefined, we encountered an error.
 
 1. R28. **Initiate audio capture**. This method is called to initiate capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE.
