@@ -1,5 +1,5 @@
 # Secure Browser API Specification
-v.2.1.4 - Last modified 6-Jul-2017
+v.2.1.6 - Last modified 18-Sep-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -158,7 +158,7 @@ The following Secure Browser Application Programming Interface (API) endpoints d
    * `remote` (optional) - boolean value indicating whether the speech synthesis is remote or local.
    * `voiceURI` (optional) - Returns the type of URI and location of the speech synthesis service for this voice.
    * `rate` (optional) - Speech playback rate, ranging from 1 to 20, where 10 is the default, 20 is twice as fast as 10, and 5 is half as fast as 10. 1 is the slowest available playback rate.
-   * `pitch` (optional) - Speech pitch, ranging from 1 to 20, where 10 is the default, but the actual pitch is voicepack dependent.
+   * `pitch` (optional) - Speech pitch, ranging from 1 to 20, where 10 is the default, but the actual pitch is voicepack dependent. A pitch value of 0 will be treated as 1.
    * `volume` (optional) - Speech volume, ranging from 0 to 10: where 5 is the default and 10 is twice as loud as 5. 0 will mute TTS. The speech volume is dependent on the system volume.
    * `gender` (optional) - Indicates the preferred gender of the voice to speak the contained text. Enumerated values are: "male", "female", "neutral". This optional attribute can be used to narrow down the available voice names if more than one voice pack matches the specified voice name.
 
@@ -339,27 +339,30 @@ The APIs in this section are optional. As such, it is good programming practice 
 	
 	For example: 
 
-	```
-	{ isAvailable: true,
-supportedInputDevices: [{
-  id: 0
-  description: 'Sample Input Desc',
-  sampleSizes: [8, 16], // in bits
-  sampleRates: [8, 11], // in kHz
-  channels: [1, 2],
-  encodingFormats: ['SPX'],
-  default: true // One entry should be flagged as the default devices
-}],
-supportedOutputDevices: [{
-  id: 1,
-  description: 'Sample Output Desc',
-  sampleSizes: [8, 16],
-  sampleRates: [22050, 44100],
-  channels: [1, 2],
-  encodingFormats: ['SPX'],
-  default: true
-}]}
-	```
+  ```
+	{
+		isAvailable: true,
+		supportedInputDevices: [{
+  			id: 0
+  			description: 'Sample Input Desc',
+  			sampleSizes: [8, 16], // in bits
+  			sampleRates: [8, 11], // in kHz
+  			channels: [1, 2],
+  			encodingFormats: ['SPX'],
+  			default: true // One entry should be flagged as the default devices
+			}],
+		supportedOutputDevices: [{
+  			id: 1,
+  			description: 'Sample Output Desc',
+  			sampleSizes: [8, 16],
+  			sampleRates: [22050, 44100],
+  			channels: [1, 2],
+  			encodingFormats: ['SPX'],
+  			default: true
+		}]
+	}
+  ```
+
 	If the object literal returned is null or undefined, we encountered an error.
 
 1. R28. **Initiate audio capture**. This method is called to initiate capture.  Throws error if called prior to successful initialization. Throws errors if the options passed in are not supported on the device. Throws error if capture status is currently not IDLE.
@@ -400,10 +403,24 @@ supportedOutputDevices: [{
 
 	`void SecureBrowser.recorder.play(b64audio, function callback)`
     
-    The callback function is expecting the following events:
+    The callback function should be of the following form:
 
-    * `PLAYBACK_START` - Playback has started. The event includes the id of the audio passed in 
-    * `PLAYBACK_STOPPED` - Playback has stopped (either because the audio stream is done, `pausePlayback()` or `stopPlayback()` has been invoked). The event includes the id of the audio passed in.
+    `function(jsonliteral) {...}`
+
+    With these values for jsonliteral:
+    
+    * On Success : `{type : 'VALUE'}` where possible values are: `PLAYBACK_STOPPED`, `PLAYBACK_START`, `PLAYBACK_RESUMED`, `PLAYBACK_PAUSED`, `PLAYBACK_STOPPED`, and `PLAYBACK_ERROR`.
+    
+    * On Error : `{ state : "error"}`
+    
+    and expects the following events:
+
+    * `PLAYBACK_START` - Playback has started. The event includes the ID of the audio passed in. 
+    * `PLAYBACK_STOPPED` - Playback has stopped (either because the audio stream is done, or either `pausePlayback()` or `stopPlayback()` has been invoked).
+    * `PLAYBACK_RESUMED` - Playback has been resumed from a previous `PLAYBACK_STOPPED` state. 
+    * `PLAYBACK_PAUSED` - Playback has been paused.
+    * `PLAYBACK_ERROR` - This type of error is likely due to problems playing back the audio content.
+    * `error` - The browser will return this value only when there is an issue retrieving data from the audio file.
 
 1. R32. **Stop playback**. This method is invoked to stop an ongoing audio playback. Throws error if status is currently not "PLAYING".
 
