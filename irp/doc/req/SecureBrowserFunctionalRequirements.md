@@ -1,6 +1,6 @@
 # Secure Browser Functional Requirements
 
-v.2.1.11 - Last modified 04-Oct-2017
+v.2.2 - Last modified 06-Oct-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
@@ -42,12 +42,17 @@ At a high level, the Secure Browser must do the following:
    * _User Stories_: 
       * The student starts a test on the secure browser. The testing server displays a test item, and the student attempts to navigate outside of the test to look up the answer. The browser must prevent this from happening.
 
-7. The browser must disable general purpose capabilities such as spell check, auto correct, auto-fill forms, etc. as using them could affect the measurement.
+7. The browser must disable general purpose capabilities such as spell check, auto correct, auto-fill forms, dictionaries, etc. as using them could affect the measurement.
    * _Rationale_:
 	  * Student should not be able to use built-in browser capabilities to assist them in answering test questions.
    * _User Stories_: 
       * The student starts a test on the secure browser. The testing server displays a test item which requires the student to select the misspelled words in the provided paragraph. If the browser provided spell-check or autocorrect, it would be simple for the student to leverage those tools instead of his/her knowledge in answering the question. The browser must prevent this from happening.
 
+8. The browser must have the ability to prevent or detect that accessibility features like VoiceOver are turned on.
+   * _Rationale_:
+	  * In certain cases, students may require access to accessibility features such as VoiceOver. In other cases, access to such assistive technologies is not allowed. The browser should be able to detect and block these features depending on configurable parameters related to the logged-in student.
+   * _User Stories_: 
+      * The student starts a test on the secure browser. The testing server displays a test item which requires the student to select the misspelled words in the provided paragraph. If the browser provided spell-check or autocorrect, it would be simple for the student to leverage those tools instead of his/her knowledge in answering the question. The browser must prevent this from happening.
 
 Most of the high level functional requirements listed below are implemented by the Secure Browser API Specification [1].
 
