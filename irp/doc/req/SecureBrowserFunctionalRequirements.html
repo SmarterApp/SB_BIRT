@@ -357,7 +357,7 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser Functional Requirements</h1>
 
-<p>v.2.1.10 - Last modified 18-Sep-2017</p>
+<p>v.2.1.11 - Last modified 04-Oct-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
@@ -426,7 +426,7 @@ pre[class*="language-"] {
 <li>The student starts a test on the secure browser. The testing server requests that certain assessment items be read out loud to the student. The server makes appropriate API calls to effect this.</li>
 </ul></li>
 </ul></li>
-<li>Optionally provide a recording API, allowing simple recording capabilities such as play/pause/resume/stop, as well as recording retrieval. This capability is browser-dependent.
+<li><p>Optionally provide a recording API, allowing simple recording capabilities such as play/pause/resume/stop, as well as recording retrieval. This capability is browser-dependent.</p>
 
 <ul>
 <li><em>Rationale</em>:
@@ -438,6 +438,34 @@ pre[class*="language-"] {
 
 <ul>
 <li>The student starts a test on the secure browser. The testing server displays a test item and requests that the student provide a verbal response. The server makes appropriate API calls to effect this.</li>
+</ul></li>
+</ul></li>
+<li><p>The browser must prevent a student from navigating away to other sites (for example, by enabling kiosk mode or removing the navigation buttons).</p>
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>A student should not be able to browse to a website where they might be able to obtain information that may assist them in answering test questions.</li>
+</ul></li>
+<li><em>User Stories</em>: 
+
+<ul>
+<li>The student starts a test on the secure browser. The testing server displays a test item, and the student attempts to navigate outside of the test to look up the answer. The browser must prevent this from happening.</li>
+</ul></li>
+</ul></li>
+<li><p>The browser must disable general purpose capabilities such as spell check, auto correct, auto-fill forms, etc. as using them could affect the measurement.</p>
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Student should not be able to use built-in browser capabilities to assist them in answering test questions.</li>
+</ul></li>
+<li><em>User Stories</em>: 
+
+<ul>
+<li>The student starts a test on the secure browser. The testing server displays a test item which requires the student to select the misspelled words in the provided paragraph. If the browser provided spell-check or autocorrect, it would be simple for the student to leverage those tools instead of his/her knowledge in answering the question. The browser must prevent this from happening.</li>
 </ul></li>
 </ul></li>
 </ol>
