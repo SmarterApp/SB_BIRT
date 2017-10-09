@@ -520,7 +520,7 @@ YAHOO.env.ua = YAHOO.env.parseUA();
  * @method init @static @private
  */
 (function() {
-  YAHOO.namespace("util", "widget", "example");
+ // YAHOO.namespace("util", "widget", "example");
   /* global YAHOO_config */
   if ("undefined" !== typeof YAHOO_config) {
     var l = YAHOO_config.listener, ls = YAHOO.env.listeners, unique = true, i;
