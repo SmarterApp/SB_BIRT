@@ -26,10 +26,10 @@
   href="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-ui.theme.css" />
 
 <!-- YAHOO -->
-<script type="text/javascript"
-  src="<%=contextPath%>/Scripts/Libraries/yahoo/yahoo-dom-event.js"></script>
-<script type="text/javascript"
-  src="<%=contextPath%>/Scripts/Libraries/yahoo/env.js"></script>
+<!-- <script type="text/javascript" -->
+<%--   src="<%=contextPath%>/Scripts/Libraries/yahoo/yahoo-dom-event.js"></script> --%>
+<!-- <script type="text/javascript" -->
+<%--   src="<%=contextPath%>/Scripts/Libraries/yahoo/env.js"></script> --%>
 
 
 <!-- WebAudio -->
@@ -65,8 +65,8 @@
   href="<%=contextPath%>/Shared/irt.css" />
 <script type="text/javascript">
 
-// TDS.SecureBrowser.initialize();
-// var impl = TDS.SecureBrowser.getImplementation();
+ TDS.SecureBrowser.initialize();
+ var impl = TDS.SecureBrowser.getImplementation();
 var appWindow = null;
 var appOrigin = null;
 
