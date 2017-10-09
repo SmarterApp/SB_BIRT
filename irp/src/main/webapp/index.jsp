@@ -65,8 +65,8 @@
   href="<%=contextPath%>/Shared/irt.css" />
 <script type="text/javascript">
 
-TDS.SecureBrowser.initialize();
-var impl = TDS.SecureBrowser.getImplementation();
+// TDS.SecureBrowser.initialize();
+// var impl = TDS.SecureBrowser.getImplementation();
 var appWindow = null;
 var appOrigin = null;
 
