@@ -70,12 +70,13 @@
 <script type="text/javascript">
 var appWindow = null;
 var appOrigin = null;
-TDS.SecureBrowser.initialize();
-var impl = TDS.SecureBrowser.getImplementation();
+
   $(document).ready(
       function() {
 
-    	$.cookie("contextPath",'<%=contextPath%>');
+    	  TDS.SecureBrowser.initialize();
+    	  var impl = TDS.SecureBrowser.getImplementation();
+    	  $.cookie("contextPath",'<%=contextPath%>');
         var reportId = '${reportId}';
         var irtVersion = '${version}';
         var gitBranch = '<%=gitBranch %>'
