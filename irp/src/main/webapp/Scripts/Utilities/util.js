@@ -11,11 +11,11 @@
 // Requires: YUI - yahoo-dom-event.js
 // Optional JSON: YUI - connection.js
 // Optional XML: zxml.js
-var YUE = YAHOO.util.Event;
-var YUD = YAHOO.util.Dom;
-var YUC = YAHOO.util.Connect;
-var YCE = YAHOO.util.CustomEvent;
-var YLang = YAHOO.util.Lang;
+//var YUE = YAHOO.util.Event;
+//var YUD = YAHOO.util.Dom;
+//var YUC = YAHOO.util.Connect;
+//var YCE = YAHOO.util.CustomEvent;
+//var YLang = YAHOO.util.Lang;
 
 (function() {
   if (typeof window.console != 'object') {
