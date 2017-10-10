@@ -26,12 +26,12 @@
   href="<%=contextPath%>/Scripts/Libraries/jQuery/jquery-ui.theme.css" />
 
 <!-- YAHOO -->
- <script type="text/javascript" 
-   src="<%=contextPath%>/Scripts/Libraries/yahoo/yahoo-dom-event.js"></script>
-<script type="text/javascript"
-   src="<%=contextPath%>/Scripts/Libraries/yahoo/customevent.js"></script> 
-<!--  <script type="text/javascript" -->
-<%--    src="<%=contextPath%>/Scripts/Libraries/yahoo/env.js"></script>  --%>
+<!--  <script type="text/javascript"  -->
+<%--    src="<%=contextPath%>/Scripts/Libraries/yahoo/yahoo-dom-event.js"></script> --%>
+<!-- <script type="text/javascript" -->
+<%--    src="<%=contextPath%>/Scripts/Libraries/yahoo/customevent.js"></script>  --%>
+  <script type="text/javascript" 
+   src="<%=contextPath%>/Scripts/Libraries/yahoo/env.js"></script>  
 
 
 <!-- WebAudio -->
