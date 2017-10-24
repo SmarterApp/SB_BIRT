@@ -1,11 +1,15 @@
 # Secure Browser Functional Requirements
 
-v.2.2 - Last modified 06-Oct-2017
+v.2.4 - Last modified 23-Oct-2017
 
 ## IP Notice
 This specification is &copy;2017 by American Institutes for Research and is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
-## Overview
+## Secure Browser Purpose and Overview
+
+AIR delivers high stakes assessments on multiple platforms. While a student is testing, the student should not have access to any application outside of the secure browser within which the test is delivered. Once launched, the secure browser will navigate to a testing URL and will not allow the user to navigate away to any other site (that is, all navigation is handled by the content displayed on the page and no browser level UI controls are offered). The secure browser will support the full HTML5 and CSS3 specification so that the online content that is compatible with these standards can be delivered and faithfully rendered. The secure browser shall prohibit any applications that could violate the security construct of testing from being run when the student is in a test. For example, no screen sharing. Also, the browser should be able to prevent the use of any construct that could affect the measurement – browser built in suggestions, spell check, Siri, and so on. The browser should be able to provide a recording interface, to allow students to verbally respond to test questions. The browser must support Text-to-Speech, to allow students with low vision to take the test.  Furthermore, the browser should support Speech to Text, as an additional assistive technology.
+
+## High Level Requirements
 At a high level, the Secure Browser must do the following:
 
 1. Browse to the designated test-taking URL (and no other) and act as the web browser user agent for the test delivery servers.
@@ -14,6 +18,7 @@ At a high level, the Secure Browser must do the following:
    * _User Stories_:
       * The student starts the browser by pointing it at an unauthorized site. The browser recognizes this and instead directs the user to the default testing site. After state selection by the student, the browser authenticates with the TDS servers.
       * The student starts the browser without an explicit URL. The browser opens the default testing site and after state selection by the student, the browser authenticates with the TDS servers.
+    
 2. Exclude the student from accessing any unauthorized service or application on the device. Generally speaking this includes all applications and tools except for assistive technology applications.
    * _Rationale_:
 	  * The browser must prevent the user from accessing tools or applications that could provide them with an advantage in answering test questions (and thereby violating the construct of the assessment). Examples of such applications would be another web browser, a calculator, a spell checker, a dictionary, email, VoIP, or IM.
@@ -54,9 +59,15 @@ At a high level, the Secure Browser must do the following:
    * _User Stories_: 
       * The student starts a test on the secure browser. The testing server displays a test item which requires the student to select the misspelled words in the provided paragraph. If the browser provided spell-check or autocorrect, it would be simple for the student to leverage those tools instead of his/her knowledge in answering the question. The browser must prevent this from happening.
 
+9. The browser must support an interface supporting speech to text (STT), as an assistive technology.
+   * _Rationale_:
+	  * In certain cases, students may require access to accessibility features such as STT. This ability would allow students who are unable to type, to reply to questions verbally and have their speech transcribed into the test.
+   * _User Stories_: 
+      * The student starts a test on the secure browser. The testing server displays a test item which requires a written answer, but the student does not have the manual dexterity to type on a keyboard. The student uses STT to vocalize the answer and the browser transcribes the text into the test.
+
 Most of the high level functional requirements listed below are implemented by the Secure Browser API Specification [1].
 
-## Requirements
+## Low-Level Requirements
 ### A. Security Related Requirements
 1. F01. The secure browser shall NOT provide a means to clear browser cache.
    * _Rationale_:

@@ -357,18 +357,22 @@ pre[class*="language-"] {
 
 <h1 id="toc_0">Secure Browser Functional Requirements</h1>
 
-<p>v.2.1.10 - Last modified 18-Sep-2017</p>
+<p>v.2.4 - Last modified 23-Oct-2017</p>
 
 <h2 id="toc_1">IP Notice</h2>
 
 <p>This specification is &copy;2017 by American Institutes for Research and is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
-<h2 id="toc_2">Overview</h2>
+<h2 id="toc_2">Secure Browser Purpose and Overview</h2>
+
+<p>AIR delivers high stakes assessments on multiple platforms. While a student is testing, the student should not have access to any application outside of the secure browser within which the test is delivered. Once launched, the secure browser will navigate to a testing URL and will not allow the user to navigate away to any other site (that is, all navigation is handled by the content displayed on the page and no browser level UI controls are offered). The secure browser will support the full HTML5 and CSS3 specification so that the online content that is compatible with these standards can be delivered and faithfully rendered. The secure browser shall prohibit any applications that could violate the security construct of testing from being run when the student is in a test. For example, no screen sharing. Also, the browser should be able to prevent the use of any construct that could affect the measurement – browser built in suggestions, spell check, Siri, and so on. The browser should be able to provide a recording interface, to allow students to verbally respond to test questions. The browser must support Text-to-Speech, to allow students with low vision to take the test.  Furthermore, the browser should support Speech to Text, as an additional assistive technology.</p>
+
+<h2 id="toc_3">High Level Requirements</h2>
 
 <p>At a high level, the Secure Browser must do the following:</p>
 
 <ol>
-<li>Browse to the designated test-taking URL (and no other) and act as the web browser user agent for the test delivery servers.
+<li><p>Browse to the designated test-taking URL (and no other) and act as the web browser user agent for the test delivery servers.</p>
 
 <ul>
 <li><em>Rationale</em>:
@@ -383,7 +387,7 @@ pre[class*="language-"] {
 <li>The student starts the browser without an explicit URL. The browser opens the default testing site and after state selection by the student, the browser authenticates with the TDS servers.</li>
 </ul></li>
 </ul></li>
-<li>Exclude the student from accessing any unauthorized service or application on the device. Generally speaking this includes all applications and tools except for assistive technology applications.
+<li><p>Exclude the student from accessing any unauthorized service or application on the device. Generally speaking this includes all applications and tools except for assistive technology applications.</p>
 
 <ul>
 <li><em>Rationale</em>:
@@ -398,7 +402,7 @@ pre[class*="language-"] {
 <li>The student is taking a science assessment which requires analysis of a chemical reaction. The student switches to another web browser, searches the internet for the response, and enters it into the test.</li>
 </ul></li>
 </ul></li>
-<li>Provide a security API, callable from JavaScript, which allows the testing server to assess the security status of the devices. (The API is defined in [1].)
+<li><p>Provide a security API, callable from JavaScript, which allows the testing server to assess the security status of the devices. (The API is defined in [1].)</p>
 
 <ul>
 <li><em>Rationale</em>:
@@ -412,7 +416,7 @@ pre[class*="language-"] {
 <li>The student starts the secure browser but other apps are open. The testing server requests the security status of the device from the browser. The browser detects if the appropriate conditions are in place to consider the device secure and reports back to the testing server.</li>
 </ul></li>
 </ul></li>
-<li>Provide a text-to-speech API, callable from JavaScript, which allows the testing application to make use of text-to-speech functionalities provided by the device operating system or by the browser.
+<li><p>Provide a text-to-speech API, callable from JavaScript, which allows the testing application to make use of text-to-speech functionalities provided by the device operating system or by the browser.</p>
 
 <ul>
 <li><em>Rationale</em>:
@@ -426,7 +430,7 @@ pre[class*="language-"] {
 <li>The student starts a test on the secure browser. The testing server requests that certain assessment items be read out loud to the student. The server makes appropriate API calls to effect this.</li>
 </ul></li>
 </ul></li>
-<li>Optionally provide a recording API, allowing simple recording capabilities such as play/pause/resume/stop, as well as recording retrieval. This capability is browser-dependent.
+<li><p>Optionally provide a recording API, allowing simple recording capabilities such as play/pause/resume/stop, as well as recording retrieval. This capability is browser-dependent.</p>
 
 <ul>
 <li><em>Rationale</em>:
@@ -440,13 +444,69 @@ pre[class*="language-"] {
 <li>The student starts a test on the secure browser. The testing server displays a test item and requests that the student provide a verbal response. The server makes appropriate API calls to effect this.</li>
 </ul></li>
 </ul></li>
+<li><p>The browser must prevent a student from navigating away to other sites (for example, by enabling kiosk mode or removing the navigation buttons).</p>
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>A student should not be able to browse to a website where they might be able to obtain information that may assist them in answering test questions.</li>
+</ul></li>
+<li><em>User Stories</em>: 
+
+<ul>
+<li>The student starts a test on the secure browser. The testing server displays a test item, and the student attempts to navigate outside of the test to look up the answer. The browser must prevent this from happening.</li>
+</ul></li>
+</ul></li>
+<li><p>The browser must disable general purpose capabilities such as spell check, auto correct, auto-fill forms, dictionaries, etc. as using them could affect the measurement.</p>
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>Student should not be able to use built-in browser capabilities to assist them in answering test questions.</li>
+</ul></li>
+<li><em>User Stories</em>: 
+
+<ul>
+<li>The student starts a test on the secure browser. The testing server displays a test item which requires the student to select the misspelled words in the provided paragraph. If the browser provided spell-check or autocorrect, it would be simple for the student to leverage those tools instead of his/her knowledge in answering the question. The browser must prevent this from happening.</li>
+</ul></li>
+</ul></li>
+<li><p>The browser must have the ability to prevent or detect that accessibility features like VoiceOver are turned on.</p>
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>In certain cases, students may require access to accessibility features such as VoiceOver. In other cases, access to such assistive technologies is not allowed. The browser should be able to detect and block these features depending on configurable parameters related to the logged-in student.</li>
+</ul></li>
+<li><em>User Stories</em>: 
+
+<ul>
+<li>The student starts a test on the secure browser. The testing server displays a test item which requires the student to select the misspelled words in the provided paragraph. If the browser provided spell-check or autocorrect, it would be simple for the student to leverage those tools instead of his/her knowledge in answering the question. The browser must prevent this from happening.</li>
+</ul></li>
+</ul></li>
+<li><p>The browser must support an interface supporting speech to text (STT), as an assistive technology.</p>
+
+<ul>
+<li><em>Rationale</em>:
+
+<ul>
+<li>In certain cases, students may require access to accessibility features such as STT. This ability would allow students who are unable to type, to reply to questions verbally and have their speech transcribed into the test.</li>
+</ul></li>
+<li><em>User Stories</em>: 
+
+<ul>
+<li>The student starts a test on the secure browser. The testing server displays a test item which requires a written answer, but the student does not have the manual dexterity to type on a keyboard. The student uses STT to vocalize the answer and the browser transcribes the text into the test.</li>
+</ul></li>
+</ul></li>
 </ol>
 
 <p>Most of the high level functional requirements listed below are implemented by the Secure Browser API Specification [1].</p>
 
-<h2 id="toc_3">Requirements</h2>
+<h2 id="toc_4">Low-Level Requirements</h2>
 
-<h3 id="toc_4">A. Security Related Requirements</h3>
+<h3 id="toc_5">A. Security Related Requirements</h3>
 
 <ol>
 <li>F01. The secure browser shall NOT provide a means to clear browser cache.
@@ -667,7 +727,7 @@ pre[class*="language-"] {
 </ul></li>
 </ol>
 
-<h3 id="toc_5">B. Device Related Requirements</h3>
+<h3 id="toc_6">B. Device Related Requirements</h3>
 
 <ol>
 <li>F09. The desktop secure browser shall provide a means to get system volume.
@@ -757,7 +817,7 @@ pre[class*="language-"] {
 </ul></li>
 </ol>
 
-<h3 id="toc_6">C. Text-to-Speech (TTS) Related Requirements</h3>
+<h3 id="toc_7">C. Text-to-Speech (TTS) Related Requirements</h3>
 
 <p><em>Rationale</em>: Text-to-Speech, abbreviated as TTS, is a form of speech synthesis that converts text into spoken voice output. Text-to-Speech API provides the ability for visually impaired student to listen computer-generated spoken voice that would &quot;read&quot; questionnaire during test session. Users may need to interact with the TTS speech (stop, pause, play, etc.) for a variety of reasons. For example, the room may have become noisy, or the user needs to replay the selection for better comprehension, or the user doesn&#39;t want or need to hear the remainder of the selected text being spoken.</p>
 
@@ -869,7 +929,7 @@ pre[class*="language-"] {
 </ul></li>
 </ol>
 
-<h3 id="toc_7">D. Audio Recording Related Requirements</h3>
+<h3 id="toc_8">D. Audio Recording Related Requirements</h3>
 
 <p>These requirements are optional.</p>
 
@@ -1012,7 +1072,7 @@ pre[class*="language-"] {
 </ul></li>
 </ol>
 
-<h3 id="toc_8">E. Standards Compliance Requirements</h3>
+<h3 id="toc_9">E. Standards Compliance Requirements</h3>
 
 <ol>
 <li>F32. The secure browser shall be HTML5 compliant.
@@ -1045,7 +1105,7 @@ pre[class*="language-"] {
 </ul></li>
 </ol>
 
-<h3 id="toc_9">F. Miscellaneous Requirements</h3>
+<h3 id="toc_10">F. Miscellaneous Requirements</h3>
 
 <ol>
 <li>F35. The secure browser shall check for an appropriate Global Object for API use.
@@ -1065,7 +1125,7 @@ pre[class*="language-"] {
 <li>F52. The Secure Browser shall support the Secure Browser Launch Protocol as defined in [2].</li>
 </ol>
 
-<h2 id="toc_10">References</h2>
+<h2 id="toc_11">References</h2>
 
 <ol>
 <li><a href="https://github.com/SmarterApp/SB_BIRT/blob/master/irp/doc/req/SecureBrowserAPIspecification.md">Secure Browser API Specification</a></li>
